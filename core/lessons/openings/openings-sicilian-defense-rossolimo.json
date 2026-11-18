@@ -1,0 +1,76 @@
+{
+  "id": "openings-sicilian-defense-rossolimo",
+  "course": "openings",
+  "title": "Sicilian Defense: Rossolimo Attack",
+  "line": "White's bishop pins the knight and may trade itself for it; Black gets two bishops and open lines.",
+  "side": "b",
+  "steps": [
+    {
+      "type": "show",
+      "text": "Here White's bishop comes to b5 before the center opens. It eyes your knight.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {"squares":["b5"],"arrows":[["b5","c6"]]},
+      "play": ["e2e4","c7c5","g1f3","b8c6","f1b5"]
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn on g7 one square. Your bishop will go to the long diagonal.",
+      "marks": {"arrows":[["g7","g6"]]},
+      "accept": ["g7g6"],
+      "also": {
+        "e7e6": "That is also played. This lesson goes on with the bishop."
+      },
+      "after": "White trades the bishop for your knight.",
+      "reply": "b5c6",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Take back with the pawn on d7. It opens lines for your queen and your other bishop.",
+      "marks": {"arrows":[["d7","c6"]]},
+      "accept": ["d7c6"],
+      "also": {
+        "b7c6": "That works too, and it heads toward the center. This lesson takes with the other pawn."
+      },
+      "reply": "d2d3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Put the bishop on g7.",
+      "marks": {"arrows":[["f8","g7"]]},
+      "accept": ["f8g7"],
+      "reply": "h2h3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the knight out.",
+      "marks": {"arrows":[["g8","f6"]]},
+      "accept": ["g8f6"],
+      "reply": "b1c3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Castle. Your king goes to safety, and a rook comes toward the center.",
+      "marks": {"arrows":[["e8","g8"]]},
+      "accept": ["e8g8"],
+      "reply": "c1e3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "White's bishop hits your pawn on c5. Push the pawn on b7 one square to guard it.",
+      "marks": {"squares":["c5"],"arrows":[["e3","c5"],["b7","b6"]]},
+      "accept": ["b7b6"],
+      "after": "The pawn on c5 is guarded, and Black has two bishops against White's one.",
+      "taught": true
+    }
+  ],
+  "summary": "When White trades a bishop for the knight, Black takes back toward open lines and enjoys two bishops.",
+  "practice": {
+    "fen": "r1bq1rk1/p3ppbp/1pp2np1/2p5/4P3/2NPBN1P/PPP2PP1/R2QK2R w KQ - 0 9",
+    "side": "b"
+  }
+}

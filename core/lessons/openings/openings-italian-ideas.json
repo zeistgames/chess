@@ -1,0 +1,199 @@
+{
+  "id": "openings-italian-ideas",
+  "course": "openings",
+  "title": "Italian Game: the ideas",
+  "line": "The bishop aims at Black's weakest square, and White gets ready to open the center.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "move",
+      "text": "Push the pawn in front of your king two squares. It takes space in the center and opens lines for your queen and a bishop.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {
+        "arrows": [
+          [
+            "e2",
+            "e4"
+          ]
+        ]
+      },
+      "accept": [
+        "e2e4"
+      ],
+      "also": {
+        "d2d4": "Pushing the queen's pawn is also sound and leads to other openings. This lesson pushes the king's pawn."
+      },
+      "after": "Black does the same.",
+      "reply": "e7e5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the knight out to attack Black's pawn in the center.",
+      "marks": {
+        "squares": [
+          "e5"
+        ],
+        "arrows": [
+          [
+            "g1",
+            "f3"
+          ]
+        ]
+      },
+      "accept": [
+        "g1f3"
+      ],
+      "also": {
+        "b1c3": "That is the Vienna Game, also sound. This lesson brings this knight out.",
+        "f1c4": "That is the Bishop's Opening, also sound. This lesson brings the knight out first."
+      },
+      "after": "Black's knight comes out to guard the pawn.",
+      "reply": "b8c6",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the bishop out. It aims at f7, the square only Black's king guards.",
+      "marks": {
+        "squares": [
+          "f7"
+        ],
+        "arrows": [
+          [
+            "f1",
+            "c4"
+          ]
+        ]
+      },
+      "accept": [
+        "f1c4"
+      ],
+      "also": {
+        "f1b5": "That is the Ruy Lopez, also sound. This lesson goes to c4.",
+        "d2d4": "That is the Scotch Game, also sound. This lesson brings the bishop out.",
+        "b1c3": "That leads to the Four Knights Game, also sound. This lesson brings the bishop out."
+      },
+      "after": "This is the Italian Game.",
+      "reply": "f8c5",
+      "taught": true
+    },
+    {
+      "type": "show",
+      "text": "Black copies the idea: its bishop aims at f2. Both sides want to castle and to own the center square d4.",
+      "marks": {
+        "squares": [
+          "d4"
+        ],
+        "arrows": [
+          [
+            "c4",
+            "f7"
+          ],
+          [
+            "c5",
+            "f2"
+          ]
+        ]
+      }
+    },
+    {
+      "type": "move",
+      "text": "Move the pawn on c2 one square. It gets the center ready, so that a pawn on d4 will be guarded.",
+      "marks": {
+        "squares": [
+          "c2",
+          "d4",
+          "e4"
+        ],
+        "arrows": [
+          [
+            "c2",
+            "c3"
+          ]
+        ]
+      },
+      "accept": [
+        "c2c3"
+      ],
+      "after": "Black attacks your pawn on e4 and gets ready to castle.",
+      "reply": "g8f6",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Now push the pawn in front of your queen two squares. It attacks the pawn on e5 and threatens to chase the bishop.",
+      "marks": {
+        "squares": [
+          "e5",
+          "c5",
+          "c3"
+        ],
+        "arrows": [
+          [
+            "d2",
+            "d4"
+          ]
+        ]
+      },
+      "accept": [
+        "d2d4"
+      ],
+      "after": "If the pawn on c3 takes back, White has two pawns side by side in the center.",
+      "reply": "e5d4",
+      "taught": true
+    },
+    {
+      "type": "show",
+      "text": "If White's knight goes to g5 and Black pushes a pawn to d6 instead of to d5, where it would block the bishop, two pieces hit f7.",
+      "fen": "r1bqkb1r/ppp2ppp/2np1n2/4p1N1/2B1P3/8/PPPP1PPP/RNBQK2R w KQkq - 0 5",
+      "marks": {
+        "squares": [
+          "f7",
+          "d6",
+          "d5"
+        ],
+        "arrows": [
+          [
+            "g5",
+            "f7"
+          ],
+          [
+            "c4",
+            "f7"
+          ]
+        ]
+      }
+    },
+    {
+      "type": "move",
+      "text": "Take on f7 with the knight. It attacks the queen and the rook at once.",
+      "marks": {
+        "squares": [
+          "f7",
+          "d8",
+          "h8"
+        ],
+        "arrows": [
+          [
+            "g5",
+            "f7"
+          ]
+        ]
+      },
+      "accept": [
+        "g5f7"
+      ],
+      "wrong": {
+        "c4f7": "That takes a pawn with check, but the knight on f7 would attack the queen and the rook."
+      },
+      "after": "Black can save only one of them.",
+      "wins": 3
+    }
+  ],
+  "summary": "The bishop aims at Black's weakest square while two pawns build the center. Black must guard that square early.",
+  "practice": {
+    "fen": "r1bqkbnr/pppp1ppp/2n5/4p3/2B1P3/5N2/PPPP1PPP/RNBQK2R b KQkq - 3 3",
+    "side": "w"
+  }
+}

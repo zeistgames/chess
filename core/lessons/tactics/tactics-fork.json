@@ -1,0 +1,65 @@
+{
+  "id": "tactics-fork",
+  "course": "tactics",
+  "title": "The fork",
+  "line": "One piece attacks two at once. The knight does it best.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "text": "A fork is one piece attacking two at once. Here the knight on c7 attacks the king and the rook. Only one can be saved.",
+      "fen": "r3k3/2N2ppp/8/8/8/8/5PPP/6K1 b - - 0 1",
+      "marks": {"squares":["e8","a8"],"arrows":[["c7","e8"],["c7","a8"]]}
+    },
+    {
+      "type": "move",
+      "text": "Find the same fork here: one knight move that attacks the king and the rook on a8.",
+      "fen": "r1b1kbnr/pp2pppp/8/3N4/5B2/8/PPP2PPP/R4RK1 w kq - 0 1",
+      "marks": {"squares":["a8","f8"]},
+      "accept": ["d5c7"],
+      "wrong": {"d5e7":"That takes a pawn, but the bishop on f8 takes the knight back."},
+      "hint": "The knight lands on a square your bishop also guards.",
+      "after": "Check, and the rook on a8 is attacked too.",
+      "reply": "e8d7",
+      "wins": 5
+    },
+    {
+      "type": "move",
+      "text": "The king had to move. Take the rook.",
+      "accept": ["c7a8"],
+      "after": "A rook, worth 5, for nothing."
+    },
+    {
+      "type": "pick",
+      "text": "A fork with check is the strongest kind. Tap the square where your knight would check the king and attack the queen.",
+      "fen": "r4rk1/pp1q1p1p/2p3p1/8/4N3/1B6/PPP2PPP/R3R1K1 w - - 0 1",
+      "marks": {"squares":["g8","d7"]},
+      "accept": ["f6"],
+      "all": false,
+      "wrong": {
+        "d6": "From there the knight attacks neither the king nor the queen.",
+        "g5": "From there the knight attacks neither the king nor the queen.",
+        "c5": "From there the knight attacks the queen, but not the king."
+      },
+      "after": "From there the knight attacks the king and the queen."
+    },
+    {
+      "type": "move",
+      "text": "Jump there.",
+      "fen": "r4rk1/pp1q1p1p/2p3p1/8/4N3/1B6/PPP2PPP/R3R1K1 w - - 0 1",
+      "accept": ["e4f6"],
+      "after": "Black must answer the check, and the queen is left to the knight.",
+      "reply": "g8g7",
+      "wins": 9
+    },
+    {
+      "type": "move",
+      "text": "Take the queen.",
+      "accept": ["f6d7"],
+      "after": "A queen for nothing. The king had to answer the check first."
+    }
+  ],
+  "summary": "A fork attacks two pieces at once, and only one can be saved. Look for squares where one piece hits two.",
+  "practice": {"fen":"r4r2/pp1N1pkp/2p3p1/8/8/1B6/PPP2PPP/R3R1K1 b - - 0 2","side":"w"},
+  "puzzles": "forks"
+}

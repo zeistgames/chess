@@ -1,0 +1,147 @@
+{
+  "id": "checkmates-two-rooks",
+  "course": "checkmates",
+  "title": "Two rooks",
+  "line": "The ladder: rooks taking turns on the ranks.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "text": "Two rooks mate without help from the king. One holds a row, the other checks on the next row, and they take turns, like a ladder.",
+      "fen": "8/8/8/6k1/R7/8/8/1R5K w - - 0 1",
+      "marks": {
+        "squares": [
+          "g5"
+        ],
+        "arrows": [
+          [
+            "a4",
+            "h4"
+          ]
+        ]
+      }
+    },
+    {
+      "type": "move",
+      "text": "The rook on a4 holds its row. Check the king with the other rook on the king's own row.",
+      "accept": [
+        "b1b5"
+      ],
+      "hint": "The rook on b1 moves straight up the board.",
+      "after": "The king cannot step down past either rook, so it must climb a row.",
+      "reply": "g5f6",
+      "marks": {
+        "squares": [
+          "a4"
+        ],
+        "arrows": [
+          [
+            "b1",
+            "b5"
+          ]
+        ]
+      }
+    },
+    {
+      "type": "move",
+      "text": "Now the other rook takes its turn: check on the king's row.",
+      "accept": [
+        "a4a6"
+      ],
+      "hint": "The rook that held the row below goes up past its partner.",
+      "after": "Again the king must climb.",
+      "reply": "f6e7",
+      "marks": {
+        "arrows": [
+          [
+            "a4",
+            "a6"
+          ]
+        ]
+      }
+    },
+    {
+      "type": "move",
+      "text": "Keep climbing. Check with the rook on b5.",
+      "accept": [
+        "b5b7"
+      ],
+      "hint": "Up the board, one row past your other rook.",
+      "after": "The king is on the edge.",
+      "reply": "e7d8",
+      "marks": {
+        "squares": [
+          "b5"
+        ]
+      }
+    },
+    {
+      "type": "move",
+      "text": "One more rung, and it is mate.",
+      "accept": [
+        "a6a8"
+      ],
+      "hint": "The rook on the row below checks along the back row.",
+      "after": "Checkmate. One rook holds the row in front of the king, the other checks on the edge.",
+      "mate": true
+    },
+    {
+      "type": "show",
+      "text": "Here the black king stands near your rooks. A check from the rook on b3 would put it next to the king, and the king would take it.",
+      "fen": "8/8/8/2k5/7R/1R6/8/K7 w - - 0 1",
+      "marks": {
+        "squares": [
+          "c5",
+          "b5"
+        ],
+        "arrows": [
+          [
+            "b3",
+            "b5"
+          ]
+        ]
+      }
+    },
+    {
+      "type": "move",
+      "text": "Move that rook far along its row first, to the side away from the king.",
+      "accept": [
+        "b3g3"
+      ],
+      "hint": "Slide the rook toward the other rook's side of the board.",
+      "after": "The rook is far from the king, and your other rook still holds its row.",
+      "reply": "c5d5",
+      "marks": {
+        "squares": [
+          "b3",
+          "g3"
+        ]
+      },
+      "also": {
+        "b3e3": "That works too: the rook is far from the king. This lesson goes on with the rook on g3.",
+        "b3f3": "That works too: the rook is far from the king. This lesson goes on with the rook on g3.",
+        "b3h3": "That works too: the rook is far from the king. This lesson goes on with the rook on g3."
+      }
+    },
+    {
+      "type": "move",
+      "text": "Now the ladder goes on. Check on the king's row.",
+      "accept": [
+        "g3g5"
+      ],
+      "hint": "The rook on g3 moves up one row.",
+      "after": "The king must climb again. Take turns with the rooks until it reaches the edge.",
+      "reply": "d5e6",
+      "marks": {
+        "squares": [
+          "g3"
+        ]
+      }
+    }
+  ],
+  "summary": "Two rooks take turns checking, one row higher each time. Keep them far from the king.",
+  "practice": {
+    "fen": "8/8/4k3/6R1/7R/8/8/K7 w - - 4 3",
+    "side": "w"
+  }
+}

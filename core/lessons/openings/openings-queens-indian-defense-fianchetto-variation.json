@@ -1,0 +1,78 @@
+{
+  "id": "openings-queens-indian-defense-fianchetto-variation",
+  "course": "openings",
+  "title": "Queen's Indian Defense: Fianchetto Variation",
+  "line": "Both bishops face each other on the long diagonal, and the fight is for a center square on it.",
+  "side": "b",
+  "steps": [
+    {
+      "type": "show",
+      "text": "The Queen's Indian, and White gets ready to put its own bishop on the long diagonal.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {"arrows":[["f1","g2"]]},
+      "play": ["d2d4","g8f6","c2c4","e7e6","g1f3","b7b6","g2g3"]
+    },
+    {
+      "type": "move",
+      "text": "Put your bishop on the long diagonal too. The two bishops face each other.",
+      "accept": ["c8b7"],
+      "marks": {"arrows":[["c8","b7"]],"squares":["c4"]},
+      "also": {
+        "c8a6": "That is the most played line, against the pawn on c4. This lesson goes on with the long diagonal."
+      },
+      "reply": "f1g2",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring out the other bishop, to get ready to castle.",
+      "accept": ["f8e7"],
+      "marks": {"arrows":[["f8","e7"]]},
+      "reply": "e1g1",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Castle, to get your king to safety.",
+      "accept": ["e8g8"],
+      "marks": {"arrows":[["e8","g8"]],"squares":["e4"]},
+      "after": "White's knight comes out to help a pawn to e4.",
+      "reply": "b1c3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Jump into e4 yourself, the square your bishop watches. The knight offers a trade.",
+      "marks": {"squares":["e4"],"arrows":[["f6","e4"]]},
+      "accept": ["f6e4"],
+      "reply": "d1c2",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Trade knights. White has one piece less to fight for e4.",
+      "marks": {"squares":["e4"],"arrows":[["e4","c3"]]},
+      "accept": ["e4c3"],
+      "reply": "c2c3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn on c7 two squares, at White's center.",
+      "marks": {"squares":["c7"],"arrows":[["c7","c5"]]},
+      "accept": ["c7c5"],
+      "reply": "f1d1",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Move the pawn in front of your queen one square. It keeps White's pieces off e5.",
+      "marks": {"squares":["e5"],"arrows":[["d7","d6"]]},
+      "accept": ["d7d6"],
+      "after": "Black is solid, and its bishop still rules the long diagonal.",
+      "taught": true
+    }
+  ],
+  "summary": "The bishops face each other on the long diagonal. Black jumps into the center with a knight and trades it off.",
+  "practice": {"fen":"rn1q1rk1/pb2bppp/1p1pp3/2p5/2PP4/2Q2NP1/PP2PPBP/R1BR2K1 w - - 0 11","side":"b"}
+}

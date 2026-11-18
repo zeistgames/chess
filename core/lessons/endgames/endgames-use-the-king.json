@@ -1,0 +1,60 @@
+{
+  "id": "endgames-use-the-king",
+  "course": "endgames",
+  "title": "Use the king",
+  "line": "In the endgame the king is a strong piece. Bring it into play.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "fen": "8/1p2k3/8/8/6p1/6P1/1P2K3/8 w - - 0 1",
+      "text": "With the queens off, mate is far away, and the king becomes a fighter. Black's pawn on g4 has run ahead and stands alone.",
+      "marks": {"squares":["e2","g4"]}
+    },
+    {
+      "type": "move",
+      "fen": "8/1p2k3/8/8/6p1/6P1/1P2K3/8 w - - 0 1",
+      "text": "Bring your king forward, toward the middle and the lone pawn.",
+      "marks": {"squares":["g4"]},
+      "accept": ["e2e3"],
+      "also": {
+        "e2d3": "That brings the king forward too, and it works. This lesson goes toward the lone pawn."
+      },
+      "wrong": {
+        "b2b3": "The pawns can wait. Without your king coming forward, the game is drawn.",
+        "b2b4": "The pawns can wait. Without your king coming forward, the game is drawn.",
+        "e2d1": "That keeps your king back, and the game is drawn.",
+        "e2e1": "That keeps your king back, and the game is drawn.",
+        "e2f1": "That keeps your king back, and the game is drawn.",
+        "e2d2": "That keeps your king back, and the game is drawn.",
+        "e2f2": "That keeps your king back, and the game is drawn."
+      },
+      "hint": "Step the king forward.",
+      "after": "Your king heads for the lone pawn on g4, and the black king is too far away to save it."
+    },
+    {
+      "type": "show",
+      "fen": "8/6pp/8/3k4/3p4/P7/6PP/5K2 w - - 0 1",
+      "text": "White is a pawn up, but Black's pawn on d4 is passed, with its king behind it. Your king must watch the squares in front of it.",
+      "marks": {"squares":["d4","d5"]}
+    },
+    {
+      "type": "move",
+      "fen": "8/6pp/8/3k4/3p4/P7/6PP/5K2 w - - 0 1",
+      "text": "Use your king: bring it next to the passed pawn's path, where it guards the squares ahead.",
+      "marks": {"squares":["d4","d3","d2","d1"]},
+      "accept": ["f1e2"],
+      "also": {
+        "f1e1": "That guards the pawn's path too. This lesson steps forward."
+      },
+      "wrong": {
+        "a3a4": "That gives Black a free move, and the game is drawn.",
+        "h2h3": "That gives Black a free move, and the game is drawn.",
+        "g2g3": "That gives Black a free move, and the game is drawn."
+      },
+      "hint": "One step toward the pawn's path.",
+      "after": "Your king guards the squares ahead of the pawn. If it steps forward, your king takes it."
+    }
+  ],
+  "summary": "In the endgame, bring the king forward: toward weak enemy pawns, and next to the path of an enemy passed pawn."
+}

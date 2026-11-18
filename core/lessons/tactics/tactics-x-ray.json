@@ -1,0 +1,42 @@
+{
+  "id": "tactics-x-ray",
+  "course": "tactics",
+  "title": "X-ray",
+  "line": "A piece working through another piece on the same line.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "text": "Your two rooks stand one behind the other. The back rook sees through the front one, like an x-ray.",
+      "fen": "3r2k1/3r1ppp/8/8/8/8/3R1PPP/3R2K1 w - - 0 1",
+      "marks": {"arrows":[["d1","d7"]]}
+    },
+    {
+      "type": "pick",
+      "text": "Count the attackers. Tap every white piece that attacks the rook on d7.",
+      "fen": "3r2k1/3r1ppp/8/8/8/8/3R1PPP/3R2K1 w - - 0 1",
+      "marks": {"squares":["d7"]},
+      "accept": ["d2","d1"],
+      "all": true,
+      "hint": "Count the rook behind as well.",
+      "after": "Two attackers. Black has one defender, the rook behind it."
+    },
+    {
+      "type": "move",
+      "text": "Two attackers against one defender: capture the rook.",
+      "fen": "3r2k1/3r1ppp/8/8/8/8/3R1PPP/3R2K1 w - - 0 1",
+      "accept": ["d2d7"],
+      "after": "Black took back, and now your back rook is free to capture.",
+      "reply": "d8d7",
+      "wins": 5
+    },
+    {
+      "type": "move",
+      "text": "Capture again with the rook from behind.",
+      "accept": ["d1d7"],
+      "after": "You are a rook up, because the rook behind counted."
+    }
+  ],
+  "summary": "A piece behind another on the same line counts too: it attacks or defends through its friend.",
+  "practice": {"fen":"6k1/3R1ppp/8/8/8/8/5PPP/6K1 b - - 0 2","side":"w"}
+}

@@ -1,0 +1,40 @@
+{
+ "arasan": {
+  "571ba126b1c949e03b0f09508e0defcae8571e414a288aa9c51409f02aaea420": "26.1"
+ },
+ "caissa": {
+  "ea946c75165155b2a245270423ef3199335767e5ccc1a31638a0907c0d8c5a04": "2.0"
+ },
+ "clover": {
+  "9ff8f0ee97c32ee8947036484be154b7ef03be96de374bf0c0d17f4397733510": "9.1"
+ },
+ "ethereal": {
+  "1a6f10b493b002a866597396538fcd237fa5c562ec12df17e12bd6ad8e07242f": "14.00 (classical)"
+ },
+ "fairy-stockfish": {
+  "d5647aa36a01cb18f35aee6a05d9ba8dddddbe197f370bcd1d06be174f42ac8e": "master e48b753 (2026-11-14)"
+ },
+ "halogen": {
+  "f24b94fd7fac4ce8bdf3632d63730d2da5c2a32a6f585c8c981229f7ad3774d5": "16"
+ },
+ "koivisto": {
+  "bff021c457bae620ed073dededa14ad2df3ffb4ea5359c159ecdbf335471ca89": "9.0"
+ },
+ "maia": {
+  "cad376cf5c958df706442a0e4eb54f3b9f8c40ed21e9fd115209f11a6440b0c6": "Maia-3 (platform export 8b91abf, 2026-11-13)"
+ },
+ "plentychess": {
+  "c62dba2d01b6dc8d9ca1f2f57884a0c65aff8d982eff1b14a81f28f0c3d31c8b": "8.0.0"
+ },
+ "stockfish": {
+  "c293c2dee939c48e826e4d92938fd2521684d2e501152a5222daa92f7663580c": "19.0.1"
+ },
+ "stockfish-lite": {
+  "20d169c50c65b314cc3c2863ba6d21e076ff8ee51f7eeb4cb699b06bfd7ea300": "19.0.1",
+  "618bbf19135f47c1c50a11c6d6ea143b326b918c2f5fa1927bd80c33d0e092da": "19.0.1"
+ },
+ "zeist": {
+  "185215d1a422391a85dc5e0cb93421219d152eefaf0cbc886ed6ed2b1183e3f2": "1.1",
+  "2ecd03f62a96eac8b0e541f157ceb72a5f72f0a3f77d6cba82e58a92054a8287": "1.0"
+ }
+}

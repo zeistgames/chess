@@ -1,0 +1,121 @@
+{
+  "id": "openings-philidor-defense-legal-trap",
+  "course": "openings",
+  "title": "Philidor Defense: Légal's mate",
+  "line": "White gives up the queen and mates with three minor pieces, if Black takes it.",
+  "side": "b",
+  "steps": [
+    {
+      "type": "show",
+      "text": "The Philidor Defense. Here Black pins White's knight to the queen, often seen at club level; masters prefer the bishop to e7.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {
+        "squares": [
+          "f3",
+          "d1",
+          "e7"
+        ],
+        "arrows": [
+          [
+            "g4",
+            "d1"
+          ]
+        ]
+      },
+      "play": [
+        "e2e4",
+        "e7e5",
+        "g1f3",
+        "d7d6",
+        "f1c4",
+        "c8g4"
+      ]
+    },
+    {
+      "type": "show",
+      "text": "Both sides bring a knight out. Then White's pinned knight takes on e5 and leaves its queen to be taken.",
+      "marks": {
+        "squares": [
+          "e5",
+          "d1"
+        ]
+      },
+      "play": [
+        "b1c3",
+        "b8c6",
+        "f3e5"
+      ]
+    },
+    {
+      "type": "show",
+      "text": "If you take the queen, the bishop checks on f7 and the other knight mates: Légal's mate, three minor pieces against the king.",
+      "marks": {
+        "squares": [
+          "e7",
+          "f7"
+        ]
+      },
+      "play": [
+        "g4d1",
+        "c4f7",
+        "e8e7",
+        "c3d5"
+      ]
+    },
+    {
+      "type": "move",
+      "text": "Back before the queen grab. Take the knight on e5 instead: the pin was a bluff, and now White loses a piece.",
+      "fen": "r2qkbnr/ppp2ppp/2np4/4N3/2B1P1b1/2N5/PPPP1PPP/R1BQK2R b KQkq - 0 5",
+      "marks": {
+        "squares": [
+          "e5",
+          "d1",
+          "f7",
+          "g4"
+        ],
+        "arrows": [
+          [
+            "c6",
+            "e5"
+          ]
+        ]
+      },
+      "accept": [
+        "c6e5"
+      ],
+      "wrong": {
+        "g4d1": "That is the mate you just saw: the bishop checks on f7 and the knight mates.",
+        "d6e5": "The queen takes your bishop on g4, and White is a pawn up."
+      },
+      "hint": "Take the piece that just landed on e5.",
+      "after": "If the queen takes your bishop, your knight takes the queen. So White steps the bishop back.",
+      "reply": "c4e2",
+      "wins": 3
+    },
+    {
+      "type": "move",
+      "text": "Trade bishops. You keep the extra knight, and the white queen can no longer take your bishop.",
+      "marks": {
+        "squares": [
+          "e2"
+        ],
+        "arrows": [
+          [
+            "g4",
+            "e2"
+          ]
+        ]
+      },
+      "accept": [
+        "g4e2"
+      ],
+      "after": "You are a piece up. A queen offer is not always a gift: look at what follows before you take.",
+      "reply": "d1e2"
+    }
+  ],
+  "summary": "A queen left to be taken can be bait for mate. Before you take it, look at what the other pieces do to your king.",
+  "practice": {
+    "fen": "r2qkbnr/ppp2ppp/3p4/4n3/4P3/2N5/PPPPQPPP/R1B1K2R b KQkq - 0 7",
+    "side": "b"
+  }
+}

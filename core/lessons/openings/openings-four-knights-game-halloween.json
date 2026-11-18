@@ -1,0 +1,130 @@
+{
+  "id": "openings-four-knights-game-halloween",
+  "course": "openings",
+  "title": "Four Knights Game: meeting the Halloween Gambit",
+  "line": "Seen from Black's side: White gives a knight for a pawn and chases the black knights.",
+  "side": "b",
+  "steps": [
+    {
+      "type": "show",
+      "text": "The Four Knights Game. Now White gives up its knight on f3 for your pawn on e5.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {
+        "squares": [
+          "f3",
+          "e5"
+        ]
+      },
+      "play": [
+        "e2e4",
+        "e7e5",
+        "g1f3",
+        "b8c6",
+        "b1c3",
+        "g8f6"
+      ]
+    },
+    {
+      "type": "show",
+      "text": "The Halloween Gambit: a knight for a pawn, to chase your knights with pawns. Engines rate it unsound, and masters almost never play it.",
+      "marks": {
+        "squares": [
+          "e5"
+        ]
+      },
+      "play": [
+        "f3e5"
+      ]
+    },
+    {
+      "type": "move",
+      "text": "Take the knight. You are a piece up, and White has only a pawn for it.",
+      "marks": {
+        "squares": [
+          "e5"
+        ],
+        "arrows": [
+          [
+            "c6",
+            "e5"
+          ]
+        ]
+      },
+      "accept": [
+        "c6e5"
+      ],
+      "after": "The pawn attacks your knight.",
+      "reply": "d2d4"
+    },
+    {
+      "type": "move",
+      "text": "Step the knight back to g6, near your king and out of reach of the center pawns.",
+      "marks": {
+        "squares": [
+          "g6"
+        ],
+        "arrows": [
+          [
+            "e5",
+            "g6"
+          ]
+        ]
+      },
+      "accept": [
+        "e5g6"
+      ],
+      "after": "The other pawn chases your other knight.",
+      "reply": "e4e5"
+    },
+    {
+      "type": "move",
+      "text": "Go back home with the knight. You lose time, but you keep the extra piece.",
+      "marks": {
+        "squares": [
+          "g8",
+          "f7"
+        ],
+        "arrows": [
+          [
+            "f6",
+            "g8"
+          ]
+        ]
+      },
+      "accept": [
+        "f6g8"
+      ],
+      "after": "White's bishop aims at f7.",
+      "reply": "f1c4"
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn in front of your queen two squares. It gives a pawn back, blocks the bishop for a moment and frees your own.",
+      "marks": {
+        "squares": [
+          "f7"
+        ],
+        "arrows": [
+          [
+            "d7",
+            "d5"
+          ]
+        ]
+      },
+      "accept": [
+        "d7d5"
+      ],
+      "also": {
+        "c7c6": "That works too: it gets the pawn ready to go to d5. This lesson pushes at once."
+      },
+      "after": "You have a knight for two pawns. Bring your pieces out and castle, and the extra piece will tell.",
+      "reply": "c4d5",
+      "sacrifice": true
+    }
+  ],
+  "summary": "Against a gambit that gives a whole piece, take it, step back, and give a pawn back to finish your development.",
+  "practice": {
+    "fen": "r1bqkbnr/ppp2ppp/6n1/3BP3/3P4/2N5/PPP2PPP/R1BQK2R b KQkq - 0 8",
+    "side": "b"
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "id": "checkmates-opera",
+  "course": "checkmates",
+  "title": "Opera mate",
+  "line": "Rook and bishop, after Morphy's game at the Paris opera in 1858.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "text": "Paris, 1858: Paul Morphy played this game in a box at the opera. Black's king is stuck in the middle, and the rook on d1 aims at d8.",
+      "fen": "4kb1r/p2r1ppp/4qn2/1B2p1B1/4P3/1Q6/PPP2PPP/2KR4 w k - 2 15",
+      "marks": {"squares":["e8"],"arrows":[["d1","d8"]]}
+    },
+    {
+      "type": "pick",
+      "text": "Tap the white piece that aims at d8 from the other side, through the knight on f6.",
+      "accept": ["g5"],
+      "hint": "Follow the diagonals that cross d8.",
+      "after": "The bishop. If the knight on f6 moves, the bishop guards d8 and e7.",
+      "marks": {"squares":["d8","f6","e7"]}
+    },
+    {
+      "type": "move",
+      "text": "Capture the rook on d7 with your other bishop, with check.",
+      "accept": ["b5d7"],
+      "hint": "Your bishop on b5 takes on d7.",
+      "after": "The knight took back, and the bishop on g5 now sees d8.",
+      "reply": "f6d7",
+      "marks": {"squares":["d7","g5","d8"],"arrows":[["b5","d7"]]}
+    },
+    {
+      "type": "move",
+      "text": "The knight on d7 blocks your rook's file. Give your queen to pull it away: check on b8.",
+      "accept": ["b3b8"],
+      "hint": "The queen goes down the file to the back rank.",
+      "after": "The knight had to take the queen, and the file is open.",
+      "reply": "d7b8",
+      "sacrifice": true,
+      "marks": {"squares":["b8","d7"]}
+    },
+    {
+      "type": "move",
+      "text": "Mate with the rook.",
+      "accept": ["d1d8"],
+      "hint": "The rook goes straight up the open file.",
+      "after": "Opera mate. The bishop guards the rook and takes e7, and Black's own pieces block the rest.",
+      "mate": true,
+      "marks": {"squares":["e7"]}
+    }
+  ],
+  "summary": "A rook on the back rank, guarded by a bishop from far away, mates a king hemmed in by its own pieces."
+}

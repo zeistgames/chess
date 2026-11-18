@@ -1,0 +1,84 @@
+{
+  "id": "basics-check",
+  "course": "basics",
+  "title": "Check",
+  "line": "The king is attacked. Three ways out: move it, block, or capture the attacker.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "text": "The rook on e8 attacks your king. A king under attack is in check, and the player must get it out of check at once.",
+      "fen": "r3r1k1/ppp2ppp/1n3b2/1B6/8/2N5/PPP2PPP/R3K2R w KQ - 0 1",
+      "marks": {"squares":["e1"],"arrows":[["e8","e1"]]}
+    },
+    {
+      "type": "move",
+      "text": "The first way out: move the king to a square that is not attacked. Here nothing can block or capture.",
+      "fen": "4r1k1/5ppp/8/8/8/8/5PPP/R3K3 w Q - 0 1",
+      "marks": {"arrows":[["e8","e1"]]},
+      "accept": ["e1d1","e1d2","e1f1"],
+      "hint": "The king can step sideways or diagonally, but not straight ahead: the rook covers that square.",
+      "after": "The king has stepped off the rook's line."
+    },
+    {
+      "type": "move",
+      "text": "The second way: block. Put something between the queen on h4 and your king.",
+      "fen": "rnb1kbnr/pppp1ppp/8/4p3/4PP1q/8/PPPP2PP/RNBQKBNR w KQkq - 1 3",
+      "marks": {"arrows":[["h4","e1"]]},
+      "accept": ["g2g3"],
+      "wrong": {"e1e2":"That steps out of check, but a king that has moved can never castle."},
+      "hint": "Only one of your pawns can step into the queen's line.",
+      "after": "The queen's line to the king is closed, and the pawn attacks her."
+    },
+    {
+      "type": "move",
+      "text": "The third way: capture the piece that gives check.",
+      "fen": "r3r1k1/ppp2ppp/1n3b2/1B6/8/2N5/PPP2PPP/R3K2R w KQ - 0 1",
+      "accept": ["b5e8"],
+      "wrong": {
+        "b5e2": "That blocks the check, but the rook is left alive. Capture it.",
+        "c3e2": "That blocks the check, but the rook is left alive. Capture it.",
+        "c3e4": "That blocks the check, but the rook is left alive. Capture it.",
+        "e1d1": "That steps out of check, but the rook could have been captured.",
+        "e1d2": "That steps out of check, but the rook could have been captured.",
+        "e1f1": "That steps out of check, but the rook could have been captured."
+      },
+      "hint": "Your bishop sees the rook.",
+      "after": "The rook is gone, and so is the check."
+    },
+    {
+      "type": "move",
+      "text": "Now give check yourself: attack the black king with your rook.",
+      "fen": "6k1/5p1p/6p1/8/8/8/5PPP/R5K1 w - - 0 1",
+      "accept": ["a1a8"],
+      "also": {
+        "a1a2": "That is a sound move, but it does not give check.",
+        "h2h4": "That is a sound move, but it does not give check.",
+        "a1a6": "That is a sound move, but it does not give check.",
+        "a1a4": "That is a sound move, but it does not give check.",
+        "a1d1": "That is a sound move, but it does not give check.",
+        "g1f1": "That is a sound move, but it does not give check.",
+        "a1c1": "That is a sound move, but it does not give check.",
+        "a1a3": "That is a sound move, but it does not give check.",
+        "a1a7": "That is a sound move, but it does not give check.",
+        "f2f3": "That is a sound move, but it does not give check.",
+        "a1a5": "That is a sound move, but it does not give check.",
+        "h2h3": "That is a sound move, but it does not give check.",
+        "a1b1": "That is a sound move, but it does not give check.",
+        "g2g3": "That is a sound move, but it does not give check.",
+        "f2f4": "That is a sound move, but it does not give check.",
+        "a1e1": "That is a sound move, but it does not give check.",
+        "g1h1": "That is a sound move, but it does not give check.",
+        "a1f1": "That is a sound move, but it does not give check."
+      },
+      "hint": "The rook moves in a straight line to the row where the king stands.",
+      "after": "Check. Black must answer it before doing anything else.",
+      "reply": "g8g7"
+    },
+    {
+      "type": "show",
+      "text": "A move that leaves your own king in check is not allowed, so the board will not let you make one."
+    }
+  ],
+  "summary": "In check, the king must be saved at once: move it, block the line, or capture the piece that gives check."
+}

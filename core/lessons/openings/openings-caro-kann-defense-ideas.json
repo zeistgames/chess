@@ -1,0 +1,74 @@
+{
+  "id": "openings-caro-kann-defense-ideas",
+  "course": "openings",
+  "title": "Caro-Kann Defense: the ideas",
+  "line": "Like the French, but the side pawn leaves a bishop free to come out before the pawns close it in.",
+  "side": "b",
+  "steps": [
+    {
+      "type": "show",
+      "text": "White starts by pushing the pawn in front of its king two squares, into the center.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {"arrows":[["e2","e4"]]},
+      "play": ["e2e4"]
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn on c7 one square. It gets ready to back up a pawn on d5.",
+      "marks": {"squares":["d5"],"arrows":[["c7","c6"]]},
+      "accept": ["c7c6"],
+      "also": {
+        "e7e5": "That is the open game, another main answer. This lesson goes on with the Caro-Kann.",
+        "c7c5": "That is the Sicilian Defense, another main answer. This lesson goes on with the Caro-Kann.",
+        "e7e6": "That is the French Defense, another main answer. This lesson goes on with the Caro-Kann.",
+        "d7d6": "That is the Pirc Defense, another main answer. This lesson goes on with the Caro-Kann.",
+        "d7d5": "That is the Scandinavian Defense, another main answer. This lesson goes on with the Caro-Kann.",
+        "g7g6": "That is the Modern Defense, another main answer. This lesson goes on with the Caro-Kann.",
+        "g8f6": "That is the Alekhine Defense, another main answer. This lesson goes on with the Caro-Kann."
+      },
+      "reply": "d2d4",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Now push the pawn in front of your queen two squares. It hits the pawn on e4, and your pawn on c6 guards it.",
+      "marks": {"squares":["e4","c6"],"arrows":[["d7","d5"]]},
+      "accept": ["d7d5"],
+      "after": "White guards the pawn with a knight.",
+      "reply": "b1c3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Take the pawn on e4. White's knight takes back, and your bishop can then come out and hit it.",
+      "marks": {"arrows":[["d5","e4"]]},
+      "accept": ["d5e4"],
+      "reply": "c3e4",
+      "taught": true
+    },
+    {
+      "type": "pick",
+      "text": "In the French a pawn shuts one bishop in. Here its way is open. Tap the bishop that can come out now.",
+      "accept": ["c8"],
+      "after": "The pawn in front of your king is still at home, so this bishop's path is clear."
+    },
+    {
+      "type": "move",
+      "text": "Bring it out to f5, where it hits the knight on e4.",
+      "marks": {"squares":["e4"],"arrows":[["c8","f5"]]},
+      "accept": ["c8f5"],
+      "also": {
+        "b8d7": "That is the Karpov Variation, another main line. This lesson goes on with the bishop.",
+        "g8f6": "That also works. This lesson goes on with the bishop."
+      },
+      "after": "The knight steps away and hits the bishop back.",
+      "reply": "e4g3",
+      "taught": true
+    }
+  ],
+  "summary": "The Caro-Kann builds a solid center like the French, but the bishop comes out before the pawns close it in.",
+  "practice": {
+    "fen": "rn1qkbnr/pp2pppp/2p5/5b2/3P4/6N1/PPP2PPP/R1BQKBNR b KQkq - 2 5",
+    "side": "b"
+  }
+}

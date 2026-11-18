@@ -1,0 +1,84 @@
+{
+  "id": "openings-sicilian-defense-classical",
+  "course": "openings",
+  "title": "Sicilian Defense: Classical Variation",
+  "line": "Both knights come out first, and the queen can join them against White's knight in the center.",
+  "side": "b",
+  "steps": [
+    {
+      "type": "show",
+      "text": "The usual Sicilian start: White pushes the king's pawn, Black answers from the side, and White pushes a second center pawn.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {"squares":["e4","d4"]},
+      "play": ["e2e4","c7c5","g1f3","d7d6","d2d4"]
+    },
+    {
+      "type": "show",
+      "text": "Black trades its side pawn for that center pawn, and both sides bring a knight out.",
+      "marks": {"squares":["d4"]},
+      "play": ["c5d4","f3d4","g8f6","b1c3"]
+    },
+    {
+      "type": "move",
+      "text": "Bring the other knight out. It hits the knight on d4.",
+      "marks": {"squares":["d4","f7"],"arrows":[["b8","c6"]]},
+      "accept": ["b8c6"],
+      "also": {
+        "a7a6": "That is the Najdorf, another main line. This lesson goes on with the Classical.",
+        "g7g6": "That is the Dragon, another main line. This lesson goes on with the Classical."
+      },
+      "after": "White's bishop aims at the pawn on f7.",
+      "reply": "f1c4",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the queen to b6. With the knight it hits the knight on d4, and it eyes the pawn on b2.",
+      "marks": {"squares":["d4","b2"],"arrows":[["d8","b6"]]},
+      "accept": ["d8b6"],
+      "also": {
+        "e7e6": "That is also played. This lesson uses the queen first."
+      },
+      "after": "The knight steps back from the center.",
+      "reply": "d4b3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn on e7 one square. It blunts White's bishop and opens a path for your other bishop.",
+      "marks": {"arrows":[["e7","e6"]]},
+      "accept": ["e7e6"],
+      "reply": "e1g1",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the bishop out, so you can castle.",
+      "marks": {"arrows":[["f8","e7"]]},
+      "accept": ["f8e7"],
+      "reply": "c1e3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "White's bishop hits your queen. Step back to c7, where she watches e5.",
+      "marks": {"squares":["e5"],"arrows":[["e3","b6"],["b6","c7"]]},
+      "accept": ["b6c7"],
+      "reply": "f2f4",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn on a7 one square. It gets the pawn on b7 ready to push forward on the queen's side.",
+      "marks": {"squares":["b7"],"arrows":[["a7","a6"]]},
+      "accept": ["a7a6"],
+      "after": "This is the usual plan: Black's pawns go forward on the queen's side, away from where White's king castled.",
+      "taught": true
+    }
+  ],
+  "summary": "In the Classical both knights come out, the queen chases White's knight back, and pawns go forward on the queen's side.",
+  "practice": {
+    "fen": "r1b1k2r/1pq1bppp/p1nppn2/8/2B1PP2/1NN1B3/PPP3PP/R2Q1RK1 w kq - 0 11",
+    "side": "b"
+  }
+}

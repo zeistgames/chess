@@ -1,0 +1,77 @@
+{
+  "id": "openings-kings-indian-defense-four-pawns-attack",
+  "course": "openings",
+  "title": "King's Indian Defense: Four Pawns Attack",
+  "line": "White takes all the center it can, and Black attacks the pawns before they settle.",
+  "side": "b",
+  "steps": [
+    {
+      "type": "show",
+      "text": "The King's Indian, and White pushes a fourth pawn forward. It takes all the space it can.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {"arrows":[["f2","f4"]]},
+      "play": ["d2d4","g8f6","c2c4","g7g6","b1c3","f8g7","e2e4","d7d6","f2f4"]
+    },
+    {
+      "type": "move",
+      "text": "Castle first. Your king is safe behind the bishop.",
+      "accept": ["e8g8"],
+      "marks": {"arrows":[["e8","g8"]]},
+      "reply": "g1f3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Strike at the center at once with the pawn on c7. White's pawns are far forward and hard to guard.",
+      "marks": {"squares":["d4","c7"],"arrows":[["c7","c5"]]},
+      "accept": ["c7c5"],
+      "after": "White pushes past.",
+      "reply": "d4d5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Now attack the pawn on d5 with another pawn.",
+      "marks": {"squares":["d5"],"arrows":[["e7","e6"]]},
+      "accept": ["e7e6"],
+      "reply": "f1e2",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Trade it off. The file that pawn stood on opens for your rook.",
+      "accept": ["e6d5"],
+      "marks": {"arrows":[["e6","d5"]]},
+      "reply": "c4d5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Put a rook on the open file. It aims down the file at White's pawn on e4.",
+      "marks": {"squares":["e1","e4"],"arrows":[["f8","e8"]]},
+      "accept": ["f8e8"],
+      "after": "White pushes the pawn on, to chase your knight.",
+      "reply": "e4e5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Take the pawn.",
+      "accept": ["d6e5"],
+      "marks": {"arrows":[["d6","e5"]]},
+      "reply": "f4e5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Jump the knight forward, out of the attack. It hits the pawn on e5.",
+      "marks": {"squares":["e5"],"arrows":[["f6","g4"]]},
+      "accept": ["f6g4"],
+      "wrong": {"f6d7":"The knight steps back. White keeps its pawns in the center and gets to attack first."},
+      "after": "Your knight, rook and bishop all attack the pawn, and White's center starts to fall apart.",
+      "taught": true
+    }
+  ],
+  "summary": "Against a center of four pawns, Black strikes at once from the side, opens a file and attacks the pawns in front.",
+  "practice": {"fen":"rnbqr1k1/pp3pbp/6p1/2pPP3/6n1/2N2N2/PP2B1PP/R1BQK2R w KQ - 1 12","side":"b"}
+}

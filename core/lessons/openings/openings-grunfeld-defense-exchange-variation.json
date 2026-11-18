@@ -1,0 +1,88 @@
+{
+  "id": "openings-grunfeld-defense-exchange-variation",
+  "course": "openings",
+  "title": "Grünfeld Defense: Exchange Variation",
+  "line": "White gets a big center of pawns, and Black's bishop on the long diagonal attacks it.",
+  "side": "b",
+  "steps": [
+    {
+      "type": "show",
+      "text": "The Grünfeld, and White takes the pawn on d5. White wants to build a big center.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {"arrows":[["c4","d5"]]},
+      "play": ["d2d4","g8f6","c2c4","g7g6","b1c3","d7d5","c4d5"]
+    },
+    {
+      "type": "move",
+      "text": "Take back with the knight.",
+      "accept": ["f6d5"],
+      "marks": {"arrows":[["f6","d5"]]},
+      "after": "White's pawn chases the knight.",
+      "reply": "e2e4",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Trade the knight off. White's center grows, but Black is ready to attack it.",
+      "accept": ["d5c3"],
+      "marks": {"arrows":[["d5","c3"]]},
+      "reply": "b2c3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Put the bishop on the long diagonal. It aims at the pawns on d4 and c3, and at the rook behind them.",
+      "marks": {
+        "squares": ["d4","c3","a1"],
+        "arrows": [["f8","g7"]]
+      },
+      "accept": ["f8g7"],
+      "reply": "g1f3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Strike at the center with the pawn on c7.",
+      "marks": {"squares":["c7"],"arrows":[["c7","c5"]]},
+      "accept": ["c7c5"],
+      "after": "White's rook steps off the bishop's line.",
+      "reply": "a1b1",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Castle, to get your king to safety.",
+      "accept": ["e8g8"],
+      "marks": {"arrows":[["e8","g8"]]},
+      "reply": "f1e2",
+      "taught": true
+    },
+    {
+      "type": "show",
+      "text": "A mistake, not the usual move: here White pushed the pawn on d4 past, with the rook still at home.",
+      "fen": "rnbqk2r/pp2ppbp/6p1/2p5/3PP3/2P2N2/P4PPP/R1BQKB1R w KQkq - 0 8",
+      "marks": {
+        "squares": ["a1","c3","d4"]
+      },
+      "play": ["d4d5"]
+    },
+    {
+      "type": "move",
+      "text": "Take the pawn on c3 with check. Your bishop now attacks the rook too.",
+      "marks": {"squares":["a1","c3"],"arrows":[["g7","c3"]]},
+      "accept": ["g7c3"],
+      "reply": "c1d2"
+    },
+    {
+      "type": "move",
+      "text": "Take the rook.",
+      "accept": ["c3a1"],
+      "marks": {"arrows":[["c3","a1"]]},
+      "after": "Black has a rook and a pawn for the bishop.",
+      "reply": "d1a1",
+      "wins": 2
+    }
+  ],
+  "summary": "White's center is big, and Black's bishop and side pawn aim at it. A center pawn that moves can open the bishop's line.",
+  "practice": {"fen":"rnbqk2r/pp2pp1p/6p1/2pP4/4P3/5N2/P2B1PPP/Q3KB1R b Kkq - 0 10","side":"b"}
+}

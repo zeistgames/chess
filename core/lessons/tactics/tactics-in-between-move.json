@@ -1,0 +1,36 @@
+{
+  "id": "tactics-in-between-move",
+  "course": "tactics",
+  "title": "The in-between move",
+  "line": "Before recapturing, a stronger move first.",
+  "side": "b",
+  "steps": [
+    {
+      "type": "show",
+      "text": "White grabbed a pawn with the knight, Black took the knight, and White's bishop has just taken Black's queen.",
+      "fen": "r1bqkb1r/pppn1ppp/5n2/3p2B1/3P4/2N5/PP2PPPP/R2QKBNR w KQkq - 0 6",
+      "marks": {"squares":["d8"]},
+      "play": ["c3d5","f6d5","g5d8"]
+    },
+    {
+      "type": "move",
+      "text": "Do not take back yet. First check the king with your bishop.",
+      "accept": ["f8b4"],
+      "wrong": {"e8d8":"That takes the queen back, but White stays a knight and a pawn ahead."},
+      "hint": "Your bishop can check along the diagonal to the white king.",
+      "after": "The only way out was to put the queen in the way.",
+      "reply": "d1d2",
+      "wins": 9
+    },
+    {"type":"move","text":"Take the queen, with check.","accept":["b4d2"],"reply":"e1d2"},
+    {
+      "type": "move",
+      "text": "Now take back on d8.",
+      "marks": {"squares":["d8"]},
+      "accept": ["e8d8"],
+      "after": "The check came first, and Black ends a piece ahead."
+    }
+  ],
+  "summary": "Before you take back, ask whether a check or threat comes first. The recapture can wait one move.",
+  "practice": {"fen":"r1bk3r/pppn1ppp/8/3n4/3P4/8/PP1KPPPP/R4BNR w - - 0 10","side":"b"}
+}

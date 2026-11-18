@@ -1,0 +1,67 @@
+{
+  "id": "openings-pirc-defense-austrian",
+  "course": "openings",
+  "title": "Pirc Defense: Austrian Attack",
+  "line": "White builds a wall of three center pawns; Black castles and hits the wall from the side.",
+  "side": "b",
+  "steps": [
+    {
+      "type": "show",
+      "text": "In the Austrian Attack, White pushes a third pawn forward to build a big center.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {"arrows":[["f2","f4"]]},
+      "play": ["e2e4","d7d6","d2d4","g8f6","b1c3","g7g6","f2f4"]
+    },
+    {
+      "type": "move",
+      "text": "Put the bishop on g7, so you can castle next.",
+      "marks": {"arrows":[["f8","g7"]]},
+      "accept": ["f8g7"],
+      "reply": "g1f3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Castle. Your king is safe before the center opens.",
+      "marks": {"arrows":[["e8","g8"]]},
+      "accept": ["e8g8"],
+      "also": {
+        "c7c5": "That strikes at once, and it is also played. This lesson castles first."
+      },
+      "reply": "f1d3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the knight to a6. From there it backs up a side pawn push.",
+      "marks": {"arrows":[["b8","a6"]]},
+      "accept": ["b8a6"],
+      "also": {
+        "b8c6": "That also works. This lesson goes on with the knight on a6."
+      },
+      "reply": "e1g1",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn on c7 two squares. It hits White's wall of pawns from the side.",
+      "marks": {"squares":["d4"],"arrows":[["c7","c5"]]},
+      "accept": ["c7c5"],
+      "reply": "d4d5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Move the rook to b8. It backs up a push of the pawn on b7, to open lines on the queen's side.",
+      "marks": {"squares":["b7"],"arrows":[["a8","b8"]]},
+      "accept": ["a8b8"],
+      "after": "The pawn on b7 can now go forward with the rook behind it.",
+      "taught": true
+    }
+  ],
+  "summary": "Against the Austrian, Black castles, hits White's wall of pawns from the side and opens lines on the queen's side.",
+  "practice": {
+    "fen": "1rbq1rk1/pp2ppbp/n2p1np1/2pP4/4PP2/2NB1N2/PPP3PP/R1BQ1RK1 w - - 1 9",
+    "side": "b"
+  }
+}

@@ -1,0 +1,138 @@
+{
+  "id": "openings-queens-gambit-accepted",
+  "course": "openings",
+  "title": "Queen's Gambit Accepted",
+  "line": "Black takes the offered pawn, and White gets it back with easy development.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "text": "Black takes the offered pawn. Its center pawn has left the middle, and the pawn on c4 is hard to keep.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {
+        "squares": [
+          "c4"
+        ]
+      },
+      "play": [
+        "d2d4",
+        "d7d5",
+        "c2c4",
+        "d5c4"
+      ]
+    },
+    {
+      "type": "move",
+      "text": "Bring the knight out. It guards e5, where Black's king pawn would like to strike at your center.",
+      "marks": {
+        "squares": [
+          "e5"
+        ],
+        "arrows": [
+          [
+            "g1",
+            "f3"
+          ]
+        ]
+      },
+      "accept": [
+        "g1f3"
+      ],
+      "also": {
+        "e2e4": "Taking the center with the king pawn is sound too. This lesson brings the knight out first.",
+        "e2e3": "That is sound too. This lesson brings the knight out first."
+      },
+      "after": "Black brings its knight out too.",
+      "reply": "g8f6",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Move the pawn in front of your king one square. Your bishop can now reach the pawn on c4.",
+      "marks": {
+        "squares": [
+          "c4"
+        ],
+        "arrows": [
+          [
+            "e2",
+            "e3"
+          ]
+        ]
+      },
+      "accept": [
+        "e2e3"
+      ],
+      "after": "Black does the same and opens a path for its own bishop.",
+      "reply": "e7e6",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Take the pawn back with the bishop. It comes out onto an open diagonal.",
+      "marks": {
+        "squares": [
+          "c4"
+        ],
+        "arrows": [
+          [
+            "f1",
+            "c4"
+          ]
+        ]
+      },
+      "accept": [
+        "f1c4"
+      ],
+      "after": "Material is level again. Black strikes at your center pawn from the side.",
+      "reply": "c7c5"
+    },
+    {
+      "type": "move",
+      "text": "Castle. Your king is safe before the center opens.",
+      "marks": {
+        "squares": [
+          "b7"
+        ],
+        "arrows": [
+          [
+            "e1",
+            "g1"
+          ]
+        ]
+      },
+      "accept": [
+        "e1g1"
+      ],
+      "after": "Black gets ready to push the pawn on b7 two squares and chase your bishop.",
+      "reply": "a7a6",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn on a2 two squares. Now a black pawn that comes to b5 can be taken, so your bishop is not chased so easily.",
+      "marks": {
+        "squares": [
+          "b5",
+          "c4"
+        ],
+        "arrows": [
+          [
+            "a2",
+            "a4"
+          ]
+        ]
+      },
+      "accept": [
+        "a2a4"
+      ],
+      "after": "White has the pawn back, a pawn in the center and a castled king.",
+      "taught": true
+    }
+  ],
+  "summary": "Black takes the side pawn but cannot keep it. White develops, takes it back with the bishop and keeps the center.",
+  "practice": {
+    "fen": "rnbqkb1r/1p3ppp/p3pn2/2p5/P1BP4/4PN2/1P3PPP/RNBQ1RK1 b kq - 0 7",
+    "side": "w"
+  }
+}

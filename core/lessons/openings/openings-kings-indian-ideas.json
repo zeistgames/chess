@@ -1,0 +1,82 @@
+{
+  "id": "openings-kings-indian-ideas",
+  "course": "openings",
+  "title": "King's Indian Defense: the ideas",
+  "line": "Black lets White build a big center, then strikes at it.",
+  "side": "b",
+  "steps": [
+    {
+      "type": "show",
+      "text": "White starts by pushing the pawn in front of its queen two squares, into the center.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {"arrows":[["d2","d4"]]},
+      "play": ["d2d4"]
+    },
+    {
+      "type": "move",
+      "text": "Bring the knight out. For now it stops White's other center pawn from coming to e4.",
+      "marks": {"squares":["e4"],"arrows":[["g8","f6"]]},
+      "accept": ["g8f6"],
+      "also": {"d7d5":"That leads to the Queen's Gambit, also sound. This lesson goes on with the knight."},
+      "reply": "c2c4",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn on g7 one square, to make room for your bishop.",
+      "marks": {"squares":["g7"],"arrows":[["g7","g6"]]},
+      "accept": ["g7g6"],
+      "also": {
+        "e7e6": "That leads to the Nimzo-Indian or the Queen's Indian, also sound. This lesson goes on with the other pawn."
+      },
+      "reply": "b1c3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Put the bishop in the gap. Once the knight moves, it aims at the center.",
+      "accept": ["f8g7"],
+      "also": {"d7d5":"That is the Grünfeld Defense, also sound. This lesson goes on with the bishop."},
+      "marks": {"arrows":[["f8","g7"]]},
+      "after": "White takes the whole center. Black lets it happen.",
+      "reply": "e2e4",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Move the pawn in front of your queen one square. It guards e5, so White's pawn on e4 cannot safely push there.",
+      "marks": {"squares":["e4","e5"],"arrows":[["d7","d6"]]},
+      "accept": ["d7d6"],
+      "after": "This is the King's Indian Defense.",
+      "reply": "g1f3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Castle: move your king two squares toward the rook. It is safe behind the bishop.",
+      "accept": ["e8g8"],
+      "marks": {"arrows":[["e8","g8"]]},
+      "reply": "f1e2",
+      "taught": true
+    },
+    {
+      "type": "show",
+      "text": "Why castle first: here Black struck before castling. White trades pawns and queens, the king takes back, and the pawn on e5 falls.",
+      "fen": "rnbqk2r/ppp2pbp/3p1np1/4p3/2PPP3/2N2N2/PP3PPP/R1BQKB1R w KQkq - 0 6",
+      "marks": {"squares":["e8","e5"]},
+      "play": ["d4e5","d6e5","d1d8","e8d8","f3e5"]
+    },
+    {
+      "type": "move",
+      "text": "Now strike at the center: push the pawn in front of your king two squares.",
+      "marks": {"arrows":[["e7","e5"],["e5","d4"]]},
+      "accept": ["e7e5"],
+      "after": "Your pawn attacks White's center, and White must decide what to do about it.",
+      "reply": "e1g1",
+      "taught": true,
+      "fen": "rnbq1rk1/ppp1ppbp/3p1np1/8/2PPP3/2N2N2/PP2BPPP/R1BQK2R b KQ - 3 6"
+    }
+  ],
+  "summary": "Black lets White take the center, castles behind the bishop, then strikes at the center with a pawn.",
+  "practice": {"fen":"rnbqk2r/ppp1ppbp/3p1np1/8/2PPP3/2N5/PP3PPP/R1BQKBNR w KQkq - 0 5","side":"b"}
+}

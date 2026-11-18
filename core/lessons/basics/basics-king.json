@@ -1,0 +1,71 @@
+{
+  "id": "basics-king",
+  "course": "basics",
+  "title": "The king",
+  "line": "One square at a time, and never onto an attacked square.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "text": "The king moves one square in any direction.",
+      "fen": "7k/8/8/8/3K4/8/8/8 w - - 0 1",
+      "marks": {
+        "squares": ["c5","d5","e5","e4","e3","d3","c3","c4"]
+      }
+    },
+    {
+      "type": "pick",
+      "text": "The king may never step onto a square an enemy piece attacks. Tap every square this king can move to.",
+      "fen": "7k/8/8/r7/3K4/8/8/8 w - - 0 1",
+      "marks": {"squares":["d4"]},
+      "accept": ["e4","e3","d3","c3","c4"],
+      "all": true,
+      "after": "The rook attacks its whole row, so the three squares on that row are closed."
+    },
+    {
+      "type": "pick",
+      "text": "Two kings can never stand side by side. Tap every square the white king can move to.",
+      "fen": "8/8/3k4/8/3K4/8/8/8 w - - 0 1",
+      "marks": {"squares":["d4"]},
+      "accept": ["e4","e3","d3","c3","c4"],
+      "all": true,
+      "after": "The squares next to the black king are closed to the white king."
+    },
+    {
+      "type": "pick",
+      "text": "A king can capture, but only a piece nothing guards. Tap every square this king can move to.",
+      "fen": "8/8/8/8/6k1/3pKp2/8/R7 w - - 0 1",
+      "marks": {"squares":["e3"]},
+      "accept": ["d4","e4","f2","d2","d3"],
+      "all": true,
+      "after": "It can capture one pawn. The other is guarded by the black king, and both pawns attack the square behind your king."
+    },
+    {
+      "type": "move",
+      "text": "Capture the pawn the king is allowed to take.",
+      "fen": "8/8/8/8/6k1/3pKp2/8/R7 w - - 0 1",
+      "accept": ["e3d3"],
+      "also": {
+        "a1a5": "That is a sound move, but this step asks for a capture.",
+        "a1a7": "That is a sound move, but this step asks for a capture.",
+        "a1a6": "That is a sound move, but this step asks for a capture.",
+        "a1g1": "That is a sound move, but this step asks for a capture.",
+        "a1e1": "That is a sound move, but this step asks for a capture.",
+        "a1a3": "That is a sound move, but this step asks for a capture.",
+        "a1a8": "That is a sound move, but this step asks for a capture.",
+        "a1f1": "That is a sound move, but this step asks for a capture.",
+        "a1d1": "That is a sound move, but this step asks for a capture.",
+        "a1a4": "That is a sound move, but this step asks for a capture.",
+        "a1c1": "That is a sound move, but this step asks for a capture.",
+        "e3d4": "That is a sound move, but this step asks for a capture.",
+        "e3e4": "That is a sound move, but this step asks for a capture.",
+        "a1h1": "That is a sound move, but this step asks for a capture.",
+        "e3d2": "That is a sound move, but this step asks for a capture.",
+        "e3f2": "That is a sound move, but this step asks for a capture.",
+        "a1b1": "That is a sound move, but this step asks for a capture."
+      },
+      "after": "Nothing guarded that pawn."
+    }
+  ],
+  "summary": "The king steps one square in any direction, but never onto a square an enemy piece attacks."
+}

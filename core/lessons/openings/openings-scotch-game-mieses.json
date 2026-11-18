@@ -1,0 +1,160 @@
+{
+  "id": "openings-scotch-game-mieses",
+  "course": "openings",
+  "title": "Scotch Game: Mieses Variation",
+  "line": "Black's knight attacks the center pawn; White trades knights and pushes the pawn to chase it.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "text": "The Scotch Game. Black brings the knight out to attack your pawn on e4.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {
+        "squares": [
+          "e4"
+        ],
+        "arrows": [
+          [
+            "f6",
+            "e4"
+          ]
+        ]
+      },
+      "play": [
+        "e2e4",
+        "e7e5",
+        "g1f3",
+        "b8c6",
+        "d2d4",
+        "e5d4",
+        "f3d4",
+        "g8f6"
+      ]
+    },
+    {
+      "type": "move",
+      "text": "Trade knights first. A black pawn has to take back.",
+      "marks": {
+        "squares": [
+          "c6"
+        ],
+        "arrows": [
+          [
+            "d4",
+            "c6"
+          ]
+        ]
+      },
+      "accept": [
+        "d4c6"
+      ],
+      "also": {
+        "b1c3": "Guarding the pawn with the knight is also played. This lesson trades."
+      },
+      "reply": "b7c6",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn on e4 one square. It chases the knight.",
+      "marks": {
+        "squares": [
+          "f6"
+        ],
+        "arrows": [
+          [
+            "e4",
+            "e5"
+          ]
+        ]
+      },
+      "accept": [
+        "e4e5"
+      ],
+      "also": {
+        "b1c3": "That is also played. This lesson pushes the pawn.",
+        "f1d3": "That is also played. This lesson pushes the pawn."
+      },
+      "after": "Black does not move the knight yet. The queen attacks your pawn, which cannot move away: your king is behind it.",
+      "reply": "d8e7",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Put your queen in front of the king. It guards the pawn and blocks the black queen.",
+      "marks": {
+        "squares": [
+          "e5",
+          "e1"
+        ],
+        "arrows": [
+          [
+            "d1",
+            "e2"
+          ]
+        ]
+      },
+      "accept": [
+        "d1e2"
+      ],
+      "wrong": {
+        "f1e2": "That blocks the queen too, but then nothing guards the pawn on e5, and the queen takes it."
+      },
+      "after": "Now the knight jumps to the center.",
+      "reply": "f6d5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn on c2 two squares. It chases the knight again.",
+      "marks": {
+        "squares": [
+          "d5"
+        ],
+        "arrows": [
+          [
+            "c2",
+            "c4"
+          ]
+        ]
+      },
+      "accept": [
+        "c2c4"
+      ],
+      "after": "Black's bishop pins your pawn to your queen.",
+      "reply": "c8a6",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Guard the pawn on c4 with another pawn, so the pin costs you nothing.",
+      "marks": {
+        "squares": [
+          "c4",
+          "a6"
+        ],
+        "arrows": [
+          [
+            "b2",
+            "b3"
+          ]
+        ]
+      },
+      "accept": [
+        "b2b3"
+      ],
+      "also": {
+        "g2g3": "That is also played. This lesson guards the pawn first.",
+        "b1d2": "That guards it too. This lesson uses the pawn."
+      },
+      "after": "Your pawns hold space in the center and Black's pawns are split. Black has open lines for its pieces.",
+      "reply": "g7g6",
+      "taught": true
+    }
+  ],
+  "summary": "Trade knights, then push the center pawn to chase the other knight. Guard that pawn with the queen.",
+  "practice": {
+    "fen": "r3kb1r/p1ppqp1p/b1p3p1/3nP3/2P5/1P6/P3QPPP/RNB1KB1R w KQkq - 0 10",
+    "side": "w"
+  }
+}

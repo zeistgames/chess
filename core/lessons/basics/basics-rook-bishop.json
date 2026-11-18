@@ -1,0 +1,64 @@
+{
+  "id": "basics-rook-bishop",
+  "course": "basics",
+  "title": "The rook and the bishop",
+  "line": "Straight lines and diagonals, and what stops them.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "text": "A rook moves in a straight line along its row or its column, as many squares as it likes, until something is in the way.",
+      "fen": "7k/8/8/8/3R4/8/8/K7 w - - 0 1",
+      "marks": {
+        "arrows": [["d4","d8"],["d4","d1"],["d4","a4"],["d4","h4"]]
+      }
+    },
+    {
+      "type": "pick",
+      "text": "Tap every square this rook can reach.",
+      "fen": "7k/8/3P4/8/1p1R4/8/3n4/K7 w - - 0 1",
+      "marks": {"squares":["d4"]},
+      "accept": ["d5","e4","f4","g4","h4","d3","d2","c4","b4"],
+      "all": true,
+      "after": "It stops before its own pawn. It can capture the black pawn or the knight, but not go past them."
+    },
+    {
+      "type": "move",
+      "text": "Capture the black knight on d2 with the rook.",
+      "fen": "7k/8/3P4/8/1p1R4/8/3n4/K7 w - - 0 1",
+      "marks": {"squares":["d2"]},
+      "accept": ["d4d2"],
+      "after": "The rook took the knight's square."
+    },
+    {
+      "type": "show",
+      "text": "A bishop moves along diagonals, as many squares as it likes. This one stands on a dark square, so it stays on dark squares.",
+      "fen": "4k3/8/8/8/3B4/8/8/K7 w - - 0 1",
+      "marks": {
+        "arrows": [["d4","g7"],["d4","a7"],["d4","g1"],["d4","b2"]]
+      }
+    },
+    {
+      "type": "pick",
+      "text": "Tap every square this bishop can reach.",
+      "fen": "7k/8/5p2/8/3B4/4P3/8/K7 w - - 0 1",
+      "marks": {"squares":["d4"]},
+      "accept": ["c5","b6","a7","e5","f6","c3","b2"],
+      "all": true,
+      "after": "Its own pawn blocks one diagonal. It can capture the black pawn, but not reach the king behind it."
+    },
+    {
+      "type": "pick",
+      "text": "This bishop moves only on dark squares. Tap the black piece that stands on a light square.",
+      "fen": "7k/8/4n3/6r1/8/8/8/2B1K3 w - - 0 1",
+      "accept": ["e6"],
+      "all": false,
+      "wrong": {
+        "g5": "The rook stands on a dark square, so the bishop can reach it.",
+        "h8": "The king stands on a dark square."
+      },
+      "after": "The knight stands on a light square, where this bishop can never go."
+    }
+  ],
+  "summary": "Rooks move along rows and columns, bishops along diagonals. Both stop at the first piece in the way."
+}

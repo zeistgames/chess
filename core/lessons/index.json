@@ -1,0 +1,2721 @@
+{
+  "version": 1,
+  "courses": [
+    {
+      "id": "basics",
+      "title": "Basics",
+      "line": "The board, the moves, check and checkmate.",
+      "chapters": [
+        {
+          "id": "the-board",
+          "title": "The board",
+          "lessons": [
+            {
+              "id": "basics-board",
+              "title": "The board and the pieces",
+              "line": "Where each piece starts, a light square in the right corner, the queen on her own color.",
+              "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+              "marks": {"squares":["h1"]},
+              "side": "w"
+            },
+            {
+              "id": "basics-squares",
+              "title": "Naming the squares",
+              "line": "Files a to h, ranks 1 to 8: every square has a name, from a1 to h8.",
+              "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+              "marks": {"squares":["e4"]},
+              "side": "w"
+            },
+            {
+              "id": "basics-reading-moves",
+              "title": "Reading moves",
+              "line": "How a move is written: e4, Nf3, Bxc6, O-O, and what + and # mean.",
+              "fen": "r1bqkbnr/pppp1ppp/2n5/1B2p3/4P3/5N2/PPPP1PPP/RNBQK2R b KQkq - 3 3",
+              "marks": {"arrows":[["f1","b5"]]},
+              "side": "w"
+            }
+          ]
+        },
+        {
+          "id": "how-the-pieces-move",
+          "title": "How the pieces move",
+          "lessons": [
+            {
+              "id": "basics-moves",
+              "title": "How the pieces move: an overview",
+              "line": "All six pieces, one board each. The lessons after it take each piece up close.",
+              "fen": "6k1/8/8/3N4/8/8/8/6K1 w - - 0 1",
+              "marks": {
+                "squares": ["b6","c7","e7","f6","f4","e3","c3","b4"]
+              },
+              "side": "w"
+            },
+            {
+              "id": "basics-rook-bishop",
+              "title": "The rook and the bishop",
+              "line": "Straight lines and diagonals, and what stops them.",
+              "fen": "7k/8/3P4/8/1b1R4/8/3n4/K7 w - - 0 1",
+              "marks": {"arrows":[["d4","d2"],["d4","b4"]]},
+              "side": "w"
+            },
+            {
+              "id": "basics-queen",
+              "title": "The queen",
+              "line": "A rook and a bishop in one piece.",
+              "fen": "7k/b2r4/5n2/8/3Q2p1/2n5/8/K7 w - - 0 1",
+              "marks": {"arrows":[["d4","d7"],["d4","a7"]]},
+              "side": "w"
+            },
+            {
+              "id": "basics-knight",
+              "title": "The knight",
+              "line": "The only piece that jumps. Reach any square in the fewest moves.",
+              "fen": "7k/8/8/8/4N3/8/8/K7 w - - 0 1",
+              "marks": {
+                "squares": ["d6","f6","c5","g5","c3","g3","d2","f2"]
+              },
+              "side": "w"
+            },
+            {
+              "id": "basics-king",
+              "title": "The king",
+              "line": "One square at a time, and never onto an attacked square.",
+              "fen": "7k/8/8/r7/3K4/8/8/8 w - - 0 1",
+              "marks": {"squares":["d4"],"arrows":[["a5","e5"]]},
+              "side": "w"
+            },
+            {
+              "id": "basics-pawn",
+              "title": "The pawn",
+              "line": "Forward one, two on its first move, and it captures diagonally.",
+              "fen": "rnbqkbnr/ppp1pppp/8/3p4/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2",
+              "marks": {"arrows":[["e4","d5"]]},
+              "side": "w"
+            }
+          ]
+        },
+        {
+          "id": "special-moves",
+          "title": "Special moves",
+          "lessons": [
+            {
+              "id": "basics-promotion-en-passant",
+              "title": "Promotion and en passant",
+              "line": "A pawn on the last rank becomes a queen or another piece; the one capture that lands behind a pawn.",
+              "fen": "8/4P3/8/6k1/8/8/5K2/8 w - - 0 1",
+              "marks": {"arrows":[["e7","e8"]]},
+              "side": "w"
+            },
+            {
+              "id": "basics-castling",
+              "title": "Castling",
+              "line": "King and rook in one move, on either side.",
+              "fen": "r1bqk1nr/pppp1ppp/2n5/2b1p3/2B1P3/5N2/PPPP1PPP/RNBQK2R w KQkq - 4 4",
+              "marks": {"arrows":[["e1","g1"],["h1","f1"]]},
+              "side": "w"
+            },
+            {
+              "id": "basics-castling-rules",
+              "title": "When you cannot castle",
+              "line": "After the king or that rook has moved, out of check, through check or into check.",
+              "fen": "6k1/5ppp/8/8/2b5/8/5PPP/4K2R w K - 0 1",
+              "marks": {"squares":["f1"],"arrows":[["c4","f1"]]},
+              "side": "w"
+            }
+          ]
+        },
+        {
+          "id": "winning-material",
+          "title": "Winning material",
+          "lessons": [
+            {
+              "id": "basics-values",
+              "title": "What the pieces are worth",
+              "line": "Pawn 1, knight 3, bishop 3, rook 5, queen 9, and why the king has no number.",
+              "fen": "6k1/p3bppp/r7/5n2/8/3B4/5PPP/6K1 w - - 0 1",
+              "marks": {"arrows":[["d3","a6"]]},
+              "side": "w"
+            },
+            {
+              "id": "basics-trades",
+              "title": "Good and bad trades",
+              "line": "When giving a piece for a piece leaves you ahead.",
+              "fen": "6k1/5ppp/4p3/3r4/8/4N3/1PP2PPP/6K1 w - - 0 1",
+              "marks": {"arrows":[["e3","d5"]]},
+              "side": "w"
+            },
+            {
+              "id": "basics-attackers-defenders",
+              "title": "Attackers and defenders",
+              "line": "Count them before you capture.",
+              "fen": "r1bqkb1r/pppp1ppp/2n2n2/4p3/8/1P3N2/PBPPPPPP/RN1QKB1R w KQkq - 4 4",
+              "marks": {"squares":["e5"],"arrows":[["f3","e5"],["b2","e5"]]},
+              "side": "w"
+            }
+          ]
+        },
+        {
+          "id": "how-a-game-ends",
+          "title": "How a game ends",
+          "lessons": [
+            {
+              "id": "basics-check",
+              "title": "Check",
+              "line": "The king is attacked. Three ways out: move it, block, or capture the attacker.",
+              "fen": "r3r1k1/ppp2ppp/1n3b2/1B6/8/2N5/PPP2PPP/R3K2R w KQ - 0 1",
+              "marks": {"squares":["e1"],"arrows":[["e8","e1"]]},
+              "side": "w"
+            },
+            {
+              "id": "basics-checkmate-stalemate",
+              "title": "Checkmate and stalemate",
+              "line": "Check with no way out wins. No legal move and no check is a draw.",
+              "fen": "rnb1kbnr/pppp1ppp/8/4p3/6Pq/5P2/PPPPP2P/RNBQKBNR w KQkq - 1 3",
+              "marks": {"squares":["e1"],"arrows":[["h4","e1"]]},
+              "side": "w"
+            },
+            {
+              "id": "basics-draws",
+              "title": "Draws and resigning",
+              "line": "Repetition, too little to mate, the fifty-move rule, agreement, and giving up a lost game.",
+              "fen": "4Q3/6pk/8/8/8/1q6/r5PP/6K1 w - - 0 1",
+              "marks": {"squares":["h7","g8"],"arrows":[["e8","h5"]]},
+              "side": "w"
+            }
+          ]
+        },
+        {
+          "id": "your-first-games",
+          "title": "Your first games",
+          "lessons": [
+            {
+              "id": "basics-before-every-move",
+              "title": "Before every move",
+              "line": "Ask what the other side's last move attacks, then answer it: move, guard or capture.",
+              "fen": "rnbqkb1r/ppp2ppp/3p4/8/4n3/3P1N2/PPP2PPP/RNBQKB1R b KQkq - 0 5",
+              "marks": {"squares":["e4"],"arrows":[["d3","e4"]]},
+              "side": "b"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "openings",
+      "title": "Openings",
+      "line": "Openings to choose as White, and defenses to choose as Black.",
+      "chapters": [
+        {
+          "id": "before-any-opening",
+          "title": "Before any opening",
+          "lessons": [
+            {
+              "id": "openings-three-rules",
+              "title": "Three rules for the opening",
+              "line": "Take the center, bring out the knights and bishops, castle.",
+              "fen": "r1bqk1nr/pppp1ppp/2n5/2b1p3/2B1P3/5N2/PPPP1PPP/RNBQK2R w KQkq - 4 4",
+              "marks": {"squares":["e4","e5","f3","c4"]},
+              "side": "w"
+            },
+            {
+              "id": "openings-before-any-opening-moving-twice",
+              "title": "Moving a piece twice",
+              "line": "Each move in the opening should bring out a piece that has not moved yet, unless moving again gains something.",
+              "fen": "r1bqkb1r/pppp1ppp/2n2n2/4p1N1/2B1P3/8/PPPP1PPP/RNBQK2R b KQkq - 5 4",
+              "marks": {"squares":["f7"],"arrows":[["g5","f7"],["c4","f7"]]},
+              "side": "w"
+            },
+            {
+              "id": "openings-before-any-opening-queen-out-early",
+              "title": "The queen out early",
+              "line": "An early queen can make threats, but every attack on her brings out one of your pieces.",
+              "fen": "rnbqkbnr/pppp1ppp/8/4p2Q/4P3/8/PPPP1PPP/RNB1KBNR b KQkq - 1 2",
+              "marks": {"squares":["f7"],"arrows":[["h5","f7"]]},
+              "side": "b"
+            },
+            {
+              "id": "openings-before-any-opening-gambits",
+              "title": "Gambits",
+              "line": "A pawn given up early can buy time, open lines and the center.",
+              "fen": "rnbqkbnr/pppp1ppp/8/8/2B1P3/8/PB3PPP/RN1QK1NR b KQkq - 0 5",
+              "marks": {"squares":["f7","g7"],"arrows":[["c4","f7"],["b2","g7"]]},
+              "side": "w"
+            },
+            {
+              "id": "openings-before-any-opening-transpositions",
+              "title": "Transpositions",
+              "line": "The same position can come from different move orders.",
+              "fen": "r1bqkb1r/pppp1ppp/2n2n2/4p3/4P3/2N2N2/PPPP1PPP/R1BQKB1R w KQkq - 4 4",
+              "marks": {"squares":["c3","f3","c6","f6"]},
+              "side": "w"
+            },
+            {
+              "id": "openings-before-any-opening-learning-a-line",
+              "title": "Learning a line",
+              "line": "Know why each move is played. Moves learned by heart fall apart when the other side plays something else.",
+              "fen": "r1bqkbnr/pppp1ppp/2n5/8/4Pp2/2N5/PPPP2PP/R1BQKBNR w KQkq - 0 4",
+              "marks": {"squares":["c6","f6"]},
+              "side": "w"
+            }
+          ]
+        },
+        {
+          "id": "italian-game",
+          "title": "Italian Game",
+          "for": "white",
+          "group": "With the king's pawn",
+          "line": "The bishop takes aim at Black's weakest square, and White gets ready to open the center.",
+          "play": ["e2e4","e7e5","g1f3","b8c6","f1c4"],
+          "moves": "1.e4 e5 2.Nf3 Nc6 3.Bc4",
+          "fen": "r1bqkbnr/pppp1ppp/2n5/4p3/2B1P3/5N2/PPPP1PPP/RNBQK2R b KQkq - 3 3",
+          "lessons": [
+            {
+              "id": "openings-italian-ideas",
+              "title": "Italian Game: the ideas",
+              "line": "The bishop aims at Black's weakest square, and White gets ready to open the center.",
+              "fen": "r1bqkbnr/pppp1ppp/2n5/4p3/2B1P3/5N2/PPPP1PPP/RNBQK2R b KQkq - 3 3",
+              "marks": {"squares":["f7"],"arrows":[["c4","f7"]]},
+              "side": "w"
+            },
+            {
+              "id": "openings-italian-game-center-attack",
+              "title": "Italian Game: Center Attack",
+              "line": "White opens the center at once with two pawns side by side.",
+              "fen": "r1bqk2r/pppp1ppp/2n2n2/2b5/2BPP3/5N2/PP3PPP/RNBQK2R b KQkq - 0 6",
+              "marks": {"squares":["d4","e4"]},
+              "side": "w"
+            },
+            {
+              "id": "openings-italian-game-pianissimo",
+              "title": "Italian Game: Giuoco Pianissimo",
+              "line": "White keeps the center closed and builds up slowly, the way most strong players do today.",
+              "fen": "r1bqk1nr/pppp1ppp/2n5/2b1p3/2B1P3/3P1N2/PPP2PPP/RNBQK2R b KQkq - 0 4",
+              "marks": {"squares":["e4"],"arrows":[["d2","d3"]]},
+              "side": "w"
+            },
+            {
+              "id": "openings-italian-game-evans-gambit",
+              "title": "Italian Game: Evans Gambit",
+              "line": "White gives a pawn to win time and build the center.",
+              "fen": "r1bqk1nr/pppp1ppp/2n5/2b1p3/1PB1P3/5N2/P1PP1PPP/RNBQK2R b KQkq - 0 4",
+              "marks": {"squares":["c5"],"arrows":[["b2","b4"]]},
+              "side": "w"
+            },
+            {
+              "id": "openings-italian-game-two-knights",
+              "title": "Italian Game: Two Knights Defense",
+              "line": "Black attacks White's center pawn instead of copying the bishop, and gives a pawn for quick play.",
+              "fen": "r1bqkb1r/pppp1ppp/2n2n2/4p3/2B1P3/5N2/PPPP1PPP/RNBQK2R w KQkq - 4 4",
+              "marks": {"squares":["e4"],"arrows":[["f6","e4"]]},
+              "side": "w"
+            },
+            {
+              "id": "openings-italian-game-fried-liver",
+              "title": "Italian Game: Fried Liver Attack",
+              "line": "When Black takes back with the knight, White gives a knight on f7 and drags the king out.",
+              "fen": "r1bqkb1r/ppp2Npp/2n5/3np3/2B5/8/PPPP1PPP/RNBQK2R b KQkq - 0 6",
+              "marks": {"squares":["f7","d8","h8"],"arrows":[["g5","f7"]]},
+              "side": "w"
+            },
+            {
+              "id": "openings-italian-game-blackburne-shilling",
+              "title": "Italian Game: the Blackburne Shilling trap",
+              "line": "A pawn left out as bait: taking it walks into mate.",
+              "fen": "r1bqkbnr/pppp1ppp/8/4p3/2BnP3/5N2/PPPP1PPP/RNBQK2R w KQkq - 4 4",
+              "marks": {"squares":["e5"],"arrows":[["c6","d4"]]},
+              "side": "w"
+            }
+          ]
+        },
+        {
+          "id": "ruy-lopez",
+          "title": "Ruy Lopez",
+          "for": "white",
+          "group": "With the king's pawn",
+          "line": "The bishop presses on the knight that guards Black's center pawn, for a long, slow fight.",
+          "play": ["e2e4","e7e5","g1f3","b8c6","f1b5"],
+          "moves": "1.e4 e5 2.Nf3 Nc6 3.Bb5",
+          "fen": "r1bqkbnr/pppp1ppp/2n5/1B2p3/4P3/5N2/PPPP1PPP/RNBQK2R b KQkq - 3 3",
+          "lessons": [
+            {
+              "id": "openings-ruy-lopez-ideas",
+              "title": "Ruy Lopez: the ideas",
+              "line": "The bishop presses on the knight that guards Black's center pawn.",
+              "fen": "r1bqkbnr/pppp1ppp/2n5/1B2p3/4P3/5N2/PPPP1PPP/RNBQK2R b KQkq - 3 3",
+              "marks": {"squares":["c6","e5"],"arrows":[["b5","c6"]]},
+              "side": "w"
+            },
+            {
+              "id": "openings-ruy-lopez-closed",
+              "title": "Ruy Lopez: Closed",
+              "line": "The main line: White builds a big center slowly, and both sides maneuver.",
+              "fen": "r1bq1rk1/2p1bppp/p1np1n2/1p2p3/4P3/1BP2N2/PP1P1PPP/RNBQR1K1 w - - 1 9",
+              "marks": {"squares":["c3","e4"],"arrows":[["b3","f7"]]},
+              "side": "w"
+            },
+            {
+              "id": "openings-ruy-lopez-exchange",
+              "title": "Ruy Lopez: Exchange Variation",
+              "line": "White gives the bishop for the knight to spoil Black's pawns, and aims for an endgame.",
+              "fen": "r1bqkbnr/1pp2ppp/p1p5/4p3/4P3/5N2/PPPP1PPP/RNBQK2R w KQkq - 0 5",
+              "marks": {"squares":["c6","c7"]},
+              "side": "w"
+            },
+            {
+              "id": "openings-ruy-lopez-berlin",
+              "title": "Ruy Lopez: Berlin Defense",
+              "line": "Black attacks the center pawn at once, and the queens often come off early.",
+              "fen": "r1bqkb1r/pppp1ppp/2n2n2/1B2p3/4P3/5N2/PPPP1PPP/RNBQK2R w KQkq - 4 4",
+              "marks": {"squares":["e4"],"arrows":[["f6","e4"]]},
+              "side": "w"
+            },
+            {
+              "id": "openings-ruy-lopez-open",
+              "title": "Ruy Lopez: Open",
+              "line": "Black takes the center pawn and plays actively; White opens lines and wins the pawn back.",
+              "fen": "r1bqkb1r/1ppp1ppp/p1n5/4p3/B3n3/5N2/PPPP1PPP/RNBQ1RK1 w kq - 0 6",
+              "marks": {"squares":["e4"],"arrows":[["f6","e4"]]},
+              "side": "w"
+            },
+            {
+              "id": "openings-ruy-lopez-marshall",
+              "title": "Ruy Lopez: Marshall Attack",
+              "line": "Black gives a pawn to send its pieces at the white king.",
+              "fen": "r1bq1rk1/2p1bppp/p1n2n2/1p1pp3/4P3/1BP2N2/PP1P1PPP/RNBQR1K1 w - - 0 9",
+              "marks": {"squares":["d5"],"arrows":[["e4","d5"]]},
+              "side": "w"
+            },
+            {
+              "id": "openings-ruy-lopez-noahs-ark",
+              "title": "Ruy Lopez: Noah's Ark trap",
+              "line": "Black's pawns chase the queen and then trap White's bishop.",
+              "fen": "r2qkbnr/3b1ppp/p2p4/1p1Q4/2p1P3/1B6/PPP2PPP/RNB1K2R w KQkq - 0 12",
+              "marks": {"squares":["b3"],"arrows":[["c5","c4"]]},
+              "side": "w"
+            }
+          ]
+        },
+        {
+          "id": "scotch-game",
+          "title": "Scotch Game",
+          "for": "white",
+          "group": "With the king's pawn",
+          "line": "White opens the center at once and gets free play for its pieces.",
+          "play": ["e2e4","e7e5","g1f3","b8c6","d2d4","e5d4","f3d4"],
+          "moves": "1.e4 e5 2.Nf3 Nc6 3.d4 exd4 4.Nxd4",
+          "fen": "r1bqkbnr/pppp1ppp/2n5/8/3NP3/8/PPP2PPP/RNBQKB1R b KQkq - 0 4",
+          "lessons": [
+            {
+              "id": "openings-scotch-game-ideas",
+              "title": "Scotch Game: the ideas",
+              "line": "White opens the center at once and gets free play for its pieces.",
+              "fen": "r1bqkbnr/pppp1ppp/2n5/8/3NP3/8/PPP2PPP/RNBQKB1R b KQkq - 0 4",
+              "marks": {"squares":["d4","e4"],"arrows":[["f3","d4"]]},
+              "side": "w"
+            },
+            {
+              "id": "openings-scotch-game-classical",
+              "title": "Scotch Game: Classical Variation",
+              "line": "Black's bishop hits the knight in the center and aims at the pawn beside White's king.",
+              "fen": "r1bqk1nr/pppp1ppp/2n5/2b5/3NP3/8/PPP2PPP/RNBQKB1R w KQkq - 1 5",
+              "marks": {"squares":["d4","f2"],"arrows":[["c5","d4"]]},
+              "side": "w"
+            },
+            {
+              "id": "openings-scotch-game-mieses",
+              "title": "Scotch Game: Mieses Variation",
+              "line": "Black's knight attacks the center pawn; White trades knights and pushes the pawn to chase it.",
+              "fen": "r1bqkb1r/p1pp1ppp/2p2n2/4P3/8/8/PPP2PPP/RNBQKB1R b KQkq - 0 6",
+              "marks": {"squares":["f6"],"arrows":[["e4","e5"]]},
+              "side": "w"
+            },
+            {
+              "id": "openings-scotch-game-scotch-gambit",
+              "title": "Scotch Game: Scotch Gambit",
+              "line": "White brings the bishop out before taking the pawn back, and offers more if Black is greedy.",
+              "fen": "r1bqkbnr/pppp1ppp/2n5/8/2BpP3/5N2/PPP2PPP/RNBQK2R b KQkq - 1 4",
+              "marks": {"squares":["f7"],"arrows":[["c4","f7"]]},
+              "side": "w"
+            }
+          ]
+        },
+        {
+          "id": "four-knights-game",
+          "title": "Four Knights Game",
+          "for": "white",
+          "group": "With the king's pawn",
+          "line": "Both sides bring out both knights first, for a calm and sound game.",
+          "play": ["e2e4","e7e5","g1f3","b8c6","b1c3","g8f6"],
+          "moves": "1.e4 e5 2.Nf3 Nc6 3.Nc3 Nf6",
+          "fen": "r1bqkb1r/pppp1ppp/2n2n2/4p3/4P3/2N2N2/PPPP1PPP/R1BQKB1R w KQkq - 4 4",
+          "lessons": [
+            {
+              "id": "openings-four-knights-game-ideas",
+              "title": "Four Knights Game: the ideas",
+              "line": "Both sides bring out both knights first: a calm, sound start.",
+              "fen": "r1bqkb1r/pppp1ppp/2n2n2/4p3/4P3/2N2N2/PPPP1PPP/R1BQKB1R w KQkq - 4 4",
+              "marks": {"squares":["c3","f3","c6","f6"]},
+              "side": "w"
+            },
+            {
+              "id": "openings-four-knights-game-spanish",
+              "title": "Four Knights Game: Spanish Variation",
+              "line": "The bishop pins the knight as in the Ruy Lopez, and Black answers by jumping into the center.",
+              "fen": "r1bqkb1r/pppp1ppp/5n2/1B2p3/3nP3/2N2N2/PPPP1PPP/R1BQK2R w KQkq - 6 5",
+              "marks": {"squares":["e5"],"arrows":[["f1","b5"]]},
+              "side": "w"
+            },
+            {
+              "id": "openings-four-knights-game-scotch",
+              "title": "Four Knights Game: Scotch Variation",
+              "line": "White opens the center with all four knights already out.",
+              "fen": "r1bqkb1r/pppp1ppp/2n2n2/4p3/3PP3/2N2N2/PPP2PPP/R1BQKB1R b KQkq - 0 4",
+              "marks": {"squares":["e5"],"arrows":[["d2","d4"]]},
+              "side": "w"
+            },
+            {
+              "id": "openings-four-knights-game-halloween",
+              "title": "Four Knights Game: meeting the Halloween Gambit",
+              "line": "Seen from Black's side: White gives a knight for a pawn and chases the black knights.",
+              "fen": "r1bqkb1r/pppp1ppp/2n2n2/4N3/4P3/2N5/PPPP1PPP/R1BQKB1R b KQkq - 0 4",
+              "marks": {"squares":["e5"],"arrows":[["f3","e5"]]},
+              "side": "b"
+            }
+          ]
+        },
+        {
+          "id": "petrovs-defense",
+          "title": "Petrov's Defense",
+          "for": "black",
+          "group": "Against the king's pawn",
+          "line": "Black does not guard its center pawn: it attacks White's instead.",
+          "play": ["e2e4","e7e5","g1f3","g8f6"],
+          "moves": "1.e4 e5 2.Nf3 Nf6",
+          "fen": "rnbqkb1r/pppp1ppp/5n2/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 2 3",
+          "lessons": [
+            {
+              "id": "openings-petrovs-defense-ideas",
+              "title": "Petrov's Defense: the ideas",
+              "line": "Black does not guard its center pawn: it attacks White's instead.",
+              "fen": "rnbqkb1r/pppp1ppp/5n2/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 2 3",
+              "marks": {"squares":["e4"],"arrows":[["f6","e4"]]},
+              "side": "b"
+            },
+            {
+              "id": "openings-petrovs-defense-three-knights",
+              "title": "Petrov's Defense: Three Knights Game",
+              "line": "White guards the center pawn with a knight. Black pins that knight and wins the pawn back.",
+              "fen": "rnbqkb1r/pppp1ppp/5n2/4p3/4P3/2N2N2/PPPP1PPP/R1BQKB1R b KQkq - 3 3",
+              "marks": {"squares":["e4"],"arrows":[["c3","e4"]]},
+              "side": "b"
+            },
+            {
+              "id": "openings-petrovs-defense-modern-attack",
+              "title": "Petrov's Defense: Modern Attack",
+              "line": "White pushes into the center at once. Black takes the pawn on e4 and trades off the strong white knight.",
+              "fen": "rnbqkb1r/pppp1ppp/5n2/4p3/3PP3/5N2/PPP2PPP/RNBQKB1R b KQkq - 0 3",
+              "marks": {"squares":["e4"],"arrows":[["d2","d4"]]},
+              "side": "b"
+            },
+            {
+              "id": "openings-petrovs-defense-damiano-trap",
+              "title": "Petrov's Defense: the Damiano trap",
+              "line": "Taking back the pawn on e4 too soon lets the white queen come out, and one more slip loses yours.",
+              "fen": "rnbqkb1r/pppp1ppp/2N2n2/8/8/8/PPPPQPPP/RNB1KB1R b KQkq - 3 5",
+              "marks": {"squares":["d8","e8"],"arrows":[["c6","d8"]]},
+              "side": "b"
+            }
+          ]
+        },
+        {
+          "id": "philidor-defense",
+          "title": "Philidor Defense",
+          "for": "black",
+          "group": "Against the king's pawn",
+          "line": "A pawn guards the center pawn: a solid start that gives the pieces less room.",
+          "play": ["e2e4","e7e5","g1f3","d7d6"],
+          "moves": "1.e4 e5 2.Nf3 d6",
+          "fen": "rnbqkbnr/ppp2ppp/3p4/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 3",
+          "lessons": [
+            {
+              "id": "openings-philidor-defense-ideas",
+              "title": "Philidor Defense: the ideas",
+              "line": "A pawn guards the center pawn: solid, with less room for the pieces.",
+              "fen": "rnbqkbnr/ppp2ppp/3p4/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 3",
+              "marks": {"squares":["e5"],"arrows":[["d6","e5"]]},
+              "side": "b"
+            },
+            {
+              "id": "openings-philidor-defense-hanham",
+              "title": "Philidor Defense: Hanham Variation",
+              "line": "Black keeps its pawn on e5 with a knight behind it, and must watch the weak pawn by its king.",
+              "fen": "r1bqkbnr/pppn1ppp/3p4/4p3/3PP3/5N2/PPP2PPP/RNBQKB1R w KQkq - 1 4",
+              "marks": {"squares":["e5"],"arrows":[["d7","e5"]]},
+              "side": "b"
+            },
+            {
+              "id": "openings-philidor-defense-legal-trap",
+              "title": "Philidor Defense: Légal's mate",
+              "line": "White gives up the queen and mates with three minor pieces, if Black takes it.",
+              "fen": "r2qkbnr/ppp2ppp/2np4/4N3/2B1P1b1/2N5/PPPP1PPP/R1BQK2R b KQkq - 0 5",
+              "marks": {"squares":["e5","d1"],"arrows":[["g4","d1"]]},
+              "side": "b"
+            }
+          ]
+        },
+        {
+          "id": "kings-gambit",
+          "title": "King's Gambit",
+          "for": "white",
+          "group": "With the king's pawn",
+          "line": "White gives a pawn to build the center and open a file for the rook.",
+          "play": ["e2e4","e7e5","f2f4"],
+          "moves": "1.e4 e5 2.f4",
+          "fen": "rnbqkbnr/pppp1ppp/8/4p3/4PP2/8/PPPP2PP/RNBQKBNR b KQkq - 0 2",
+          "lessons": [
+            {
+              "id": "openings-kings-gambit-ideas",
+              "title": "King's Gambit: the ideas",
+              "line": "White gives a pawn to build the center and open a file for the rook.",
+              "fen": "rnbqkbnr/pppp1ppp/8/4p3/4PP2/8/PPPP2PP/RNBQKBNR b KQkq - 0 2",
+              "marks": {"squares":["e5"],"arrows":[["f4","e5"]]},
+              "side": "w"
+            },
+            {
+              "id": "openings-kings-gambit-accepted",
+              "title": "King's Gambit Accepted",
+              "line": "Black takes the pawn and guards it with more pawns. White breaks them up.",
+              "fen": "rnbqkbnr/pppp1p1p/8/6p1/4Pp2/5N2/PPPP2PP/RNBQKB1R w KQkq - 0 4",
+              "marks": {"squares":["f4","g5"],"arrows":[["h2","h4"]]},
+              "side": "w"
+            },
+            {
+              "id": "openings-kings-gambit-classical-declined",
+              "title": "King's Gambit Declined: Classical Variation",
+              "line": "Black does not take: its bishop stops White's king from castling on the short side.",
+              "fen": "rnbqk1nr/pppp1ppp/8/2b1p3/4PP2/8/PPPP2PP/RNBQKBNR w KQkq - 1 3",
+              "marks": {"squares":["g1"],"arrows":[["c5","g1"]]},
+              "side": "w"
+            },
+            {
+              "id": "openings-kings-gambit-falkbeer",
+              "title": "King's Gambit: Falkbeer Countergambit",
+              "line": "Black answers the gambit with a pawn offer of its own in the center.",
+              "fen": "rnbqkbnr/ppp2ppp/8/3pp3/4PP2/8/PPPP2PP/RNBQKBNR w KQkq - 0 3",
+              "marks": {"squares":["e4"],"arrows":[["d5","e4"]]},
+              "side": "w"
+            }
+          ]
+        },
+        {
+          "id": "vienna-game",
+          "title": "Vienna Game",
+          "for": "white",
+          "group": "With the king's pawn",
+          "line": "The knight comes out first, and the pawn on f2 is ready to push.",
+          "play": ["e2e4","e7e5","b1c3"],
+          "moves": "1.e4 e5 2.Nc3",
+          "fen": "rnbqkbnr/pppp1ppp/8/4p3/4P3/2N5/PPPP1PPP/R1BQKBNR b KQkq - 1 2",
+          "lessons": [
+            {
+              "id": "openings-vienna-game-ideas",
+              "title": "Vienna Game: the ideas",
+              "line": "The knight comes out first, and the pawn on f2 is ready to push.",
+              "fen": "rnbqkbnr/pppp1ppp/8/4p3/4P3/2N5/PPPP1PPP/R1BQKBNR b KQkq - 1 2",
+              "marks": {"squares":["f2"],"arrows":[["b1","c3"]]},
+              "side": "w"
+            },
+            {
+              "id": "openings-vienna-game-vienna-gambit",
+              "title": "Vienna Game: Vienna Gambit",
+              "line": "The King's Gambit idea with a knight already out. Black strikes back in the center.",
+              "fen": "rnbqkb1r/pppp1ppp/5n2/4p3/4PP2/2N5/PPPP2PP/R1BQKBNR b KQkq - 0 3",
+              "marks": {"squares":["e5"],"arrows":[["f4","e5"]]},
+              "side": "w"
+            },
+            {
+              "id": "openings-vienna-game-max-lange",
+              "title": "Vienna Game: Max Lange Defense",
+              "line": "Black brings the other knight out first. White aims at f7 and keeps the pawn on f2 ready.",
+              "fen": "r1bqkbnr/pppp1ppp/2n5/4p3/4P3/2N5/PPPP1PPP/R1BQKBNR w KQkq - 2 3",
+              "marks": {"squares":["e5"],"arrows":[["c6","e5"]]},
+              "side": "w"
+            }
+          ]
+        },
+        {
+          "id": "bishops-opening",
+          "title": "Bishop's Opening",
+          "for": "white",
+          "group": "With the king's pawn",
+          "line": "The bishop comes out first, and White keeps its choices open.",
+          "play": ["e2e4","e7e5","f1c4"],
+          "moves": "1.e4 e5 2.Bc4",
+          "fen": "rnbqkbnr/pppp1ppp/8/4p3/2B1P3/8/PPPP1PPP/RNBQK1NR b KQkq - 1 2",
+          "lessons": [
+            {
+              "id": "openings-bishops-opening-ideas",
+              "title": "Bishop's Opening: the ideas",
+              "line": "The bishop comes out first, and White keeps its choices open.",
+              "fen": "rnbqkbnr/pppp1ppp/8/4p3/2B1P3/8/PPPP1PPP/RNBQK1NR b KQkq - 1 2",
+              "marks": {"squares":["f7"],"arrows":[["c4","f7"]]},
+              "side": "w"
+            }
+          ]
+        },
+        {
+          "id": "sicilian-defense",
+          "title": "Sicilian Defense",
+          "for": "black",
+          "group": "Against the king's pawn",
+          "line": "Black fights for the center from the side, for a sharp, unbalanced game.",
+          "play": ["e2e4","c7c5"],
+          "moves": "1.e4 c5",
+          "fen": "rnbqkbnr/pp1ppppp/8/2p5/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2",
+          "lessons": [
+            {
+              "id": "openings-sicilian-ideas",
+              "title": "Sicilian Defense: the ideas",
+              "line": "Black fights for the center from the side, for an unbalanced game.",
+              "fen": "rnbqkbnr/pp1ppppp/8/2p5/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2",
+              "marks": {"arrows":[["c5","d4"]]},
+              "side": "b"
+            },
+            {
+              "id": "openings-sicilian-defense-najdorf",
+              "title": "Sicilian Defense: Najdorf Variation",
+              "line": "A quiet pawn move keeps White's pieces out, then a center pawn kicks the knight away.",
+              "fen": "rnbqkb1r/1p3ppp/p2p1n2/4p3/3NP3/2N1B3/PPP2PPP/R2QKB1R w KQkq - 0 7",
+              "marks": {"squares":["a6"],"arrows":[["e5","d4"]]},
+              "side": "b"
+            },
+            {
+              "id": "openings-sicilian-defense-dragon",
+              "title": "Sicilian Defense: Dragon Variation",
+              "line": "The bishop goes to the long diagonal and aims at the side where White's king often castles.",
+              "fen": "rnbqk2r/pp2ppbp/3p1np1/8/3NP3/2N1B3/PPP2PPP/R2QKB1R w KQkq - 2 7",
+              "marks": {"arrows":[["g7","a1"]]},
+              "side": "b"
+            },
+            {
+              "id": "openings-sicilian-defense-classical",
+              "title": "Sicilian Defense: Classical Variation",
+              "line": "Both knights come out first, and the queen can join them against White's knight in the center.",
+              "fen": "r1b1kb1r/pp2pppp/1qnp1n2/8/2BNP3/2N5/PPP2PPP/R1BQK2R w KQkq - 5 7",
+              "marks": {"squares":["d4"],"arrows":[["b6","d4"],["c6","d4"]]},
+              "side": "b"
+            },
+            {
+              "id": "openings-sicilian-defense-scheveningen",
+              "title": "Sicilian Defense: Scheveningen Variation",
+              "line": "Two pawns make a small, solid center, and a strike in the middle answers White's attack on the wing.",
+              "fen": "rnbqkb1r/pp3ppp/3ppn2/8/3NP3/2N5/PPP2PPP/R1BQKB1R w KQkq - 0 6",
+              "marks": {"squares":["d6","e6"]},
+              "side": "b"
+            },
+            {
+              "id": "openings-sicilian-defense-sveshnikov",
+              "title": "Sicilian Defense: Sveshnikov Variation",
+              "line": "Black leaves a hole in the center to chase White's knights and get active pieces.",
+              "fen": "r1bqkb1r/pp1p1ppp/2n2n2/4p3/3NP3/2N5/PPP2PPP/R1BQKB1R w KQkq - 0 6",
+              "marks": {"squares":["d5"],"arrows":[["e7","e5"]]},
+              "side": "b"
+            },
+            {
+              "id": "openings-sicilian-defense-taimanov",
+              "title": "Sicilian Defense: Taimanov and Kan",
+              "line": "A pawn one step forward keeps Black flexible, and the queen watches the open file.",
+              "fen": "r1b1kbnr/ppqp1ppp/2n1p3/8/3NP3/2N5/PPP2PPP/R1BQKB1R w KQkq - 3 6",
+              "marks": {"squares":["c7","e6"]},
+              "side": "b"
+            },
+            {
+              "id": "openings-sicilian-defense-accelerated-dragon",
+              "title": "Sicilian Defense: Accelerated Dragon",
+              "line": "The bishop comes out early, and the queen's pawn waits to go two squares in one move.",
+              "fen": "r1bq1rk1/pp1pppbp/2n2np1/8/3NP3/2N1B3/PPP1BPPP/R2Q1RK1 b - - 7 8",
+              "marks": {"arrows":[["d7","d5"]]},
+              "side": "b"
+            },
+            {
+              "id": "openings-sicilian-defense-alapin",
+              "title": "Sicilian Defense: Alapin Variation",
+              "line": "White gets ready for a second center pawn; Black hits back at once, and the queen can come out early.",
+              "fen": "rnb1kbnr/pp2pppp/8/2pq4/3P4/2P5/PP3PPP/RNBQKBNR b KQkq - 0 4",
+              "marks": {"squares":["c3","d5"]},
+              "side": "b"
+            },
+            {
+              "id": "openings-sicilian-defense-closed",
+              "title": "Sicilian Defense: Closed Variation",
+              "line": "White keeps the center closed and builds up on the king's side; Black's pieces take the long diagonal and the center.",
+              "fen": "r1bqk1nr/pp1pppbp/2n3p1/2p5/4P3/2N3P1/PPPP1PBP/R1BQK1NR w KQkq - 2 5",
+              "marks": {"arrows":[["g7","b2"],["g2","b7"]]},
+              "side": "b"
+            },
+            {
+              "id": "openings-sicilian-defense-grand-prix",
+              "title": "Sicilian Defense: Grand Prix Attack",
+              "line": "White pushes a pawn on the king's side and aims a bishop at Black's king; Black blocks it and strikes in the center.",
+              "fen": "r1bqk1nr/pp1p1pbp/2n1p1p1/2p5/2B1PP2/2N2N2/PPPP2PP/R1BQK2R w KQkq - 0 6",
+              "marks": {"squares":["e6"],"arrows":[["c4","f7"]]},
+              "side": "b"
+            },
+            {
+              "id": "openings-sicilian-defense-smith-morra",
+              "title": "Sicilian Defense: Smith-Morra Gambit",
+              "line": "White gives a pawn for fast development; Black takes it, and a careless move by White meets a trap.",
+              "fen": "r1b1kb1r/ppqp1ppp/2n1p3/8/2B1P1n1/2N2N1P/PP2QPP1/R1B2RK1 b kq - 0 9",
+              "marks": {"squares":["h2"],"arrows":[["c6","d4"],["c7","h2"]]},
+              "side": "b"
+            },
+            {
+              "id": "openings-sicilian-defense-rossolimo",
+              "title": "Sicilian Defense: Rossolimo Attack",
+              "line": "White's bishop pins the knight and may trade itself for it; Black gets two bishops and open lines.",
+              "fen": "r1bqkbnr/pp2pp1p/2p3p1/2p5/4P3/5N2/PPPP1PPP/RNBQK2R w KQkq - 0 5",
+              "marks": {"squares":["c6"]},
+              "side": "b"
+            },
+            {
+              "id": "openings-sicilian-defense-moscow",
+              "title": "Sicilian Defense: Moscow Variation",
+              "line": "White checks with a bishop to trade it off; Black blocks with its own bishop and builds a center.",
+              "fen": "rn2kbnr/pp1qpppp/3p4/2p5/4P3/5N2/PPPP1PPP/RNBQK2R w KQkq - 0 5",
+              "marks": {"squares":["d7"]},
+              "side": "b"
+            }
+          ]
+        },
+        {
+          "id": "french-defense",
+          "title": "French Defense",
+          "for": "black",
+          "group": "Against the king's pawn",
+          "line": "Black builds a solid pawn chain, then strikes at the base of White's center.",
+          "play": ["e2e4","e7e6","d2d4","d7d5"],
+          "moves": "1.e4 e6 2.d4 d5",
+          "fen": "rnbqkbnr/ppp2ppp/4p3/3p4/3PP3/8/PPP2PPP/RNBQKBNR w KQkq - 0 3",
+          "lessons": [
+            {
+              "id": "openings-french-defense-ideas",
+              "title": "French Defense: the ideas",
+              "line": "Black builds a solid pawn chain, then strikes at the base of White's center.",
+              "fen": "rnbqkbnr/ppp2ppp/4p3/3p4/3PP3/8/PPP2PPP/RNBQKBNR w KQkq - 0 3",
+              "marks": {"squares":["e6","d5"]},
+              "side": "b"
+            },
+            {
+              "id": "openings-french-defense-advance",
+              "title": "French Defense: Advance Variation",
+              "line": "White takes space with a pawn chain; Black piles up on its base and steps around a well-known trap.",
+              "fen": "r1b1kbnr/pp3ppp/1qn1p3/2ppP3/3P4/2P2N2/PP3PPP/RNBQKB1R w KQkq - 3 6",
+              "marks": {"squares":["d4"],"arrows":[["b6","d4"],["c6","d4"],["c5","d4"]]},
+              "side": "b"
+            },
+            {
+              "id": "openings-french-defense-exchange",
+              "title": "French Defense: Exchange Variation",
+              "line": "White trades in the center, the position opens, and Black's shut-in bishop is free.",
+              "fen": "rnbqkbnr/ppp2ppp/8/3p4/3P4/8/PPP2PPP/RNBQKBNR w KQkq - 0 4",
+              "marks": {"squares":["c8"]},
+              "side": "b"
+            },
+            {
+              "id": "openings-french-defense-tarrasch",
+              "title": "French Defense: Tarrasch Variation",
+              "line": "White's knight guards the center from behind; Black hits White's pawn chain twice.",
+              "fen": "r1bqkb1r/pp1n2pp/2n1pp2/3pP3/3P4/3B4/PP1NNPPP/R1BQK2R w KQkq - 0 9",
+              "marks": {"squares":["e5","d4"],"arrows":[["f6","e5"]]},
+              "side": "b"
+            },
+            {
+              "id": "openings-french-defense-winawer",
+              "title": "French Defense: Winawer Variation",
+              "line": "The bishop pins the knight, and Black gives it up to double White's pawns.",
+              "fen": "rnbqk1nr/pp3ppp/4p3/2ppP3/3P4/P1P5/2P2PPP/R1BQKBNR b KQkq - 0 6",
+              "marks": {"squares":["c2","c3"]},
+              "side": "b"
+            },
+            {
+              "id": "openings-french-defense-classical",
+              "title": "French Defense: Classical Variation",
+              "line": "A knight hits the center, the bishop breaks the pin, and a pawn strikes the chain.",
+              "fen": "rnbqk2r/ppp1bppp/4pn2/3p2B1/3PP3/2N5/PPP2PPP/R2QKBNR w KQkq - 4 5",
+              "marks": {"squares":["e7","g5"]},
+              "side": "b"
+            },
+            {
+              "id": "openings-french-defense-rubinstein",
+              "title": "French Defense: Rubinstein Variation",
+              "line": "Black gives up the center pawn for easy development and trades White's strong knight.",
+              "fen": "rnbqkbnr/ppp2ppp/4p3/8/3PN3/8/PPP2PPP/R1BQKBNR b KQkq - 0 4",
+              "marks": {"squares":["e4"]},
+              "side": "b"
+            }
+          ]
+        },
+        {
+          "id": "caro-kann-defense",
+          "title": "Caro-Kann Defense",
+          "for": "black",
+          "group": "Against the king's pawn",
+          "line": "Like the French, but a side pawn backs up the center and leaves a bishop free to come out.",
+          "play": ["e2e4","c7c6","d2d4","d7d5"],
+          "moves": "1.e4 c6 2.d4 d5",
+          "fen": "rnbqkbnr/pp2pppp/2p5/3p4/3PP3/8/PPP2PPP/RNBQKBNR w KQkq - 0 3",
+          "lessons": [
+            {
+              "id": "openings-caro-kann-defense-ideas",
+              "title": "Caro-Kann Defense: the ideas",
+              "line": "Like the French, but the side pawn leaves a bishop free to come out before the pawns close it in.",
+              "fen": "rn1qkbnr/pp2pppp/2p5/5b2/3PN3/8/PPP2PPP/R1BQKBNR w KQkq - 1 5",
+              "marks": {"arrows":[["c8","f5"]]},
+              "side": "b"
+            },
+            {
+              "id": "openings-caro-kann-defense-classical",
+              "title": "Caro-Kann Defense: Classical Variation",
+              "line": "The bishop comes out with a hit on the knight, and Black keeps it safe from White's h-pawn.",
+              "fen": "rn1qkbnr/pp2pppp/2p3b1/8/3P3P/6N1/PPP2PP1/R1BQKBNR b KQkq - 0 6",
+              "marks": {"squares":["h7"],"arrows":[["h4","h5"]]},
+              "side": "b"
+            },
+            {
+              "id": "openings-caro-kann-defense-advance",
+              "title": "Caro-Kann Defense: Advance Variation",
+              "line": "White's pawn pushes past; Black's bishop comes out first, then a pawn hits the base of the chain.",
+              "fen": "rn1qkbnr/pp2pppp/2p5/3pPb2/3P4/8/PPP2PPP/RNBQKBNR w KQkq - 1 4",
+              "marks": {"arrows":[["c8","f5"]]},
+              "side": "b"
+            },
+            {
+              "id": "openings-caro-kann-defense-karpov",
+              "title": "Caro-Kann Defense: Karpov Variation",
+              "line": "A knight comes out first to back up the other one, and Black steps around a famous mate.",
+              "fen": "r1bqkbnr/pp1npppp/2p5/8/3PN3/8/PPP2PPP/R1BQKBNR w KQkq - 1 5",
+              "marks": {"squares":["d7"]},
+              "side": "b"
+            },
+            {
+              "id": "openings-caro-kann-defense-exchange",
+              "title": "Caro-Kann Defense: Exchange Variation",
+              "line": "White trades in the center for a quiet game; Black's bishop gets out before the pawns close it in.",
+              "fen": "rnbqkbnr/pp2pppp/8/3p4/3P4/8/PPP2PPP/RNBQKBNR w KQkq - 0 4",
+              "marks": {"squares":["d5","d4"]},
+              "side": "b"
+            },
+            {
+              "id": "openings-caro-kann-defense-panov",
+              "title": "Caro-Kann Defense: Panov Attack",
+              "line": "White plays for active pieces with a lone pawn in the center; Black sits a knight in front of it.",
+              "fen": "rnbqk2r/pp2bppp/4p3/3n4/3P4/2NB1N2/PP3PPP/R1BQK2R b KQkq - 1 8",
+              "marks": {"squares":["d4","d5"]},
+              "side": "b"
+            },
+            {
+              "id": "openings-caro-kann-defense-two-knights",
+              "title": "Caro-Kann Defense: Two Knights Attack",
+              "line": "White brings both knights out first; Black gives a bishop for a knight and builds the center.",
+              "fen": "rn1qkbnr/pp2pppp/2p5/3p4/4P1b1/2N2N2/PPPP1PPP/R1BQKB1R w KQkq - 2 4",
+              "marks": {"squares":["f3"],"arrows":[["g4","f3"]]},
+              "side": "b"
+            }
+          ]
+        },
+        {
+          "id": "scandinavian-defense",
+          "title": "Scandinavian Defense",
+          "for": "black",
+          "group": "Against the king's pawn",
+          "line": "Black hits White's center pawn on the first move and takes it back at once.",
+          "play": ["e2e4","d7d5"],
+          "moves": "1.e4 d5",
+          "fen": "rnbqkbnr/ppp1pppp/8/3p4/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2",
+          "lessons": [
+            {
+              "id": "openings-scandinavian-defense-ideas",
+              "title": "Scandinavian Defense: the ideas",
+              "line": "Black hits White's center pawn at once, takes back with the queen, then finds her a safe square.",
+              "fen": "rnb1kbnr/ppp1pppp/8/q7/8/2N5/PPPP1PPP/R1BQKBNR w KQkq - 2 4",
+              "marks": {"arrows":[["d5","a5"]]},
+              "side": "b"
+            },
+            {
+              "id": "openings-scandinavian-defense-gubinsky-melts",
+              "title": "Scandinavian Defense: Gubinsky-Melts Defense",
+              "line": "The queen steps back to the center, and a side pawn keeps White's knight away from her.",
+              "fen": "rnb1kbnr/ppp1pppp/3q4/8/8/2N5/PPPP1PPP/R1BQKBNR w KQkq - 2 4",
+              "marks": {"squares":["b5"],"arrows":[["d5","d6"]]},
+              "side": "b"
+            },
+            {
+              "id": "openings-scandinavian-defense-modern",
+              "title": "Scandinavian Defense: Modern Variation",
+              "line": "Black takes the pawn back later with a knight, and the knight settles in front of White's pawns.",
+              "fen": "rnbqkb1r/ppp1pppp/5n2/3P4/8/8/PPPP1PPP/RNBQKBNR w KQkq - 1 3",
+              "marks": {"squares":["d5"],"arrows":[["f6","d5"]]},
+              "side": "b"
+            }
+          ]
+        },
+        {
+          "id": "pirc-defense",
+          "title": "Pirc Defense",
+          "for": "black",
+          "group": "Against the king's pawn",
+          "line": "Black lets White build a center, aims a bishop at it from the side, and attacks it later.",
+          "play": ["e2e4","d7d6","d2d4","g8f6","b1c3","g7g6"],
+          "moves": "1.e4 d6 2.d4 Nf6 3.Nc3 g6",
+          "fen": "rnbqkb1r/ppp1pp1p/3p1np1/8/3PP3/2N5/PPP2PPP/R1BQKBNR w KQkq - 0 4",
+          "lessons": [
+            {
+              "id": "openings-pirc-defense-ideas",
+              "title": "Pirc Defense: the ideas",
+              "line": "Black lets White build a center, puts a bishop on the long diagonal, and strikes at the center later.",
+              "fen": "rnbqk2r/ppp1ppbp/3p1np1/8/3PP3/2N2N2/PPP2PPP/R1BQKB1R w KQkq - 2 5",
+              "marks": {"squares":["d4"],"arrows":[["g7","d4"]]},
+              "side": "b"
+            },
+            {
+              "id": "openings-pirc-defense-austrian",
+              "title": "Pirc Defense: Austrian Attack",
+              "line": "White builds a wall of three center pawns; Black castles and hits the wall from the side.",
+              "fen": "rnbqkb1r/ppp1pp1p/3p1np1/8/3PPP2/2N5/PPP3PP/R1BQKBNR b KQkq - 0 4",
+              "marks": {"squares":["d4","e4","f4"]},
+              "side": "b"
+            },
+            {
+              "id": "openings-pirc-defense-150-attack",
+              "title": "Pirc Defense: 150 Attack",
+              "line": "White brings the bishop and the queen out together to attack; Black takes space on the queen's side and hits the center.",
+              "fen": "rnbqkb1r/p3pp1p/2pp1np1/1p6/3PP3/2N1B3/PPPQ1PPP/R3KBNR w KQkq - 0 6",
+              "marks": {"squares":["b5","c6","e3","d2"]},
+              "side": "b"
+            }
+          ]
+        },
+        {
+          "id": "modern-defense",
+          "title": "Modern Defense",
+          "for": "black",
+          "group": "Against the king's pawn",
+          "line": "The bishop goes to the long diagonal before anything else, and Black stays flexible.",
+          "play": ["e2e4","g7g6"],
+          "moves": "1.e4 g6",
+          "fen": "rnbqkbnr/pppppp1p/6p1/8/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2",
+          "lessons": [
+            {
+              "id": "openings-modern-defense-ideas",
+              "title": "Modern Defense: the ideas",
+              "line": "The bishop goes to the long diagonal at once, and Black keeps the knights home to stay flexible.",
+              "fen": "rnbqk1nr/ppppppbp/6p1/8/3PP3/8/PPP2PPP/RNBQKBNR w KQkq - 1 3",
+              "marks": {"squares":["d4"],"arrows":[["g7","d4"]]},
+              "side": "b"
+            }
+          ]
+        },
+        {
+          "id": "alekhine-defense",
+          "title": "Alekhine Defense",
+          "for": "black",
+          "group": "Against the king's pawn",
+          "line": "The knight invites White's pawns forward so that Black can attack them.",
+          "play": ["e2e4","g8f6"],
+          "moves": "1.e4 Nf6",
+          "fen": "rnbqkb1r/pppppppp/5n2/8/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 1 2",
+          "lessons": [
+            {
+              "id": "openings-alekhine-defense-ideas",
+              "title": "Alekhine Defense: the ideas",
+              "line": "The knight invites White's pawns forward, and Black attacks them once they are far from home.",
+              "fen": "rnbqkb1r/pppppppp/5n2/4P3/8/8/PPPP1PPP/RNBQKBNR b KQkq - 0 2",
+              "marks": {"squares":["f6"],"arrows":[["e5","f6"]]},
+              "side": "b"
+            },
+            {
+              "id": "openings-alekhine-defense-modern",
+              "title": "Alekhine Defense: Modern Variation",
+              "line": "White develops calmly; Black trades the center pawn and steps around a famous knight sacrifice.",
+              "fen": "rnbqkb1r/ppp1pppp/3p4/3nP3/3P4/5N2/PPP2PPP/RNBQKB1R b KQkq - 1 4",
+              "marks": {"squares":["e5"],"arrows":[["f3","e5"]]},
+              "side": "b"
+            },
+            {
+              "id": "openings-alekhine-defense-four-pawns",
+              "title": "Alekhine Defense: Four Pawns Attack",
+              "line": "White takes all the space offered with four pawns; Black's pieces attack the big center.",
+              "fen": "rnbqkb1r/ppp1pppp/1n1p4/4P3/2PP1P2/8/PP4PP/RNBQKBNR b KQkq - 0 5",
+              "marks": {"squares":["c4","d4","e5","f4"]},
+              "side": "b"
+            },
+            {
+              "id": "openings-alekhine-defense-exchange",
+              "title": "Alekhine Defense: Exchange Variation",
+              "line": "White trades pawns; Black takes back toward the center and later strikes with the other center pawn.",
+              "fen": "rnbqkb1r/pp2pppp/1n1p4/8/2PP4/8/PP3PPP/RNBQKBNR w KQkq - 0 6",
+              "marks": {"squares":["d6"]},
+              "side": "b"
+            }
+          ]
+        },
+        {
+          "id": "queens-gambit",
+          "title": "Queen's Gambit",
+          "for": "white",
+          "group": "With the queen's pawn",
+          "line": "White offers a side pawn to pull Black's center pawn away.",
+          "play": ["d2d4","d7d5","c2c4"],
+          "moves": "1.d4 d5 2.c4",
+          "fen": "rnbqkbnr/ppp1pppp/8/3p4/2PP4/8/PP2PPPP/RNBQKBNR b KQkq - 0 2",
+          "lessons": [
+            {
+              "id": "openings-queens-gambit-ideas",
+              "title": "Queen's Gambit: the ideas",
+              "line": "White offers a side pawn to pull Black's center pawn away.",
+              "fen": "rnbqkbnr/ppp1pppp/8/3p4/2PP4/8/PP2PPPP/RNBQKBNR b KQkq - 0 2",
+              "marks": {"arrows":[["c4","d5"]]},
+              "side": "w"
+            },
+            {
+              "id": "openings-queens-gambit-accepted",
+              "title": "Queen's Gambit Accepted",
+              "line": "Black takes the offered pawn, and White gets it back with easy development.",
+              "fen": "rnbqkbnr/ppp1pppp/8/8/2pP4/8/PP2PPPP/RNBQKBNR w KQkq - 0 3",
+              "marks": {"squares":["c4"],"arrows":[["f1","c4"]]},
+              "side": "w"
+            },
+            {
+              "id": "openings-queens-gambit-orthodox-defense",
+              "title": "Queen's Gambit Declined: Orthodox Defense",
+              "line": "Black holds the center with pawns, and White aims a rook down the c-file.",
+              "fen": "r1bq1rk1/pppnbppp/4pn2/3p2B1/2PP4/2N1PN2/PP3PPP/R2QKB1R w KQ - 3 7",
+              "marks": {"squares":["c8","e6"],"arrows":[["g5","f6"]]},
+              "side": "w"
+            },
+            {
+              "id": "openings-queens-gambit-exchange-variation",
+              "title": "Queen's Gambit Declined: Exchange Variation",
+              "line": "White trades pawns in the center, then pushes two queenside pawns against three.",
+              "fen": "r1bqr1k1/pp2bppp/2p2nn1/3p2B1/3P4/2NBPN2/PPQ2PPP/1R3RK1 w - - 11 12",
+              "marks": {"squares":["c6"],"arrows":[["b2","b4"],["b4","b5"]]},
+              "side": "w"
+            },
+            {
+              "id": "openings-queens-gambit-tartakower-defense",
+              "title": "Queen's Gambit Declined: Tartakower Defense",
+              "line": "Black makes room for its shut in bishop, and White trades pieces and presses on the c-file.",
+              "fen": "rnbq1rk1/p1p1bpp1/1p2pn1p/3p4/2PP3B/2N1PN2/PP3PPP/R2QKB1R w KQ - 0 8",
+              "marks": {"squares":["b6","c8"]},
+              "side": "w"
+            },
+            {
+              "id": "openings-queens-gambit-ragozin-defense",
+              "title": "Queen's Gambit Declined: Ragozin Defense",
+              "line": "Black pins the knight on c3 with a bishop, and White breaks the pin.",
+              "fen": "rnbqk2r/ppp2ppp/4pn2/3p4/1bPP4/2N2N2/PP2PPPP/R1BQKB1R w KQkq - 4 5",
+              "marks": {"squares":["c3"],"arrows":[["b4","e1"]]},
+              "side": "w"
+            },
+            {
+              "id": "openings-queens-gambit-traps",
+              "title": "Queen's Gambit: traps",
+              "line": "Two traps: Black holding on to the pawn, and a pawn on d5 that is not free.",
+              "fen": "r1bqkb1r/pppn1ppp/5n2/3p2B1/3P4/2N5/PP2PPPP/R2QKBNR w KQkq - 0 6",
+              "marks": {"squares":["d5","f6","d8"],"arrows":[["g5","d8"],["c3","d5"]]},
+              "side": "w"
+            }
+          ]
+        },
+        {
+          "id": "slav-defense",
+          "title": "Slav Defense",
+          "for": "black",
+          "group": "Against the queen's pawn",
+          "line": "A pawn on c6 holds the center, and the bishop stays free to come out.",
+          "play": ["d2d4","d7d5","c2c4","c7c6"],
+          "moves": "1.d4 d5 2.c4 c6",
+          "fen": "rnbqkbnr/pp2pppp/2p5/3p4/2PP4/8/PP2PPPP/RNBQKBNR w KQkq - 0 3",
+          "lessons": [
+            {
+              "id": "openings-slav-defense-ideas",
+              "title": "Slav Defense: the ideas",
+              "line": "A pawn on c6 holds the center, and the bishop stays free to come out.",
+              "fen": "rnbqkbnr/pp2pppp/2p5/3p4/2PP4/8/PP2PPPP/RNBQKBNR w KQkq - 0 3",
+              "marks": {"squares":["d5"],"arrows":[["c8","f5"]]},
+              "side": "b"
+            },
+            {
+              "id": "openings-slav-defense-czech-variation",
+              "title": "Slav Defense: Czech Variation",
+              "line": "Black takes on c4, brings the bishop out, and pins the knight on c3.",
+              "fen": "rn1qk2r/pp3ppp/2p1pn2/5b2/PbBP4/2N1PN2/1P3PPP/R1BQK2R w KQkq - 1 8",
+              "marks": {"squares":["c3"],"arrows":[["b4","e1"]]},
+              "side": "b"
+            },
+            {
+              "id": "openings-slav-defense-exchange-variation",
+              "title": "Slav Defense: Exchange Variation",
+              "line": "White trades pawns at once, and both sides have the same pawns.",
+              "fen": "rnbqkbnr/pp2pppp/8/3p4/3P4/8/PP2PPPP/RNBQKBNR w KQkq - 0 4",
+              "marks": {"squares":["d5","d4"],"arrows":[["c1","c8"]]},
+              "side": "b"
+            }
+          ]
+        },
+        {
+          "id": "semi-slav-defense",
+          "title": "Semi-Slav Defense",
+          "for": "black",
+          "group": "Against the queen's pawn",
+          "line": "Two pawns hold the center, and Black waits for the moment to take on c4 or strike back.",
+          "play": ["d2d4","d7d5","c2c4","c7c6","g1f3","g8f6","b1c3","e7e6"],
+          "moves": "1.d4 d5 2.c4 c6 3.Nf3 Nf6 4.Nc3 e6",
+          "fen": "rnbqkb1r/pp3ppp/2p1pn2/3p4/2PP4/2N2N2/PP2PPPP/R1BQKB1R w KQkq - 0 5",
+          "lessons": [
+            {
+              "id": "openings-semi-slav-defense-ideas",
+              "title": "Semi-Slav Defense: the ideas",
+              "line": "Two pawns hold the center, then Black takes on c4 and strikes back with the king pawn.",
+              "fen": "rnbqkb1r/pp3ppp/2p1pn2/3p4/2PP4/2N2N2/PP2PPPP/R1BQKB1R w KQkq - 0 5",
+              "marks": {"squares":["d5"],"arrows":[["c6","d5"],["e6","d5"]]},
+              "side": "b"
+            },
+            {
+              "id": "openings-semi-slav-defense-meran-variation",
+              "title": "Semi-Slav Defense: Meran Variation",
+              "line": "Black takes on c4 and pushes the queenside pawns forward, chasing the bishop.",
+              "fen": "r1bqkb1r/p2n1ppp/2p1pn2/1p6/2BP4/2N1PN2/PP3PPP/R1BQK2R w KQkq - 0 8",
+              "marks": {"squares":["b5"],"arrows":[["c8","b7"]]},
+              "side": "b"
+            },
+            {
+              "id": "openings-semi-slav-defense-botvinnik-variation",
+              "title": "Semi-Slav Defense: Botvinnik Variation",
+              "line": "Black takes on c4 and keeps it, while White attacks on the kingside. Sharp for both.",
+              "fen": "rnbqkb1r/p4p2/2p1pn1p/1p2P1p1/2pP3B/2N2N2/PP3PPP/R2QKB1R w KQkq - 0 9",
+              "marks": {"squares":["g5","b5"]},
+              "side": "b"
+            }
+          ]
+        },
+        {
+          "id": "tarrasch-defense",
+          "title": "Tarrasch Defense",
+          "for": "black",
+          "group": "Against the queen's pawn",
+          "line": "Black takes a lone center pawn in return for open lines for its pieces.",
+          "play": ["d2d4","d7d5","c2c4","e7e6","b1c3","c7c5"],
+          "moves": "1.d4 d5 2.c4 e6 3.Nc3 c5",
+          "fen": "rnbqkbnr/pp3ppp/4p3/2pp4/2PP4/2N5/PP2PPPP/R1BQKBNR w KQkq - 0 4",
+          "lessons": [
+            {
+              "id": "openings-tarrasch-defense-ideas",
+              "title": "Tarrasch Defense: the ideas",
+              "line": "Black strikes at the center at once and gets open lines for every piece.",
+              "fen": "rnbqkbnr/pp3ppp/4p3/2pp4/2PP4/2N5/PP2PPPP/R1BQKBNR w KQkq - 0 4",
+              "marks": {"squares":["d4"],"arrows":[["c5","d4"]]},
+              "side": "b"
+            },
+            {
+              "id": "openings-tarrasch-defense-main-line",
+              "title": "Tarrasch Defense: the main line",
+              "line": "Black gets a lone pawn on d5, and open lines for its pieces in return.",
+              "fen": "r1bq1rk1/pp2bppp/2n2n2/3p2B1/3N4/2N3P1/PP2PPBP/R2Q1RK1 b - - 0 10",
+              "marks": {"squares":["d5"],"arrows":[["g2","d5"],["d4","d5"]]},
+              "side": "b"
+            }
+          ]
+        },
+        {
+          "id": "albin-countergambit",
+          "title": "Albin Countergambit",
+          "for": "black",
+          "group": "Against the queen's pawn",
+          "line": "Black answers the gambit with one of its own, and a pawn wedged deep in White's camp.",
+          "play": ["d2d4","d7d5","c2c4","e7e5"],
+          "moves": "1.d4 d5 2.c4 e5",
+          "fen": "rnbqkbnr/ppp2ppp/8/3pp3/2PP4/8/PP2PPPP/RNBQKBNR w KQkq - 0 3",
+          "lessons": [
+            {
+              "id": "openings-albin-countergambit-ideas",
+              "title": "Albin Countergambit: the ideas",
+              "line": "Black offers a pawn of its own and wedges a pawn deep into White's camp.",
+              "fen": "rnbqkbnr/ppp2ppp/8/4P3/2Pp4/8/PP2PPPP/RNBQKBNR w KQkq - 0 4",
+              "marks": {"squares":["d4"],"arrows":[["d5","d4"]]},
+              "side": "b"
+            },
+            {
+              "id": "openings-albin-countergambit-lasker-trap",
+              "title": "Albin Countergambit: the Lasker Trap",
+              "line": "A pawn marches to the last rank and becomes a knight, with check.",
+              "fen": "rnbqk1nr/ppp2ppp/8/4P3/1BP5/8/PP2KpPP/RN1Q1BNR b kq - 1 7",
+              "marks": {"squares":["g1"],"arrows":[["f2","g1"]]},
+              "side": "b"
+            }
+          ]
+        },
+        {
+          "id": "london-system",
+          "title": "London System",
+          "for": "white",
+          "group": "With the queen's pawn",
+          "line": "The same calm setup against almost anything, with the bishop out early.",
+          "play": ["d2d4","d7d5","g1f3","g8f6","c1f4"],
+          "moves": "1.d4 d5 2.Nf3 Nf6 3.Bf4",
+          "fen": "rnbqkb1r/ppp1pppp/5n2/3p4/3P1B2/5N2/PPP1PPPP/RN1QKB1R b KQkq - 3 3",
+          "lessons": [
+            {
+              "id": "openings-london-system-ideas",
+              "title": "London System: the ideas",
+              "line": "The bishop comes out early, then pawns build a solid triangle behind it.",
+              "fen": "r1bq1rk1/pp3ppp/2nbpn2/2pp4/3P4/2PBPNB1/PP1N1PPP/R2QK2R b KQ - 6 8",
+              "marks": {"squares":["c3","d4","e3"]},
+              "side": "w"
+            },
+            {
+              "id": "openings-london-system-kings-indian-setup",
+              "title": "London System against the King's Indian setup",
+              "line": "The same plan when Black puts its bishop on the long diagonal.",
+              "fen": "rnbq1rk1/ppp1ppbp/3p1np1/8/3P1B2/4PN1P/PPP1BPP1/RN1QK2R b KQ - 0 6",
+              "marks": {"squares":["h2"],"arrows":[["f4","h2"]]},
+              "side": "w"
+            }
+          ]
+        },
+        {
+          "id": "kings-indian-defense",
+          "title": "King's Indian Defense",
+          "for": "black",
+          "group": "Against the queen's pawn",
+          "line": "Black lets White build a big center, then strikes at it.",
+          "play": ["d2d4","g8f6","c2c4","g7g6","b1c3","f8g7","e2e4","d7d6"],
+          "moves": "1.d4 Nf6 2.c4 g6 3.Nc3 Bg7 4.e4 d6",
+          "fen": "rnbqk2r/ppp1ppbp/3p1np1/8/2PPP3/2N5/PP3PPP/R1BQKBNR w KQkq - 0 5",
+          "lessons": [
+            {
+              "id": "openings-kings-indian-ideas",
+              "title": "King's Indian Defense: the ideas",
+              "line": "Black lets White build a big center, then strikes at it.",
+              "fen": "rnbqk2r/ppp1ppbp/3p1np1/8/2PPP3/2N5/PP3PPP/R1BQKBNR w KQkq - 0 5",
+              "marks": {"arrows":[["g7","d4"]]},
+              "side": "b"
+            },
+            {
+              "id": "openings-kings-indian-defense-mar-del-plata",
+              "title": "King's Indian Defense: Mar del Plata Variation",
+              "line": "The center locks. White attacks on the queen's side, and Black storms the king.",
+              "fen": "r1bq1rk1/pppnn1bp/3p4/3Pp1p1/2P1Pp2/2N2P2/PP2BBPP/R2QNRK1 w - - 0 13",
+              "marks": {"arrows":[["g5","g4"],["c4","c5"]]},
+              "side": "b"
+            },
+            {
+              "id": "openings-kings-indian-defense-samisch",
+              "title": "King's Indian Defense: Sämisch Variation",
+              "line": "A pawn holds White's center, and the kings often castle on opposite wings.",
+              "fen": "rnbqk2r/ppp1ppbp/3p1np1/8/2PPP3/2N2P2/PP4PP/R1BQKBNR b KQkq - 0 5",
+              "marks": {"squares":["e4"],"arrows":[["f3","e4"]]},
+              "side": "b"
+            },
+            {
+              "id": "openings-kings-indian-defense-four-pawns-attack",
+              "title": "King's Indian Defense: Four Pawns Attack",
+              "line": "White takes all the center it can, and Black attacks the pawns before they settle.",
+              "fen": "rnbqk2r/ppp1ppbp/3p1np1/8/2PPPP2/2N5/PP4PP/R1BQKBNR b KQkq - 0 5",
+              "marks": {"squares":["c4","d4","e4","f4"]},
+              "side": "b"
+            },
+            {
+              "id": "openings-kings-indian-defense-fianchetto-variation",
+              "title": "King's Indian Defense: Fianchetto Variation",
+              "line": "White's bishop guards its king from the long diagonal, so Black plays on the queen's side.",
+              "fen": "rnbq1rk1/ppp1ppbp/3p1np1/8/2PP4/5NP1/PP2PPBP/RNBQ1RK1 b - - 1 6",
+              "marks": {"arrows":[["g2","b7"],["g7","b2"]]},
+              "side": "b"
+            }
+          ]
+        },
+        {
+          "id": "nimzo-indian-defense",
+          "title": "Nimzo-Indian Defense",
+          "for": "black",
+          "group": "Against the queen's pawn",
+          "line": "The bishop pins White's knight, so White's king's pawn cannot safely come to the center.",
+          "play": ["d2d4","g8f6","c2c4","e7e6","b1c3","f8b4"],
+          "moves": "1.d4 Nf6 2.c4 e6 3.Nc3 Bb4",
+          "fen": "rnbqk2r/pppp1ppp/4pn2/8/1bPP4/2N5/PP2PPPP/R1BQKBNR w KQkq - 2 4",
+          "lessons": [
+            {
+              "id": "openings-nimzo-indian-defense-ideas",
+              "title": "Nimzo-Indian Defense: the ideas",
+              "line": "The bishop pins White's knight, so White's king's pawn cannot safely come to the center.",
+              "fen": "rnbqk2r/pppp1ppp/4pn2/8/1bPP4/2N5/PP2PPPP/R1BQKBNR w KQkq - 2 4",
+              "marks": {"squares":["e4"],"arrows":[["b4","e1"]]},
+              "side": "b"
+            },
+            {
+              "id": "openings-nimzo-indian-defense-rubinstein-system",
+              "title": "Nimzo-Indian Defense: Rubinstein System",
+              "line": "White develops quietly, and Black takes a full share of the center with pawns.",
+              "fen": "rnbqk2r/pppp1ppp/4pn2/8/1bPP4/2N1P3/PP3PPP/R1BQKBNR b KQkq - 0 4",
+              "marks": {"squares":["e3"],"arrows":[["e2","e3"]]},
+              "side": "b"
+            },
+            {
+              "id": "openings-nimzo-indian-defense-classical-variation",
+              "title": "Nimzo-Indian Defense: Classical Variation",
+              "line": "White's queen is ready to take back if the bishop takes the knight, so White's pawns stay whole.",
+              "fen": "rnbqk2r/pppp1ppp/4pn2/8/1bPP4/2N5/PPQ1PPPP/R1B1KBNR b KQkq - 3 4",
+              "marks": {"arrows":[["c2","c3"]]},
+              "side": "b"
+            },
+            {
+              "id": "openings-nimzo-indian-defense-samisch-variation",
+              "title": "Nimzo-Indian Defense: Sämisch Variation",
+              "line": "White takes the two bishops at the cost of doubled pawns, and Black attacks the front one.",
+              "fen": "rnbqk2r/pppp1ppp/4pn2/8/2PP4/P1P5/4PPPP/R1BQKBNR b KQkq - 0 5",
+              "marks": {"squares":["c3","c4"]},
+              "side": "b"
+            }
+          ]
+        },
+        {
+          "id": "queens-indian-defense",
+          "title": "Queen's Indian Defense",
+          "for": "black",
+          "group": "Against the queen's pawn",
+          "line": "The bishop on the long diagonal and the knight hold a key center square.",
+          "play": ["d2d4","g8f6","c2c4","e7e6","g1f3","b7b6"],
+          "moves": "1.d4 Nf6 2.c4 e6 3.Nf3 b6",
+          "fen": "rnbqkb1r/p1pp1ppp/1p2pn2/8/2PP4/5N2/PP2PPPP/RNBQKB1R w KQkq - 0 4",
+          "lessons": [
+            {
+              "id": "openings-queens-indian-defense-ideas",
+              "title": "Queen's Indian Defense: the ideas",
+              "line": "The bishop on the long diagonal and the knight hold a key center square.",
+              "fen": "rn1qkb1r/pbpp1ppp/1p2pn2/8/2PP4/2N2N2/PP2PPPP/R1BQKB1R w KQkq - 2 5",
+              "marks": {"squares":["e4"],"arrows":[["b7","e4"],["f6","e4"]]},
+              "side": "b"
+            },
+            {
+              "id": "openings-queens-indian-defense-fianchetto-variation",
+              "title": "Queen's Indian Defense: Fianchetto Variation",
+              "line": "Both bishops face each other on the long diagonal, and the fight is for a center square on it.",
+              "fen": "rn1qkb1r/pbpp1ppp/1p2pn2/8/2PP4/5NP1/PP2PPBP/RNBQK2R b KQkq - 2 5",
+              "marks": {"arrows":[["b7","g2"],["g2","b7"]]},
+              "side": "b"
+            },
+            {
+              "id": "openings-queens-indian-defense-petrosian-variation",
+              "title": "Queen's Indian Defense: Petrosian Variation",
+              "line": "A pawn keeps the black bishop out, and White aims to take the center with the king's pawn.",
+              "fen": "rnbqkb1r/p1pp1ppp/1p2pn2/8/2PP4/P4N2/1P2PPPP/RNBQKB1R b KQkq - 0 4",
+              "marks": {"squares":["b4"],"arrows":[["a2","a3"]]},
+              "side": "b"
+            }
+          ]
+        },
+        {
+          "id": "bogo-indian-defense",
+          "title": "Bogo-Indian Defense",
+          "for": "black",
+          "group": "Against the queen's pawn",
+          "line": "A bishop check makes White block with a piece, and Black trades it off.",
+          "play": ["d2d4","g8f6","c2c4","e7e6","g1f3","f8b4"],
+          "moves": "1.d4 Nf6 2.c4 e6 3.Nf3 Bb4+",
+          "fen": "rnbqk2r/pppp1ppp/4pn2/8/1bPP4/5N2/PP2PPPP/RNBQKB1R w KQkq - 2 4",
+          "lessons": [
+            {
+              "id": "openings-bogo-indian-defense-ideas",
+              "title": "Bogo-Indian Defense: the ideas",
+              "line": "A bishop check makes White block with a piece, and Black trades it off.",
+              "fen": "rnbqk2r/pppp1ppp/4pn2/8/1bPP4/5N2/PP2PPPP/RNBQKB1R w KQkq - 2 4",
+              "marks": {"arrows":[["b4","e1"]]},
+              "side": "b"
+            }
+          ]
+        },
+        {
+          "id": "grunfeld-defense",
+          "title": "Grünfeld Defense",
+          "for": "black",
+          "group": "Against the queen's pawn",
+          "line": "Black lets White take the center with pawns, then attacks it with pieces.",
+          "play": ["d2d4","g8f6","c2c4","g7g6","b1c3","d7d5"],
+          "moves": "1.d4 Nf6 2.c4 g6 3.Nc3 d5",
+          "fen": "rnbqkb1r/ppp1pp1p/5np1/3p4/2PP4/2N5/PP2PPPP/R1BQKBNR w KQkq - 0 4",
+          "lessons": [
+            {
+              "id": "openings-grunfeld-defense-ideas",
+              "title": "Grünfeld Defense: the ideas",
+              "line": "Black strikes at the center with a pawn at once, then hits White's pawns with the bishop, a side pawn and the queen.",
+              "fen": "rnbqkb1r/ppp1pp1p/5np1/3p4/2PP4/2N5/PP2PPPP/R1BQKBNR w KQkq - 0 4",
+              "marks": {"squares":["d5"],"arrows":[["d7","d5"]]},
+              "side": "b"
+            },
+            {
+              "id": "openings-grunfeld-defense-exchange-variation",
+              "title": "Grünfeld Defense: Exchange Variation",
+              "line": "White gets a big center of pawns, and Black's bishop on the long diagonal attacks it.",
+              "fen": "rnbqk2r/ppp1ppbp/6p1/8/3PP3/2P5/P4PPP/R1BQKBNR w KQkq - 1 7",
+              "marks": {"arrows":[["g7","a1"]]},
+              "side": "b"
+            },
+            {
+              "id": "openings-grunfeld-defense-russian-variation",
+              "title": "Grünfeld Defense: Russian Variation",
+              "line": "White's queen comes out early and White builds the center, and Black chases the queen with pawns.",
+              "fen": "rnbqk2r/ppp1ppbp/5np1/3p4/2PP4/1QN2N2/PP2PPPP/R1B1KB1R b KQkq - 3 5",
+              "marks": {"arrows":[["b3","d5"]]},
+              "side": "b"
+            }
+          ]
+        },
+        {
+          "id": "benoni-defense",
+          "title": "Benoni Defense",
+          "for": "black",
+          "group": "Against the queen's pawn",
+          "line": "An unbalanced game: Black has more pawns on the queen's side, White more in the center.",
+          "play": ["d2d4","g8f6","c2c4","c7c5","d4d5","e7e6"],
+          "moves": "1.d4 Nf6 2.c4 c5 3.d5 e6",
+          "fen": "rnbqkb1r/pp1p1ppp/4pn2/2pP4/2P5/8/PP2PPPP/RNBQKBNR w KQkq - 0 4",
+          "lessons": [
+            {
+              "id": "openings-benoni-defense-ideas",
+              "title": "Benoni Defense: the ideas",
+              "line": "An unbalanced game: Black has more pawns on the queen's side, White more in the center.",
+              "fen": "rnbqkb1r/pp3ppp/3p1n2/2pP4/8/2N5/PP2PPPP/R1BQKBNR w KQkq - 0 6",
+              "marks": {"squares":["d5","c5"]},
+              "side": "b"
+            },
+            {
+              "id": "openings-benoni-defense-classical-variation",
+              "title": "Benoni Defense: Classical Variation",
+              "line": "White develops calmly, and Black's rook and knight aim at White's center pawn.",
+              "fen": "rnbqr1k1/pp3pbp/3p1np1/2pP4/4P3/2N2N2/PP2BPPP/R1BQ1RK1 w - - 6 10",
+              "marks": {"squares":["e4"],"arrows":[["e8","e4"],["f6","e4"]]},
+              "side": "b"
+            }
+          ]
+        },
+        {
+          "id": "benko-gambit",
+          "title": "Benko Gambit",
+          "for": "black",
+          "group": "Against the queen's pawn",
+          "line": "Black gives a pawn to open two files on the queen's side for its rooks.",
+          "play": ["d2d4","g8f6","c2c4","c7c5","d4d5","b7b5"],
+          "moves": "1.d4 Nf6 2.c4 c5 3.d5 b5",
+          "fen": "rnbqkb1r/p2ppppp/5n2/1ppP4/2P5/8/PP2PPPP/RNBQKBNR w KQkq - 0 4",
+          "lessons": [
+            {
+              "id": "openings-benko-gambit-ideas",
+              "title": "Benko Gambit: the ideas",
+              "line": "Black gives a pawn to open two files on the queen's side for its rooks.",
+              "fen": "rnbqkb1r/p2ppppp/5n2/1ppP4/2P5/8/PP2PPPP/RNBQKBNR w KQkq - 0 4",
+              "marks": {"arrows":[["b7","b5"]]},
+              "side": "b"
+            },
+            {
+              "id": "openings-benko-gambit-main-line",
+              "title": "Benko Gambit: the main line",
+              "line": "For the pawn, Black's queen, rooks and bishop all bear down on White's queen's side.",
+              "fen": "rr4k1/3nppbp/3p1np1/q1pP4/4P3/2N2NP1/PP2RPKP/R1BQ4 w - - 9 14",
+              "marks": {"arrows":[["a8","a2"],["b8","b2"]]},
+              "side": "b"
+            }
+          ]
+        },
+        {
+          "id": "budapest-gambit",
+          "title": "Budapest Gambit",
+          "for": "black",
+          "group": "Against the queen's pawn",
+          "line": "Black gives a center pawn for quick play with the pieces, and usually wins it back.",
+          "play": ["d2d4","g8f6","c2c4","e7e5"],
+          "moves": "1.d4 Nf6 2.c4 e5",
+          "fen": "rnbqkb1r/pppp1ppp/5n2/4p3/2PP4/8/PP2PPPP/RNBQKBNR w KQkq - 0 3",
+          "lessons": [
+            {
+              "id": "openings-budapest-gambit-ideas",
+              "title": "Budapest Gambit: the ideas",
+              "line": "Black gives a center pawn for quick play with the pieces, and usually wins it back.",
+              "fen": "rnbqkb1r/pppp1ppp/5n2/4p3/2PP4/8/PP2PPPP/RNBQKBNR w KQkq - 0 3",
+              "marks": {"arrows":[["e7","e5"]]},
+              "side": "b"
+            }
+          ]
+        },
+        {
+          "id": "catalan-opening",
+          "title": "Catalan Opening",
+          "for": "white",
+          "group": "With the queen's pawn",
+          "line": "The Queen's Gambit with a bishop on the long diagonal, aimed at Black's queen's side.",
+          "play": ["d2d4","g8f6","c2c4","e7e6","g2g3"],
+          "moves": "1.d4 Nf6 2.c4 e6 3.g3",
+          "fen": "rnbqkb1r/pppp1ppp/4pn2/8/2PP4/6P1/PP2PP1P/RNBQKBNR b KQkq - 0 3",
+          "lessons": [
+            {
+              "id": "openings-catalan-opening-ideas",
+              "title": "Catalan Opening: the ideas",
+              "line": "The Queen's Gambit with a bishop on the long diagonal, aimed at Black's queen's side.",
+              "fen": "rnbqkb1r/ppp2ppp/4pn2/3p4/2PP4/6P1/PP2PPBP/RNBQK1NR b KQkq - 1 4",
+              "marks": {"arrows":[["g2","a8"]]},
+              "side": "w"
+            },
+            {
+              "id": "openings-catalan-opening-open-defense",
+              "title": "Catalan Opening: Open Defense",
+              "line": "Black takes White's side pawn, and White wins it back while the bishop watches the long diagonal.",
+              "fen": "rnbq1rk1/ppp1bppp/4pn2/8/2pP4/5NP1/PP2PPBP/RNBQ1RK1 w - - 0 7",
+              "marks": {"squares":["c4"],"arrows":[["d5","c4"]]},
+              "side": "w"
+            },
+            {
+              "id": "openings-catalan-opening-closed",
+              "title": "Catalan Opening: Closed",
+              "line": "Black keeps its center pawn, and White gets the king's pawn ready to push and take more space.",
+              "fen": "r1bq1rk1/pppnbppp/4pn2/3p4/2PP4/5NP1/PP2PPBP/RNBQ1RK1 w - - 6 7",
+              "marks": {"arrows":[["e2","e4"]]},
+              "side": "w"
+            }
+          ]
+        },
+        {
+          "id": "dutch-defense",
+          "title": "Dutch Defense",
+          "for": "black",
+          "group": "Against the queen's pawn",
+          "line": "From the first move, Black fights for the center with a pawn from the king's side.",
+          "play": ["d2d4","f7f5"],
+          "moves": "1.d4 f5",
+          "fen": "rnbqkbnr/ppppp1pp/8/5p2/3P4/8/PPP1PPPP/RNBQKBNR w KQkq - 0 2",
+          "lessons": [
+            {
+              "id": "openings-dutch-defense-ideas",
+              "title": "Dutch Defense: the ideas",
+              "line": "From the first move, Black fights for the center with a pawn from the king's side.",
+              "fen": "rnbqkbnr/ppppp1pp/8/5p2/3P4/8/PPP1PPPP/RNBQKBNR w KQkq - 0 2",
+              "marks": {"squares":["e4"],"arrows":[["f5","e4"]]},
+              "side": "b"
+            },
+            {
+              "id": "openings-dutch-defense-leningrad-variation",
+              "title": "Dutch Defense: Leningrad Variation",
+              "line": "Black puts its bishop on the long diagonal and gets ready to push the king's pawn.",
+              "fen": "rnbqk2r/ppppp1bp/5np1/5p2/2PP4/6P1/PP2PPBP/RNBQK1NR w KQkq - 2 5",
+              "marks": {"arrows":[["g7","b2"]]},
+              "side": "b"
+            },
+            {
+              "id": "openings-dutch-defense-stonewall-variation",
+              "title": "Dutch Defense: Stonewall Variation",
+              "line": "Four pawns hold the center like a wall and leave a hole in front of it that no pawn can guard.",
+              "fen": "rnbqk2r/pp4pp/2pbpn2/3p1p2/2PP4/5NP1/PP2PPBP/RNBQ1RK1 w kq - 2 7",
+              "marks": {"squares":["c6","d5","e6","f5"]},
+              "side": "b"
+            },
+            {
+              "id": "openings-dutch-defense-staunton-gambit",
+              "title": "Dutch Defense: Staunton Gambit",
+              "line": "White gives a pawn at once to open lines against Black's king.",
+              "fen": "rnbqkbnr/ppppp1pp/8/5p2/3PP3/8/PPP2PPP/RNBQKBNR b KQkq - 0 2",
+              "marks": {"arrows":[["e2","e4"]]},
+              "side": "b"
+            }
+          ]
+        },
+        {
+          "id": "english-opening",
+          "title": "English Opening",
+          "for": "white",
+          "group": "Other first moves",
+          "line": "The c-pawn goes first and fights for the center from the side.",
+          "play": ["c2c4"],
+          "moves": "1.c4",
+          "fen": "rnbqkbnr/pppppppp/8/8/2P5/8/PP1PPPPP/RNBQKBNR b KQkq - 0 1",
+          "lessons": [
+            {
+              "id": "openings-english-opening-ideas",
+              "title": "English Opening: the ideas",
+              "line": "The c-pawn goes first, a bishop watches the long diagonal, and the queenside pawns march.",
+              "fen": "r1bqk1nr/pppp1pbp/2n3p1/4p3/2P5/2N3P1/PP1PPPBP/R1BQK1NR w KQkq - 2 5",
+              "marks": {"squares":["d5"],"arrows":[["g2","b7"],["c4","d5"]]},
+              "side": "w"
+            },
+            {
+              "id": "openings-english-opening-kings-english",
+              "title": "English Opening: King's English Variation",
+              "line": "A Sicilian Defense with the colors reversed, and White has an extra move.",
+              "fen": "rnbqkb1r/ppp2ppp/8/3np3/8/2N3P1/PP1PPPBP/R1BQK1NR b KQkq - 1 5",
+              "marks": {"squares":["d5"],"arrows":[["g2","d5"]]},
+              "side": "w"
+            },
+            {
+              "id": "openings-english-opening-symmetrical-variation",
+              "title": "English Opening: Symmetrical Variation",
+              "line": "Black copies White move for move, until White breaks the symmetry in the center.",
+              "fen": "r1bq1rk1/pp1pppbp/2n2np1/2p5/2P5/2N2NP1/PP1PPPBP/R1BQ1RK1 w - - 6 7",
+              "marks": {"squares":["d4"],"arrows":[["d2","d4"]]},
+              "side": "w"
+            },
+            {
+              "id": "openings-english-opening-anglo-indian-defense",
+              "title": "English Opening: Anglo-Indian Defense",
+              "line": "Black brings the knight out first, and White takes the whole center with pawns.",
+              "fen": "rnbqkb1r/pppp1ppp/4pn2/8/2P1P3/2N5/PP1P1PPP/R1BQKBNR b KQkq - 0 3",
+              "marks": {"squares":["e4","c4"]},
+              "side": "w"
+            }
+          ]
+        },
+        {
+          "id": "reti-opening",
+          "title": "Réti Opening",
+          "for": "white",
+          "group": "Other first moves",
+          "line": "The knight goes first, then a side pawn strikes at Black's center pawn.",
+          "play": ["g1f3","d7d5","c2c4"],
+          "moves": "1.Nf3 d5 2.c4",
+          "fen": "rnbqkbnr/ppp1pppp/8/3p4/2P5/5N2/PP1PPPPP/RNBQKB1R b KQkq - 0 2",
+          "lessons": [
+            {
+              "id": "openings-reti-opening-ideas",
+              "title": "Réti Opening: the ideas",
+              "line": "The knight goes first, a side pawn attacks the center, and both bishops aim at it from the side.",
+              "fen": "rn1qkb1r/pp3ppp/2p1pn2/3p1b2/2P5/1P3NP1/PB1PPPBP/RN1QK2R b KQkq - 1 6",
+              "marks": {"squares":["d5","e5"],"arrows":[["g2","d5"],["b2","e5"]]},
+              "side": "w"
+            }
+          ]
+        },
+        {
+          "id": "kings-indian-attack",
+          "title": "King's Indian Attack",
+          "for": "white",
+          "group": "Other first moves",
+          "line": "A calm setup with the bishop on the long diagonal, then a pawn push and an attack on the king.",
+          "play": ["g1f3","d7d5","g2g3"],
+          "moves": "1.Nf3 d5 2.g3",
+          "fen": "rnbqkbnr/ppp1pppp/8/3p4/8/5NP1/PPPPPP1P/RNBQKB1R b KQkq - 0 2",
+          "lessons": [
+            {
+              "id": "openings-kings-indian-attack-ideas",
+              "title": "King's Indian Attack: the ideas",
+              "line": "A calm setup behind the bishop on the long diagonal, then a pawn push toward the king.",
+              "fen": "rnbq1rk1/pp2bppp/4pn2/2pp4/4P3/3P1NP1/PPPN1PBP/R1BQ1RK1 b - - 0 7",
+              "marks": {"squares":["e4"],"arrows":[["e4","e5"]]},
+              "side": "w"
+            }
+          ]
+        },
+        {
+          "id": "bird-opening",
+          "title": "Bird Opening",
+          "for": "white",
+          "group": "Other first moves",
+          "line": "The f-pawn goes first and takes hold of a center square on Black's half of the board.",
+          "play": ["f2f4"],
+          "moves": "1.f4",
+          "fen": "rnbqkbnr/pppppppp/8/8/5P2/8/PPPPP1PP/RNBQKBNR b KQkq - 0 1",
+          "lessons": [
+            {
+              "id": "openings-bird-opening-ideas",
+              "title": "Bird Opening: the ideas",
+              "line": "The f-pawn and a bishop on the long diagonal take hold of a center square for a knight.",
+              "fen": "rnbqk2r/ppp1ppbp/5np1/3p4/5P2/1P2PN2/PBPP2PP/RN1QKB1R b KQkq - 2 5",
+              "marks": {"squares":["e5"],"arrows":[["f4","e5"],["b2","e5"]]},
+              "side": "w"
+            },
+            {
+              "id": "openings-bird-opening-froms-gambit",
+              "title": "Bird Opening: From's Gambit",
+              "line": "Black gives a pawn to aim the queen and bishop at White's king.",
+              "fen": "rnbqk1nr/ppp2ppp/3b4/8/8/8/PPPPP1PP/RNBQKBNR w KQkq - 0 4",
+              "marks": {"squares":["h4","g3"],"arrows":[["d6","g3"],["d8","h4"]]},
+              "side": "w"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tactics",
+      "title": "Tactics",
+      "line": "Forks, pins and attacks on the king.",
+      "chapters": [
+        {
+          "id": "seeing-the-board",
+          "title": "Seeing the board",
+          "lessons": [
+            {
+              "id": "tactics-hanging",
+              "title": "Pieces left hanging",
+              "line": "Before every move: checks, captures, threats, and is anything of yours or theirs undefended.",
+              "fen": "rnbqkb1r/pppp1ppp/5n2/4p2Q/4P3/8/PPPP1PPP/RNB1KBNR w KQkq - 2 3",
+              "marks": {"squares":["e5"],"arrows":[["h5","e5"]]},
+              "side": "w"
+            }
+          ]
+        },
+        {
+          "id": "double-attacks",
+          "title": "Double attacks",
+          "lessons": [
+            {
+              "id": "tactics-fork",
+              "title": "The fork",
+              "line": "One piece attacks two at once. The knight does it best.",
+              "fen": "r3k3/2N2ppp/8/8/8/8/5PPP/6K1 b - - 0 1",
+              "marks": {"squares":["e8","a8"],"arrows":[["c7","e8"],["c7","a8"]]},
+              "side": "w"
+            },
+            {
+              "id": "tactics-queen-pawn-forks",
+              "title": "Queen and pawn forks",
+              "line": "The queen attacks in eight directions; the pawn, the smallest piece, attacks two bigger ones.",
+              "fen": "r5k1/6pp/8/3Q4/8/8/5PPP/6K1 b - - 0 1",
+              "marks": {"squares":["g8","a8"],"arrows":[["d5","g8"],["d5","a8"]]},
+              "side": "w"
+            }
+          ]
+        },
+        {
+          "id": "lines",
+          "title": "Lines",
+          "lessons": [
+            {
+              "id": "tactics-pin",
+              "title": "The pin",
+              "line": "A piece cannot move without exposing a bigger one behind it.",
+              "fen": "rnbqkb1r/ppp2ppp/4pn2/3p2B1/2PP4/2N5/PP2PPPP/R2QKBNR b KQkq - 3 4",
+              "marks": {"squares":["f6"],"arrows":[["g5","d8"]]},
+              "side": "w"
+            },
+            {
+              "id": "tactics-breaking-pin",
+              "title": "Breaking a pin",
+              "line": "Block, move the piece behind, or attack the pinning piece.",
+              "fen": "r1bqkbnr/ppp2ppp/2np4/1B2p3/4P3/5N2/PPPP1PPP/RNBQ1RK1 b kq - 1 4",
+              "marks": {"squares":["c6"],"arrows":[["a7","a6"],["b5","e8"]]},
+              "side": "b"
+            },
+            {
+              "id": "tactics-skewer",
+              "title": "The skewer",
+              "line": "A pin turned around: the bigger piece in front must move and the one behind falls.",
+              "fen": "4r3/8/8/4k3/8/8/8/4R1K1 b - - 0 1",
+              "marks": {"squares":["e5","e8"],"arrows":[["e1","e8"]]},
+              "side": "w"
+            },
+            {
+              "id": "tactics-x-ray",
+              "title": "X-ray",
+              "line": "A piece working through another piece on the same line.",
+              "fen": "3r2k1/3r1ppp/8/8/8/8/3R1PPP/3R2K1 w - - 0 1",
+              "marks": {"squares":["d7"],"arrows":[["d1","d7"]]},
+              "side": "w"
+            }
+          ]
+        },
+        {
+          "id": "discoveries",
+          "title": "Discoveries",
+          "lessons": [
+            {
+              "id": "tactics-discovered-attack",
+              "title": "Discovered attack",
+              "line": "Move one piece and uncover an attack by another.",
+              "fen": "4q1k1/5ppp/8/8/4N3/8/5PPP/4R1K1 w - - 0 1",
+              "marks": {"squares":["e4"],"arrows":[["e1","e8"]]},
+              "side": "w"
+            },
+            {
+              "id": "tactics-discovered-check",
+              "title": "Discovered and double check",
+              "line": "The uncovered piece gives check, so the moving piece can take anything; when both give check, only a king move answers it.",
+              "fen": "4k3/3q4/8/4N3/8/8/5PPP/4R1K1 w - - 0 1",
+              "marks": {"squares":["e8"],"arrows":[["e5","d7"],["e1","e8"]]},
+              "side": "w"
+            },
+            {
+              "id": "tactics-windmill",
+              "title": "The windmill",
+              "line": "Discovered checks one after another, taking a piece each time.",
+              "fen": "r3rn1k/pb3pR1/3ppB1p/7q/1P1P4/4N3/P4PPP/4R1K1 w - - 1 27",
+              "marks": {"arrows":[["g7","f7"],["f6","h8"]]},
+              "side": "w"
+            }
+          ]
+        },
+        {
+          "id": "removing-the-guard",
+          "title": "Removing the guard",
+          "lessons": [
+            {
+              "id": "tactics-removing-defender",
+              "title": "Removing the defender",
+              "line": "Capture or chase the piece that holds everything together.",
+              "fen": "r2q1rk1/pp2bppp/2n1pn2/3p2B1/3P3Q/2NB4/PPP2PPP/R4RK1 w - - 0 1",
+              "marks": {"squares":["f6","h7"],"arrows":[["g5","f6"]]},
+              "side": "w"
+            },
+            {
+              "id": "tactics-deflection",
+              "title": "Deflection and overloading",
+              "line": "Pull a defender away from the square it guards, often one defender with two jobs.",
+              "fen": "3r2k1/4qppp/8/8/1n6/Q4B1P/5PP1/3R2K1 w - - 0 1",
+              "marks": {"squares":["e7"],"arrows":[["e7","d8"],["e7","b4"]]},
+              "side": "w"
+            },
+            {
+              "id": "tactics-decoy",
+              "title": "Decoy",
+              "line": "Give something up to lure a piece onto a square where it can be hit.",
+              "fen": "r2q2k1/pp4p1/8/6N1/8/8/PPP2PP1/4R1KR w - - 0 1",
+              "marks": {"squares":["h8"],"arrows":[["h1","h8"],["g5","f7"]]},
+              "side": "w"
+            },
+            {
+              "id": "tactics-interference",
+              "title": "Interference",
+              "line": "Put a piece between a defender and what it defends.",
+              "fen": "5N2/6P1/8/1p2K3/p7/1b6/1k6/8 w - - 3 55",
+              "marks": {"arrows":[["b3","g8"],["f8","e6"]]},
+              "side": "w"
+            },
+            {
+              "id": "tactics-clearance",
+              "title": "Clearance",
+              "line": "Move a piece out of the way of another.",
+              "fen": "r2q1r1k/ppp1b1pp/5p2/2P1p3/1PQnR2N/P7/5PPP/R4BK1 w - - 5 19",
+              "marks": {"squares":["h4"],"arrows":[["h4","g6"],["e4","h4"]]},
+              "side": "w"
+            }
+          ]
+        },
+        {
+          "id": "more-ideas",
+          "title": "More ideas",
+          "lessons": [
+            {
+              "id": "tactics-trapped-pieces",
+              "title": "Trapped pieces",
+              "line": "A piece with no safe square, usually a bishop or a knight on the edge.",
+              "fen": "2kr4/Bpp2ppp/5n2/8/8/7P/1PP2PP1/3R2K1 b - - 0 1",
+              "marks": {"squares":["a7"]},
+              "side": "b"
+            },
+            {
+              "id": "tactics-in-between-move",
+              "title": "The in-between move",
+              "line": "Before recapturing, a stronger move first.",
+              "fen": "r1bBkb1r/pppn1ppp/8/3n4/3P4/8/PP2PPPP/R2QKBNR b KQkq - 0 7",
+              "marks": {"arrows":[["f8","b4"]]},
+              "side": "b"
+            },
+            {
+              "id": "tactics-desperado",
+              "title": "Desperado",
+              "line": "A piece that is lost anyway takes something with it.",
+              "fen": "r1bqkb1r/pp3ppp/2np1n2/4p3/3NPB2/2N5/PPP2PPP/R2QKB1R w KQkq - 0 7",
+              "marks": {"arrows":[["e5","d4"],["e5","f4"],["d4","c6"]]},
+              "side": "w"
+            },
+            {
+              "id": "tactics-quiet-moves",
+              "title": "Quiet moves",
+              "line": "A combination where the key move is not a check or a capture.",
+              "fen": "5rk1/pp4pp/4p3/2R3Q1/3n4/6qr/P1P2PPP/5RK1 w - - 2 24",
+              "marks": {"squares":["g3"]},
+              "side": "b"
+            },
+            {
+              "id": "tactics-underpromotion",
+              "title": "Underpromotion",
+              "line": "When a knight or a rook is better than a queen.",
+              "fen": "2R5/8/8/8/3r4/8/2K5/k7 b - - 0 1",
+              "marks": {"squares":["c8"]},
+              "side": "w"
+            },
+            {
+              "id": "tactics-perpetual-check",
+              "title": "Perpetual check",
+              "line": "Saving a lost game with checks that never end.",
+              "fen": "4Q1k1/6p1/5p2/8/8/1q6/r4PPP/6K1 b - - 1 1",
+              "marks": {"arrows":[["e8","g8"]]},
+              "side": "w"
+            }
+          ]
+        },
+        {
+          "id": "calculating",
+          "title": "Calculating",
+          "lessons": [
+            {
+              "id": "tactics-seeing-defense",
+              "title": "Seeing the defense",
+              "line": "Look for your opponent's best reply, not the one you hope for.",
+              "fen": "r1bqkbnr/pppp1ppp/8/4N3/2BnP3/8/PPPP1PPP/RNBQK2R b KQkq - 0 4",
+              "marks": {"arrows":[["d8","g5"]]},
+              "side": "w"
+            }
+          ]
+        },
+        {
+          "id": "attacking-the-king",
+          "title": "Attacking the king",
+          "lessons": [
+            {
+              "id": "tactics-f7-sacrifices",
+              "title": "Sacrifices on f7 and f2",
+              "line": "The weakest squares in the opening, guarded only by the king.",
+              "fen": "rnbqkb1r/pp2pppp/8/4p3/2B2Bn1/2N5/PP3PPP/R2QK1NR w KQkq - 0 8",
+              "marks": {"squares":["f7","d8"],"arrows":[["c4","f7"],["d1","d8"]]},
+              "side": "w"
+            },
+            {
+              "id": "tactics-greek-gift",
+              "title": "The Greek gift",
+              "line": "The bishop sacrifice on h7 (or h2), followed by the knight and the queen.",
+              "fen": "r1b2rk1/ppqn1ppp/2n1p3/2bpP3/7P/2PB1N2/PP1N1PP1/R1BQ1RK1 w - - 0 11",
+              "marks": {"squares":["h7"],"arrows":[["d3","h7"],["f3","g5"]]},
+              "side": "w"
+            },
+            {
+              "id": "tactics-double-bishop",
+              "title": "The double bishop sacrifice",
+              "line": "Both bishops given up on h7 and g7 to strip the king.",
+              "fen": "r4rk1/1b2bppp/ppq1p3/2ppB2n/5P2/1P1BP3/P1PPQ1PP/R4RK1 w - - 0 15",
+              "marks": {"arrows":[["d3","h7"],["e5","g7"]]},
+              "side": "w"
+            },
+            {
+              "id": "tactics-pawn-storms",
+              "title": "Pawn storms",
+              "line": "Throwing pawns at the castled king, opening a file for the rooks; with the kings on opposite wings, whoever attacks first.",
+              "fen": "2rq1rk1/pp1bppbp/3p1np1/4n3/3NP3/1BN1BP2/PPPQ2PP/2KR3R w - - 9 12",
+              "marks": {"arrows":[["h2","h4"],["g2","g4"]]},
+              "side": "w"
+            },
+            {
+              "id": "tactics-defending",
+              "title": "Defending an attack",
+              "line": "Trade attackers and counterattack in the center.",
+              "fen": "r1bq1rk1/pp2ppbp/2np1np1/8/3NP3/2N1BP2/PPPQ2PP/2KR1B1R b - - 4 9",
+              "marks": {"arrows":[["d6","d5"]]},
+              "side": "b"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "checkmates",
+      "title": "Checkmates",
+      "line": "Patterns that finish a game.",
+      "chapters": [
+        {
+          "id": "the-first-mates",
+          "title": "The first mates",
+          "lessons": [
+            {
+              "id": "checkmates-fools-mate",
+              "title": "Fool's mate",
+              "line": "The fastest mate there is, in two moves, and the pawn moves that allow it.",
+              "fen": "rnb1kbnr/pppp1ppp/8/4p3/6Pq/5P2/PPPPP2P/RNBQKBNR w KQkq - 1 3",
+              "marks": {"squares":["e1"],"arrows":[["h4","e1"]]},
+              "side": "b"
+            },
+            {
+              "id": "checkmates-scholars-mate",
+              "title": "Scholar's mate and how to stop it",
+              "line": "Queen and bishop on f7 in four moves, and the moves that make it harmless.",
+              "fen": "r1bqkb1r/pppp1Qpp/2n2n2/4p3/2B1P3/8/PPPP1PPP/RNB1K1NR b KQkq - 0 4",
+              "marks": {"squares":["f7"],"arrows":[["c4","f7"]]},
+              "side": "w"
+            },
+            {
+              "id": "checkmates-back-rank",
+              "title": "Back-rank mate",
+              "line": "A rook or queen on the last rank, the king boxed in by its own pawns.",
+              "fen": "3R2k1/5ppp/8/8/8/8/5PPP/6K1 b - - 0 1",
+              "marks": {"squares":["g8"],"arrows":[["d8","g8"]]},
+              "side": "w"
+            }
+          ]
+        },
+        {
+          "id": "mates-you-must-know",
+          "title": "Mates you must know",
+          "lessons": [
+            {
+              "id": "checkmates-king-queen",
+              "title": "King and queen against king",
+              "line": "Push the king to the edge with the queen, then bring your king. Mind stalemate.",
+              "fen": "8/8/8/4k3/8/8/8/3QK3 w - - 0 1",
+              "marks": {"squares":["e5"]},
+              "side": "w"
+            },
+            {
+              "id": "checkmates-king-rook",
+              "title": "King and rook against king",
+              "line": "The box that shrinks, and the opposition for the final check.",
+              "fen": "4k3/8/4K3/8/8/8/8/R7 w - - 0 1",
+              "marks": {"squares":["e8","e6"],"arrows":[["a1","a8"]]},
+              "side": "w"
+            },
+            {
+              "id": "checkmates-two-rooks",
+              "title": "Two rooks",
+              "line": "The ladder: rooks taking turns on the ranks.",
+              "fen": "R2k4/1R6/8/8/8/8/8/7K b - - 7 4",
+              "marks": {"arrows":[["a8","d8"],["b7","h7"]]},
+              "side": "w"
+            },
+            {
+              "id": "checkmates-two-bishops",
+              "title": "Two bishops",
+              "line": "Side by side, they drive the king into a corner.",
+              "fen": "k7/8/1K6/4B3/4B3/8/8/8 b - - 27 14",
+              "marks": {"squares":["a8"],"arrows":[["e4","a8"],["e5","b8"]]},
+              "side": "w"
+            },
+            {
+              "id": "checkmates-bishop-knight",
+              "title": "Bishop and knight",
+              "line": "The hardest basic mate: the corner of the bishop's color.",
+              "fen": "5N1k/5K2/5B2/8/8/8/8/8 b - - 27 14",
+              "marks": {"squares":["h8"],"arrows":[["f6","h8"]]},
+              "side": "w"
+            }
+          ]
+        },
+        {
+          "id": "patterns",
+          "title": "Patterns",
+          "lessons": [
+            {
+              "id": "checkmates-smothered",
+              "title": "Smothered mate",
+              "line": "A knight mates a king hemmed in by its own pieces.",
+              "fen": "r5rk/pp3Npp/1q1p4/8/8/8/PPP2PPP/R5K1 b - - 1 4",
+              "marks": {"squares":["h8"],"arrows":[["h6","f7"]]},
+              "side": "w"
+            },
+            {
+              "id": "checkmates-arabian",
+              "title": "Arabian and hook mates",
+              "line": "A rook right next to the king, guarded by a knight, in the corner or out in the open.",
+              "fen": "3r3k/p6R/5N2/8/8/8/P4PPP/6K1 b - - 0 1",
+              "marks": {"squares":["h8"],"arrows":[["f6","h7"]]},
+              "side": "w"
+            },
+            {
+              "id": "checkmates-anastasia",
+              "title": "Anastasia's mate",
+              "line": "Knight and rook against a king on the edge.",
+              "fen": "r4r2/pp2Nppk/1qp5/8/8/7R/PP3PPP/6K1 b - - 1 1",
+              "marks": {"squares":["h7","g8","g6"],"arrows":[["d3","h3"]]},
+              "side": "w"
+            },
+            {
+              "id": "checkmates-greco-morphy",
+              "title": "Greco's and Morphy's mates",
+              "line": "A bishop and a rook against the king in the corner, each taking its turn to check.",
+              "fen": "r4r1k/pp4p1/2p5/8/2B5/7R/PP3PPP/6K1 b - - 1 1",
+              "marks": {"squares":["h8"],"arrows":[["c4","g8"],["h3","h8"]]},
+              "side": "w"
+            },
+            {
+              "id": "checkmates-opera",
+              "title": "Opera mate",
+              "line": "Rook and bishop, after Morphy's game at the Paris opera in 1858.",
+              "fen": "1n1Rkb1r/p4ppp/4q3/4p1B1/4P3/8/PPP2PPP/2K5 b k - 1 17",
+              "marks": {"squares":["e8"],"arrows":[["g5","d8"]]},
+              "side": "w"
+            },
+            {
+              "id": "checkmates-boden",
+              "title": "Boden's mate",
+              "line": "Two bishops on crossing diagonals.",
+              "fen": "2kr3r/p2nbppp/B1p1p3/8/5B2/8/PPP2PPP/3R2K1 b - - 1 2",
+              "marks": {"squares":["c8"],"arrows":[["a6","c8"],["f4","b8"]]},
+              "side": "w"
+            },
+            {
+              "id": "checkmates-blackburne",
+              "title": "Blackburne's mate",
+              "line": "Two bishops and a knight around the castled king.",
+              "fen": "r2q1rk1/pp3p1B/2n1p3/6N1/8/1P6/PB3PPP/R2Q2K1 b - - 0 1",
+              "marks": {"squares":["g8"],"arrows":[["b2","h8"],["g5","h7"]]},
+              "side": "w"
+            },
+            {
+              "id": "checkmates-epaulette",
+              "title": "Epaulette mate",
+              "line": "The king's own rooks on either side block it in.",
+              "fen": "2rkr3/pp3ppp/2nQ4/8/8/6P1/PP3P1P/6K1 b - - 1 1",
+              "marks": {"squares":["c8","e8"],"arrows":[["d6","d8"]]},
+              "side": "w"
+            },
+            {
+              "id": "checkmates-damiano-dovetail",
+              "title": "Damiano's and dovetail mates",
+              "line": "The queen beside the king on a diagonal, guarded, with the king's own pieces behind it.",
+              "fen": "r4rk1/pp1q2pQ/2p3P1/8/8/8/PP3PPP/6K1 b - - 1 1",
+              "marks": {"squares":["g8"],"arrows":[["g6","h7"]]},
+              "side": "w"
+            },
+            {
+              "id": "checkmates-lolli",
+              "title": "Lolli's mate",
+              "line": "A pawn on f6 and the queen landing on g7.",
+              "fen": "2r2rk1/pp3pQp/2n2Pp1/q7/8/2N5/PP3PPP/3R2K1 b - - 0 2",
+              "marks": {"squares":["g8"],"arrows":[["f6","g7"]]},
+              "side": "w"
+            },
+            {
+              "id": "checkmates-legal",
+              "title": "L\u00e9gal's mate",
+              "line": "A queen given up so that the minor pieces mate.",
+              "fen": "rn1q1bnr/ppp1kB1p/3p2p1/3NN3/4P3/8/PPPP1PPP/R1BbK2R b KQ - 2 7",
+              "marks": {"squares":["e7"],"arrows":[["c3","d5"]]},
+              "side": "w"
+            }
+          ]
+        },
+        {
+          "id": "finding-mate",
+          "title": "Finding mate",
+          "lessons": [
+            {
+              "id": "checkmates-mate-in-one",
+              "title": "Mate in one",
+              "line": "Every check, and which one ends it.",
+              "fen": "5k2/4rp2/pq2pQp1/1n1pP3/8/8/PP3PPP/3R2K1 w - - 0 30",
+              "marks": {"arrows":[["f6","h8"],["f6","g7"],["f6","f7"],["f6","e7"]]},
+              "side": "w"
+            },
+            {
+              "id": "checkmates-mate-in-two-checks",
+              "title": "Mate in two: checks first",
+              "line": "A check that leaves one reply, then mate.",
+              "fen": "7k/pp1r2p1/2p3qp/4r3/2Q5/P1P3P1/1P5P/R4RK1 w - - 0 33",
+              "marks": {"squares":["h8"],"arrows":[["f1","f8"]]},
+              "side": "w"
+            },
+            {
+              "id": "checkmates-mate-in-two-quiet",
+              "title": "Mate in two: a quiet move",
+              "line": "The first move threatens; every answer allows mate.",
+              "fen": "3q2rk/p4R1p/3p2pQ/2pPp3/2Pb4/3B4/P5PP/7K b - - 0 28",
+              "marks": {"squares":["h7"],"arrows":[["f1","f7"]]},
+              "side": "w"
+            },
+            {
+              "id": "checkmates-mate-in-three",
+              "title": "Mate in three",
+              "line": "Longer lines, still forcing.",
+              "fen": "3r2k1/5ppp/p7/1p2q3/7P/1QP3P1/PP6/5RK1 w - - 0 27",
+              "marks": {"squares":["g8"],"arrows":[["b3","f7"]]},
+              "side": "w"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "endgames",
+      "title": "Endgames",
+      "line": "Kings, pawns and rooks at the end.",
+      "chapters": [
+        {
+          "id": "king-and-pawns",
+          "title": "King and pawns",
+          "lessons": [
+            {
+              "id": "endgames-square",
+              "title": "The square of the pawn",
+              "line": "Can the king catch the pawn? Draw the square and see.",
+              "fen": "8/8/8/5k2/P7/8/7K/8 b - - 0 1",
+              "marks": {"squares":["a4","a8","e8","e4"]},
+              "side": "w"
+            },
+            {
+              "id": "endgames-opposition",
+              "title": "The opposition",
+              "line": "Kings face each other: whoever has to move must give way.",
+              "fen": "8/8/4k3/8/4K3/4P3/8/8 b - - 0 1",
+              "marks": {"squares":["e4","e5","e6"]},
+              "side": "w"
+            },
+            {
+              "id": "endgames-key-squares",
+              "title": "Key squares",
+              "line": "Lead with the king: the squares that make the pawn promote.",
+              "fen": "7k/8/8/8/4P3/8/2K5/8 w - - 0 1",
+              "marks": {"squares":["d6","e6","f6"]},
+              "side": "w"
+            },
+            {
+              "id": "endgames-king-pawn",
+              "title": "King and pawn against king",
+              "line": "Your king in front of the pawn holds the draw, if it keeps the opposition.",
+              "fen": "8/8/4k3/8/3KP3/8/8/8 b - - 0 1",
+              "marks": {"squares":["e6","e4"]},
+              "side": "b"
+            },
+            {
+              "id": "endgames-rook-pawns",
+              "title": "Rook pawns",
+              "line": "Why a pawn on the edge is so often a draw.",
+              "fen": "k7/8/PK6/8/8/8/8/8 b - - 0 1",
+              "marks": {"squares":["a8"]},
+              "side": "b"
+            },
+            {
+              "id": "endgames-triangulation",
+              "title": "Triangulation",
+              "line": "Lose a move with the king and hand the turn to the other side.",
+              "fen": "2k5/3p4/3P4/1K6/8/8/8/8 w - - 0 1",
+              "marks": {"squares":["b5","a6","b6"]},
+              "side": "w"
+            },
+            {
+              "id": "endgames-outside-passed-pawn",
+              "title": "The outside passed pawn",
+              "line": "A pawn far from the others pulls the enemy king away.",
+              "fen": "8/8/6p1/4k2p/P6P/4K1P1/8/8 w - - 0 1",
+              "marks": {"squares":["a4"]},
+              "side": "w"
+            },
+            {
+              "id": "endgames-breakthroughs",
+              "title": "Breakthroughs",
+              "line": "Three pawns against three, and the sacrifice that makes a queen.",
+              "fen": "8/ppp5/6k1/PPP5/8/8/8/7K w - - 0 1",
+              "marks": {"squares":["b5"],"arrows":[["b5","b6"]]},
+              "side": "w"
+            }
+          ]
+        },
+        {
+          "id": "queen-endings",
+          "title": "Queen endings",
+          "lessons": [
+            {
+              "id": "endgames-queen-pawn",
+              "title": "Queen against pawn",
+              "line": "Usually the queen wins. With a bishop or rook pawn on the seventh, it may not.",
+              "fen": "8/8/6K1/8/8/8/3p2Q1/3k4 w - - 0 1",
+              "marks": {"squares":["d1","d2"]},
+              "side": "w"
+            },
+            {
+              "id": "endgames-queen-rook",
+              "title": "Queen against rook",
+              "line": "A win, with patience: the rook strays from its king, and a check catches both.",
+              "fen": "1k6/8/4K3/8/3Q4/8/7r/8 w - - 0 1",
+              "marks": {"squares":["b8","h2"],"arrows":[["d4","e5"]]},
+              "side": "w"
+            }
+          ]
+        },
+        {
+          "id": "rook-endings",
+          "title": "Rook endings",
+          "lessons": [
+            {
+              "id": "endgames-rook-pawn",
+              "title": "Rook against pawn",
+              "line": "The rook stops the pawn if its king gets there in time.",
+              "fen": "8/1K6/8/8/4pk2/8/8/7R w - - 0 1",
+              "marks": {"squares":["e4"],"arrows":[["b7","c6"]]},
+              "side": "w"
+            },
+            {
+              "id": "endgames-cutting-off",
+              "title": "Cutting off the king",
+              "line": "A rook on the file between keeps the defending king away from the pawn.",
+              "fen": "r7/8/4k3/2P5/2K5/8/8/7R w - - 0 1",
+              "marks": {"squares":["e6","c5"],"arrows":[["h1","d1"]]},
+              "side": "w"
+            },
+            {
+              "id": "endgames-lucena",
+              "title": "The Lucena position",
+              "line": "Build a bridge with the rook, and the pawn promotes.",
+              "fen": "1K6/1P2k3/8/8/8/8/r7/3R4 w - - 0 1",
+              "marks": {"squares":["b7"],"arrows":[["d1","d4"]]},
+              "side": "w"
+            },
+            {
+              "id": "endgames-philidor",
+              "title": "The Philidor position",
+              "line": "The rook on the third row holds the draw.",
+              "fen": "3k4/R7/1r6/3PK3/8/8/8/8 b - - 0 1",
+              "marks": {"arrows":[["b6","h6"]]},
+              "side": "b"
+            },
+            {
+              "id": "endgames-short-side",
+              "title": "Short side defense",
+              "line": "King to the short side of the pawn, rook checking from the long side.",
+              "fen": "4k3/7R/3K4/4P3/8/8/r7/8 b - - 0 1",
+              "marks": {"squares":["f8","a2"]},
+              "side": "b"
+            },
+            {
+              "id": "endgames-vancura",
+              "title": "The Vancura position",
+              "line": "Against a rook pawn, attack it from the side.",
+              "fen": "R7/6k1/P4r2/8/8/1K6/8/8 b - - 0 1",
+              "marks": {"squares":["a6"],"arrows":[["f6","a6"]]},
+              "side": "b"
+            },
+            {
+              "id": "endgames-rook-behind",
+              "title": "Rooks behind passed pawns",
+              "line": "Behind your own passed pawn, and behind the enemy's.",
+              "fen": "8/6kp/6p1/Pr6/8/6P1/3R3P/6K1 w - - 0 1",
+              "marks": {"squares":["a5"],"arrows":[["d2","a2"]]},
+              "side": "w"
+            },
+            {
+              "id": "endgames-rook-minor",
+              "title": "Rook against bishop, rook against knight",
+              "line": "Usually a draw, if the defender knows where to stand.",
+              "fen": "7k/R7/5K2/8/8/8/8/5b2 w - - 0 1",
+              "marks": {"squares":["h8"]},
+              "side": "b"
+            }
+          ]
+        },
+        {
+          "id": "minor-pieces",
+          "title": "Minor pieces",
+          "lessons": [
+            {
+              "id": "endgames-opposite-bishops",
+              "title": "Bishops of opposite colors",
+              "line": "Often a draw, even a pawn or two down.",
+              "fen": "8/3k4/8/2P1P3/3K3b/3B4/8/8 b - - 0 1",
+              "marks": {"squares":["c6","e6"]},
+              "side": "b"
+            },
+            {
+              "id": "endgames-same-bishops",
+              "title": "Bishops of the same color",
+              "line": "Put your pawns on the other color from your bishop.",
+              "fen": "8/8/3k1p2/p2b2p1/P2K2P1/5P2/8/5B2 w - - 0 1",
+              "marks": {"squares":["a4","f3","g4"]},
+              "side": "w"
+            },
+            {
+              "id": "endgames-wrong-rook-pawn",
+              "title": "The wrong rook pawn",
+              "line": "Bishop and rook pawn draw when the bishop cannot cover the corner.",
+              "fen": "7k/8/7P/6K1/8/8/8/5B2 w - - 0 1",
+              "marks": {"squares":["h8"]},
+              "side": "b"
+            },
+            {
+              "id": "endgames-knight-pawns",
+              "title": "Knight against pawns",
+              "line": "The knight is slow to cross the board, and a rook pawn is hardest for it.",
+              "fen": "7K/8/8/8/3N4/p7/k7/8 w - - 0 1",
+              "marks": {"squares":["a3"],"arrows":[["d4","b5"]]},
+              "side": "w"
+            },
+            {
+              "id": "endgames-two-knights",
+              "title": "Two knights cannot force mate",
+              "line": "Against a bare king, the defender always has a way out.",
+              "fen": "6k1/4N3/6K1/4N3/8/8/8/8 b - - 0 1",
+              "marks": {"squares":["h8","f8"]},
+              "side": "b"
+            }
+          ]
+        },
+        {
+          "id": "principles",
+          "title": "Principles",
+          "lessons": [
+            {
+              "id": "endgames-use-the-king",
+              "title": "Use the king",
+              "line": "In the endgame the king is a strong piece. Bring it into play.",
+              "fen": "8/1p2k3/8/8/6p1/6P1/1P2K3/8 w - - 0 1",
+              "marks": {"squares":["g4"],"arrows":[["e2","e3"]]},
+              "side": "w"
+            },
+            {
+              "id": "endgames-passed-pawns",
+              "title": "Passed pawns must be pushed",
+              "line": "Push your own, and stop the enemy's.",
+              "fen": "7k/8/8/2P5/5p2/8/8/K7 w - - 0 1",
+              "marks": {"squares":["c5"],"arrows":[["c5","c6"]]},
+              "side": "w"
+            },
+            {
+              "id": "endgames-trading",
+              "title": "Trading into a won ending",
+              "line": "When ahead, trade pieces, not pawns.",
+              "fen": "3r4/2k3pp/8/8/1PK5/8/6PP/3R4 w - - 0 1",
+              "marks": {"arrows":[["d1","d8"]]},
+              "side": "w"
+            },
+            {
+              "id": "endgames-zugzwang",
+              "title": "Zugzwang",
+              "line": "When every move makes it worse, the side to move loses.",
+              "fen": "8/8/8/2Kp4/3Pk3/8/8/8 w - - 0 1",
+              "marks": {"squares":["d4","d5"]},
+              "side": "w"
+            },
+            {
+              "id": "endgames-fortresses",
+              "title": "Fortresses",
+              "line": "A position the stronger side cannot break.",
+              "fen": "6k1/3Q2p1/5r2/8/3K4/8/8/8 b - - 0 1",
+              "marks": {"squares":["f6","g7"]},
+              "side": "b"
+            },
+            {
+              "id": "endgames-stalemate-tricks",
+              "title": "Stalemate tricks",
+              "line": "The last resource when losing, and how not to fall for it.",
+              "fen": "7k/5K1p/7P/8/8/1Q6/6r1/8 b - - 0 1",
+              "marks": {"squares":["h8"],"arrows":[["g2","f2"]]},
+              "side": "b"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "strategy",
+      "title": "Strategy",
+      "line": "Pawns, pieces and plans.",
+      "chapters": [
+        {
+          "id": "pawns",
+          "title": "Pawns",
+          "lessons": [
+            {
+              "id": "strategy-pawn-structure",
+              "title": "Pawn structure",
+              "line": "Pawns in groups, called islands. The fewer islands, the fewer weak pawns.",
+              "fen": "8/5ppp/p1p1k3/8/2K5/8/PP3PPP/8 w - - 0 30",
+              "marks": {"squares":["a6","c6"]},
+              "side": "w"
+            },
+            {
+              "id": "strategy-isolated-pawn",
+              "title": "The isolated pawn",
+              "line": "No pawns of its own beside it: block it, trade pieces, then win it.",
+              "fen": "r1bq1rk1/pp2bppp/2n2n2/3p2B1/3N4/2N3P1/PP2PPBP/R2Q1RK1 b - - 0 10",
+              "marks": {"squares":["d5","d4"]},
+              "side": "w"
+            },
+            {
+              "id": "strategy-doubled-pawns",
+              "title": "Doubled pawns",
+              "line": "Two pawns on one file: when they hurt and when they do not.",
+              "fen": "8/1pp1kppp/p1p5/8/4P3/4K3/PPP2PPP/8 w - - 0 30",
+              "marks": {"squares":["c6","c7"]},
+              "side": "w"
+            },
+            {
+              "id": "strategy-backward-pawn",
+              "title": "The backward pawn",
+              "line": "A pawn its neighbors cannot defend.",
+              "fen": "r1bqkb1r/5ppp/p1np1n2/1p2p1B1/4P3/N1N5/PPP2PPP/R2QKB1R w KQkq - 0 9",
+              "marks": {"squares":["d6","d5"]},
+              "side": "w"
+            },
+            {
+              "id": "strategy-hanging-pawns",
+              "title": "Hanging pawns",
+              "line": "Two pawns side by side with no pawns of their own beside them.",
+              "fen": "rnr3k1/4qpp1/p3b2p/1Bpp4/8/Q3PN2/PP3PPP/2R1K2R w K - 0 16",
+              "marks": {"squares":["c5","d5"]},
+              "side": "w"
+            },
+            {
+              "id": "strategy-passed-pawns",
+              "title": "Passed pawns",
+              "line": "A pawn no pawn can stop, and the extra pawns on one side that make one.",
+              "fen": "8/5p2/3k2pp/1P6/3K4/6PP/8/8 w - - 0 30",
+              "marks": {"squares":["b5"]},
+              "side": "w"
+            },
+            {
+              "id": "strategy-pawn-chains",
+              "title": "Pawn chains",
+              "line": "Pawns guarding each other on a diagonal. Attack the base of the chain.",
+              "fen": "rnbqkbnr/ppp2ppp/4p3/3pP3/3P4/8/PPP2PPP/RNBQKBNR b KQkq - 0 3",
+              "marks": {"squares":["d4"],"arrows":[["c7","c5"]]},
+              "side": "b"
+            },
+            {
+              "id": "strategy-minority-attack",
+              "title": "The minority attack",
+              "line": "Two pawns against three, pushed to leave Black a weak pawn.",
+              "fen": "r1bqr1k1/pp2bppp/2p2nn1/3p2B1/3P4/2NBPN2/PPQ2PPP/1R3RK1 w - - 11 12",
+              "marks": {"squares":["b2","c6"],"arrows":[["b2","b4"]]},
+              "side": "w"
+            }
+          ]
+        },
+        {
+          "id": "pieces",
+          "title": "Pieces",
+          "lessons": [
+            {
+              "id": "strategy-bad-bishop",
+              "title": "Good and bad bishops",
+              "line": "A bishop blocked by its own pawns, and what to do with it.",
+              "fen": "rn1qkbnr/pp3ppp/2p1p3/3pPb2/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 0 5",
+              "marks": {"squares":["f5","d5","e6"]},
+              "side": "b"
+            },
+            {
+              "id": "strategy-bishop-pair",
+              "title": "The bishop pair",
+              "line": "Two bishops on an open board. Keep them, and open lines for them.",
+              "fen": "8/pp1bkpp1/1n5p/8/2B2B2/8/PP2KPPP/8 w - - 0 30",
+              "marks": {"arrows":[["c4","f7"],["f4","b8"]]},
+              "side": "w"
+            },
+            {
+              "id": "strategy-open-files",
+              "title": "Open files",
+              "line": "Rooks belong where the pawns have gone.",
+              "fen": "r1b1nrk1/pp3pp1/2p1p2p/8/8/2P1PN2/PP2BPPP/R4RK1 w - - 0 30",
+              "marks": {"arrows":[["a1","d1"]]},
+              "side": "w"
+            },
+            {
+              "id": "strategy-seventh-rank",
+              "title": "The seventh rank",
+              "line": "A rook on the seventh attacks pawns and boxes in the king.",
+              "fen": "rr4k1/2R3pp/p7/1p6/8/8/1P3PPP/3R2K1 w - - 0 30",
+              "marks": {"arrows":[["d1","d7"]]},
+              "side": "w"
+            },
+            {
+              "id": "strategy-worst-piece",
+              "title": "Your worst piece",
+              "line": "Find the piece doing the least, and give it a better square.",
+              "fen": "r1b2rk1/2q1bppp/p2p1n2/np2p3/3PP3/5N1P/PPBN1PP1/R1BQR1K1 b - - 0 13",
+              "marks": {"squares":["a5"],"arrows":[["a5","c6"]]},
+              "side": "b"
+            }
+          ]
+        },
+        {
+          "id": "space-and-squares",
+          "title": "Space and squares",
+          "lessons": [
+            {
+              "id": "strategy-space",
+              "title": "Space",
+              "line": "Pawns in the center give your pieces room and take it from theirs.",
+              "fen": "rnbqkb1r/ppp1pppp/1n1p4/4P3/2PP1P2/8/PP4PP/RNBQKBNR b KQkq - 0 5",
+              "marks": {"squares":["c4","d4","e5","f4"]},
+              "side": "w"
+            },
+            {
+              "id": "strategy-weak-squares",
+              "title": "Weak squares",
+              "line": "Squares no enemy pawn can attack, and the knight that settles in one.",
+              "fen": "rnbqk2r/pp4pp/2pbpn2/3p1p2/2PP4/5NP1/PP2PPBP/RNBQ1RK1 w kq - 0 7",
+              "marks": {"squares":["e5"],"arrows":[["f3","e5"]]},
+              "side": "w"
+            }
+          ]
+        },
+        {
+          "id": "planning",
+          "title": "Planning",
+          "lessons": [
+            {
+              "id": "strategy-making-a-plan",
+              "title": "Making a plan",
+              "line": "Look at the pawns, find a target, bring the pieces.",
+              "fen": "2r1r1k1/p4ppp/2p2n2/3p4/3P4/2N1P3/P4PPP/1R3RK1 w - - 0 30",
+              "marks": {"squares":["c6","c5"]},
+              "side": "w"
+            },
+            {
+              "id": "strategy-prophylaxis",
+              "title": "Prophylaxis",
+              "line": "Ask what your opponent wants, and stop it first.",
+              "fen": "r1bq1rk1/2p1bppp/p1np1n2/1p2p3/4P3/1BP2N2/PP1P1PPP/RNBQR1K1 w - - 1 9",
+              "marks": {"squares":["g4"],"arrows":[["h2","h3"]]},
+              "side": "w"
+            },
+            {
+              "id": "strategy-two-weaknesses",
+              "title": "Two weaknesses",
+              "line": "One weakness can be defended. Two usually cannot.",
+              "fen": "8/8/pp1k1ppp/2pP4/2P1K3/PP4PP/8/8 w - - 0 30",
+              "marks": {"squares":["d5"],"arrows":[["g3","g4"]]},
+              "side": "w"
+            },
+            {
+              "id": "strategy-initiative",
+              "title": "The initiative",
+              "line": "Threats that leave your opponent no time, and when time is worth a pawn.",
+              "fen": "rnb1kbnr/ppp1pppp/8/3q4/8/8/PPPP1PPP/RNBQKBNR w KQkq - 0 3",
+              "marks": {"squares":["d5"],"arrows":[["b1","c3"]]},
+              "side": "w"
+            },
+            {
+              "id": "strategy-king-safety",
+              "title": "King safety",
+              "line": "Pawn shields, open lines, and when to leave the king in the center.",
+              "fen": "r1bqkb1r/pppp1ppp/2n2n2/8/2BpP3/5N2/PPP2PPP/RNBQK2R w KQkq - 0 5",
+              "marks": {"arrows":[["e1","g1"]]},
+              "side": "w"
+            }
+          ]
+        },
+        {
+          "id": "classic-games",
+          "title": "Classic games",
+          "lessons": [
+            {
+              "id": "strategy-immortal-game",
+              "title": "The Immortal Game",
+              "line": "Anderssen against Kieseritzky, London 1851: a bishop, both rooks and the queen given for mate.",
+              "fen": "rnb1k1nr/p2p1ppp/5q2/1pb2N1P/4PBP1/2NP1Q2/PPP5/R4KR1 w kq - 3 17",
+              "marks": {"squares":["f5","c3","f4","f3"]},
+              "side": "w"
+            },
+            {
+              "id": "strategy-evergreen-game",
+              "title": "The Evergreen Game",
+              "line": "Anderssen against Dufresne, Berlin 1852: an attack down the open lines.",
+              "fen": "1r2k2r/pbppnppp/1bn5/4P2q/Q3N3/B1PB1N2/P4PPP/R3R1K1 w k - 1 17",
+              "marks": {"squares":["e8"],"arrows":[["e1","e7"]]},
+              "side": "w"
+            },
+            {
+              "id": "strategy-opera-game",
+              "title": "The Opera Game",
+              "line": "Morphy against the Duke of Brunswick and Count Isouard, Paris 1858: development wins.",
+              "fen": "rn2kb1r/pp2qppp/2p2n2/4p3/2B1P3/1QN5/PPP2PPP/R1B1K2R w KQkq - 0 9",
+              "marks": {"squares":["b3","c4","c3"]},
+              "side": "w"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

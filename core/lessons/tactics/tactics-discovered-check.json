@@ -1,0 +1,43 @@
+{
+  "id": "tactics-discovered-check",
+  "course": "tactics",
+  "title": "Discovered and double check",
+  "line": "The uncovered piece gives check, so the moving piece can take anything; when both give check, only a king move answers it.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "text": "Your knight stands between your rook and the black king. Wherever the knight goes, the rook gives check.",
+      "fen": "4k3/3q4/8/4N3/8/8/5PPP/4R1K1 w - - 0 1",
+      "marks": {"squares":["e5"],"arrows":[["e1","e8"]]}
+    },
+    {
+      "type": "move",
+      "text": "Move the knight and take the queen. The check from the rook comes with it.",
+      "fen": "4k3/3q4/8/4N3/8/8/5PPP/4R1K1 w - - 0 1",
+      "accept": ["e5d7"],
+      "hint": "The knight can capture the queen in one jump.",
+      "after": "Black had to answer the check, and the queen was gone.",
+      "reply": "e8d7",
+      "wins": 6
+    },
+    {
+      "type": "show",
+      "text": "A double check is two checks at once. No block or capture can stop both, so only the king can move.",
+      "fen": "3qkb2/3p1p2/8/8/4N3/8/5PPP/4R1K1 w - - 0 1",
+      "marks": {"squares":["e4"],"arrows":[["e1","e8"]]}
+    },
+    {
+      "type": "move",
+      "text": "Give double check: the knight checks the king, and so does the rook behind it.",
+      "fen": "3qkb2/3p1p2/8/8/4N3/8/5PPP/4R1K1 w - - 0 1",
+      "accept": ["e4f6","e4d6"],
+      "hint": "Find a knight jump that attacks the king.",
+      "after": "Two checks, and the king has no square: checkmate.",
+      "mate": true
+    }
+  ],
+  "summary": "When moving a piece uncovers check, the moving piece is free. When both pieces give check, only the king can move.",
+  "puzzles": "discovered",
+  "practice": {"fen":"8/3k4/8/8/8/8/5PPP/4R1K1 w - - 0 2","side":"w"}
+}

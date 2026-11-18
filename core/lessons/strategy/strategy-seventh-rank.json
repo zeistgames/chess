@@ -1,0 +1,60 @@
+{
+  "id": "strategy-seventh-rank",
+  "course": "strategy",
+  "title": "The seventh rank",
+  "line": "A rook on the seventh attacks pawns and boxes in the king.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "fen": "3r2k1/pp3ppp/8/2Rp4/8/4K3/PP2PPPP/8 w - - 0 30",
+      "text": "Black's pawns start on the seventh rank, the second row from Black's side. Pawns standing on one row cannot guard each other.",
+      "marks": {"squares":["a7","b7","f7","g7","h7"]}
+    },
+    {
+      "type": "move",
+      "text": "Put your rook on the seventh rank.",
+      "marks": {"arrows":[["c5","c7"]]},
+      "accept": ["c5c7"],
+      "hint": "The rook goes straight up its file.",
+      "after": "Black's rook comes back to guard a pawn.",
+      "reply": "d8b8"
+    },
+    {
+      "type": "pick",
+      "text": "Tap every black pawn your rook attacks now.",
+      "accept": ["b7","f7"],
+      "all": true,
+      "wrong": {
+        "a7": "Another pawn stands in the way.",
+        "g7": "Another pawn stands in the way.",
+        "h7": "Other pawns stand in the way."
+      },
+      "hint": "Look along the row your rook stands on, both ways.",
+      "after": "Black's rook and king are tied to guarding them, and the king has no square off its back row."
+    },
+    {
+      "type": "move",
+      "fen": "rr4k1/2R3pp/p7/1p6/8/8/1P3PPP/3R2K1 w - - 0 30",
+      "text": "Two rooks on the seventh are stronger still. Bring your other rook up beside the first.",
+      "marks": {"squares":["g7","h7","g8"],"arrows":[["d1","d7"]]},
+      "accept": ["d1d7"],
+      "wrong": {
+        "g2g3": "That gives Black time to bring a rook over and trade off yours on the seventh."
+      },
+      "after": "Black's king steps into the corner. It has no way off its back row.",
+      "reply": "g8h8"
+    },
+    {
+      "type": "move",
+      "text": "Take the pawn on g7. Your other rook guards it along the row.",
+      "marks": {"squares":["g7"],"arrows":[["d7","g7"],["c7","g7"]]},
+      "accept": ["d7g7"],
+      "wins": 1,
+      "after": "A pawn up, and both rooks still on the seventh, next to the boxed-in king.",
+      "reply": "h7h5"
+    }
+  ],
+  "summary": "A rook on the seventh rank attacks pawns from the side and keeps the king on its back row. Two rooks there do more.",
+  "practice": {"fen":"rr5k/2R3R1/p7/1p5p/8/8/1P3PPP/6K1 w - - 0 32","side":"w"}
+}

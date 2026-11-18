@@ -1,0 +1,74 @@
+{
+  "id": "openings-sicilian-defense-grand-prix",
+  "course": "openings",
+  "title": "Sicilian Defense: Grand Prix Attack",
+  "line": "White pushes a pawn on the king's side and aims a bishop at Black's king; Black blocks it and strikes in the center.",
+  "side": "b",
+  "steps": [
+    {
+      "type": "show",
+      "text": "Here White brings a knight out and pushes the pawn on f2 two squares, to attack on the king's side.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {"arrows":[["f2","f4"]]},
+      "play": ["e2e4","c7c5","b1c3","b8c6","f2f4"]
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn on g7 one square, to make room for your bishop.",
+      "marks": {"arrows":[["g7","g6"]]},
+      "accept": ["g7g6"],
+      "also": {
+        "e7e6": "That also works. This lesson goes on with the bishop."
+      },
+      "reply": "g1f3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Put the bishop on g7.",
+      "marks": {"squares":["f7"],"arrows":[["f8","g7"]]},
+      "accept": ["f8g7"],
+      "after": "White's bishop aims at the pawn on f7, which only your king guards.",
+      "reply": "f1c4",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn on e7 one square. It blocks the bishop's line to f7.",
+      "marks": {"squares":["f7"],"arrows":[["e7","e6"],["c4","f7"]]},
+      "accept": ["e7e6"],
+      "reply": "e1g1",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the other knight to e7. It backs up a pawn push in the center.",
+      "marks": {"arrows":[["g8","e7"]]},
+      "accept": ["g8e7"],
+      "reply": "d2d3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn on d7 two squares. It hits the bishop and takes the center.",
+      "marks": {"arrows":[["d7","d5"]]},
+      "accept": ["d7d5"],
+      "after": "The bishop steps back.",
+      "reply": "c4b3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Castle. Your king goes to safety, and a rook comes toward the center.",
+      "marks": {"squares":["d5"],"arrows":[["e8","g8"]]},
+      "accept": ["e8g8"],
+      "after": "Your king is safe, and White's bishop now runs into your pawn on d5.",
+      "taught": true
+    }
+  ],
+  "summary": "Against the Grand Prix, Black blocks the bishop's aim at the weak square and then strikes in the center.",
+  "practice": {
+    "fen": "r1bq1rk1/pp2npbp/2n1p1p1/2pp4/4PP2/1BNP1N2/PPP3PP/R1BQ1RK1 w - - 2 9",
+    "side": "b"
+  }
+}

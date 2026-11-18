@@ -1,0 +1,179 @@
+{
+  "id": "openings-semi-slav-defense-botvinnik-variation",
+  "course": "openings",
+  "title": "Semi-Slav Defense: Botvinnik Variation",
+  "line": "Black takes on c4 and keeps it, while White attacks on the kingside. Sharp for both.",
+  "side": "b",
+  "steps": [
+    {
+      "type": "show",
+      "text": "The Queen's Gambit, and Black guards the center pawn with the pawn on c6.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {
+        "squares": [
+          "c6",
+          "d5"
+        ]
+      },
+      "play": [
+        "d2d4",
+        "d7d5",
+        "c2c4",
+        "c7c6"
+      ]
+    },
+    {
+      "type": "show",
+      "text": "Black adds the king pawn: the Semi-Slav. White's bishop pins the knight to the queen.",
+      "marks": {
+        "squares": [
+          "f6",
+          "d8"
+        ],
+        "arrows": [
+          [
+            "g5",
+            "d8"
+          ]
+        ]
+      },
+      "play": [
+        "g1f3",
+        "g8f6",
+        "b1c3",
+        "e7e6",
+        "c1g5"
+      ]
+    },
+    {
+      "type": "move",
+      "text": "Take the pawn on c4, which nothing guards.",
+      "marks": {
+        "squares": [
+          "c4"
+        ],
+        "arrows": [
+          [
+            "d5",
+            "c4"
+          ]
+        ]
+      },
+      "accept": [
+        "d5c4"
+      ],
+      "after": "White takes the center with its king pawn.",
+      "reply": "e2e4",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn on b7 two squares to hold on to the pawn on c4.",
+      "marks": {
+        "squares": [
+          "c4"
+        ],
+        "arrows": [
+          [
+            "b7",
+            "b5"
+          ]
+        ]
+      },
+      "accept": [
+        "b7b5"
+      ],
+      "after": "White pushes the pawn on and attacks your pinned knight.",
+      "reply": "e4e5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn on h7 one square to chase the bishop.",
+      "marks": {
+        "squares": [
+          "g5"
+        ],
+        "arrows": [
+          [
+            "h7",
+            "h6"
+          ]
+        ]
+      },
+      "accept": [
+        "h7h6"
+      ],
+      "reply": "g5h4",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn on g7 two squares. It attacks the bishop on h4 again.",
+      "marks": {
+        "squares": [
+          "h4",
+          "f6"
+        ],
+        "arrows": [
+          [
+            "g7",
+            "g5"
+          ]
+        ]
+      },
+      "accept": [
+        "g7g5"
+      ],
+      "after": "This is the Botvinnik Variation. White gives a knight to keep the attack going.",
+      "reply": "f3g5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Take the knight with the pawn. You are a piece up for now.",
+      "marks": {
+        "squares": [
+          "g5"
+        ],
+        "arrows": [
+          [
+            "h6",
+            "g5"
+          ]
+        ]
+      },
+      "accept": [
+        "h6g5"
+      ],
+      "after": "White's bishop takes back and pins your knight again.",
+      "reply": "h4g5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the other knight out. It guards the knight on f6.",
+      "marks": {
+        "squares": [
+          "f6"
+        ],
+        "arrows": [
+          [
+            "b8",
+            "d7"
+          ]
+        ]
+      },
+      "accept": [
+        "b8d7"
+      ],
+      "after": "White can take the knight on f6 next. Both sides attack, and both kings can come under fire.",
+      "taught": true
+    }
+  ],
+  "summary": "Black grabs a pawn and holds it with the queenside pawns. White sacrifices to attack. Both kings are in danger.",
+  "practice": {
+    "fen": "r1bqkb1r/p2n1p2/2p1pn2/1p2P1B1/2pP4/2N5/PP3PPP/R2QKB1R w KQkq - 1 11",
+    "side": "b"
+  }
+}

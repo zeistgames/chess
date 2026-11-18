@@ -1,0 +1,97 @@
+{
+  "id": "openings-sicilian-defense-smith-morra",
+  "course": "openings",
+  "title": "Sicilian Defense: Smith-Morra Gambit",
+  "line": "White gives a pawn for fast development; Black takes it, and a careless move by White meets a trap.",
+  "side": "b",
+  "steps": [
+    {
+      "type": "show",
+      "text": "Here White pushes the pawn on d2 two squares at once.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {"arrows":[["d2","d4"]]},
+      "play": ["e2e4","c7c5","d2d4"]
+    },
+    {
+      "type": "move",
+      "text": "Take the pawn. It removes White's center pawn.",
+      "marks": {"arrows":[["c5","d4"]]},
+      "accept": ["c5d4"],
+      "after": "White offers a second pawn.",
+      "reply": "c2c3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Take the second pawn too. White takes back once and is a pawn down, but gets quick development for it.",
+      "marks": {"arrows":[["d4","c3"]]},
+      "accept": ["d4c3"],
+      "reply": "b1c3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the knight out. It watches d4 and e5.",
+      "marks": {"squares":["d4","e5"],"arrows":[["b8","c6"]]},
+      "accept": ["b8c6"],
+      "also": {
+        "e7e6": "That also works. This lesson brings the knight out first.",
+        "d7d6": "That also works. This lesson brings the knight out first."
+      },
+      "reply": "g1f3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn on e7 one square. It guards d5, so a white knight that jumps there can be taken.",
+      "marks": {"squares":["d5"],"arrows":[["e7","e6"]]},
+      "accept": ["e7e6"],
+      "also": {
+        "d7d6": "That is also played. This lesson goes on with the other pawn."
+      },
+      "reply": "f1c4",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the queen to c7. She watches e5 and stands on a file with no pawns on it. This is the Siberian setup.",
+      "marks": {"squares":["e5"],"arrows":[["d8","c7"]]},
+      "accept": ["d8c7"],
+      "also": {
+        "a7a6": "That is the most played move here, and just as sound. This lesson follows the Siberian setup with the queen."
+      },
+      "reply": "e1g1",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the other knight out.",
+      "marks": {"arrows":[["g8","f6"]]},
+      "accept": ["g8f6"],
+      "reply": "d1e2",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Jump to g4 with the knight. With your queen it eyes h2, next to White's king.",
+      "marks": {"squares":["h2"],"arrows":[["f6","g4"],["c7","h2"]]},
+      "accept": ["f6g4"],
+      "after": "White slips here. Chasing the knight with this pawn is a mistake.",
+      "reply": "h2h3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Jump into d4 with the other knight. It hits White's queen and the knight that guards h2.",
+      "marks": {"squares":["d4","h2","f3"],"arrows":[["c6","d4"]]},
+      "accept": ["c6d4"],
+      "after": "If White's knight takes yours, your queen mates on h2. If White's queen steps away, your knight takes on f3 with check.",
+      "sacrifice": true
+    }
+  ],
+  "summary": "Black takes the gambit pawns and develops. If White chases the knight carelessly, a second knight jump decides.",
+  "practice": {
+    "fen": "r1bqkbnr/pp1p1ppp/2n1p3/8/2B1P3/2N2N2/PP3PPP/R1BQK2R b KQkq - 1 6",
+    "side": "b"
+  }
+}

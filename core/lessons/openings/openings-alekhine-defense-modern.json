@@ -1,0 +1,80 @@
+{
+  "id": "openings-alekhine-defense-modern",
+  "course": "openings",
+  "title": "Alekhine Defense: Modern Variation",
+  "line": "White develops calmly; Black trades the center pawn and steps around a famous knight sacrifice.",
+  "side": "b",
+  "steps": [
+    {
+      "type": "show",
+      "text": "In the Modern Variation, White guards the pawn on e5 with a knight instead of more pawns.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {"squares":["e5"]},
+      "play": ["e2e4","g8f6","e4e5","f6d5","d2d4","d7d6","g1f3"]
+    },
+    {
+      "type": "move",
+      "text": "Take the pawn on e5.",
+      "marks": {"arrows":[["d6","e5"]]},
+      "accept": ["d6e5"],
+      "also": {
+        "c8g4": "That pins the knight, and it is also played. This lesson takes the pawn.",
+        "g7g6": "That is also played. This lesson takes the pawn first."
+      },
+      "reply": "f3e5",
+      "taught": true
+    },
+    {
+      "type": "show",
+      "text": "A famous trap: if your other knight comes to d7, White gives a knight on f7 and drags your king into the open.",
+      "fen": "rnbqkb1r/ppp1pppp/8/3nN3/3P4/8/PPP2PPP/RNBQKB1R b KQkq - 0 5",
+      "marks": {"squares":["d7","f7"]},
+      "play": ["b8d7","e5f7","e8f7","d1h5","f7e6","c2c4"]
+    },
+    {
+      "type": "move",
+      "text": "So push the pawn on g7 one square instead, to bring your bishop out.",
+      "fen": "rnbqkb1r/ppp1pppp/8/3nN3/3P4/8/PPP2PPP/RNBQKB1R b KQkq - 0 5",
+      "marks": {"squares":["f7"],"arrows":[["g7","g6"]]},
+      "accept": ["g7g6"],
+      "wrong": {
+        "b8d7": "That is the trap: White's knight takes on f7 and your king is dragged into the open."
+      },
+      "also": {
+        "c7c6": "That also works. This lesson goes on with the bishop.",
+        "e7e6": "That also works. This lesson goes on with the bishop."
+      },
+      "reply": "f1c4",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn on c7 one square. It guards your knight on d5.",
+      "marks": {"squares":["d5"],"arrows":[["c7","c6"]]},
+      "accept": ["c7c6"],
+      "reply": "e1g1",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Put the bishop on g7.",
+      "marks": {"arrows":[["f8","g7"]]},
+      "accept": ["f8g7"],
+      "reply": "f1e1",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Castle. Your king goes to safety, and a rook comes toward the center.",
+      "marks": {"squares":["d7","g7","e5"],"arrows":[["e8","g8"]]},
+      "accept": ["e8g8"],
+      "after": "Your king is safe, the knight never went to d7, and the bishop on g7 aims at White's knight on e5.",
+      "taught": true
+    }
+  ],
+  "summary": "In the Modern, Black takes the center pawn and keeps the knight off the square that walks into the sacrifice.",
+  "practice": {
+    "fen": "rnbq1rk1/pp2ppbp/2p3p1/3nN3/2BP4/8/PPP2PPP/RNBQR1K1 w - - 4 9",
+    "side": "b"
+  }
+}

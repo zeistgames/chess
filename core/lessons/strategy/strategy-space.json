@@ -1,0 +1,60 @@
+{
+  "id": "strategy-space",
+  "course": "strategy",
+  "title": "Space",
+  "line": "Pawns in the center give your pieces room and take it from theirs.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "fen": "rnbqkb1r/pppppppp/5n2/8/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 1 2",
+      "text": "Space is the room behind your pawns where your pieces can move. Pawns that move up in the center gain it.",
+      "marks": {"squares":["e4"]}
+    },
+    {
+      "type": "pick",
+      "text": "Tap the four squares in the middle of the board: the center.",
+      "accept": ["d4","e4","d5","e5"],
+      "all": true,
+      "hint": "They are the middle two squares of the middle two files.",
+      "after": "Pawns on these squares reach far into the other half."
+    },
+    {
+      "type": "move",
+      "text": "Push your pawn on e4 one square. It chases the knight and takes space.",
+      "marks": {"squares":["f6"],"arrows":[["e4","e5"]]},
+      "accept": ["e4e5"],
+      "after": "The knight jumps to the center.",
+      "reply": "f6d5"
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn in front of your queen two squares.",
+      "marks": {"squares":["e5"],"arrows":[["d2","d4"]]},
+      "accept": ["d2d4"],
+      "also": {
+        "c2c4": "That chases the knight at once, and it is as strong. This lesson pushes the center pawn first."
+      },
+      "after": "Black hits your pawn on e5.",
+      "reply": "d7d6"
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn on c2 two squares and chase the knight again.",
+      "marks": {"squares":["d5"],"arrows":[["c2","c4"]]},
+      "accept": ["c2c4"],
+      "after": "The knight goes back. Black's pieces have little room.",
+      "reply": "d5b6"
+    },
+    {
+      "type": "move",
+      "text": "Guard your pawn on e5 with one more pawn: push the pawn on f2 two squares.",
+      "marks": {"squares":["e5"],"arrows":[["f2","f4"]]},
+      "accept": ["f2f4"],
+      "after": "Four white pawns hold the middle. They are also targets: in this opening Black lets them come forward, then attacks them.",
+      "reply": "c8f5"
+    }
+  ],
+  "summary": "Pawns in the center give your pieces room and take it from your opponent's pieces.",
+  "practice": {"fen":"rn1qkb1r/ppp1pppp/1n1p4/4Pb2/2PP1P2/8/PP4PP/RNBQKBNR w KQkq - 1 6","side":"w"}
+}

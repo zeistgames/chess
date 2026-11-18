@@ -1,0 +1,150 @@
+{
+  "id": "openings-philidor-defense-hanham",
+  "course": "openings",
+  "title": "Philidor Defense: Hanham Variation",
+  "line": "Black keeps its pawn on e5 with a knight behind it, and must watch the weak pawn by its king.",
+  "side": "b",
+  "steps": [
+    {
+      "type": "show",
+      "text": "The Philidor Defense: White attacks your pawn on e5 a second time.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {
+        "squares": [
+          "e5"
+        ],
+        "arrows": [
+          [
+            "d4",
+            "e5"
+          ],
+          [
+            "f3",
+            "e5"
+          ]
+        ]
+      },
+      "play": [
+        "e2e4",
+        "e7e5",
+        "g1f3",
+        "d7d6",
+        "d2d4"
+      ]
+    },
+    {
+      "type": "move",
+      "text": "Keep your pawn on e5: guard it with the knight from b8.",
+      "marks": {
+        "squares": [
+          "e5",
+          "f7"
+        ],
+        "arrows": [
+          [
+            "b8",
+            "d7"
+          ]
+        ]
+      },
+      "accept": [
+        "b8d7"
+      ],
+      "also": {
+        "e5d4": "Taking is the line of the lesson before. This lesson keeps the pawn.",
+        "g8f6": "That is also played. This lesson guards with the other knight."
+      },
+      "after": "This is the Hanham Variation. White's bishop aims at f7.",
+      "reply": "f1c4",
+      "taught": true
+    },
+    {
+      "type": "show",
+      "text": "A slip seen in a quarter of club games: the bishop to e7. The pawns trade, the queen threatens mate on f7, and its guard falls.",
+      "marks": {
+        "squares": [
+          "f7",
+          "d5",
+          "e7"
+        ]
+      },
+      "play": [
+        "f8e7",
+        "d4e5",
+        "d6e5",
+        "d1d5",
+        "g8h6",
+        "c1h6"
+      ]
+    },
+    {
+      "type": "show",
+      "text": "Back before the mistake. Stop the queen from coming to d5 first.",
+      "fen": "r1bqkbnr/pppn1ppp/3p4/4p3/2BPP3/5N2/PPP2PPP/RNBQK2R b KQkq - 2 4",
+      "marks": {
+        "squares": [
+          "d5",
+          "f7"
+        ]
+      }
+    },
+    {
+      "type": "move",
+      "text": "Move the pawn on c7 one square. It guards d5, so the queen cannot come there.",
+      "marks": {
+        "squares": [
+          "d5",
+          "e5",
+          "f7",
+          "g5"
+        ],
+        "arrows": [
+          [
+            "c7",
+            "c6"
+          ]
+        ]
+      },
+      "accept": [
+        "c7c6"
+      ],
+      "wrong": {
+        "f8e7": "That is the mistake you just saw: the pawns trade and the queen comes to d5.",
+        "g8f6": "If the pawns trade on e5, the white knight jumps to g5 and hits f7 with the bishop, and Black cannot hold it."
+      },
+      "also": {
+        "e5d4": "Taking the pawn is also sound. This lesson keeps the pawn on e5."
+      },
+      "reply": "e1g1",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Now the bishop can come to e7: the pawn on c6 keeps the queen off d5.",
+      "marks": {
+        "squares": [
+          "d5",
+          "c6",
+          "e5"
+        ],
+        "arrows": [
+          [
+            "f8",
+            "e7"
+          ]
+        ]
+      },
+      "accept": [
+        "f8e7"
+      ],
+      "after": "White takes on e5; take back with the pawn. This is the main line: cramped, and engines give White a small edge.",
+      "reply": "d4e5",
+      "taught": true
+    }
+  ],
+  "summary": "A knight behind the center pawn keeps it in place, but the weak pawn by the king needs care. Guard the key square first.",
+  "practice": {
+    "fen": "r1bqk1nr/pp1nbppp/2pp4/4P3/2B1P3/5N2/PPP2PPP/RNBQ1RK1 b kq - 0 6",
+    "side": "b"
+  }
+}

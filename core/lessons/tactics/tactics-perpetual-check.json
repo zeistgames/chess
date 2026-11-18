@@ -1,0 +1,41 @@
+{
+  "id": "tactics-perpetual-check",
+  "course": "tactics",
+  "title": "Perpetual check",
+  "line": "Saving a lost game with checks that never end.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "text": "You are far behind, and Black threatens mate. But the black king is boxed in by your pawn and knight.",
+      "fen": "5rk1/3R4/5P2/6N1/8/1q6/r5PP/7K w - - 0 1",
+      "marks": {
+        "squares": ["g8","f6","g5"]
+      }
+    },
+    {
+      "type": "move",
+      "text": "Check with the rook from beside the king. Your pawn guards it.",
+      "fen": "5rk1/3R4/5P2/6N1/8/1q6/r5PP/7K w - - 0 1",
+      "marks": {"arrows":[["d7","g7"],["f6","g7"]]},
+      "accept": ["d7g7"],
+      "after": "The king had only one square to go to.",
+      "reply": "g8h8"
+    },
+    {
+      "type": "move",
+      "text": "Check again from the file the king stands on. Your knight guards the rook.",
+      "marks": {"arrows":[["g5","h7"]]},
+      "accept": ["g7h7"],
+      "after": "Back the king goes: the rook and the pawn cover every other square.",
+      "reply": "h8g8"
+    },
+    {"type":"move","text":"And check from the side again.","accept":["h7g7"],"reply":"g8h8"},
+    {
+      "type": "show",
+      "text": "The same position keeps coming back. Once it has stood three times, the game is a draw: a lost game saved."
+    }
+  ],
+  "summary": "When you are lost on material, look for checks the king cannot escape. A position repeated three times is a draw.",
+  "practice": {"fen":"5r1k/6R1/5P2/6N1/8/1q6/r5PP/7K w - - 6 4","side":"w"}
+}

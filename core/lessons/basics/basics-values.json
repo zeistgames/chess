@@ -1,0 +1,52 @@
+{
+  "id": "basics-values",
+  "course": "basics",
+  "title": "What the pieces are worth",
+  "line": "Pawn 1, knight 3, bishop 3, rook 5, queen 9, and why the king has no number.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "text": "Players count pieces in points: a pawn is worth 1, a knight 3, a bishop 3, a rook 5 and a queen 9.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
+    },
+    {
+      "type": "show",
+      "text": "The king has no number. It is never captured: the game ends before that, so the king is worth the whole game.",
+      "marks": {"squares":["e1","e8"]}
+    },
+    {
+      "type": "pick",
+      "text": "Tap every black piece worth 3 points.",
+      "fen": "6k1/p3bppp/r7/5n2/8/3B4/5PPP/6K1 w - - 0 1",
+      "accept": ["e7","f5"],
+      "all": true,
+      "wrong": {
+        "a6": "That is a rook, worth 5.",
+        "a7": "That is a pawn, worth 1.",
+        "f7": "That is a pawn, worth 1.",
+        "g7": "That is a pawn, worth 1.",
+        "h7": "That is a pawn, worth 1."
+      },
+      "after": "A knight and a bishop are worth about the same: 3 each."
+    },
+    {
+      "type": "move",
+      "text": "Your bishop can capture the rook or the knight, and no black piece could capture it back. Capture the piece worth more.",
+      "fen": "6k1/p3bppp/r7/5n2/8/3B4/5PPP/6K1 w - - 0 1",
+      "accept": ["d3a6"],
+      "wrong": {"d3f5":"The knight is worth 3. The rook is worth 5."},
+      "after": "You took 5 points and gave nothing."
+    },
+    {
+      "type": "pick",
+      "text": "Both sides have the same pawns. Tap the piece that puts one side ahead.",
+      "fen": "6k1/pp3ppp/2n5/8/8/8/PP3PPP/R5K1 w - - 0 1",
+      "accept": ["a1"],
+      "all": false,
+      "wrong": {"c6":"The knight is worth 3. The white rook is worth 5."},
+      "after": "The rook is worth 5, the knight 3: White is 2 points ahead."
+    }
+  ],
+  "summary": "Pawn 1, knight 3, bishop 3, rook 5, queen 9. The king can never be captured, so it has no number."
+}

@@ -1,0 +1,74 @@
+{
+  "id": "endgames-philidor",
+  "course": "endgames",
+  "title": "The Philidor position",
+  "line": "The rook on the third row holds the draw.",
+  "side": "b",
+  "steps": [
+    {
+      "type": "show",
+      "fen": "3k4/R7/1r6/3PK3/8/8/8/8 b - - 0 1",
+      "text": "This is the Philidor position. Your king stands in front of the pawn, and your rook holds the third row from your side.",
+      "marks": {"squares":["d8","d5"],"arrows":[["b6","h6"]]}
+    },
+    {
+      "type": "show",
+      "fen": "3k4/R7/1r6/3PK3/8/8/8/8 b - - 0 1",
+      "text": "Here the white king cannot step onto that row, and without it the pawn cannot get through.",
+      "marks": {"squares":["d6","e6","f6"]}
+    },
+    {
+      "type": "move",
+      "fen": "3k4/R7/1r6/3PK3/8/8/8/8 b - - 0 1",
+      "text": "Wait with the rook along its row, out of reach of the white pieces.",
+      "marks": {"arrows":[["b6","h6"]]},
+      "accept": ["b6h6","b6g6"],
+      "also": {
+        "b6b1": "That holds here too, ready to check from behind. This lesson keeps the rook on its row.",
+        "b6b2": "That holds here too, ready to check from behind. This lesson keeps the rook on its row.",
+        "b6b3": "That holds here too, ready to check from behind. This lesson keeps the rook on its row.",
+        "b6b4": "That holds here too, ready to check from behind. This lesson keeps the rook on its row.",
+        "d8c8": "That holds too: your king stays in front of the pawn. This lesson moves the rook along its row.",
+        "d8e8": "That holds too: your king stays in front of the pawn. This lesson moves the rook along its row."
+      },
+      "wrong": {
+        "b6b8": "That leaves the row, and the white king steps onto it. The pawn promotes.",
+        "b6b5": "That leaves the row, and the white king steps onto it. The pawn promotes.",
+        "b6a6": "The white rook takes it.",
+        "b6b7": "The white rook takes it.",
+        "b6f6": "The white king takes it."
+      },
+      "hint": "Slide the rook along its row, away from the white king.",
+      "after": "The row stays shut."
+    },
+    {
+      "type": "move",
+      "fen": "3k4/R7/1r1P4/4K3/8/8/8/8 b - - 0 1",
+      "text": "The pawn has stepped onto your rook's row. Now the white king has no shelter: drop the rook to the far end.",
+      "marks": {"arrows":[["b6","b1"]]},
+      "accept": ["b6b1"],
+      "also": {
+        "b6b2": "That works too: from there the rook checks from behind as well.",
+        "b6b3": "That works too: from there the rook checks from behind as well.",
+        "b6b4": "That works too: from there the rook checks from behind as well."
+      },
+      "wrong": {
+        "d8c8": "That gives the white king time to step up, and the pawn promotes.",
+        "d8e8": "That gives the white king time to step up, and the pawn promotes.",
+        "b6c6": "That lets the white king step up, and the pawn promotes."
+      },
+      "hint": "Follow the arrow, as far from the white king as it goes.",
+      "after": "From there the rook checks from behind, and the white king cannot hide.",
+      "reply": "e5e6"
+    },
+    {
+      "type": "move",
+      "text": "The white king stepped up. Check it from behind.",
+      "accept": ["b1e1"],
+      "hint": "The file of the white king.",
+      "after": "The checks go on, and the king has nowhere to hide. The game is drawn."
+    }
+  ],
+  "summary": "Hold the third row with the rook. When the pawn steps onto it, drop the rook back and check from behind.",
+  "practice": {"fen":"3k4/R7/1r6/3PK3/8/8/8/8 b - - 0 1","side":"b"}
+}

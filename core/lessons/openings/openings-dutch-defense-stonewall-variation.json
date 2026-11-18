@@ -1,0 +1,79 @@
+{
+  "id": "openings-dutch-defense-stonewall-variation",
+  "course": "openings",
+  "title": "Dutch Defense: Stonewall Variation",
+  "line": "Four pawns hold the center like a wall and leave a hole in front of it that no pawn can guard.",
+  "side": "b",
+  "steps": [
+    {
+      "type": "show",
+      "text": "The Dutch, and White gets ready to put its bishop on the long diagonal.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {"arrows":[["f1","g2"]]},
+      "play": ["d2d4","f7f5","c2c4","g8f6","g2g3"]
+    },
+    {
+      "type": "move",
+      "text": "Move the pawn in front of your king one square, to free your bishop.",
+      "accept": ["e7e6"],
+      "marks": {"arrows":[["e7","e6"]]},
+      "reply": "f1g2",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn in front of your queen two squares. With the pawn on f5, it holds e4.",
+      "marks": {"squares":["f5","e4"],"arrows":[["d7","d5"]]},
+      "accept": ["d7d5"],
+      "reply": "g1f3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Move the pawn on c7 one square. It guards d5 and closes the wall.",
+      "marks": {
+        "squares": ["c7","d5","e6","f5"],
+        "arrows": [["c7","c6"]]
+      },
+      "accept": ["c7c6"],
+      "after": "Black's pawns stand on c6, d5, e6 and f5: the Stonewall.",
+      "reply": "e1g1",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the bishop out. It aims at White's king's side.",
+      "accept": ["f8d6"],
+      "marks": {"arrows":[["f8","d6"]]},
+      "reply": "b1c3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Castle, to get your king to safety.",
+      "accept": ["e8g8"],
+      "marks": {"arrows":[["e8","g8"]]},
+      "reply": "d1c2",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Jump the knight into e4, the square the wall holds.",
+      "marks": {"squares":["e4","b2"],"arrows":[["f6","e4"]]},
+      "accept": ["f6e4"],
+      "after": "White's rook steps over, to push the pawn on b2 later.",
+      "reply": "a1b1",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the other knight out. It guards e5, the square in front of your pawn on e6.",
+      "marks": {"squares":["e5","e6"],"arrows":[["b8","d7"]]},
+      "accept": ["b8d7"],
+      "after": "The price of the wall: no black pawn can ever guard that square, so pieces must.",
+      "taught": true
+    }
+  ],
+  "summary": "Four pawns hold the center like a wall, and a knight sits in front. The hole the wall leaves needs a piece to guard it.",
+  "practice": {"fen":"r1bq1rk1/pp1n2pp/2pbp3/3p1p2/2PPn3/2N2NP1/PPQ1PPBP/1RB2RK1 w - - 8 10","side":"b"}
+}

@@ -1,0 +1,73 @@
+{
+  "id": "checkmates-scholars-mate",
+  "course": "checkmates",
+  "title": "Scholar's mate and how to stop it",
+  "line": "Queen and bishop on f7 in four moves, and the moves that make it harmless.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "fen": "rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2",
+      "text": "After 1.e4 e5, the weakest square in Black's camp is f7. Only the king guards it.",
+      "marks": { "squares": ["f7"] }
+    },
+    {
+      "type": "move",
+      "text": "Put the bishop where it aims at f7.",
+      "marks": { "squares": ["f7"] },
+      "accept": ["f1c4"],
+      "wrong": { "d1h5": "The queen aims at f7 too, but out this early she is easy to chase. Bring the bishop out first." },
+      "hint": "The bishop on f1 can reach a square on the same diagonal as f7.",
+      "after": "The bishop on c4 looks straight at f7.",
+      "reply": "b8c6"
+    },
+    {
+      "type": "move",
+      "text": "Bring the queen to h5. Then the queen and the bishop both aim at f7.",
+      "marks": { "squares": ["f7"], "arrows": [["c4", "f7"]] },
+      "accept": ["d1h5"],
+      "wrong": { "d1f3": "Qf3 aims at f7 too. In this lesson, take her to h5." },
+      "hint": "The queen goes to the edge of the board, on the h-file.",
+      "after": "Two pieces aim at f7, and one defends it.",
+      "reply": "g8f6",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Black attacks the queen with the knight and forgets about f7. Finish the game.",
+      "marks": { "arrows": [["h5", "f7"], ["c4", "f7"]] },
+      "accept": ["h5f7"],
+      "wrong": {
+        "h5e5": "That is check, but the knight on c6 takes the queen.",
+        "c4f7": "That is check, but the king steps to e7. Take on f7 with the queen instead."
+      },
+      "hint": "Take on f7 with the piece the bishop guards.",
+      "after": "Checkmate. The bishop guards the queen, and the king has no square.",
+      "mate": true
+    },
+    {
+      "type": "move",
+      "fen": "r1bqkbnr/pppp1ppp/2n5/4p2Q/2B1P3/8/PPPP1PPP/RNB1K1NR b KQkq - 3 3",
+      "side": "b",
+      "text": "Now play Black, after Qh5. Stop the mate on f7 with a pawn move that also attacks the queen.",
+      "marks": { "squares": ["f7"], "arrows": [["h5", "f7"], ["c4", "f7"]] },
+      "accept": ["g7g6"],
+      "wrong": { "g8f6": "Then Qxf7 is checkmate." },
+      "also": { "d8e7": "That guards f7 too. This lesson goes on with g6." },
+      "hint": "A pawn next to the king can step forward and attack h5.",
+      "after": "The queen is attacked and has to move.",
+      "reply": "h5f3"
+    },
+    {
+      "type": "move",
+      "side": "b",
+      "text": "The queen comes back to f3 and aims at f7 again. Block her line with a knight.",
+      "marks": { "arrows": [["f3", "f7"], ["c4", "f7"]] },
+      "accept": ["g8f6"],
+      "hint": "The knight on g8 can step into the queen's path.",
+      "after": "f7 is safe, and a knight is out."
+    }
+  ],
+  "summary": "The queen and bishop can mate on f7 in four moves. g6 and Nf6 stop it.",
+  "practice": { "fen": "r1bqkb1r/pppp1p1p/2n2np1/4p3/2B1P3/5Q2/PPPP1PPP/RNB1K1NR w KQkq - 2 5", "side": "b" }
+}

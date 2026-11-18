@@ -1,0 +1,64 @@
+{
+  "id": "strategy-minority-attack",
+  "course": "strategy",
+  "title": "The minority attack",
+  "line": "Two pawns against three, pushed to leave Black a weak pawn.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "fen": "r1bqr1k1/pp2bppp/2p2nn1/3p2B1/3P4/2NBPN2/PPQ2PPP/1R3RK1 w - - 11 12",
+      "text": "A common structure from the Queen's Gambit. On the left White has two pawns against Black's three. The smaller group attacks.",
+      "marks": {"squares":["a2","b2","a7","b7","c6"]}
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn on b2 two squares, toward Black's pawns.",
+      "marks": {"arrows":[["b2","b4"]]},
+      "accept": ["b2b4"],
+      "after": "Black gets ready to meet it with a pawn.",
+      "reply": "a7a6"
+    },
+    {
+      "type": "move",
+      "text": "Bring the other pawn up to support it.",
+      "marks": {"arrows":[["a2","a4"]]},
+      "accept": ["a2a4"],
+      "after": "Black brings a bishop toward your king.",
+      "reply": "e7d6"
+    },
+    {
+      "type": "move",
+      "text": "Push into Black's pawns.",
+      "marks": {"squares":["a6","c6"],"arrows":[["b4","b5"]]},
+      "accept": ["b4b5"],
+      "after": "Black takes.",
+      "reply": "a6b5"
+    },
+    {
+      "type": "move",
+      "text": "Take back with your pawn.",
+      "marks": {"arrows":[["a4","b5"]]},
+      "accept": ["a4b5"],
+      "after": "Black brings out its last bishop.",
+      "reply": "c8e6"
+    },
+    {
+      "type": "move",
+      "text": "Take on c6. Only a pawn can take back.",
+      "marks": {"squares":["c6"],"arrows":[["b5","c6"]]},
+      "accept": ["b5c6"],
+      "after": "Black takes back.",
+      "reply": "b7c6"
+    },
+    {
+      "type": "pick",
+      "text": "Black is left with a backward pawn: none of its pawns can guard it now. Tap it.",
+      "accept": ["c6"],
+      "hint": "It stands where your pawn was just taken.",
+      "after": "It stands on a file with no white pawn on it, where your rooks and queen can attack it."
+    }
+  ],
+  "summary": "Two pawns against three can still attack. Trade them off to leave a weak pawn behind, then attack it.",
+  "practice": {"fen":"r2qr1k1/5ppp/2pbbnn1/3p2B1/3P4/2NBPN2/2Q2PPP/1R3RK1 w - - 0 17","side":"w"}
+}

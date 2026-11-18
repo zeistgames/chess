@@ -1,0 +1,20 @@
+{
+  "name": "Fairy-Stockfish",
+  "version": "master e48b753 (2026-11-14)",
+  "author": "Fabian Fichter and the Stockfish developers",
+  "license": "GPL-3.0-or-later",
+  "net_license": "none",
+  "source": "https://github.com/fairy-stockfish/Fairy-Stockfish/tree/e48b7537eb64e2bf47889f8acbd82f7d1eba7837",
+  "line": "A Stockfish cousin with a hand-tuned, classic style.",
+  "entry": "fairy-stockfish.js",
+  "strength": {
+    "type": "uci_elo",
+    "min": 500,
+    "max": 2850,
+    "skill_option": "Skill Level",
+    "skill_min": -20,
+    "skill_max": 20
+  },
+  "multipv": true,
+  "threads": false
+}

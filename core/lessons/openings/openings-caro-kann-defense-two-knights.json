@@ -1,0 +1,74 @@
+{
+  "id": "openings-caro-kann-defense-two-knights",
+  "course": "openings",
+  "title": "Caro-Kann Defense: Two Knights Attack",
+  "line": "White brings both knights out first; Black gives a bishop for a knight and builds the center.",
+  "side": "b",
+  "steps": [
+    {
+      "type": "show",
+      "text": "Here White brings both knights out and keeps the pawn in front of its queen at home.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {"squares":["c3","f3"]},
+      "play": ["e2e4","c7c6","b1c3","d7d5","g1f3"]
+    },
+    {
+      "type": "move",
+      "text": "Bring the bishop to g4. It pins the knight on f3 to White's queen.",
+      "marks": {"squares":["f3"],"arrows":[["c8","g4"]]},
+      "accept": ["c8g4"],
+      "also": {
+        "d5e4": "That also works. This lesson goes on with the bishop."
+      },
+      "reply": "h2h3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Take the knight. The bishop goes, but White loses a knight that watched the center.",
+      "marks": {"arrows":[["g4","f3"]]},
+      "accept": ["g4f3"],
+      "wrong": {
+        "g4h5": "Many players keep the bishop this way. It costs time: White's pawns can chase it, and the engine prefers the trade."
+      },
+      "reply": "d1f3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn on e7 one square. Your pawns on the light squares make a solid center.",
+      "marks": {"arrows":[["e7","e6"]]},
+      "accept": ["e7e6"],
+      "reply": "d2d4",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the knight out.",
+      "marks": {"arrows":[["g8","f6"]]},
+      "accept": ["g8f6"],
+      "reply": "f1d3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Take the pawn on e4. White's knight takes back, and your bishop can then come out and hit it.",
+      "marks": {"arrows":[["d5","e4"]]},
+      "accept": ["d5e4"],
+      "reply": "c3e4",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Nothing guards White's pawn on d4 now. Take it with your queen.",
+      "marks": {"squares":["d4"],"arrows":[["d8","d4"]]},
+      "accept": ["d8d4"],
+      "after": "Black is a pawn up for now, and the queen stands in the center."
+    }
+  ],
+  "summary": "Against the two knights, Black gives a bishop for a knight, builds the center and takes a pawn White left loose.",
+  "practice": {
+    "fen": "rn2kb1r/pp3ppp/2p1pn2/8/3qN3/3B1Q1P/PPP2PP1/R1B1K2R w KQkq - 0 9",
+    "side": "b"
+  }
+}

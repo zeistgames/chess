@@ -1,0 +1,194 @@
+{
+  "id": "openings-petrovs-defense-ideas",
+  "course": "openings",
+  "title": "Petrov's Defense: the ideas",
+  "line": "Black does not guard its center pawn: it attacks White's instead.",
+  "side": "b",
+  "steps": [
+    {
+      "type": "show",
+      "text": "White starts by pushing the pawn in front of its king two squares, into the center.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {
+        "arrows": [
+          [
+            "e2",
+            "e4"
+          ]
+        ]
+      },
+      "play": [
+        "e2e4"
+      ]
+    },
+    {
+      "type": "move",
+      "text": "Push your king pawn two squares too. It takes your share of the center.",
+      "marks": {
+        "arrows": [
+          [
+            "e7",
+            "e5"
+          ]
+        ]
+      },
+      "accept": [
+        "e7e5"
+      ],
+      "also": {
+        "c7c5": "That is the Sicilian Defense, also sound. This lesson pushes the king pawn.",
+        "e7e6": "That is the French Defense, also sound. This lesson pushes the king pawn.",
+        "c7c6": "That is the Caro-Kann Defense, also sound. This lesson pushes the king pawn."
+      },
+      "after": "White's knight attacks your pawn.",
+      "reply": "g1f3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Do not guard the pawn. Bring your knight out and attack White's pawn on e4 in return.",
+      "marks": {
+        "squares": [
+          "e4",
+          "e5"
+        ],
+        "arrows": [
+          [
+            "g8",
+            "f6"
+          ]
+        ]
+      },
+      "accept": [
+        "g8f6"
+      ],
+      "also": {
+        "b8c6": "Guarding the pawn with the knight is also sound and leads to other openings. This lesson attacks.",
+        "d7d6": "That is the Philidor Defense, also sound. This lesson attacks."
+      },
+      "after": "This is Petrov's Defense. White takes your pawn.",
+      "reply": "f3e5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Do not take back on e4 yet. First push the knight away with a pawn.",
+      "marks": {
+        "squares": [
+          "e4",
+          "e5"
+        ],
+        "arrows": [
+          [
+            "d7",
+            "d6"
+          ]
+        ]
+      },
+      "accept": [
+        "d7d6"
+      ],
+      "also": {
+        "f6e4": "Taking at once is also played, but it lets the white queen come out with tricks: the last lesson of this opening shows them."
+      },
+      "hint": "The pawn in front of your queen can attack the knight.",
+      "after": "The knight steps back.",
+      "reply": "e5f3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Now take the pawn on e4. The white knight has gone back, and material is level.",
+      "marks": {
+        "squares": [
+          "e4"
+        ],
+        "arrows": [
+          [
+            "f6",
+            "e4"
+          ]
+        ]
+      },
+      "accept": [
+        "f6e4"
+      ],
+      "reply": "d2d4",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn in front of your queen one more square. It guards your knight, which stands firmly in the center.",
+      "marks": {
+        "squares": [
+          "e4"
+        ],
+        "arrows": [
+          [
+            "d6",
+            "d5"
+          ]
+        ]
+      },
+      "accept": [
+        "d6d5"
+      ],
+      "also": {
+        "f8e7": "That is also played. This lesson guards the knight first."
+      },
+      "after": "White's bishop attacks the knight, but the pawn guards it.",
+      "reply": "f1d3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the other knight out. It attacks the white pawn on d4.",
+      "marks": {
+        "squares": [
+          "d4"
+        ],
+        "arrows": [
+          [
+            "b8",
+            "c6"
+          ]
+        ]
+      },
+      "accept": [
+        "b8c6"
+      ],
+      "also": {
+        "f8e7": "That is also played. This lesson brings the knight out first.",
+        "f8b4": "That is also played. This lesson brings the knight out first."
+      },
+      "reply": "e1g1",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the bishop out to clear the way for castling.",
+      "marks": {
+        "squares": [
+          "g8"
+        ],
+        "arrows": [
+          [
+            "f8",
+            "e7"
+          ]
+        ]
+      },
+      "accept": [
+        "f8e7"
+      ],
+      "after": "The position is level and solid. Black gets ready to castle with nothing weak.",
+      "reply": "c2c4",
+      "taught": true
+    }
+  ],
+  "summary": "Black answers the attack on its center pawn with an attack of its own, chases the knight first, then takes back.",
+  "practice": {
+    "fen": "rnbqkb1r/pppp1ppp/5n2/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 2 3",
+    "side": "b"
+  }
+}

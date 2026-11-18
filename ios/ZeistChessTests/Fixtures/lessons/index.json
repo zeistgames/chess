@@ -1,0 +1,126 @@
+{
+  "version": 1,
+  "courses": [
+    {
+      "id": "openings",
+      "title": "Openings",
+      "line": "Openings and defenses, by first move.",
+      "chapters": [
+        {
+          "id": "before-any-opening",
+          "title": "Before any opening",
+          "lessons": [
+            {
+              "id": "openings-three-rules",
+              "title": "Three rules for the opening",
+              "line": "Take the center, bring out the knights and bishops, castle.",
+              "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+              "marks": {
+                "squares": [
+                  "d4",
+                  "e4",
+                  "d5",
+                  "e5"
+                ]
+              },
+              "side": "w"
+            }
+          ]
+        },
+        {
+          "id": "italian-game",
+          "title": "Italian Game",
+          "moves": "1.e4 e5 2.Nf3 Nc6 3.Bc4",
+          "for": "white",
+          "group": "With the king's pawn",
+          "fen": "r1bqkbnr/pppp1ppp/2n5/4p3/2B1P3/5N2/PPPP1PPP/RNBQK2R b KQkq - 3 3",
+          "lessons": [
+            {
+              "id": "openings-italian-ideas",
+              "title": "Italian Game: the ideas",
+              "line": "The bishop aims at f7 and White prepares d4.",
+              "fen": "r1bqkbnr/pppp1ppp/2n5/4p3/2B1P3/5N2/PPPP1PPP/RNBQK2R b KQkq - 3 3",
+              "marks": {
+                "squares": [
+                  "f7"
+                ],
+                "arrows": [
+                  [
+                    "c4",
+                    "f7"
+                  ]
+                ]
+              },
+              "side": "w"
+            }
+          ],
+          "line": "The bishop takes aim at Black's weakest square and White gets ready to open the center.",
+          "play": [
+            "e2e4",
+            "e7e5",
+            "g1f3",
+            "b8c6",
+            "f1c4"
+          ]
+        },
+        {
+          "id": "sicilian-defense",
+          "title": "Sicilian Defense",
+          "moves": "1.e4 c5",
+          "for": "black",
+          "group": "Against the king's pawn",
+          "line": "Black fights for the center from the side, for a game full of chances.",
+          "play": [
+            "e2e4",
+            "c7c5"
+          ],
+          "fen": "rnbqkbnr/pp1ppppp/8/2p5/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2",
+          "lessons": [
+            {
+              "id": "openings-sicilian-ideas",
+              "title": "Sicilian Defense: the ideas",
+              "line": "Black fights for d4 from the side.",
+              "fen": "rnbqkbnr/pp1ppppp/8/2p5/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2",
+              "side": "b"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "checkmates",
+      "title": "Checkmates",
+      "line": "Patterns that finish a game.",
+      "chapters": [
+        {
+          "id": "quick-mates",
+          "title": "Quick mates",
+          "lessons": [
+            {
+              "id": "checkmates-scholars-mate",
+              "title": "Scholar's mate and how to stop it",
+              "line": "Queen and bishop on f7 in four moves, and the moves that make it harmless.",
+              "fen": "r1bqkb1r/pppp1ppp/2n2n2/4p2Q/2B1P3/8/PPPP1PPP/RNB1K1NR w KQkq - 4 4",
+              "marks": {
+                "squares": [
+                  "f7"
+                ],
+                "arrows": [
+                  [
+                    "h5",
+                    "f7"
+                  ],
+                  [
+                    "c4",
+                    "f7"
+                  ]
+                ]
+              },
+              "side": "w"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

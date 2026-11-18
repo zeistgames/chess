@@ -1,0 +1,43 @@
+{
+  "id": "checkmates-boden",
+  "course": "checkmates",
+  "title": "Boden's mate",
+  "line": "Two bishops on crossing diagonals.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "text": "Black has castled on the queen's side. Your bishop on f4 already takes b8 and c7, and the black king's own pieces stand on d7 and d8.",
+      "fen": "2kr3r/pp1nbppp/2n1p3/8/5B2/3B1Q2/PPP2PPP/3R2K1 w - - 0 1",
+      "marks": {"squares":["b8","c7","d7","d8"],"arrows":[["f4","b8"]]}
+    },
+    {
+      "type": "pick",
+      "text": "Your other bishop could check from a6. Tap the black pawn that blocks that diagonal.",
+      "accept": ["b7"],
+      "hint": "Follow the diagonal from a6 to the king.",
+      "after": "That pawn guards the king. Pull it away, and the diagonal opens.",
+      "marks": {"squares":["a6"],"arrows":[["a6","c8"]]}
+    },
+    {
+      "type": "move",
+      "text": "Give the queen: capture the knight on c6, with check. The pawn must take back.",
+      "accept": ["f3c6"],
+      "hint": "The queen takes on the long diagonal next to the king.",
+      "after": "The pawn took the queen and left its post in front of the king.",
+      "reply": "b7c6",
+      "sacrifice": true,
+      "marks": {"squares":["c6"]}
+    },
+    {
+      "type": "move",
+      "text": "Mate with the bishop.",
+      "accept": ["d3a6"],
+      "hint": "The bishop goes to the edge of the board on the open diagonal.",
+      "after": "Boden's mate. The two bishops cross in front of the king, and its own pieces block the rest.",
+      "mate": true,
+      "marks": {"squares":["c8"]}
+    }
+  ],
+  "summary": "Two bishops on crossing diagonals mate a castled king whose own pieces block its side. A queen given up can open a line."
+}

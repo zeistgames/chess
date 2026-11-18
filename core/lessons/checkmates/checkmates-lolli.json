@@ -1,0 +1,41 @@
+{
+  "id": "checkmates-lolli",
+  "course": "checkmates",
+  "title": "Lolli's mate",
+  "line": "A pawn on f6 and the queen landing on g7.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "text": "Lolli's mate: a white pawn has pushed all the way to f6, next to the castled king. Black's bishop that guarded g7 is gone.",
+      "fen": "r4rk1/pp3p1p/2n2Pp1/q7/8/2N5/PP1Q1PPP/3R2K1 w - - 0 1",
+      "marks": {"squares":["f6","g7"]}
+    },
+    {
+      "type": "pick",
+      "text": "Tap the white piece that guards g7.",
+      "accept": ["f6"],
+      "hint": "A pawn captures one square forward on a diagonal.",
+      "after": "The pawn guards g7, so a queen there cannot be taken by the king.",
+      "marks": {"squares":["g7"]}
+    },
+    {
+      "type": "move",
+      "text": "Bring the queen next to g7 with a quiet move. It is not check, but Black cannot stop the mate that follows.",
+      "accept": ["d2h6"],
+      "hint": "The queen goes along a diagonal to the edge of the board, beside g7.",
+      "after": "Black has no piece that can guard g7, and no way to give the king room.",
+      "reply": "a8c8",
+      "marks": {"squares":["g7"]}
+    },
+    {
+      "type": "move",
+      "text": "Mate.",
+      "accept": ["h6g7"],
+      "hint": "The queen lands on the square the pawn guards.",
+      "after": "Lolli's mate. The pawn guards the queen, and the queen takes every square around the king.",
+      "mate": true
+    }
+  ],
+  "summary": "A pawn deep beside the castled king guards a square for the queen. A quiet queen move can make the mate unstoppable."
+}

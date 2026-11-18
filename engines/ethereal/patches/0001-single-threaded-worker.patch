@@ -1,0 +1,98 @@
+diff --git a/src/pyrrhic/stdendian.h b/src/pyrrhic/stdendian.h
+index b8d20db..2cc36a2 100644
+--- a/src/pyrrhic/stdendian.h
++++ b/src/pyrrhic/stdendian.h
+@@ -8,7 +8,7 @@
+ #endif
+ 
+ /* Linux / GLIBC */
+-#if defined(__linux__) || defined(__GLIBC__) || defined(__CYGWIN__)
++#if defined(__linux__) || defined(__GLIBC__) || defined(__CYGWIN__) || defined(__EMSCRIPTEN__)
+ #include <endian.h>
+ #include <byteswap.h>
+ #define __ENDIAN_DEFINED        1
+diff --git a/src/syzygy.h b/src/syzygy.h
+index d5e0e2f..fb0c184 100644
+--- a/src/syzygy.h
++++ b/src/syzygy.h
+@@ -22,5 +22,5 @@
+ 
+ #include <stdint.h>
+ 
+-int tablebasesProbeDTZ(Board *board, Limits *limits);
++void tablebasesProbeDTZ(Board *board, Limits *limits);
+ unsigned tablebasesProbeWDL(Board *board, int depth, int height);
+diff --git a/src/uci.c b/src/uci.c
+index 43c58d2..40fdb1a 100644
+--- a/src/uci.c
++++ b/src/uci.c
+@@ -51,8 +51,21 @@ extern PKNetwork PKNN;            // Defined by network.c
+ pthread_mutex_t PONDERLOCK = PTHREAD_MUTEX_INITIALIZER;
+ const char *StartPosition = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
+ 
++#ifdef __EMSCRIPTEN__
++// Zeist: the UCI loop state lives here; the worker calls zeist_handle_line()
++// once per line instead of main() reading stdin.
++static Board board;
++static char str[8192] = {0};
++static Thread *threads;
++static pthread_t pthreadsgo;
++static UCIGoStruct uciGoStruct;
++static int chess960 = 0;
++static int multiPV  = 1;
++#endif
++
+ int main(int argc, char **argv) {
+ 
++#ifndef __EMSCRIPTEN__
+     Board board;
+     char str[8192] = {0};
+     Thread *threads;
+@@ -61,11 +74,12 @@ int main(int argc, char **argv) {
+ 
+     int chess960 = 0;
+     int multiPV  = 1;
++#endif
+ 
+     // Initialize core components of Ethereal
+     initAttacks(); initMasks(); initEval();
+     initSearch(); initZobrist(); tt_init(1, 16);
+-    initPKNetwork(&PKNN); nnue_incbin_init();
++    initPKNetwork(); nnue_incbin_init();
+ 
+     // Create the UCI-board and our threads
+     threads = createThreadPool(1);
+@@ -92,7 +106,17 @@ int main(int argc, char **argv) {
+     |------------|-----------------------------------------------------------------------|
+     */
+ 
++#ifdef __EMSCRIPTEN__
++    return 0;
++}
++
++void zeist_handle_line(const char *line) {
++    strncpy(str, line, sizeof(str) - 1);
++    str[sizeof(str) - 1] = 0;
++    do {
++#else
+     while (getInput(str)) {
++#endif
+ 
+         if (strEquals(str, "uci")) {
+             printf("id name Ethereal " ETHEREAL_VERSION "\n");
+@@ -150,10 +174,15 @@ int main(int argc, char **argv) {
+ 
+         else if (strStartsWith(str, "print"))
+             printBoard(&board), fflush(stdout);
++#ifdef __EMSCRIPTEN__
++    } while (0);
++}
++#else
+     }
+ 
+     return 0;
+ }
++#endif
+ 
+ void *uciGo(void *cargo) {
+ 

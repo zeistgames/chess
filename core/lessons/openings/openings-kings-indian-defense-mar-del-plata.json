@@ -1,0 +1,76 @@
+{
+  "id": "openings-kings-indian-defense-mar-del-plata",
+  "course": "openings",
+  "title": "King's Indian Defense: Mar del Plata Variation",
+  "line": "The center locks. White attacks on the queen's side, and Black storms the king.",
+  "side": "b",
+  "steps": [
+    {
+      "type": "show",
+      "text": "The King's Indian Defense: White builds a big center, and Black's bishop waits on the long diagonal.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {"arrows":[["g7","d4"]]},
+      "play": ["d2d4","g8f6","c2c4","g7g6","b1c3","f8g7","e2e4","d7d6"]
+    },
+    {
+      "type": "show",
+      "text": "Both sides castle, and Black strikes at the center with the pawn in front of its king. This is the main line.",
+      "marks": {"squares":["e5"]},
+      "play": ["g1f3","e8g8","f1e2","e7e5","e1g1"]
+    },
+    {
+      "type": "move",
+      "text": "Bring the other knight out. It attacks White's pawn on d4 a second time.",
+      "marks": {"squares":["d4"],"arrows":[["b8","c6"]]},
+      "accept": ["b8c6"],
+      "after": "White pushes past and closes the center.",
+      "reply": "d4d5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "The knight is attacked. Step it back toward the king's side, where Black will attack.",
+      "accept": ["c6e7"],
+      "marks": {"arrows":[["c6","e7"]],"squares":["b2"]},
+      "wrong": {"c6a5":"On the edge the knight has no safe way back, and White's pawn on b2 comes forward to trap it."},
+      "after": "White's knight steps back to make room for its pawns.",
+      "reply": "f3e1",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Move the other knight back too. It clears the way for the pawn on f7.",
+      "marks": {"arrows":[["f6","d7"],["f7","f5"]]},
+      "accept": ["f6d7"],
+      "also": {"f6e8":"That clears the way too. This lesson goes on with the knight to the other square."},
+      "reply": "c1e3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn on f7 two squares. It attacks White's pawn on e4.",
+      "marks": {"squares":["f7","e4"],"arrows":[["f7","f5"]]},
+      "accept": ["f7f5"],
+      "reply": "f2f3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Push it once more. It attacks the bishop and gains space next to White's king.",
+      "marks": {"squares":["e3"],"arrows":[["f5","f4"]]},
+      "accept": ["f5f4"],
+      "reply": "e3f2",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the next pawn along. Black's pawns march at White's king.",
+      "accept": ["g6g5"],
+      "marks": {"arrows":[["g6","g5"]]},
+      "after": "A race: White pushes for a break on the other wing, Black goes for the king. Whoever gets there first usually decides the game.",
+      "taught": true
+    }
+  ],
+  "summary": "With the center locked, each side attacks where its pawns point: Black at the king, White on the other wing.",
+  "practice": {"fen":"r1bq1rk1/pppnn1bp/3p4/3Pp1p1/2P1Pp2/2N2P2/PP2BBPP/R2QNRK1 w - - 0 13","side":"b"}
+}

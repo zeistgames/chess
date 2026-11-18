@@ -1,0 +1,67 @@
+{
+  "id": "tactics-queen-pawn-forks",
+  "course": "tactics",
+  "title": "Queen and pawn forks",
+  "line": "The queen attacks in eight directions; the pawn, the smallest piece, attacks two bigger ones.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "text": "The queen looks in eight directions at once. A queen check that also hits a loose piece is a fork.",
+      "fen": "r5k1/6pp/8/8/8/8/5PPP/3Q2K1 w - - 0 1",
+      "marks": {"squares":["g8","a8"]}
+    },
+    {
+      "type": "move",
+      "text": "Fork the king and the rook with one queen move.",
+      "fen": "r5k1/6pp/8/8/8/8/5PPP/3Q2K1 w - - 0 1",
+      "accept": ["d1d5"],
+      "hint": "Find a square on the diagonal to the king and on the diagonal to the rook.",
+      "after": "Check, and the rook in the corner is attacked too.",
+      "reply": "g8f8",
+      "wins": 5
+    },
+    {
+      "type": "move",
+      "text": "The king had to step aside. Take the rook.",
+      "accept": ["d5a8"],
+      "after": "The rook falls, with check."
+    },
+    {
+      "type": "show",
+      "text": "A pawn can fork too. It attacks two squares diagonally forward, and it is worth less than anything it attacks.",
+      "fen": "r3k3/pp3ppp/2n1b3/8/3PP3/2N5/PP3PPP/R1B1K3 w - - 0 1",
+      "marks": {"squares":["c6","e6"]}
+    },
+    {
+      "type": "pick",
+      "text": "Tap the square where a white pawn would attack the knight and the bishop at once.",
+      "fen": "r3k3/pp3ppp/2n1b3/8/3PP3/2N5/PP3PPP/R1B1K3 w - - 0 1",
+      "accept": ["d5"],
+      "all": false,
+      "hint": "The pawn has to land between the two black pieces, one rank below them.",
+      "after": "From there the pawn attacks both pieces."
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn there.",
+      "fen": "r3k3/pp3ppp/2n1b3/8/3PP3/2N5/PP3PPP/R1B1K3 w - - 0 1",
+      "marks": {"squares":["c6","e6"]},
+      "accept": ["d4d5"],
+      "after": "One piece can step away, but not both. And the other white pawn guards the forking one.",
+      "reply": "c6e5",
+      "wins": 2
+    },
+    {
+      "type": "move",
+      "text": "The knight ran. Take the bishop.",
+      "accept": ["d5e6"],
+      "after": "The pawn on f7 takes back: a bishop for a pawn.",
+      "reply": "f7e6",
+      "marks": {"squares":["f7"]}
+    }
+  ],
+  "summary": "The queen forks with a check and a loose piece. A pawn forks two pieces that are each worth more than it.",
+  "puzzles": "forks",
+  "practice": {"fen":"r3k3/pp4pp/4p3/4n3/4P3/2N5/PP3PPP/R1B1K3 w - - 0 3","side":"w"}
+}

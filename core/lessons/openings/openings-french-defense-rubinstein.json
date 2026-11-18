@@ -1,0 +1,73 @@
+{
+  "id": "openings-french-defense-rubinstein",
+  "course": "openings",
+  "title": "French Defense: Rubinstein Variation",
+  "line": "Black gives up the center pawn for easy development and trades White's strong knight.",
+  "side": "b",
+  "steps": [
+    {
+      "type": "show",
+      "text": "In the French, White's knight came out to guard the pawn on e4.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {"squares":["e4","c3"]},
+      "play": ["e2e4","e7e6","d2d4","d7d5","b1c3"]
+    },
+    {
+      "type": "move",
+      "text": "Take the pawn on e4. Black gives up the center for easy development.",
+      "marks": {"arrows":[["d5","e4"]]},
+      "accept": ["d5e4"],
+      "also": {
+        "g8f6": "That is the Classical Variation, another main line. This lesson goes on with the Rubinstein.",
+        "f8b4": "That is the Winawer Variation, another main line. This lesson goes on with the Rubinstein."
+      },
+      "reply": "c3e4",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the knight to d7. It gets ready to back up the other knight.",
+      "marks": {"arrows":[["b8","d7"]]},
+      "accept": ["b8d7"],
+      "reply": "g1f3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the other knight out. It challenges White's knight in the center.",
+      "marks": {"arrows":[["g8","f6"]]},
+      "accept": ["g8f6"],
+      "reply": "e4f6",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Take back with the knight.",
+      "marks": {"arrows":[["d7","f6"]]},
+      "accept": ["d7f6"],
+      "reply": "f1d3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn on c7 two squares to hit the pawn on d4.",
+      "marks": {"squares":["d4"],"arrows":[["c7","c5"]]},
+      "accept": ["c7c5"],
+      "reply": "d4c5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Take back with the bishop.",
+      "marks": {"squares":["c5"],"arrows":[["f8","c5"]]},
+      "accept": ["f8c5"],
+      "after": "Black has no weak pawns, the bishop on c5 is active, and the king is ready to castle.",
+      "taught": true
+    }
+  ],
+  "summary": "In the Rubinstein, Black takes in the center, trades White's best knight and develops easily.",
+  "practice": {
+    "fen": "r1bqk2r/pp3ppp/4pn2/2b5/8/3B1N2/PPP2PPP/R1BQK2R w KQkq - 0 9",
+    "side": "b"
+  }
+}

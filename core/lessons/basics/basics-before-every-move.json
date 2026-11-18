@@ -1,0 +1,66 @@
+{
+  "id": "basics-before-every-move",
+  "course": "basics",
+  "title": "Before every move",
+  "line": "Ask what the other side's last move attacks, then answer it: move, guard or capture.",
+  "side": "b",
+  "steps": [
+    {
+      "type": "show",
+      "text": "Before every move, ask what the other side's last move attacks. Here White's pawn has just stepped up, and it attacks your knight.",
+      "fen": "rnbqkb1r/ppp2ppp/3p4/8/4n3/3P1N2/PPP2PPP/RNBQKB1R b KQkq - 0 5",
+      "marks": {"squares":["e4"],"arrows":[["d3","e4"]]}
+    },
+    {
+      "type": "move",
+      "text": "The first answer: move the attacked piece. Bring your knight back to a square where nothing can take it.",
+      "accept": ["e4f6"],
+      "wrong": {
+        "e4c5": "Nothing takes it there, but the pawn steps up once more and chases it again. Go back to safety.",
+        "e4g5": "White's knight takes it there.",
+        "e4g3": "A pawn takes it there.",
+        "e4c3": "A pawn takes it there.",
+        "e4d2": "A white piece takes it there.",
+        "e4f2": "That takes a pawn, but the king takes the knight."
+      },
+      "hint": "Go back the way the knight came.",
+      "after": "The knight is safe on the square it came from.",
+      "marks": {"squares":["e4"]}
+    },
+    {
+      "type": "pick",
+      "text": "Another game. You are White, and Black's knight has just come out. Tap the white piece or pawn it attacks.",
+      "fen": "r1bqkb1r/pppp1ppp/2n2n2/8/3NP3/8/PPP2PPP/RNBQKB1R w KQkq - 1 5",
+      "side": "w",
+      "accept": ["e4"],
+      "hint": "A knight jumps two squares one way and one the other.",
+      "after": "The knight attacks your pawn in the center, and nothing guards it.",
+      "marks": {"squares":["f6"]}
+    },
+    {
+      "type": "move",
+      "text": "The second answer: guard it. Bring a piece or pawn that protects the pawn on e4.",
+      "side": "w",
+      "accept": ["b1c3","d1d3","f2f3"],
+      "also": {
+        "d4c6": "That works too: you trade knights first. This lesson guards the pawn.",
+        "f1b5": "That leaves the pawn unguarded, but the game stays level: your bishop and quick castling make up for it. This lesson guards the pawn."
+      },
+      "hint": "A knight, the queen or a pawn can each guard it.",
+      "after": "The pawn is guarded. If the knight takes it, you take the knight.",
+      "marks": {"squares":["e4"]}
+    },
+    {
+      "type": "move",
+      "text": "The third answer: capture the attacker. Black's rook attacks your queen, and nothing guards the rook.",
+      "fen": "6k1/pp3ppp/4b3/8/3r4/4P3/PP3PPP/3Q2K1 w - - 0 1",
+      "side": "w",
+      "accept": ["e3d4","d1d4"],
+      "hint": "A pawn or the queen itself can take the rook.",
+      "after": "The attacker is gone, and you won a rook. Move it, guard it, or capture the attacker: ask before every move.",
+      "wins": 5,
+      "marks": {"squares":["d4"],"arrows":[["d4","d1"]]}
+    }
+  ],
+  "summary": "Before every move, see what the last move attacks. Then move the piece, guard it, or capture the attacker."
+}

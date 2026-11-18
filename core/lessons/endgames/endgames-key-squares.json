@@ -1,0 +1,59 @@
+{
+  "id": "endgames-key-squares",
+  "course": "endgames",
+  "title": "Key squares",
+  "line": "Lead with the king: the squares that make the pawn promote.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "fen": "7k/8/8/8/4P3/8/2K5/8 w - - 0 1",
+      "text": "For a pawn on e4, the key squares are the three squares two rows ahead: d6, e6 and f6.",
+      "marks": {"squares":["d6","e6","f6","e4"]}
+    },
+    {
+      "type": "show",
+      "fen": "7k/8/8/8/4P3/8/2K5/8 w - - 0 1",
+      "text": "With your king on a key square, the pawn promotes whoever is to move. An edge pawn is the exception; a later lesson shows why.",
+      "marks": {"squares":["d6","e6","f6"]}
+    },
+    {
+      "type": "pick",
+      "fen": "7k/8/8/8/8/2P5/8/7K w - - 0 1",
+      "text": "Tap the three key squares of this pawn.",
+      "accept": ["b5","c5","d5"],
+      "all": true,
+      "hint": "Two rows ahead of this pawn: the square in front and one to each side.",
+      "after": "Two rows ahead, in front and to each side."
+    },
+    {
+      "type": "move",
+      "fen": "8/4k3/8/8/5K2/4P3/8/8 w - - 0 1",
+      "text": "Lead with the king. Step onto a key square of this pawn.",
+      "marks": {"squares":["d5","e5","f5"]},
+      "accept": ["f4e5","f4f5"],
+      "wrong": {
+        "e3e4": "The pawn moved first, so its key squares moved up with it, and the black king guards them. The game is drawn.",
+        "f4e4": "Black answers by facing your king, and no key square is in reach. The game is drawn."
+      },
+      "hint": "Two of the ringed squares are one step away.",
+      "after": "Your king is on a key square. The pawn will promote, whatever Black does."
+    },
+    {
+      "type": "move",
+      "fen": "8/3k4/8/8/3PK3/8/8/8 w - - 0 1",
+      "text": "Here no key square is in reach yet. Put your king in front of the pawn first.",
+      "marks": {"squares":["d4","c6","d6","e6"]},
+      "accept": ["e4d5"],
+      "wrong": {
+        "d4d5": "The pawn went first. The black king blocks it, and the game is drawn.",
+        "e4e5": "Beside the pawn is not in front of it. Black keeps your king off the key squares, and the game is drawn."
+      },
+      "hint": "Stand on the square straight in front of the pawn.",
+      "after": "Black has to give way, and your king reaches a key square next.",
+      "reply": "d7e7"
+    }
+  ],
+  "summary": "The king leads, the pawn follows. A king on a key square makes the pawn promote, unless it is an edge pawn.",
+  "practice": {"fen":"8/4k3/8/3K4/3P4/8/8/8 w - - 2 2","side":"w"}
+}

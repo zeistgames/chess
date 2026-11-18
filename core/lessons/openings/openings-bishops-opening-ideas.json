@@ -1,0 +1,243 @@
+{
+  "id": "openings-bishops-opening-ideas",
+  "course": "openings",
+  "title": "Bishop's Opening: the ideas",
+  "line": "The bishop comes out first, and White keeps its choices open.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "text": "In the Bishop's Opening the bishop comes out before the knights. It aims at f7 at once, and White keeps its plans open.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {
+        "squares": [
+          "f7"
+        ],
+        "arrows": [
+          [
+            "f1",
+            "c4"
+          ]
+        ]
+      }
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn in front of your king two squares. It takes space in the center and frees your queen and a bishop.",
+      "marks": {
+        "arrows": [
+          [
+            "e2",
+            "e4"
+          ]
+        ]
+      },
+      "accept": [
+        "e2e4"
+      ],
+      "also": {
+        "d2d4": "Pushing the queen's pawn is also sound and leads to other openings. This lesson pushes the king's pawn."
+      },
+      "reply": "e7e5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the bishop out to c4. It aims at f7, which only the king guards.",
+      "marks": {
+        "squares": [
+          "f7",
+          "e4"
+        ],
+        "arrows": [
+          [
+            "f1",
+            "c4"
+          ]
+        ]
+      },
+      "accept": [
+        "f1c4"
+      ],
+      "also": {
+        "g1f3": "The knight move is the most common here, also sound, and leads to other openings. This lesson brings the bishop out first.",
+        "b1c3": "That is the Vienna Game, also sound. This lesson brings the bishop out."
+      },
+      "after": "This is the Berlin Defense, Black's most common answer: the knight attacks your pawn on e4.",
+      "reply": "g8f6",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Guard the pawn with the pawn in front of your queen.",
+      "marks": {
+        "squares": [
+          "e4",
+          "d5"
+        ],
+        "arrows": [
+          [
+            "d2",
+            "d3"
+          ]
+        ]
+      },
+      "accept": [
+        "d2d3"
+      ],
+      "also": {
+        "b1c3": "That guards it too, also sound. This lesson uses the pawn.",
+        "d2d4": "Giving the pawn for quick play is also sound. This lesson guards it."
+      },
+      "after": "Black gets ready to push its queen pawn to d5 and chase your bishop.",
+      "reply": "c7c6",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the knight out. It attacks the pawn on e5.",
+      "marks": {
+        "squares": [
+          "e5"
+        ],
+        "arrows": [
+          [
+            "g1",
+            "f3"
+          ]
+        ]
+      },
+      "accept": [
+        "g1f3"
+      ],
+      "after": "The pawn attacks your bishop.",
+      "reply": "d7d5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Step the bishop back to b3. It stays on the line to f7.",
+      "marks": {
+        "squares": [
+          "f7"
+        ],
+        "arrows": [
+          [
+            "c4",
+            "b3"
+          ],
+          [
+            "b3",
+            "f7"
+          ]
+        ]
+      },
+      "accept": [
+        "c4b3"
+      ],
+      "wrong": {
+        "f3e5": "The pawn takes your bishop on c4, and you have only a pawn for it."
+      },
+      "also": {
+        "e4d5": "Taking is also played. This lesson keeps the bishop."
+      },
+      "reply": "f8d6",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the other knight out. It adds a guard to your pawn on e4.",
+      "marks": {
+        "squares": [
+          "e4"
+        ],
+        "arrows": [
+          [
+            "b1",
+            "c3"
+          ]
+        ]
+      },
+      "accept": [
+        "b1c3"
+      ],
+      "after": "Black takes the pawn on e4 anyway.",
+      "reply": "d5e4",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Do not take back yet. Jump the knight to g5: with the bishop it hits f7, and it attacks the pawn on e4 again.",
+      "marks": {
+        "squares": [
+          "f7",
+          "e4"
+        ],
+        "arrows": [
+          [
+            "f3",
+            "g5"
+          ]
+        ]
+      },
+      "accept": [
+        "f3g5"
+      ],
+      "also": {
+        "c3e4": "Taking back at once is also sound. This lesson goes to g5 first."
+      },
+      "after": "Black castles to guard f7.",
+      "reply": "e8g8",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Now take the pawn on e4 with the knight from c3.",
+      "marks": {
+        "squares": [
+          "e4"
+        ],
+        "arrows": [
+          [
+            "c3",
+            "e4"
+          ]
+        ]
+      },
+      "accept": [
+        "c3e4"
+      ],
+      "also": {
+        "g5e4": "The other knight can take too, also sound. This lesson takes with this one."
+      },
+      "after": "Black trades knights.",
+      "reply": "f6e4",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Take back with your other knight. Material is level.",
+      "marks": {
+        "squares": [
+          "e4",
+          "b3"
+        ],
+        "arrows": [
+          [
+            "g5",
+            "e4"
+          ]
+        ]
+      },
+      "accept": [
+        "g5e4"
+      ],
+      "after": "Your bishop on b3 keeps aiming at the black king for a long time."
+    }
+  ],
+  "summary": "The bishop out first aims at the weak pawn by the king. White guards the center pawn and develops calmly.",
+  "practice": {
+    "fen": "rnbqkbnr/pppp1ppp/8/4p3/2B1P3/8/PPPP1PPP/RNBQK1NR b KQkq - 1 2",
+    "side": "w"
+  }
+}

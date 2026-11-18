@@ -1,0 +1,200 @@
+{
+  "id": "openings-albin-countergambit-ideas",
+  "course": "openings",
+  "title": "Albin Countergambit: the ideas",
+  "line": "Black offers a pawn of its own and wedges a pawn deep into White's camp.",
+  "side": "b",
+  "steps": [
+    {
+      "type": "show",
+      "text": "White starts by pushing the pawn in front of its queen two squares, into the center.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {
+        "arrows": [
+          [
+            "d2",
+            "d4"
+          ]
+        ]
+      },
+      "play": [
+        "d2d4"
+      ]
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn in front of your queen two squares too. It holds the center.",
+      "marks": {
+        "arrows": [
+          [
+            "d7",
+            "d5"
+          ]
+        ]
+      },
+      "accept": [
+        "d7d5"
+      ],
+      "also": {
+        "g8f6": "That is the start of the Indian defenses, also sound. This lesson pushes the pawn."
+      },
+      "after": "White offers a side pawn to pull your center pawn away. This is the Queen's Gambit.",
+      "reply": "c2c4",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn in front of your king two squares. You offer a pawn of your own.",
+      "marks": {
+        "arrows": [
+          [
+            "e7",
+            "e5"
+          ]
+        ]
+      },
+      "accept": [
+        "e7e5"
+      ],
+      "also": {
+        "e7e6": "That is the Queen's Gambit Declined, a calmer choice. This lesson plays the gambit.",
+        "c7c6": "That is the Slav Defense, a calmer choice. This lesson plays the gambit.",
+        "d5c4": "That is the Queen's Gambit Accepted, also sound. This lesson plays the gambit."
+      },
+      "after": "This is the Albin Countergambit. It gives up a little for surprise and open play. White takes the pawn.",
+      "reply": "d4e5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Push your center pawn one square. It wedges into White's camp and keeps the knight off c3.",
+      "marks": {
+        "squares": [
+          "c3"
+        ],
+        "arrows": [
+          [
+            "d5",
+            "d4"
+          ]
+        ]
+      },
+      "accept": [
+        "d5d4"
+      ],
+      "reply": "g1f3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the knight out. It guards the pawn on d4 and attacks the pawn on e5.",
+      "marks": {
+        "squares": [
+          "d4",
+          "e5"
+        ],
+        "arrows": [
+          [
+            "b8",
+            "c6"
+          ]
+        ]
+      },
+      "accept": [
+        "b8c6"
+      ],
+      "reply": "g2g3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the other knight out. It heads for g6, to attack the pawn on e5 a second time.",
+      "marks": {
+        "squares": [
+          "g6",
+          "e5"
+        ],
+        "arrows": [
+          [
+            "g8",
+            "e7"
+          ]
+        ]
+      },
+      "accept": [
+        "g8e7"
+      ],
+      "reply": "f1g2",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Move the knight on to g6. Now two knights attack the pawn on e5.",
+      "marks": {
+        "squares": [
+          "e5",
+          "f3"
+        ],
+        "arrows": [
+          [
+            "e7",
+            "g6"
+          ]
+        ]
+      },
+      "accept": [
+        "e7g6"
+      ],
+      "after": "White castles. Two knights attack the pawn on e5, and only the knight on f3 guards it.",
+      "reply": "e1g1",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Take the pawn on e5 with the knight from g6.",
+      "marks": {
+        "squares": [
+          "e5"
+        ],
+        "arrows": [
+          [
+            "g6",
+            "e5"
+          ]
+        ]
+      },
+      "accept": [
+        "g6e5"
+      ],
+      "also": {
+        "f8e7": "Developing first is sound too. This lesson takes the pawn back now."
+      },
+      "reply": "f3e5"
+    },
+    {
+      "type": "move",
+      "text": "Take back with the other knight, so the material is level.",
+      "marks": {
+        "squares": [
+          "e5",
+          "d4"
+        ],
+        "arrows": [
+          [
+            "c6",
+            "e5"
+          ]
+        ]
+      },
+      "accept": [
+        "c6e5"
+      ],
+      "after": "The gambit pawn is back. Your pawn on d4 still cramps White, and the knight sits in the center."
+    }
+  ],
+  "summary": "Black gives a pawn for a cramping pawn in the center, then brings both knights to take it back.",
+  "practice": {
+    "fen": "r1bqkb1r/ppp2ppp/8/4n3/2Pp4/6P1/PP2PPBP/RNBQ1RK1 w kq - 0 9",
+    "side": "b"
+  }
+}

@@ -1,0 +1,139 @@
+{
+  "id": "openings-albin-countergambit-lasker-trap",
+  "course": "openings",
+  "title": "Albin Countergambit: the Lasker Trap",
+  "line": "A pawn marches to the last rank and becomes a knight, with check.",
+  "side": "b",
+  "steps": [
+    {
+      "type": "show",
+      "text": "The Albin Countergambit. White strikes at your wedged pawn with the king pawn at once. That is a mistake.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {
+        "squares": [
+          "d4",
+          "e3"
+        ]
+      },
+      "play": [
+        "d2d4",
+        "d7d5",
+        "c2c4",
+        "e7e5",
+        "d4e5",
+        "d5d4",
+        "e2e3"
+      ]
+    },
+    {
+      "type": "move",
+      "text": "Check with the bishop. White has to spend a move answering it.",
+      "marks": {
+        "squares": [
+          "e1"
+        ],
+        "arrows": [
+          [
+            "f8",
+            "b4"
+          ]
+        ]
+      },
+      "accept": [
+        "f8b4"
+      ],
+      "after": "White blocks with the bishop, which attacks yours.",
+      "reply": "c1d2"
+    },
+    {
+      "type": "move",
+      "text": "Take the pawn on e3. Let White take your bishop.",
+      "marks": {
+        "squares": [
+          "e3",
+          "b4"
+        ],
+        "arrows": [
+          [
+            "d4",
+            "e3"
+          ]
+        ]
+      },
+      "accept": [
+        "d4e3"
+      ],
+      "after": "White takes the bishop and falls into the trap.",
+      "reply": "d2b4",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Take on f2 with check.",
+      "marks": {
+        "squares": [
+          "f2",
+          "d1",
+          "g1"
+        ],
+        "arrows": [
+          [
+            "e3",
+            "f2"
+          ]
+        ]
+      },
+      "accept": [
+        "e3f2"
+      ],
+      "after": "The king steps up. Taking the pawn would drop the queen on d1. Your pawn on f2 can take the knight on g1.",
+      "reply": "e1e2"
+    },
+    {
+      "type": "move",
+      "text": "Take the knight and make your pawn a knight. A knight there gives check, and a queen would not.",
+      "marks": {
+        "squares": [
+          "g1"
+        ],
+        "arrows": [
+          [
+            "f2",
+            "g1"
+          ]
+        ]
+      },
+      "accept": [
+        "f2g1n"
+      ],
+      "wrong": {
+        "f2g1q": "A queen gives no check there, so White has time to check first and then take her."
+      },
+      "hint": "A pawn on the last rank can become any piece. Pick the one that gives check.",
+      "after": "The rook takes the knight. Now the king and queen stand on one diagonal.",
+      "reply": "h1g1"
+    },
+    {
+      "type": "move",
+      "text": "Check with the bishop. Behind the king stands the queen.",
+      "marks": {
+        "squares": [
+          "e2",
+          "d1"
+        ],
+        "arrows": [
+          [
+            "c8",
+            "g4"
+          ]
+        ]
+      },
+      "accept": [
+        "c8g4"
+      ],
+      "after": "The king must move, and the bishop takes the queen.",
+      "wins": 5
+    }
+  ],
+  "summary": "A pawn that reaches the last rank can become a knight. Here the knight gives check where a queen would not."
+}

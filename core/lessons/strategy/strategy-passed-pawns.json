@@ -1,0 +1,69 @@
+{
+  "id": "strategy-passed-pawns",
+  "course": "strategy",
+  "title": "Passed pawns",
+  "line": "A pawn no pawn can stop, and the extra pawns on one side that make one.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "fen": "8/pp3pk1/6pp/8/8/6PP/PPP3K1/8 w - - 0 30",
+      "text": "On the left, three white pawns face two black ones: a majority. Pushed with care, it makes a pawn no black pawn can stop.",
+      "marks": {"squares":["a2","b2","c2","a7","b7"]}
+    },
+    {
+      "type": "move",
+      "text": "Start with the pawn that has no black pawn in front of it, on its own file. Push it two squares.",
+      "marks": {"squares":["c2"],"arrows":[["c2","c4"]]},
+      "accept": ["c2c4"],
+      "wrong": {
+        "b2b4": "Black pushes the pawn in front of it two squares, and that one pawn then holds back two of yours."
+      },
+      "also": {
+        "a2a4": "That is fine here too. The safe rule is to start with the pawn that has no pawn in front of it."
+      },
+      "hint": "It is the pawn nearest the middle of the three.",
+      "after": "Black's king heads for the middle.",
+      "reply": "g7f6"
+    },
+    {
+      "type": "show",
+      "fen": "8/p4pk1/6pp/1p6/1P6/6PP/P1P3K1/8 w - - 0 31",
+      "text": "Here White pushed the middle pawn first. Black's pawn on b5 now holds back both of White's pawns beside it.",
+      "marks": {"squares":["b5","a2","c2"],"arrows":[["b5","a4"],["b5","c4"]]}
+    },
+    {
+      "type": "pick",
+      "fen": "8/5p2/3k2pp/1P6/3K4/6PP/8/8 w - - 0 30",
+      "text": "A passed pawn has no enemy pawn in front of it on its file or the files next to it. Tap White's passed pawn.",
+      "accept": ["b5"],
+      "wrong": {
+        "g3": "Black pawns stand in front of it.",
+        "h3": "Black pawns stand in front of it."
+      },
+      "after": "No pawn can stop it. Only Black's king can."
+    },
+    {
+      "type": "move",
+      "text": "Push it. Black's king has to run after it, and your king is then free to go for the pawns on the other side.",
+      "marks": {"squares":["b5"],"arrows":[["b5","b6"]]},
+      "accept": ["b5b6"],
+      "wrong": {
+        "d4e4": "That gives Black's king time to come closer to the pawn."
+      },
+      "after": "Black pushes a pawn on the other side.",
+      "reply": "h6h5"
+    },
+    {
+      "type": "move",
+      "text": "Push it again.",
+      "marks": {"arrows":[["b6","b7"]]},
+      "accept": ["b6b7"],
+      "after": "Black's king stops the pawn, far from its own pawns.",
+      "reply": "d6c7"
+    }
+  ],
+  "summary": "More pawns on one side can make a passed pawn. Push first the pawn with no enemy pawn in front of it.",
+  "practice": {"fen":"8/1Pk2p2/6p1/7p/3K4/6PP/8/8 w - - 1 32","side":"w"},
+  "puzzles": "passed"
+}

@@ -1,0 +1,207 @@
+{
+  "id": "openings-london-system-ideas",
+  "course": "openings",
+  "title": "London System: the ideas",
+  "line": "The bishop comes out early, then pawns build a solid triangle behind it.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "move",
+      "text": "Push the pawn in front of your queen two squares. It takes the center and frees your bishop.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {
+        "arrows": [
+          [
+            "d2",
+            "d4"
+          ]
+        ]
+      },
+      "accept": [
+        "d2d4"
+      ],
+      "also": {
+        "e2e4": "That is the most played first move, the king pawn opening. This lesson plays the queen pawn.",
+        "c2c4": "That is the English Opening, also sound. This lesson plays the queen pawn.",
+        "g1f3": "That is the knight first, often a Réti Opening. This lesson plays the queen pawn."
+      },
+      "after": "Black does the same.",
+      "reply": "d7d5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the knight out. It guards the center square e5.",
+      "marks": {
+        "squares": [
+          "e5"
+        ],
+        "arrows": [
+          [
+            "g1",
+            "f3"
+          ]
+        ]
+      },
+      "accept": [
+        "g1f3"
+      ],
+      "also": {
+        "c2c4": "That is the Queen's Gambit, another sound opening. This lesson builds the London System."
+      },
+      "reply": "g8f6",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the bishop out now, before you move the king pawn. Then the pawn does not shut it in.",
+      "marks": {
+        "arrows": [
+          [
+            "c1",
+            "f4"
+          ]
+        ]
+      },
+      "accept": [
+        "c1f4"
+      ],
+      "also": {
+        "c2c4": "That is the Queen's Gambit, also sound. This lesson builds the London System.",
+        "e2e3": "That is the Colle System, also sound. This lesson brings the bishop out first.",
+        "c1g5": "That is the Torre Attack, also sound. This lesson puts the bishop on another square."
+      },
+      "after": "This is the London System.",
+      "reply": "e7e6",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Move the pawn in front of your king one square. It guards your center pawn and frees the other bishop.",
+      "marks": {
+        "squares": [
+          "d4"
+        ],
+        "arrows": [
+          [
+            "e2",
+            "e3"
+          ]
+        ]
+      },
+      "accept": [
+        "e2e3"
+      ],
+      "reply": "c7c5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Move the pawn on c2 one square. Pawns on c3, d4 and e3 make a solid triangle.",
+      "marks": {
+        "squares": [
+          "d4",
+          "e3"
+        ],
+        "arrows": [
+          [
+            "c2",
+            "c3"
+          ]
+        ]
+      },
+      "accept": [
+        "c2c3"
+      ],
+      "reply": "b8c6",
+      "taught": true
+    },
+    {
+      "type": "show",
+      "text": "The knight goes to d2. When Black offers to trade bishops, yours steps back to g3. The other bishop comes to d3.",
+      "marks": {
+        "squares": [
+          "d2",
+          "g3",
+          "d3"
+        ]
+      },
+      "play": [
+        "b1d2",
+        "f8d6",
+        "f4g3",
+        "e8g8",
+        "f1d3"
+      ]
+    },
+    {
+      "type": "show",
+      "text": "Here Black brought the queen out to attack the pawn on b2, a sound main line. The mistake comes if the queen takes it.",
+      "fen": "rnb1kb1r/pp2pppp/1q3n2/2pp4/3P1B2/4PN2/PPP2PPP/RN1QKB1R w KQkq - 1 5",
+      "marks": {
+        "squares": [
+          "b2"
+        ],
+        "arrows": [
+          [
+            "b6",
+            "b2"
+          ]
+        ]
+      }
+    },
+    {
+      "type": "move",
+      "text": "Bring the knight out and let the queen take the pawn on b2.",
+      "marks": {
+        "squares": [
+          "b2",
+          "c5"
+        ],
+        "arrows": [
+          [
+            "b1",
+            "c3"
+          ]
+        ]
+      },
+      "accept": [
+        "b1c3"
+      ],
+      "also": {
+        "d4c5": "Taking on c5 is sound too. This lesson lets the queen take the bait."
+      },
+      "after": "Black took the bait. Its queen is far from home.",
+      "reply": "b6b2",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Jump the knight to b5. It threatens to jump to c7 and fork the king and the rook.",
+      "marks": {
+        "squares": [
+          "c7",
+          "e8",
+          "a8",
+          "b1"
+        ],
+        "arrows": [
+          [
+            "c3",
+            "b5"
+          ]
+        ]
+      },
+      "accept": [
+        "c3b5"
+      ],
+      "hint": "Look for a knight jump that threatens the square c7.",
+      "after": "Black has to cover c7. Then your rook can come to b1 and chase the queen."
+    }
+  ],
+  "summary": "The bishop comes out before the king pawn, then pawns build a triangle. A queen that grabs the side pawn gets chased.",
+  "practice": {
+    "fen": "r1bq1rk1/pp3ppp/2nbpn2/2pp4/3P4/2PBPNB1/PP1N1PPP/R2QK2R b KQ - 6 8",
+    "side": "w"
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "id": "openings-sicilian-defense-accelerated-dragon",
+  "course": "openings",
+  "title": "Sicilian Defense: Accelerated Dragon",
+  "line": "The bishop comes out early, and the queen's pawn waits to go two squares in one move.",
+  "side": "b",
+  "steps": [
+    {
+      "type": "show",
+      "text": "Here Black's knight came out before the pawn in front of the queen moved, and White took in the center.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {"squares":["d4"]},
+      "play": ["e2e4","c7c5","g1f3","b8c6","d2d4","c5d4","f3d4"]
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn on g7 one square, to make room for your bishop.",
+      "marks": {"arrows":[["g7","g6"]]},
+      "accept": ["g7g6"],
+      "also": {
+        "g8f6": "That works too. This lesson goes on with the bishop."
+      },
+      "reply": "b1c3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Put the bishop on g7, on the long diagonal.",
+      "marks": {"arrows":[["f8","g7"]]},
+      "accept": ["f8g7"],
+      "reply": "c1e3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the other knight out.",
+      "marks": {"squares":["c4","e2"],"arrows":[["g8","f6"]]},
+      "accept": ["g8f6"],
+      "after": "White's bishop takes a quiet road to e2. This is one quiet setup; against a bishop on c4 Black plays differently.",
+      "reply": "f1e2",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Castle. Your king goes to safety, and a rook comes toward the center.",
+      "marks": {"arrows":[["e8","g8"]]},
+      "accept": ["e8g8"],
+      "reply": "e1g1",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Your pawn on d7 has not moved yet, so it can go two squares in one move and strike at the center.",
+      "marks": {"squares":["d7"],"arrows":[["d7","d5"]]},
+      "accept": ["d7d5"],
+      "reply": "e4d5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Take back with the knight.",
+      "marks": {"arrows":[["f6","d5"]]},
+      "accept": ["f6d5"],
+      "reply": "c3d5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Take back with the queen.",
+      "marks": {"arrows":[["d8","d5"]]},
+      "accept": ["d8d5"],
+      "taught": true
+    },
+    {
+      "type": "pick",
+      "text": "Tap the white piece that your queen, your knight and your bishop all attack.",
+      "accept": ["d4"],
+      "after": "It is attacked three times and guarded twice. If White leaves it, Black can take it and come out a knight ahead."
+    }
+  ],
+  "summary": "In the Accelerated Dragon the queen's pawn waits at home, then goes two squares at once to strike at the center.",
+  "practice": {
+    "fen": "r1b2rk1/pp2ppbp/2n3p1/3q4/3N4/4B3/PPP1BPPP/R2Q1RK1 w - - 0 11",
+    "side": "b"
+  }
+}

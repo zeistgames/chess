@@ -1,0 +1,229 @@
+{
+  "id": "openings-tarrasch-defense-ideas",
+  "course": "openings",
+  "title": "Tarrasch Defense: the ideas",
+  "line": "Black strikes at the center at once and gets open lines for every piece.",
+  "side": "b",
+  "steps": [
+    {
+      "type": "show",
+      "text": "White starts by pushing the pawn in front of its queen two squares, into the center.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {
+        "arrows": [
+          [
+            "d2",
+            "d4"
+          ]
+        ]
+      },
+      "play": [
+        "d2d4"
+      ]
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn in front of your queen two squares too. It holds the center.",
+      "marks": {
+        "arrows": [
+          [
+            "d7",
+            "d5"
+          ]
+        ]
+      },
+      "accept": [
+        "d7d5"
+      ],
+      "also": {
+        "g8f6": "That is the start of the Indian defenses, also sound. This lesson pushes the pawn."
+      },
+      "after": "White offers a side pawn to pull your center pawn away. This is the Queen's Gambit.",
+      "reply": "c2c4",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Guard the center pawn with the pawn in front of your king.",
+      "marks": {
+        "squares": [
+          "d5"
+        ],
+        "arrows": [
+          [
+            "e7",
+            "e6"
+          ]
+        ]
+      },
+      "accept": [
+        "e7e6"
+      ],
+      "also": {
+        "c7c6": "That is the Slav Defense, also sound. This lesson guards with the king pawn.",
+        "d5c4": "That is the Queen's Gambit Accepted, also sound. This lesson keeps the center pawn."
+      },
+      "reply": "b1c3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn on c7 two squares. It strikes at White's center pawn at once.",
+      "marks": {
+        "squares": [
+          "d4",
+          "d5"
+        ],
+        "arrows": [
+          [
+            "c7",
+            "c5"
+          ]
+        ]
+      },
+      "accept": [
+        "c7c5"
+      ],
+      "also": {
+        "g8f6": "That is the Queen's Gambit Declined, also sound. This lesson strikes at the center.",
+        "f8e7": "That is a calm Queen's Gambit Declined, also sound. This lesson strikes at the center.",
+        "c7c6": "That heads for the Semi-Slav, also sound. This lesson strikes at the center."
+      },
+      "after": "This is the Tarrasch Defense. White trades on d5.",
+      "reply": "c4d5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Take back with the king pawn. Your bishop on c8 now has an open diagonal.",
+      "marks": {
+        "squares": [
+          "c8"
+        ],
+        "arrows": [
+          [
+            "e6",
+            "d5"
+          ]
+        ]
+      },
+      "accept": [
+        "e6d5"
+      ],
+      "also": {
+        "c5d4": "That is the Schara Gambit, a sharp choice. This lesson takes back on d5."
+      },
+      "reply": "g1f3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the knight out. It adds pressure on the pawn on d4.",
+      "marks": {
+        "squares": [
+          "d4",
+          "c5"
+        ],
+        "arrows": [
+          [
+            "b8",
+            "c6"
+          ]
+        ]
+      },
+      "accept": [
+        "b8c6"
+      ],
+      "after": "White takes the pawn on c5. It looks like a free pawn.",
+      "reply": "d4c5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn on d5 one square. It chases the knight on c3 away from the center.",
+      "marks": {
+        "squares": [
+          "c3"
+        ],
+        "arrows": [
+          [
+            "d5",
+            "d4"
+          ]
+        ]
+      },
+      "accept": [
+        "d5d4"
+      ],
+      "after": "The knight goes to the edge of the board.",
+      "reply": "c3a4",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Take the pawn back with the bishop. Material is level again.",
+      "marks": {
+        "squares": [
+          "c5"
+        ],
+        "arrows": [
+          [
+            "f8",
+            "c5"
+          ]
+        ]
+      },
+      "accept": [
+        "f8c5"
+      ],
+      "after": "The knight takes your bishop. You have a check that takes it back.",
+      "reply": "a4c5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Check with the queen. It also attacks the knight on c5.",
+      "marks": {
+        "squares": [
+          "e1",
+          "c5"
+        ],
+        "arrows": [
+          [
+            "d8",
+            "a5"
+          ]
+        ]
+      },
+      "accept": [
+        "d8a5"
+      ],
+      "reply": "c1d2",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Take the knight. That makes up for your bishop.",
+      "marks": {
+        "squares": [
+          "c5"
+        ],
+        "arrows": [
+          [
+            "a5",
+            "c5"
+          ]
+        ]
+      },
+      "accept": [
+        "a5c5"
+      ],
+      "after": "Material is level. Black has a big pawn in the center and open lines for its pieces."
+    }
+  ],
+  "summary": "Black strikes at the center at once. The pawns open up, and Black gets free play for all its pieces.",
+  "practice": {
+    "fen": "r1b1k1nr/pp3ppp/2n5/2q5/3p4/5N2/PP1BPPPP/R2QKB1R w KQkq - 0 10",
+    "side": "b"
+  }
+}

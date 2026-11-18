@@ -1,0 +1,79 @@
+{
+  "id": "endgames-king-pawn",
+  "course": "endgames",
+  "title": "King and pawn against king",
+  "line": "Your king in front of the pawn holds the draw, if it keeps the opposition.",
+  "side": "b",
+  "steps": [
+    {
+      "type": "show",
+      "fen": "8/8/4k3/8/3KP3/8/8/8 b - - 0 1",
+      "text": "You have Black. Your king stands in front of the pawn. Keep it there, and take the opposition, and the game is a draw.",
+      "marks": {"squares":["e6","e4"]}
+    },
+    {
+      "type": "move",
+      "fen": "8/8/4k3/8/3KP3/8/8/8 b - - 0 1",
+      "text": "Take the opposition: face the white king with one square between.",
+      "accept": ["e6d6"],
+      "wrong": {
+        "e6f6": "The white king gets ahead of the pawn, and it promotes.",
+        "e6e7": "White steps forward and takes the opposition, and the pawn promotes.",
+        "e6d7": "The white king gets ahead of the pawn, and it promotes."
+      },
+      "hint": "Stand straight in front of the white king.",
+      "after": "White has to give way or push the pawn."
+    },
+    {
+      "type": "move",
+      "fen": "8/4k3/8/3KP3/8/8/8/8 b - - 0 1",
+      "text": "Later the white king and pawn have moved up. Face the king again.",
+      "accept": ["e7d7"],
+      "wrong": {
+        "e7f7": "The white king gets ahead of the pawn, and it promotes.",
+        "e7d8": "The white king gets ahead of the pawn, and it promotes.",
+        "e7f8": "The white king gets ahead of the pawn, and it promotes."
+      },
+      "hint": "One square between the kings, on the same file.",
+      "after": "The opposition again. White cannot get past."
+    },
+    {
+      "type": "move",
+      "fen": "8/4k3/4P3/3K4/8/8/8/8 b - - 0 1",
+      "text": "Later still, the pawn has reached e6. Go straight back, in front of it, not to the side.",
+      "marks": {"squares":["e6"]},
+      "accept": ["e7e8"],
+      "wrong": {
+        "e7d8": "The white king steps up beside the pawn, and it promotes.",
+        "e7f8": "The white king steps up beside the pawn, and it promotes."
+      },
+      "hint": "Straight back, on the pawn's own file.",
+      "after": "Straight back, so you can face the white king when it comes."
+    },
+    {
+      "type": "move",
+      "fen": "4k3/8/3KP3/8/8/8/8/8 b - - 0 1",
+      "text": "Last one. Face the white king once more.",
+      "accept": ["e8d8"],
+      "wrong": {
+        "e8f8": "White steps beside the pawn on the other side, and it promotes."
+      },
+      "hint": "Same file as the white king.",
+      "after": "If the pawn checks, step back in front of it. Then White can keep the pawn only by stalemating you.",
+      "reply": "e6e7"
+    },
+    {
+      "type": "move",
+      "text": "Step back in front of the pawn.",
+      "marks": {"squares":["e7"]},
+      "accept": ["d8e8"],
+      "wrong": {
+        "d8c8": "That leaves the square in front of the pawn, and it promotes."
+      },
+      "hint": "The square just in front of the pawn.",
+      "after": "White can keep the pawn only by stalemating your king. The game is a draw."
+    }
+  ],
+  "summary": "Stay in front of the pawn and face the king. When the pawn steps up, go straight back.",
+  "practice": {"fen":"8/8/4k3/8/3KP3/8/8/8 b - - 0 1","side":"b"}
+}

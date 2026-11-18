@@ -1,0 +1,231 @@
+{
+  "id": "openings-semi-slav-defense-ideas",
+  "course": "openings",
+  "title": "Semi-Slav Defense: the ideas",
+  "line": "Two pawns hold the center, then Black takes on c4 and strikes back with the king pawn.",
+  "side": "b",
+  "steps": [
+    {
+      "type": "show",
+      "text": "White starts by pushing the pawn in front of its queen two squares, into the center.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {
+        "arrows": [
+          [
+            "d2",
+            "d4"
+          ]
+        ]
+      },
+      "play": [
+        "d2d4"
+      ]
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn in front of your queen two squares too. It holds the center.",
+      "marks": {
+        "arrows": [
+          [
+            "d7",
+            "d5"
+          ]
+        ]
+      },
+      "accept": [
+        "d7d5"
+      ],
+      "also": {
+        "g8f6": "That is the start of the Indian defenses, also sound. This lesson pushes the pawn."
+      },
+      "after": "White offers a side pawn to pull your center pawn away. This is the Queen's Gambit.",
+      "reply": "c2c4",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Guard your center pawn with the pawn on c7.",
+      "marks": {
+        "squares": [
+          "d5"
+        ],
+        "arrows": [
+          [
+            "c7",
+            "c6"
+          ]
+        ]
+      },
+      "accept": [
+        "c7c6"
+      ],
+      "also": {
+        "e7e6": "That is the Queen's Gambit Declined, also sound. This lesson builds the Semi-Slav with the other pawn first.",
+        "d5c4": "That is the Queen's Gambit Accepted, also sound. This lesson keeps the center pawn."
+      },
+      "after": "This is the Slav Defense so far.",
+      "reply": "g1f3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the knight out. It guards the center pawn too.",
+      "marks": {
+        "squares": [
+          "d5"
+        ],
+        "arrows": [
+          [
+            "g8",
+            "f6"
+          ]
+        ]
+      },
+      "accept": [
+        "g8f6"
+      ],
+      "also": {
+        "e7e6": "That reaches the Semi-Slav by another move order, also sound. This lesson brings the knight out first.",
+        "d5c4": "Taking the pawn is sound too. This lesson brings the knight out first."
+      },
+      "reply": "b1c3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Move the pawn in front of your king one square. Now two pawns guard your center pawn.",
+      "marks": {
+        "squares": [
+          "d5",
+          "c6",
+          "c8"
+        ],
+        "arrows": [
+          [
+            "e7",
+            "e6"
+          ]
+        ]
+      },
+      "accept": [
+        "e7e6"
+      ],
+      "also": {
+        "d5c4": "That heads for the Czech Variation of the Slav, also sound. This lesson builds the Semi-Slav.",
+        "a7a6": "That is the Chebanenko Slav, also sound. This lesson builds the Semi-Slav.",
+        "g7g6": "That is the Schlechter Slav, also sound. This lesson builds the Semi-Slav."
+      },
+      "after": "This is the Semi-Slav. Your bishop on c8 is shut in for now, and you have a plan to free it.",
+      "reply": "e2e3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the other knight out behind the pawns. It backs up the king pawn for later.",
+      "marks": {
+        "squares": [
+          "e5"
+        ],
+        "arrows": [
+          [
+            "b8",
+            "d7"
+          ]
+        ]
+      },
+      "accept": [
+        "b8d7"
+      ],
+      "reply": "d1c2",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the bishop out. It also watches e5, where your king pawn wants to go.",
+      "marks": {
+        "squares": [
+          "e5"
+        ],
+        "arrows": [
+          [
+            "f8",
+            "d6"
+          ]
+        ]
+      },
+      "accept": [
+        "f8d6"
+      ],
+      "reply": "f1d3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Castle. Your king is safe before the center opens.",
+      "marks": {
+        "arrows": [
+          [
+            "e8",
+            "g8"
+          ]
+        ]
+      },
+      "accept": [
+        "e8g8"
+      ],
+      "reply": "e1g1",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Take the pawn on c4 now that White's bishop has moved. The bishop spends a second move to take back.",
+      "marks": {
+        "squares": [
+          "c4"
+        ],
+        "arrows": [
+          [
+            "d5",
+            "c4"
+          ]
+        ]
+      },
+      "accept": [
+        "d5c4"
+      ],
+      "reply": "d3c4",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Push the king pawn two squares. It strikes at the center. Once the knight on d7 moves, the bishop on c8 can come out.",
+      "marks": {
+        "squares": [
+          "c8",
+          "d4",
+          "d7"
+        ],
+        "arrows": [
+          [
+            "e6",
+            "e5"
+          ]
+        ]
+      },
+      "accept": [
+        "e6e5"
+      ],
+      "also": {
+        "b7b5": "That chases the bishop and takes space, the most played move here. This lesson strikes in the center.",
+        "a7a6": "That gets the pawn push ready, also sound. This lesson strikes in the center."
+      },
+      "after": "Black has its share of the center.",
+      "taught": true
+    }
+  ],
+  "summary": "Two pawns hold the center first. Black takes the side pawn when it gains a move, then frees its bishop with a pawn push.",
+  "practice": {
+    "fen": "r1bq1rk1/pp1n1ppp/2pb1n2/4p3/2BP4/2N1PN2/PPQ2PPP/R1B2RK1 w - - 0 10",
+    "side": "b"
+  }
+}

@@ -1,0 +1,86 @@
+diff --git a/src/arasanx.cpp b/src/arasanx.cpp
+index 7aaa7ac..2d2bf3d 100644
+--- a/src/arasanx.cpp
++++ b/src/arasanx.cpp
+@@ -24,6 +24,13 @@ extern "C"
+ #endif
+ }
+ 
++#ifdef __EMSCRIPTEN__
++static Protocol *zeist_protocol = nullptr;
++extern "C" void zeist_handle_line(const char *line) {
++    if (zeist_protocol && !globals::polling_terminated) zeist_protocol->zeistLine(line);
++}
++#endif
++
+ int CDECL main(int argc, char **argv) {
+     signal(SIGINT,SIG_IGN);
+ 
+@@ -123,6 +130,11 @@ int CDECL main(int argc, char **argv) {
+     Board board;
+     Protocol *p = new Protocol(board,trace,ics,cpusSet,memorySet);
+ 
++#ifdef __EMSCRIPTEN__
++    // Zeist: keep the engine; the worker sends lines to zeist_handle_line().
++    zeist_protocol = p;
++    return 0;
++#endif
+     p->poll(globals::polling_terminated);
+ 
+     delete p;
+diff --git a/src/input.cpp b/src/input.cpp
+index 856889f..80b11bb 100644
+--- a/src/input.cpp
++++ b/src/input.cpp
+@@ -52,6 +52,11 @@ Input::Input()
+ }
+ 
+ bool Input::checkInput(std::vector<std::string> &cmds, std::mutex &mtx) {
++#ifdef __EMSCRIPTEN__
++    // Zeist: the worker delivers one line at a time; nothing arrives mid-search.
++    (void)cmds; (void)mtx;
++    return false;
++#endif
+ #ifdef _WIN32
+     DWORD nchar;
+     if (PeekNamedPipe(GetStdHandle(STD_INPUT_HANDLE), NULL, 0,
+diff --git a/src/protocol.cpp b/src/protocol.cpp
+index d9e852f..ffe7b50 100644
+--- a/src/protocol.cpp
++++ b/src/protocol.cpp
+@@ -151,6 +151,19 @@ Protocol::~Protocol()
+ }
+ 
+ // Read from input, outside of the search
++#ifdef __EMSCRIPTEN__
++void Protocol::zeistLine(const std::string &cmd)
++{
++    if (cmd.length()) {
++        std::unique_lock<std::mutex> lock(inputMtx);
++        pending.push_back(cmd);
++    }
++    if (!do_all_pending(*main_board)) {
++        globals::polling_terminated = true;
++    }
++}
++#endif
++
+ void Protocol::poll(bool &polling_terminated)
+ {
+     while (!polling_terminated) {
+diff --git a/src/protocol.h b/src/protocol.h
+index 8bc016b..29af346 100644
+--- a/src/protocol.h
++++ b/src/protocol.h
+@@ -19,6 +19,11 @@ class Protocol {
+ public:
+     Protocol(const Board &,bool traceOn, bool icsMode, bool cpus_set, bool memory_set);
+ 
++#ifdef __EMSCRIPTEN__
++    // Zeist: run one command line to completion (search runs inline).
++    void zeistLine(const std::string &cmd);
++#endif
++
+     virtual ~Protocol();
+ 
+     // read input from stdin and dispatch commands

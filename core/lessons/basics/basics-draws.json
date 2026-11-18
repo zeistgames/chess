@@ -1,0 +1,90 @@
+{
+  "id": "basics-draws",
+  "course": "basics",
+  "title": "Draws and resigning",
+  "line": "Repetition, too little to mate, the fifty-move rule, agreement, and giving up a lost game.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "move",
+      "text": "Black is far ahead and will mate you soon. But the black king is open. Check it with your queen from the edge of the board.",
+      "fen": "4Q3/6pk/8/8/8/1q6/r5PP/6K1 w - - 0 1",
+      "accept": [
+        "e8h5"
+      ],
+      "hint": "The queen goes to the edge, on the king's file.",
+      "after": "The king's only square is back beside it.",
+      "reply": "h7g8",
+      "marks": {
+        "squares": [
+          "h7"
+        ]
+      }
+    },
+    {
+      "type": "show",
+      "text": "Keep checking. Watch the king go back and forth until the same position comes up three times, with the same side to move.",
+      "play": [
+        "h5e8",
+        "g8h7",
+        "e8h5",
+        "h7g8",
+        "h5e8",
+        "g8h7",
+        "e8h5",
+        "h7g8"
+      ],
+      "marks": {
+        "squares": [
+          "h7",
+          "g8"
+        ]
+      }
+    },
+    {
+      "type": "show",
+      "text": "That position has now come up three times with the same side to move. The game is over: a draw by repetition.",
+      "marks": {
+        "squares": [
+          "g8"
+        ]
+      }
+    },
+    {
+      "type": "show",
+      "text": "Two more draws: both players can agree to a draw, and after fifty moves by each side with no capture and no pawn move, it is a draw.",
+      "fen": "8/5k2/8/3r4/8/2R5/5K2/8 w - - 0 1"
+    },
+    {
+      "type": "show",
+      "text": "A player who sees that the game is lost may resign: give up, and the other side wins at once. You never have to resign.",
+      "fen": "6k1/5ppp/8/8/3q4/8/r4PPP/6K1 w - - 0 1"
+    },
+    {
+      "type": "show",
+      "text": "A king and one bishop, or a king and one knight, can never mate a lone king. When neither side has enough left to mate, it is a draw.",
+      "fen": "8/8/3k4/8/8/2B5/8/4K3 w - - 0 1",
+      "marks": {
+        "squares": [
+          "c3"
+        ]
+      }
+    },
+    {
+      "type": "move",
+      "text": "If your time runs out, you lose, unless the other side cannot mate. Capture Black's last pawn: king and bishop cannot mate a lone king.",
+      "fen": "8/7b/8/4k3/8/8/Kp6/8 w - - 0 1",
+      "accept": [
+        "a2b2"
+      ],
+      "hint": "Your king can take the pawn before it reaches the last rank.",
+      "after": "Black has only a king and a bishop left. The game is a draw.",
+      "marks": {
+        "squares": [
+          "b2"
+        ]
+      }
+    }
+  ],
+  "summary": "A game is drawn by repetition, too little left to mate, fifty moves with no capture or pawn move, or agreement."
+}

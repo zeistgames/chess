@@ -1,0 +1,72 @@
+{
+  "id": "openings-french-defense-tarrasch",
+  "course": "openings",
+  "title": "French Defense: Tarrasch Variation",
+  "line": "White's knight guards the center from behind; Black hits White's pawn chain twice.",
+  "side": "b",
+  "steps": [
+    {
+      "type": "show",
+      "text": "Here White guards the pawn on e4 with the knight on d2. It keeps c3 free for a pawn that will back up d4.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {"squares":["e4","d2","c3","d4"]},
+      "play": ["e2e4","e7e6","d2d4","d7d5","b1d2"]
+    },
+    {
+      "type": "move",
+      "text": "Bring the knight out to attack the pawn on e4.",
+      "marks": {"squares":["e4"],"arrows":[["g8","f6"]]},
+      "accept": ["g8f6"],
+      "also": {
+        "c7c5": "That is the other main answer. This lesson goes on with the knight."
+      },
+      "reply": "e4e5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "White's pawn kicks your knight. Step back to d7.",
+      "marks": {"arrows":[["f6","d7"]]},
+      "accept": ["f6d7"],
+      "reply": "f1d3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn on c7 two squares to hit the base of White's chain.",
+      "marks": {"squares":["d4"],"arrows":[["c7","c5"]]},
+      "accept": ["c7c5"],
+      "reply": "c2c3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the other knight out. It is another attacker on d4.",
+      "marks": {"squares":["d4"],"arrows":[["b8","c6"]]},
+      "accept": ["b8c6"],
+      "reply": "g1e2",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Take the pawn.",
+      "marks": {"arrows":[["c5","d4"]]},
+      "accept": ["c5d4"],
+      "reply": "c3d4",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Now push the pawn on f7 one square. It hits the head of the chain, the pawn on e5.",
+      "marks": {"squares":["e5","d4"],"arrows":[["f7","f6"]]},
+      "accept": ["f7f6"],
+      "after": "Both ends of White's chain are under attack: your pawn hits e5 and your knight hits d4.",
+      "taught": true
+    }
+  ],
+  "summary": "In the Tarrasch, Black's pawns hit White's chain twice: first at its base, then at its head.",
+  "practice": {
+    "fen": "r1bqkb1r/pp1n2pp/2n1pp2/3pP3/3P4/3B4/PP1NNPPP/R1BQK2R w KQkq - 0 9",
+    "side": "b"
+  }
+}

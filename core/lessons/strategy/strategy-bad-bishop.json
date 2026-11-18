@@ -1,0 +1,50 @@
+{
+  "id": "strategy-bad-bishop",
+  "course": "strategy",
+  "title": "Good and bad bishops",
+  "line": "A bishop blocked by its own pawns, and what to do with it.",
+  "side": "b",
+  "steps": [
+    {
+      "type": "show",
+      "fen": "rnbqkbnr/ppp2ppp/4p3/3pP3/3P4/8/PPP2PPP/RNBQKBNR b KQkq - 0 3",
+      "text": "Black's pawns on d5 and e6 stand on light squares. The bishop on c8 runs on light squares too, and those pawns block it.",
+      "marks": {"squares":["c8","d5","e6"]}
+    },
+    {
+      "type": "pick",
+      "text": "A bishop hemmed in by its own pawns is a bad bishop. Tap Black's bad bishop.",
+      "accept": ["c8"],
+      "wrong": {
+        "f8": "That bishop runs on dark squares. Black's center pawns stand on light squares, so they do not block it."
+      },
+      "after": "A bishop whose own pawns stand on the other color has open roads: a good bishop."
+    },
+    {
+      "type": "show",
+      "play": ["b7b6","c2c3","d8d7","g1f3","c8a6","f1a6","b8a6"],
+      "text": "One cure is to trade it. Black pushes a pawn to b6, brings the bishop out to a6, and trades it for White's good bishop.",
+      "marks": {"squares":["b6","a6"]}
+    },
+    {
+      "type": "move",
+      "fen": "rnbqkbnr/pp2pppp/2p5/3pP3/3P4/8/PPP2PPP/RNBQKBNR b KQkq - 0 3",
+      "text": "Here Black has not pushed the pawn in front of its king yet. Bring the bishop out first, before the pawns close it in.",
+      "marks": {"squares":["d5"],"arrows":[["c8","f5"]]},
+      "accept": ["c8f5"],
+      "hint": "The bishop leaves along the diagonal toward your king's side of the board.",
+      "after": "The bishop is outside the pawn chain.",
+      "reply": "g1f3"
+    },
+    {
+      "type": "move",
+      "text": "Now push the pawn in front of your king one square. The bishop is already out, so it does not shut anything in.",
+      "marks": {"squares":["f5"],"arrows":[["e7","e6"]]},
+      "accept": ["e7e6"],
+      "after": "Black's pawns sit on light squares, but its light-squared bishop is free.",
+      "reply": "f1e2"
+    }
+  ],
+  "summary": "A bishop blocked by its own pawns is a bad bishop. Get it out before the pawns close in, or trade it.",
+  "practice": {"fen":"rn1qkbnr/pp3ppp/2p1p3/3pPb2/3P4/5N2/PPP1BPPP/RNBQK2R b KQkq - 1 5","side":"b"}
+}

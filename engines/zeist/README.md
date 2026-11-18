@@ -1,0 +1,9 @@
+# Zeist
+
+- Zeist's own chess engine, written for Zeist in plain JavaScript. Code license: AGPL-3.0-or-later (this repository's `LICENSE`, shipped as `LICENSE.txt`). Copyright Amrith. No code or tables come from another engine.
+- Source: the engine's modules are in `src/` (`pst.js`, `board.js`, `eval.js`, `search.js`, `computer.js`). They are written in the Zeist repository, where they are also the computer opponent for Chess in Zeist, and copied here one way by `sync.sh`; `src/SOURCE` names the revision. `build.sh` joins them with `uci.js`, from this repository alone.
+- Network: none. The evaluation is hand-written.
+- Nothing is compiled: `zeist.js` is a classic worker script (the modules' `import` and `export` lines removed, the rest unchanged, inside one function).
+- Search: iterative deepening alpha-beta with a fixed-size transposition table, quiescence, null-move pruning, late-move reductions and a tapered integer evaluation. It never reads a clock: `go nodes N` and `go depth N` are exact limits, and `go` with clock fields uses the level's fixed budget. The same position, moves, `Level` and `Seed` give the same `bestmove` on every platform.
+- Strength: option `Level`, 1 to 10 (default 10). Levels 1 to 8 are Zeist's own levels (`CHESS_LEVELS` in `computer.js`): the same eight opponents in Zeist and in Zeist Chess, each a fixed depth with a margin and noise, choosing among the moves near the best by `Seed` mixed with the number of moves after `position`, as Zeist's rated games do. Levels 9 and 10 are the full engine, always its best move, at 250,000 and 1,500,000 nodes (the pack's `strength.nodes` gives the node limit the app sends at each level).
+- Build: `engines/zeist/build.sh` writes `engines/build/zeist/pack`; check it with `node engines/check.mjs zeist` and `engines/check-webkit.mjs zeist` before promoting.

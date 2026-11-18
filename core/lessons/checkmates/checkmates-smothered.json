@@ -1,0 +1,67 @@
+{
+  "id": "checkmates-smothered",
+  "course": "checkmates",
+  "title": "Smothered mate",
+  "line": "A knight mates a king hemmed in by its own pieces.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "text": "The black king is walled in by its own rook and pawns. Only a knight can check it here, because a knight jumps.",
+      "fen": "r1b3rk/pp4pp/1qn5/4N3/8/8/PPP2PPP/R1B3K1 w - - 0 1",
+      "marks": {"squares":["g8","g7","h7"]}
+    },
+    {
+      "type": "move",
+      "text": "Mate with the knight.",
+      "accept": ["e5f7"],
+      "hint": "Find the knight jump that attacks the corner.",
+      "after": "Smothered mate. The king's own pieces take every square it could flee to.",
+      "mate": true,
+      "marks": {"squares":["h8"]}
+    },
+    {
+      "type": "show",
+      "text": "Here g8 is empty, so a knight check is not yet mate. A famous line chases the king and then gives the queen to fill g8.",
+      "fen": "r3r2k/pp4pp/1q1p4/6N1/2Q5/8/PPP2PPP/R5K1 w - - 0 1",
+      "marks": {"squares":["g8"],"arrows":[["c4","g8"]]}
+    },
+    {
+      "type": "move",
+      "text": "Check with the knight from f7.",
+      "accept": ["g5f7"],
+      "hint": "The knight jumps next to the black king.",
+      "after": "The king's only square is g8.",
+      "reply": "h8g8",
+      "marks": {"squares":["f7","g8"]}
+    },
+    {
+      "type": "move",
+      "text": "Move the knight with check, and the queen checks too. Two checks at once is a double check: the king must move.",
+      "accept": ["f7h6"],
+      "hint": "The knight leaves the queen's diagonal and checks from the edge.",
+      "after": "The king goes back to the corner. On f8 it would be mated by the queen on f7.",
+      "reply": "g8h8",
+      "marks": {"squares":["f7","f8"],"arrows":[["c4","g8"]]}
+    },
+    {
+      "type": "move",
+      "text": "Give the queen: check on g8. The knight guards it, so only the rook can take.",
+      "accept": ["c4g8"],
+      "hint": "The queen goes to the corner of the king's box.",
+      "after": "The rook had to take, and now it stands on g8, walling in its own king.",
+      "reply": "e8g8",
+      "sacrifice": true,
+      "marks": {"squares":["g8"]}
+    },
+    {
+      "type": "move",
+      "text": "Finish it with the knight.",
+      "accept": ["h6f7"],
+      "hint": "Back to the square where the knight first gave check.",
+      "after": "Smothered mate.",
+      "mate": true
+    }
+  ],
+  "summary": "A king walled in by its own pieces can be mated by a lone knight. A queen given up can build the wall."
+}

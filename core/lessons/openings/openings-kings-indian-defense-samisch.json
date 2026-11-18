@@ -1,0 +1,63 @@
+{
+  "id": "openings-kings-indian-defense-samisch",
+  "course": "openings",
+  "title": "King's Indian Defense: Sämisch Variation",
+  "line": "A pawn holds White's center, and the kings often castle on opposite wings.",
+  "side": "b",
+  "steps": [
+    {
+      "type": "show",
+      "text": "The King's Indian, and White pushes the pawn on f2 one square. It guards e4 for good.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {"squares":["e4"],"arrows":[["f2","f3"]]},
+      "play": ["d2d4","g8f6","c2c4","g7g6","b1c3","f8g7","e2e4","d7d6","f2f3"]
+    },
+    {
+      "type": "move",
+      "text": "Castle first. Your king is safe behind the bishop.",
+      "accept": ["e8g8"],
+      "marks": {"arrows":[["e8","g8"]]},
+      "after": "White brings out the bishop. The queen comes next, and White may castle on the other side.",
+      "reply": "c1e3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Strike at the center with the pawn in front of your king.",
+      "accept": ["e7e5"],
+      "marks": {"arrows":[["e7","e5"]]},
+      "also": {
+        "c7c5": "That strikes from the side and is the engine's first choice, a pawn gambit. This lesson goes on with the other pawn."
+      },
+      "after": "White pushes past and the center is closed.",
+      "reply": "d4d5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Jump the knight to the edge. It clears the way for the pawn on f7.",
+      "marks": {"squares":["f7"],"arrows":[["f6","h5"]]},
+      "accept": ["f6h5"],
+      "reply": "d1d2",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Now push the pawn on f7 two squares, at White's center.",
+      "marks": {"squares":["f7"],"arrows":[["f7","f5"]]},
+      "accept": ["f7f5"],
+      "after": "White castles on the queen's side. With the kings on opposite wings, each side can storm the other king.",
+      "reply": "e1c1",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the other knight out, so that the rooks are free to join in.",
+      "accept": ["b8d7"],
+      "marks": {"arrows":[["b8","d7"]]},
+      "taught": true
+    }
+  ],
+  "summary": "Against the pawn that holds the center, Black closes it, frees the pawn in front of the rook and attacks the king.",
+  "practice": {"fen":"r1bq1rk1/pppn2bp/3p2p1/3Ppp1n/2P1P3/2N1BP2/PP1Q2PP/2KR1BNR w - - 2 10","side":"b"}
+}

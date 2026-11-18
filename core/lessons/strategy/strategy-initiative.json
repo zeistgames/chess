@@ -1,0 +1,98 @@
+{
+  "id": "strategy-initiative",
+  "course": "strategy",
+  "title": "The initiative",
+  "line": "Threats that leave your opponent no time, and when time is worth a pawn.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "fen": "rnbqkbnr/pppp1ppp/8/8/3pP3/8/PPP2PPP/RNBQKBNR w KQkq - 0 3",
+      "text": "Time can be worth pawns. In the Danish Gambit, White gives pawns away to bring its pieces out fast.",
+      "marks": {"squares":["d4"]}
+    },
+    {
+      "type": "move",
+      "text": "Offer a pawn: push the pawn on c2 one square.",
+      "marks": {"arrows":[["c2","c3"]]},
+      "accept": ["c2c3"],
+      "taught": true,
+      "after": "Black takes it.",
+      "reply": "d4c3"
+    },
+    {
+      "type": "move",
+      "text": "Offer a second pawn. Instead of taking back, bring your bishop out toward Black's king.",
+      "marks": {"squares":["f7"],"arrows":[["f1","c4"]]},
+      "accept": ["f1c4"],
+      "taught": true,
+      "after": "Black takes again, and its pawn attacks your rook and bishop.",
+      "reply": "c3b2"
+    },
+    {
+      "type": "move",
+      "text": "Take the pawn with your other bishop.",
+      "marks": {"squares":["b2"],"arrows":[["c1","b2"]]},
+      "accept": ["c1b2"],
+      "after": "Two pawns down, but both bishops are out and aim at Black's king side."
+    },
+    {
+      "type": "show",
+      "fen": "rnb1kbnr/ppp1pppp/8/3q4/8/8/PPPP1PPP/RNBQKBNR w KQkq - 0 3",
+      "text": "Black's queen came out early. Each threat against it costs Black a move while you bring out a piece. That is the initiative.",
+      "marks": {"squares":["d5"]}
+    },
+    {
+      "type": "move",
+      "text": "Bring out a knight that attacks the queen.",
+      "marks": {"squares":["d5"],"arrows":[["b1","c3"]]},
+      "accept": ["b1c3"],
+      "also": {
+        "g1f3": "That is fine too, but it makes no threat. This lesson attacks the queen to gain a move."
+      },
+      "after": "The queen has to move again.",
+      "reply": "d5a5"
+    },
+    {
+      "type": "move",
+      "text": "Take the center while the queen is away: push the pawn in front of your queen two squares.",
+      "marks": {"arrows":[["d2","d4"]]},
+      "accept": ["d2d4"],
+      "also": {
+        "g1f3": "That is as strong. This lesson takes the center first."
+      },
+      "after": "Black brings out a knight.",
+      "reply": "g8f6"
+    },
+    {
+      "type": "move",
+      "text": "Bring out your other knight.",
+      "marks": {"arrows":[["g1","f3"]]},
+      "accept": ["g1f3"],
+      "after": "Black gives its queen a way back.",
+      "reply": "c7c6"
+    },
+    {
+      "type": "move",
+      "fen": "rn2kb1r/pp2pppp/2p2n2/q4b2/2BP4/2N2N2/PPP2PPP/R1BQK2R w KQkq - 2 7",
+      "text": "Both sides brought out a bishop. Now bring out your last one: it lines up with Black's queen, behind your knight.",
+      "marks": {"squares":["a5","c3"],"arrows":[["c1","d2"]]},
+      "accept": ["c1d2"],
+      "after": "Black opens a road for its other bishop.",
+      "reply": "e7e6"
+    },
+    {
+      "type": "move",
+      "text": "Move the knight with a threat: it jumps to the center and uncovers your bishop's attack on the queen.",
+      "marks": {"squares":["a5"],"arrows":[["c3","d5"],["d2","a5"]]},
+      "accept": ["c3d5"],
+      "also": {
+        "c3e4": "That uncovers the attack too. This lesson goes on with the knight in the center."
+      },
+      "after": "The queen goes back home. White has four pieces out, Black two.",
+      "reply": "a5d8"
+    }
+  ],
+  "summary": "Make threats as you bring your pieces out. Each one costs your opponent a move, and time can be worth a pawn.",
+  "practice": {"fen":"rn1qkb1r/pp3ppp/2p1pn2/3N1b2/2BP4/5N2/PPPB1PPP/R2QK2R w KQkq - 2 9","side":"w"}
+}

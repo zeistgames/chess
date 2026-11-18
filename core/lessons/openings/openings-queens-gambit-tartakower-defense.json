@@ -1,0 +1,206 @@
+{
+  "id": "openings-queens-gambit-tartakower-defense",
+  "course": "openings",
+  "title": "Queen's Gambit Declined: Tartakower Defense",
+  "line": "Black makes room for its shut in bishop, and White trades pieces and presses on the c-file.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "text": "Black holds the center with pawns and unpins its knight with the bishop.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {
+        "squares": [
+          "e7",
+          "f6"
+        ]
+      },
+      "play": [
+        "d2d4",
+        "d7d5",
+        "c2c4",
+        "e7e6",
+        "b1c3",
+        "g8f6",
+        "c1g5",
+        "f8e7"
+      ]
+    },
+    {
+      "type": "show",
+      "text": "Both sides develop. Black pushes a pawn to ask your bishop where it wants to go.",
+      "marks": {
+        "squares": [
+          "h6",
+          "g5"
+        ]
+      },
+      "play": [
+        "e2e3",
+        "e8g8",
+        "g1f3",
+        "h7h6"
+      ]
+    },
+    {
+      "type": "move",
+      "text": "Pull the bishop back one square. It keeps attacking the knight on f6.",
+      "marks": {
+        "squares": [
+          "f6",
+          "c8",
+          "b6"
+        ],
+        "arrows": [
+          [
+            "g5",
+            "h4"
+          ]
+        ]
+      },
+      "accept": [
+        "g5h4"
+      ],
+      "also": {
+        "g5f6": "Trading the bishop for the knight is sound too. This lesson keeps the bishop."
+      },
+      "after": "This is the Tartakower Defense. The pawn on b6 opens a path for the bishop on c8.",
+      "reply": "b7b6",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Trade pawns on d5. Now White has no pawn on the c-file, so a rook can use it.",
+      "marks": {
+        "squares": [
+          "d5"
+        ],
+        "arrows": [
+          [
+            "c4",
+            "d5"
+          ]
+        ]
+      },
+      "accept": [
+        "c4d5"
+      ],
+      "reply": "f6d5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Trade bishops. The knight left f6, so the bishop on e7 attacked yours.",
+      "marks": {
+        "squares": [
+          "e7",
+          "f6"
+        ],
+        "arrows": [
+          [
+            "h4",
+            "e7"
+          ]
+        ]
+      },
+      "accept": [
+        "h4e7"
+      ],
+      "reply": "d8e7"
+    },
+    {
+      "type": "move",
+      "text": "Trade knights on d5. Now the long diagonal is blocked by Black's own pawn.",
+      "marks": {
+        "squares": [
+          "d5"
+        ],
+        "arrows": [
+          [
+            "c3",
+            "d5"
+          ]
+        ]
+      },
+      "accept": [
+        "c3d5"
+      ],
+      "reply": "e6d5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Put the rook on the c-file, against the pawn on c7.",
+      "marks": {
+        "squares": [
+          "c7"
+        ],
+        "arrows": [
+          [
+            "a1",
+            "c1"
+          ]
+        ]
+      },
+      "accept": [
+        "a1c1"
+      ],
+      "reply": "c8e6",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the queen out to the side. It attacks the pawn on a7.",
+      "marks": {
+        "squares": [
+          "a7",
+          "c7",
+          "c5",
+          "d5"
+        ],
+        "arrows": [
+          [
+            "d1",
+            "a4"
+          ]
+        ]
+      },
+      "accept": [
+        "d1a4"
+      ],
+      "after": "Black pushes the pawn on c7 two squares to free its game.",
+      "reply": "c7c5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Move the queen down one square. It aims at the pawn on c5 from the side, and your rook aims at it down the file.",
+      "marks": {
+        "squares": [
+          "c5",
+          "d5"
+        ],
+        "arrows": [
+          [
+            "a4",
+            "a3"
+          ],
+          [
+            "a3",
+            "c5"
+          ]
+        ]
+      },
+      "accept": [
+        "a4a3"
+      ],
+      "after": "White keeps up the pressure on the pawns on c5 and d5.",
+      "taught": true
+    }
+  ],
+  "summary": "Black makes room for its bishop. White trades pieces on the center square and presses on the pawns on the c-file.",
+  "practice": {
+    "fen": "rn3rk1/p3qpp1/1p2b2p/2pp4/3P4/Q3PN2/PP3PPP/2R1KB1R b K - 1 13",
+    "side": "w"
+  }
+}

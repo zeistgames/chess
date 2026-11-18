@@ -1,0 +1,15 @@
+{
+  "name": "Clover",
+  "version": "9.1",
+  "author": "Luca Metehau",
+  "license": "GPL-3.0-or-later",
+  "net_license": "GPL-3.0-or-later",
+  "source": "https://github.com/lucametehau/CloverEngine/tree/v9.1",
+  "line": "A small, fast engine that always plays its best.",
+  "entry": "clover.js",
+  "strength": {
+    "type": "none"
+  },
+  "multipv": true,
+  "threads": false
+}

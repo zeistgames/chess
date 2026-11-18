@@ -1,0 +1,180 @@
+{
+  "id": "openings-ruy-lopez-noahs-ark",
+  "course": "openings",
+  "title": "Ruy Lopez: Noah's Ark trap",
+  "line": "Black's pawns chase the queen and then trap White's bishop.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "text": "The Ruy Lopez. Black guards the pawn on e5 with another pawn.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {
+        "squares": [
+          "e5",
+          "d6"
+        ]
+      },
+      "play": [
+        "e2e4",
+        "e7e5",
+        "g1f3",
+        "b8c6",
+        "f1b5",
+        "a7a6",
+        "b5a4",
+        "d7d6"
+      ]
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn in front of your queen two squares, to attack the pawn on e5. It is one choice here.",
+      "marks": {
+        "squares": [
+          "e5"
+        ],
+        "arrows": [
+          [
+            "d2",
+            "d4"
+          ]
+        ]
+      },
+      "accept": [
+        "d2d4"
+      ],
+      "also": {
+        "e1g1": "Castling is the move masters play most here, also sound. This lesson pushes the pawn.",
+        "c2c3": "That is also sound and often played. This lesson pushes the pawn."
+      },
+      "reply": "b7b5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "The pawns chase your bishop. Step it back to b3, where it still aims at f7.",
+      "marks": {
+        "squares": [
+          "f7"
+        ],
+        "arrows": [
+          [
+            "a4",
+            "b3"
+          ],
+          [
+            "b3",
+            "f7"
+          ]
+        ]
+      },
+      "accept": [
+        "a4b3"
+      ],
+      "reply": "c6d4",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Take the knight that jumped into the center, so it cannot hit your pieces from there.",
+      "marks": {
+        "squares": [
+          "d4"
+        ],
+        "arrows": [
+          [
+            "f3",
+            "d4"
+          ]
+        ]
+      },
+      "accept": [
+        "f3d4"
+      ],
+      "reply": "e5d4",
+      "taught": true
+    },
+    {
+      "type": "show",
+      "text": "The pawn on d4 looks free. If the queen takes it, as club players very often do, the pawns chase her and the last one traps the bishop.",
+      "marks": {
+        "squares": [
+          "b3",
+          "d4"
+        ],
+        "arrows": [
+          [
+            "c5",
+            "c4"
+          ]
+        ]
+      },
+      "play": [
+        "d1d4",
+        "c7c5",
+        "d4d5",
+        "c8e6",
+        "d5c6",
+        "e6d7",
+        "c6d5",
+        "c5c4"
+      ]
+    },
+    {
+      "type": "move",
+      "text": "Back before the trap: leave the pawn on d4 for now. Push the pawn on c2 to open lines instead.",
+      "fen": "r1bqkbnr/2p2ppp/p2p4/1p6/3pP3/1B6/PPP2PPP/RNBQK2R w KQkq - 0 8",
+      "marks": {
+        "squares": [
+          "d4",
+          "b3"
+        ],
+        "arrows": [
+          [
+            "c2",
+            "c3"
+          ]
+        ]
+      },
+      "accept": [
+        "c2c3"
+      ],
+      "wrong": {
+        "d1d4": "That is the trap you just saw: the pawns chase the queen, and the bishop is shut in."
+      },
+      "also": {
+        "b3d5": "Moving the bishop off the trap first is also sound. This lesson pushes the pawn.",
+        "a2a4": "Hitting the pawns on the queen side is also sound. This lesson pushes the pawn."
+      },
+      "reply": "d4c3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Take back with the knight. You are a pawn down, but your pieces come out fast and the bishop is free.",
+      "marks": {
+        "squares": [
+          "c3",
+          "b3"
+        ],
+        "arrows": [
+          [
+            "b1",
+            "c3"
+          ]
+        ]
+      },
+      "accept": [
+        "b1c3"
+      ],
+      "after": "White has open lines and quick play for the pawn. The bishop on b3 is out of danger.",
+      "reply": "g8f6",
+      "taught": true
+    }
+  ],
+  "summary": "A pawn on the edge of a long pawn chain can trap a bishop. Before taking a pawn, check what the pawns do next.",
+  "practice": {
+    "fen": "r1bqkb1r/2p2ppp/p2p1n2/1p6/4P3/1BN5/PP3PPP/R1BQK2R w KQkq - 1 10",
+    "side": "w"
+  }
+}

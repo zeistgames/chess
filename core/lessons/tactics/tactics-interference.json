@@ -1,0 +1,43 @@
+{
+  "id": "tactics-interference",
+  "course": "tactics",
+  "title": "Interference",
+  "line": "Put a piece between a defender and what it defends.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "text": "Your pawn is one step from becoming a queen, but Black's bishop guards the square from far away.",
+      "fen": "5N2/6P1/8/1p2K3/p7/1b6/1k6/8 w - - 3 55",
+      "marks": {"squares":["g8"],"arrows":[["b3","g8"]]}
+    },
+    {
+      "type": "pick",
+      "text": "Tap the square on the bishop's line where your knight can land.",
+      "fen": "5N2/6P1/8/1p2K3/p7/1b6/1k6/8 w - - 3 55",
+      "accept": ["e6"],
+      "all": false,
+      "hint": "The knight jumps to a square between the bishop and the pawn's square.",
+      "after": "From there the knight cuts the bishop's line."
+    },
+    {
+      "type": "move",
+      "text": "Jump there.",
+      "fen": "5N2/6P1/8/1p2K3/p7/1b6/1k6/8 w - - 3 55",
+      "marks": {"arrows":[["b3","g8"]]},
+      "accept": ["f8e6"],
+      "after": "If the bishop takes the knight, your king takes the bishop, and the pawn still promotes.",
+      "reply": "a4a3"
+    },
+    {
+      "type": "move",
+      "text": "Now promote.",
+      "accept": ["g7g8q"],
+      "after": "The bishop's guard was cut, and the pawn is a queen.",
+      "reply": "a3a2"
+    },
+    {"type":"move","text":"Give check with your queen.","accept":["g8g2"]}
+  ],
+  "summary": "When one piece guards a square from afar, put one of yours in its line. The guard is cut, and the square is yours.",
+  "practice": {"fen":"8/8/4N3/1p2K3/8/1b6/pk4Q1/8 b - - 1 57","side":"w"}
+}

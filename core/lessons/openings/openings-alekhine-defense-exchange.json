@@ -1,0 +1,70 @@
+{
+  "id": "openings-alekhine-defense-exchange",
+  "course": "openings",
+  "title": "Alekhine Defense: Exchange Variation",
+  "line": "White trades pawns; Black takes back toward the center and later strikes with the other center pawn.",
+  "side": "b",
+  "steps": [
+    {
+      "type": "show",
+      "text": "In the Alekhine, White's pawn chases the knight and a second pawn joins it in the center.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {"arrows":[["e4","e5"]]},
+      "play": ["e2e4","g8f6","e4e5","f6d5","d2d4"]
+    },
+    {
+      "type": "show",
+      "text": "Black hits the front pawn, a third pawn chases the knight again, and here White trades its front pawn for yours.",
+      "marks": {"arrows":[["e5","d6"]]},
+      "play": ["d7d6","c2c4","d5b6","e5d6"]
+    },
+    {
+      "type": "move",
+      "text": "Take back with the pawn on c7. It keeps two pawns in the middle.",
+      "marks": {"arrows":[["c7","d6"]]},
+      "accept": ["c7d6"],
+      "also": {
+        "e7d6": "That also works, and keeps the pawns even. This lesson takes back toward the center."
+      },
+      "reply": "b1c3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn on g7 one square, to make room for your bishop.",
+      "marks": {"arrows":[["g7","g6"]]},
+      "accept": ["g7g6"],
+      "reply": "c1e3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Put the bishop on g7. It aims at the pawn on d4.",
+      "marks": {"squares":["d4"],"arrows":[["f8","g7"]]},
+      "accept": ["f8g7"],
+      "reply": "a1c1",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Castle. Your king goes to safety, and a rook comes toward the center.",
+      "marks": {"arrows":[["e8","g8"]]},
+      "accept": ["e8g8"],
+      "reply": "b2b3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Strike at the center: push the pawn on e7 two squares.",
+      "marks": {"squares":["d4"],"arrows":[["e7","e5"]]},
+      "accept": ["e7e5"],
+      "after": "Your pawn hits d4 and takes a share of the center.",
+      "taught": true
+    }
+  ],
+  "summary": "In the Exchange, Black takes back toward the center, puts a bishop on the long diagonal and strikes at the center.",
+  "practice": {
+    "fen": "rnbq1rk1/pp3pbp/1n1p2p1/4p3/2PP4/1PN1B3/P4PPP/2RQKBNR w K - 0 10",
+    "side": "b"
+  }
+}

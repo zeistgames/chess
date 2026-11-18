@@ -1,0 +1,104 @@
+{
+  "id": "checkmates-arabian",
+  "course": "checkmates",
+  "title": "Arabian and hook mates",
+  "line": "A rook right next to the king, guarded by a knight, in the corner or out in the open.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "text": "Arabian mate: the rook checks right next to the king in the corner. The knight guards the rook and takes the square the rook cannot.",
+      "fen": "3r3k/pR5p/5N2/8/8/8/P4PPP/6K1 w - - 0 1",
+      "marks": {
+        "squares": [
+          "h8",
+          "g8"
+        ],
+        "arrows": [
+          [
+            "f6",
+            "h7"
+          ]
+        ]
+      }
+    },
+    {
+      "type": "move",
+      "text": "Mate with the rook.",
+      "accept": [
+        "b7h7"
+      ],
+      "hint": "The rook slides along its row to the square the knight guards.",
+      "after": "Checkmate. The king cannot take the rook, because the knight guards it.",
+      "mate": true
+    },
+    {
+      "type": "move",
+      "text": "The same pair from the other side. Mate with the rook next to the king.",
+      "fen": "7k/p6p/1p3N2/8/8/8/P1r2P1P/6RK w - - 0 1",
+      "accept": [
+        "g1g8"
+      ],
+      "hint": "The rook goes up its open file to the back row.",
+      "after": "Checkmate. The knight guards the rook on g8, and Black's own pawn on h7 blocks the king.",
+      "mate": true,
+      "marks": {
+        "squares": [
+          "h8",
+          "g8",
+          "h7"
+        ]
+      }
+    },
+    {
+      "type": "show",
+      "text": "The hook mate: the rook checks next to the king, the knight guards the rook, and a pawn guards the knight and takes a square too.",
+      "fen": "1R6/p3kp2/1p3N1p/4P3/8/8/2r2PPP/6K1 w - - 0 1",
+      "marks": {
+        "squares": [
+          "e8",
+          "e7"
+        ],
+        "arrows": [
+          [
+            "e5",
+            "f6"
+          ],
+          [
+            "f6",
+            "e8"
+          ]
+        ]
+      }
+    },
+    {
+      "type": "pick",
+      "text": "Before you mate, tap the black pawn that blocks its own king.",
+      "accept": [
+        "f7"
+      ],
+      "wrong": {
+        "h6": "That pawn is not next to the king. Look at the squares around the black king."
+      },
+      "hint": "Look at the squares right beside the black king.",
+      "after": "The pawn takes a square from its own king. Your rook, knight and pawn take the rest."
+    },
+    {
+      "type": "move",
+      "text": "Now mate with the rook.",
+      "accept": [
+        "b8e8"
+      ],
+      "hint": "The rook slides along the back rank to the square the knight guards.",
+      "after": "Hook mate. The king cannot take the rook or the knight, and your pawn takes d6.",
+      "mate": true,
+      "marks": {
+        "squares": [
+          "e8",
+          "d6"
+        ]
+      }
+    }
+  ],
+  "summary": "A rook right next to the king, guarded by a knight that also takes a square, mates in the corner or in the open."
+}

@@ -1,0 +1,168 @@
+{
+  "id": "openings-vienna-game-ideas",
+  "course": "openings",
+  "title": "Vienna Game: the ideas",
+  "line": "The knight comes out first, and the pawn on f2 is ready to push.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "text": "In the Vienna Game White brings the queen side knight out first. The pawn on f2 stays free to push, as in the King's Gambit.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {
+        "squares": [
+          "f2"
+        ],
+        "arrows": [
+          [
+            "b1",
+            "c3"
+          ]
+        ]
+      }
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn in front of your king two squares. It takes space in the center and frees your queen and a bishop.",
+      "marks": {
+        "arrows": [
+          [
+            "e2",
+            "e4"
+          ]
+        ]
+      },
+      "accept": [
+        "e2e4"
+      ],
+      "also": {
+        "d2d4": "Pushing the queen's pawn is also sound and leads to other openings. This lesson pushes the king's pawn."
+      },
+      "reply": "e7e5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the knight out to c3. It guards your pawn on e4 and keeps the way clear for the pawn on f2.",
+      "marks": {
+        "squares": [
+          "e4",
+          "f2"
+        ],
+        "arrows": [
+          [
+            "b1",
+            "c3"
+          ]
+        ]
+      },
+      "accept": [
+        "b1c3"
+      ],
+      "also": {
+        "g1f3": "The other knight is the most common move, also sound, and leads to other openings. This lesson brings this knight out.",
+        "f1c4": "That is the Bishop's Opening, also sound. This lesson brings the knight out."
+      },
+      "after": "This is the Vienna Game.",
+      "reply": "g8f6",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn on f2 two squares. It attacks the pawn on e5. Engines rate this push about level.",
+      "marks": {
+        "squares": [
+          "e5"
+        ],
+        "arrows": [
+          [
+            "f2",
+            "f4"
+          ]
+        ]
+      },
+      "accept": [
+        "f2f4"
+      ],
+      "also": {
+        "f1c4": "The bishop move is also sound. This lesson pushes the pawn.",
+        "g2g3": "Making room for the bishop on the long diagonal is also sound. This lesson pushes the pawn.",
+        "g1f3": "That leads to the Four Knights Game, also sound. This lesson pushes the pawn."
+      },
+      "after": "Black takes, as many club players do. Masters strike back in the center instead: the next lesson.",
+      "reply": "e5f4",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "That take is a slip: push the pawn on e4 one square. It attacks the knight, which has only one safe square.",
+      "marks": {
+        "squares": [
+          "f6"
+        ],
+        "arrows": [
+          [
+            "e4",
+            "e5"
+          ]
+        ]
+      },
+      "accept": [
+        "e4e5"
+      ],
+      "after": "The knight goes all the way back home.",
+      "reply": "f6g8"
+    },
+    {
+      "type": "move",
+      "text": "Bring your other knight out. It keeps the black queen from checking on h4.",
+      "marks": {
+        "squares": [
+          "h4"
+        ],
+        "arrows": [
+          [
+            "g1",
+            "f3"
+          ]
+        ]
+      },
+      "accept": [
+        "g1f3"
+      ],
+      "reply": "d7d6",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn in front of your queen two squares. Your pawns hold the center.",
+      "marks": {
+        "squares": [
+          "d4",
+          "e5",
+          "f4"
+        ],
+        "arrows": [
+          [
+            "d2",
+            "d4"
+          ]
+        ]
+      },
+      "accept": [
+        "d2d4"
+      ],
+      "also": {
+        "d1e2": "That is also played. This lesson builds the center."
+      },
+      "after": "You take back on e5 next, and later the pawn on f4. Meanwhile your pieces are out and Black's are at home.",
+      "reply": "d6e5",
+      "taught": true
+    }
+  ],
+  "summary": "The knight out first guards the center pawn and leaves the side pawn free to push. If Black takes it, chase the knight.",
+  "practice": {
+    "fen": "rnbqkbnr/pppp1ppp/8/4p3/4P3/2N5/PPPP1PPP/R1BQKBNR b KQkq - 1 2",
+    "side": "w"
+  }
+}

@@ -1,0 +1,173 @@
+diff --git a/src/main.cpp b/src/main.cpp
+index 0b245b5..d3a18e4 100644
+--- a/src/main.cpp
++++ b/src/main.cpp
+@@ -28,6 +28,15 @@
+ #include <iostream>
+ #include <string>
+ 
++#if defined(__EMSCRIPTEN__) && !defined(GENERATE)
++static UCI *zeist_uci_instance = nullptr;
++extern "C" void zeist_handle_line(const char *line)
++{
++    if (zeist_uci_instance)
++        zeist_uci_instance->zeist_line(line);
++}
++#endif
++
+ int main(int argc, char **argv)
+ {
+     init_defs();
+@@ -125,8 +134,15 @@ int main(int argc, char **argv)
+     }
+ 
+ #ifndef GENERATE
++#ifdef __EMSCRIPTEN__
++    static UCI uci;
++    uci.uci_loop();
++    zeist_uci_instance = &uci;
++    return 0;
++#else
+     UCI uci;
+     uci.uci_loop();
++#endif
+ #endif
+     return 0;
+ }
+\ No newline at end of file
+diff --git a/src/net.h b/src/net.h
+index 8a5bc1f..272ad7a 100644
+--- a/src/net.h
++++ b/src/net.h
+@@ -93,7 +93,14 @@
+ #define ALIGN 64
+ #endif
+ 
++#ifdef __EMSCRIPTEN__
++// Zeist: the worker writes the network into the in-memory file system.
++#include <cstdio>
++#include <cstdlib>
++static const unsigned char *gNetData = nullptr;
++#else
+ INCBIN(Net, EVALFILE);
++#endif
+ 
+ constexpr int KING_BUCKETS = 7;
+ constexpr int INPUT_NEURONS = 768 * KING_BUCKETS;
+@@ -129,6 +136,18 @@ constexpr int get_king_bucket_cache_index(const Square king_sq, const bool side)
+ 
+ void load_nnue_weights()
+ {
++#ifdef __EMSCRIPTEN__
++    if (!gNetData)
++    {
++        FILE *f = std::fopen("/" EVALFILE, "rb");
++        void *buf = std::aligned_alloc(ALIGN, (sizeof(NNUE) + ALIGN - 1) / ALIGN * ALIGN);
++        if (!f || std::fread(buf, 1, sizeof(NNUE), f) != sizeof(NNUE))
++            std::cout << "info string could not read network " EVALFILE << std::endl;
++        if (f)
++            std::fclose(f);
++        gNetData = static_cast<const unsigned char *>(buf);
++    }
++#endif
+     nnue = reinterpret_cast<const NNUE *>(gNetData);
+ }
+ 
+diff --git a/src/search.h b/src/search.h
+index 8569821..dcd3532 100644
+--- a/src/search.h
++++ b/src/search.h
+@@ -80,7 +80,7 @@ template <bool pvNode> int SearchThread::quiesce(int alpha, int beta, StackEntry
+     }
+ 
+     HistoricalState next_state;
+-    const bool in_check = board.checkers() != 0;
++    const bool in_check = board.checkers() != 0ULL;
+     int futility_base;
+ 
+     if (in_check)
+@@ -302,7 +302,7 @@ int SearchThread::search(int alpha, int beta, int depth, StackEntry *stack)
+     }
+ 
+     HistoricalState next_state;
+-    const bool in_check = (board.checkers() != 0);
++    const bool in_check = (board.checkers() != 0ULL);
+     const bool enemy_has_no_threats = !board.threats().threatened_pieces;
+     int raw_eval;
+ 
+@@ -630,7 +630,7 @@ int SearchThread::search(int alpha, int beta, int depth, StackEntry *stack)
+ 
+             R -= LMRGrain * history /
+                  (is_quiet ? HistReductionDiv : CapHistReductionDiv); // reduce move based on history
+-            R -= LMRGivesCheck * (board.checkers() != 0);             // move gives check
++            R -= LMRGivesCheck * (board.checkers() != 0ULL);             // move gives check
+             R += LMRWasNotPV * !was_pv;
+             R += LMRGoodEval *
+                  (enemy_has_no_threats && !in_check &&
+diff --git a/src/thread.h b/src/thread.h
+index 61a89bc..1c9ea70 100644
+--- a/src/thread.h
++++ b/src/thread.h
+@@ -94,7 +94,9 @@ class alignas(64) SearchThread
+     SearchThread(ThreadPool *thread_pool, int thread_id) : thread_pool(thread_pool), thread_id(thread_id)
+     {
+         state = ThreadStates::IDLE;
++#ifndef __EMSCRIPTEN__
+         thread = std::thread(&SearchThread::main_loop, this);
++#endif
+     }
+ 
+     ~SearchThread() = default;
+@@ -327,10 +329,19 @@ class ThreadPool
+             std::lock_guard<std::mutex> lock(thread->mutex);
+             thread->state |= ThreadStates::SEARCH;
+         }
++#ifdef __EMSCRIPTEN__
++        // Zeist: single-threaded WASM, search inline on the calling thread.
++        for (auto &thread : threads)
++        {
++            thread->start_search();
++            thread->state &= ~ThreadStates::SEARCH;
++        }
++#else
+         for (auto &thread : threads)
+         {
+             thread->cv.notify_all();
+         }
++#endif
+     }
+ 
+     void pick_and_print_best_thread()
+diff --git a/src/uci.h b/src/uci.h
+index 7ecbfe8..ebeaea5 100644
+--- a/src/uci.h
++++ b/src/uci.h
+@@ -142,6 +142,9 @@ class UCI
+ 
+   public:
+     void uci_loop();
++#ifdef __EMSCRIPTEN__
++    void zeist_line(const std::string &input);
++#endif
+     void bench(int depth = -1);
+ 
+   private:
+@@ -169,9 +172,18 @@ void UCI::uci_loop()
+     states = std::make_unique<std::deque<HistoricalState>>(1);
+     thread_pool.get_board().set_fen(START_POS_FEN, states->back());
+ 
++#ifdef __EMSCRIPTEN__
++    // Zeist: setup only; the worker sends each line to zeist_line().
++}
++
++void UCI::zeist_line(const std::string &input)
++{
++    {
++#else
+     std::string input;
+     while (getline(std::cin, input))
+     {
++#endif
+         std::istringstream iss(input);
+         std::string cmd;
+         iss >> std::skipws >> cmd;

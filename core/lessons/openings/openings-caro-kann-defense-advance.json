@@ -1,0 +1,64 @@
+{
+  "id": "openings-caro-kann-defense-advance",
+  "course": "openings",
+  "title": "Caro-Kann Defense: Advance Variation",
+  "line": "White's pawn pushes past; Black's bishop comes out first, then a pawn hits the base of the chain.",
+  "side": "b",
+  "steps": [
+    {
+      "type": "show",
+      "text": "Here White's pawn pushes past and takes space.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {"arrows":[["e4","e5"]]},
+      "play": ["e2e4","c7c6","d2d4","d7d5","e4e5"]
+    },
+    {
+      "type": "move",
+      "text": "Bring the bishop out to f5 before the pawns close it in.",
+      "marks": {"arrows":[["c8","f5"]]},
+      "accept": ["c8f5"],
+      "also": {
+        "c6c5": "That is also played. This lesson brings the bishop out first."
+      },
+      "reply": "g1f3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn on e7 one square. Now your other bishop can come out.",
+      "marks": {"arrows":[["e7","e6"]]},
+      "accept": ["e7e6"],
+      "reply": "f1e2",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn on c6 one more square. It hits the base of White's chain, the pawn on d4.",
+      "marks": {"squares":["d4"],"arrows":[["c6","c5"]]},
+      "accept": ["c6c5"],
+      "reply": "c1e3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the queen to b6. She adds an attacker on d4 and eyes the pawn on b2.",
+      "marks": {"squares":["d4","b2"],"arrows":[["d8","b6"]]},
+      "accept": ["d8b6"],
+      "reply": "b1c3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the knight out. It is one more attacker on d4.",
+      "marks": {"squares":["d4"],"arrows":[["b8","c6"]]},
+      "accept": ["b8c6"],
+      "after": "Your pawn, queen and knight all hit the pawn on d4, the base of White's chain.",
+      "taught": true
+    }
+  ],
+  "summary": "In the Advance, the bishop comes out before the pawns close it in, then Black piles up on the base of White's chain.",
+  "practice": {
+    "fen": "r3kbnr/pp3ppp/1qn1p3/2ppPb2/3P4/2N1BN2/PPP1BPPP/R2QK2R w KQkq - 4 8",
+    "side": "b"
+  }
+}

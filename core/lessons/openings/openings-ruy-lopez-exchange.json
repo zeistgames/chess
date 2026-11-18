@@ -1,0 +1,210 @@
+{
+  "id": "openings-ruy-lopez-exchange",
+  "course": "openings",
+  "title": "Ruy Lopez: Exchange Variation",
+  "line": "White gives the bishop for the knight to spoil Black's pawns, and aims for an endgame.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "text": "The Ruy Lopez: Black asks the bishop what it will do.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {
+        "squares": [
+          "b5",
+          "c6"
+        ],
+        "arrows": [
+          [
+            "a6",
+            "b5"
+          ]
+        ]
+      },
+      "play": [
+        "e2e4",
+        "e7e5",
+        "g1f3",
+        "b8c6",
+        "f1b5",
+        "a7a6"
+      ]
+    },
+    {
+      "type": "move",
+      "text": "Take the knight. You give up the bishop to spoil Black's pawns.",
+      "marks": {
+        "squares": [
+          "c6"
+        ],
+        "arrows": [
+          [
+            "b5",
+            "c6"
+          ]
+        ]
+      },
+      "accept": [
+        "b5c6"
+      ],
+      "also": {
+        "b5a4": "Keeping the bishop is the main line, in other lessons. This lesson takes the knight."
+      },
+      "reply": "d7c6",
+      "taught": true
+    },
+    {
+      "type": "pick",
+      "text": "Tap the two black pawns that stand on the same file, one in front of the other.",
+      "accept": [
+        "c6",
+        "c7"
+      ],
+      "all": true,
+      "after": "Doubled pawns. After the center pawns trade, your four pawns to three on the king side can make a free pawn; Black's doubled ones cannot."
+    },
+    {
+      "type": "show",
+      "text": "The pawn on e5 looks free, but it is not. If your knight takes it, the queen attacks the knight and the pawn on e4, and gets a pawn back.",
+      "marks": {
+        "squares": [
+          "e5",
+          "e4",
+          "d4"
+        ],
+        "arrows": [
+          [
+            "d4",
+            "e5"
+          ],
+          [
+            "d4",
+            "e4"
+          ]
+        ]
+      },
+      "play": [
+        "f3e5",
+        "d8d4"
+      ]
+    },
+    {
+      "type": "move",
+      "text": "So castle instead, and leave the pawn for now.",
+      "fen": "r1bqkbnr/1pp2ppp/p1p5/4p3/4P3/5N2/PPPP1PPP/RNBQK2R w KQkq - 0 5",
+      "marks": {
+        "squares": [
+          "e5",
+          "g1",
+          "e4"
+        ],
+        "arrows": [
+          [
+            "e1",
+            "g1"
+          ]
+        ]
+      },
+      "accept": [
+        "e1g1"
+      ],
+      "also": {
+        "b1c3": "That is also played. This lesson castles first.",
+        "d2d3": "That is also played. This lesson castles first."
+      },
+      "after": "Castled, you threaten the pawn: if the queen then grabs yours on e4, the rook comes to e1 and drives her off. Black guards with a pawn.",
+      "reply": "f7f6",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn in front of your queen two squares to open the center.",
+      "marks": {
+        "squares": [
+          "e5"
+        ],
+        "arrows": [
+          [
+            "d2",
+            "d4"
+          ]
+        ]
+      },
+      "accept": [
+        "d2d4"
+      ],
+      "reply": "e5d4",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Take back with the knight, which stands well in the center.",
+      "marks": {
+        "squares": [
+          "d4"
+        ],
+        "arrows": [
+          [
+            "f3",
+            "d4"
+          ]
+        ]
+      },
+      "accept": [
+        "f3d4"
+      ],
+      "after": "The pawn chases your knight.",
+      "reply": "c6c5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Step the knight back, out of the way of the queens.",
+      "marks": {
+        "squares": [
+          "d1",
+          "d8"
+        ],
+        "arrows": [
+          [
+            "d4",
+            "b3"
+          ]
+        ]
+      },
+      "accept": [
+        "d4b3"
+      ],
+      "also": {
+        "d4e2": "That square is also played. This lesson goes to b3."
+      },
+      "reply": "d8d1",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Take back the queen with your rook, which lands on the open file.",
+      "marks": {
+        "squares": [
+          "d1"
+        ],
+        "arrows": [
+          [
+            "f1",
+            "d1"
+          ]
+        ]
+      },
+      "accept": [
+        "f1d1"
+      ],
+      "after": "Queens are off. In the end your extra pawn on the king side can become a pawn no black pawn can stop.",
+      "taught": true
+    }
+  ],
+  "summary": "The bishop is given for the knight to double Black's pawns. With queens traded, White's pawns count for more.",
+  "practice": {
+    "fen": "r1b1kbnr/1pp3pp/p4p2/2p5/4P3/1N6/PPP2PPP/RNBR2K1 b kq - 0 9",
+    "side": "w"
+  }
+}

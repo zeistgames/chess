@@ -1,0 +1,60 @@
+{
+  "id": "endgames-breakthroughs",
+  "course": "endgames",
+  "title": "Breakthroughs",
+  "line": "Three pawns against three, and the sacrifice that makes a queen.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "fen": "8/ppp5/6k1/PPP5/8/8/8/7K w - - 0 1",
+      "text": "Three pawns face three, and both kings are far away. One pawn sacrifice breaks the wall, and a white pawn promotes.",
+      "marks": {"squares":["a5","b5","c5"]}
+    },
+    {
+      "type": "move",
+      "fen": "8/ppp5/6k1/PPP5/8/8/8/7K w - - 0 1",
+      "text": "Push the middle pawn into Black's pawns.",
+      "marks": {"squares":["b5"]},
+      "accept": ["b5b6"],
+      "wrong": {
+        "h1g2": "That loses time: the black king comes over to the pawns, and Black comes out ahead.",
+        "h1h2": "That loses time: the black king comes over to the pawns, and Black comes out ahead.",
+        "h1g1": "That loses time: the black king comes over to the pawns, and Black comes out ahead.",
+        "a5a6": "Black answers by pushing the middle pawn, and the wall holds. Black comes out ahead.",
+        "c5c6": "Black takes with the middle pawn, and the wall holds. Black comes out ahead."
+      },
+      "hint": "Sacrifice the pawn in the middle.",
+      "after": "Whichever pawn takes, the next sacrifice opens the way.",
+      "reply": "c7b6"
+    },
+    {
+      "type": "move",
+      "text": "Black took from the side. Now sacrifice the edge pawn too.",
+      "marks": {"squares":["a5","b7"]},
+      "accept": ["a5a6"],
+      "sacrifice": true,
+      "wrong": {
+        "a5b6": "That takes back. After the trades, the black king comes and wins your last pawn.",
+        "c5b6": "That takes back. After the trades, the black king comes and wins your last pawn."
+      },
+      "hint": "Push the pawn on the edge.",
+      "after": "If the pawn on b7 takes, nothing stands in front of your last pawn.",
+      "reply": "b7a6"
+    },
+    {
+      "type": "move",
+      "text": "The way is open. Run with the pawn.",
+      "marks": {"squares":["c5"]},
+      "accept": ["c5c6"],
+      "wrong": {
+        "c5b6": "That takes a pawn, but Black's pawn on the edge runs and promotes."
+      },
+      "hint": "Push the pawn that has nothing in front of it.",
+      "after": "The black king is outside its square. The pawn promotes.",
+      "reply": "g6f7"
+    }
+  ],
+  "summary": "Three pawns against three: sacrifice the middle pawn, then a side pawn, and the third one promotes.",
+  "puzzles": "passed"
+}

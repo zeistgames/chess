@@ -1,0 +1,46 @@
+{
+  "id": "endgames-outside-passed-pawn",
+  "course": "endgames",
+  "title": "The outside passed pawn",
+  "line": "A pawn far from the others pulls the enemy king away.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "fen": "8/8/6p1/4k2p/P6P/4K1P1/8/8 w - - 0 1",
+      "text": "No black pawn stands ahead of the pawn on a4, on its own file or the next: it is passed. Far from the rest, it is an outside passed pawn.",
+      "marks": {"squares":["a4"]}
+    },
+    {
+      "type": "show",
+      "fen": "8/8/6p1/4k2p/P6P/4K1P1/8/8 w - - 0 1",
+      "text": "The black king must go after it. While it does, your king walks over to Black's pawns on the other side.",
+      "marks": {"squares":["a4","g6","h5"],"arrows":[["e5","b6"],["e3","g5"]]}
+    },
+    {
+      "type": "move",
+      "fen": "8/8/6p1/4k2p/P6P/4K1P1/8/8 w - - 0 1",
+      "text": "Push the outside pawn, to pull the black king away.",
+      "marks": {"squares":["a4"]},
+      "accept": ["a4a5"],
+      "also": {
+        "e3f3": "That also keeps the game in hand. This lesson pushes the outside pawn first."
+      },
+      "hint": "Move the pawn far from the others.",
+      "after": "The black king has to chase it.",
+      "reply": "e5d6"
+    },
+    {
+      "type": "move",
+      "text": "The black king left. Take your king the other way, toward Black's pawns.",
+      "marks": {"squares":["g6","h5"]},
+      "accept": ["e3f4","e3e4","e3f3"],
+      "hint": "Step toward the ringed pawns.",
+      "after": "While the black king goes after the pawn on the edge, your king eats the pawns on the other side.",
+      "reply": "d6c5"
+    }
+  ],
+  "summary": "Push the outside passed pawn to pull the enemy king away, then take your king to the pawns it left.",
+  "practice": {"fen":"8/8/6p1/P1k4p/5K1P/6P1/8/8 w - - 3 3","side":"w"},
+  "puzzles": "passed"
+}

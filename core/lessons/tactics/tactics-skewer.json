@@ -1,0 +1,52 @@
+{
+  "id": "tactics-skewer",
+  "course": "tactics",
+  "title": "The skewer",
+  "line": "A pin turned around: the bigger piece in front must move and the one behind falls.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "text": "A skewer is a pin turned around. The king in front is in check and must move, and then the rook behind it can be taken.",
+      "fen": "4r3/8/8/4k3/8/8/8/4R1K1 b - - 0 1",
+      "marks": {"squares":["e5","e8"],"arrows":[["e1","e8"]]}
+    },
+    {
+      "type": "move",
+      "text": "Skewer the king and the rook: check on the line they share.",
+      "fen": "4r3/5pp1/7p/4k3/8/6P1/5P1P/R5K1 w - - 0 1",
+      "accept": ["a1e1"],
+      "wrong": {"a1a5":"That is check, but nothing stands behind the king on that line."},
+      "hint": "The king and the rook stand on the same column.",
+      "after": "The king must step off the e-file.",
+      "reply": "e5f6",
+      "wins": 5
+    },
+    {"type":"move","text":"Take the rook.","accept":["e1e8"],"after":"The rook behind the king falls."},
+    {
+      "type": "show",
+      "text": "Bishops and queens skewer along diagonals too.",
+      "fen": "r7/p4ppp/2k5/8/8/3B4/5PPP/6K1 w - - 0 1",
+      "marks": {"squares":["c6","a8"]}
+    },
+    {
+      "type": "move",
+      "text": "Check the king so that the rook on a8 stands behind it.",
+      "marks": {"squares":["a8"]},
+      "accept": ["d3e4"],
+      "hint": "The king and the rook share a diagonal.",
+      "after": "The king must step aside.",
+      "reply": "c6c5",
+      "wins": 5
+    },
+    {
+      "type": "move",
+      "text": "Take the rook.",
+      "accept": ["e4a8"],
+      "after": "The bishop took the rook from behind the king."
+    }
+  ],
+  "summary": "A skewer attacks a big piece with a smaller one behind it on the same line. The front one moves, the back one falls.",
+  "practice": {"fen":"B7/p4ppp/8/2k5/8/8/5PPP/6K1 b - - 0 2","side":"w"},
+  "puzzles": "skewers"
+}

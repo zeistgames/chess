@@ -1,0 +1,143 @@
+{
+  "id": "checkmates-bishop-knight",
+  "course": "checkmates",
+  "title": "Bishop and knight",
+  "line": "The hardest basic mate: the corner of the bishop's color.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "text": "King, bishop and knight can mate a lone king, but only in a corner the bishop can reach. It is the hardest of the basic mates.",
+      "fen": "8/5k2/8/4K3/3B4/5N2/8/8 w - - 0 1"
+    },
+    {
+      "type": "pick",
+      "text": "Your bishop moves on dark squares. Tap the two corners where bishop and knight can mate.",
+      "accept": [
+        "a1",
+        "h8"
+      ],
+      "all": true,
+      "wrong": {
+        "a8": "That corner is light. Your bishop can never check there, so the king can always slip out.",
+        "h1": "That corner is light. Your bishop can never check there, so the king can always slip out."
+      },
+      "hint": "A corner the bishop can stand on is the same color as the bishop's squares.",
+      "after": "The dark corners. A king in a light corner is first driven along the edge to a dark one, which takes many moves."
+    },
+    {
+      "type": "show",
+      "text": "The drive starts. Your king leads, and the bishop takes squares beside it. The knight checks to push the king toward the dark corner.",
+      "play": [
+        "e5d6",
+        "f7e8",
+        "d4f6",
+        "e8f7",
+        "d6e5",
+        "f7g6",
+        "f3h4"
+      ]
+    },
+    {
+      "type": "show",
+      "text": "The king runs to the edge. Your king follows, and the knight jumps round to keep it there.",
+      "play": [
+        "g6h5",
+        "e5f5",
+        "h5h6",
+        "h4g2",
+        "h6h7",
+        "f5e6",
+        "h7g8"
+      ]
+    },
+    {
+      "type": "show",
+      "text": "Your king walks up beside the corner, and the knight comes back to help. The black king has only two squares left to step between.",
+      "play": [
+        "e6e7",
+        "g8h7",
+        "e7f7",
+        "h7h6",
+        "g2f4",
+        "h6h7"
+      ]
+    },
+    {
+      "type": "move",
+      "text": "Take h6 from the king: step the bishop back. The king must go into the corner, but it still has a move.",
+      "accept": [
+        "f6g5"
+      ],
+      "wrong": {
+        "f6g7": "That is stalemate: Black is not in check and has no legal move. The game is a draw."
+      },
+      "hint": "The bishop moves one square along a diagonal, toward the edge.",
+      "after": "The king went into the corner.",
+      "reply": "h7h8",
+      "marks": {
+        "squares": [
+          "h6",
+          "f6"
+        ]
+      }
+    },
+    {
+      "type": "move",
+      "text": "Bring the knight closer, to a square from which it can check beside the corner next.",
+      "accept": [
+        "f4e6"
+      ],
+      "hint": "The knight jumps toward your king.",
+      "after": "The king steps out of the corner again.",
+      "reply": "h8h7",
+      "marks": {
+        "squares": [
+          "f4"
+        ]
+      }
+    },
+    {
+      "type": "move",
+      "text": "Check with the knight and drive the king back into the corner.",
+      "accept": [
+        "e6f8"
+      ],
+      "hint": "The knight jumps to the back row, next to your king.",
+      "after": "The king's only square is the corner.",
+      "reply": "h7h8",
+      "marks": {
+        "squares": [
+          "h7"
+        ]
+      }
+    },
+    {
+      "type": "move",
+      "text": "Mate with the bishop. Careful: any move here that is not check is stalemate.",
+      "accept": [
+        "g5f6"
+      ],
+      "wrong": {
+        "g5e7": "That is stalemate: Black is not in check and has no legal move. The game is a draw.",
+        "g5h6": "That is stalemate: Black is not in check and has no legal move. The game is a draw.",
+        "g5h4": "That is stalemate: Black is not in check and has no legal move. The game is a draw."
+      },
+      "hint": "The bishop checks along the long diagonal that ends in the corner.",
+      "after": "Checkmate. Your king takes g8 and g7, the knight takes h7, and the bishop checks.",
+      "mate": true,
+      "marks": {
+        "squares": [
+          "g8",
+          "g7",
+          "h7"
+        ]
+      }
+    }
+  ],
+  "summary": "Bishop and knight mate only in a corner of the bishop's color. Drive the king there, then leave it a move until mate.",
+  "practice": {
+    "fen": "8/5k2/8/4K3/3B4/5N2/8/8 w - - 0 1",
+    "side": "w"
+  }
+}

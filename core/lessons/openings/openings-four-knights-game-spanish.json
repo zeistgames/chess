@@ -1,0 +1,185 @@
+{
+  "id": "openings-four-knights-game-spanish",
+  "course": "openings",
+  "title": "Four Knights Game: Spanish Variation",
+  "line": "The bishop pins the knight as in the Ruy Lopez, and Black answers by jumping into the center.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "text": "The Four Knights Game: all four knights are out.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {
+        "squares": [
+          "c3",
+          "f3",
+          "c6",
+          "f6"
+        ]
+      },
+      "play": [
+        "e2e4",
+        "e7e5",
+        "g1f3",
+        "b8c6",
+        "b1c3",
+        "g8f6"
+      ]
+    },
+    {
+      "type": "move",
+      "text": "Bring the bishop out to attack the knight that guards the pawn on e5, as in the Ruy Lopez.",
+      "marks": {
+        "squares": [
+          "c6",
+          "e5"
+        ],
+        "arrows": [
+          [
+            "f1",
+            "b5"
+          ]
+        ]
+      },
+      "accept": [
+        "f1b5"
+      ],
+      "after": "Black does not guard the pawn. Its knight jumps forward and attacks your knight.",
+      "reply": "c6d4",
+      "taught": true
+    },
+    {
+      "type": "show",
+      "text": "The pawn on e5 is offered. Taking it with the knight lets Black chase it with the queen and grab your pawn on e4 later.",
+      "marks": {
+        "squares": [
+          "e5",
+          "e4"
+        ],
+        "arrows": [
+          [
+            "f3",
+            "e5"
+          ]
+        ]
+      }
+    },
+    {
+      "type": "move",
+      "text": "Trade the knight on d4 instead. It was your knight's attacker.",
+      "marks": {
+        "squares": [
+          "d4"
+        ],
+        "arrows": [
+          [
+            "f3",
+            "d4"
+          ]
+        ]
+      },
+      "accept": [
+        "f3d4"
+      ],
+      "also": {
+        "b5c4": "That is also played. This lesson trades the knight.",
+        "e1g1": "Castling is also played. This lesson trades the knight."
+      },
+      "after": "The pawn that took back attacks your other knight.",
+      "reply": "e5d4",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Do not move the knight. Push the pawn on e4 one square and attack the knight on f6 in return.",
+      "marks": {
+        "squares": [
+          "c3",
+          "f6"
+        ],
+        "arrows": [
+          [
+            "e4",
+            "e5"
+          ]
+        ]
+      },
+      "accept": [
+        "e4e5"
+      ],
+      "after": "Black takes your knight.",
+      "reply": "d4c3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Take Black's knight. You are even again.",
+      "marks": {
+        "squares": [
+          "f6"
+        ],
+        "arrows": [
+          [
+            "e5",
+            "f6"
+          ]
+        ]
+      },
+      "accept": [
+        "e5f6"
+      ],
+      "reply": "d8f6"
+    },
+    {
+      "type": "move",
+      "text": "Take back the pawn on c3 with a pawn. Material is even again.",
+      "marks": {
+        "squares": [
+          "c3",
+          "c1"
+        ],
+        "arrows": [
+          [
+            "d2",
+            "c3"
+          ]
+        ]
+      },
+      "accept": [
+        "d2c3"
+      ],
+      "after": "Taking with this pawn opens a line for your bishop on c1.",
+      "reply": "f8c5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Castle. Your king is safe, and the rook can come to the open center files.",
+      "marks": {
+        "squares": [
+          "g1"
+        ],
+        "arrows": [
+          [
+            "e1",
+            "g1"
+          ]
+        ]
+      },
+      "accept": [
+        "e1g1"
+      ],
+      "also": {
+        "d1e2": "The queen check is also played. This lesson castles."
+      },
+      "after": "Many pieces are gone and the game is level. Black has met the pin with play of its own.",
+      "reply": "e8g8",
+      "taught": true
+    }
+  ],
+  "summary": "The bishop pins as in the Ruy Lopez. Black jumps a knight to the center, and trades lead to a level game.",
+  "practice": {
+    "fen": "r1b2rk1/pppp1ppp/5q2/1Bb5/8/2P5/PPP2PPP/R1BQ1RK1 w - - 3 10",
+    "side": "w"
+  }
+}

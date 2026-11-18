@@ -1,0 +1,40 @@
+{
+  "id": "openings-italian-ideas",
+  "course": "openings",
+  "title": "Italian Game: the ideas",
+  "line": "The bishop aims at f7 and White prepares d4.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "text": "The Italian Game: 1.e4 e5 2.Nf3 Nc6 3.Bc4.",
+      "play": ["e2e4", "e7e5", "g1f3", "b8c6", "f1c4"]
+    },
+    {
+      "type": "show",
+      "text": "The bishop on c4 aims at f7, the square only the king guards.",
+      "marks": { "squares": ["f7"], "arrows": [["c4", "f7"]] }
+    },
+    {
+      "type": "move",
+      "side": "b",
+      "text": "Play Black now. Bring a bishop out to face White's, on c5.",
+      "accept": ["f8c5"],
+      "hint": "The bishop on f8 can reach c5.",
+      "after": "Each bishop now aims at the other side's king.",
+      "reply": "c2c3",
+      "taught": true
+    },
+    {
+      "type": "pick",
+      "side": "w",
+      "text": "White's c3 prepares a pawn move to the center. Tap the square that pawn goes to.",
+      "accept": ["d4"],
+      "wrong": { "d3": "d3 is a quieter square. c3 guards the one in front of it." },
+      "after": "With d4, White takes the center."
+    }
+  ],
+  "summary": "In the Italian Game the bishop aims at f7 and White prepares d4.",
+  "practice": { "fen": "r1bqk1nr/pppp1ppp/2n5/2b1p3/2B1P3/2P2N2/PP1P1PPP/RNBQK2R b KQkq - 0 4", "side": "b" }
+}

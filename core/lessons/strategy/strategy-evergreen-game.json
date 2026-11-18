@@ -1,0 +1,74 @@
+{
+  "id": "strategy-evergreen-game",
+  "course": "strategy",
+  "title": "The Evergreen Game",
+  "line": "Anderssen against Dufresne, Berlin 1852: an attack down the open lines.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "fen": "1r2k2r/pbppnppp/1bn5/4P2q/Q3N3/B1PB1N2/P4PPP/R3R1K1 w k - 1 17",
+      "text": "Berlin, 1852. Anderssen gave a pawn early for open lines. Black's king is still in the middle, facing his rook and bishops.",
+      "marks": {"squares":["e8","e1","d3","a3"]}
+    },
+    {
+      "type": "show",
+      "play": ["e4f6","g7f6","e5f6","h8g8"],
+      "text": "Anderssen gave his knight to bring a pawn to f6. White was winning before this move; after it, best defense would make the game level.",
+      "marks": {"squares":["f6","e7","e8"]}
+    },
+    {
+      "type": "move",
+      "text": "Bring your last rook to the file next to Black's king, behind your bishop. Engines rate this level: Black had a defense.",
+      "marks": {"squares":["d7","d3"],"arrows":[["a1","d1"]]},
+      "accept": ["a1d1"],
+      "taught": true,
+      "after": "Black takes your knight and threatens mate next to your king.",
+      "reply": "h5f3"
+    },
+    {
+      "type": "move",
+      "text": "Take the knight on e7 with check.",
+      "marks": {"squares":["e7"],"arrows":[["e1","e7"]]},
+      "accept": ["e1e7"],
+      "sacrifice": true,
+      "after": "The other knight takes back, and Black's king loses its shield.",
+      "reply": "c6e7"
+    },
+    {
+      "type": "move",
+      "text": "Give your queen with check on d7. If the king steps aside instead of taking, it is mated at once.",
+      "marks": {"squares":["d7"],"arrows":[["a4","d7"]]},
+      "accept": ["a4d7"],
+      "sacrifice": true,
+      "after": "The king takes, right in front of your rook and bishop.",
+      "reply": "e8d7"
+    },
+    {
+      "type": "move",
+      "text": "Move the bishop with check. Your rook behind it checks too: a double check.",
+      "marks": {"squares":["d7"],"arrows":[["d3","f5"],["d1","d7"]]},
+      "accept": ["d3f5"],
+      "after": "Only a king move answers a double check.",
+      "reply": "d7e8"
+    },
+    {
+      "type": "move",
+      "text": "Check again with the bishop.",
+      "marks": {"arrows":[["f5","d7"]]},
+      "accept": ["f5d7"],
+      "after": "The king steps aside.",
+      "reply": "e8f8"
+    },
+    {
+      "type": "move",
+      "text": "Mate with your other bishop.",
+      "marks": {"squares":["f6","d7"],"arrows":[["a3","e7"]]},
+      "accept": ["a3e7"],
+      "mate": true,
+      "after": "Checkmate. The pawn on f6 and the bishop on d7 guard the rest."
+    }
+  ],
+  "summary": "Anderssen opened files toward a king left in the middle, then gave his queen to drive it into a double check.",
+  "puzzles": "sacrifices"
+}

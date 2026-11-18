@@ -1,0 +1,79 @@
+{
+  "id": "endgames-fortresses",
+  "course": "endgames",
+  "title": "Fortresses",
+  "line": "A position the stronger side cannot break.",
+  "side": "b",
+  "steps": [
+    {
+      "type": "show",
+      "fen": "6k1/3Q2p1/5r2/8/3K4/8/8/8 b - - 0 1",
+      "text": "A queen usually beats a rook. Here the pawn guards the rook, the king hides behind, and the white king cannot cross the rook's row.",
+      "marks": {"squares":["f6","g7","g8"]}
+    },
+    {
+      "type": "pick",
+      "fen": "6k1/3Q2p1/5r2/8/3K4/8/8/8 b - - 0 1",
+      "text": "Tap the black piece that holds this fortress together.",
+      "accept": ["g7"],
+      "wrong": {
+        "g8": "The king hides behind the wall. It does not hold the rook.",
+        "f6": "The rook is the wall, but something must guard it."
+      },
+      "hint": "Which piece guards the rook?",
+      "after": "The pawn guards the rook. Keep it there and the wall stands."
+    },
+    {
+      "type": "move",
+      "fen": "6k1/3Q2p1/5r2/8/3K4/8/8/8 b - - 0 1",
+      "text": "You have Black. Keep the wall: move your king behind it, or slide the rook to the other square the pawn guards.",
+      "accept": ["g8h7","g8h8","g8f8","f6h6"],
+      "also": {
+        "g7g6": "That holds too, for now. The sure way is to keep the king behind the wall and the rook where the pawn guards it.",
+        "f6f2": "That holds too, for now. The sure way is to keep the king behind the wall and the rook where the pawn guards it.",
+        "f6f4": "That holds too, for now. The sure way is to keep the king behind the wall and the rook where the pawn guards it.",
+        "f6f8": "That holds too, for now. The sure way is to keep the king behind the wall and the rook where the pawn guards it."
+      },
+      "wrong": {
+        "f6g6": "The rook leaves the pawn's guard, and the queen wins it.",
+        "f6e6": "The rook leaves the pawn's guard, and the queen wins it.",
+        "f6d6": "The rook leaves the pawn's guard, and the queen wins it.",
+        "f6c6": "The rook leaves the pawn's guard, and the queen wins it.",
+        "f6b6": "The rook leaves the pawn's guard, and the queen wins it.",
+        "f6a6": "The rook leaves the pawn's guard, and the queen wins it.",
+        "f6f5": "The rook leaves the pawn's guard, and the queen wins it.",
+        "g7g5": "The pawn moved away, and the rook has no guard."
+      },
+      "hint": "The pawn guards two squares on the rook's row.",
+      "after": "The fortress stands. White can check, but cannot break in."
+    },
+    {
+      "type": "move",
+      "fen": "8/4Q1pk/5r2/8/3K4/8/8/8 b - - 0 1",
+      "text": "The queen came closer. Keep the wall again.",
+      "accept": ["h7g8","h7h8","f6h6"],
+      "also": {
+        "f6f1": "That holds too, for now. The sure way is to keep the king behind the wall and the rook where the pawn guards it.",
+        "f6f4": "That holds too, for now. The sure way is to keep the king behind the wall and the rook where the pawn guards it.",
+        "f6f5": "That holds too, for now. The sure way is to keep the king behind the wall and the rook where the pawn guards it.",
+        "f6a6": "That holds too, for now. The sure way is to keep the king behind the wall and the rook where the pawn guards it.",
+        "f6b6": "That holds too, for now. The sure way is to keep the king behind the wall and the rook where the pawn guards it.",
+        "h7g6": "That holds too, for now. The sure way is to keep the king behind the wall and the rook where the pawn guards it.",
+        "h7h6": "That holds too, for now. The sure way is to keep the king behind the wall and the rook where the pawn guards it."
+      },
+      "wrong": {
+        "f6g6": "The rook leaves the pawn's guard, and the queen wins it.",
+        "f6e6": "The rook leaves the pawn's guard, and the queen wins it.",
+        "f6c6": "The rook leaves the pawn's guard, and the queen wins it.",
+        "f6f7": "The queen takes the rook.",
+        "f6f8": "The rook leaves the pawn's guard, and the queen wins it.",
+        "f6f3": "The rook leaves the pawn's guard, and the queen wins it.",
+        "f6f2": "The rook leaves the pawn's guard, and the queen wins it."
+      },
+      "hint": "Behind the wall, or along it to the other guarded square.",
+      "after": "However the queen moves, the king and rook stay where the pawn shields them."
+    }
+  ],
+  "summary": "A fortress is a wall the stronger side cannot break. Find one when you are behind, and keep every piece in place.",
+  "practice": {"fen":"6k1/3Q2p1/5r2/8/3K4/8/8/8 b - - 0 1","side":"b"}
+}

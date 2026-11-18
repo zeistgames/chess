@@ -1,0 +1,146 @@
+{
+  "id": "checkmates-two-bishops",
+  "course": "checkmates",
+  "title": "Two bishops",
+  "line": "Side by side, they drive the king into a corner.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "text": "Two bishops side by side make a wall of diagonals the king cannot cross. Your king walks up, and the black king is pushed back.",
+      "fen": "8/8/4k3/8/3BB3/3K4/8/8 w - - 0 1",
+      "play": [
+        "d3c4",
+        "e6d6",
+        "d4h8",
+        "d6d7",
+        "c4d5",
+        "d7e8",
+        "d5e6"
+      ],
+      "marks": {
+        "arrows": [
+          [
+            "d4",
+            "h8"
+          ],
+          [
+            "e4",
+            "h7"
+          ]
+        ]
+      }
+    },
+    {
+      "type": "show",
+      "text": "The black king runs toward the far corner. A bishop check sends it there faster, and your king follows it.",
+      "play": [
+        "e8d8",
+        "h8c3",
+        "d8c7",
+        "c3a5",
+        "c7b8",
+        "e6d7",
+        "b8a7"
+      ]
+    },
+    {
+      "type": "show",
+      "text": "Your king steps in, and the light-square bishop takes the last squares on the back rank. The king is nearly boxed in.",
+      "play": [
+        "d7c6",
+        "a7b8",
+        "e4d3",
+        "b8c8",
+        "d3f5",
+        "c8b8"
+      ]
+    },
+    {
+      "type": "move",
+      "text": "Step your king right in front of the black king. It still has the corner, so this is not stalemate.",
+      "accept": [
+        "c6b6"
+      ],
+      "hint": "Your king moves down the board, toward the black king.",
+      "after": "The black king goes into the corner.",
+      "reply": "b8a8",
+      "marks": {
+        "arrows": [
+          [
+            "c6",
+            "b6"
+          ]
+        ]
+      }
+    },
+    {
+      "type": "move",
+      "text": "Bring the dark-square bishop onto the long diagonal, ready to check next. Leave Black a move.",
+      "accept": [
+        "a5c3"
+      ],
+      "also": {
+        "a5d2": "That works too: the bishop can check from there next. This lesson goes on with the long diagonal.",
+        "a5e1": "That works too: the bishop can check from there next. This lesson goes on with the long diagonal.",
+        "a5b4": "That works too: the bishop can check from there next. This lesson goes on with the long diagonal."
+      },
+      "hint": "The bishop on a5 slides back along its diagonal, toward your side of the board.",
+      "after": "Black has one move: out of the corner.",
+      "reply": "a8b8",
+      "marks": {
+        "squares": [
+          "a5"
+        ],
+        "arrows": [
+          [
+            "c3",
+            "h8"
+          ]
+        ]
+      }
+    },
+    {
+      "type": "move",
+      "text": "Check with the dark-square bishop. The king must go back into the corner.",
+      "accept": [
+        "c3e5"
+      ],
+      "hint": "The bishop checks along the diagonal that ends on b8.",
+      "after": "The king is back in the corner.",
+      "reply": "b8a8",
+      "marks": {
+        "squares": [
+          "b8"
+        ]
+      }
+    },
+    {
+      "type": "move",
+      "text": "Now mate with the other bishop. Careful: here every move that is not check is stalemate.",
+      "accept": [
+        "f5e4"
+      ],
+      "wrong": {
+        "e5c7": "That is stalemate: Black is not in check and has no legal move. The game is a draw.",
+        "e5d6": "That is stalemate: Black is not in check and has no legal move. The game is a draw.",
+        "f5d7": "That is stalemate: Black is not in check and has no legal move. The game is a draw.",
+        "b6a6": "That is stalemate: Black is not in check and has no legal move. The game is a draw."
+      },
+      "hint": "Check along the long diagonal that ends in the corner.",
+      "after": "Checkmate. One bishop checks, the other guards b8, and your king takes the rest.",
+      "mate": true,
+      "marks": {
+        "squares": [
+          "a8",
+          "b8"
+        ]
+      }
+    }
+  ],
+  "summary": "Keep the bishops side by side, bring your king, and drive the king into a corner. Leave it a move until the mate.",
+  "practice": {
+    "fen": "8/8/4k3/8/3BB3/3K4/8/8 w - - 0 1",
+    "side": "w"
+  }
+}

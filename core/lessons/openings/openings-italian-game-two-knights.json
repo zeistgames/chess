@@ -1,0 +1,213 @@
+{
+  "id": "openings-italian-game-two-knights",
+  "course": "openings",
+  "title": "Italian Game: Two Knights Defense",
+  "line": "Black attacks White's center pawn instead of copying the bishop, and gives a pawn for quick play.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "text": "Black brings out the other knight instead of the bishop. It attacks your pawn on e4.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {
+        "squares": [
+          "e4"
+        ],
+        "arrows": [
+          [
+            "f6",
+            "e4"
+          ]
+        ]
+      },
+      "play": [
+        "e2e4",
+        "e7e5",
+        "g1f3",
+        "b8c6",
+        "f1c4",
+        "g8f6"
+      ]
+    },
+    {
+      "type": "move",
+      "text": "Jump the knight forward. With the bishop it attacks f7, which only the king guards.",
+      "marks": {
+        "squares": [
+          "f7"
+        ],
+        "arrows": [
+          [
+            "f3",
+            "g5"
+          ],
+          [
+            "c4",
+            "f7"
+          ]
+        ]
+      },
+      "accept": [
+        "f3g5"
+      ],
+      "also": {
+        "d2d3": "Guarding the pawn is the quiet main line. This lesson goes for f7."
+      },
+      "after": "Black blocks the bishop with a pawn.",
+      "reply": "d7d5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Take the pawn. It blocked your bishop, and now the pawn on d5 is yours.",
+      "marks": {
+        "squares": [
+          "d5"
+        ],
+        "arrows": [
+          [
+            "e4",
+            "d5"
+          ]
+        ]
+      },
+      "accept": [
+        "e4d5"
+      ],
+      "after": "Black does not take back. The knight attacks your bishop instead.",
+      "reply": "c6a5",
+      "taught": true
+    },
+    {
+      "type": "show",
+      "text": "If the knight took back on d5, your knight could take on f7: the next lesson. So Black gives up a pawn and chases the bishop.",
+      "marks": {
+        "squares": [
+          "d5",
+          "f7",
+          "c4"
+        ],
+        "arrows": [
+          [
+            "a5",
+            "c4"
+          ]
+        ]
+      }
+    },
+    {
+      "type": "move",
+      "text": "Move the bishop away with check, so Black must answer the check first.",
+      "marks": {
+        "squares": [
+          "e8"
+        ],
+        "arrows": [
+          [
+            "c4",
+            "b5"
+          ]
+        ]
+      },
+      "accept": [
+        "c4b5"
+      ],
+      "after": "Black blocks with a pawn and offers it.",
+      "reply": "c7c6",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Take the pawn. You are a pawn ahead, and it would have chased your bishop.",
+      "marks": {
+        "squares": [
+          "c6"
+        ],
+        "arrows": [
+          [
+            "d5",
+            "c6"
+          ]
+        ]
+      },
+      "accept": [
+        "d5c6"
+      ],
+      "reply": "b7c6",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Your bishop is attacked again. Bring it back home to safety.",
+      "marks": {
+        "squares": [
+          "b5"
+        ],
+        "arrows": [
+          [
+            "b5",
+            "e2"
+          ]
+        ]
+      },
+      "accept": [
+        "b5e2"
+      ],
+      "also": {
+        "b5d3": "That square is also played. This lesson goes back to e2.",
+        "d1f3": "The queen move is also played. This lesson moves the bishop back."
+      },
+      "reply": "h7h6",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "The pawn attacks your knight. Step it back to f3, where it guards the center.",
+      "marks": {
+        "squares": [
+          "h6"
+        ],
+        "arrows": [
+          [
+            "g5",
+            "f3"
+          ]
+        ]
+      },
+      "accept": [
+        "g5f3"
+      ],
+      "also": {
+        "g5h3": "That square is also played. This lesson goes back to f3."
+      },
+      "reply": "e5e4",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "The pawn chases the knight once more. Jump into the center.",
+      "marks": {
+        "squares": [
+          "e4"
+        ],
+        "arrows": [
+          [
+            "f3",
+            "e5"
+          ]
+        ]
+      },
+      "accept": [
+        "f3e5"
+      ],
+      "after": "You are a pawn up, but Black has quick play while your pieces were pushed back. That is the price of the early attack.",
+      "reply": "f8d6",
+      "taught": true
+    }
+  ],
+  "summary": "Black meets the attack on its weak pawn by giving a pawn back, and gains time chasing White's pieces.",
+  "practice": {
+    "fen": "r1bqk2r/p4pp1/2pb1n1p/n3N3/4p3/8/PPPPBPPP/RNBQK2R w KQkq - 2 11",
+    "side": "w"
+  }
+}

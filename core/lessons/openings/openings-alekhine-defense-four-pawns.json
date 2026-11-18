@@ -1,0 +1,89 @@
+{
+  "id": "openings-alekhine-defense-four-pawns",
+  "course": "openings",
+  "title": "Alekhine Defense: Four Pawns Attack",
+  "line": "White takes all the space offered with four pawns; Black's pieces attack the big center.",
+  "side": "b",
+  "steps": [
+    {
+      "type": "show",
+      "text": "In the Alekhine, White's pawn chases the knight and a second pawn joins it in the center.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {"arrows":[["e4","e5"]]},
+      "play": ["e2e4","g8f6","e4e5","f6d5","d2d4"]
+    },
+    {
+      "type": "show",
+      "text": "Black hits the front pawn, a third pawn chases the knight again, and in the Four Pawns Attack a fourth comes forward.",
+      "marks": {"arrows":[["f2","f4"]]},
+      "play": ["d7d6","c2c4","d5b6","f2f4"]
+    },
+    {
+      "type": "move",
+      "text": "Take the pawn on e5. The file opens, and your queen now looks at the pawn on d4.",
+      "marks": {"squares":["d4"],"arrows":[["d6","e5"]]},
+      "accept": ["d6e5"],
+      "reply": "f4e5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the other knight out. It hits the pawns on e5 and d4.",
+      "marks": {"squares":["e5","d4"],"arrows":[["b8","c6"]]},
+      "accept": ["b8c6"],
+      "also": {
+        "c8f5": "That also works. This lesson brings the knight out first."
+      },
+      "reply": "c1e3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the bishop out.",
+      "marks": {"arrows":[["c8","f5"]]},
+      "accept": ["c8f5"],
+      "reply": "b1c3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn on e7 one square, so your other bishop can come out.",
+      "marks": {"arrows":[["e7","e6"]]},
+      "accept": ["e7e6"],
+      "reply": "g1f3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the bishop out, so you can castle.",
+      "marks": {"arrows":[["f8","e7"]]},
+      "accept": ["f8e7"],
+      "also": {
+        "f8b4": "That also works. This lesson puts the bishop on e7."
+      },
+      "reply": "d4d5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "White's pawn hits your knight. Take the pawn.",
+      "marks": {"arrows":[["e6","d5"]]},
+      "accept": ["e6d5"],
+      "reply": "c4d5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Jump to b4 with the knight. It eyes d5 and c2.",
+      "marks": {"squares":["d5","c2"],"arrows":[["c6","b4"]]},
+      "accept": ["c6b4"],
+      "after": "White's front pawn is attacked by both your knights, and the big center has broken up.",
+      "taught": true
+    }
+  ],
+  "summary": "Against the Four Pawns, Black's pieces hit the big center from every side until the pawns break up.",
+  "practice": {
+    "fen": "r2qk2r/ppp1bppp/1n6/3PPb2/1n6/2N1BN2/PP4PP/R2QKB1R w KQkq - 1 12",
+    "side": "b"
+  }
+}

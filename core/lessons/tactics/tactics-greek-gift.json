@@ -1,0 +1,82 @@
+{
+  "id": "tactics-greek-gift",
+  "course": "tactics",
+  "title": "The Greek gift",
+  "line": "The bishop sacrifice on h7 (or h2), followed by the knight and the queen.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "text": "Black has castled, and no knight guards h7. Your bishop, knight and queen are close, and the pawn on h4 will back the knight.",
+      "fen": "r1b2rk1/ppqn1ppp/2n1p3/2bpP3/7P/2PB1N2/PP1N1PP1/R1BQ1RK1 w - - 0 11",
+      "marks": {"squares":["h7","h4"],"arrows":[["d3","h7"]]}
+    },
+    {
+      "type": "move",
+      "text": "Give the bishop: take the pawn in front of the king, with check.",
+      "fen": "r1b2rk1/ppqn1ppp/2n1p3/2bpP3/7P/2PB1N2/PP1N1PP1/R1BQ1RK1 w - - 0 11",
+      "accept": ["d3h7"],
+      "hint": "Your bishop already aims at it.",
+      "after": "The king took the bishop. Declining it comes at the end of the lesson.",
+      "reply": "g8h7",
+      "sacrifice": true
+    },
+    {
+      "type": "move",
+      "text": "Check with the knight. The pawn on h4 guards it.",
+      "marks": {"arrows":[["f3","g5"]],"squares":["h4","h6"]},
+      "accept": ["f3g5"],
+      "after": "Black's best try: the king steps forward to h6.",
+      "reply": "h7h6"
+    },
+    {
+      "type": "move",
+      "text": "Move your other knight off the bishop's diagonal. Then the knight on g5 can move with discovered check.",
+      "marks": {"arrows":[["c1","h6"]],"squares":["g5"]},
+      "accept": ["d2e4"],
+      "also": {
+        "d2b3": "That clears the diagonal too. This lesson goes on with the other knight move.",
+        "d2c4": "That clears the diagonal too. This lesson goes on with the other knight move."
+      },
+      "hint": "One of your knights stands between your bishop and the black king.",
+      "after": "Black took the knight, and the bishop's line to the king is open.",
+      "reply": "d5e4",
+      "sacrifice": true
+    },
+    {
+      "type": "move",
+      "text": "Now jump with the knight: the bishop gives check, and the knight attacks the queen.",
+      "marks": {"squares":["c7"]},
+      "accept": ["g5e6"],
+      "after": "Discovered check, and the queen is attacked.",
+      "reply": "h6h7",
+      "wins": 10
+    },
+    {
+      "type": "move",
+      "text": "Take the queen.",
+      "accept": ["e6c7"],
+      "after": "The bishop and knight given up have come back as a queen."
+    },
+    {
+      "type": "move",
+      "text": "If the king had gone back to the corner instead, bring the queen next to the knight. She threatens mate.",
+      "fen": "r1b2rk1/ppqn1pp1/2n1p3/2bpP1N1/7P/2P5/PP1N1PP1/R1BQ1RK1 w - - 2 13",
+      "marks": {"squares":["h7"],"arrows":[["d1","h5"]]},
+      "accept": ["d1h5"],
+      "after": "Black can only stop the mate by giving up material.",
+      "wins": 1
+    },
+    {
+      "type": "move",
+      "text": "If Black does not take the bishop at all, step it back to safety: you are a pawn up and the king has lost its cover.",
+      "fen": "r1b2r1k/ppqn1ppB/2n1p3/2bpP3/7P/2P2N2/PP1N1PP1/R1BQ1RK1 w - - 1 12",
+      "marks": {"squares":["h8"]},
+      "accept": ["h7c2","h7b1","h7d3"],
+      "taught": true
+    }
+  ],
+  "summary": "Bishop takes the pawn beside the castled king with check, the knight checks behind it, and the other pieces join in.",
+  "puzzles": "sacrifices",
+  "practice": {"fen":"r1b2r1k/ppqn1pp1/2n1p3/2bpP3/7P/2P2N2/PPBN1PP1/R1BQ1RK1 b - - 2 12","side":"w"}
+}

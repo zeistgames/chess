@@ -1,0 +1,196 @@
+{
+  "id": "openings-vienna-game-max-lange",
+  "course": "openings",
+  "title": "Vienna Game: Max Lange Defense",
+  "line": "Black brings the other knight out first. White aims at f7 and keeps the pawn on f2 ready.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "text": "The Vienna Game, and Black brings out the queen side knight: the Max Lange Defense. It guards the pawn on e5.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {
+        "squares": [
+          "e5"
+        ],
+        "arrows": [
+          [
+            "c6",
+            "e5"
+          ]
+        ]
+      },
+      "play": [
+        "e2e4",
+        "e7e5",
+        "b1c3",
+        "b8c6"
+      ]
+    },
+    {
+      "type": "move",
+      "text": "Bring the bishop out. It aims at f7, the square only Black's king guards.",
+      "marks": {
+        "squares": [
+          "f7",
+          "e4"
+        ],
+        "arrows": [
+          [
+            "f1",
+            "c4"
+          ]
+        ]
+      },
+      "accept": [
+        "f1c4"
+      ],
+      "also": {
+        "g2g3": "Making room for the bishop on the long diagonal is also sound. This lesson goes to c4.",
+        "g1f3": "That leads to the Four Knights Game, also sound. This lesson brings the bishop out.",
+        "f2f4": "The pawn push is also sound. This lesson brings the bishop out."
+      },
+      "after": "Black's knight attacks your pawn on e4.",
+      "reply": "g8f6",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Guard the pawn with the pawn in front of your queen. It also opens a line for your other bishop.",
+      "marks": {
+        "squares": [
+          "e4",
+          "c1"
+        ],
+        "arrows": [
+          [
+            "d2",
+            "d3"
+          ]
+        ]
+      },
+      "accept": [
+        "d2d3"
+      ],
+      "after": "The knight chases your bishop.",
+      "reply": "c6a5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the other knight out to e2. The pawn on f2 stays free to push later.",
+      "marks": {
+        "squares": [
+          "f2",
+          "f4"
+        ],
+        "arrows": [
+          [
+            "g1",
+            "e2"
+          ]
+        ]
+      },
+      "accept": [
+        "g1e2"
+      ],
+      "also": {
+        "c4b3": "Saving the bishop is also sound. This lesson lets Black take it.",
+        "d1f3": "That is also sound. This lesson brings the knight out."
+      },
+      "after": "Black takes your bishop.",
+      "reply": "a5c4",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Take back with the pawn. It covers d5 and b5, and the line for your queen opens.",
+      "marks": {
+        "squares": [
+          "d5",
+          "b5",
+          "f4"
+        ],
+        "arrows": [
+          [
+            "d3",
+            "c4"
+          ]
+        ]
+      },
+      "accept": [
+        "d3c4"
+      ],
+      "after": "Black has the two bishops; you have a firm center and the push to f4 still to come.",
+      "reply": "f8c5",
+      "taught": true
+    },
+    {
+      "type": "show",
+      "text": "Back to the bishop move. If Black brings its bishop out instead of the king side knight, your queen can go after the pawn on g7.",
+      "fen": "r1bqk1nr/pppp1ppp/2n5/2b1p3/2B1P3/2N5/PPPP1PPP/R1BQK1NR w KQkq - 4 4",
+      "marks": {
+        "squares": [
+          "g7"
+        ]
+      }
+    },
+    {
+      "type": "move",
+      "text": "Bring the queen to g4. She attacks the pawn on g7.",
+      "marks": {
+        "squares": [
+          "g7"
+        ],
+        "arrows": [
+          [
+            "d1",
+            "g4"
+          ]
+        ]
+      },
+      "accept": [
+        "d1g4"
+      ],
+      "also": {
+        "d2d3": "That is also sound and played as often. This lesson goes after the pawn."
+      },
+      "after": "Black guards with the pawn, and the dark squares by its king get weaker.",
+      "reply": "g7g6",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Step the queen back to f3. With the bishop she now aims at f7.",
+      "marks": {
+        "squares": [
+          "f7"
+        ],
+        "arrows": [
+          [
+            "g4",
+            "f3"
+          ],
+          [
+            "c4",
+            "f7"
+          ]
+        ]
+      },
+      "accept": [
+        "g4f3"
+      ],
+      "also": {
+        "g4g3": "That is also sound. This lesson goes to f3."
+      },
+      "after": "Black blocks with the knight. Your pieces are out and pressing.",
+      "reply": "g8f6",
+      "taught": true
+    }
+  ],
+  "summary": "The bishop aims at the weak pawn by the king while the side pawn waits to push. An early queen trip can hit pawns too.",
+  "practice": {
+    "fen": "r1bqkbnr/pppp1ppp/2n5/4p3/4P3/2N5/PPPP1PPP/R1BQKBNR w KQkq - 2 3",
+    "side": "w"
+  }
+}

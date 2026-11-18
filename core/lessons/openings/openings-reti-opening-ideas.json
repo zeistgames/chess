@@ -1,0 +1,159 @@
+{
+  "id": "openings-reti-opening-ideas",
+  "course": "openings",
+  "title": "Réti Opening: the ideas",
+  "line": "The knight goes first, a side pawn attacks the center, and both bishops aim at it from the side.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "move",
+      "text": "Bring the knight out first. It watches the center and keeps your choices open.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {
+        "arrows": [
+          [
+            "g1",
+            "f3"
+          ]
+        ]
+      },
+      "accept": [
+        "g1f3"
+      ],
+      "also": {
+        "e2e4": "That is the most played first move, the king pawn opening. This lesson starts with the knight.",
+        "d2d4": "That is the queen pawn opening, also sound. This lesson starts with the knight.",
+        "c2c4": "That is the English Opening, also sound. This lesson starts with the knight."
+      },
+      "after": "Black takes the center with its queen pawn.",
+      "reply": "d7d5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn on c2 two squares. It attacks the center pawn from the side.",
+      "marks": {
+        "squares": [
+          "d5"
+        ],
+        "arrows": [
+          [
+            "c2",
+            "c4"
+          ]
+        ]
+      },
+      "accept": [
+        "c2c4"
+      ],
+      "also": {
+        "d2d4": "That is a queen pawn game, also sound. This lesson attacks the center pawn from the side.",
+        "g2g3": "That is the King's Indian Attack, also sound. This lesson attacks the center pawn from the side."
+      },
+      "after": "This is the Réti Opening. Black guards the center pawn with another pawn.",
+      "reply": "c7c6",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Move the pawn on b2 one square. It guards the pawn on c4 and opens a long diagonal for a bishop.",
+      "marks": {
+        "squares": [
+          "c4"
+        ],
+        "arrows": [
+          [
+            "b2",
+            "b3"
+          ]
+        ]
+      },
+      "accept": [
+        "b2b3"
+      ],
+      "reply": "g8f6",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Move the pawn on g2 one square. It opens the other long diagonal.",
+      "marks": {
+        "arrows": [
+          [
+            "g2",
+            "g3"
+          ]
+        ]
+      },
+      "accept": [
+        "g2g3"
+      ],
+      "reply": "c8f5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Put the bishop on the long diagonal. Your king will castle behind it.",
+      "marks": {
+        "arrows": [
+          [
+            "f1",
+            "g2"
+          ]
+        ]
+      },
+      "accept": [
+        "f1g2"
+      ],
+      "reply": "e7e6",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Put the other bishop on its long diagonal. It aims at the center squares d4 and e5.",
+      "marks": {
+        "squares": [
+          "e5",
+          "d4"
+        ],
+        "arrows": [
+          [
+            "c1",
+            "b2"
+          ]
+        ]
+      },
+      "accept": [
+        "c1b2"
+      ],
+      "reply": "b8d7",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Castle. Your king is safe behind the bishop on g2.",
+      "marks": {
+        "arrows": [
+          [
+            "e1",
+            "g1"
+          ]
+        ],
+        "squares": [
+          "g2",
+          "b2"
+        ]
+      },
+      "accept": [
+        "e1g1"
+      ],
+      "after": "White has no pawn in the center yet, but its knight and the bishop on b2 watch it.",
+      "taught": true
+    }
+  ],
+  "summary": "White fights for the center from the side: a knight, a side pawn and two bishops on the long diagonals.",
+  "practice": {
+    "fen": "r2qkb1r/pp1n1ppp/2p1pn2/3p1b2/2P5/1P3NP1/PB1PPPBP/RN1Q1RK1 b kq - 3 7",
+    "side": "w"
+  }
+}

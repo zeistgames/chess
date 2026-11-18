@@ -1,0 +1,79 @@
+{
+  "id": "openings-sicilian-defense-alapin",
+  "course": "openings",
+  "title": "Sicilian Defense: Alapin Variation",
+  "line": "White gets ready for a second center pawn; Black hits back at once, and the queen can come out early.",
+  "side": "b",
+  "steps": [
+    {
+      "type": "show",
+      "text": "Here White pushes the pawn on c2 one square, to back up a pawn on d4 next.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {"squares":["d4"],"arrows":[["c2","c3"]]},
+      "play": ["e2e4","c7c5","c2c3"]
+    },
+    {
+      "type": "move",
+      "text": "Strike at once: push the pawn on d7 two squares and attack the pawn on e4.",
+      "marks": {"squares":["e4"],"arrows":[["d7","d5"]]},
+      "accept": ["d7d5"],
+      "also": {
+        "g8f6": "That is the other main answer, and it is just as sound. This lesson goes on with the pawn."
+      },
+      "reply": "e4d5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Take back with the queen.",
+      "marks": {"arrows":[["d8","d5"]]},
+      "accept": ["d8d5"],
+      "reply": "d2d4",
+      "taught": true
+    },
+    {
+      "type": "pick",
+      "text": "A knight usually comes out to chase a queen like this. Tap the white pawn that stands on the knight's square.",
+      "accept": ["c3"],
+      "after": "The pawn holds the knight's square, so no knight can come from there to chase your queen."
+    },
+    {
+      "type": "move",
+      "text": "Bring the knight out.",
+      "marks": {"arrows":[["g8","f6"]]},
+      "accept": ["g8f6"],
+      "reply": "g1f3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the bishop out to pin the knight that guards d4.",
+      "marks": {"squares":["d4"],"arrows":[["c8","g4"]]},
+      "accept": ["c8g4"],
+      "reply": "f1e2",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn on e7 one square, so your other bishop can come out.",
+      "marks": {"arrows":[["e7","e6"]]},
+      "accept": ["e7e6"],
+      "reply": "e1g1",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the other knight out. Your queen, this knight and your pawn all hit the pawn on d4.",
+      "marks": {"squares":["d4"],"arrows":[["b8","c6"]]},
+      "accept": ["b8c6"],
+      "after": "White's pawn asks your bishop to decide. The pawn on d4 is still attacked three times.",
+      "reply": "h2h3",
+      "taught": true
+    }
+  ],
+  "summary": "Against the Alapin, Black strikes at the center at once, and the queen is safe because no knight can chase her.",
+  "practice": {
+    "fen": "r3kb1r/pp3ppp/2n1pn2/2pq4/3P2b1/2P2N1P/PP2BPP1/RNBQ1RK1 b kq - 0 8",
+    "side": "b"
+  }
+}

@@ -1,0 +1,150 @@
+{
+  "id": "openings-italian-game-blackburne-shilling",
+  "course": "openings",
+  "title": "Italian Game: the Blackburne Shilling trap",
+  "line": "A pawn left out as bait: taking it walks into mate.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "text": "Black's knight jumps forward a second time and leaves the pawn on e5 unguarded. This rare move is bait.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {
+        "squares": [
+          "e5",
+          "d4"
+        ],
+        "arrows": [
+          [
+            "c6",
+            "d4"
+          ]
+        ]
+      },
+      "play": [
+        "e2e4",
+        "e7e5",
+        "g1f3",
+        "b8c6",
+        "f1c4",
+        "c6d4"
+      ]
+    },
+    {
+      "type": "show",
+      "text": "Taking the pawn is the first slip: the black queen comes out and attacks the knight and the pawn on g2.",
+      "marks": {
+        "squares": [
+          "e5",
+          "g2"
+        ],
+        "arrows": [
+          [
+            "g5",
+            "e5"
+          ],
+          [
+            "g5",
+            "g2"
+          ]
+        ]
+      },
+      "play": [
+        "f3e5",
+        "d8g5"
+      ]
+    },
+    {
+      "type": "show",
+      "text": "Taking a second pawn loses at once: the queen takes on g2 and then on e4 with check, and the knight mates.",
+      "marks": {
+        "squares": [
+          "e1",
+          "g2",
+          "e4"
+        ]
+      },
+      "play": [
+        "e5f7",
+        "g5g2",
+        "h1f1",
+        "g2e4",
+        "c4e2",
+        "d4f3"
+      ]
+    },
+    {
+      "type": "move",
+      "text": "Back before the bait. Leave the pawn: take the knight that jumped forward.",
+      "fen": "r1bqkbnr/pppp1ppp/8/4p3/2BnP3/5N2/PPPP1PPP/RNBQK2R w KQkq - 4 4",
+      "marks": {
+        "squares": [
+          "e5",
+          "d4"
+        ],
+        "arrows": [
+          [
+            "f3",
+            "d4"
+          ]
+        ]
+      },
+      "accept": [
+        "f3d4"
+      ],
+      "wrong": {
+        "f3e5": "That takes the bait, a first slip. The queen comes out, and one more greedy capture walks into the mate you just saw."
+      },
+      "also": {
+        "e1g1": "Castling also leaves the bait alone. This lesson takes the knight."
+      },
+      "after": "Black has moved the same knight twice, and now it is gone.",
+      "reply": "e5d4"
+    },
+    {
+      "type": "move",
+      "text": "Castle. Your king leaves the center before anything can hit it there.",
+      "marks": {
+        "squares": [
+          "g1"
+        ],
+        "arrows": [
+          [
+            "e1",
+            "g1"
+          ]
+        ]
+      },
+      "accept": [
+        "e1g1"
+      ],
+      "reply": "g8f6"
+    },
+    {
+      "type": "move",
+      "text": "Put your rook behind the pawn on e4. Then the pawn can push forward and chase the knight.",
+      "marks": {
+        "squares": [
+          "e4",
+          "f6"
+        ],
+        "arrows": [
+          [
+            "f1",
+            "e1"
+          ]
+        ]
+      },
+      "accept": [
+        "f1e1"
+      ],
+      "after": "Your pieces are out and Black is still behind. Leaving the bait cost you nothing.",
+      "reply": "d7d6"
+    }
+  ],
+  "summary": "A pawn left unguarded on purpose can be bait. Ask what the other side gets before you take it.",
+  "practice": {
+    "fen": "r1bqkb1r/ppp2ppp/3p1n2/8/2BpP3/8/PPPP1PPP/RNBQR1K1 w kq - 0 7",
+    "side": "w"
+  }
+}

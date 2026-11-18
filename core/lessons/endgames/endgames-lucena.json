@@ -1,0 +1,91 @@
+{
+  "id": "endgames-lucena",
+  "course": "endgames",
+  "title": "The Lucena position",
+  "line": "Build a bridge with the rook, and the pawn promotes.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "fen": "1K6/1P2k3/8/8/8/8/r7/3R4 w - - 0 1",
+      "text": "This is the Lucena position. Your king stands in front of its pawn. If it steps out, Black's rook checks it again and again.",
+      "marks": {"squares":["b8","b7"],"arrows":[["a2","a8"]]}
+    },
+    {
+      "type": "show",
+      "fen": "1K6/1P2k3/8/8/8/8/r7/3R4 w - - 0 1",
+      "text": "The way out is a bridge. Put your rook on the fourth row, so that later it can block the checks.",
+      "marks": {"arrows":[["d1","d4"]]}
+    },
+    {
+      "type": "move",
+      "fen": "1K6/1P2k3/8/8/8/8/r7/3R4 w - - 0 1",
+      "text": "Build the bridge: move your rook up to the fourth row.",
+      "marks": {"arrows":[["d1","d4"]]},
+      "accept": ["d1d4"],
+      "hint": "Follow the arrow.",
+      "after": "Now the rook waits on the row where it will block.",
+      "reply": "a2a1"
+    },
+    {
+      "type": "move",
+      "text": "Step out from in front of the pawn, to its side.",
+      "marks": {"squares":["b7"]},
+      "accept": ["b8c7","b8c8"],
+      "taught": true,
+      "hint": "Step to the file beside the pawn.",
+      "after": "Black checks from the side.",
+      "reply": {
+        "b8c7": "a1c1",
+        "b8c8": "a1c1"
+      }
+    },
+    {
+      "type": "move",
+      "fen": "8/1PK1k3/8/8/3R4/8/8/2r5 w - - 4 3",
+      "text": "Walk toward your rook, keeping the pawn guarded.",
+      "marks": {"squares":["b7","d4"]},
+      "accept": ["c7b6"],
+      "hint": "Step down beside the pawn.",
+      "after": "The checks go on.",
+      "reply": "c1b1"
+    },
+    {
+      "type": "move",
+      "text": "Keep walking down toward your rook, and keep the pawn guarded.",
+      "marks": {"squares":["b7","d4"]},
+      "accept": ["b6c6"],
+      "also": {
+        "b6a6": "That also walks down and keeps the pawn guarded. This lesson goes the other way."
+      },
+      "wrong": {
+        "b6c5": "That leaves the pawn unguarded, and Black's rook takes it."
+      },
+      "hint": "Step toward the rook while still touching the pawn.",
+      "after": "One more check.",
+      "reply": "b1c1"
+    },
+    {
+      "type": "move",
+      "text": "Step down once more, toward the fourth row.",
+      "marks": {"squares":["d4"]},
+      "accept": ["c6b5"],
+      "also": {
+        "c6d5": "That works too, though the king must come back to guard the pawn. This lesson stays next to the pawn's file."
+      },
+      "hint": "Step down to the fifth row, next to the pawn's file.",
+      "after": "Next check, the rook blocks it.",
+      "reply": "c1b1"
+    },
+    {
+      "type": "move",
+      "text": "Block the check with your rook. That is the bridge.",
+      "marks": {"squares":["d4"]},
+      "accept": ["d4b4"],
+      "hint": "The rook slides across its row.",
+      "after": "No more checks. The pawn promotes."
+    }
+  ],
+  "summary": "In the Lucena position, put the rook on the fourth row, walk the king out, and block the last check with the rook.",
+  "practice": {"fen":"1K6/1P2k3/8/8/3R4/8/8/r7 w - - 2 2","side":"w"}
+}

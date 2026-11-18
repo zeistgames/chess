@@ -1,0 +1,86 @@
+{
+  "id": "openings-kings-indian-defense-fianchetto-variation",
+  "course": "openings",
+  "title": "King's Indian Defense: Fianchetto Variation",
+  "line": "White's bishop guards its king from the long diagonal, so Black plays on the queen's side.",
+  "side": "b",
+  "steps": [
+    {
+      "type": "show",
+      "text": "Here White brings the knight out first and gets ready to put its own bishop on the long diagonal.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {"arrows":[["f1","g2"]]},
+      "play": ["d2d4","g8f6","c2c4","g7g6","g1f3","f8g7","g2g3"]
+    },
+    {
+      "type": "move",
+      "text": "Castle. Your king is safe behind the bishop.",
+      "accept": ["e8g8"],
+      "marks": {"arrows":[["e8","g8"]]},
+      "reply": "f1g2",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Move the pawn in front of your queen one square, as in every King's Indian.",
+      "accept": ["d7d6"],
+      "marks": {"arrows":[["d7","d6"]]},
+      "reply": "e1g1",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the other knight out. It hits White's pawn on d4.",
+      "marks": {"squares":["d4"],"arrows":[["b8","c6"]]},
+      "accept": ["b8c6"],
+      "reply": "b1c3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Move the pawn on a7 one square. The pawn on b7 can then push on, at White's pawn on c4.",
+      "marks": {
+        "squares": ["b7","c4","a7"],
+        "arrows": [["a7","a6"]]
+      },
+      "accept": ["a7a6"],
+      "after": "White pushes past and attacks your knight.",
+      "reply": "d4d5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Move the knight to the edge, where it attacks the pawn on c4.",
+      "marks": {"squares":["c4"],"arrows":[["c6","a5"]]},
+      "accept": ["c6a5"],
+      "after": "White's knight steps back to guard it.",
+      "reply": "f3d2",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn on c7 two squares. It takes space on the queen's side.",
+      "marks": {"squares":["c7"],"arrows":[["c7","c5"]]},
+      "accept": ["c7c5"],
+      "reply": "d1c2",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Put the rook behind the pawn on b7, to back up its push.",
+      "marks": {"squares":["b7"],"arrows":[["a8","b8"]]},
+      "accept": ["a8b8"],
+      "reply": "b2b3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Now push that pawn two squares. It attacks the pawn on c4, and your rook and knight join in.",
+      "marks": {"squares":["c4"],"arrows":[["b7","b5"]]},
+      "accept": ["b7b5"],
+      "taught": true
+    }
+  ],
+  "summary": "Against White's bishop on the long diagonal, Black brings a knight, a rook and pawns to the queen's side.",
+  "practice": {"fen":"1rbq1rk1/4ppbp/p2p1np1/nppP4/2P5/1PN3P1/P1QNPPBP/R1B2RK1 w - - 0 12","side":"b"}
+}

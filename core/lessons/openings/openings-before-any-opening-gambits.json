@@ -1,0 +1,158 @@
+{
+  "id": "openings-before-any-opening-gambits",
+  "course": "openings",
+  "title": "Gambits",
+  "line": "A pawn given up early can buy time, open lines and the center.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "text": "A gambit gives up a pawn, or more, early. In return the pieces come out faster and get open lines.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {
+        "squares": [
+          "d4",
+          "e4"
+        ]
+      }
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn in front of your king two squares, into the center.",
+      "marks": {
+        "arrows": [
+          [
+            "e2",
+            "e4"
+          ]
+        ]
+      },
+      "accept": [
+        "e2e4"
+      ],
+      "reply": "e7e5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn in front of your queen two squares as well.",
+      "marks": {
+        "squares": [
+          "e5"
+        ],
+        "arrows": [
+          [
+            "d2",
+            "d4"
+          ]
+        ]
+      },
+      "accept": [
+        "d2d4"
+      ],
+      "after": "Black takes the pawn.",
+      "reply": "e5d4",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Offer a second pawn: move the pawn on c2 one square.",
+      "marks": {
+        "squares": [
+          "d4"
+        ],
+        "arrows": [
+          [
+            "c2",
+            "c3"
+          ]
+        ]
+      },
+      "accept": [
+        "c2c3"
+      ],
+      "reply": "d4c3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Do not take back. Offer a third pawn and bring the bishop out, aimed at f7.",
+      "marks": {
+        "squares": [
+          "f7"
+        ],
+        "arrows": [
+          [
+            "f1",
+            "c4"
+          ]
+        ]
+      },
+      "accept": [
+        "f1c4"
+      ],
+      "also": {
+        "b1c3": "Taking back is also sound. This lesson offers another pawn."
+      },
+      "after": "Engines rate this gambit as too much: with care Black stays better, and masters seldom play it.",
+      "reply": "c3b2",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Take back with the other bishop. Now both bishops aim at the king side.",
+      "marks": {
+        "squares": [
+          "f7",
+          "g7"
+        ],
+        "arrows": [
+          [
+            "c1",
+            "b2"
+          ],
+          [
+            "c4",
+            "f7"
+          ],
+          [
+            "b2",
+            "g7"
+          ]
+        ]
+      },
+      "accept": [
+        "c1b2"
+      ],
+      "after": "The Danish Gambit: two pawns for open lines. Here Black brings its bishop out, a rare slip that leaves g7 to your bishop.",
+      "reply": "f8c5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "That slip leaves g7 unguarded. Take the pawn: your bishop then attacks the rook in the corner.",
+      "marks": {
+        "squares": [
+          "g7",
+          "h8"
+        ],
+        "arrows": [
+          [
+            "b2",
+            "g7"
+          ]
+        ]
+      },
+      "accept": [
+        "b2g7"
+      ],
+      "after": "The rook has no safe square. The open line you gave two pawns for wins it.",
+      "wins": 1
+    }
+  ],
+  "summary": "A gambit pays a pawn for time and open lines. It works when the pieces use them before the other side catches up.",
+  "practice": {
+    "fen": "rnbqkbnr/pppp1ppp/8/8/2B1P3/8/PB3PPP/RN1QK1NR b KQkq - 0 5",
+    "side": "w"
+  }
+}

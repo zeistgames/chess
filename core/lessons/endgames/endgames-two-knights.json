@@ -1,0 +1,42 @@
+{
+  "id": "endgames-two-knights",
+  "course": "endgames",
+  "title": "Two knights cannot force mate",
+  "line": "Against a bare king, the defender always has a way out.",
+  "side": "b",
+  "steps": [
+    {
+      "type": "show",
+      "fen": "6k1/4N3/6K1/4N3/8/8/8/8 b - - 0 1",
+      "text": "Two knights and a king cannot force mate. The defender only has to avoid stepping into one.",
+      "marks": {"squares":["e7","e5"]}
+    },
+    {
+      "type": "pick",
+      "fen": "6k1/4N3/6K1/4N3/8/8/8/8 b - - 0 1",
+      "text": "If your king steps into the corner, a knight jump gives mate. Tap the square that knight jumps to.",
+      "marks": {"squares":["h8"]},
+      "accept": ["f7"],
+      "hint": "The knight that is not checking you now.",
+      "after": "From there the knight checks the corner, and every other square is covered."
+    },
+    {
+      "type": "show",
+      "fen": "7k/8/5NK1/4N3/8/8/8/8 b - - 0 1",
+      "text": "Mate needs a check. Here White covered the last square without check: Black has no move, and it is stalemate.",
+      "marks": {"squares":["h8","g8","h7","g7"]}
+    },
+    {
+      "type": "move",
+      "fen": "6k1/4N3/6K1/4N3/8/8/8/8 b - - 0 1",
+      "text": "You are in check. Step away from the corner.",
+      "accept": ["g8f8"],
+      "wrong": {
+        "g8h8": "That walks into mate: the other knight jumps in with check."
+      },
+      "hint": "The other square, away from the corner.",
+      "after": "No mate is possible here. Keep doing this, and the game is a draw."
+    }
+  ],
+  "summary": "Two knights cannot force mate on a bare king. Only step into a corner when no knight can check you there."
+}

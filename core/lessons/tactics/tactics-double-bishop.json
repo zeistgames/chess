@@ -1,0 +1,58 @@
+{
+  "id": "tactics-double-bishop",
+  "course": "tactics",
+  "title": "The double bishop sacrifice",
+  "line": "Both bishops given up on h7 and g7 to strip the king.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "text": "Lasker against Bauer, 1889: both white bishops point at the pawns in front of the black king.",
+      "fen": "r4rk1/1b2bppp/ppq1p3/2ppB2n/5P2/1P1BP3/P1PPQ1PP/R4RK1 w - - 0 15",
+      "marks": {"arrows":[["d3","h7"],["e5","g7"]]}
+    },
+    {
+      "type": "move",
+      "text": "Give the first bishop: take the pawn in front of the king, with check.",
+      "fen": "r4rk1/1b2bppp/ppq1p3/2ppB2n/5P2/1P1BP3/P1PPQ1PP/R4RK1 w - - 0 15",
+      "accept": ["d3h7"],
+      "reply": "g8h7"
+    },
+    {"type":"move","text":"Take the knight with the queen, with check.","accept":["e2h5"],"reply":"h7g8"},
+    {
+      "type": "move",
+      "text": "Now give the second bishop too: take the last pawn beside the king.",
+      "accept": ["e5g7"],
+      "hint": "The other bishop aims at the pawn next to the king.",
+      "after": "The king took the bishop, and now it stands bare.",
+      "reply": "g8g7",
+      "sacrifice": true
+    },
+    {"type":"move","text":"Check with the queen and drive the king along.","accept":["h5g4"],"reply":"g7h7"},
+    {
+      "type": "move",
+      "text": "Bring a rook toward the king. It will check from the side next move.",
+      "accept": ["f1f3"],
+      "after": "The rook threatens mate, and Black can only give up the queen.",
+      "reply": "e6e5"
+    },
+    {
+      "type": "move",
+      "text": "Check with the rook.",
+      "accept": ["f3h3"],
+      "after": "Black had to put the queen in the way.",
+      "reply": "c6h6"
+    },
+    {
+      "type": "move",
+      "text": "Take the queen.",
+      "accept": ["h3h6"],
+      "after": "White gave a rook for the queen. In the game the queen went to d7 next and attacked both black bishops.",
+      "reply": "h7h6",
+      "marks": {"squares":["d7"]}
+    }
+  ],
+  "summary": "Give both bishops for the pawns in front of the king, then bring the queen and a rook against the bare king.",
+  "puzzles": "sacrifices",
+  "practice": {"fen":"r4r2/1b2bp2/pp5k/2ppp3/5PQ1/1P2P3/P1PP2PP/R5K1 w - - 0 22","side":"w"}
+}

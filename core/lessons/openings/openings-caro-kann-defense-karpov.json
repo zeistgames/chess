@@ -1,0 +1,76 @@
+{
+  "id": "openings-caro-kann-defense-karpov",
+  "course": "openings",
+  "title": "Caro-Kann Defense: Karpov Variation",
+  "line": "A knight comes out first to back up the other one, and Black steps around a famous mate.",
+  "side": "b",
+  "steps": [
+    {
+      "type": "show",
+      "text": "In the Caro-Kann main line, Black took on e4 and White's knight took back.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {"squares":["e4"]},
+      "play": ["e2e4","c7c6","d2d4","d7d5","b1c3","d5e4","c3e4"]
+    },
+    {
+      "type": "move",
+      "text": "Bring the knight to d7. It gets ready to back up your other knight.",
+      "marks": {"arrows":[["b8","d7"]]},
+      "accept": ["b8d7"],
+      "also": {
+        "c8f5": "That is the Classical Variation, another main line. This lesson goes on with the knight.",
+        "g8f6": "That also works. This lesson goes on with the knight on d7."
+      },
+      "reply": "g1f3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the other knight out. It challenges White's knight, and the knight on d7 backs it up.",
+      "marks": {"squares":["d7"],"arrows":[["g8","f6"]]},
+      "accept": ["g8f6"],
+      "reply": "e4f6",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Take back with the knight.",
+      "marks": {"arrows":[["d7","f6"]]},
+      "accept": ["d7f6"],
+      "also": {
+        "e7f6": "That works too, though it changes your pawns. This lesson takes with the knight."
+      },
+      "reply": "c2c3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the bishop out. It pins White's knight to the queen.",
+      "marks": {"arrows":[["c8","g4"]]},
+      "accept": ["c8g4"],
+      "taught": true
+    },
+    {
+      "type": "show",
+      "text": "A famous trap: here White's queen came to e2. If your other knight comes out to f6, White's knight jumps to d6 and it is mate.",
+      "fen": "r1bqkbnr/pp1npppp/2p5/8/3PN3/8/PPP1QPPP/R1B1KBNR b KQkq - 2 5",
+      "marks": {"squares":["e2","d6","f6"]},
+      "play": ["g8f6","e4d6"]
+    },
+    {
+      "type": "move",
+      "text": "So bring the knight on d7 to f6 instead. It hits White's knight, and your king keeps d7 free.",
+      "fen": "r1bqkbnr/pp1npppp/2p5/8/3PN3/8/PPP1QPPP/R1B1KBNR b KQkq - 2 5",
+      "marks": {"squares":["d7","d6"],"arrows":[["d7","f6"]]},
+      "accept": ["d7f6"],
+      "wrong": {
+        "g8f6": "That walks into it: White's knight jumps to d6, and it is mate."
+      }
+    }
+  ],
+  "summary": "The knight comes out first to back up the other, and Black keeps a square free for the king against the queen trap.",
+  "practice": {
+    "fen": "r2qkb1r/pp2pppp/2p2n2/8/3P2b1/2P2N2/PP3PPP/R1BQKB1R w KQkq - 1 8",
+    "side": "b"
+  }
+}

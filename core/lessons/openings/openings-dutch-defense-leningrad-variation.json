@@ -1,0 +1,77 @@
+{
+  "id": "openings-dutch-defense-leningrad-variation",
+  "course": "openings",
+  "title": "Dutch Defense: Leningrad Variation",
+  "line": "Black puts its bishop on the long diagonal and gets ready to push the king's pawn.",
+  "side": "b",
+  "steps": [
+    {
+      "type": "show",
+      "text": "The Dutch, and White gets ready to put its bishop on the long diagonal.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {"arrows":[["f1","g2"]]},
+      "play": ["d2d4","f7f5","c2c4","g8f6","g2g3"]
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn on g7 one square. Your bishop goes to the long diagonal too.",
+      "marks": {"squares":["g7"],"arrows":[["g7","g6"]]},
+      "accept": ["g7g6"],
+      "also": {"e7e6":"That leads to the other setups, also sound. This lesson goes on with the pawn on g7."},
+      "reply": "f1g2",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Put the bishop on the long diagonal. Once your knight moves, it aims at White's pawn on d4.",
+      "marks": {"squares":["d4"],"arrows":[["f8","g7"]]},
+      "accept": ["f8g7"],
+      "reply": "g1f3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Castle, to get your king to safety.",
+      "accept": ["e8g8"],
+      "marks": {"arrows":[["e8","g8"]]},
+      "reply": "e1g1",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Move the pawn in front of your queen one square. It gets a pawn push to e5 ready.",
+      "marks": {"squares":["e5"],"arrows":[["d7","d6"]]},
+      "accept": ["d7d6"],
+      "reply": "b1c3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Step the queen out to e8. It backs up the push.",
+      "marks": {"squares":["e8"],"arrows":[["d8","e8"]]},
+      "accept": ["d8e8"],
+      "also": {"c7c6":"That is a main line too. This lesson goes on with the queen."},
+      "reply": "b2b3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Now push the pawn in front of your king two squares, into the center.",
+      "accept": ["e7e5"],
+      "marks": {"arrows":[["e7","e5"]]},
+      "reply": "d4e5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Take back.",
+      "accept": ["d6e5"],
+      "marks": {"arrows":[["d6","e5"]],"squares":["f5"]},
+      "after": "Black has pawns side by side in the center. White strikes back at once at the one on f5.",
+      "reply": "e2e4",
+      "taught": true
+    }
+  ],
+  "summary": "The bishop goes to the long diagonal, the queen backs up a center pawn push, and Black gets two pawns side by side.",
+  "practice": {"fen":"rnb1qrk1/ppp3bp/5np1/4pp2/2P1P3/1PN2NP1/P4PBP/R1BQ1RK1 b - - 0 10","side":"b"}
+}

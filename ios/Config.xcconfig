@@ -1,0 +1,8 @@
+// Where the app fetches engines' data files (networks), each under /<id>/. Programs and the catalog ship in the app.
+PACKS_URL_PUBLIC = https:/$()/engines.zei.st
+// For development only: Config.local.xcconfig (git-ignored) may set PACKS_URL_LOCAL, which Debug builds use
+// instead. Release builds always use the public address.
+PACKS_URL_LOCAL =
+#include? "Config.local.xcconfig"
+// Release builds never carry the local address.
+PACKS_URL_LOCAL[config=Release] =

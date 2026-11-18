@@ -1,0 +1,50 @@
+{
+  "id": "strategy-isolated-pawn",
+  "course": "strategy",
+  "title": "The isolated pawn",
+  "line": "No pawns of its own beside it: block it, trade pieces, then win it.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "fen": "r1bq1rk1/pp2bppp/2n2n2/3p2B1/3N4/2N3P1/PP2PPBP/R2Q1RK1 b - - 0 10",
+      "text": "Black's pawn on d5 has no black pawn on a file next to it: an isolated pawn. Only pieces can guard it now.",
+      "marks": {"squares":["d5"]}
+    },
+    {
+      "type": "pick",
+      "text": "Tap the square right in front of the isolated pawn. No black pawn can guard it now.",
+      "accept": ["d4"],
+      "hint": "The pawn moves down the board. Look one square below it.",
+      "after": "White's knight sits there. It blocks the pawn, and no black pawn can attack it there now."
+    },
+    {
+      "type": "show",
+      "fen": "6k1/p2r1ppp/1p6/1R1p4/8/4K3/PP2PPPP/8 w - - 0 30",
+      "text": "With most pieces traded, the pawn is a target. Only pieces can guard it, and in an ending the king joins the attack.",
+      "marks": {"squares":["d5"],"arrows":[["b5","d5"]]}
+    },
+    {
+      "type": "move",
+      "text": "Put your king on the square in front of the pawn. It attacks the pawn, and no black pawn can attack it there.",
+      "marks": {"squares":["d5"],"arrows":[["e3","d4"]]},
+      "accept": ["e3d4"],
+      "wrong": {
+        "b5d5": "Black's rook takes back, and you have given a rook for a pawn."
+      },
+      "hint": "Your king steps toward the pawn, onto the file it stands on.",
+      "after": "Black's rook leaves to look for play elsewhere, and now nothing guards the isolated pawn.",
+      "reply": "d7c7",
+      "wins": 1
+    },
+    {
+      "type": "move",
+      "text": "Nothing guards the isolated pawn now. Take it with the rook.",
+      "marks": {"squares":["d5"]},
+      "accept": ["b5d5"],
+      "after": "The isolated pawn falls, a pawn for nothing."
+    }
+  ],
+  "summary": "An isolated pawn can be guarded only by pieces. Block the square in front of it, trade pieces, then win it.",
+  "practice": {"fen":"6k1/p1r2ppp/1p6/3R4/3K4/8/PP2PPPP/8 b - - 0 31","side":"w"}
+}

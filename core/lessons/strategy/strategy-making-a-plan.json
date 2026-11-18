@@ -1,0 +1,61 @@
+{
+  "id": "strategy-making-a-plan",
+  "course": "strategy",
+  "title": "Making a plan",
+  "line": "Look at the pawns, find a target, bring the pieces.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "fen": "2r1r1k1/p4ppp/2p2n2/3p4/3P4/2N1P3/P4PPP/1R3RK1 w - - 0 30",
+      "text": "With no tactic on the board, make a plan. First look at the pawns: which enemy pawn is weak, and which square can you use?",
+      "marks": {"squares":["c6","d5","a7"]}
+    },
+    {
+      "type": "pick",
+      "text": "Find the target. Tap Black's backward pawn: one black pawn beside it is gone, and the other has moved past it.",
+      "accept": ["c6"],
+      "wrong": {
+        "d5": "The black pawn beside and behind it guards that one.",
+        "a7": "That pawn has no black pawn beside it at all. It is isolated, not backward."
+      },
+      "after": "That is the target. No black pawn can guard it now, and it stands on a file your rooks can use."
+    },
+    {
+      "type": "pick",
+      "text": "Now find a square for a piece. Tap the square in front of the target that no black pawn can attack now.",
+      "accept": ["c5"],
+      "hint": "Black's pawns move down the board.",
+      "after": "A knight there would block the target, and no black pawn can attack that square now."
+    },
+    {
+      "type": "move",
+      "text": "Bring the pieces. Start the knight on its way to that square.",
+      "marks": {"squares":["c5"],"arrows":[["c3","a4"]]},
+      "accept": ["c3a4"],
+      "hint": "The knight goes through the edge of the board.",
+      "after": "Black puts a rook on the open file next to it.",
+      "reply": "c8b8"
+    },
+    {
+      "type": "move",
+      "text": "Put the knight on its square.",
+      "marks": {"arrows":[["a4","c5"]]},
+      "accept": ["a4c5"],
+      "after": "Black's king steps toward the middle.",
+      "reply": "g8f8"
+    },
+    {
+      "type": "move",
+      "text": "Bring your other rook to the target's file.",
+      "marks": {"squares":["c6"],"arrows":[["f1","c1"]]},
+      "accept": ["f1c1"],
+      "also": {
+        "b1c1": "That puts a rook on the file too. This lesson keeps that rook on the open file beside it."
+      },
+      "after": "The knight blocks the target and your rook stands on its file. Next, bring more pieces against it."
+    }
+  ],
+  "summary": "Make a plan from the pawns: find the weak pawn, find a square for a piece, then bring the pieces one by one.",
+  "practice": {"fen":"1r2rk2/p4ppp/2p2n2/2Np4/3P4/4P3/P4PPP/1RR3K1 b - - 5 32","side":"w"}
+}

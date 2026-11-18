@@ -1,0 +1,44 @@
+{
+  "id": "tactics-removing-defender",
+  "course": "tactics",
+  "title": "Removing the defender",
+  "line": "Capture or chase the piece that holds everything together.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "text": "Your queen and bishop both aim at the pawn in front of the black king. Only one black piece keeps them out.",
+      "fen": "r2q1rk1/pp2bppp/2n1pn2/3p2B1/3P3Q/2NB4/PPP2PPP/R4RK1 w - - 0 1",
+      "marks": {"squares":["h7"],"arrows":[["h4","h7"],["d3","h7"]]}
+    },
+    {
+      "type": "pick",
+      "text": "Tap the black piece that guards that pawn.",
+      "fen": "r2q1rk1/pp2bppp/2n1pn2/3p2B1/3P3Q/2NB4/PPP2PPP/R4RK1 w - - 0 1",
+      "marks": {"squares":["h7"]},
+      "accept": ["f6"],
+      "all": false,
+      "hint": "Look for the piece that could capture on h7.",
+      "after": "The knight is the only guard."
+    },
+    {
+      "type": "move",
+      "text": "Remove the defender: capture it with your bishop.",
+      "fen": "r2q1rk1/pp2bppp/2n1pn2/3p2B1/3P3Q/2NB4/PPP2PPP/R4RK1 w - - 0 1",
+      "marks": {"squares":["h7"]},
+      "accept": ["g5f6"],
+      "after": "Black took back, and now nothing guards the pawn in front of the king.",
+      "reply": "e7f6",
+      "wins": 3
+    },
+    {
+      "type": "move",
+      "text": "Take the pawn with the queen. The bishop behind her guards her.",
+      "accept": ["h4h7"],
+      "after": "Checkmate. The knight that guarded the pawn is gone.",
+      "mate": true
+    }
+  ],
+  "summary": "Find the one piece that guards everything, then capture it or chase it away. What it guarded falls.",
+  "puzzles": "defender"
+}

@@ -1,0 +1,79 @@
+{
+  "id": "openings-french-defense-advance",
+  "course": "openings",
+  "title": "French Defense: Advance Variation",
+  "line": "White takes space with a pawn chain; Black piles up on its base and steps around a well-known trap.",
+  "side": "b",
+  "steps": [
+    {
+      "type": "show",
+      "text": "In the French Advance, White's pawn pushes past and the pawns lock into chains.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {"arrows":[["e4","e5"]]},
+      "play": ["e2e4","e7e6","d2d4","d7d5","e4e5"]
+    },
+    {
+      "type": "show",
+      "text": "Black hits the base of White's chain with a pawn and a knight, and White guards it.",
+      "marks": {"squares":["d4"]},
+      "play": ["c7c5","c2c3","b8c6","g1f3"]
+    },
+    {
+      "type": "move",
+      "text": "Bring the queen to b6. She is a third attacker on d4, and she eyes the pawn on b2.",
+      "marks": {"squares":["d4","b2"],"arrows":[["d8","b6"]]},
+      "accept": ["d8b6"],
+      "also": {
+        "c8d7": "That is also played. This lesson brings the queen out first."
+      },
+      "reply": "f1d3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Take the pawn on d4.",
+      "marks": {"arrows":[["c5","d4"]]},
+      "accept": ["c5d4"],
+      "reply": "c3d4",
+      "taught": true
+    },
+    {
+      "type": "show",
+      "text": "A trap: if your knight takes now, the trades end with a bishop check from b5 that uncovers White's queen, and Black loses the queen.",
+      "fen": "r1b1kbnr/pp3ppp/1qn1p3/3pP3/3P4/3B1N2/PP3PPP/RNBQK2R b KQkq - 0 7",
+      "marks": {"squares":["b5","d4"]},
+      "play": ["c6d4","f3d4","b6d4","d3b5"]
+    },
+    {
+      "type": "move",
+      "text": "So bring the bishop out to d7 first. It guards b5.",
+      "fen": "r1b1kbnr/pp3ppp/1qn1p3/3pP3/3P4/3B1N2/PP3PPP/RNBQK2R b KQkq - 0 7",
+      "marks": {"squares":["b5","d4"],"arrows":[["c8","d7"]]},
+      "accept": ["c8d7"],
+      "wrong": {
+        "c6d4": "That is the trap: after the trades on d4, the bishop checks from b5 and uncovers White's queen on yours."
+      },
+      "reply": "e1g1",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Now your bishop guards b5. Take the pawn on d4.",
+      "marks": {"squares":["b5","d4"],"arrows":[["c6","d4"]]},
+      "accept": ["c6d4"],
+      "reply": "f3d4"
+    },
+    {
+      "type": "move",
+      "text": "Take back with the queen.",
+      "marks": {"arrows":[["b6","d4"]]},
+      "accept": ["b6d4"],
+      "after": "Black has an extra pawn. White has a lead in development for it."
+    }
+  ],
+  "summary": "In the Advance, Black piles up on the base of White's chain, and brings a bishop out before taking on it.",
+  "practice": {
+    "fen": "r3kbnr/pp1b1ppp/4p3/3pP3/3q4/3B4/PP3PPP/RNBQ1RK1 w kq - 0 10",
+    "side": "b"
+  }
+}

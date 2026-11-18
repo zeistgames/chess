@@ -1,0 +1,73 @@
+{
+  "id": "basics-board",
+  "course": "basics",
+  "title": "The board and the pieces",
+  "line": "Where each piece starts, a light square in the right corner, the queen on her own color.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "text": "A chessboard has 64 squares, light and dark. Each player has 16 pieces: White starts at the bottom, Black at the top.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
+    },
+    {
+      "type": "pick",
+      "text": "Each player has a light square in the corner on their right. Tap the light corner square on White's side.",
+      "accept": ["h1"],
+      "all": false,
+      "wrong": {
+        "a1": "That corner is dark. The light one is on White's right.",
+        "a8": "That corner is on Black's side.",
+        "h8": "That corner is on Black's side."
+      },
+      "after": "If a board is set up turned around, this square shows it."
+    },
+    {
+      "type": "show",
+      "text": "Each square has a name: a letter for its column, a to h, and a number for its row, 1 to 8. The light corner is h1.",
+      "marks": {"squares":["h1"],"arrows":[["a1","h1"],["h1","h8"]]}
+    },
+    {
+      "type": "show",
+      "text": "The rooks stand in the corners. Next to them are the knights, then the bishops.",
+      "marks": {
+        "squares": ["a1","h1","b1","g1","c1","f1"]
+      }
+    },
+    {
+      "type": "pick",
+      "text": "The queen starts on a square of her own color. Tap the white queen.",
+      "accept": ["d1"],
+      "all": false,
+      "wrong": {
+        "e1": "That is the king. The queen stands beside him, on his left.",
+        "d8": "That is the black queen. Tap the white one."
+      },
+      "after": "The white queen starts on a light square, the black queen on a dark one."
+    },
+    {
+      "type": "pick",
+      "text": "The king takes the last square in the middle of the row. Tap the black king.",
+      "accept": ["e8"],
+      "all": false,
+      "wrong": {
+        "d8": "That is the black queen. The king stands beside her.",
+        "e1": "That is the white king. Tap the black one."
+      },
+      "after": "The kings face each other across the board."
+    },
+    {
+      "type": "pick",
+      "text": "The pawns fill the row in front of the pieces. Tap a white pawn.",
+      "accept": ["a2","b2","c2","d2","e2","f2","g2","h2"],
+      "all": false,
+      "after": "Each side has eight pawns, one in front of each piece."
+    },
+    {
+      "type": "show",
+      "text": "White always moves first. Then the players take turns, one move each.",
+      "play": ["e2e4","e7e5"]
+    }
+  ],
+  "summary": "Rooks in the corners, then knights and bishops, the queen on her own color. White moves first."
+}

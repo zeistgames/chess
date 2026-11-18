@@ -1,0 +1,51 @@
+{
+  "id": "endgames-knight-pawns",
+  "course": "endgames",
+  "title": "Knight against pawns",
+  "line": "The knight is slow to cross the board, and a rook pawn is hardest for it.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "fen": "7K/8/7B/8/2k5/p7/8/8 w - - 0 1",
+      "text": "A bishop stops a pawn from across the board: this one can attack the pawn in a single move.",
+      "marks": {"squares":["h6","a3"],"arrows":[["h6","f8"]]}
+    },
+    {
+      "type": "show",
+      "fen": "7K/8/8/8/3N4/p7/k7/8 w - - 0 1",
+      "text": "A knight has to come close to stop a pawn, one jump at a time. On the edge of the board it has the fewest jumps.",
+      "marks": {"squares":["d4","a3"]}
+    },
+    {
+      "type": "pick",
+      "fen": "7K/8/8/8/3N4/p7/k7/8 w - - 0 1",
+      "text": "Tap every square from which a knight would attack the pawn.",
+      "marks": {"squares":["a3"]},
+      "accept": ["b1","b5","c2","c4"],
+      "all": true,
+      "hint": "Picture a knight on the pawn's square, and the squares it could jump to.",
+      "after": "Four squares, and only two are one jump from your knight."
+    },
+    {
+      "type": "move",
+      "fen": "7K/8/8/8/3N4/p7/k7/8 w - - 0 1",
+      "text": "Stop the pawn: jump to a square that attacks it.",
+      "marks": {"squares":["a3"]},
+      "accept": ["d4b5","d4c2"],
+      "wrong": {
+        "d4e6": "The knight is too far from the pawn now, and it promotes.",
+        "d4f3": "The knight is too far from the pawn now, and it promotes.",
+        "d4f5": "The knight is too far from the pawn now, and it promotes.",
+        "d4e2": "The knight is too far from the pawn now, and it promotes.",
+        "d4b3": "The black king takes the knight, and the pawn promotes.",
+        "h8g7": "Your king is far too slow to help. The pawn promotes.",
+        "h8h7": "Your king is far too slow to help. The pawn promotes."
+      },
+      "hint": "Two jumps can attack the pawn. Either will do.",
+      "after": "The knight attacks the pawn. If the black king guards it, the knight can give itself up for it, and the game is a draw."
+    }
+  ],
+  "summary": "A knight stops a pawn only from close by, one jump at a time. Near a rook pawn it has fewest jumps.",
+  "practice": {"fen":"7K/8/8/1N6/8/p7/k7/8 b - - 1 1","side":"w"}
+}

@@ -1,0 +1,86 @@
+{
+  "id": "endgames-opposition",
+  "course": "endgames",
+  "title": "The opposition",
+  "line": "Kings face each other: whoever has to move must give way.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "fen": "8/8/4k3/8/4K3/4P3/8/8 b - - 0 1",
+      "text": "The kings face each other with one square between them. Neither may step onto e5. This standoff is the opposition.",
+      "marks": {"squares":["e4","e5","e6"]}
+    },
+    {
+      "type": "show",
+      "fen": "8/8/4k3/8/4K3/4P3/8/8 b - - 0 1",
+      "text": "Kings never stand side by side, so whoever has to move here must step aside. The side that does not have to move has the opposition.",
+      "marks": {"squares":["e5"]}
+    },
+    {
+      "type": "move",
+      "fen": "8/8/3k4/8/4K3/4P3/8/8 w - - 0 1",
+      "text": "Black had to move and stepped aside. Walk your king forward past it.",
+      "marks": {"squares":["d6"]},
+      "accept": ["e4f5"],
+      "also": {
+        "e4d4": "That keeps the opposition too, and Black must give way again. This lesson goes the other way, past the king.",
+        "e4f4": "That works too: Black cannot hold the squares in front of the pawn. This lesson goes forward at once."
+      },
+      "wrong": {
+        "e4d3": "That steps back, and Black's king comes forward. The game is drawn.",
+        "e4f3": "That steps back, and Black's king comes forward. The game is drawn."
+      },
+      "hint": "Go forward on the side the black king left.",
+      "after": "Your king is ahead of the pawn, and Black can no longer stop it."
+    },
+    {
+      "type": "move",
+      "fen": "8/4k3/8/8/4K3/4P3/8/8 b - - 0 1",
+      "side": "b",
+      "text": "Now you have Black. Take the opposition: face the white king with one square between.",
+      "accept": ["e7e6"],
+      "wrong": {
+        "e7d6": "That lets the white king step forward, and the pawn promotes.",
+        "e7f6": "That lets the white king step forward, and the pawn promotes.",
+        "e7d7": "That lets the white king step forward, and the pawn promotes.",
+        "e7f7": "That lets the white king step forward, and the pawn promotes.",
+        "e7d8": "That lets the white king step forward, and the pawn promotes.",
+        "e7e8": "That lets the white king step forward, and the pawn promotes.",
+        "e7f8": "That lets the white king step forward, and the pawn promotes."
+      },
+      "hint": "Stand straight in front of the white king.",
+      "after": "White has to move now and give way. The game is drawn."
+    },
+    {
+      "type": "move",
+      "fen": "8/8/3k4/8/2K5/3P4/8/8 w - - 0 1",
+      "text": "You have White again. Take the opposition yourself, so that Black has to move.",
+      "marks": {"squares":["d6"]},
+      "accept": ["c4d4"],
+      "wrong": {
+        "d3d4": "The pawn moved first, and Black keeps your king out. The game is drawn.",
+        "c4b5": "That lets the black king attack your pawn, and the game is drawn.",
+        "c4c3": "That steps back, and Black keeps the squares in front of the pawn. The game is drawn."
+      },
+      "hint": "Stand on the same file as the black king, one square between.",
+      "after": "Black must give way.",
+      "reply": "d6e6"
+    },
+    {
+      "type": "move",
+      "text": "Black stepped to one side. Go past on the other.",
+      "marks": {"squares":["e6"]},
+      "accept": ["d4c5"],
+      "also": {
+        "d4e4": "That takes the opposition again, and Black must give way once more. This lesson goes past the king.",
+        "d4c4": "That works too. This lesson goes forward at once."
+      },
+      "hint": "Step forward on the side away from the black king.",
+      "after": "Your king is ahead of the pawn now, and the pawn will promote.",
+      "reply": "e6d7"
+    }
+  ],
+  "summary": "When the kings face each other with one square between, whoever has to move must give way.",
+  "practice": {"fen":"8/3k4/8/2K5/8/3P4/8/8 w - - 4 3","side":"w"}
+}

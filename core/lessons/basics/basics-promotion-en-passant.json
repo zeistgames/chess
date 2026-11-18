@@ -1,0 +1,58 @@
+{
+  "id": "basics-promotion-en-passant",
+  "course": "basics",
+  "title": "Promotion and en passant",
+  "line": "A pawn on the last rank becomes a queen or another piece; the one capture that lands behind a pawn.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "text": "A pawn that reaches the last rank, the far row, must become another piece: a queen, a rook, a bishop or a knight.",
+      "fen": "8/4P3/8/6k1/8/8/5K2/8 w - - 0 1",
+      "marks": {"squares":["e8"],"arrows":[["e7","e8"]]}
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn to e8 and make it a queen.",
+      "marks": {"squares":["e8"]},
+      "accept": ["e7e8q"],
+      "wrong": {
+        "e7e8n": "A knight is allowed, but a lone knight can never give checkmate. A queen is far stronger.",
+        "e7e8b": "A bishop is allowed, but a lone bishop can never give checkmate."
+      },
+      "also": {"e7e8r":"A rook is allowed too, and it wins here. Most players choose the queen, the strongest piece."},
+      "after": "The pawn is now a queen. Most players choose the queen, the strongest piece."
+    },
+    {
+      "type": "move",
+      "text": "A pawn can also capture its way onto the last row. Capture the rook and make a queen.",
+      "fen": "rn6/1P3k2/8/8/8/8/5K2/8 w - - 0 1",
+      "accept": ["b7a8q"],
+      "hint": "The pawn captures one square diagonally forward.",
+      "after": "The pawn took the rook and became a queen in the same move."
+    },
+    {
+      "type": "show",
+      "text": "Black moves a pawn two squares, from d7 to d5, and lands right beside your pawn on e5.",
+      "fen": "rnbqkbnr/pp1ppppp/2p5/4P3/8/8/PPPP1PPP/RNBQKBNR b KQkq - 0 2",
+      "marks": {
+        "squares": ["e5","d7","d5"]
+      },
+      "play": ["d7d5"]
+    },
+    {
+      "type": "move",
+      "text": "Your pawn may capture it as if it had moved only one square. Capture en passant: move to d6.",
+      "marks": {"squares":["d6","d5"]},
+      "accept": ["e5d6"],
+      "wrong": {"e5e6":"That moves the pawn ahead and leaves the pawn on d5 alone. Capture it by moving to d6."},
+      "hint": "Move your pawn diagonally forward, to the ringed empty square.",
+      "after": "The black pawn is gone, though your pawn did not land on its square."
+    },
+    {
+      "type": "show",
+      "text": "This capture is called en passant, French for in passing. It is allowed only on the move right after the two-square step."
+    }
+  ],
+  "summary": "A pawn that reaches the last row becomes a queen or another piece. En passant takes a pawn that just passed by."
+}

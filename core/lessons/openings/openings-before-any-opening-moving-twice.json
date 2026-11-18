@@ -1,0 +1,133 @@
+{
+  "id": "openings-before-any-opening-moving-twice",
+  "course": "openings",
+  "title": "Moving a piece twice",
+  "line": "Each move in the opening should bring out a piece that has not moved yet, unless moving again gains something.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "text": "Each move in the opening should bring another piece into play. Here your knight and bishop are out, and so are two of Black's.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {
+        "squares": [
+          "f3",
+          "c4"
+        ]
+      },
+      "play": [
+        "e2e4",
+        "e7e5",
+        "g1f3",
+        "b8c6",
+        "f1c4",
+        "f8c5"
+      ]
+    },
+    {
+      "type": "move",
+      "text": "Make a move that brings another piece into the game or gets ready to castle.",
+      "marks": {
+        "squares": [
+          "f3",
+          "c4"
+        ]
+      },
+      "accept": [
+        "d2d3",
+        "c2c3",
+        "e1g1",
+        "b1c3"
+      ],
+      "wrong": {
+        "f3g5": "That moves the knight a second time for nothing, and the queen simply takes it.",
+        "f3h4": "That moves the knight a second time for nothing, and the queen simply takes it."
+      },
+      "hint": "A pawn move can open a line for your other bishop.",
+      "after": "A piece is out, or the king is closer to safety."
+    },
+    {
+      "type": "show",
+      "text": "Moving a piece again is worth it when it makes a real threat. Here Black brought out a knight instead of the bishop.",
+      "fen": "r1bqkb1r/pppp1ppp/2n2n2/4p3/2B1P3/5N2/PPPP1PPP/RNBQK2R w KQkq - 4 4",
+      "marks": {
+        "squares": [
+          "f7"
+        ],
+        "arrows": [
+          [
+            "c4",
+            "f7"
+          ]
+        ]
+      }
+    },
+    {
+      "type": "move",
+      "text": "Move your knight a second time, to g5. With the bishop it attacks f7, so Black has to answer.",
+      "marks": {
+        "squares": [
+          "f7"
+        ],
+        "arrows": [
+          [
+            "f3",
+            "g5"
+          ]
+        ]
+      },
+      "accept": [
+        "f3g5"
+      ],
+      "also": {
+        "d2d3": "Guarding your pawn is also sound. This lesson shows the knight move."
+      },
+      "after": "Black blocks the bishop with a pawn.",
+      "reply": "d7d5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Take the pawn on d5. You are a pawn up for now.",
+      "marks": {
+        "squares": [
+          "d5"
+        ],
+        "arrows": [
+          [
+            "e4",
+            "d5"
+          ]
+        ]
+      },
+      "accept": [
+        "e4d5"
+      ],
+      "after": "Now Black's knight moves a second time, to attack your bishop. That is worth it too: it gains time.",
+      "reply": "c6a5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Move the bishop away with check, so Black must spend its next move on the check.",
+      "marks": {
+        "squares": [
+          "e8"
+        ],
+        "arrows": [
+          [
+            "c4",
+            "b5"
+          ]
+        ]
+      },
+      "accept": [
+        "c4b5"
+      ],
+      "after": "Each side moved a piece again only to make a threat. Without a threat, a second move by the same piece is a lost move.",
+      "reply": "c7c6",
+      "taught": true
+    }
+  ],
+  "summary": "A piece that moves twice in the opening costs a move another piece needed. Move it again only to make a threat."
+}

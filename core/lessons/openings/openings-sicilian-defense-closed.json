@@ -1,0 +1,89 @@
+{
+  "id": "openings-sicilian-defense-closed",
+  "course": "openings",
+  "title": "Sicilian Defense: Closed Variation",
+  "line": "White keeps the center closed and builds up on the king's side; Black's pieces take the long diagonal and the center.",
+  "side": "b",
+  "steps": [
+    {
+      "type": "show",
+      "text": "Here White brings the knight out first and does not open the center.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {"arrows":[["b1","c3"]]},
+      "play": ["e2e4","c7c5","b1c3"]
+    },
+    {
+      "type": "move",
+      "text": "Bring the knight out. It watches d4.",
+      "marks": {"squares":["d4"],"arrows":[["b8","c6"]]},
+      "accept": ["b8c6"],
+      "also": {
+        "e7e6": "That also works. This lesson goes on with the knight.",
+        "d7d6": "That also works. This lesson goes on with the knight."
+      },
+      "reply": "g2g3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn on g7 one square, to make room for your bishop.",
+      "marks": {"arrows":[["g7","g6"]]},
+      "accept": ["g7g6"],
+      "reply": "f1g2",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Put the bishop on g7. It looks along the long diagonal toward White's queen's side.",
+      "marks": {"arrows":[["f8","g7"]]},
+      "accept": ["f8g7"],
+      "reply": "d2d3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn on d7 one square. It guards e5 and opens a path for your other bishop.",
+      "marks": {"squares":["e5"],"arrows":[["d7","d6"]]},
+      "accept": ["d7d6"],
+      "reply": "f2f4",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn on e7 one square. It guards d5 and f5 against White's pawns.",
+      "marks": {"squares":["d5","f5"],"arrows":[["e7","e6"]]},
+      "accept": ["e7e6"],
+      "reply": "g1f3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the other knight to e7, where it does not block your bishop.",
+      "marks": {"arrows":[["g8","e7"]]},
+      "accept": ["g8e7"],
+      "reply": "e1g1",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Castle. Your king goes to safety, and a rook comes toward the center.",
+      "marks": {"arrows":[["e8","g8"]]},
+      "accept": ["e8g8"],
+      "reply": "c1e3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Jump into d4 with the knight. Your pawn on c5 guards it, and it eyes f3 and c2.",
+      "marks": {"squares":["d4","c5","f3","c2"],"arrows":[["c6","d4"]]},
+      "accept": ["c6d4"],
+      "after": "The knight sits in the center, guarded by your pawn, and hits the knight on f3.",
+      "taught": true
+    }
+  ],
+  "summary": "In the Closed Sicilian both sides put a bishop on the long diagonal, and Black's knight finds a home in the center.",
+  "practice": {
+    "fen": "r1bq1rk1/pp2npbp/3pp1p1/2p5/3nPP2/2NPBNP1/PPP3BP/R2Q1RK1 w - - 6 10",
+    "side": "b"
+  }
+}

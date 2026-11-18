@@ -1,0 +1,17 @@
+{
+  "name": "Arasan",
+  "version": "26.1",
+  "author": "Jon Dart",
+  "license": "MIT",
+  "net_license": "MIT",
+  "source": "https://github.com/jdart1/arasan-chess/tree/v26.1",
+  "line": "A long-lived engine with a steady, classical style.",
+  "entry": "arasan.js",
+  "strength": {
+    "type": "uci_elo",
+    "min": 1000,
+    "max": 3450
+  },
+  "multipv": true,
+  "threads": false
+}

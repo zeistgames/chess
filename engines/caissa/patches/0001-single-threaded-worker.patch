@@ -1,0 +1,96 @@
+diff --git a/src/backend/Common.cpp b/src/backend/Common.cpp
+index 1002e29..507227d 100644
+--- a/src/backend/Common.cpp
++++ b/src/backend/Common.cpp
+@@ -17,7 +17,7 @@
+ void InitEngine()
+ {
+     // force rounding denormals to zero
+-#ifdef USE_SSE
++#if defined(USE_SSE) && !defined(__EMSCRIPTEN__)
+     _MM_SET_DENORMALS_ZERO_MODE(_MM_DENORMALS_ZERO_ON);
+     _MM_SET_FLUSH_ZERO_MODE(_MM_FLUSH_ZERO_ON);
+ #endif // USE_SSE
+diff --git a/src/frontend/UCI.cpp b/src/frontend/UCI.cpp
+index b9db693..37dca3e 100644
+--- a/src/frontend/UCI.cpp
++++ b/src/frontend/UCI.cpp
+@@ -62,7 +62,9 @@ using UniqueLock = std::unique_lock<std::mutex>;
+ 
+ UniversalChessInterface::UniversalChessInterface()
+ {
++#ifndef __EMSCRIPTEN__
+     mSearchThread = std::thread(&UniversalChessInterface::SearchThreadEntryFunc, this);
++#endif
+ 
+     mGame.Reset(Position(Position::InitPositionFEN));
+     mTranspositionTable.Resize(c_DefaultTTSize);
+@@ -111,6 +113,10 @@ void UniversalChessInterface::Loop(int argc, const char* argv[])
+         }
+     }
+ 
++#ifdef __EMSCRIPTEN__
++    // Zeist: the worker sends each line to ExecuteCommand().
++    return;
++#endif
+     std::string str;
+ 
+     while (std::getline(std::cin, str))
+@@ -643,11 +649,16 @@ bool UniversalChessInterface::Command_Go(const std::vector<std::string>& args)
+     mSearchCtx->searchParam.colorConsoleOutput = mOptions.colorConsoleOutput;
+     mSearchCtx->searchParam.showWDL = mOptions.showWDL;
+ 
++#ifdef __EMSCRIPTEN__
++    // Zeist: single-threaded WASM, search inline on the calling thread.
++    DoSearch();
++#else
+     {
+         std::unique_lock<std::mutex> lock(mSearchThreadMutex);
+         mNewSearchContext = mSearchCtx.get();
+         mNewSearchConditionVariable.notify_one();
+     }
++#endif
+ 
+     // make sure search thread actually started running before exiting from this function
+     while (!mSearchCtx->searchStarted.load(std::memory_order_acquire))
+@@ -668,7 +679,8 @@ void UniversalChessInterface::StopSearchThread()
+         mStopSearchThread = true;
+         mNewSearchConditionVariable.notify_one();
+     }
+-    mSearchThread.join();
++    if (mSearchThread.joinable())
++        mSearchThread.join();
+ }
+ 
+ void UniversalChessInterface::SearchThreadEntryFunc()
+@@ -1575,14 +1587,30 @@ bool UniversalChessInterface::Command_Benchmark(uint32_t depth)
+     return true;
+ }
+ 
++#ifdef __EMSCRIPTEN__
++static UniversalChessInterface* g_zeistUci = nullptr;
++extern "C" void zeist_handle_line(const char* line)
++{
++    if (g_zeistUci)
++        g_zeistUci->ExecuteCommand(line);
++}
++#endif
++
+ int main(int argc, const char* argv[])
+ {
+     std::cout << c_EngineName << " by " << c_Author << std::endl;
+ 
+     InitEngine();
+ 
++#ifdef __EMSCRIPTEN__
++    static UniversalChessInterface uci;
++    uci.Loop(argc, argv);
++    g_zeistUci = &uci;
++    return 0;
++#else
+     UniversalChessInterface uci;
+     uci.Loop(argc, argv);
++#endif
+ 
+     return 0;
+ }

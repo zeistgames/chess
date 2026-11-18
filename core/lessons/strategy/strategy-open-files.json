@@ -1,0 +1,50 @@
+{
+  "id": "strategy-open-files",
+  "course": "strategy",
+  "title": "Open files",
+  "line": "Rooks belong where the pawns have gone.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "fen": "r1b1nrk1/pp3pp1/2p1p2p/8/8/2P1PN2/PP2BPPP/R4RK1 w - - 0 30",
+      "text": "A rook needs open lines. Behind its own pawns it does little. Each side here has lost the same pawn in the center.",
+      "marks": {"squares":["a1","f1","a8","f8"]}
+    },
+    {
+      "type": "pick",
+      "text": "A file with no pawns on it at all is an open file. Tap any square on the open file.",
+      "accept": ["d1","d2","d3","d4","d5","d6","d7","d8"],
+      "hint": "Look for the one column from your side to Black's with no pawn of either color.",
+      "after": "Nothing blocks a rook there, from one end of the board to the other."
+    },
+    {
+      "type": "move",
+      "text": "Black's rooks cannot reach that file yet. Put your rook from the corner on it.",
+      "marks": {"squares":["a1"],"arrows":[["a1","d1"]]},
+      "accept": ["a1d1"],
+      "also": {
+        "f1d1": "That rook works too. This lesson moves the one doing nothing in the corner.",
+        "f3e5": "That knight move is as strong. This lesson is about the rook."
+      },
+      "wrong": {
+        "a2a4": "That leaves the open file to Black."
+      },
+      "after": "Your rook owns the open file. Black's knight steps aside.",
+      "reply": "e8c7"
+    },
+    {
+      "type": "move",
+      "text": "Use the file: send the rook deep into Black's side, to a square no black pawn can attack.",
+      "marks": {"squares":["d6"],"arrows":[["d1","d6"]]},
+      "accept": ["d1d6"],
+      "also": {
+        "f3e5": "That is as strong. This lesson goes on with the rook."
+      },
+      "after": "Black brings its rook to the middle. Your rook sits deep in Black's half, where no black pawn can attack it.",
+      "reply": "f8e8"
+    }
+  ],
+  "summary": "An open file has no pawns. Put your rooks there first, then use it to get into the other side.",
+  "practice": {"fen":"r1b1r1k1/ppn2pp1/2pRp2p/8/8/2P1PN2/PP2BPPP/5RK1 w - - 4 32","side":"w"}
+}

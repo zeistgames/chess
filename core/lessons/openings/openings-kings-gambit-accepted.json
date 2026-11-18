@@ -1,0 +1,146 @@
+{
+  "id": "openings-kings-gambit-accepted",
+  "course": "openings",
+  "title": "King's Gambit Accepted",
+  "line": "Black takes the pawn and guards it with more pawns. White breaks them up.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "text": "The King's Gambit, accepted. Black guards its extra pawn on f4 with the pawn on g5.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {
+        "squares": [
+          "f4",
+          "g5"
+        ]
+      },
+      "play": [
+        "e2e4",
+        "e7e5",
+        "f2f4",
+        "e5f4",
+        "g1f3",
+        "g7g5"
+      ]
+    },
+    {
+      "type": "move",
+      "text": "Attack the guarding pawn with the pawn on h2. Pushing the black pawns forward makes them loose.",
+      "marks": {
+        "squares": [
+          "g5"
+        ],
+        "arrows": [
+          [
+            "h2",
+            "h4"
+          ]
+        ]
+      },
+      "accept": [
+        "h2h4"
+      ],
+      "also": {
+        "d2d4": "That is also sound. This lesson breaks up the pawns first."
+      },
+      "after": "The pawn attacks your knight.",
+      "reply": "g5g4",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Do not step back. Jump the knight forward to e5.",
+      "marks": {
+        "squares": [
+          "g4",
+          "e4"
+        ],
+        "arrows": [
+          [
+            "f3",
+            "e5"
+          ]
+        ]
+      },
+      "accept": [
+        "f3e5"
+      ],
+      "after": "This is the Kieseritzky Gambit. Black's knight attacks your pawn on e4.",
+      "reply": "g8f6",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn in front of your queen two squares. It guards the knight and opens a line for your bishop toward f4.",
+      "marks": {
+        "squares": [
+          "e5",
+          "f4"
+        ],
+        "arrows": [
+          [
+            "d2",
+            "d4"
+          ]
+        ]
+      },
+      "accept": [
+        "d2d4"
+      ],
+      "also": {
+        "f1c4": "Bringing the bishop out is also sound and played as often. This lesson pushes the pawn."
+      },
+      "reply": "d7d6",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "The pawn chases your knight. Step back to d3, where it attacks the pawn on f4.",
+      "marks": {
+        "squares": [
+          "f4"
+        ],
+        "arrows": [
+          [
+            "e5",
+            "d3"
+          ]
+        ]
+      },
+      "accept": [
+        "e5d3"
+      ],
+      "after": "Black takes your center pawn.",
+      "reply": "f6e4",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Take back the pawn on f4 with the bishop. Your knight on d3 helped.",
+      "marks": {
+        "squares": [
+          "f4",
+          "d3"
+        ],
+        "arrows": [
+          [
+            "c1",
+            "f4"
+          ]
+        ]
+      },
+      "accept": [
+        "c1f4"
+      ],
+      "after": "Material is level. Black's king side pawns are loose and its knight stands far forward. A sharp fight for both sides.",
+      "reply": "f8g7",
+      "taught": true
+    }
+  ],
+  "summary": "When Black guards the gambit pawn with more pawns, a pawn from the edge breaks them up and the pawn comes back.",
+  "practice": {
+    "fen": "rnbqk2r/ppp2pbp/3p4/8/3PnBpP/3N4/PPP3P1/RN1QKB1R w KQkq - 1 9",
+    "side": "w"
+  }
+}

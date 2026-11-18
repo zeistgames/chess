@@ -1,0 +1,70 @@
+{
+  "id": "endgames-opposite-bishops",
+  "course": "endgames",
+  "title": "Bishops of opposite colors",
+  "line": "Often a draw, even a pawn or two down.",
+  "side": "b",
+  "steps": [
+    {
+      "type": "show",
+      "fen": "8/3k4/8/2P1P3/3K3b/3B4/8/8 b - - 0 1",
+      "text": "One bishop runs on light squares, the other on dark. White is two pawns up, and still the game is a draw.",
+      "marks": {"squares":["c5","e5"]}
+    },
+    {
+      "type": "show",
+      "fen": "8/3k4/8/2P1P3/3K3b/3B4/8/8 b - - 0 1",
+      "text": "To advance, the pawns need the squares ahead. Black's king blocks the light ones, and Black's bishop guards dark ones White's never reaches.",
+      "marks": {"squares":["c6","e6"]}
+    },
+    {
+      "type": "pick",
+      "fen": "8/3k4/8/2P1P3/3K3b/3B4/8/8 b - - 0 1",
+      "text": "Tap the black piece that guards both light squares in front of the pawns.",
+      "marks": {"squares":["c6","e6"]},
+      "accept": ["d7"],
+      "wrong": {
+        "h4": "The bishop runs on dark squares. It cannot guard light ones."
+      },
+      "hint": "The squares are next to it.",
+      "after": "The king stands guard, and the bishop watches the dark squares."
+    },
+    {
+      "type": "move",
+      "fen": "8/4k3/8/2PKPB2/7b/8/8/8 b - - 0 1",
+      "text": "Two pawns down, you hold the draw yourself. Keep your king on the back row in front of the pawns.",
+      "marks": {"squares":["c5","e5"]},
+      "accept": ["e7d8","e7e8"],
+      "also": {
+        "h4e1": "That holds too: your bishop still watches the dark squares. This lesson keeps the king in front.",
+        "h4f2": "That holds too: your bishop still watches the dark squares. This lesson keeps the king in front.",
+        "h4g5": "That holds too: your bishop still watches the dark squares. This lesson keeps the king in front."
+      },
+      "wrong": {
+        "e7f7": "That loses: White's pawns get through.",
+        "e7f8": "That loses: White's pawns get through.",
+        "h4g3": "That loses: White's pawns get through.",
+        "h4f6": "The pawn takes your bishop."
+      },
+      "hint": "Step back, not to the side.",
+      "after": "Your king still blocks the pawns, and the bishop guards the dark squares. The game is a draw."
+    },
+    {
+      "type": "move",
+      "fen": "8/8/P4k2/6p1/6Pb/3B4/2K5/8 b - - 0 1",
+      "text": "White's pawn on the edge is passed. Stop it with your bishop on the dark square in front of it.",
+      "marks": {"squares":["a6","a7"]},
+      "accept": ["h4f2"],
+      "wrong": {
+        "f6e6": "That does not stop the pawn on the edge, and it promotes.",
+        "f6e5": "That does not stop the pawn on the edge, and it promotes.",
+        "f6f7": "That does not stop the pawn on the edge, and it promotes.",
+        "h4e1": "From there your bishop is too slow to reach the pawn's path, and it promotes."
+      },
+      "hint": "Find the long diagonal that runs through the ringed square in front of the pawn.",
+      "after": "White's bishop cannot drive yours away from that diagonal. The game is a draw."
+    }
+  ],
+  "summary": "With bishops of opposite colors, the defending bishop holds squares the other never touches. The king blocks the rest.",
+  "practice": {"fen":"8/8/P4k2/6p1/6Pb/3B4/2K5/8 b - - 0 1","side":"b"}
+}

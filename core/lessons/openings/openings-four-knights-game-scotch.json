@@ -1,0 +1,188 @@
+{
+  "id": "openings-four-knights-game-scotch",
+  "course": "openings",
+  "title": "Four Knights Game: Scotch Variation",
+  "line": "White opens the center with all four knights already out.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "text": "The Four Knights Game: all four knights are out.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {
+        "squares": [
+          "c3",
+          "f3",
+          "c6",
+          "f6"
+        ]
+      },
+      "play": [
+        "e2e4",
+        "e7e5",
+        "g1f3",
+        "b8c6",
+        "b1c3",
+        "g8f6"
+      ]
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn in front of your queen two squares to open the center.",
+      "marks": {
+        "squares": [
+          "e5"
+        ],
+        "arrows": [
+          [
+            "d2",
+            "d4"
+          ]
+        ]
+      },
+      "accept": [
+        "d2d4"
+      ],
+      "also": {
+        "f1b5": "That is the Spanish Variation, a lesson of its own. This lesson pushes the pawn."
+      },
+      "reply": "e5d4",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Take back with the knight. It stands in the center.",
+      "marks": {
+        "squares": [
+          "d4",
+          "c3",
+          "e4"
+        ],
+        "arrows": [
+          [
+            "f3",
+            "d4"
+          ]
+        ]
+      },
+      "accept": [
+        "f3d4"
+      ],
+      "after": "The bishop pins your knight on c3, so the knight no longer really guards your pawn on e4.",
+      "reply": "f8b4",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Trade knights on c6. Black takes back with a pawn.",
+      "marks": {
+        "squares": [
+          "c6",
+          "e4"
+        ],
+        "arrows": [
+          [
+            "d4",
+            "c6"
+          ]
+        ]
+      },
+      "accept": [
+        "d4c6"
+      ],
+      "reply": "b7c6",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the bishop out to guard the pawn on e4.",
+      "marks": {
+        "squares": [
+          "e4"
+        ],
+        "arrows": [
+          [
+            "f1",
+            "d3"
+          ]
+        ]
+      },
+      "accept": [
+        "f1d3"
+      ],
+      "after": "Black strikes at the pawn with its own.",
+      "reply": "d7d5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Take the pawn on d5 before it takes yours on e4.",
+      "marks": {
+        "squares": [
+          "d5"
+        ],
+        "arrows": [
+          [
+            "e4",
+            "d5"
+          ]
+        ]
+      },
+      "accept": [
+        "e4d5"
+      ],
+      "reply": "c6d5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Castle. Your king leaves the center, which is now open.",
+      "marks": {
+        "squares": [
+          "g1"
+        ],
+        "arrows": [
+          [
+            "e1",
+            "g1"
+          ]
+        ]
+      },
+      "accept": [
+        "e1g1"
+      ],
+      "reply": "e8g8",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the other bishop out to pin the knight on f6 to the queen.",
+      "marks": {
+        "squares": [
+          "f6",
+          "d8"
+        ],
+        "arrows": [
+          [
+            "c1",
+            "g5"
+          ]
+        ]
+      },
+      "accept": [
+        "c1g5"
+      ],
+      "also": {
+        "h2h3": "That is also played. This lesson pins the knight."
+      },
+      "after": "Black has a pawn in the center; you have quick play against its pieces. The game is level.",
+      "reply": "c7c6",
+      "taught": true
+    }
+  ],
+  "summary": "White opens the center with the knights already out. After the trades, Black has a center pawn and White quick play.",
+  "practice": {
+    "fen": "r1bq1rk1/p4ppp/2p2n2/3p2B1/1b6/2NB4/PPP2PPP/R2Q1RK1 w - - 0 11",
+    "side": "w"
+  }
+}

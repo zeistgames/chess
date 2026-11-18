@@ -1,0 +1,84 @@
+{
+  "id": "openings-caro-kann-defense-panov",
+  "course": "openings",
+  "title": "Caro-Kann Defense: Panov Attack",
+  "line": "White plays for active pieces with a lone pawn in the center; Black sits a knight in front of it.",
+  "side": "b",
+  "steps": [
+    {
+      "type": "show",
+      "text": "In the Panov, White traded pawns and then hit your center pawn with another.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {"arrows":[["c4","d5"]]},
+      "play": ["e2e4","c7c6","d2d4","d7d5","e4d5","c6d5","c2c4"]
+    },
+    {
+      "type": "move",
+      "text": "Bring the knight out to guard your pawn.",
+      "marks": {"squares":["d5"],"arrows":[["g8","f6"]]},
+      "accept": ["g8f6"],
+      "reply": "b1c3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn on e7 one square. It guards d5 again and frees your bishop.",
+      "marks": {"squares":["d5"],"arrows":[["e7","e6"]]},
+      "accept": ["e7e6"],
+      "also": {
+        "b8c6": "That also works. This lesson goes on with the pawn."
+      },
+      "reply": "g1f3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the bishop out, so you can castle.",
+      "marks": {"arrows":[["f8","e7"]]},
+      "accept": ["f8e7"],
+      "also": {
+        "f8b4": "That also works. This lesson puts the bishop on e7."
+      },
+      "reply": "c4d5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Take back with the knight. It sits on d5, right in front of White's pawn.",
+      "marks": {"squares":["d5"],"arrows":[["f6","d5"]]},
+      "accept": ["f6d5"],
+      "also": {
+        "e6d5": "That works too, and the pawns match again. This lesson takes with the knight."
+      },
+      "reply": "f1d3",
+      "taught": true
+    },
+    {
+      "type": "pick",
+      "text": "Tap the white pawn that has no white pawns on the files beside it.",
+      "accept": ["d4"],
+      "after": "A lone pawn like this is hard to guard. Black keeps a piece on the square in front of it."
+    },
+    {
+      "type": "move",
+      "text": "Bring the other knight out. It hits the lone pawn.",
+      "marks": {"arrows":[["b8","c6"]]},
+      "accept": ["b8c6"],
+      "reply": "e1g1",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Castle. Your king goes to safety, and a rook comes toward the center.",
+      "marks": {"arrows":[["e8","g8"]]},
+      "accept": ["e8g8"],
+      "after": "Your knight stands in front of the lone pawn, and your other knight hits it.",
+      "taught": true
+    }
+  ],
+  "summary": "Against the Panov, Black puts a knight on the square in front of White's lone center pawn and attacks it.",
+  "practice": {
+    "fen": "r1bq1rk1/pp2bppp/2n1p3/3n4/3P4/2NB1N2/PP3PPP/R1BQ1RK1 w - - 4 10",
+    "side": "b"
+  }
+}

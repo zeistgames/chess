@@ -1,0 +1,125 @@
+{
+  "id": "checkmates-fools-mate",
+  "course": "checkmates",
+  "title": "Fool's mate",
+  "line": "The fastest mate there is, in two moves, and the pawn moves that allow it.",
+  "side": "b",
+  "steps": [
+    {
+      "type": "show",
+      "text": "You are Black. White starts by moving the pawn beside the king. That opens a diagonal from the edge of the board to the white king.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "play": [
+        "f2f3"
+      ],
+      "marks": {
+        "squares": [
+          "e1"
+        ],
+        "arrows": [
+          [
+            "h4",
+            "e1"
+          ]
+        ]
+      }
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn in front of your king two squares. It opens a diagonal for your queen.",
+      "accept": [
+        "e7e5"
+      ],
+      "also": {
+        "e7e6": "That opens the queen's diagonal too. This lesson goes on with the pawn two squares forward."
+      },
+      "hint": "The pawn in front of your king blocks the queen. Move it.",
+      "after": "White answers by moving a second pawn beside the king.",
+      "reply": "g2g4",
+      "marks": {
+        "arrows": [
+          [
+            "e7",
+            "e5"
+          ],
+          [
+            "d8",
+            "h4"
+          ]
+        ]
+      }
+    },
+    {
+      "type": "move",
+      "text": "The two pawns that guarded the king have moved. Check the king with your queen.",
+      "accept": [
+        "d8h4"
+      ],
+      "hint": "Your queen reaches the edge of the board on the diagonal toward the king.",
+      "after": "Checkmate in two moves, the fastest mate there is.",
+      "mate": true,
+      "marks": {
+        "squares": [
+          "e1"
+        ]
+      }
+    },
+    {
+      "type": "show",
+      "text": "The king's own pieces fill the squares beside it, and f2 is on the queen's line. Nothing can block on g3 or capture the queen.",
+      "marks": {
+        "squares": [
+          "f2",
+          "g3"
+        ],
+        "arrows": [
+          [
+            "h4",
+            "e1"
+          ]
+        ]
+      }
+    },
+    {
+      "type": "pick",
+      "text": "Another game. White has moved the same pawn beside the king. Tap the white pawn that must not jump two squares now.",
+      "fen": "rnbqkbnr/pppp1ppp/4p3/8/5P2/8/PPPPP1PP/RNBQKBNR w KQkq - 0 2",
+      "accept": [
+        "g2"
+      ],
+      "wrong": {
+        "h2": "That pawn's jump leaves the diagonal closed. Look for the pawn whose jump would leave nothing to block the queen."
+      },
+      "hint": "If that pawn jumps two squares, no white pawn or piece can step between the queen's square and the king.",
+      "after": "One square forward would block the diagonal, but a jump of two squares leaves it open, and the queen mates.",
+      "marks": {
+        "squares": [
+          "e1"
+        ],
+        "arrows": [
+          [
+            "h4",
+            "e1"
+          ]
+        ]
+      }
+    },
+    {
+      "type": "move",
+      "text": "White moved it anyway. Mate with the queen.",
+      "fen": "rnbqkbnr/pppp1ppp/4p3/8/5PP1/8/PPPPP2P/RNBQKBNR b KQkq - 0 2",
+      "accept": [
+        "d8h4"
+      ],
+      "hint": "The same diagonal is open again.",
+      "after": "Checkmate. Two pawn moves beside the king let the queen in.",
+      "mate": true,
+      "marks": {
+        "squares": [
+          "e1"
+        ]
+      }
+    }
+  ],
+  "summary": "Moving both pawns beside the king early opens a diagonal to it, and the queen mates in one move."
+}

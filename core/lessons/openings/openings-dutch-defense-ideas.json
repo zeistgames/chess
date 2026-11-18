@@ -1,0 +1,88 @@
+{
+  "id": "openings-dutch-defense-ideas",
+  "course": "openings",
+  "title": "Dutch Defense: the ideas",
+  "line": "From the first move, Black fights for the center with a pawn from the king's side.",
+  "side": "b",
+  "steps": [
+    {
+      "type": "show",
+      "text": "White starts by pushing the pawn in front of its queen two squares, into the center.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {"arrows":[["d2","d4"]]},
+      "play": ["d2d4"]
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn on f7 two squares. It fights for e4, a center square.",
+      "marks": {"squares":["f7","e4"],"arrows":[["f7","f5"]]},
+      "accept": ["f7f5"],
+      "also": {
+        "g8f6": "That leads to the Indian defenses, also sound. This lesson goes on with the pawn on f7.",
+        "d7d5": "That leads to the Queen's Gambit, also sound. This lesson goes on with the pawn on f7."
+      },
+      "after": "This is the Dutch Defense. The pawn move loosens the squares near Black's king, a risk Black takes on.",
+      "reply": "c2c4",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the knight out. With the pawn, it holds e4.",
+      "marks": {"squares":["e4"],"arrows":[["g8","f6"]]},
+      "accept": ["g8f6"],
+      "reply": "g2g3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Move the pawn in front of your king one square, to free your bishop.",
+      "accept": ["e7e6"],
+      "marks": {"arrows":[["e7","e6"]]},
+      "also": {"g7g6":"That is the Leningrad Variation, also sound. This lesson goes on with the other pawn."},
+      "reply": "f1g2",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the bishop out, so that your king can castle.",
+      "accept": ["f8e7"],
+      "marks": {"arrows":[["f8","e7"]]},
+      "reply": "g1f3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Castle, to get your king to safety.",
+      "accept": ["e8g8"],
+      "marks": {"arrows":[["e8","g8"]]},
+      "reply": "e1g1",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Move the pawn in front of your queen one square. It keeps White's pieces out of e5.",
+      "marks": {"squares":["e5"],"arrows":[["d7","d6"]]},
+      "accept": ["d7d6"],
+      "reply": "b1c3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Step the queen out to e8. From there it can swing across to the king's side.",
+      "marks": {"squares":["h5","e8"],"arrows":[["d8","e8"]]},
+      "accept": ["d8e8"],
+      "reply": "b2b3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Swing the queen over.",
+      "accept": ["e8h5"],
+      "marks": {"arrows":[["e8","h5"]],"squares":["f5","e4"]},
+      "after": "The queen joins the knight on the king's side, and the pawn on f5 still holds e4.",
+      "taught": true
+    }
+  ],
+  "summary": "A pawn from the king's side fights for the center at once, and Black's pieces gather to attack the king.",
+  "practice": {"fen":"rnbqkbnr/ppppp1pp/8/5p2/3P4/8/PPP1PPPP/RNBQKBNR w KQkq - 0 2","side":"b"}
+}

@@ -1,0 +1,202 @@
+{
+  "id": "openings-queens-gambit-exchange-variation",
+  "course": "openings",
+  "title": "Queen's Gambit Declined: Exchange Variation",
+  "line": "White trades pawns in the center, then pushes two queenside pawns against three.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "text": "Black guards its center pawn with the king pawn and brings a knight out.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {
+        "squares": [
+          "d5",
+          "e6"
+        ]
+      },
+      "play": [
+        "d2d4",
+        "d7d5",
+        "c2c4",
+        "e7e6",
+        "b1c3",
+        "g8f6"
+      ]
+    },
+    {
+      "type": "move",
+      "text": "Trade pawns on d5. The center is set now, and you can make a plan around it.",
+      "marks": {
+        "squares": [
+          "d5"
+        ],
+        "arrows": [
+          [
+            "c4",
+            "d5"
+          ]
+        ]
+      },
+      "accept": [
+        "c4d5"
+      ],
+      "also": {
+        "c1g5": "That pins the knight, the main line. This lesson trades on d5 first.",
+        "g1f3": "That is sound too. This lesson trades on d5 first."
+      },
+      "after": "Now White has two pawns on the queenside against Black's three. That count matters later.",
+      "reply": "e6d5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the bishop out and pin the knight to the queen.",
+      "marks": {
+        "squares": [
+          "f6",
+          "d8"
+        ],
+        "arrows": [
+          [
+            "c1",
+            "g5"
+          ]
+        ]
+      },
+      "accept": [
+        "c1g5"
+      ],
+      "after": "Black adds a pawn to guard the center.",
+      "reply": "c7c6",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Move the pawn in front of your king one square to free your other bishop.",
+      "marks": {
+        "arrows": [
+          [
+            "e2",
+            "e3"
+          ]
+        ]
+      },
+      "accept": [
+        "e2e3"
+      ],
+      "reply": "f8e7",
+      "taught": true
+    },
+    {
+      "type": "show",
+      "text": "Both sides bring out their pieces and castle. Black's pawns stand on c6 and d5.",
+      "marks": {
+        "squares": [
+          "c6",
+          "d5"
+        ]
+      },
+      "play": [
+        "f1d3",
+        "b8d7",
+        "d1c2",
+        "e8g8",
+        "g1f3",
+        "f8e8",
+        "e1g1",
+        "d7f8"
+      ]
+    },
+    {
+      "type": "move",
+      "text": "Put a rook behind the pawn on b2. It is there to push the pawn forward.",
+      "marks": {
+        "squares": [
+          "b2"
+        ],
+        "arrows": [
+          [
+            "a1",
+            "b1"
+          ]
+        ]
+      },
+      "accept": [
+        "a1b1"
+      ],
+      "reply": "f8g6",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn on b2 two squares. It heads for b5 to strike at the pawn on c6.",
+      "marks": {
+        "squares": [
+          "b5",
+          "c6"
+        ],
+        "arrows": [
+          [
+            "b2",
+            "b4"
+          ]
+        ]
+      },
+      "accept": [
+        "b2b4"
+      ],
+      "after": "Black stops the pawn for now.",
+      "reply": "a7a6",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn on a2 two squares. It backs up the push of your other pawn to b5.",
+      "marks": {
+        "squares": [
+          "b4",
+          "b5"
+        ],
+        "arrows": [
+          [
+            "a2",
+            "a4"
+          ]
+        ]
+      },
+      "accept": [
+        "a2a4"
+      ],
+      "reply": "e7d6",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Now push the pawn to b5. If pawns trade there, Black is left with a weak pawn on c6 or d5.",
+      "marks": {
+        "squares": [
+          "b5",
+          "c6",
+          "d5"
+        ],
+        "arrows": [
+          [
+            "b4",
+            "b5"
+          ]
+        ]
+      },
+      "accept": [
+        "b4b5"
+      ],
+      "after": "This plan is called the minority attack: fewer pawns attack more to leave a weak one behind.",
+      "taught": true
+    }
+  ],
+  "summary": "White trades in the center, then pushes two queenside pawns against three to leave Black a weak pawn.",
+  "practice": {
+    "fen": "r1bqr1k1/1p3ppp/p1pb1nn1/1P1p2B1/P2P4/2NBPN2/2Q2PPP/1R3RK1 b - - 0 14",
+    "side": "w"
+  }
+}

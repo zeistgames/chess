@@ -1,0 +1,131 @@
+{
+  "id": "checkmates-scholars-mate",
+  "course": "checkmates",
+  "title": "Scholar's mate and how to stop it",
+  "line": "Queen and bishop on f7 in four moves, and the moves that make it harmless.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "move",
+      "text": "At the start, f7 is Black's weakest square: only the king guards it. Put your bishop where it aims at f7.",
+      "fen": "rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2",
+      "marks": {"squares":["f7"]},
+      "accept": ["f1c4"],
+      "hint": "The bishop needs one move to reach a square that aims at f7.",
+      "after": "The bishop looks straight at f7.",
+      "reply": "b8c6",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring your queen to h5. Now the queen and the bishop both aim at f7.",
+      "marks": {"squares":["f7","h5"],"arrows":[["c4","f7"]]},
+      "accept": ["d1h5"],
+      "after": "Two pieces aim at f7, and only the king defends it.",
+      "reply": "g8f6",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Black attacks your queen with the knight and forgets about f7. Finish the game.",
+      "marks": {
+        "squares": ["f7","c6","e7"],
+        "arrows": [["h5","f7"],["c4","f7"]]
+      },
+      "accept": ["h5f7"],
+      "wrong": {
+        "h5e5": "That is check, but the knight on c6 takes your queen.",
+        "c4f7": "That is check, but the king steps to e7 and there is no mate."
+      },
+      "after": "Checkmate. The bishop guards the queen, and the king has no square to go to.",
+      "mate": true
+    },
+    {
+      "type": "show",
+      "text": "That is Scholar's mate. Now take Black's side, after the queen has come to h5, and stop it.",
+      "fen": "r1bqkbnr/pppp1ppp/2n5/4p2Q/2B1P3/8/PPPP1PPP/RNB1K1NR b KQkq - 3 3",
+      "side": "b",
+      "marks": {"squares":["f7"],"arrows":[["h5","f7"],["c4","f7"]]}
+    },
+    {
+      "type": "move",
+      "text": "Stop the mate on f7 with a pawn move that also attacks the queen.",
+      "side": "b",
+      "marks": {"squares":["f7"]},
+      "accept": ["g7g6"],
+      "wrong": {
+        "a8b8": "Then the queen takes on f7, and it is checkmate.",
+        "f8e7": "Then the queen takes on f7, and it is checkmate.",
+        "f8d6": "Then the queen takes on f7, and it is checkmate.",
+        "f8c5": "Then the queen takes on f7, and it is checkmate.",
+        "f8b4": "Then the queen takes on f7, and it is checkmate.",
+        "f8a3": "Then the queen takes on f7, and it is checkmate.",
+        "g8f6": "Then the queen takes on f7, and it is checkmate.",
+        "g8e7": "Then the queen takes on f7, and it is checkmate.",
+        "a7a6": "Then the queen takes on f7, and it is checkmate.",
+        "a7a5": "Then the queen takes on f7, and it is checkmate.",
+        "b7b6": "Then the queen takes on f7, and it is checkmate.",
+        "b7b5": "Then the queen takes on f7, and it is checkmate.",
+        "d7d6": "Then the queen takes on f7, and it is checkmate.",
+        "g7g5": "Then the queen takes on f7, and it is checkmate.",
+        "h7h6": "Then the queen takes on f7, and it is checkmate.",
+        "c6b8": "Then the queen takes on f7, and it is checkmate.",
+        "c6e7": "Then the queen takes on f7, and it is checkmate.",
+        "c6d4": "Then the queen takes on f7, and it is checkmate.",
+        "c6b4": "Then the queen takes on f7, and it is checkmate.",
+        "c6a5": "Then the queen takes on f7, and it is checkmate.",
+        "d8f6": "That guards f7, but it takes the knight's best square. Look for a pawn move that attacks the queen.",
+        "g8h6": "That guards f7, from the edge of the board. Look for a pawn move that attacks the queen."
+      },
+      "also": {"d8e7":"That stops the mate too. This lesson goes on with a pawn move that also attacks the queen."},
+      "hint": "The queen stands right in front of one of your pawns.",
+      "after": "The queen is attacked and has to move.",
+      "reply": "h5f3"
+    },
+    {
+      "type": "move",
+      "text": "The queen comes back to f3 and aims at f7 again. Bring out a knight that blocks her.",
+      "side": "b",
+      "marks": {"squares":["f3","f7"]},
+      "accept": ["g8f6"],
+      "wrong": {
+        "a8b8": "Then the queen takes on f7, and it is checkmate.",
+        "f8g7": "Then the queen takes on f7, and it is checkmate.",
+        "f8h6": "Then the queen takes on f7, and it is checkmate.",
+        "f8e7": "Then the queen takes on f7, and it is checkmate.",
+        "f8d6": "Then the queen takes on f7, and it is checkmate.",
+        "f8c5": "Then the queen takes on f7, and it is checkmate.",
+        "f8b4": "Then the queen takes on f7, and it is checkmate.",
+        "f8a3": "Then the queen takes on f7, and it is checkmate.",
+        "g8e7": "Then the bishop takes on f7, and it is checkmate.",
+        "a7a6": "Then the queen takes on f7, and it is checkmate.",
+        "a7a5": "Then the queen takes on f7, and it is checkmate.",
+        "b7b6": "Then the queen takes on f7, and it is checkmate.",
+        "b7b5": "Then the queen takes on f7, and it is checkmate.",
+        "d7d6": "Then the queen takes on f7, and it is checkmate.",
+        "h7h6": "Then the queen takes on f7, and it is checkmate.",
+        "h7h5": "Then the queen takes on f7, and it is checkmate.",
+        "c6b8": "Then the queen takes on f7, and it is checkmate.",
+        "c6e7": "Then the bishop takes on f7, and it is checkmate.",
+        "c6d4": "Then the queen takes on f7, and it is checkmate.",
+        "c6b4": "Then the queen takes on f7, and it is checkmate.",
+        "c6a5": "Then the queen takes on f7, and it is checkmate.",
+        "g6g5": "Then the queen takes on f7, and it is checkmate."
+      },
+      "also": {
+        "d8e7": "That guards f7 too. This lesson goes on with a knight that blocks the queen.",
+        "d8f6": "That guards f7 too. This lesson goes on with a knight that blocks the queen.",
+        "g8h6": "That guards f7 too. This lesson goes on with a knight that blocks the queen."
+      },
+      "hint": "One of your knights can land between the queen and f7.",
+      "after": "f7 is safe, and a knight is out."
+    },
+    {
+      "type": "show",
+      "text": "The queen has moved twice, and the knight on c6 can attack her again from d4. Black is ahead in getting pieces out.",
+      "marks": {"squares":["f7"],"arrows":[["c6","d4"]]}
+    }
+  ],
+  "summary": "Queen and bishop aimed at the pawn beside the king mate a careless player. Guard it, block the queen, develop.",
+  "practice": {"fen":"r1bqkb1r/pppp1p1p/2n2np1/4p3/2B1P3/5Q2/PPPP1PPP/RNB1K1NR w KQkq - 2 5","side":"b"}
+}

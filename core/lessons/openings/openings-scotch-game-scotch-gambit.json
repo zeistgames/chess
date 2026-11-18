@@ -1,0 +1,177 @@
+{
+  "id": "openings-scotch-game-scotch-gambit",
+  "course": "openings",
+  "title": "Scotch Game: Scotch Gambit",
+  "line": "White brings the bishop out before taking the pawn back, and offers more if Black is greedy.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "text": "The Scotch Game: Black has taken your pawn on d4.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {
+        "squares": [
+          "d4"
+        ]
+      },
+      "play": [
+        "e2e4",
+        "e7e5",
+        "g1f3",
+        "b8c6",
+        "d2d4",
+        "e5d4"
+      ]
+    },
+    {
+      "type": "move",
+      "text": "Do not take back yet. Bring the bishop out, aimed at f7.",
+      "marks": {
+        "squares": [
+          "f7"
+        ],
+        "arrows": [
+          [
+            "f1",
+            "c4"
+          ]
+        ]
+      },
+      "accept": [
+        "f1c4"
+      ],
+      "also": {
+        "f3d4": "Taking back is the Scotch Game itself, in other lessons. This lesson brings the bishop out."
+      },
+      "after": "This is the Scotch Gambit. Black guards the pawn with its bishop.",
+      "reply": "f8c5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Offer a second pawn: move the pawn on c2 one square.",
+      "marks": {
+        "squares": [
+          "d4"
+        ],
+        "arrows": [
+          [
+            "c2",
+            "c3"
+          ]
+        ]
+      },
+      "accept": [
+        "c2c3"
+      ],
+      "after": "Black takes it, a slip common at club level. Masters bring the knight out instead. The pawn on d4 no longer blocks your queen.",
+      "reply": "d4c3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "That slip opens a line for your queen. Take on f7 with check: the king has to take the bishop.",
+      "marks": {
+        "squares": [
+          "f7"
+        ],
+        "arrows": [
+          [
+            "c4",
+            "f7"
+          ]
+        ]
+      },
+      "accept": [
+        "c4f7"
+      ],
+      "after": "You gave the bishop for a pawn, but the king has come out.",
+      "reply": "e8f7",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Check with the queen. She also attacks the bishop on c5.",
+      "marks": {
+        "squares": [
+          "c5"
+        ],
+        "arrows": [
+          [
+            "d1",
+            "d5"
+          ]
+        ]
+      },
+      "accept": [
+        "d1d5"
+      ],
+      "hint": "The queen has an open line to the middle of the board.",
+      "reply": "f7f8"
+    },
+    {
+      "type": "move",
+      "text": "Take the bishop with check. You have the piece back.",
+      "marks": {
+        "squares": [
+          "c5"
+        ],
+        "arrows": [
+          [
+            "d5",
+            "c5"
+          ]
+        ]
+      },
+      "accept": [
+        "d5c5"
+      ],
+      "reply": "d8e7"
+    },
+    {
+      "type": "move",
+      "text": "Trade queens with check. Black has to take back, and then the pawn on c3 is yours.",
+      "marks": {
+        "squares": [
+          "e7",
+          "c3"
+        ],
+        "arrows": [
+          [
+            "c5",
+            "e7"
+          ]
+        ]
+      },
+      "accept": [
+        "c5e7"
+      ],
+      "reply": "g8e7"
+    },
+    {
+      "type": "move",
+      "text": "Take back the pawn on c3 with the knight, which comes out at the same time.",
+      "marks": {
+        "squares": [
+          "c3"
+        ],
+        "arrows": [
+          [
+            "b1",
+            "c3"
+          ]
+        ]
+      },
+      "accept": [
+        "b1c3"
+      ],
+      "after": "Material is level, and Black's king can no longer castle. That is what the greedy pawn grab cost.",
+      "reply": "a7a6"
+    }
+  ],
+  "summary": "White develops before taking the pawn back. If Black grabs a second pawn, the check on the weak pawn wins time.",
+  "practice": {
+    "fen": "r1bqk1nr/pppp1ppp/2n5/2b5/2BpP3/2P2N2/PP3PPP/RNBQK2R b KQkq - 0 5",
+    "side": "w"
+  }
+}

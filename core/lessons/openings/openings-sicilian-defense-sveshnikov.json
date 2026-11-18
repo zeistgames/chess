@@ -1,0 +1,83 @@
+{
+  "id": "openings-sicilian-defense-sveshnikov",
+  "course": "openings",
+  "title": "Sicilian Defense: Sveshnikov Variation",
+  "line": "Black leaves a hole in the center to chase White's knights and get active pieces.",
+  "side": "b",
+  "steps": [
+    {
+      "type": "show",
+      "text": "Here Black's knight came out before the pawn in front of the queen moved, and White took in the center.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {"squares":["d4"]},
+      "play": ["e2e4","c7c5","g1f3","b8c6","d2d4","c5d4","f3d4"]
+    },
+    {
+      "type": "move",
+      "text": "Bring the other knight out to attack the pawn on e4.",
+      "marks": {"squares":["e4"],"arrows":[["g8","f6"]]},
+      "accept": ["g8f6"],
+      "also": {
+        "e7e6": "That is also played. This lesson goes on with the knight.",
+        "g7g6": "That is the Accelerated Dragon, another main line. This lesson goes on with the knight."
+      },
+      "reply": "b1c3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn on e7 two squares. It kicks the knight, though it leaves a hole on d5.",
+      "marks": {"squares":["d5","b5","d6"],"arrows":[["e7","e5"]]},
+      "accept": ["e7e5"],
+      "after": "The knight jumps to b5 and eyes d6.",
+      "reply": "d4b5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn on d7 one square. It keeps the knight out of d6.",
+      "marks": {"squares":["d6"],"arrows":[["d7","d6"]]},
+      "accept": ["d7d6"],
+      "reply": "c1g5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn on a7 one square to kick the knight away.",
+      "marks": {"arrows":[["a7","a6"]]},
+      "accept": ["a7a6"],
+      "after": "The knight goes to the edge.",
+      "reply": "b5a3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn on b7 two squares. It keeps the knight on the edge and takes space.",
+      "marks": {"arrows":[["b7","b5"]]},
+      "accept": ["b7b5"],
+      "reply": "g5f6",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Take back with the pawn. Your pawns look loose, but you keep both bishops.",
+      "marks": {"arrows":[["g7","f6"]]},
+      "accept": ["g7f6"],
+      "reply": "c3d5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn on f6 one square. It hits White's center pawn on e4.",
+      "marks": {"squares":["e4","a3"],"arrows":[["f6","f5"]]},
+      "accept": ["f6f5"],
+      "after": "Your pawn hits e4, and White's knight on a3 is still stuck on the edge.",
+      "taught": true
+    }
+  ],
+  "summary": "The Sveshnikov gives up a central square to chase White's knights, and Black's pieces get room.",
+  "practice": {
+    "fen": "r1bqkb1r/5p1p/p1np4/1p1Npp2/4P3/N7/PPP2PPP/R2QKB1R w KQkq - 0 11",
+    "side": "b"
+  }
+}

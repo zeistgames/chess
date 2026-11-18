@@ -1,0 +1,72 @@
+{
+  "id": "openings-benoni-defense-classical-variation",
+  "course": "openings",
+  "title": "Benoni Defense: Classical Variation",
+  "line": "White develops calmly, and Black's rook and knight aim at White's center pawn.",
+  "side": "b",
+  "steps": [
+    {
+      "type": "show",
+      "text": "The Benoni, as in the ideas lesson.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {"arrows":[["e6","d5"]]},
+      "play": ["d2d4","g8f6","c2c4","c7c5","d4d5","e7e6","b1c3","e6d5"]
+    },
+    {
+      "type": "show",
+      "text": "This time White brings the knight out instead of pushing another pawn forward.",
+      "marks": {"arrows":[["g1","f3"]]},
+      "play": ["c4d5","d7d6","e2e4","g7g6","g1f3"]
+    },
+    {
+      "type": "move",
+      "text": "Put the bishop on the long diagonal. Once your knight moves, it aims at White's queen's side.",
+      "accept": ["f8g7"],
+      "marks": {"arrows":[["f8","g7"]]},
+      "reply": "f1e2",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Castle, to get your king to safety.",
+      "accept": ["e8g8"],
+      "marks": {"arrows":[["e8","g8"]]},
+      "reply": "e1g1",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Put the rook on the open file. With the knight, it attacks the pawn on e4.",
+      "marks": {"squares":["e4"],"arrows":[["f8","e8"]]},
+      "accept": ["f8e8"],
+      "after": "White's knight steps back to guard the pawn.",
+      "reply": "f3d2",
+      "taught": true
+    },
+    {
+      "type": "show",
+      "text": "If White plays this instead, pushing the pawn on a2 to hold back your pawn on b7, the pawn on e4 is left with one guard.",
+      "fen": "rnbqr1k1/pp3pbp/3p1np1/2pP4/4P3/2N2N2/PP2BPPP/R1BQ1RK1 w - - 6 10",
+      "marks": {"squares":["e4","b7"],"arrows":[["a2","a4"]]},
+      "play": ["a2a4"]
+    },
+    {
+      "type": "move",
+      "text": "Take the pawn with the knight.",
+      "accept": ["f6e4"],
+      "marks": {"arrows":[["f6","e4"]]},
+      "reply": "c3e4",
+      "wins": 1
+    },
+    {
+      "type": "move",
+      "text": "Take back with the rook.",
+      "accept": ["e8e4"],
+      "marks": {"arrows":[["e8","e4"]]},
+      "after": "Black is a pawn up, and the rook stands in the center.",
+      "wins": 1
+    }
+  ],
+  "summary": "The rook on the open file and the knight aim at the pawn in the center. Guard it badly and it falls.",
+  "practice": {"fen":"rnbqr1k1/pp3pbp/3p1np1/2pP4/4P3/2N5/PP1NBPPP/R1BQ1RK1 b - - 7 10","side":"b"}
+}

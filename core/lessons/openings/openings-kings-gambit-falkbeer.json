@@ -1,0 +1,168 @@
+{
+  "id": "openings-kings-gambit-falkbeer",
+  "course": "openings",
+  "title": "King's Gambit: Falkbeer Countergambit",
+  "line": "Black answers the gambit with a pawn offer of its own in the center.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "text": "The King's Gambit. Black does not take: the pawn in front of its queen strikes at your pawn on e4.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {
+        "squares": [
+          "e4"
+        ],
+        "arrows": [
+          [
+            "d5",
+            "e4"
+          ]
+        ]
+      },
+      "play": [
+        "e2e4",
+        "e7e5",
+        "f2f4",
+        "d7d5"
+      ]
+    },
+    {
+      "type": "move",
+      "text": "Take the pawn. It attacked your pawn on e4.",
+      "marks": {
+        "squares": [
+          "d5"
+        ],
+        "arrows": [
+          [
+            "e4",
+            "d5"
+          ]
+        ]
+      },
+      "accept": [
+        "e4d5"
+      ],
+      "also": {
+        "g1f3": "That is also played. This lesson takes the pawn."
+      },
+      "after": "This is the Falkbeer Countergambit. Black pushes its other pawn forward to cramp your pieces.",
+      "reply": "e5e4",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Strike at the forward pawn at once: move the pawn in front of your queen one square.",
+      "marks": {
+        "squares": [
+          "e4"
+        ],
+        "arrows": [
+          [
+            "d2",
+            "d3"
+          ]
+        ]
+      },
+      "accept": [
+        "d2d3"
+      ],
+      "reply": "g8f6",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Take the pawn on e4. You are a pawn up, and the cramping pawn is gone.",
+      "marks": {
+        "squares": [
+          "e4"
+        ],
+        "arrows": [
+          [
+            "d3",
+            "e4"
+          ]
+        ]
+      },
+      "accept": [
+        "d3e4"
+      ],
+      "after": "Black's knight takes back and stands in the center.",
+      "reply": "f6e4",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the knight out. It covers the center squares d4 and e5.",
+      "marks": {
+        "squares": [
+          "d4",
+          "e5"
+        ],
+        "arrows": [
+          [
+            "g1",
+            "f3"
+          ]
+        ]
+      },
+      "accept": [
+        "g1f3"
+      ],
+      "after": "The bishop aims at g1, so your king cannot castle on that side.",
+      "reply": "f8c5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Put your queen on the file of the black king, behind its knight. The knight cannot leave without exposing the king.",
+      "marks": {
+        "squares": [
+          "e4",
+          "e8"
+        ],
+        "arrows": [
+          [
+            "d1",
+            "e2"
+          ]
+        ]
+      },
+      "accept": [
+        "d1e2"
+      ],
+      "after": "Black guards the knight with the bishop.",
+      "reply": "c8f5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Attack the pinned knight with your other knight.",
+      "marks": {
+        "squares": [
+          "e4"
+        ],
+        "arrows": [
+          [
+            "b1",
+            "c3"
+          ]
+        ]
+      },
+      "accept": [
+        "b1c3"
+      ],
+      "wrong": {
+        "g2g4": "The pawn attacks the bishop, but Black castles, and a rook comes to the file of your queen and king."
+      },
+      "after": "Black holds for now. You keep the extra pawn, and Black has quick play for it.",
+      "reply": "d8e7"
+    }
+  ],
+  "summary": "Black meets a gambit with a gambit. White takes, breaks up the forward pawn and pins the knight in the center.",
+  "practice": {
+    "fen": "rn2k2r/ppp1qppp/8/2bP1b2/4nP2/2N2N2/PPP1Q1PP/R1B1KB1R w KQkq - 6 9",
+    "side": "w"
+  }
+}

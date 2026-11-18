@@ -1,0 +1,145 @@
+{
+  "id": "checkmates-king-rook",
+  "course": "checkmates",
+  "title": "King and rook against king",
+  "line": "The box that shrinks, and the opposition for the final check.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "text": "King and rook against a lone king always wins. The rook builds a wall the king cannot cross, and your king pushes it back.",
+      "fen": "8/8/8/4k3/8/8/8/R3K3 w - - 0 1",
+      "marks": {
+        "squares": [
+          "e5"
+        ]
+      }
+    },
+    {
+      "type": "move",
+      "text": "Build the wall: put the rook on the row between the two kings, far from the black king.",
+      "fen": "8/8/8/4k3/8/8/8/R3K3 w - - 0 1",
+      "accept": [
+        "a1a4"
+      ],
+      "hint": "The black king stands on the fifth row. The rook goes one row below it.",
+      "after": "The black king is in a box: it cannot cross the rook's row.",
+      "reply": "e5e6",
+      "marks": {
+        "arrows": [
+          [
+            "a1",
+            "a4"
+          ]
+        ]
+      }
+    },
+    {
+      "type": "show",
+      "text": "Bring your king up. When the black king steps back, move the rook up behind it. Keep the rook far from the black king.",
+      "marks": {
+        "arrows": [
+          [
+            "a4",
+            "h4"
+          ]
+        ]
+      }
+    },
+    {
+      "type": "move",
+      "text": "On the edge, the kings stand face to face with one square between them. This is the opposition. Now a rook check is mate.",
+      "fen": "4k3/8/4K3/8/8/8/8/R7 w - - 0 1",
+      "accept": [
+        "a1a8"
+      ],
+      "hint": "Check along the edge. Your king covers the squares in front of the black king.",
+      "after": "Checkmate. The rook holds the edge, and your king takes the three squares in front of the black king.",
+      "mate": true,
+      "marks": {
+        "squares": [
+          "e8",
+          "e6"
+        ]
+      }
+    },
+    {
+      "type": "move",
+      "text": "Here the kings do not face each other, so a check is not mate. Make a waiting move: slide the rook along its row.",
+      "fen": "5k2/R7/4K3/8/8/8/8/8 w - - 0 1",
+      "accept": [
+        "a7b7"
+      ],
+      "also": {
+        "a7c7": "That waits too. This lesson goes on with the rook one square along.",
+        "a7d7": "That waits too. This lesson goes on with the rook one square along."
+      },
+      "wrong": {
+        "a7g7": "The king takes the rook, and with a king alone you cannot mate. Keep the rook far from the black king."
+      },
+      "hint": "Keep the rook on its row, far from the black king.",
+      "after": "Black must move. It goes toward the corner, away from your king.",
+      "reply": "f8g8",
+      "marks": {
+        "squares": [
+          "f8",
+          "e6"
+        ]
+      }
+    },
+    {
+      "type": "move",
+      "text": "Follow the black king with yours, one step toward the corner.",
+      "accept": [
+        "e6f6"
+      ],
+      "hint": "Your king steps along its row toward the black king.",
+      "after": "The black king steps into the corner.",
+      "reply": "g8h8",
+      "marks": {
+        "arrows": [
+          [
+            "e6",
+            "f6"
+          ]
+        ]
+      }
+    },
+    {
+      "type": "move",
+      "text": "Step closer again, but leave Black a move. A rook or king move that takes every square without check is stalemate.",
+      "accept": [
+        "f6g6"
+      ],
+      "wrong": {
+        "b7g7": "That is stalemate: Black is not in check and has no legal move. The game is a draw."
+      },
+      "hint": "Your king steps along its row once more.",
+      "after": "Black's only move is back out of the corner, in front of your king.",
+      "reply": "h8g8",
+      "marks": {
+        "arrows": [
+          [
+            "f6",
+            "g6"
+          ]
+        ]
+      }
+    },
+    {
+      "type": "move",
+      "text": "The kings face each other. Mate on the edge.",
+      "accept": [
+        "b7b8"
+      ],
+      "hint": "The rook checks along the back row.",
+      "after": "Checkmate, with the opposition.",
+      "mate": true
+    }
+  ],
+  "summary": "Wall the king in with the rook, shrink the box, then check on the edge when the kings face each other.",
+  "practice": {
+    "fen": "8/8/4k3/8/R7/8/8/4K3 w - - 2 2",
+    "side": "w"
+  }
+}

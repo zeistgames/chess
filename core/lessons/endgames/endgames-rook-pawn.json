@@ -1,0 +1,61 @@
+{
+  "id": "endgames-rook-pawn",
+  "course": "endgames",
+  "title": "Rook against pawn",
+  "line": "The rook stops the pawn if its king gets there in time.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "fen": "8/1K6/8/8/4pk2/8/8/7R w - - 0 1",
+      "text": "Here the rook alone cannot stop the pawn, because its king walks up beside it. The rook needs its own king to arrive in time.",
+      "marks": {"squares":["e4","f4","b7"]}
+    },
+    {
+      "type": "move",
+      "fen": "8/1K6/8/8/4pk2/8/8/7R w - - 0 1",
+      "text": "Bring your king toward the pawn by the shortest way. Every step counts.",
+      "marks": {"squares":["e4"]},
+      "accept": ["b7c6"],
+      "wrong": {
+        "b7b6": "That does not bring your king closer to the pawn. The pawn gets far enough, and the game is drawn.",
+        "b7c7": "That does not bring your king closer to the pawn. The pawn gets far enough, and the game is drawn.",
+        "b7a6": "That does not bring your king closer to the pawn. The pawn gets far enough, and the game is drawn.",
+        "b7a7": "That does not bring your king closer to the pawn. The pawn gets far enough, and the game is drawn.",
+        "b7a8": "That does not bring your king closer to the pawn. The pawn gets far enough, and the game is drawn.",
+        "b7b8": "That does not bring your king closer to the pawn. The pawn gets far enough, and the game is drawn.",
+        "b7c8": "That does not bring your king closer to the pawn. The pawn gets far enough, and the game is drawn.",
+        "h1e1": "Without your king, the rook can only give itself up for the pawn, and the game is drawn.",
+        "h1h4": "Without your king, the rook can only give itself up for the pawn, and the game is drawn.",
+        "h1f1": "Without your king, the rook can only give itself up for the pawn, and the game is drawn."
+      },
+      "hint": "Go diagonally toward the pawn.",
+      "after": "Your king arrives in time, and the rook takes the pawn."
+    },
+    {
+      "type": "show",
+      "fen": "4R3/1K6/8/8/5k2/4p3/8/8 b - - 0 1",
+      "side": "b",
+      "text": "Now you have Black. Here a pawn that runs ahead of its king is lost. Walk them up together.",
+      "marks": {"squares":["e3","f4"]}
+    },
+    {
+      "type": "move",
+      "fen": "4R3/1K6/8/8/5k2/4p3/8/8 b - - 0 1",
+      "side": "b",
+      "text": "Bring your king beside the pawn before you push it.",
+      "marks": {"squares":["e3"]},
+      "accept": ["f4f3"],
+      "wrong": {
+        "e3e2": "The pawn ran ahead of its king, and the rook takes it.",
+        "f4f5": "That walks away from the pawn, and the rook takes it.",
+        "f4g5": "That walks away from the pawn, and the rook takes it.",
+        "f4g4": "That walks away from the pawn, and the rook takes it."
+      },
+      "hint": "Step to the side of the pawn, one row ahead of your king.",
+      "after": "The pawn is guarded, and the white king is far away. The game is drawn."
+    }
+  ],
+  "summary": "A rook needs its king to stop a pawn that its own king supports. Count the steps: one is often the difference.",
+  "practice": {"fen":"8/1K6/8/8/4pk2/8/8/7R w - - 0 1","side":"w"}
+}

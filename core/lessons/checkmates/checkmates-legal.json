@@ -1,0 +1,55 @@
+{
+  "id": "checkmates-legal",
+  "course": "checkmates",
+  "title": "Légal's mate",
+  "line": "A queen given up so that the minor pieces mate.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "text": "Black's bishop attacks your knight, and your queen stands behind it. If the knight moves, the bishop can take the queen.",
+      "fen": "rn1qkbnr/ppp2p1p/3p2p1/4p3/2B1P1b1/2N2N2/PPPP1PPP/R1BQK2R w KQkq - 0 5",
+      "marks": {"squares":["g4","d1"],"arrows":[["g4","d1"]]}
+    },
+    {
+      "type": "move",
+      "text": "Take the pawn in the center with the knight anyway, and leave your queen to the bishop.",
+      "accept": ["f3e5"],
+      "hint": "The knight jumps to the pawn that stands in front of Black's pawns.",
+      "after": "Black takes the queen. Now see what your other pieces can do.",
+      "reply": "g4d1",
+      "sacrifice": true,
+      "marks": {"squares":["e5","d1"]}
+    },
+    {
+      "type": "move",
+      "text": "You are a queen down, but Black's king is open. Capture the pawn beside it with your bishop, with check.",
+      "accept": ["c4f7"],
+      "hint": "The bishop takes on the diagonal toward the king. The knight guards it there.",
+      "after": "The king has one square to go to.",
+      "reply": "e8e7",
+      "marks": {"squares":["f7"]}
+    },
+    {
+      "type": "move",
+      "text": "Mate with the other knight.",
+      "accept": ["c3d5"],
+      "hint": "The knight jumps to the center, next to the king's last squares.",
+      "after": "Légal's mate. Two knights and a bishop mate, while Black's bishop sits on your queen's square.",
+      "mate": true
+    },
+    {
+      "type": "move",
+      "text": "Now you are Black, right after the knight took the pawn. Do not take the queen. Take the knight.",
+      "fen": "rn1qkbnr/ppp2p1p/3p2p1/4N3/2B1P1b1/2N5/PPPP1PPP/R1BQK2R b KQkq - 0 5",
+      "side": "b",
+      "accept": ["d6e5"],
+      "also": {"g4e6": "That avoids the mate too. This lesson takes the knight."},
+      "wrong": {"g4d1": "Then the bishop takes on f7 with check, and the other knight mates on d5."},
+      "hint": "A pawn can take the knight in the center.",
+      "after": "The queen can take your bishop, and White is a pawn up, but there is no mate.",
+      "marks": {"squares":["e5","f7","d5"]}
+    }
+  ],
+  "summary": "Giving up the queen can pay when the minor pieces mate. When a queen is offered for free, look for the trap."
+}

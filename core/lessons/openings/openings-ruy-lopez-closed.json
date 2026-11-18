@@ -1,0 +1,217 @@
+{
+  "id": "openings-ruy-lopez-closed",
+  "course": "openings",
+  "title": "Ruy Lopez: Closed",
+  "line": "The main line: White builds a big center slowly, and both sides maneuver.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "text": "The Ruy Lopez: the bishop attacks the knight, and Black asks it to decide.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {
+        "squares": [
+          "c6"
+        ],
+        "arrows": [
+          [
+            "b5",
+            "c6"
+          ]
+        ]
+      },
+      "play": [
+        "e2e4",
+        "e7e5",
+        "g1f3",
+        "b8c6",
+        "f1b5",
+        "a7a6"
+      ]
+    },
+    {
+      "type": "show",
+      "text": "The bishop steps back, both sides bring a piece out, and White castles.",
+      "marks": {
+        "squares": [
+          "a4",
+          "f6",
+          "g1",
+          "e7"
+        ]
+      },
+      "play": [
+        "b5a4",
+        "g8f6",
+        "e1g1",
+        "f8e7"
+      ]
+    },
+    {
+      "type": "move",
+      "text": "Put your rook behind the pawn on e4. It guards the pawn, so now your bishop really threatens to take the knight and then the pawn on e5.",
+      "marks": {
+        "squares": [
+          "e4",
+          "c6",
+          "e5"
+        ],
+        "arrows": [
+          [
+            "f1",
+            "e1"
+          ]
+        ]
+      },
+      "accept": [
+        "f1e1"
+      ],
+      "reply": "b7b5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Black's pawns chase the bishop. Step it back: on b3 it still aims at the pawn on f7.",
+      "marks": {
+        "squares": [
+          "f7"
+        ],
+        "arrows": [
+          [
+            "a4",
+            "b3"
+          ],
+          [
+            "b3",
+            "f7"
+          ]
+        ]
+      },
+      "accept": [
+        "a4b3"
+      ],
+      "reply": "d7d6",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Move the pawn on c2 one square. It gives the bishop a way back and gets ready for a pawn on d4.",
+      "marks": {
+        "squares": [
+          "d4"
+        ],
+        "arrows": [
+          [
+            "c2",
+            "c3"
+          ]
+        ]
+      },
+      "accept": [
+        "c2c3"
+      ],
+      "reply": "e8g8",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn on h2 one square, so no black piece can jump to g4 and pin or hit your knight.",
+      "marks": {
+        "squares": [
+          "g4"
+        ],
+        "arrows": [
+          [
+            "h2",
+            "h3"
+          ]
+        ]
+      },
+      "accept": [
+        "h2h3"
+      ],
+      "also": {
+        "a2a4": "Attacking the pawns on the queen side is also played. This lesson stops the pin first.",
+        "d2d4": "Pushing to the center at once is also played. This lesson stops the pin first."
+      },
+      "after": "The knight attacks your bishop.",
+      "reply": "c6a5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Step the bishop back to c2. From there it aims along the other diagonal, toward h7 by the black king.",
+      "marks": {
+        "squares": [
+          "g8"
+        ],
+        "arrows": [
+          [
+            "b3",
+            "c2"
+          ],
+          [
+            "c2",
+            "h7"
+          ]
+        ]
+      },
+      "accept": [
+        "b3c2"
+      ],
+      "reply": "c7c5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Now push the pawn in front of your queen two squares. With the pawn on c3 behind it, you have a big center.",
+      "marks": {
+        "squares": [
+          "c3",
+          "e4"
+        ],
+        "arrows": [
+          [
+            "d2",
+            "d4"
+          ]
+        ]
+      },
+      "accept": [
+        "d2d4"
+      ],
+      "reply": "d8c7",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the knight out, behind your pawns. It can go on toward f1 and g3 later.",
+      "marks": {
+        "squares": [
+          "f1",
+          "g3"
+        ],
+        "arrows": [
+          [
+            "b1",
+            "d2"
+          ]
+        ]
+      },
+      "accept": [
+        "b1d2"
+      ],
+      "also": {
+        "d4d5": "Closing the center with the pawn is also played. This lesson keeps the center as it is."
+      },
+      "after": "This is the Closed Ruy Lopez: a slow fight, with plans on both sides of the board.",
+      "reply": "c5d4",
+      "taught": true
+    }
+  ],
+  "summary": "Rook behind the center pawn, bishop kept on the long diagonal, the pins stopped, and then a big pawn center.",
+  "practice": {
+    "fen": "r1b2rk1/2q1bppp/p2p1n2/np2p3/3pP3/2P2N1P/PPBN1PP1/R1BQR1K1 w - - 0 13",
+    "side": "w"
+  }
+}

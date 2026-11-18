@@ -1,0 +1,98 @@
+{
+  "id": "openings-benoni-defense-ideas",
+  "course": "openings",
+  "title": "Benoni Defense: the ideas",
+  "line": "An unbalanced game: Black has more pawns on the queen's side, White more in the center.",
+  "side": "b",
+  "steps": [
+    {
+      "type": "show",
+      "text": "White starts by pushing the pawn in front of its queen two squares, into the center.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {"arrows":[["d2","d4"]]},
+      "play": ["d2d4"]
+    },
+    {
+      "type": "move",
+      "text": "Bring the knight out. For now it stops White's other center pawn from coming to e4.",
+      "marks": {"squares":["e4"],"arrows":[["g8","f6"]]},
+      "accept": ["g8f6"],
+      "reply": "c2c4",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn on c7 two squares. It attacks White's pawn on d4 from the side.",
+      "marks": {"squares":["c7","d4"],"arrows":[["c7","c5"]]},
+      "accept": ["c7c5"],
+      "also": {
+        "e7e6": "That leads to the Nimzo-Indian or the Queen's Indian, also sound. This lesson goes on with the side pawn."
+      },
+      "after": "White pushes past. This is the Benoni Defense.",
+      "reply": "d4d5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Attack the pawn on d5 with the pawn in front of your king.",
+      "marks": {"squares":["d5"],"arrows":[["e7","e6"]]},
+      "accept": ["e7e6"],
+      "also": {"b7b5":"That is the Benko Gambit, a pawn for open files. This lesson goes on with the other pawn."},
+      "reply": "b1c3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Trade pawns.",
+      "accept": ["e6d5"],
+      "marks": {"arrows":[["e6","d5"]]},
+      "after": "Now Black has more pawns on the queen's side, and White more in the center.",
+      "reply": "c4d5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Move the pawn in front of your queen one square. It holds back White's center pawns.",
+      "accept": ["d7d6"],
+      "marks": {"arrows":[["d7","d6"]]},
+      "after": "Black takes on risk for an unbalanced game: White's extra center pawns can come forward fast.",
+      "reply": "e2e4",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn on g7 one square, to make room for your bishop.",
+      "marks": {"squares":["g7"],"arrows":[["g7","g6"]]},
+      "accept": ["g7g6"],
+      "after": "White pushes another pawn forward. This is the sharpest line.",
+      "reply": "f2f4",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Put the bishop on the long diagonal. Once your knight moves, it aims at White's queen's side.",
+      "accept": ["f8g7"],
+      "marks": {"arrows":[["f8","g7"]]},
+      "after": "White's bishop gives check.",
+      "reply": "f1b5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Block the check with the knight from f6, not the one from b8. Then a pawn push to e5 hits no knight.",
+      "marks": {
+        "squares": ["e5","f6","b8"],
+        "arrows": [["f6","d7"]]
+      },
+      "accept": ["f6d7"],
+      "wrong": {
+        "b8d7": "Then White's pawn pushes to e5 and hits your other knight, and Black is in trouble.",
+        "c8d7": "That blocks too, but the engine rates it clearly weaker: White trades bishops and keeps its big center."
+      },
+      "after": "Your pawn and bishop guard e5, and Black can castle next.",
+      "taught": true
+    }
+  ],
+  "summary": "Black trades a center pawn to get more pawns on the queen's side. Against the sharpest line, block the check with care.",
+  "practice": {"fen":"rnbqkb1r/pp1p1ppp/4pn2/2pP4/2P5/8/PP2PPPP/RNBQKBNR w KQkq - 0 4","side":"b"}
+}

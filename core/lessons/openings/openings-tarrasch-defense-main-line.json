@@ -1,0 +1,201 @@
+{
+  "id": "openings-tarrasch-defense-main-line",
+  "course": "openings",
+  "title": "Tarrasch Defense: the main line",
+  "line": "Black gets a lone pawn on d5, and open lines for its pieces in return.",
+  "side": "b",
+  "steps": [
+    {
+      "type": "show",
+      "text": "The Tarrasch Defense: Black strikes at White's center pawn at once.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {
+        "squares": [
+          "d4"
+        ],
+        "arrows": [
+          [
+            "c5",
+            "d4"
+          ]
+        ]
+      },
+      "play": [
+        "d2d4",
+        "d7d5",
+        "c2c4",
+        "e7e6",
+        "b1c3",
+        "c7c5"
+      ]
+    },
+    {
+      "type": "show",
+      "text": "The pawns trade on d5, and White brings out its other knight.",
+      "marks": {
+        "squares": [
+          "d5"
+        ]
+      },
+      "play": [
+        "c4d5",
+        "e6d5",
+        "g1f3"
+      ]
+    },
+    {
+      "type": "move",
+      "text": "Bring the knight out. It adds pressure on the pawn on d4.",
+      "marks": {
+        "squares": [
+          "d4",
+          "d5"
+        ],
+        "arrows": [
+          [
+            "b8",
+            "c6"
+          ]
+        ]
+      },
+      "accept": [
+        "b8c6"
+      ],
+      "after": "White's bishop will aim at the pawn on d5 from the long diagonal.",
+      "reply": "g2g3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the other knight out. It guards your center pawn.",
+      "marks": {
+        "squares": [
+          "d5"
+        ],
+        "arrows": [
+          [
+            "g8",
+            "f6"
+          ]
+        ]
+      },
+      "accept": [
+        "g8f6"
+      ],
+      "reply": "f1g2",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the bishop out so that you can castle.",
+      "marks": {
+        "arrows": [
+          [
+            "f8",
+            "e7"
+          ]
+        ]
+      },
+      "accept": [
+        "f8e7"
+      ],
+      "reply": "e1g1",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Castle. Your king is safe before the center opens up.",
+      "marks": {
+        "arrows": [
+          [
+            "e8",
+            "g8"
+          ]
+        ],
+        "squares": [
+          "e7",
+          "d5"
+        ]
+      },
+      "accept": [
+        "e8g8"
+      ],
+      "after": "White's bishop pins your knight to the bishop on e7. The knight guards the pawn on d5.",
+      "reply": "c1g5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Trade pawns on d4. It opens lines for your pieces.",
+      "marks": {
+        "squares": [
+          "d4",
+          "d5"
+        ],
+        "arrows": [
+          [
+            "c5",
+            "d4"
+          ]
+        ]
+      },
+      "accept": [
+        "c5d4"
+      ],
+      "also": {
+        "c8e6": "That guards the pawn on d5, another main line. This lesson trades first."
+      },
+      "after": "Your pawn on d5 stands alone now: no pawn beside it can guard it. White will aim at it.",
+      "reply": "f3d4",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn on h7 one square to ask the bishop on g5 to decide.",
+      "marks": {
+        "squares": [
+          "g5"
+        ],
+        "arrows": [
+          [
+            "h7",
+            "h6"
+          ]
+        ]
+      },
+      "accept": [
+        "h7h6"
+      ],
+      "reply": "g5e3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Put the rook on the e-file, where Black has no pawn.",
+      "marks": {
+        "arrows": [
+          [
+            "f8",
+            "e8"
+          ]
+        ],
+        "squares": [
+          "d5"
+        ]
+      },
+      "accept": [
+        "f8e8"
+      ],
+      "also": {
+        "c8g4": "Bringing the bishop out is sound too. This lesson moves the rook first."
+      },
+      "after": "This is the main line. White aims at the pawn on d5, and Black plays with its pieces.",
+      "taught": true
+    }
+  ],
+  "summary": "Black accepts a lone center pawn. It can be attacked, but it gives every Black piece room and open lines.",
+  "practice": {
+    "fen": "r1bqr1k1/pp2bpp1/2n2n1p/3p4/3N4/2N1B1P1/PP2PPBP/R2Q1RK1 w - - 2 12",
+    "side": "b"
+  }
+}

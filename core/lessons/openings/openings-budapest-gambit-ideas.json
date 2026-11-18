@@ -1,0 +1,91 @@
+{
+  "id": "openings-budapest-gambit-ideas",
+  "course": "openings",
+  "title": "Budapest Gambit: the ideas",
+  "line": "Black gives a center pawn for quick play with the pieces, and usually wins it back.",
+  "side": "b",
+  "steps": [
+    {
+      "type": "show",
+      "text": "White starts by pushing the pawn in front of its queen two squares, into the center.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {"arrows":[["d2","d4"]]},
+      "play": ["d2d4"]
+    },
+    {
+      "type": "move",
+      "text": "Bring the knight out. For now it stops White's other center pawn from coming to e4.",
+      "marks": {"squares":["e4"],"arrows":[["g8","f6"]]},
+      "accept": ["g8f6"],
+      "reply": "c2c4",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Offer the pawn in front of your king. Black wants quick play for its pieces.",
+      "accept": ["e7e5"],
+      "marks": {"arrows":[["e7","e5"]]},
+      "also": {
+        "e7e6": "That leads to the Nimzo-Indian or the Queen's Indian, also sound. This lesson goes on with the gambit."
+      },
+      "after": "This is the Budapest Gambit. It is a risky choice that strong players rarely use.",
+      "reply": "d4e5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Jump the knight forward to attack the pawn on e5.",
+      "marks": {"squares":["e5"],"arrows":[["f6","g4"]]},
+      "accept": ["f6g4"],
+      "after": "White guards it with the bishop.",
+      "reply": "c1f4",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Attack it again with the other knight.",
+      "accept": ["b8c6"],
+      "marks": {"arrows":[["b8","c6"]]},
+      "after": "White guards it again.",
+      "reply": "g1f3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Give check with the bishop.",
+      "accept": ["f8b4"],
+      "marks": {"arrows":[["f8","b4"]]},
+      "after": "White blocks with the other knight.",
+      "reply": "b1d2",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the queen out. It attacks the pawn on e5 a third time.",
+      "marks": {"squares":["e5"],"arrows":[["d8","e7"]]},
+      "accept": ["d8e7"],
+      "after": "White pushes a pawn at the bishop.",
+      "reply": "a2a3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Take the pawn back with the knight from g4. Your bishop is attacked, but leave it: strong players take your knight here.",
+      "marks": {"squares":["g4"],"arrows":[["g4","e5"]]},
+      "accept": ["g4e5"],
+      "reply": "a3b4",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "White slipped and took the bishop, a mistake club players often make. Find the checkmate with a knight.",
+      "accept": ["e5d3"],
+      "marks": {"arrows":[["e5","d3"]]},
+      "hint": "Your queen pins the pawn in front of White's king, so it cannot take.",
+      "after": "The pawn in front of White's king cannot take the knight: your queen pins it.",
+      "mate": true
+    }
+  ],
+  "summary": "Black gives a center pawn, attacks it with both knights and the queen, and takes it back. One greedy capture loses.",
+  "practice": {"fen":"r1b1k2r/ppppqppp/2n5/4n3/1bP2B2/P4N2/1P1NPPPP/R2QKB1R w KQkq - 0 8","side":"b"}
+}

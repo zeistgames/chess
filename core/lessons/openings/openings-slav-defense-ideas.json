@@ -1,0 +1,167 @@
+{
+  "id": "openings-slav-defense-ideas",
+  "course": "openings",
+  "title": "Slav Defense: the ideas",
+  "line": "A pawn on c6 holds the center, and the bishop stays free to come out.",
+  "side": "b",
+  "steps": [
+    {
+      "type": "show",
+      "text": "White starts by pushing the pawn in front of its queen two squares, into the center.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {
+        "arrows": [
+          [
+            "d2",
+            "d4"
+          ]
+        ]
+      },
+      "play": [
+        "d2d4"
+      ]
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn in front of your queen two squares too. It holds the center.",
+      "marks": {
+        "arrows": [
+          [
+            "d7",
+            "d5"
+          ]
+        ]
+      },
+      "accept": [
+        "d7d5"
+      ],
+      "also": {
+        "g8f6": "That is the start of the Indian defenses, also sound. This lesson pushes the pawn."
+      },
+      "after": "White offers a side pawn to pull your center pawn away. This is the Queen's Gambit.",
+      "reply": "c2c4",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Guard your center pawn with the pawn on c7. Your bishop on c8 stays free to come out.",
+      "marks": {
+        "squares": [
+          "d5",
+          "c8"
+        ],
+        "arrows": [
+          [
+            "c7",
+            "c6"
+          ]
+        ]
+      },
+      "accept": [
+        "c7c6"
+      ],
+      "also": {
+        "e7e6": "That guards it too, the Queen's Gambit Declined. This lesson guards with the other pawn.",
+        "d5c4": "That is the Queen's Gambit Accepted, also sound. This lesson keeps the center pawn."
+      },
+      "after": "This is the Slav Defense.",
+      "reply": "g1f3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the knight out. It guards the center pawn too.",
+      "marks": {
+        "squares": [
+          "d5",
+          "c1"
+        ],
+        "arrows": [
+          [
+            "g8",
+            "f6"
+          ]
+        ]
+      },
+      "accept": [
+        "g8f6"
+      ],
+      "also": {
+        "e7e6": "That heads for the Semi-Slav, also sound. This lesson brings the knight out first.",
+        "d5c4": "Taking the pawn is sound too. This lesson brings the knight out first."
+      },
+      "after": "White moves its king pawn, and its own bishop on c1 is now behind its pawns.",
+      "reply": "e2e3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring your bishop out now, before you move the king pawn.",
+      "marks": {
+        "arrows": [
+          [
+            "c8",
+            "f5"
+          ]
+        ]
+      },
+      "accept": [
+        "c8f5"
+      ],
+      "after": "That is the Slav's point: the bishop is outside the pawns.",
+      "reply": "b1c3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Now move the pawn in front of your king one square. It frees your other bishop and guards the center.",
+      "marks": {
+        "squares": [
+          "d5"
+        ],
+        "arrows": [
+          [
+            "e7",
+            "e6"
+          ]
+        ]
+      },
+      "accept": [
+        "e7e6"
+      ],
+      "after": "White's knight goes after your bishop.",
+      "reply": "f3h4",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Step the bishop back. If the knight takes it, your pawn on h7 takes back, and your rook looks down the h-file.",
+      "marks": {
+        "squares": [
+          "h8",
+          "h7",
+          "c8"
+        ],
+        "arrows": [
+          [
+            "f5",
+            "g6"
+          ]
+        ]
+      },
+      "accept": [
+        "f5g6"
+      ],
+      "also": {
+        "f5e4": "That keeps the bishop safe too. This lesson steps back to the other square."
+      },
+      "after": "Black's pawns hold the center, and the bishop from c8 is outside the pawn chain.",
+      "taught": true
+    }
+  ],
+  "summary": "A side pawn guards the center pawn, so the bishop comes out before the king pawn moves.",
+  "practice": {
+    "fen": "rn1qkb1r/pp3ppp/2p1pnb1/3p4/2PP3N/2N1P3/PP3PPP/R1BQKB1R w KQkq - 2 7",
+    "side": "b"
+  }
+}

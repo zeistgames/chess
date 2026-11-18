@@ -1,0 +1,81 @@
+{
+  "id": "openings-nimzo-indian-defense-samisch-variation",
+  "course": "openings",
+  "title": "Nimzo-Indian Defense: Sämisch Variation",
+  "line": "White takes the two bishops at the cost of doubled pawns, and Black attacks the front one.",
+  "side": "b",
+  "steps": [
+    {
+      "type": "show",
+      "text": "The Nimzo-Indian, and White pushes the pawn on a2 at once, to ask the bishop what it will do.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {"arrows":[["a2","a3"]]},
+      "play": ["d2d4","g8f6","c2c4","e7e6","b1c3","f8b4","a2a3"]
+    },
+    {
+      "type": "move",
+      "text": "Take the knight with check. White gets the two bishops, but its pawns end up two on one file.",
+      "accept": ["b4c3"],
+      "marks": {"arrows":[["b4","c3"]]},
+      "reply": "b2c3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn on c7 two squares. Now the pawn on c4 cannot move on, and Black can attack it.",
+      "marks": {"squares":["c4","c7"],"arrows":[["c7","c5"]]},
+      "accept": ["c7c5"],
+      "reply": "e2e3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the other knight out. It attacks White's pawn on d4.",
+      "marks": {"squares":["d4"],"arrows":[["b8","c6"]]},
+      "accept": ["b8c6"],
+      "reply": "f1d3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Castle, to get your king to safety.",
+      "accept": ["e8g8"],
+      "marks": {"arrows":[["e8","g8"]]},
+      "reply": "g1e2",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Move the pawn on b7 one square. Your bishop can then come out against the pawn on c4.",
+      "marks": {"squares":["c4","b7"],"arrows":[["b7","b6"],["c8","a6"]]},
+      "accept": ["b7b6"],
+      "reply": "e3e4",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "White's pawn on e4 can push on and hit your knight. Step it back first. It also frees the pawn on f7.",
+      "marks": {"squares":["f7"],"arrows":[["f6","e8"],["e4","e5"]]},
+      "accept": ["f6e8"],
+      "reply": "e1g1",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the bishop out against the pawn on c4.",
+      "marks": {"squares":["c4"],"arrows":[["c8","a6"]]},
+      "accept": ["c8a6"],
+      "reply": "f2f4",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn on f7 two squares. It stops White's pawns from rolling on toward your king.",
+      "marks": {"squares":["f7"],"arrows":[["f7","f5"]]},
+      "accept": ["f7f5"],
+      "taught": true
+    }
+  ],
+  "summary": "White gets two bishops and doubled pawns. Black fixes the pawns, attacks the front one and blocks the king's side.",
+  "practice": {"fen":"r2qnrk1/p2p2pp/bpn1p3/2p2p2/2PPPP2/P1PB4/4N1PP/R1BQ1RK1 w - - 0 12","side":"b"}
+}

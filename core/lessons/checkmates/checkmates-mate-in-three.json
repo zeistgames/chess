@@ -1,0 +1,68 @@
+{
+  "id": "checkmates-mate-in-three",
+  "course": "checkmates",
+  "title": "Mate in three",
+  "line": "Longer lines, still forcing.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "text": "A mate in three is found the same way: checks first, and replies that are forced. Black's back rank is guarded only by the rook.",
+      "fen": "3r2k1/5ppp/p7/1p2q3/7P/1QP3P1/PP6/5RK1 w - - 0 27",
+      "marks": {"squares":["d8"],"arrows":[["b3","f7"],["f1","f8"]]}
+    },
+    {
+      "type": "move",
+      "text": "Take the pawn beside the king, with check. Your rook guards the queen there.",
+      "accept": ["b3f7"],
+      "hint": "The queen takes on the diagonal toward the king.",
+      "after": "The king's only square is the corner.",
+      "reply": "g8h8"
+    },
+    {
+      "type": "move",
+      "text": "Give the queen on the back rank, with check. The rook has to take her.",
+      "accept": ["f7f8"],
+      "hint": "One step forward for the queen, still guarded by your rook.",
+      "after": "Forced: only the black rook could take the queen.",
+      "reply": "d8f8"
+    },
+    {
+      "type": "move",
+      "text": "Mate.",
+      "accept": ["f1f8"],
+      "hint": "Your rook takes on the back rank.",
+      "after": "Back-rank mate in three moves, every one of them a check.",
+      "mate": true
+    },
+    {
+      "type": "move",
+      "text": "Find all three moves yourself. Start with the check that gives a rook.",
+      "fen": "1r5k/2p3p1/p2p2rp/1pq5/4PR2/PQP2R2/1P4PK/8 w - - 5 36",
+      "accept": ["f4f8"],
+      "wrong": {"b3g8": "The rook takes the queen. Nothing guards g8 yet."},
+      "hint": "One rook goes to the back rank. The other stands behind it.",
+      "after": "The rook took it. Had the king stepped aside instead, the queen would mate on g8 at once.",
+      "reply": "b8f8",
+      "marks": {"squares":["g8"]}
+    },
+    {
+      "type": "move",
+      "text": "Take back on the back rank, with check.",
+      "accept": ["f3f8"],
+      "hint": "Your second rook takes the rook.",
+      "after": "The king must step out of the corner.",
+      "reply": "h8h7"
+    },
+    {
+      "type": "move",
+      "text": "Mate.",
+      "accept": ["b3g8"],
+      "hint": "The rook now guards the square next to the king.",
+      "after": "Checkmate. The rook guards the queen, and the king's own pawns block it in.",
+      "mate": true
+    }
+  ],
+  "summary": "Longer mates are found like short ones: try every check, follow the forced replies, and look for the mate at the end.",
+  "puzzles": "mate3"
+}

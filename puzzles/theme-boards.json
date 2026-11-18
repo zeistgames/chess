@@ -1,0 +1,103 @@
+{
+  "about": "The small board for each theme group in puzzles/themes.json, keyed by group id. Hand-picked positions that show the idea: fen, last (the move just played, tinted, or null), rings (the pieces involved), arrows ([from, to] lines of force), idea (what games/test/chess-themes.mjs checks with rules.js). Drawn from White's side. A group with no board here gets a plain board.",
+  "boards": {
+    "forks": {
+      "fen": "r3k3/2N2ppp/8/8/8/8/5PPP/6K1 b - - 0 1",
+      "last": "d5c7",
+      "rings": ["e8", "a8"],
+      "arrows": [["c7", "e8"], ["c7", "a8"]],
+      "idea": { "kind": "fork", "by": "c7", "targets": ["e8", "a8"] }
+    },
+    "pins": {
+      "fen": "4k3/4qppp/8/8/8/8/5PPP/4RK2 b - - 0 1",
+      "last": "a1e1",
+      "rings": ["e7"],
+      "arrows": [["e1", "e8"]],
+      "idea": { "kind": "pin", "line": ["e1", "e7", "e8"] }
+    },
+    "skewers": {
+      "fen": "4r3/8/8/4k3/8/8/8/4R1K1 b - - 0 1",
+      "last": "a1e1",
+      "rings": ["e5", "e8"],
+      "arrows": [["e1", "e8"]],
+      "idea": { "kind": "skewer", "line": ["e1", "e5", "e8"] }
+    },
+    "discovered": {
+      "fen": "4q1k1/5ppp/8/8/4N3/8/5PPP/4R1K1 w - - 0 1",
+      "last": null,
+      "rings": ["e4", "e8"],
+      "arrows": [["e4", "f6"], ["e1", "e8"]],
+      "idea": { "kind": "discovered", "move": "e4f6", "line": ["e1", "e8"], "check": true }
+    },
+    "hanging": {
+      "fen": "6k1/5ppp/3n4/8/8/8/5PPP/3R2K1 w - - 0 1",
+      "last": null,
+      "rings": ["d6"],
+      "arrows": [["d1", "d6"]],
+      "idea": { "kind": "hanging", "piece": "d6", "by": "d1" }
+    },
+    "trapped": {
+      "fen": "6k1/5ppp/8/8/8/1P6/bKP2PPP/8 b - - 0 1",
+      "last": "c1b2",
+      "rings": ["a2"],
+      "arrows": [],
+      "idea": { "kind": "trapped", "piece": "a2" }
+    },
+    "defender": {
+      "fen": "6k1/5ppp/2n5/1B2n3/8/8/5PPP/4R1K1 w - - 0 1",
+      "last": null,
+      "rings": ["c6", "e5"],
+      "arrows": [["b5", "c6"], ["e1", "e5"]],
+      "idea": { "kind": "defender", "defender": "c6", "guards": "e5", "by": ["b5", "e1"] }
+    },
+    "sacrifices": {
+      "fen": "r6k/6pp/7N/8/8/1Q6/6PP/6K1 w - - 0 1",
+      "last": null,
+      "rings": ["b3", "h8"],
+      "arrows": [["b3", "g8"], ["h6", "f7"]],
+      "idea": { "kind": "sacrifice", "line": "b3g8 a8g8 h6f7" }
+    },
+    "mate1": {
+      "fen": "7k/Q7/6K1/8/8/8/8/8 w - - 0 1",
+      "last": null,
+      "rings": ["h8"],
+      "arrows": [["a7", "g7"]],
+      "idea": { "kind": "mate", "in": 1, "first": "a7g7" }
+    },
+    "mate2": {
+      "fen": "r5k1/5ppp/8/8/8/8/3R1PPP/3R2K1 w - - 0 1",
+      "last": null,
+      "rings": ["g8"],
+      "arrows": [["d2", "d8"]],
+      "idea": { "kind": "mate", "in": 2, "first": "d2d8" }
+    },
+    "mate3": {
+      "fen": "8/8/6k1/R7/8/8/8/1R4K1 w - - 0 1",
+      "last": null,
+      "rings": ["g6"],
+      "arrows": [["b1", "b6"]],
+      "idea": { "kind": "mate", "in": 3, "first": "b1b6" }
+    },
+    "backrank": {
+      "fen": "3R2k1/5ppp/8/8/8/8/5PPP/6K1 b - - 0 1",
+      "last": "d1d8",
+      "rings": ["g8"],
+      "arrows": [],
+      "idea": { "kind": "backrank", "king": "g8" }
+    },
+    "passed": {
+      "fen": "8/1P4k1/6p1/7p/7P/6P1/6K1/8 w - - 0 1",
+      "last": null,
+      "rings": ["b7"],
+      "arrows": [["b7", "b8"]],
+      "idea": { "kind": "passed", "pawn": "b7" }
+    },
+    "endgames": {
+      "fen": "8/8/8/4k3/8/4K3/4P3/8 w - - 0 1",
+      "last": null,
+      "rings": ["e3", "e5"],
+      "arrows": [],
+      "idea": { "kind": "opposition", "kings": ["e3", "e5"] }
+    }
+  }
+}

@@ -1,0 +1,122 @@
+{
+  "id": "openings-bird-opening-froms-gambit",
+  "course": "openings",
+  "title": "Bird Opening: From's Gambit",
+  "line": "Black gives a pawn to aim the queen and bishop at White's king.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "move",
+      "text": "Push the pawn on f2 two squares. It takes hold of the center square e5.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {
+        "squares": [
+          "e5"
+        ],
+        "arrows": [
+          [
+            "f2",
+            "f4"
+          ]
+        ]
+      },
+      "accept": [
+        "f2f4"
+      ],
+      "after": "Black offers a pawn at once: From's Gambit. It gives up a little for a fast attack.",
+      "reply": "e7e5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Take the pawn. Now you are a pawn up.",
+      "marks": {
+        "squares": [
+          "e5"
+        ],
+        "arrows": [
+          [
+            "f4",
+            "e5"
+          ]
+        ]
+      },
+      "accept": [
+        "f4e5"
+      ],
+      "after": "Black offers a second pawn to open lines.",
+      "reply": "d7d6",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Take that pawn too. After Black takes back, you are still a pawn up.",
+      "marks": {
+        "squares": [
+          "d6",
+          "g3",
+          "h4"
+        ],
+        "arrows": [
+          [
+            "e5",
+            "d6"
+          ]
+        ]
+      },
+      "accept": [
+        "e5d6"
+      ],
+      "after": "Black's bishop aims at g3, and the queen can check on h4.",
+      "reply": "f8d6",
+      "taught": true
+    },
+    {
+      "type": "show",
+      "text": "Here White brought out the other knight. The queen checked, then gave herself up on g3, and the bishop mated.",
+      "fen": "rnbqk1nr/ppp2ppp/3b4/8/8/2N5/PPPPP1PP/R1BQKBNR b KQkq - 1 4",
+      "marks": {
+        "squares": [
+          "h4",
+          "g3"
+        ]
+      },
+      "play": [
+        "d8h4",
+        "g2g3",
+        "h4g3",
+        "h2g3",
+        "d6g3"
+      ]
+    },
+    {
+      "type": "move",
+      "text": "Back to the gambit. Bring out the knight that guards h4. If the queen checks there, the knight takes her.",
+      "fen": "rnbqk1nr/ppp2ppp/3b4/8/8/8/PPPPP1PP/RNBQKBNR w KQkq - 0 4",
+      "marks": {
+        "squares": [
+          "h4"
+        ],
+        "arrows": [
+          [
+            "g1",
+            "f3"
+          ]
+        ]
+      },
+      "accept": [
+        "g1f3"
+      ],
+      "wrong": {
+        "b1c3": "That is the trap: the queen checks on h4, and after the pawn blocks, queen and bishop mate."
+      },
+      "hint": "Which knight can reach a square that watches h4?",
+      "after": "White is a pawn up, and the king is safe. Black will push its pawns to chase the knight."
+    }
+  ],
+  "summary": "Black gives pawns to aim queen and bishop at the king. The knight that guards the queen check stops the attack.",
+  "practice": {
+    "fen": "rnbqk1nr/ppp2ppp/3b4/8/8/5N2/PPPPP1PP/RNBQKB1R b KQkq - 1 4",
+    "side": "w"
+  }
+}

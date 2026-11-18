@@ -1,0 +1,82 @@
+{
+  "id": "openings-sicilian-defense-taimanov",
+  "course": "openings",
+  "title": "Sicilian Defense: Taimanov and Kan",
+  "line": "A pawn one step forward keeps Black flexible, and the queen watches the open file.",
+  "side": "b",
+  "steps": [
+    {
+      "type": "show",
+      "text": "Here Black pushed the pawn in front of the king one square before taking in the center.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {"squares":["e6"]},
+      "play": ["e2e4","c7c5","g1f3","e7e6","d2d4","c5d4","f3d4"]
+    },
+    {
+      "type": "move",
+      "text": "Bring the knight out to attack the knight on d4. This is the Taimanov.",
+      "marks": {"squares":["d4"],"arrows":[["b8","c6"]]},
+      "accept": ["b8c6"],
+      "also": {
+        "a7a6": "That is the Kan, a close cousin: the same plan with the knight later. This lesson goes on with the knight.",
+        "g8f6": "That also works. This lesson brings the other knight out first."
+      },
+      "reply": "b1c3",
+      "taught": true
+    },
+    {
+      "type": "show",
+      "text": "The Kan is the close cousin: the pawn goes to a6 first, the knight waits, and the queen comes to c7 the same way.",
+      "fen": "rnbqkbnr/1p1p1ppp/p3p3/8/3NP3/2N5/PPP2PPP/R1BQKB1R b KQkq - 1 5",
+      "marks": {"squares":["a6","c7"]},
+      "play": ["d8c7"]
+    },
+    {
+      "type": "move",
+      "text": "Back to the Taimanov. Bring the queen to c7. She watches e5, and she will look down the file once your knight moves off it.",
+      "fen": "r1bqkbnr/pp1p1ppp/2n1p3/8/3NP3/2N5/PPP2PPP/R1BQKB1R b KQkq - 2 5",
+      "marks": {"squares":["e5"],"arrows":[["d8","c7"]]},
+      "accept": ["d8c7"],
+      "reply": "c1e3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn on a7 one square. It keeps White's knights off b5.",
+      "marks": {"squares":["b5"],"arrows":[["a7","a6"]]},
+      "accept": ["a7a6"],
+      "reply": "f1d3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the other knight out.",
+      "marks": {"arrows":[["g8","f6"]]},
+      "accept": ["g8f6"],
+      "reply": "e1g1",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Move the knight to e5. It eyes the bishop on d3 and the square c4.",
+      "marks": {"squares":["d3","c4","g4"],"arrows":[["c6","e5"]]},
+      "accept": ["c6e5"],
+      "after": "White's pawn keeps your knights off g4.",
+      "reply": "h2h3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the bishop to c5. It hits the knight on d4, which the bishop on e3 guards.",
+      "marks": {"squares":["d4","e3"],"arrows":[["f8","c5"]]},
+      "accept": ["f8c5"],
+      "after": "Your knight and bishop stand on active squares, and your king is ready to castle.",
+      "taught": true
+    }
+  ],
+  "summary": "The Taimanov and the Kan keep Black's pawns flexible, put the queen on the open file and the pieces on active squares.",
+  "practice": {
+    "fen": "r1b1k2r/1pqp1ppp/p3pn2/2b1n3/3NP3/2NBB2P/PPP2PP1/R2Q1RK1 w kq - 1 10",
+    "side": "b"
+  }
+}

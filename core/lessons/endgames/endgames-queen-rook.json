@@ -1,0 +1,56 @@
+{
+  "id": "endgames-queen-rook",
+  "course": "endgames",
+  "title": "Queen against rook",
+  "line": "A win, with patience: the rook strays from its king, and a check catches both.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "fen": "1k6/8/4K3/8/3Q4/8/7r/8 w - - 0 1",
+      "text": "A queen beats a rook. The rook should stay beside its king, because far from it, one check can hit them both.",
+      "marks": {"squares":["b8","h2"]}
+    },
+    {
+      "type": "move",
+      "fen": "1k6/8/4K3/8/3Q4/8/7r/8 w - - 0 1",
+      "text": "Here the rook is far from its king. Check the king and hit the rook at the same time.",
+      "marks": {"squares":["b8","h2"]},
+      "accept": ["d4e5","d4d6","d4f4"],
+      "hint": "The king and the rook stand on one diagonal. Check from a square between them.",
+      "after": "Check, and the rook is attacked too.",
+      "reply": {
+        "d4e5": "b8a8",
+        "d4d6": "b8a8",
+        "d4f4": "b8a8"
+      },
+      "wins": 5
+    },
+    {
+      "type": "move",
+      "fen": "k7/8/4K3/4Q3/8/8/7r/8 w - - 0 1",
+      "text": "The king stepped away. Take the rook.",
+      "marks": {"squares":["h2"]},
+      "accept": ["e5h2"],
+      "after": "Queen against a lone king. You know the mate from here."
+    },
+    {
+      "type": "move",
+      "fen": "8/1k6/5K2/8/8/8/6r1/3Q4 w - - 0 1",
+      "text": "Again the rook has strayed. Find the check that also hits it.",
+      "marks": {"squares":["b7","g2"]},
+      "accept": ["d1d5","d1f3"],
+      "also": {
+        "d1h1": "That pins the rook to its king on the long diagonal, and it falls too. This lesson takes it with a check."
+      },
+      "hint": "One long diagonal runs through the king and the rook.",
+      "after": "Check, and the rook falls next.",
+      "reply": {
+        "d1d5": "b7b6",
+        "d1f3": "b7b6"
+      },
+      "wins": 5
+    }
+  ],
+  "summary": "Against a rook, watch for the rook straying from its king. Then one check can catch them both."
+}

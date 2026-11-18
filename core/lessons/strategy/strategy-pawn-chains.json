@@ -1,0 +1,51 @@
+{
+  "id": "strategy-pawn-chains",
+  "course": "strategy",
+  "title": "Pawn chains",
+  "line": "Pawns guarding each other on a diagonal. Attack the base of the chain.",
+  "side": "b",
+  "steps": [
+    {
+      "type": "show",
+      "fen": "rnbqkbnr/ppp2ppp/4p3/3pP3/3P4/8/PPP2PPP/RNBQKBNR b KQkq - 0 3",
+      "text": "White's pawns on d4 and e5 form a chain: each guards the one ahead of it on the diagonal. Black's pawns form one too.",
+      "marks": {"squares":["d4","e5","d5","e6"]}
+    },
+    {
+      "type": "pick",
+      "text": "The front pawn is guarded. The pawn at the back, the base, has no pawn to guard it. Tap the base of White's chain.",
+      "accept": ["d4"],
+      "wrong": {
+        "e5": "That is the front of the chain. The pawn behind it guards it."
+      },
+      "hint": "Follow the chain back toward White's side.",
+      "after": "Take the base away and the front pawn has no guard."
+    },
+    {
+      "type": "move",
+      "text": "Hit the base with a pawn: push the pawn on c7 two squares. A pawn move that attacks an enemy pawn like this is a pawn break.",
+      "marks": {"squares":["d4","c3"],"arrows":[["c7","c5"]]},
+      "accept": ["c7c5"],
+      "after": "White guards d4 with a pawn on c3, which is now the base of a longer chain.",
+      "reply": "c2c3"
+    },
+    {
+      "type": "move",
+      "text": "Bring a knight out to hit the pawn on d4 again.",
+      "marks": {"squares":["d4"],"arrows":[["b8","c6"]]},
+      "accept": ["b8c6"],
+      "after": "White's knight guards it too.",
+      "reply": "g1f3"
+    },
+    {
+      "type": "move",
+      "text": "Now the queen. Bring her out to join the attack on d4.",
+      "marks": {"squares":["d4"],"arrows":[["d8","b6"]]},
+      "accept": ["d8b6"],
+      "after": "A pawn, a knight and the queen hit d4. White has to keep guarding it.",
+      "reply": "a2a3"
+    }
+  ],
+  "summary": "A pawn chain is only as strong as its base. Attack the base with a pawn, then bring pieces to it.",
+  "practice": {"fen":"r1b1kbnr/pp3ppp/1qn1p3/2ppP3/3P4/P1P2N2/1P3PPP/RNBQKB1R b KQkq - 0 6","side":"b"}
+}

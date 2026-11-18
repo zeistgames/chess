@@ -1,0 +1,216 @@
+{
+  "id": "openings-kings-gambit-ideas",
+  "course": "openings",
+  "title": "King's Gambit: the ideas",
+  "line": "White gives a pawn to build the center and open a file for the rook.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "move",
+      "text": "Push the pawn in front of your king two squares. It takes space in the center and frees your queen and a bishop.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {
+        "arrows": [
+          [
+            "e2",
+            "e4"
+          ]
+        ]
+      },
+      "accept": [
+        "e2e4"
+      ],
+      "also": {
+        "d2d4": "Pushing the queen's pawn is also sound and leads to other openings. This lesson pushes the king's pawn."
+      },
+      "reply": "e7e5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn on f2 two squares. It offers itself for Black's pawn on e5, to open the file for your rook.",
+      "marks": {
+        "squares": [
+          "e5",
+          "f1"
+        ],
+        "arrows": [
+          [
+            "f2",
+            "f4"
+          ]
+        ]
+      },
+      "accept": [
+        "f2f4"
+      ],
+      "also": {
+        "g1f3": "The knight move is the most common here, also sound, and leads to the Italian Game, the Ruy Lopez and others. This lesson offers the pawn.",
+        "b1c3": "That is the Vienna Game, also sound. This lesson offers the pawn.",
+        "f1c4": "That is the Bishop's Opening, also sound. This lesson offers the pawn."
+      },
+      "after": "The King's Gambit. Engines rate it a little worse than the knight move and masters seldom play it, but it gives sharp games.",
+      "reply": "e5f4",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the knight out. It keeps the black queen from giving check on h4.",
+      "marks": {
+        "squares": [
+          "h4"
+        ],
+        "arrows": [
+          [
+            "g1",
+            "f3"
+          ]
+        ]
+      },
+      "accept": [
+        "g1f3"
+      ],
+      "also": {
+        "f1c4": "That is the Bishop's Gambit, also sound. This lesson brings the knight out."
+      },
+      "after": "Black strikes back in the center with a pawn.",
+      "reply": "d7d5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Take the pawn on d5. Black gives it to free its pieces, and you are a pawn up for now.",
+      "marks": {
+        "squares": [
+          "d5"
+        ],
+        "arrows": [
+          [
+            "e4",
+            "d5"
+          ]
+        ]
+      },
+      "accept": [
+        "e4d5"
+      ],
+      "after": "Black's knight attacks your pawn on d5.",
+      "reply": "g8f6",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the bishop out to guard the pawn on d5. It aims at f7 as well.",
+      "marks": {
+        "squares": [
+          "d5",
+          "f7",
+          "f4"
+        ],
+        "arrows": [
+          [
+            "f1",
+            "c4"
+          ]
+        ]
+      },
+      "accept": [
+        "f1c4"
+      ],
+      "also": {
+        "f1b5": "The bishop check is also sound. This lesson goes to c4."
+      },
+      "after": "The knight takes back on d5. It guards the pawn on f4.",
+      "reply": "f6d5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Castle. Your rook lands on the file the gambit opened.",
+      "marks": {
+        "squares": [
+          "f1",
+          "f4"
+        ],
+        "arrows": [
+          [
+            "e1",
+            "g1"
+          ]
+        ]
+      },
+      "accept": [
+        "e1g1"
+      ],
+      "reply": "f8e7",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn in front of your queen two squares. It takes the center and opens a line for your bishop toward f4.",
+      "marks": {
+        "squares": [
+          "f4"
+        ],
+        "arrows": [
+          [
+            "d2",
+            "d4"
+          ]
+        ]
+      },
+      "accept": [
+        "d2d4"
+      ],
+      "reply": "e8g8",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Take the knight on d5. It was the last guard of the pawn on f4.",
+      "marks": {
+        "squares": [
+          "d5",
+          "f4"
+        ],
+        "arrows": [
+          [
+            "c4",
+            "d5"
+          ]
+        ]
+      },
+      "accept": [
+        "c4d5"
+      ],
+      "reply": "d8d5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Now take back the pawn on f4 with your bishop.",
+      "marks": {
+        "squares": [
+          "f4"
+        ],
+        "arrows": [
+          [
+            "c1",
+            "f4"
+          ]
+        ]
+      },
+      "accept": [
+        "c1f4"
+      ],
+      "after": "Material is level. You have a pawn in the center and your pieces are out.",
+      "reply": "c7c6",
+      "taught": true
+    }
+  ],
+  "summary": "White gives a side pawn, castles onto the file it opened, and wins the pawn back once its guard is gone.",
+  "practice": {
+    "fen": "rnbqkbnr/pppp1ppp/8/4p3/4PP2/8/PPPP2PP/RNBQKBNR b KQkq - 0 2",
+    "side": "w"
+  }
+}

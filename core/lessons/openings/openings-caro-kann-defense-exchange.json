@@ -1,0 +1,71 @@
+{
+  "id": "openings-caro-kann-defense-exchange",
+  "course": "openings",
+  "title": "Caro-Kann Defense: Exchange Variation",
+  "line": "White trades in the center for a quiet game; Black's bishop gets out before the pawns close it in.",
+  "side": "b",
+  "steps": [
+    {
+      "type": "show",
+      "text": "Here White trades pawns in the center.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {"arrows":[["e4","d5"]]},
+      "play": ["e2e4","c7c6","d2d4","d7d5","e4d5"]
+    },
+    {
+      "type": "move",
+      "text": "Take back with the pawn on c6. The two sides' pawns now match.",
+      "marks": {"arrows":[["c6","d5"]]},
+      "accept": ["c6d5"],
+      "wrong": {
+        "d8d5": "The queen takes, but White's knight comes out and hits her, and White gains time."
+      },
+      "reply": "f1d3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the knight out. It watches d4 and e5.",
+      "marks": {"squares":["d4","e5"],"arrows":[["b8","c6"]]},
+      "accept": ["b8c6"],
+      "also": {
+        "g8f6": "That also works. This lesson brings this knight out first."
+      },
+      "reply": "c2c3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the other knight out.",
+      "marks": {"arrows":[["g8","f6"]]},
+      "accept": ["g8f6"],
+      "reply": "c1f4",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the bishop out before the pawns close it in. It hits White's queen.",
+      "marks": {"squares":["b7"],"arrows":[["c8","g4"]]},
+      "accept": ["c8g4"],
+      "after": "White's queen steps away and hits the pawn on b7.",
+      "reply": "d1b3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Guard the pawn with your queen.",
+      "marks": {"squares":["b7"],"arrows":[["d8","d7"]]},
+      "accept": ["d8d7"],
+      "also": {
+        "c6a5": "That works too: the knight chases the queen. This lesson guards the pawn."
+      },
+      "after": "The pawn on b7 is guarded, and only one of your bishops and knights is still at home.",
+      "taught": true
+    }
+  ],
+  "summary": "In the Exchange the pawns match and the game is quiet. Black brings the bishop out early and guards the side pawn.",
+  "practice": {
+    "fen": "r3kb1r/pp1qpppp/2n2n2/3p4/3P1Bb1/1QPB4/PP3PPP/RN2K1NR w KQkq - 5 8",
+    "side": "b"
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "id": "tactics-pawn-storms",
+  "course": "tactics",
+  "title": "Pawn storms",
+  "line": "Throwing pawns at the castled king, opening a file for the rooks; with the kings on opposite wings, whoever attacks first.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "text": "The kings stand on opposite wings. Your pawns on the king's side do not shield your king, so they can attack.",
+      "fen": "2rq1rk1/pp1bppbp/3p1np1/4n3/3NP3/1BN1BP2/PPPQ2PP/2KR3R w - - 9 12",
+      "marks": {"squares":["c1","g8"]}
+    },
+    {
+      "type": "move",
+      "text": "Start the storm: push the rook's pawn two squares toward the black king.",
+      "fen": "2rq1rk1/pp1bppbp/3p1np1/4n3/3NP3/1BN1BP2/PPPQ2PP/2KR3R w - - 9 12",
+      "accept": ["h2h4"],
+      "marks": {"arrows":[["h2","h4"]]},
+      "after": "Black stops the pawn with a pawn of its own.",
+      "reply": "h7h5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Push the next pawn up to break that pawn away.",
+      "accept": ["g2g4"],
+      "marks": {"arrows":[["g2","g4"]]},
+      "reply": "h5g4",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Push the rook's pawn again. It offers itself to open the file for your rook.",
+      "accept": ["h4h5"],
+      "marks": {"arrows":[["h4","h5"]]},
+      "after": "The pawn is gone, but the file in front of your rook is open.",
+      "reply": "f6h5",
+      "taught": true
+    },
+    {
+      "type": "show",
+      "text": "The file in front of your rook is open now: it looks straight up at the black knight on h5. That is what the pawns were for.",
+      "marks": {"arrows":[["h1","h5"]]}
+    }
+  ],
+  "summary": "With the kings on opposite wings, throw the pawns in front of your rooks at the enemy king and open a file.",
+  "practice": {"fen":"2rq1rk1/pp1bppb1/3p2p1/4n2n/3NP1p1/1BN1BP2/PPPQ4/2KR3R w - - 0 15","side":"w"}
+}

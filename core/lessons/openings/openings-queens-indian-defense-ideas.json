@@ -1,0 +1,74 @@
+{
+  "id": "openings-queens-indian-defense-ideas",
+  "course": "openings",
+  "title": "Queen's Indian Defense: the ideas",
+  "line": "The bishop on the long diagonal and the knight hold a key center square.",
+  "side": "b",
+  "steps": [
+    {
+      "type": "show",
+      "text": "White starts by pushing the pawn in front of its queen two squares, into the center.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {"arrows":[["d2","d4"]]},
+      "play": ["d2d4"]
+    },
+    {
+      "type": "move",
+      "text": "Bring the knight out. For now it stops White's other center pawn from coming to e4.",
+      "marks": {"squares":["e4"],"arrows":[["g8","f6"]]},
+      "accept": ["g8f6"],
+      "reply": "c2c4",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Move the pawn in front of your king one square. It opens a path for your bishop.",
+      "accept": ["e7e6"],
+      "marks": {"arrows":[["e7","e6"]],"squares":["b4"]},
+      "also": {"g7g6":"That leads to the King's Indian, also sound. This lesson goes on with the other pawn."},
+      "after": "White brings out the other knight first, so a bishop on b4 would pin nothing.",
+      "reply": "g1f3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Move the pawn on b7 one square, to make room for your other bishop.",
+      "marks": {"squares":["b7"],"arrows":[["b7","b6"]]},
+      "accept": ["b7b6"],
+      "also": {
+        "f8b4": "That is the Bogo-Indian Defense, also sound. This lesson goes on with the other pawn.",
+        "d7d5": "That holds the center with a pawn, also sound. This lesson goes on with the other pawn."
+      },
+      "after": "This is the Queen's Indian Defense.",
+      "reply": "b1c3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Put the bishop on the long diagonal. With the knight, it watches e4.",
+      "marks": {"squares":["e4"],"arrows":[["c8","b7"]]},
+      "accept": ["c8b7"],
+      "after": "White pushes the pawn to e4 anyway. That is a mistake, not the usual move.",
+      "reply": "e2e4",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "White slipped. Your knight and bishop attack the pawn, and only one White knight guards it. Take it with the knight.",
+      "accept": ["f6e4"],
+      "marks": {"arrows":[["f6","e4"]]},
+      "reply": "c3e4",
+      "wins": 1
+    },
+    {
+      "type": "move",
+      "text": "Take back with the bishop.",
+      "accept": ["b7e4"],
+      "marks": {"arrows":[["b7","e4"]]},
+      "after": "Black is a pawn up, and the bishop sits in the center.",
+      "wins": 1
+    }
+  ],
+  "summary": "The bishop on the long diagonal and the knight hold the center. A White pawn that comes too early falls.",
+  "practice": {"fen":"rnbqkb1r/p1pp1ppp/1p2pn2/8/2PP4/5N2/PP2PPPP/RNBQKB1R w KQkq - 0 4","side":"b"}
+}

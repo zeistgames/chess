@@ -1,0 +1,95 @@
+{
+  "id": "openings-sicilian-defense-najdorf",
+  "course": "openings",
+  "title": "Sicilian Defense: Najdorf Variation",
+  "line": "A quiet pawn move keeps White's pieces out, then a center pawn kicks the knight away.",
+  "side": "b",
+  "steps": [
+    {
+      "type": "show",
+      "text": "The usual Sicilian start: White pushes the king's pawn, Black answers from the side, and White pushes a second center pawn.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {"squares":["e4","d4"]},
+      "play": ["e2e4","c7c5","g1f3","d7d6","d2d4"]
+    },
+    {
+      "type": "show",
+      "text": "Black trades its side pawn for that center pawn, and both sides bring a knight out.",
+      "marks": {"squares":["d4"]},
+      "play": ["c5d4","f3d4","g8f6","b1c3"]
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn on a7 one square. It keeps White's knight and bishop off b5.",
+      "marks": {"squares":["b5"],"arrows":[["a7","a6"]]},
+      "accept": ["a7a6"],
+      "also": {
+        "g7g6": "That is the Dragon, another main line. This lesson goes on with the Najdorf.",
+        "b8c6": "That is the Classical Variation, another main line. This lesson goes on with the Najdorf.",
+        "e7e6": "That is the Scheveningen, another main line. This lesson goes on with the Najdorf."
+      },
+      "after": "White's bishop comes out.",
+      "reply": "c1e3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn on e7 two squares. It kicks the knight out of the center.",
+      "marks": {"squares":["d4"],"arrows":[["e7","e5"]]},
+      "accept": ["e7e5"],
+      "after": "The knight steps back.",
+      "reply": "d4b3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the bishop to e6. It watches d5, the hole in front of your pawn that White's pieces want.",
+      "marks": {"squares":["d5"],"arrows":[["c8","e6"]]},
+      "accept": ["c8e6"],
+      "also": {
+        "f8e7": "That is also played. This lesson brings this bishop out first."
+      },
+      "reply": "f2f3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the other bishop out, so you can castle.",
+      "marks": {"arrows":[["f8","e7"]]},
+      "accept": ["f8e7"],
+      "reply": "d1d2",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Castle. Your king is safe and a rook joins the game.",
+      "marks": {"arrows":[["e8","g8"]]},
+      "accept": ["e8g8"],
+      "after": "White castles on the other side. Each side will now push pawns at the other king.",
+      "reply": "e1c1",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the other knight to d7. It guards your pawn on e5 and keeps the way clear for the pawn on b7.",
+      "marks": {"squares":["e5","b7"],"arrows":[["b8","d7"]]},
+      "accept": ["b8d7"],
+      "after": "White's pawns start their run at your king.",
+      "reply": "g2g4",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn on b7 two squares, toward White's king. Next it can push on and hit the knight on c3, which guards e4.",
+      "marks": {"squares":["c3","e4"],"arrows":[["b7","b5"]]},
+      "accept": ["b7b5"],
+      "after": "This is the Najdorf race: each side throws pawns at the other king, and the faster attack counts.",
+      "taught": true
+    }
+  ],
+  "summary": "The Najdorf keeps White's pieces off the side square, kicks the knight from the center, then races pawns at the king.",
+  "practice": {
+    "fen": "rn1q1rk1/1p2bppp/p2pbn2/4p3/4P3/1NN1BP2/PPPQ2PP/2KR1B1R b - - 4 10",
+    "side": "b"
+  }
+}

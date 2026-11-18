@@ -1,0 +1,191 @@
+{
+  "id": "openings-italian-game-fried-liver",
+  "course": "openings",
+  "title": "Italian Game: Fried Liver Attack",
+  "line": "When Black takes back with the knight, White gives a knight on f7 and drags the king out.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "text": "The Two Knights Defense: your knight went for f7, and Black blocked your bishop with a pawn.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {
+        "squares": [
+          "f7",
+          "d5"
+        ],
+        "arrows": [
+          [
+            "g5",
+            "f7"
+          ]
+        ]
+      },
+      "play": [
+        "e2e4",
+        "e7e5",
+        "g1f3",
+        "b8c6",
+        "f1c4",
+        "g8f6",
+        "f3g5",
+        "d7d5"
+      ]
+    },
+    {
+      "type": "move",
+      "text": "Take the pawn. It blocked your bishop on its way to f7.",
+      "marks": {
+        "squares": [
+          "d5",
+          "f7"
+        ],
+        "arrows": [
+          [
+            "e4",
+            "d5"
+          ]
+        ]
+      },
+      "accept": [
+        "e4d5"
+      ],
+      "after": "This time the knight takes back, a slip common at club level. Masters move it to chase the bishop. Now only the king guards f7.",
+      "reply": "f6d5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Take on f7 with the knight. It attacks the queen and the rook, so the king has to take it.",
+      "marks": {
+        "squares": [
+          "f7",
+          "d8",
+          "h8"
+        ],
+        "arrows": [
+          [
+            "g5",
+            "f7"
+          ]
+        ]
+      },
+      "accept": [
+        "g5f7"
+      ],
+      "also": {
+        "d2d4": "That is the Lolli Attack, also sound. This lesson takes on f7."
+      },
+      "after": "Engines rate this sacrifice strong for White, and masters choose it. The king is out in the open.",
+      "reply": "e8f7",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Check with the queen. It also attacks the knight on d5.",
+      "marks": {
+        "squares": [
+          "d5"
+        ],
+        "arrows": [
+          [
+            "d1",
+            "f3"
+          ]
+        ]
+      },
+      "accept": [
+        "d1f3"
+      ],
+      "hint": "The queen gives check on the diagonal toward the king.",
+      "reply": "f7e6",
+      "taught": true
+    },
+    {
+      "type": "show",
+      "text": "The knight on d5 cannot move: it shields the king from your bishop. So the king steps up to guard it, into the middle of the board.",
+      "marks": {
+        "squares": [
+          "e6",
+          "d5"
+        ],
+        "arrows": [
+          [
+            "c4",
+            "e6"
+          ]
+        ]
+      }
+    },
+    {
+      "type": "move",
+      "text": "Bring another knight to attack the pinned knight. Now three of your pieces hit it.",
+      "marks": {
+        "squares": [
+          "d5",
+          "c2"
+        ],
+        "arrows": [
+          [
+            "b1",
+            "c3"
+          ]
+        ]
+      },
+      "accept": [
+        "b1c3"
+      ],
+      "after": "Black guards with the other knight, which also threatens to jump to c2 and attack your king and rook.",
+      "reply": "c6b4",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Castle. Your king and rook leave before the knight can attack them both.",
+      "marks": {
+        "squares": [
+          "c2",
+          "g1"
+        ],
+        "arrows": [
+          [
+            "e1",
+            "g1"
+          ],
+          [
+            "b4",
+            "c2"
+          ]
+        ]
+      },
+      "accept": [
+        "e1g1"
+      ],
+      "reply": "c7c6",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn in front of your queen two squares. It opens the center while Black's king still stands in it.",
+      "marks": {
+        "squares": [
+          "e6",
+          "e5"
+        ],
+        "arrows": [
+          [
+            "d2",
+            "d4"
+          ]
+        ]
+      },
+      "accept": [
+        "d2d4"
+      ],
+      "after": "Black has a knight for two pawns, but its king is open and its pieces are tied up. That is what the sacrifice bought.",
+      "reply": "d8f6",
+      "taught": true
+    }
+  ],
+  "summary": "Taking back with the knight leaves the weak pawn guarded by the king alone. A knight given there drags the king out."
+}

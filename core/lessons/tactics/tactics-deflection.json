@@ -1,0 +1,43 @@
+{
+  "id": "tactics-deflection",
+  "course": "tactics",
+  "title": "Deflection and overloading",
+  "line": "Pull a defender away from the square it guards, often one defender with two jobs.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "text": "Black's queen has two jobs: she guards the rook and the knight. One piece cannot do both at once.",
+      "fen": "3r2k1/4qppp/8/8/1n6/Q4B1P/5PP1/3R2K1 w - - 0 1",
+      "marks": {"squares":["e7"],"arrows":[["e7","d8"],["e7","b4"]]}
+    },
+    {
+      "type": "pick",
+      "text": "Tap the black piece with two jobs.",
+      "fen": "3r2k1/4qppp/8/8/1n6/Q4B1P/5PP1/3R2K1 w - - 0 1",
+      "accept": ["e7"],
+      "all": false,
+      "after": "The queen guards both black pieces."
+    },
+    {
+      "type": "move",
+      "text": "Pull the queen away from one job: capture the rook, with check.",
+      "fen": "3r2k1/4qppp/8/8/1n6/Q4B1P/5PP1/3R2K1 w - - 0 1",
+      "accept": ["d1d8"],
+      "hint": "Your rook can capture on the open file.",
+      "after": "The queen had to take back, and she has left the knight.",
+      "reply": "e7d8",
+      "wins": 3
+    },
+    {
+      "type": "move",
+      "text": "Now the knight has no guard. Take it.",
+      "marks": {"squares":["b4"]},
+      "accept": ["a3b4"],
+      "after": "The queen could not guard the rook and the knight at once."
+    }
+  ],
+  "summary": "A defender with two jobs can do only one. Pull it away from the first, and what it guarded second falls.",
+  "puzzles": "defender",
+  "practice": {"fen":"3q2k1/5ppp/8/8/1Q6/5B1P/5PP1/6K1 b - - 0 2","side":"w"}
+}

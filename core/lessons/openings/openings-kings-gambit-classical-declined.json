@@ -1,0 +1,155 @@
+{
+  "id": "openings-kings-gambit-classical-declined",
+  "course": "openings",
+  "title": "King's Gambit Declined: Classical Variation",
+  "line": "Black does not take: its bishop stops White's king from castling on the short side.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "text": "Black does not take the pawn. Its bishop aims at g1, so your king cannot castle on that side.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {
+        "squares": [
+          "g1"
+        ],
+        "arrows": [
+          [
+            "c5",
+            "g1"
+          ]
+        ]
+      },
+      "play": [
+        "e2e4",
+        "e7e5",
+        "f2f4",
+        "f8c5"
+      ]
+    },
+    {
+      "type": "move",
+      "text": "Bring the knight out. Leave the pawn on e5 for now.",
+      "marks": {
+        "squares": [
+          "e5",
+          "h4",
+          "e4"
+        ],
+        "arrows": [
+          [
+            "g1",
+            "f3"
+          ]
+        ]
+      },
+      "accept": [
+        "g1f3"
+      ],
+      "wrong": {
+        "f4e5": "The queen checks on h4. After a pawn blocks, she takes on e4 with check and then your rook."
+      },
+      "also": {
+        "b1c3": "That is also played. This lesson brings the other knight out."
+      },
+      "after": "Black guards its pawn. Your knight now keeps the queen off h4.",
+      "reply": "d7d6",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Move the pawn on c2 one square. It gets ready for a pawn on d4 that chases the bishop.",
+      "marks": {
+        "squares": [
+          "c5",
+          "d4"
+        ],
+        "arrows": [
+          [
+            "c2",
+            "c3"
+          ]
+        ]
+      },
+      "accept": [
+        "c2c3"
+      ],
+      "also": {
+        "f4e5": "Taking now is also played. This lesson gets the pawn on d4 ready.",
+        "b1c3": "That is also played. This lesson gets the pawn on d4 ready."
+      },
+      "reply": "g8f6",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn in front of your queen two squares. It attacks the bishop.",
+      "marks": {
+        "squares": [
+          "c5"
+        ],
+        "arrows": [
+          [
+            "d2",
+            "d4"
+          ]
+        ]
+      },
+      "accept": [
+        "d2d4"
+      ],
+      "also": {
+        "f4e5": "Taking first is also played. This lesson pushes the pawn."
+      },
+      "reply": "e5d4",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Take back with the pawn on c3, so two of your pawns stand in the center.",
+      "marks": {
+        "squares": [
+          "d4"
+        ],
+        "arrows": [
+          [
+            "c3",
+            "d4"
+          ]
+        ]
+      },
+      "accept": [
+        "c3d4"
+      ],
+      "after": "The bishop steps back.",
+      "reply": "c5b6",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the other knight out to guard the pawn on e4.",
+      "marks": {
+        "squares": [
+          "e4"
+        ],
+        "arrows": [
+          [
+            "b1",
+            "c3"
+          ]
+        ]
+      },
+      "accept": [
+        "b1c3"
+      ],
+      "after": "Two pawns in the center and the bishop pushed back. Your king can now get ready to castle.",
+      "reply": "e8g8",
+      "taught": true
+    }
+  ],
+  "summary": "Black keeps the bishop on the line to the king's castling square. White builds the center to push it back.",
+  "practice": {
+    "fen": "rnbq1rk1/ppp2ppp/1b1p1n2/8/3PPP2/2N2N2/PP4PP/R1BQKB1R w KQ - 3 8",
+    "side": "w"
+  }
+}

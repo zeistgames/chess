@@ -1,0 +1,74 @@
+{
+  "id": "openings-grunfeld-defense-ideas",
+  "course": "openings",
+  "title": "Grünfeld Defense: the ideas",
+  "line": "Black strikes at the center with a pawn at once, then hits White's pawns with the bishop, a side pawn and the queen.",
+  "side": "b",
+  "steps": [
+    {
+      "type": "show",
+      "text": "White starts by pushing the pawn in front of its queen two squares, into the center.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {"arrows":[["d2","d4"]]},
+      "play": ["d2d4"]
+    },
+    {
+      "type": "move",
+      "text": "Bring the knight out. For now it stops White's other center pawn from coming to e4.",
+      "marks": {"squares":["e4"],"arrows":[["g8","f6"]]},
+      "accept": ["g8f6"],
+      "reply": "c2c4",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn on g7 one square, to make room for your bishop.",
+      "marks": {"squares":["g7"],"arrows":[["g7","g6"]]},
+      "accept": ["g7g6"],
+      "also": {
+        "e7e6": "That leads to the Nimzo-Indian or the Queen's Indian, also sound. This lesson goes on with the other pawn."
+      },
+      "reply": "b1c3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn in front of your queen two squares, before White's pawn can come to e4.",
+      "marks": {"squares":["e4"],"arrows":[["d7","d5"]]},
+      "accept": ["d7d5"],
+      "also": {"f8g7":"That is the King's Indian Defense, also sound. This lesson goes on with the pawn."},
+      "after": "This is the Grünfeld Defense. Here White brings a bishop out, one of several choices; the next lessons show the main ones.",
+      "reply": "c1f4",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Put the bishop on the long diagonal. Once your knight moves, it aims at White's pawn on d4.",
+      "marks": {"squares":["d4"],"arrows":[["f8","g7"]]},
+      "accept": ["f8g7"],
+      "reply": "e2e3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Strike at the pawn on d4 with the pawn on c7.",
+      "marks": {"squares":["d4","c7"],"arrows":[["c7","c5"]]},
+      "accept": ["c7c5"],
+      "reply": "d4c5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the queen out. It pins the knight to White's king and eyes the pawn on c5.",
+      "marks": {
+        "squares": ["c3","e1","c5"],
+        "arrows": [["d8","a5"]]
+      },
+      "accept": ["d8a5"],
+      "after": "Black usually gets the pawn back within a few moves.",
+      "taught": true
+    }
+  ],
+  "summary": "Black stakes a claim in the center at once, then hits White's pawns with the bishop, a side pawn and the queen.",
+  "practice": {"fen":"rnbqkb1r/ppp1pp1p/5np1/3p4/2PP4/2N5/PP2PPPP/R1BQKBNR w KQkq - 0 4","side":"b"}
+}

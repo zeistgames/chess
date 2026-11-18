@@ -1,0 +1,83 @@
+{
+  "id": "openings-queens-indian-defense-petrosian-variation",
+  "course": "openings",
+  "title": "Queen's Indian Defense: Petrosian Variation",
+  "line": "A pawn keeps the black bishop out, and White aims to take the center with the king's pawn.",
+  "side": "b",
+  "steps": [
+    {
+      "type": "show",
+      "text": "The Queen's Indian, and White pushes the pawn on a2 one square. It keeps your bishop out of b4.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {"squares":["b4"],"arrows":[["a2","a3"]]},
+      "play": ["d2d4","g8f6","c2c4","e7e6","g1f3","b7b6","a2a3"]
+    },
+    {
+      "type": "move",
+      "text": "Put the bishop on the long diagonal, aimed at e4.",
+      "marks": {"squares":["e4"],"arrows":[["c8","b7"]]},
+      "accept": ["c8b7"],
+      "after": "White's knight comes out with no pin to fear.",
+      "reply": "b1c3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn in front of your queen two squares, to keep White's pawn off e4.",
+      "marks": {"squares":["e4"],"arrows":[["d7","d5"]]},
+      "accept": ["d7d5"],
+      "reply": "c4d5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Take back with the knight. Your bishop's long diagonal stays open.",
+      "accept": ["f6d5"],
+      "marks": {"arrows":[["f6","d5"]],"squares":["e4"]},
+      "after": "White's queen comes out to guard e4.",
+      "reply": "d1c2",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Trade knights before White's pawn can chase yours.",
+      "accept": ["d5c3"],
+      "marks": {"arrows":[["d5","c3"]]},
+      "reply": "b2c3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the other bishop out, to get ready to castle.",
+      "accept": ["f8e7"],
+      "marks": {"arrows":[["f8","e7"]],"squares":["e4"]},
+      "after": "With the queen guarding it, White pushes the pawn to e4.",
+      "reply": "e2e4",
+      "taught": true
+    },
+    {
+      "type": "show",
+      "text": "Go back a few moves. Here White pushed the pawn to e4 before the queen came out: a gambit strong players rarely use. It gives a pawn away.",
+      "fen": "rn1qkb1r/pbp2ppp/1p2p3/3n4/3P4/P1N2N2/1P2PPPP/R1BQKB1R w KQkq - 0 7",
+      "marks": {"squares":["e4"]},
+      "play": ["e2e4"]
+    },
+    {
+      "type": "move",
+      "text": "Take the knight. Then nothing guards the pawn on e4.",
+      "marks": {"squares":["e4"],"arrows":[["d5","c3"]]},
+      "accept": ["d5c3"],
+      "reply": "b2c3"
+    },
+    {
+      "type": "move",
+      "text": "Now take the pawn with the bishop.",
+      "accept": ["b7e4"],
+      "marks": {"arrows":[["b7","e4"]]},
+      "after": "Black is a pawn up.",
+      "wins": 1
+    }
+  ],
+  "summary": "Black meets the pawn move with a pawn in the center and a knight trade, and watches for a pawn that comes too soon.",
+  "practice": {"fen":"rn1qk2r/pbp1bppp/1p2p3/8/3PP3/P1P2N2/2Q2PPP/R1B1KB1R b KQkq - 0 9","side":"b"}
+}

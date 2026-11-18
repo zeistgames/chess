@@ -1,0 +1,53 @@
+{
+  "id": "endgames-wrong-rook-pawn",
+  "course": "endgames",
+  "title": "The wrong rook pawn",
+  "line": "Bishop and rook pawn draw when the bishop cannot cover the corner.",
+  "side": "b",
+  "steps": [
+    {
+      "type": "show",
+      "fen": "7k/8/7P/6K1/8/8/8/5B2 w - - 0 1",
+      "text": "This bishop runs on light squares, but the pawn promotes on a dark corner. The bishop can never drive the king out of it.",
+      "marks": {"squares":["h8"]}
+    },
+    {
+      "type": "show",
+      "fen": "7k/8/7P/6K1/8/8/8/5B2 w - - 0 1",
+      "text": "With the black king in the corner, the game is a draw, a whole bishop and pawn up.",
+      "marks": {"squares":["h8","h6"]}
+    },
+    {
+      "type": "move",
+      "fen": "8/4k3/8/6KP/8/8/8/5B2 b - - 0 1",
+      "text": "You have Black. Head for the corner.",
+      "marks": {"squares":["h8"]},
+      "accept": ["e7f8","e7f7"],
+      "wrong": {
+        "e7e8": "That is too slow to reach the corner, and the pawn promotes.",
+        "e7e6": "That is too slow to reach the corner, and the pawn promotes.",
+        "e7d6": "That is too slow to reach the corner, and the pawn promotes.",
+        "e7d7": "That is too slow to reach the corner, and the pawn promotes.",
+        "e7d8": "That is too slow to reach the corner, and the pawn promotes."
+      },
+      "hint": "Go toward the ringed corner.",
+      "after": "Your king reaches the corner in time, and the game is a draw."
+    },
+    {
+      "type": "move",
+      "fen": "8/4k3/8/6KP/8/8/8/5B2 w - - 0 1",
+      "side": "w",
+      "text": "Now you have White, with the move. Keep the black king out of the corner.",
+      "marks": {"squares":["h8","g8","f8"]},
+      "accept": ["g5g6","g5h6"],
+      "also": {
+        "h5h6": "That works too: the pawn runs, and a bishop check keeps the black king away. This lesson goes with the king.",
+        "f1c4": "That keeps the king out too, from a distance. This lesson goes with the king."
+      },
+      "hint": "Step your king toward the corner, ahead of the black king.",
+      "after": "The black king cannot get near the corner, and the pawn promotes."
+    }
+  ],
+  "summary": "A rook pawn with a bishop that cannot cover the corner is a draw once the defending king gets there.",
+  "practice": {"fen":"8/4k3/8/6KP/8/8/8/5B2 b - - 0 1","side":"b"}
+}

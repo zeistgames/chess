@@ -1,0 +1,87 @@
+{
+  "id": "openings-benko-gambit-ideas",
+  "course": "openings",
+  "title": "Benko Gambit: the ideas",
+  "line": "Black gives a pawn to open two files on the queen's side for its rooks.",
+  "side": "b",
+  "steps": [
+    {
+      "type": "show",
+      "text": "White starts by pushing the pawn in front of its queen two squares, into the center.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {"arrows":[["d2","d4"]]},
+      "play": ["d2d4"]
+    },
+    {
+      "type": "move",
+      "text": "Bring the knight out. For now it stops White's other center pawn from coming to e4.",
+      "marks": {"squares":["e4"],"arrows":[["g8","f6"]]},
+      "accept": ["g8f6"],
+      "reply": "c2c4",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn on c7 two squares. It attacks White's pawn on d4 from the side.",
+      "marks": {"squares":["c7","d4"],"arrows":[["c7","c5"]]},
+      "accept": ["c7c5"],
+      "after": "White pushes past.",
+      "reply": "d4d5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Offer a pawn: push the pawn on b7 two squares.",
+      "marks": {"squares":["b7"],"arrows":[["b7","b5"]]},
+      "accept": ["b7b5"],
+      "also": {"e7e6":"That is the Benoni Defense, also sound. This lesson goes on with the gambit."},
+      "after": "This is the Benko Gambit. White takes the pawn.",
+      "reply": "c4b5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Offer another one. Black wants the files on the queen's side open.",
+      "accept": ["a7a6"],
+      "marks": {"arrows":[["a7","a6"]]},
+      "after": "White takes again.",
+      "reply": "b5a6",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Take back with the bishop. The file in front of your rook is open.",
+      "marks": {"squares":["a8"],"arrows":[["c8","a6"]]},
+      "accept": ["c8a6"],
+      "after": "Black stays a pawn down, often into the endgame. The open files have to make up for it.",
+      "reply": "b1c3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Move the pawn in front of your queen one square, to make room for your other knight.",
+      "accept": ["d7d6"],
+      "marks": {"arrows":[["d7","d6"]]},
+      "reply": "e2e4",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Trade bishops. White's king has to take back, so it can no longer castle.",
+      "accept": ["a6f1"],
+      "marks": {"arrows":[["a6","f1"]]},
+      "reply": "e1f1",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn on g7 one square, to make room for your other bishop.",
+      "marks": {"squares":["g7"],"arrows":[["g7","g6"]]},
+      "accept": ["g7g6"],
+      "after": "Black is a pawn down, but its bishop will go to the long diagonal and its rooks to the open files, all aimed at White's queen's side.",
+      "taught": true
+    }
+  ],
+  "summary": "Black gives a pawn to open two files for its rooks, and trades bishops so White's king cannot castle.",
+  "practice": {"fen":"rnbqkb1r/p2ppppp/5n2/1ppP4/2P5/8/PP2PPPP/RNBQKBNR w KQkq - 0 4","side":"b"}
+}

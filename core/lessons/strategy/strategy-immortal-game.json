@@ -1,0 +1,74 @@
+{
+  "id": "strategy-immortal-game",
+  "course": "strategy",
+  "title": "The Immortal Game",
+  "line": "Anderssen against Kieseritzky, London 1851: a bishop, both rooks and the queen given for mate.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "fen": "rnb1k1nr/p2p1ppp/5q2/1pb2N1P/4PBP1/2NP1Q2/PPP5/R4KR1 w kq - 3 17",
+      "text": "London, 1851. Anderssen has given a bishop, but his pieces are out. Most of Black's pieces are still at home.",
+      "marks": {"squares":["f5","c3","f4","f3"]}
+    },
+    {
+      "type": "move",
+      "text": "Jump the knight to the center. It attacks the queen.",
+      "marks": {"squares":["f6"],"arrows":[["c3","d5"]]},
+      "accept": ["c3d5"],
+      "sacrifice": true,
+      "after": "Black's queen takes a pawn and attacks your rook in the corner.",
+      "reply": "f6b2"
+    },
+    {
+      "type": "show",
+      "play": ["f4d6","c5g1"],
+      "text": "Anderssen left both rooks hanging and cut off Black's king with his bishop. Engines rate it level: Black could take a rook with check.",
+      "marks": {"squares":["d6","e7","f8"]}
+    },
+    {
+      "type": "move",
+      "text": "Black took the other rook instead, and that lost. Push the pawn on e4: it cuts Black's queen off from the squares near its king.",
+      "marks": {"squares":["b2","g7"],"arrows":[["e4","e5"]]},
+      "accept": ["e4e5"],
+      "taught": true,
+      "after": "Engines find a quicker way with the queen, but this one works too. Black takes the last rook, with check.",
+      "reply": "b2a1"
+    },
+    {
+      "type": "move",
+      "text": "Step out of the check with your king.",
+      "marks": {"arrows":[["f1","e2"]]},
+      "accept": ["f1e2"],
+      "after": "Black brings out a knight, too late.",
+      "reply": "b8a6"
+    },
+    {
+      "type": "move",
+      "text": "Take on g7 with the knight, with check.",
+      "marks": {"arrows":[["f5","g7"]]},
+      "accept": ["f5g7"],
+      "after": "The king steps aside.",
+      "reply": "e8d8"
+    },
+    {
+      "type": "move",
+      "text": "Give the queen with check. Taking her or blocking with the knight both lose at once.",
+      "marks": {"squares":["f6","g8","e7"],"arrows":[["f3","f6"]]},
+      "accept": ["f3f6"],
+      "sacrifice": true,
+      "after": "The knight left g8, so it no longer guards e7.",
+      "reply": "g8f6"
+    },
+    {
+      "type": "move",
+      "text": "Mate with the bishop.",
+      "marks": {"arrows":[["d6","e7"]]},
+      "accept": ["d6e7"],
+      "mate": true,
+      "after": "Checkmate, with two knights and a bishop. Anderssen gave a bishop, both rooks and his queen."
+    }
+  ],
+  "summary": "Anderssen gave up piece after piece to keep the initiative. With Black's pieces at home, the rest mated.",
+  "puzzles": "sacrifices"
+}

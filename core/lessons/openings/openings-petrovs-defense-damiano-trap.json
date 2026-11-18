@@ -1,0 +1,172 @@
+{
+  "id": "openings-petrovs-defense-damiano-trap",
+  "course": "openings",
+  "title": "Petrov's Defense: the Damiano trap",
+  "line": "Taking back the pawn on e4 too soon lets the white queen come out, and one more slip loses yours.",
+  "side": "b",
+  "steps": [
+    {
+      "type": "show",
+      "text": "Petrov's Defense: White's knight has taken your pawn on e5.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {
+        "squares": [
+          "e5"
+        ]
+      },
+      "play": [
+        "e2e4",
+        "e7e5",
+        "g1f3",
+        "g8f6",
+        "f3e5"
+      ]
+    },
+    {
+      "type": "show",
+      "text": "Say you take back on e4 at once, as about one club player in ten does. The queen attacks your knight, and your king stands behind it.",
+      "marks": {
+        "squares": [
+          "e4",
+          "e8"
+        ],
+        "arrows": [
+          [
+            "e2",
+            "e4"
+          ]
+        ]
+      },
+      "play": [
+        "f6e4",
+        "d1e2"
+      ]
+    },
+    {
+      "type": "show",
+      "text": "If the knight steps away, the file opens: the white knight jumps off with check from the queen and attacks your queen. That is the trap.",
+      "marks": {
+        "squares": [
+          "d8",
+          "e8"
+        ],
+        "arrows": [
+          [
+            "c6",
+            "d8"
+          ]
+        ]
+      },
+      "play": [
+        "e4f6",
+        "e5c6"
+      ]
+    },
+    {
+      "type": "move",
+      "text": "Back to the queen move. Block the file with your queen: she also guards the knight.",
+      "fen": "rnbqkb1r/pppp1ppp/8/4N3/4n3/8/PPPPQPPP/RNB1KB1R b KQkq - 1 4",
+      "marks": {
+        "squares": [
+          "e4",
+          "e8",
+          "e5"
+        ],
+        "arrows": [
+          [
+            "d8",
+            "e7"
+          ]
+        ]
+      },
+      "accept": [
+        "d8e7"
+      ],
+      "wrong": {
+        "e4f6": "That is the trap you just saw: the knight jumps off with check and attacks your queen."
+      },
+      "after": "White takes your knight. The white knight on e5 now stands between the two queens.",
+      "reply": "e2e4",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Attack the knight with a pawn. If it steps away, your queen takes White's.",
+      "marks": {
+        "squares": [
+          "e5",
+          "e4"
+        ],
+        "arrows": [
+          [
+            "d7",
+            "d6"
+          ]
+        ]
+      },
+      "accept": [
+        "d7d6"
+      ],
+      "after": "White guards the knight with a pawn.",
+      "reply": "d2d4"
+    },
+    {
+      "type": "move",
+      "text": "Take the knight. That gets back the piece you lost on e4.",
+      "marks": {
+        "squares": [
+          "e5",
+          "e4"
+        ],
+        "arrows": [
+          [
+            "d6",
+            "e5"
+          ]
+        ]
+      },
+      "accept": [
+        "d6e5"
+      ],
+      "after": "Material is level, but White has the freer game. That small edge is what taking at once cost.",
+      "reply": "d4e5"
+    },
+    {
+      "type": "show",
+      "text": "Back to the start of the trap. The safe way: chase the knight first.",
+      "fen": "rnbqkb1r/pppp1ppp/5n2/4N3/4P3/8/PPPP1PPP/RNBQKB1R b KQkq - 0 3",
+      "marks": {
+        "squares": [
+          "e5",
+          "e4"
+        ]
+      }
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn in front of your queen one square to attack the knight.",
+      "marks": {
+        "squares": [
+          "e5",
+          "e4"
+        ],
+        "arrows": [
+          [
+            "d7",
+            "d6"
+          ]
+        ]
+      },
+      "accept": [
+        "d7d6"
+      ],
+      "after": "The knight steps back. Now the pawn on e4 can be taken safely.",
+      "reply": "e5f3"
+    }
+  ],
+  "summary": "Before taking back, look at the file your king stands on. Chase the knight first, then take.",
+  "practice": {
+    "fen": "rnbqkb1r/ppp2ppp/3p1n2/8/4P3/5N2/PPPP1PPP/RNBQKB1R b KQkq - 1 4",
+    "side": "b"
+  }
+}

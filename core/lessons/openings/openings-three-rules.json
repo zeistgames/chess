@@ -1,0 +1,97 @@
+{
+  "id": "openings-three-rules",
+  "course": "openings",
+  "title": "Three rules for the opening",
+  "line": "Take the center, bring out the knights and bishops, castle.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "text": "Three rules for the first moves: put pawns in the center, bring out the knights and bishops, and castle.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {
+        "squares": ["d4","e4","d5","e5"]
+      }
+    },
+    {
+      "type": "move",
+      "text": "Take the center: push one of the middle pawns two squares.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "accept": ["e2e4","d2d4"],
+      "wrong": {"h2h4":"A pawn on the edge does nothing for the center."},
+      "hint": "The middle pawns stand in front of your queen and king.",
+      "after": "A pawn in the center takes squares away from the other side's pieces.",
+      "reply": {"e2e4":"e7e5","d2d4":"d7d5"},
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring out a knight toward the center.",
+      "fen": "rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2",
+      "accept": ["g1f3","b1c3"],
+      "wrong": {
+        "g1h3": "From the edge the knight reaches fewer squares and does not touch the center.",
+        "b1a3": "From the edge the knight reaches fewer squares and does not touch the center."
+      },
+      "after": "From there a knight covers two center squares.",
+      "reply": {"g1f3":"b8c6","b1c3":"g8f6"},
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Now a bishop, to a square where it aims at Black's side and clears the way to castle.",
+      "fen": "r1bqkbnr/pppp1ppp/2n5/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 2 3",
+      "accept": ["f1c4","f1b5"],
+      "after": "The bishop is out, and nothing stands between the king and the rook on h1.",
+      "reply": {"f1c4":"f8c5","f1b5":"a7a6"},
+      "taught": true,
+      "marks": {"squares":["h1"]}
+    },
+    {
+      "type": "move",
+      "text": "Castle. The king is safe on g1, and the rook comes toward the middle.",
+      "fen": "r1bqk1nr/pppp1ppp/2n5/2b1p3/2B1P3/5N2/PPPP1PPP/RNBQK2R w KQkq - 4 4",
+      "marks": {"squares":["g1"]},
+      "accept": ["e1g1"],
+      "after": "A center pawn, two pieces out, the king castled. Black is following the same rules.",
+      "reply": "g8f6",
+      "taught": true
+    },
+    {
+      "type": "show",
+      "text": "Here Black broke a rule: the pawn move to f6 guards e5, but it takes the knight's best square and opens the way to the king.",
+      "fen": "rnbqkbnr/pppp2pp/5p2/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 3",
+      "marks": {
+        "squares": ["f6","e8","e5"],
+        "arrows": [["d1","h5"]]
+      }
+    },
+    {
+      "type": "show",
+      "text": "White takes on e5 with the knight. If the pawn takes it, as most club players do, that is a second slip: now the black king stands open.",
+      "marks": {"squares":["e8","e5"]},
+      "play": ["f3e5","f6e5"]
+    },
+    {
+      "type": "move",
+      "text": "Check with the queen on h5.",
+      "marks": {
+        "squares": ["h5","g6","e5"]
+      },
+      "accept": ["d1h5"],
+      "hint": "The queen reaches the ringed square along a diagonal.",
+      "after": "The pawn on g6 blocks, and the pawn on e5 has lost its guard.",
+      "reply": "g7g6"
+    },
+    {
+      "type": "move",
+      "text": "Take on e5 with check. The rook on h8 is next.",
+      "marks": {"squares":["e5","h8"]},
+      "accept": ["h5e5"],
+      "after": "The queen attacks the king and the rook at once. Black is losing the rook.",
+      "wins": 5
+    }
+  ],
+  "summary": "Pawns to the center, knights and bishops out, king castled. Moves that skip these hand the other side time.",
+  "practice": {"fen":"rnbqkbnr/pppp3p/6p1/4Q3/4P3/8/PPPP1PPP/RNB1KB1R b KQkq - 0 5","side":"w"}
+}

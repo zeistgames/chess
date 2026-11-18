@@ -1,0 +1,171 @@
+{
+  "id": "openings-english-opening-symmetrical-variation",
+  "course": "openings",
+  "title": "English Opening: Symmetrical Variation",
+  "line": "Black copies White move for move, until White breaks the symmetry in the center.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "text": "Black copies your first move.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {
+        "squares": [
+          "c5",
+          "c4"
+        ]
+      },
+      "play": [
+        "c2c4",
+        "c7c5"
+      ]
+    },
+    {
+      "type": "move",
+      "text": "Bring the knight out. It watches the center square d5.",
+      "marks": {
+        "squares": [
+          "d5"
+        ],
+        "arrows": [
+          [
+            "b1",
+            "c3"
+          ]
+        ]
+      },
+      "accept": [
+        "b1c3"
+      ],
+      "reply": "b8c6",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Move the pawn on g2 one square to open the long diagonal.",
+      "marks": {
+        "arrows": [
+          [
+            "g2",
+            "g3"
+          ]
+        ]
+      },
+      "accept": [
+        "g2g3"
+      ],
+      "reply": "g7g6",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Put the bishop on the long diagonal. It looks down at the knight on c6.",
+      "marks": {
+        "squares": [
+          "c6"
+        ],
+        "arrows": [
+          [
+            "f1",
+            "g2"
+          ]
+        ]
+      },
+      "accept": [
+        "f1g2"
+      ],
+      "reply": "f8g7",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the other knight out. It watches the center squares d4 and e5.",
+      "marks": {
+        "squares": [
+          "d4",
+          "e5"
+        ],
+        "arrows": [
+          [
+            "g1",
+            "f3"
+          ]
+        ]
+      },
+      "accept": [
+        "g1f3"
+      ],
+      "reply": "g8f6",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Castle. Your king is safe behind the bishop on g2.",
+      "marks": {
+        "arrows": [
+          [
+            "e1",
+            "g1"
+          ]
+        ],
+        "squares": [
+          "g2"
+        ]
+      },
+      "accept": [
+        "e1g1"
+      ],
+      "after": "The board is still the same on both sides. White moves first, so it can break the symmetry first.",
+      "reply": "e8g8",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn in front of your queen two squares. It breaks the symmetry and opens the center.",
+      "marks": {
+        "squares": [
+          "c5"
+        ],
+        "arrows": [
+          [
+            "d2",
+            "d4"
+          ]
+        ]
+      },
+      "accept": [
+        "d2d4"
+      ],
+      "also": {
+        "d2d3": "That keeps things calm, also sound. This lesson opens the center."
+      },
+      "reply": "c5d4",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Take back with the knight. It stands in the center now.",
+      "marks": {
+        "squares": [
+          "d4",
+          "c6"
+        ],
+        "arrows": [
+          [
+            "f3",
+            "d4"
+          ]
+        ]
+      },
+      "accept": [
+        "f3d4"
+      ],
+      "after": "The long diagonal is open, and your bishop looks at the knight on c6 and beyond."
+    }
+  ],
+  "summary": "When Black copies every move, White breaks the symmetry first with a pawn push in the center.",
+  "practice": {
+    "fen": "r1bq1rk1/pp1pppbp/2n2np1/8/2PN4/2N3P1/PP2PPBP/R1BQ1RK1 b - - 0 8",
+    "side": "w"
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "id": "openings-bogo-indian-defense-ideas",
+  "course": "openings",
+  "title": "Bogo-Indian Defense: the ideas",
+  "line": "A bishop check makes White block with a piece, and Black trades it off.",
+  "side": "b",
+  "steps": [
+    {
+      "type": "show",
+      "text": "White starts by pushing the pawn in front of its queen two squares, into the center.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {"arrows":[["d2","d4"]]},
+      "play": ["d2d4"]
+    },
+    {
+      "type": "move",
+      "text": "Bring the knight out. For now it stops White's other center pawn from coming to e4.",
+      "marks": {"squares":["e4"],"arrows":[["g8","f6"]]},
+      "accept": ["g8f6"],
+      "reply": "c2c4",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Move the pawn in front of your king one square. It opens a path for your bishop.",
+      "accept": ["e7e6"],
+      "marks": {"arrows":[["e7","e6"]],"squares":["b4"]},
+      "after": "White brings out the other knight first, so a bishop on b4 would pin nothing.",
+      "reply": "g1f3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Give check with the bishop anyway. White has to block it with a piece.",
+      "accept": ["f8b4"],
+      "marks": {"arrows":[["f8","b4"]]},
+      "also": {
+        "b7b6": "That is the Queen's Indian Defense, also sound. This lesson goes on with the check.",
+        "d7d5": "That holds the center with a pawn, also sound. This lesson goes on with the check."
+      },
+      "after": "This is the Bogo-Indian Defense. White blocks with its bishop.",
+      "reply": "c1d2",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Guard your bishop with the queen. Now Black can take on d2 when it suits.",
+      "marks": {"squares":["d2"],"arrows":[["d8","e7"]]},
+      "accept": ["d8e7"],
+      "also": {"b4d2":"Trading at once works too. This lesson goes on with the queen."},
+      "reply": "g2g3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the other knight out. It hits White's pawn on d4.",
+      "marks": {"squares":["d4"],"arrows":[["b8","c6"]]},
+      "accept": ["b8c6"],
+      "reply": "f1g2",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Trade the bishops. White's knight takes back on d2, a quieter square than c3.",
+      "marks": {"squares":["d2","c3"],"arrows":[["b4","d2"]]},
+      "accept": ["b4d2"],
+      "reply": "b1d2",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Move the pawn in front of your queen one square. It gets the next pawn push ready.",
+      "accept": ["d7d6"],
+      "marks": {"arrows":[["d7","d6"]]},
+      "reply": "e1g1",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Now push the pawn in front of your king two squares.",
+      "accept": ["e6e5"],
+      "marks": {"arrows":[["e6","e5"]]},
+      "after": "Black has its share of the center.",
+      "taught": true
+    }
+  ],
+  "summary": "A bishop check makes White block. Black guards the bishop, trades it when it suits and builds a pawn center.",
+  "practice": {"fen":"r1b1k2r/ppp1qppp/2np1n2/4p3/2PP4/5NP1/PP1NPPBP/R2Q1RK1 w kq - 0 9","side":"b"}
+}

@@ -1,0 +1,59 @@
+{
+  "id": "strategy-pawn-structure",
+  "course": "strategy",
+  "title": "Pawn structure",
+  "line": "Pawns in groups, called islands. The fewer islands, the fewer weak pawns.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "fen": "8/5ppp/p1p1k3/8/2K5/8/PP3PPP/8 w - - 0 30",
+      "text": "Pawns side by side form an island. White has two islands. Black has three, and two of its pawns stand alone.",
+      "marks": {"squares":["a6","c6"]}
+    },
+    {
+      "type": "pick",
+      "text": "A pawn with no pawn of its own color on a file next to it can be guarded only by pieces. Tap each Black pawn like that.",
+      "accept": ["a6","c6"],
+      "all": true,
+      "wrong": {
+        "f7": "A black pawn stands on the next file.",
+        "g7": "Black pawns stand on both sides of it.",
+        "h7": "A black pawn stands on the next file."
+      },
+      "hint": "Look on the side of the board where Black has only two pawns.",
+      "after": "Both stand alone. No black pawn can guard them now."
+    },
+    {
+      "type": "move",
+      "text": "In an ending the king is a fighter. Walk it toward the lone pawns.",
+      "marks": {"squares":["a6","c6"],"arrows":[["c4","c5"]]},
+      "accept": ["c4c5"],
+      "also": {
+        "c4b4": "That heads there too. This lesson goes on with the king next to the pawn on c6."
+      },
+      "hint": "The king steps up the board, next to one of them.",
+      "after": "Black's king comes back to guard the pawn on c6.",
+      "reply": "e6d7"
+    },
+    {
+      "type": "move",
+      "text": "Step in between the two lone pawns. Your king attacks both, and Black's king can guard only one.",
+      "marks": {"squares":["a6","c6"],"arrows":[["c5","b6"]]},
+      "accept": ["c5b6"],
+      "hint": "The square between them is in front of your king, to the left.",
+      "after": "Black pushes one pawn away, but it is still alone.",
+      "reply": "c6c5",
+      "wins": 1
+    },
+    {
+      "type": "move",
+      "text": "Take a pawn.",
+      "marks": {"squares":["a6","c5"]},
+      "accept": ["b6c5","b6a6"],
+      "after": "A pawn up. Black's other lone pawn is still a target."
+    }
+  ],
+  "summary": "Every pawn island is one more group to guard. A lone pawn can be guarded only by pieces.",
+  "practice": {"fen":"8/3k1ppp/p7/2K5/8/8/PP3PPP/8 b - - 0 32","side":"w"}
+}

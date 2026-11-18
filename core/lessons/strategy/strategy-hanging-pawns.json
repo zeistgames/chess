@@ -1,0 +1,80 @@
+{
+  "id": "strategy-hanging-pawns",
+  "course": "strategy",
+  "title": "Hanging pawns",
+  "line": "Two pawns side by side with no pawns of their own beside them.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "fen": "rnr3k1/4qpp1/pp2b2p/1Bpp4/3P4/Q3PN2/PP3PPP/2R1K2R w K - 0 15",
+      "text": "Fischer against Spassky, 1972. If White takes on c5 and a pawn takes back, Black's two center pawns stand side by side alone.",
+      "marks": {"squares":["c5","d5"],"arrows":[["d4","c5"]]}
+    },
+    {
+      "type": "move",
+      "text": "Take on c5 with your pawn.",
+      "marks": {"squares":["c5"],"arrows":[["d4","c5"]]},
+      "accept": ["d4c5"],
+      "after": "Black takes back with a pawn.",
+      "reply": "b6c5"
+    },
+    {
+      "type": "pick",
+      "text": "Two pawns side by side, with no pawn of their own on the files next to them, are hanging pawns. Tap them.",
+      "accept": ["c5","d5"],
+      "all": true,
+      "hint": "They stand in the middle of the board, next to each other.",
+      "after": "Side by side they hold the center. Only pieces can guard them."
+    },
+    {
+      "type": "show",
+      "play": ["e1g1","a8a7","b5e2","b8d7"],
+      "text": "White castles and steps the bishop back. Black brings out its rook and knight, and the knight guards the pawn on c5.",
+      "marks": {"squares":["c5","d7"]}
+    },
+    {
+      "type": "show",
+      "play": ["f3d4","e7f8"],
+      "text": "White's plan is to attack the pawns until one has to move. The knight comes to the middle and attacks the bishop that guards d5.",
+      "marks": {"squares":["d4","e6","d5"]}
+    },
+    {
+      "type": "move",
+      "text": "Take the bishop that guards the pawn on d5.",
+      "marks": {"squares":["d5","e6"],"arrows":[["d4","e6"]]},
+      "accept": ["d4e6"],
+      "after": "A pawn takes back. One guard of the pawns is gone.",
+      "reply": "f7e6"
+    },
+    {
+      "type": "show",
+      "play": ["e3e4","d5d4"],
+      "text": "White pushes a pawn into them. Black pushes one of them ahead instead of taking.",
+      "marks": {"squares":["e4","d4","c5"]}
+    },
+    {
+      "type": "show",
+      "play": ["f2f4","f8e7","e4e5","c8b8"],
+      "text": "White's pawns come forward on the right, and Black moves a rook over to the left.",
+      "marks": {"squares":["f4","e5","b8"]}
+    },
+    {
+      "type": "pick",
+      "text": "The pawns no longer stand side by side. Tap the square right in front of the pawn that was left behind.",
+      "accept": ["c4"],
+      "hint": "Black pawns move down the board. Look just below the left one of the two.",
+      "after": "No black pawn can attack that square now."
+    },
+    {
+      "type": "move",
+      "text": "Put your bishop there. No black pawn can attack it there now, and it aims at the pawn on e6 and the king behind it.",
+      "marks": {"squares":["c4","e6","g8"],"arrows":[["e2","c4"]]},
+      "accept": ["e2c4"],
+      "after": "Spassky moved his king to the corner. Fischer went on to attack it, and his attack decided the game.",
+      "reply": "g8h8"
+    }
+  ],
+  "summary": "Hanging pawns are strong side by side. Attack them until one moves, then use the squares it leaves.",
+  "practice": {"fen":"1r5k/r2nq1p1/p3p2p/2p1P3/2Bp1P2/Q7/PP4PP/2R2RK1 w - - 3 24","side":"w"}
+}

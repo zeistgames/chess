@@ -1,0 +1,19 @@
+{
+  "about": "Learn as you play: the lesson each kind of card opens, by lesson id in core/lessons/index.json. A card whose lesson is not in the index is not shown. Openings are not listed: an opening card opens the opening chapter whose title starts its name in the opening table (the longest such title), and shows nothing when there is none. core/test/learn.test.js fails if an id here is not a lesson in the index.",
+  "lessons": {
+    "fork": "tactics-fork",
+    "pin": "tactics-pin",
+    "skewer": "tactics-skewer",
+    "discovered-attack": "tactics-discovered-attack",
+    "discovered-check": "tactics-discovered-check",
+    "double-check": "tactics-discovered-check",
+    "hanging": "tactics-hanging",
+    "back-rank-mate": "checkmates-back-rank",
+    "smothered-mate": "checkmates-smothered",
+    "en-passant": "basics-promotion-en-passant",
+    "promotion": "basics-promotion-en-passant",
+    "underpromotion": "tactics-underpromotion",
+    "castling": "basics-castling",
+    "stalemate": "basics-checkmate-stalemate"
+  }
+}

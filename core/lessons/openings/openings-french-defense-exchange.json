@@ -1,0 +1,70 @@
+{
+  "id": "openings-french-defense-exchange",
+  "course": "openings",
+  "title": "French Defense: Exchange Variation",
+  "line": "White trades in the center, the position opens, and Black's shut-in bishop is free.",
+  "side": "b",
+  "steps": [
+    {
+      "type": "show",
+      "text": "Here White trades pawns in the center.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {"arrows":[["e4","d5"]]},
+      "play": ["e2e4","e7e6","d2d4","d7d5","e4d5"]
+    },
+    {
+      "type": "move",
+      "text": "Take back with the pawn on e6. Now your bishop on c8 is free.",
+      "marks": {"squares":["c8"],"arrows":[["e6","d5"]]},
+      "accept": ["e6d5"],
+      "wrong": {
+        "d8d5": "The queen takes, but White's knight comes out and hits her, and White gains time."
+      },
+      "reply": "g1f3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the knight out.",
+      "marks": {"arrows":[["g8","f6"]]},
+      "accept": ["g8f6"],
+      "also": {
+        "f8d6": "That also works. This lesson brings the knight out first."
+      },
+      "reply": "f1d3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the bishop out, so you can castle.",
+      "marks": {"arrows":[["f8","d6"]]},
+      "accept": ["f8d6"],
+      "also": {
+        "c7c5": "That also works. This lesson goes on with the bishop."
+      },
+      "reply": "e1g1",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Castle. Your king goes to safety, and a rook comes toward the center.",
+      "marks": {"arrows":[["e8","g8"]]},
+      "accept": ["e8g8"],
+      "reply": "c1g5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the free bishop out to pin White's knight.",
+      "marks": {"arrows":[["c8","g4"]]},
+      "accept": ["c8g4"],
+      "after": "The knight is pinned to White's queen, and the bishop that the French often shuts in is active.",
+      "taught": true
+    }
+  ],
+  "summary": "When White trades in the center, the position is open, and the bishop that was shut in comes out freely.",
+  "practice": {
+    "fen": "rn1q1rk1/ppp2ppp/3b1n2/3p2B1/3P2b1/3B1N2/PPP2PPP/RN1Q1RK1 w - - 8 8",
+    "side": "b"
+  }
+}

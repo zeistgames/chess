@@ -1,0 +1,86 @@
+{
+  "id": "openings-catalan-opening-ideas",
+  "course": "openings",
+  "title": "Catalan Opening: the ideas",
+  "line": "The Queen's Gambit with a bishop on the long diagonal, aimed at Black's queen's side.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "move",
+      "text": "Push the pawn in front of your queen two squares, into the center.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "accept": ["d2d4"],
+      "marks": {"arrows":[["d2","d4"]]},
+      "also": {
+        "e2e4": "That is the king's pawn opening, the other big first move. This lesson goes on with the queen's pawn."
+      },
+      "reply": "g8f6",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn on c2 two squares. It attacks the center from the side and takes space.",
+      "marks": {"squares":["c2"],"arrows":[["c2","c4"]]},
+      "accept": ["c2c4"],
+      "also": {
+        "g1f3": "Bringing the knight out first is also sound and often comes to the same thing. This lesson goes on with the pawn."
+      },
+      "reply": "e7e6",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn on g2 one square, to make room for your bishop.",
+      "marks": {"squares":["g2"],"arrows":[["g2","g3"]]},
+      "accept": ["g2g3"],
+      "also": {
+        "b1c3": "That allows the Nimzo-Indian Defense, also sound. This lesson goes on with the pawn.",
+        "g1f3": "That leads to the Queen's Indian or the Bogo-Indian, also sound. This lesson goes on with the pawn."
+      },
+      "after": "This is the Catalan Opening. Black holds the center with a pawn.",
+      "reply": "d7d5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Put the bishop on the long diagonal. It looks through the center at Black's queen's side.",
+      "accept": ["f1g2"],
+      "marks": {"arrows":[["f1","g2"]]},
+      "reply": "f8e7",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the knight out, ready to castle.",
+      "accept": ["g1f3"],
+      "marks": {"arrows":[["g1","f3"]]},
+      "reply": "e8g8",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Castle, to get your king to safety.",
+      "accept": ["e1g1"],
+      "marks": {"arrows":[["e1","g1"]]},
+      "reply": "b8d7",
+      "taught": true
+    },
+    {
+      "type": "pick",
+      "text": "Tap every black piece and pawn on your bishop's long diagonal.",
+      "accept": ["d5","b7","a8"],
+      "all": true,
+      "hint": "Follow the diagonal from the bishop toward the far corner.",
+      "after": "When the center opens, the bishop hits Black's queen's side: the pawn there and the rook in the corner."
+    },
+    {
+      "type": "move",
+      "text": "Bring the queen out. It guards the pawn on c4 and gets ready to help a pawn to e4.",
+      "marks": {"squares":["c4","e4"],"arrows":[["d1","c2"]]},
+      "accept": ["d1c2"],
+      "taught": true
+    }
+  ],
+  "summary": "White's bishop on the long diagonal looks through Black's center at the queen's side, waiting for the center to open.",
+  "practice": {"fen":"rnbqkb1r/pppp1ppp/4pn2/8/2PP4/6P1/PP2PP1P/RNBQKBNR b KQkq - 0 3","side":"w"}
+}

@@ -1,0 +1,389 @@
+{
+  "engine": "clover",
+  "version": "9.1",
+  "scale": "Maia 3 (UCI_Elo 600 to 2600), logistic model, 95% profile likelihood intervals",
+  "fitted_at": "2026-11-15T01:35:20.335Z",
+  "engine_failed": false,
+  "levels": [
+    {
+      "level": 1,
+      "status": "failed",
+      "rating": "inf",
+      "interval": [
+        694,
+        "inf"
+      ],
+      "estimate": "inf",
+      "games": 1,
+      "score": 1,
+      "wins": 1,
+      "draws": 0,
+      "losses": 0,
+      "maia_faced": [
+        1000
+      ],
+      "longest_plies": 30,
+      "past_400_plies": 0,
+      "at_ply_cap": 0,
+      "crashes": 30,
+      "skipped": 10,
+      "minutes_per_game": 0.03,
+      "settings": {
+        "options": [
+          [
+            "MultiPV",
+            "8"
+          ]
+        ],
+        "nodes": 1500,
+        "multipv": 8,
+        "temperature": 500
+      },
+      "last_crash": "engine error: engine aborted: at wasm://wasm/00137612:wasm-function[347]:0x28306"
+    },
+    {
+      "level": 2,
+      "status": "failed",
+      "rating": "inf",
+      "interval": [
+        694,
+        "inf"
+      ],
+      "estimate": "inf",
+      "games": 1,
+      "score": 1,
+      "wins": 1,
+      "draws": 0,
+      "losses": 0,
+      "maia_faced": [
+        1000
+      ],
+      "longest_plies": 14,
+      "past_400_plies": 0,
+      "at_ply_cap": 0,
+      "crashes": 30,
+      "skipped": 10,
+      "minutes_per_game": 0.02,
+      "settings": {
+        "options": [
+          [
+            "MultiPV",
+            "6"
+          ]
+        ],
+        "nodes": 4000,
+        "multipv": 6,
+        "temperature": 300
+      },
+      "last_crash": "engine error: engine aborted: at wasm://wasm/00137612:wasm-function[347]:0x28306"
+    },
+    {
+      "level": 3,
+      "status": "failed",
+      "rating": "inf",
+      "interval": [
+        1722,
+        "inf"
+      ],
+      "estimate": "inf",
+      "games": 5,
+      "score": 5,
+      "wins": 5,
+      "draws": 0,
+      "losses": 0,
+      "maia_faced": [
+        1000,
+        1300,
+        1600,
+        1900
+      ],
+      "longest_plies": 131,
+      "past_400_plies": 0,
+      "at_ply_cap": 0,
+      "crashes": 30,
+      "skipped": 10,
+      "minutes_per_game": 0.07,
+      "settings": {
+        "options": [
+          [
+            "MultiPV",
+            "5"
+          ]
+        ],
+        "nodes": 10000,
+        "multipv": 5,
+        "temperature": 180
+      },
+      "last_crash": "engine error: engine aborted: at wasm://wasm/00137612:wasm-function[347]:0x28306"
+    },
+    {
+      "level": 4,
+      "status": "failed",
+      "rating": 2899,
+      "interval": [
+        2642,
+        3287
+      ],
+      "estimate": 2899,
+      "games": 18,
+      "score": 16.5,
+      "wins": 15,
+      "draws": 3,
+      "losses": 0,
+      "maia_faced": [
+        1000,
+        1300,
+        1600,
+        1900,
+        2200,
+        2500,
+        2600
+      ],
+      "longest_plies": 183,
+      "past_400_plies": 0,
+      "at_ply_cap": 0,
+      "crashes": 31,
+      "skipped": 10,
+      "minutes_per_game": 0.08,
+      "settings": {
+        "options": [
+          [
+            "MultiPV",
+            "4"
+          ]
+        ],
+        "nodes": 25000,
+        "multipv": 4,
+        "temperature": 100
+      },
+      "last_crash": "engine error: engine aborted: at wasm://wasm/00137612:wasm-function[347]:0x28306"
+    },
+    {
+      "level": 5,
+      "status": "above",
+      "rating": null,
+      "interval": [
+        2758,
+        3541
+      ],
+      "estimate": 3038,
+      "games": 23,
+      "score": 22,
+      "wins": 21,
+      "draws": 2,
+      "losses": 0,
+      "maia_faced": [
+        1000,
+        1300,
+        1600,
+        1900,
+        2200,
+        2500,
+        2600
+      ],
+      "longest_plies": 119,
+      "past_400_plies": 0,
+      "at_ply_cap": 0,
+      "crashes": 17,
+      "skipped": 4,
+      "minutes_per_game": 0.08,
+      "settings": {
+        "options": [
+          [
+            "MultiPV",
+            "3"
+          ]
+        ],
+        "nodes": 60000,
+        "multipv": 3,
+        "temperature": 70
+      },
+      "evidence": "11 of 12 against Maia 2600",
+      "last_crash": "engine error: engine aborted: at wasm://wasm/00137612:wasm-function[347]:0x28306"
+    },
+    {
+      "level": 6,
+      "status": "above",
+      "rating": null,
+      "interval": [
+        2687,
+        3325
+      ],
+      "estimate": 2938,
+      "games": 12,
+      "score": 10.5,
+      "wins": 9,
+      "draws": 3,
+      "losses": 0,
+      "maia_faced": [
+        2600
+      ],
+      "longest_plies": 160,
+      "past_400_plies": 0,
+      "at_ply_cap": 0,
+      "crashes": 13,
+      "skipped": 4,
+      "minutes_per_game": 0.15,
+      "settings": {
+        "options": [
+          [
+            "MultiPV",
+            "3"
+          ]
+        ],
+        "nodes": 120000,
+        "multipv": 3,
+        "temperature": 48
+      },
+      "evidence": "10.5 of 12 against Maia 2600",
+      "last_crash": "engine error: engine aborted: at wasm://wasm/00137612:wasm-function[36]:0x26ad"
+    },
+    {
+      "level": 7,
+      "status": "above",
+      "rating": null,
+      "interval": [
+        2904,
+        "inf"
+      ],
+      "estimate": "inf",
+      "games": 12,
+      "score": 12,
+      "wins": 12,
+      "draws": 0,
+      "losses": 0,
+      "maia_faced": [
+        2600
+      ],
+      "longest_plies": 125,
+      "past_400_plies": 0,
+      "at_ply_cap": 0,
+      "crashes": 2,
+      "skipped": 0,
+      "minutes_per_game": 0.14,
+      "settings": {
+        "options": [
+          [
+            "MultiPV",
+            "3"
+          ]
+        ],
+        "nodes": 250000,
+        "multipv": 3,
+        "temperature": 32
+      },
+      "evidence": "12 of 12 against Maia 2600",
+      "last_crash": "engine error: engine aborted: at wasm://wasm/00137612:wasm-function[347]:0x28306"
+    },
+    {
+      "level": 8,
+      "status": "above",
+      "rating": null,
+      "interval": [
+        2904,
+        "inf"
+      ],
+      "estimate": "inf",
+      "games": 12,
+      "score": 12,
+      "wins": 12,
+      "draws": 0,
+      "losses": 0,
+      "maia_faced": [
+        2600
+      ],
+      "longest_plies": 150,
+      "past_400_plies": 0,
+      "at_ply_cap": 0,
+      "crashes": 0,
+      "skipped": 0,
+      "minutes_per_game": 0.35,
+      "settings": {
+        "options": [
+          [
+            "MultiPV",
+            "2"
+          ]
+        ],
+        "nodes": 500000,
+        "multipv": 2,
+        "temperature": 20
+      },
+      "evidence": "12 of 12 against Maia 2600"
+    },
+    {
+      "level": 9,
+      "status": "above",
+      "rating": null,
+      "interval": [
+        2904,
+        "inf"
+      ],
+      "estimate": "inf",
+      "games": 12,
+      "score": 12,
+      "wins": 12,
+      "draws": 0,
+      "losses": 0,
+      "maia_faced": [
+        2600
+      ],
+      "longest_plies": 135,
+      "past_400_plies": 0,
+      "at_ply_cap": 0,
+      "crashes": 2,
+      "skipped": 0,
+      "minutes_per_game": 0.47,
+      "settings": {
+        "options": [
+          [
+            "MultiPV",
+            "2"
+          ]
+        ],
+        "nodes": 900000,
+        "multipv": 2,
+        "temperature": 10
+      },
+      "evidence": "12 of 12 against Maia 2600",
+      "last_crash": "engine error: engine aborted: at wasm://wasm/00137612:wasm-function[347]:0x28306"
+    },
+    {
+      "level": 10,
+      "status": "above",
+      "rating": null,
+      "interval": [
+        2904,
+        "inf"
+      ],
+      "estimate": "inf",
+      "games": 12,
+      "score": 12,
+      "wins": 12,
+      "draws": 0,
+      "losses": 0,
+      "maia_faced": [
+        2600
+      ],
+      "longest_plies": 108,
+      "past_400_plies": 0,
+      "at_ply_cap": 0,
+      "crashes": 0,
+      "skipped": 0,
+      "minutes_per_game": 0.58,
+      "settings": {
+        "options": [
+          [
+            "MultiPV",
+            "1"
+          ]
+        ],
+        "nodes": 1500000,
+        "multipv": 1,
+        "temperature": 0
+      },
+      "evidence": "12 of 12 against Maia 2600"
+    }
+  ],
+  "out_of_order": []
+}

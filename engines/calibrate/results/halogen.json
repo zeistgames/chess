@@ -1,0 +1,404 @@
+{
+  "engine": "halogen",
+  "version": "16",
+  "scale": "Maia 3 (UCI_Elo 600 to 2600), logistic model, 95% profile likelihood intervals",
+  "fitted_at": "2026-11-15T01:35:20.336Z",
+  "engine_failed": false,
+  "levels": [
+    {
+      "level": 1,
+      "status": "below",
+      "rating": null,
+      "interval": [
+        -145,
+        486
+      ],
+      "estimate": 240,
+      "games": 16,
+      "score": 1.5,
+      "wins": 0,
+      "draws": 3,
+      "losses": 13,
+      "maia_faced": [
+        600,
+        700,
+        1000
+      ],
+      "longest_plies": 107,
+      "past_400_plies": 0,
+      "at_ply_cap": 0,
+      "crashes": 0,
+      "skipped": 0,
+      "minutes_per_game": 0.04,
+      "settings": {
+        "options": [
+          [
+            "MultiPV",
+            "8"
+          ]
+        ],
+        "nodes": 1500,
+        "multipv": 8,
+        "temperature": 500
+      },
+      "evidence": "1.5 of 12 against Maia 600"
+    },
+    {
+      "level": 2,
+      "status": "below",
+      "rating": null,
+      "interval": [
+        -142,
+        490
+      ],
+      "estimate": 243,
+      "games": 14,
+      "score": 1.5,
+      "wins": 0,
+      "draws": 3,
+      "losses": 11,
+      "maia_faced": [
+        600,
+        700
+      ],
+      "longest_plies": 151,
+      "past_400_plies": 0,
+      "at_ply_cap": 0,
+      "crashes": 0,
+      "skipped": 0,
+      "minutes_per_game": 0.11,
+      "settings": {
+        "options": [
+          [
+            "MultiPV",
+            "6"
+          ]
+        ],
+        "nodes": 4000,
+        "multipv": 6,
+        "temperature": 300
+      },
+      "evidence": "1.5 of 12 against Maia 600"
+    },
+    {
+      "level": 3,
+      "status": "rated",
+      "rating": 723,
+      "interval": [
+        614,
+        834
+      ],
+      "estimate": 723,
+      "games": 40,
+      "score": 22,
+      "wins": 18,
+      "draws": 8,
+      "losses": 14,
+      "maia_faced": [
+        600,
+        620,
+        630,
+        660,
+        670,
+        690,
+        700,
+        710,
+        750,
+        800
+      ],
+      "longest_plies": 172,
+      "past_400_plies": 0,
+      "at_ply_cap": 0,
+      "crashes": 0,
+      "skipped": 0,
+      "minutes_per_game": 0.07,
+      "settings": {
+        "options": [
+          [
+            "MultiPV",
+            "5"
+          ]
+        ],
+        "nodes": 10000,
+        "multipv": 5,
+        "temperature": 180
+      }
+    },
+    {
+      "level": 4,
+      "status": "rated",
+      "rating": 1994,
+      "interval": [
+        1878,
+        2117
+      ],
+      "estimate": 1994,
+      "games": 45,
+      "score": 31,
+      "wins": 28,
+      "draws": 6,
+      "losses": 11,
+      "maia_faced": [
+        870,
+        1170,
+        1470,
+        1700,
+        1730,
+        1740,
+        1760,
+        1770,
+        1780,
+        1790,
+        1840,
+        1890,
+        1940,
+        1950,
+        1970,
+        1990,
+        2000,
+        2030,
+        2050
+      ],
+      "longest_plies": 194,
+      "past_400_plies": 0,
+      "at_ply_cap": 0,
+      "crashes": 0,
+      "skipped": 0,
+      "minutes_per_game": 0.09,
+      "settings": {
+        "options": [
+          [
+            "MultiPV",
+            "4"
+          ]
+        ],
+        "nodes": 25000,
+        "multipv": 4,
+        "temperature": 100
+      }
+    },
+    {
+      "level": 5,
+      "status": "above",
+      "rating": null,
+      "interval": [
+        2606,
+        2850
+      ],
+      "estimate": 2722,
+      "games": 41,
+      "score": 29.5,
+      "wins": 25,
+      "draws": 9,
+      "losses": 7,
+      "maia_faced": [
+        2140,
+        2290,
+        2440,
+        2520,
+        2560,
+        2590,
+        2600
+      ],
+      "longest_plies": 257,
+      "past_400_plies": 0,
+      "at_ply_cap": 0,
+      "crashes": 0,
+      "skipped": 0,
+      "minutes_per_game": 0.16,
+      "settings": {
+        "options": [
+          [
+            "MultiPV",
+            "3"
+          ]
+        ],
+        "nodes": 60000,
+        "multipv": 3,
+        "temperature": 70
+      },
+      "evidence": "20 of 27 against Maia 2600"
+    },
+    {
+      "level": 6,
+      "status": "above",
+      "rating": null,
+      "interval": [
+        2732,
+        3521
+      ],
+      "estimate": 3017,
+      "games": 12,
+      "score": 11,
+      "wins": 10,
+      "draws": 2,
+      "losses": 0,
+      "maia_faced": [
+        2600
+      ],
+      "longest_plies": 201,
+      "past_400_plies": 0,
+      "at_ply_cap": 0,
+      "crashes": 0,
+      "skipped": 0,
+      "minutes_per_game": 0.21,
+      "settings": {
+        "options": [
+          [
+            "MultiPV",
+            "3"
+          ]
+        ],
+        "nodes": 120000,
+        "multipv": 3,
+        "temperature": 48
+      },
+      "evidence": "11 of 12 against Maia 2600"
+    },
+    {
+      "level": 7,
+      "status": "above",
+      "rating": null,
+      "interval": [
+        2687,
+        3325
+      ],
+      "estimate": 2938,
+      "games": 12,
+      "score": 10.5,
+      "wins": 9,
+      "draws": 3,
+      "losses": 0,
+      "maia_faced": [
+        2600
+      ],
+      "longest_plies": 132,
+      "past_400_plies": 0,
+      "at_ply_cap": 0,
+      "crashes": 0,
+      "skipped": 0,
+      "minutes_per_game": 0.33,
+      "settings": {
+        "options": [
+          [
+            "MultiPV",
+            "3"
+          ]
+        ],
+        "nodes": 250000,
+        "multipv": 3,
+        "temperature": 32
+      },
+      "evidence": "10.5 of 12 against Maia 2600"
+    },
+    {
+      "level": 8,
+      "status": "above",
+      "rating": null,
+      "interval": [
+        2904,
+        "inf"
+      ],
+      "estimate": "inf",
+      "games": 12,
+      "score": 12,
+      "wins": 12,
+      "draws": 0,
+      "losses": 0,
+      "maia_faced": [
+        2600
+      ],
+      "longest_plies": 202,
+      "past_400_plies": 0,
+      "at_ply_cap": 0,
+      "crashes": 0,
+      "skipped": 0,
+      "minutes_per_game": 0.56,
+      "settings": {
+        "options": [
+          [
+            "MultiPV",
+            "2"
+          ]
+        ],
+        "nodes": 500000,
+        "multipv": 2,
+        "temperature": 20
+      },
+      "evidence": "12 of 12 against Maia 2600"
+    },
+    {
+      "level": 9,
+      "status": "above",
+      "rating": null,
+      "interval": [
+        2904,
+        "inf"
+      ],
+      "estimate": "inf",
+      "games": 12,
+      "score": 12,
+      "wins": 12,
+      "draws": 0,
+      "losses": 0,
+      "maia_faced": [
+        2600
+      ],
+      "longest_plies": 131,
+      "past_400_plies": 0,
+      "at_ply_cap": 0,
+      "crashes": 0,
+      "skipped": 0,
+      "minutes_per_game": 0.89,
+      "settings": {
+        "options": [
+          [
+            "MultiPV",
+            "2"
+          ]
+        ],
+        "nodes": 900000,
+        "multipv": 2,
+        "temperature": 10
+      },
+      "evidence": "12 of 12 against Maia 2600"
+    },
+    {
+      "level": 10,
+      "status": "above",
+      "rating": null,
+      "interval": [
+        2904,
+        "inf"
+      ],
+      "estimate": "inf",
+      "games": 12,
+      "score": 12,
+      "wins": 12,
+      "draws": 0,
+      "losses": 0,
+      "maia_faced": [
+        2600
+      ],
+      "longest_plies": 104,
+      "past_400_plies": 0,
+      "at_ply_cap": 0,
+      "crashes": 0,
+      "skipped": 0,
+      "minutes_per_game": 1.23,
+      "settings": {
+        "options": [
+          [
+            "MultiPV",
+            "1"
+          ]
+        ],
+        "nodes": 1500000,
+        "multipv": 1,
+        "temperature": 0
+      },
+      "evidence": "12 of 12 against Maia 2600"
+    }
+  ],
+  "out_of_order": []
+}

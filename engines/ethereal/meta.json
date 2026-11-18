@@ -1,0 +1,13 @@
+{
+  "name": "Ethereal",
+  "version": "14.00 (classical)",
+  "author": "Andrew Grant, Alayan and Laldon",
+  "license": "GPL-3.0-or-later",
+  "net_license": "GPL-3.0-or-later",
+  "source": "https://github.com/AndyGrant/Ethereal/tree/v14.00",
+  "line": "A strong engine with a hand-tuned, classical style.",
+  "entry": "ethereal.js",
+  "strength": { "type": "none" },
+  "multipv": true,
+  "threads": false
+}

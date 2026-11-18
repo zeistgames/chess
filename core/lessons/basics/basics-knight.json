@@ -1,0 +1,62 @@
+{
+  "id": "basics-knight",
+  "course": "basics",
+  "title": "The knight",
+  "line": "The only piece that jumps. Reach any square in the fewest moves.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "text": "The knight moves in an L: two squares in a straight line, then one to the side. It always lands on the other color.",
+      "fen": "7k/8/8/8/4N3/8/8/K7 w - - 0 1",
+      "marks": {
+        "squares": ["c5","d6","f6","g5","g3","f2","d2","c3"]
+      }
+    },
+    {
+      "type": "pick",
+      "text": "The knight jumps over pieces in its way. Tap every square the knight on b1 can reach.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {"squares":["b1"]},
+      "accept": ["a3","c3"],
+      "all": true,
+      "after": "It jumps over the pawns in front of it."
+    },
+    {
+      "type": "pick",
+      "text": "In a corner the knight reaches very little. Tap every square this knight can reach.",
+      "fen": "7k/8/8/8/8/8/8/N3K3 w - - 0 1",
+      "accept": ["b3","c2"],
+      "all": true,
+      "after": "From the corner, only two squares. A knight in the middle reaches eight."
+    },
+    {
+      "type": "pick",
+      "text": "The knight on e2 cannot capture the pawn on e6 at once. Tap every square from which a knight could capture it.",
+      "fen": "4k3/8/4p3/8/8/8/4N3/4K3 w - - 0 1",
+      "marks": {"squares":["e6","e2"]},
+      "accept": ["c7","d8","f8","g7","g5","f4","d4","c5"],
+      "all": true,
+      "after": "Those are the squares a knight's jump away from e6."
+    },
+    {
+      "type": "move",
+      "text": "Now jump to one of those squares in one move.",
+      "fen": "4k3/8/4p3/8/8/8/4N3/4K3 w - - 0 1",
+      "accept": ["e2d4","e2f4"],
+      "also": {
+        "e1d2": "That is a sound move, but it does not put the knight a jump away from e6.",
+        "e1f2": "That is a sound move, but it does not put the knight a jump away from e6.",
+        "e1d1": "That is a sound move, but it does not put the knight a jump away from e6.",
+        "e2g1": "That is a sound move, but it does not put the knight a jump away from e6.",
+        "e2g3": "That is a sound move, but it does not put the knight a jump away from e6.",
+        "e2c1": "That is a sound move, but it does not put the knight a jump away from e6.",
+        "e1f1": "That is a sound move, but it does not put the knight a jump away from e6.",
+        "e2c3": "That is a sound move, but it does not put the knight a jump away from e6."
+      },
+      "after": "Next move, the knight can capture the pawn on e6.",
+      "marks": {"squares":["e6"]}
+    }
+  ],
+  "summary": "A knight moves two squares one way and one to the side, jumping over anything in between."
+}

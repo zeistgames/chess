@@ -1,0 +1,127 @@
+{
+  "about": "Chess board themes for Zeist Chess, as data, so the iOS app, the web and the main Zeist app draw the same boards. Pieces are always ivory and ebony (Zeist tokens: piece). Colors are sRGB hex. grain: drawn in code over each square: lines fine nearly parallel lines (0 for none), wave how far a line drifts as a share of the gap between lines, width as a share of a square, bands soft wider streaks with band_opacity. direction: alternate turns the grain a quarter turn on dark squares, like a parquet board; along keeps it running one way. marks: what just happened (a quiet warm tint, no outline; orange is kept for check), the selected square, the dots for legal moves.",
+  "format": 1,
+  "default": "bone",
+  "themes": [
+    {
+      "id": "bone",
+      "name": "Bone",
+      "light": "#b4ad9f",
+      "dark": "#4b4842",
+      "coordinates": {
+        "on_light": "#4b4842",
+        "on_dark": "#b4ad9f",
+        "opacity": 0.75
+      },
+      "grain": {
+        "lines": 0,
+        "sheen": 0.07
+      },
+      "marks": {
+        "last": "#f2e2b0",
+        "last_from": 0.3,
+        "last_to": 0.44,
+        "last_outline": 0,
+        "selected": "#f4f1ea",
+        "selected_opacity": 0.24,
+        "hint": "#12110e",
+        "hint_opacity": 0.34,
+        "check": "#ff7442"
+      }
+    },
+    {
+      "id": "slate",
+      "name": "Slate",
+      "light": "#838e9b",
+      "dark": "#687686",
+      "coordinates": {
+        "on_light": "#3b4350",
+        "on_dark": "#d6dbe2",
+        "opacity": 0.6
+      },
+      "grain": {
+        "lines": 0,
+        "sheen": 0.06
+      },
+      "marks": {
+        "last": "#f2e2b0",
+        "last_from": 0.3,
+        "last_to": 0.44,
+        "last_outline": 0,
+        "selected": "#f4f1ea",
+        "selected_opacity": 0.22,
+        "hint": "#12110e",
+        "hint_opacity": 0.32,
+        "check": "#ff7442"
+      }
+    },
+    {
+      "id": "maple",
+      "name": "Maple",
+      "light": "#cdb08a",
+      "dark": "#9c744f",
+      "coordinates": {
+        "on_light": "#6e4e31",
+        "on_dark": "#ead9bf",
+        "opacity": 0.7
+      },
+      "grain": {
+        "lines": 20,
+        "color": "#6a4520",
+        "opacity": 0.1,
+        "wave": 0.6,
+        "width": 0.006,
+        "bands": 3,
+        "band_opacity": 0.05,
+        "direction": "alternate",
+        "seed": 7,
+        "sheen": 0.06
+      },
+      "marks": {
+        "last": "#f2e2b0",
+        "last_from": 0.3,
+        "last_to": 0.44,
+        "last_outline": 0,
+        "selected": "#fdfaf3",
+        "selected_opacity": 0.26,
+        "hint": "#2a1a0c",
+        "hint_opacity": 0.3,
+        "check": "#ff7442"
+      }
+    },
+    {
+      "id": "walnut",
+      "name": "Walnut",
+      "light": "#a88866",
+      "dark": "#563b2a",
+      "coordinates": {
+        "on_light": "#4a3222",
+        "on_dark": "#d9c3a6",
+        "opacity": 0.7
+      },
+      "grain": {
+        "lines": 18,
+        "color": "#1a0f08",
+        "opacity": 0.16,
+        "wave": 0.6,
+        "width": 0.007,
+        "bands": 3,
+        "band_opacity": 0.09,
+        "direction": "alternate",
+        "seed": 23,
+        "sheen": 0.05
+      },
+      "marks": {
+        "last": "#f2e2b0",
+        "last_from": 0.3,
+        "last_to": 0.44,
+        "last_outline": 0,
+        "selected": "#fdfaf3",
+        "selected_opacity": 0.22,
+        "hint": "#12110e",
+        "hint_opacity": 0.32,
+        "check": "#ff7442"
+      }
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "id": "basics-squares",
+  "course": "basics",
+  "title": "Naming the squares",
+  "line": "Files a to h, ranks 1 to 8: every square has a name, from a1 to h8.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "text": "The columns of the board are called files, a to h from White's left. The rows are called ranks, 1 to 8 from White's side.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {"arrows":[["a1","h1"],["a1","a8"]]}
+    },
+    {
+      "type": "show",
+      "text": "A square is named by its file, then its rank. The white king starts on e1, the black king on e8.",
+      "marks": {"squares":["e1","e8"]}
+    },
+    {
+      "type": "pick",
+      "text": "Tap the square e4.",
+      "accept": ["e4"],
+      "all": false,
+      "wrong": {
+        "d4": "That is d4, one file to the left.",
+        "e5": "That is e5, one rank higher.",
+        "e3": "That is e3, one rank lower."
+      }
+    },
+    {
+      "type": "pick",
+      "text": "Tap the square d5.",
+      "accept": ["d5"],
+      "all": false,
+      "wrong": {"e5":"That is e5, one file to the right.","d4":"That is d4, one rank lower."}
+    },
+    {
+      "type": "pick",
+      "text": "Tap the square where the black queen starts.",
+      "accept": ["d8"],
+      "all": false,
+      "wrong": {"e8":"That is e8, the black king's square.","d1":"That is d1, where the white queen starts."},
+      "after": "The black queen starts on d8, straight across from the white queen on d1."
+    },
+    {
+      "type": "move",
+      "text": "Move the knight from g1 to f3.",
+      "accept": ["g1f3"],
+      "wrong": {"f2f3":"That moves the pawn from f2. Move the knight from g1 to f3."},
+      "after": "Black answered by moving a pawn from d7 to d5.",
+      "reply": "d7d5"
+    },
+    {
+      "type": "move",
+      "text": "Now move the pawn from d2 to d4.",
+      "accept": ["d2d4"],
+      "after": "The two pawns now face each other, on d4 and d5."
+    }
+  ],
+  "summary": "Files run a to h, ranks 1 to 8. A square is its file, then its rank: e4, d5, h8."
+}

@@ -1,0 +1,184 @@
+{
+  "id": "openings-english-opening-ideas",
+  "course": "openings",
+  "title": "English Opening: the ideas",
+  "line": "The c-pawn goes first, a bishop watches the long diagonal, and the queenside pawns march.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "move",
+      "text": "Push the pawn on c2 two squares. From the side it fights for the center square d5.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {
+        "squares": [
+          "d5"
+        ],
+        "arrows": [
+          [
+            "c2",
+            "c4"
+          ]
+        ]
+      },
+      "accept": [
+        "c2c4"
+      ],
+      "also": {
+        "e2e4": "That is the most played first move, the king pawn opening. This lesson starts with the side pawn.",
+        "d2d4": "That is the queen pawn opening, also sound. This lesson starts with the side pawn.",
+        "g1f3": "That is the knight first, often a Réti Opening. This lesson starts with the side pawn."
+      },
+      "after": "This is the English Opening. Black takes the center with its king pawn.",
+      "reply": "e7e5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the knight out. It watches d5 too.",
+      "marks": {
+        "squares": [
+          "d5",
+          "e5"
+        ],
+        "arrows": [
+          [
+            "b1",
+            "c3"
+          ]
+        ]
+      },
+      "accept": [
+        "b1c3"
+      ],
+      "also": {
+        "g2g3": "Opening the diagonal for the bishop first is sound too. This lesson brings the knight out first.",
+        "g1f3": "That attacks the pawn on e5, also sound. This lesson brings the other knight out first."
+      },
+      "reply": "b8c6",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Move the pawn on g2 one square. It opens the long diagonal for your bishop.",
+      "marks": {
+        "arrows": [
+          [
+            "g2",
+            "g3"
+          ]
+        ]
+      },
+      "accept": [
+        "g2g3"
+      ],
+      "also": {
+        "g1f3": "That leads to the Four Knights setups, also sound. This lesson opens the diagonal first."
+      },
+      "reply": "g7g6",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Put the bishop on the long diagonal. It aims at the center and at the queenside.",
+      "marks": {
+        "arrows": [
+          [
+            "f1",
+            "g2"
+          ],
+          [
+            "g2",
+            "b7"
+          ]
+        ]
+      },
+      "accept": [
+        "f1g2"
+      ],
+      "after": "Black copies the setup.",
+      "reply": "f8g7",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Move the pawn in front of your queen one square. It keeps the center closed and frees your other bishop.",
+      "marks": {
+        "arrows": [
+          [
+            "d2",
+            "d3"
+          ]
+        ]
+      },
+      "accept": [
+        "d2d3"
+      ],
+      "reply": "d7d6",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Put the rook behind the pawn on b2. White plays on the queenside, where the bishop on g2 looks.",
+      "marks": {
+        "squares": [
+          "b2",
+          "g2"
+        ],
+        "arrows": [
+          [
+            "a1",
+            "b1"
+          ]
+        ]
+      },
+      "accept": [
+        "a1b1"
+      ],
+      "after": "Black pushes a pawn to slow down your pawn on b2.",
+      "reply": "a7a5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Move the pawn on a2 one square. It backs up the pawn push that comes next.",
+      "marks": {
+        "squares": [
+          "b4"
+        ],
+        "arrows": [
+          [
+            "a2",
+            "a3"
+          ]
+        ]
+      },
+      "accept": [
+        "a2a3"
+      ],
+      "reply": "g8e7",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn on b2 two squares. The pawns roll forward on the queenside, with the rook behind them.",
+      "marks": {
+        "arrows": [
+          [
+            "b2",
+            "b4"
+          ]
+        ]
+      },
+      "accept": [
+        "b2b4"
+      ],
+      "after": "White takes space on the queenside while the center stays closed.",
+      "taught": true
+    }
+  ],
+  "summary": "The side pawn fights for the center, the bishop watches the long diagonal, and the queenside pawns move up.",
+  "practice": {
+    "fen": "r1bqk2r/1pp1npbp/2np2p1/p3p3/1PP5/P1NP2P1/4PPBP/1RBQK1NR b Kkq - 0 8",
+    "side": "w"
+  }
+}

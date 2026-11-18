@@ -1,0 +1,73 @@
+{
+  "id": "endgames-cutting-off",
+  "course": "endgames",
+  "title": "Cutting off the king",
+  "line": "A rook on the file between keeps the defending king away from the pawn.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "fen": "r7/8/4k3/2P5/2K5/8/8/7R w - - 0 1",
+      "text": "Black's king wants to reach the pawn and stand in front of it. A rook on the file between them shuts it out.",
+      "marks": {"squares":["c5","e6"],"arrows":[["d1","d8"]]}
+    },
+    {
+      "type": "show",
+      "fen": "r7/8/4k3/2P5/2K5/8/8/7R w - - 0 1",
+      "text": "A king cannot step onto a square the rook guards. Here, kept a file away, it cannot help, and your king walks the pawn up.",
+      "marks": {"squares":["d5","d6","d7"]}
+    },
+    {
+      "type": "move",
+      "fen": "r7/8/4k3/2P5/2K5/8/8/7R w - - 0 1",
+      "text": "Cut the black king off: put your rook on the file between it and the pawn.",
+      "marks": {"squares":["c5","e6"]},
+      "accept": ["h1d1"],
+      "also": {
+        "c4b5": "That also keeps the game in hand: the black king is still too far. This lesson cuts it off with the rook."
+      },
+      "wrong": {
+        "c5c6": "The pawn ran first. The black king comes over to stop it, and the game is drawn.",
+        "h1e1": "That check drives the king, but toward the pawn. The game is drawn.",
+        "c4d4": "That gives Black time, and the game is drawn.",
+        "c4c3": "That gives Black time, and the game is drawn.",
+        "c4b4": "That gives Black time, and the game is drawn.",
+        "c4b3": "That gives Black time, and the game is drawn.",
+        "c4d3": "That gives Black time, and the game is drawn.",
+        "h1h5": "That gives Black time, and the game is drawn.",
+        "h1h3": "That lets the black king step over to the pawn, and the game is drawn.",
+        "h1h2": "That lets the black king step over to the pawn, and the game is drawn.",
+        "h1g1": "That lets the black king step over to the pawn, and the game is drawn.",
+        "h1f1": "That lets the black king step over to the pawn, and the game is drawn.",
+        "h1c1": "That lets the black king step over to the pawn, and the game is drawn.",
+        "h1b1": "That lets the black king step over to the pawn, and the game is drawn."
+      },
+      "hint": "The file next to the pawn, on the black king's side.",
+      "after": "The black king is shut out. Your king can now walk the pawn up.",
+      "reply": "a8b8"
+    },
+    {
+      "type": "move",
+      "fen": "7r/8/3k4/5P2/5K2/8/8/R7 w - - 0 1",
+      "text": "The same on the other wing. Shut the black king out with your rook.",
+      "marks": {"squares":["f5","d6"]},
+      "accept": ["a1e1"],
+      "also": {
+        "f4g5": "That also keeps the game in hand: the black king is still too far. This lesson cuts it off with the rook."
+      },
+      "wrong": {
+        "f5f6": "The pawn ran first. The black king comes over to stop it, and the game is drawn.",
+        "f4g4": "That gives Black time, and the game is drawn.",
+        "f4e4": "That gives Black time, and the game is drawn.",
+        "f4e3": "That gives Black time, and the game is drawn.",
+        "f4f3": "That gives Black time, and the game is drawn.",
+        "f4g3": "That gives Black time, and the game is drawn."
+      },
+      "hint": "The file next to the pawn, on the black king's side.",
+      "after": "Cut off by a file, the black king cannot reach the pawn.",
+      "reply": "h8g8"
+    }
+  ],
+  "summary": "Cut the defending king off with your rook on a file between it and the pawn, then walk the pawn up.",
+  "practice": {"fen":"6r1/8/3k4/5P2/5K2/8/8/4R3 w - - 2 2","side":"w"}
+}

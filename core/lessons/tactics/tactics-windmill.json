@@ -1,0 +1,73 @@
+{
+  "id": "tactics-windmill",
+  "course": "tactics",
+  "title": "The windmill",
+  "line": "Discovered checks one after another, taking a piece each time.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "text": "Torre against Lasker, Moscow 1925: White can give up the queen to set up a windmill of rook and bishop against the king.",
+      "fen": "r3rnk1/pb3pp1/3pp2p/1q4BQ/1P1P4/4N1R1/P4PPP/4R1K1 w - - 4 25",
+      "marks": {"squares":["h5"]}
+    },
+    {
+      "type": "move",
+      "text": "Offer the queen: bring the bishop to f6, where it attacks the pawn in front of the king and lines up with your rook.",
+      "fen": "r3rnk1/pb3pp1/3pp2p/1q4BQ/1P1P4/4N1R1/P4PPP/4R1K1 w - - 4 25",
+      "marks": {"arrows":[["g5","f6"]]},
+      "accept": ["g5f6"],
+      "hint": "The bishop and the rook together aim at the pawn in front of the black king.",
+      "after": "Black takes the queen. Now the windmill turns.",
+      "reply": "b5h5",
+      "sacrifice": true
+    },
+    {
+      "type": "move",
+      "text": "Start the windmill: take the pawn in front of the king, with check.",
+      "marks": {"arrows":[["g3","g7"]]},
+      "accept": ["g3g7"],
+      "after": "The rook is guarded by the bishop, and it blocks the bishop's line to the king.",
+      "reply": "g8h8",
+      "wins": 10
+    },
+    {
+      "type": "move",
+      "text": "Move the rook along the row and take a pawn. The bishop then gives check.",
+      "marks": {"arrows":[["f6","h8"]]},
+      "accept": ["g7f7"],
+      "after": "Discovered check. The king must move again.",
+      "reply": "h8g8"
+    },
+    {
+      "type": "move",
+      "text": "Come back with check.",
+      "accept": ["f7g7"],
+      "after": "The windmill turns: back and forth, check after check.",
+      "reply": "g8h8"
+    },
+    {
+      "type": "move",
+      "text": "Now take the bishop farther along the row, with discovered check.",
+      "accept": ["g7b7"],
+      "reply": "h8g8"
+    },
+    {"type":"move","text":"Back again with check.","accept":["b7g7"],"reply":"g8h8"},
+    {
+      "type": "move",
+      "text": "Now leave the row along the file, still with discovered check, toward the queen.",
+      "accept": ["g7g5"],
+      "hint": "The rook goes down its own file.",
+      "reply": "h8h7"
+    },
+    {
+      "type": "move",
+      "text": "Take the queen.",
+      "accept": ["g5h5"],
+      "after": "White has taken back the queen, two pawns and a bishop."
+    }
+  ],
+  "summary": "A rook and a bishop take turns: each rook move uncovers check, and the rook takes something every other move.",
+  "puzzles": "discovered",
+  "practice": {"fen":"r3rn2/p6k/3ppB1p/7R/1P1P4/4N3/P4PPP/4R1K1 b - - 0 32","side":"w"}
+}

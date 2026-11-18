@@ -1,0 +1,162 @@
+{
+  "id": "openings-scotch-game-ideas",
+  "course": "openings",
+  "title": "Scotch Game: the ideas",
+  "line": "White opens the center at once and gets free play for its pieces.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "text": "In the Scotch Game, White does not wait to open the center: the pawn in front of the queen goes forward early.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {
+        "squares": [
+          "d4",
+          "e5"
+        ]
+      }
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn in front of your king two squares. It takes space in the center and frees your queen and a bishop.",
+      "marks": {
+        "arrows": [
+          [
+            "e2",
+            "e4"
+          ]
+        ]
+      },
+      "accept": [
+        "e2e4"
+      ],
+      "also": {
+        "d2d4": "Pushing the queen's pawn is also sound and leads to other openings. This lesson pushes the king's pawn."
+      },
+      "reply": "e7e5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the knight out to attack Black's pawn on e5.",
+      "marks": {
+        "squares": [
+          "e5"
+        ],
+        "arrows": [
+          [
+            "g1",
+            "f3"
+          ]
+        ]
+      },
+      "accept": [
+        "g1f3"
+      ],
+      "also": {
+        "b1c3": "That is the Vienna Game, also sound. This lesson brings this knight out.",
+        "f1c4": "That is the Bishop's Opening, also sound. This lesson brings the knight out first."
+      },
+      "reply": "b8c6",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn in front of your queen two squares. It attacks the pawn on e5 at once.",
+      "marks": {
+        "squares": [
+          "e5"
+        ],
+        "arrows": [
+          [
+            "d2",
+            "d4"
+          ]
+        ]
+      },
+      "accept": [
+        "d2d4"
+      ],
+      "also": {
+        "f1b5": "That is the Ruy Lopez, also sound. This lesson pushes the pawn.",
+        "f1c4": "That is the Italian Game, also sound. This lesson pushes the pawn.",
+        "b1c3": "That leads to the Four Knights Game, also sound. This lesson pushes the pawn."
+      },
+      "after": "Black takes the pawn.",
+      "reply": "e5d4",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Take back with the knight. Your pawn on e4 now stands in the center with no black pawn facing it.",
+      "marks": {
+        "squares": [
+          "e4"
+        ],
+        "arrows": [
+          [
+            "f3",
+            "d4"
+          ]
+        ]
+      },
+      "accept": [
+        "f3d4"
+      ],
+      "also": {
+        "f1c4": "That is the Scotch Gambit, a lesson of its own. This lesson takes the pawn back."
+      },
+      "after": "This is the Scotch Game. Here Black trades knights, as club players often do. Masters bring out a piece instead.",
+      "reply": "c6d4",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Take back with the queen. She stands strong in the center, and the knight that could have chased her from c6 is gone.",
+      "marks": {
+        "squares": [
+          "d4",
+          "e4",
+          "c6"
+        ],
+        "arrows": [
+          [
+            "d1",
+            "d4"
+          ]
+        ]
+      },
+      "accept": [
+        "d1d4"
+      ],
+      "after": "Black's knight attacks your pawn on e4. That is a slip: it lets your pawn chase the knight.",
+      "reply": "g8f6"
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn on e4 one square. It chases the knight, which cannot go to d5 because your queen guards it.",
+      "marks": {
+        "squares": [
+          "f6",
+          "d5"
+        ],
+        "arrows": [
+          [
+            "e4",
+            "e5"
+          ]
+        ]
+      },
+      "accept": [
+        "e4e5"
+      ],
+      "after": "The knight goes back home; on the edge it would soon be trapped. Your pieces get free squares while Black loses time.",
+      "reply": "f6g8"
+    }
+  ],
+  "summary": "White opens the center early, and the pieces get free squares. Black must not let a center pawn chase its pieces.",
+  "practice": {
+    "fen": "r1bqkbnr/pppp1ppp/2n5/8/3NP3/8/PPP2PPP/RNBQKB1R b KQkq - 0 4",
+    "side": "w"
+  }
+}

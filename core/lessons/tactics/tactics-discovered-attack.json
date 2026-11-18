@@ -1,0 +1,66 @@
+{
+  "id": "tactics-discovered-attack",
+  "course": "tactics",
+  "title": "Discovered attack",
+  "line": "Move one piece and uncover an attack by another.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "text": "Your knight stands between your rook and Black's queen. When the knight moves, the rook attacks the queen.",
+      "fen": "4q1k1/5ppp/8/8/4N3/8/5PPP/4R1K1 w - - 0 1",
+      "marks": {"squares":["e4"],"arrows":[["e1","e8"]]}
+    },
+    {
+      "type": "move",
+      "text": "Move the knight with check, so Black has no time to save the queen.",
+      "fen": "4q1k1/5ppp/8/8/4N3/8/5PPP/4R1K1 w - - 0 1",
+      "accept": ["e4f6"],
+      "wrong": {
+        "e4c5": "Then the queen takes on e1, and it is checkmate.",
+        "e4d6": "Then the queen takes on e1, and it is checkmate.",
+        "e4g5": "Then the queen takes on e1, and it is checkmate.",
+        "e4c3": "Then the queen takes on e1, and it is checkmate."
+      },
+      "hint": "Find the knight move that attacks the king.",
+      "after": "Black had to deal with the check, and the queen is still attacked.",
+      "reply": "g7f6",
+      "wins": 6,
+      "marks": {"squares":["e1"]}
+    },
+    {
+      "type": "move",
+      "text": "Take the queen.",
+      "accept": ["e1e8"],
+      "after": "You gave a knight, worth 3, for the queen, worth 9."
+    },
+    {
+      "type": "show",
+      "text": "The moving piece can check, capture or threaten. The piece behind does the damage while the other side answers.",
+      "fen": "3q1r1k/pp3ppp/3N4/8/8/8/PP3PPP/3R2K1 w - - 0 1",
+      "marks": {"squares":["d6"],"arrows":[["d1","d8"]]}
+    },
+    {
+      "type": "move",
+      "text": "Find the discovered attack: a knight move with check that uncovers the rook on d1.",
+      "fen": "3q1r1k/pp3ppp/3N4/8/8/8/PP3PPP/3R2K1 w - - 0 1",
+      "marks": {"squares":["d1"]},
+      "accept": ["d6f7"],
+      "wrong": {
+        "d6b7": "Then the queen takes on d1, and it is checkmate.",
+        "d6c8": "Then the queen takes on d1, and it is checkmate.",
+        "d6e8": "Then the queen takes on d1, and it is checkmate.",
+        "d6f5": "Then the queen takes on d1, and it is checkmate.",
+        "d6e4": "Then the queen takes on d1, and it is checkmate.",
+        "d6c4": "Then the queen takes on d1, and it is checkmate.",
+        "d6b5": "Then the queen takes on d1, and it is checkmate."
+      },
+      "hint": "The knight can take a pawn and check the king in the corner.",
+      "after": "Check from the knight, and the rook on d1 now attacks the queen.",
+      "wins": 10
+    }
+  ],
+  "summary": "Move a piece off a line and the piece behind it attacks. If the moving piece threatens too, two attacks land at once.",
+  "practice": {"fen":"3q1r1k/pp3Npp/8/8/8/8/PP3PPP/3R2K1 b - - 0 1","side":"w"},
+  "puzzles": "discovered"
+}

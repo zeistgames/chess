@@ -1,0 +1,46 @@
+{
+  "id": "endgames-trading",
+  "course": "endgames",
+  "title": "Trading into a won ending",
+  "line": "When ahead, trade pieces, not pawns.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "fen": "3r4/2k3pp/8/8/1PK5/8/6PP/3R4 w - - 0 1",
+      "text": "White is a pawn up. With the rooks on, Black's rook can harass the pawns. Without them, the extra pawn decides.",
+      "marks": {"squares":["b4","d1","d8"]}
+    },
+    {
+      "type": "show",
+      "fen": "3r4/2k3pp/8/8/1PK5/8/6PP/3R4 w - - 0 1",
+      "text": "So when you are ahead, trade pieces. Every trade makes your extra pawn count for more.",
+      "marks": {"arrows":[["d1","d8"]]}
+    },
+    {
+      "type": "move",
+      "fen": "3r4/2k3pp/8/8/1PK5/8/6PP/3R4 w - - 0 1",
+      "text": "Trade the rooks.",
+      "marks": {"arrows":[["d1","d8"]]},
+      "accept": ["d1d8"],
+      "hint": "The rooks face each other on the open file.",
+      "after": "Only kings and pawns are left, and your pawn on the edge is passed.",
+      "reply": "c7d8"
+    },
+    {
+      "type": "move",
+      "text": "Now lead with the king: step in front of your passed pawn.",
+      "marks": {"squares":["b4","b5"]},
+      "accept": ["c4b5"],
+      "also": {
+        "c4c5": "That works too: the king goes up beside the pawn. This lesson steps in front of it.",
+        "h2h4": "That works too. This lesson brings the king up first."
+      },
+      "hint": "The square just in front of the pawn.",
+      "after": "The king leads and the pawn follows, and the black king is too far away."
+    }
+  ],
+  "summary": "When you are ahead, trade pieces, not pawns. The fewer pieces left, the more an extra pawn counts.",
+  "practice": {"fen":"3k4/6pp/8/8/1PK5/8/6PP/8 w - - 0 2","side":"w"},
+  "puzzles": "endgames"
+}

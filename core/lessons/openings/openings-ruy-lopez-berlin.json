@@ -1,0 +1,193 @@
+{
+  "id": "openings-ruy-lopez-berlin",
+  "course": "openings",
+  "title": "Ruy Lopez: Berlin Defense",
+  "line": "Black attacks the center pawn at once, and the queens often come off early.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "text": "The opening moves of the Ruy Lopez.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {
+        "squares": [
+          "e5",
+          "c6"
+        ]
+      },
+      "play": [
+        "e2e4",
+        "e7e5",
+        "g1f3",
+        "b8c6"
+      ]
+    },
+    {
+      "type": "move",
+      "text": "Bring the bishop out to attack the knight that guards the pawn on e5.",
+      "marks": {
+        "squares": [
+          "c6",
+          "e5",
+          "e4"
+        ],
+        "arrows": [
+          [
+            "f1",
+            "b5"
+          ]
+        ]
+      },
+      "accept": [
+        "f1b5"
+      ],
+      "after": "This is the Berlin Defense: the other knight comes out and attacks your pawn on e4.",
+      "reply": "g8f6",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Castle and let the pawn go. You will get it back.",
+      "marks": {
+        "squares": [
+          "e4",
+          "g1"
+        ],
+        "arrows": [
+          [
+            "e1",
+            "g1"
+          ]
+        ]
+      },
+      "accept": [
+        "e1g1"
+      ],
+      "also": {
+        "d2d3": "Guarding the pawn is the other main way, and keeps the queens on. This lesson castles."
+      },
+      "reply": "f6e4",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn in front of your queen two squares. It attacks the pawn on e5 and opens lines toward the black king.",
+      "marks": {
+        "squares": [
+          "e5",
+          "e8"
+        ],
+        "arrows": [
+          [
+            "d2",
+            "d4"
+          ]
+        ]
+      },
+      "accept": [
+        "d2d4"
+      ],
+      "after": "The knight steps back and attacks your bishop.",
+      "reply": "e4d6",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Take the knight on c6. It removes a guard of the pawn on e5.",
+      "marks": {
+        "squares": [
+          "c6",
+          "e5"
+        ],
+        "arrows": [
+          [
+            "b5",
+            "c6"
+          ]
+        ]
+      },
+      "accept": [
+        "b5c6"
+      ],
+      "also": {
+        "d4e5": "Taking the pawn first is also played. This lesson takes the knight first."
+      },
+      "reply": "d7c6",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Take the pawn on e5. It also chases the knight.",
+      "marks": {
+        "squares": [
+          "e5",
+          "d6"
+        ],
+        "arrows": [
+          [
+            "d4",
+            "e5"
+          ]
+        ]
+      },
+      "accept": [
+        "d4e5"
+      ],
+      "reply": "d6f5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Trade queens with check. Black's king has to take back and loses the right to castle.",
+      "marks": {
+        "squares": [
+          "d8"
+        ],
+        "arrows": [
+          [
+            "d1",
+            "d8"
+          ]
+        ]
+      },
+      "accept": [
+        "d1d8"
+      ],
+      "also": {
+        "d1e2": "Keeping the queens is also played. This lesson trades them."
+      },
+      "after": "The Berlin endgame. Black's king can no longer castle, but Black has the two bishops and no weak points.",
+      "reply": "e8d8",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the knight out. Your pawn on e5 gives you space, and on the king side you have four pawns to three.",
+      "marks": {
+        "squares": [
+          "e5"
+        ],
+        "arrows": [
+          [
+            "b1",
+            "c3"
+          ]
+        ]
+      },
+      "accept": [
+        "b1c3"
+      ],
+      "also": {
+        "h2h3": "That is also played. This lesson brings the knight out."
+      },
+      "after": "Black will try to free its bishops. You will try to use the extra pawn on the king side.",
+      "reply": "d8e8",
+      "taught": true
+    }
+  ],
+  "summary": "Black wins the center pawn for a moment, gives it back, and trades queens for a solid endgame.",
+  "practice": {
+    "fen": "r1b1kb1r/ppp2ppp/2p5/4Pn2/8/2N2N2/PPP2PPP/R1B2RK1 w - - 2 10",
+    "side": "w"
+  }
+}

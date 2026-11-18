@@ -1,0 +1,92 @@
+{
+  "id": "checkmates-damiano-dovetail",
+  "course": "checkmates",
+  "title": "Damiano's and dovetail mates",
+  "line": "The queen beside the king on a diagonal, guarded, with the king's own pieces behind it.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "text": "Damiano's mate: a pawn guards the square next to the king where the queen will land. The king's own rook and pawn block it in.",
+      "fen": "r4rk1/pp1q2p1/2p3P1/7Q/8/8/PP3PPP/6K1 w - - 0 1",
+      "marks": {
+        "squares": [
+          "h7",
+          "f8",
+          "g7"
+        ],
+        "arrows": [
+          [
+            "g6",
+            "h7"
+          ]
+        ]
+      }
+    },
+    {
+      "type": "move",
+      "text": "Mate with the queen.",
+      "accept": [
+        "h5h7"
+      ],
+      "hint": "The queen goes up the edge to the square the pawn guards.",
+      "after": "Checkmate. Your pawn guards the queen and takes f7, and the king's own rook and pawn take the rest.",
+      "mate": true,
+      "marks": {
+        "squares": [
+          "f7"
+        ]
+      }
+    },
+    {
+      "type": "move",
+      "text": "The dovetail: the queen checks from diagonally next to the king, guarded, and the king's own pieces fill the two squares behind it.",
+      "fen": "r3r3/pp2kppp/2n5/4P3/8/8/PP3PPP/3Q2K1 w - - 0 1",
+      "accept": [
+        "d1d6"
+      ],
+      "hint": "The queen goes up the open file to the square your pawn guards.",
+      "after": "Checkmate. The rook and pawn behind the king block it, and the queen takes every other square.",
+      "mate": true,
+      "marks": {
+        "squares": [
+          "e8",
+          "f7"
+        ]
+      }
+    },
+    {
+      "type": "move",
+      "text": "Now you are Black, and White threatens Damiano's mate on h7. Your own rook blocks your king: move it.",
+      "fen": "r4rk1/pp1q2p1/2p3P1/7Q/8/8/PP3PPP/6K1 b - - 0 1",
+      "side": "b",
+      "accept": [
+        "f8d8",
+        "f8e8",
+        "f8f6",
+        "f8f5",
+        "f8f4"
+      ],
+      "wrong": {
+        "a7a6": "Then the queen comes to h7, and it is mate.",
+        "b7b6": "Then the queen comes to h7, and it is mate.",
+        "a8e8": "Then the queen comes to h7, and it is mate.",
+        "d7e6": "Then the queen comes to h7, and it is mate."
+      },
+      "hint": "Move the rook that stands beside your king.",
+      "after": "The king can step aside now, so the queen on h7 is no longer mate.",
+      "marks": {
+        "squares": [
+          "h7"
+        ],
+        "arrows": [
+          [
+            "h5",
+            "h7"
+          ]
+        ]
+      }
+    }
+  ],
+  "summary": "A guarded queen beside the king on a diagonal mates when the king's own pieces fill the squares behind it."
+}

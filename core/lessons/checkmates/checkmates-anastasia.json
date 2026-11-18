@@ -1,0 +1,56 @@
+{
+  "id": "checkmates-anastasia",
+  "course": "checkmates",
+  "title": "Anastasia's mate",
+  "line": "Knight and rook against a king on the edge.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "text": "Anastasia's mate: a knight deep in the camp takes two squares from the king, its own pawn takes a third, and a rook checks on the edge.",
+      "fen": "r4r2/pp2Nppk/1qp5/8/8/3R4/PP3PPP/6K1 w - - 0 1",
+      "marks": {"squares":["h7","g7"],"arrows":[["d3","h3"]]}
+    },
+    {
+      "type": "pick",
+      "text": "Tap the two squares beside the black king that the knight takes.",
+      "accept": ["g8","g6"],
+      "all": true,
+      "hint": "A knight jumps two squares one way and one square the other.",
+      "after": "The knight takes both, and the king's own pawn blocks the square between them."
+    },
+    {
+      "type": "move",
+      "text": "Mate with the rook on the edge of the board.",
+      "accept": ["d3h3"],
+      "hint": "The rook slides along its row to the file the king stands on.",
+      "after": "Checkmate. The rook holds the whole edge, and the knight and pawn take the rest.",
+      "mate": true
+    },
+    {
+      "type": "show",
+      "text": "Here a pawn stands in front of the king, so the edge is closed. The queen can open it by giving herself up.",
+      "fen": "r4r1k/pp2Nppp/1qp5/7Q/8/3R4/PP3PPP/6K1 w - - 0 1",
+      "marks": {"squares":["h7"],"arrows":[["h5","h7"]]}
+    },
+    {
+      "type": "move",
+      "text": "Capture the pawn in front of the king with your queen, with check.",
+      "accept": ["h5h7"],
+      "hint": "The queen goes straight down the edge of the board.",
+      "after": "The king has to take the queen, and now it stands on the open edge.",
+      "reply": "h8h7",
+      "sacrifice": true,
+      "marks": {"squares":["h7"]}
+    },
+    {
+      "type": "move",
+      "text": "Mate with the rook.",
+      "accept": ["d3h3"],
+      "hint": "The same rook move as before.",
+      "after": "Anastasia's mate. The queen was a price worth paying.",
+      "mate": true
+    }
+  ],
+  "summary": "A knight that takes two squares beside the king, with a rook on the edge, mates. A queen given up can open the edge."
+}

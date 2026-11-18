@@ -1,0 +1,191 @@
+{
+  "id": "openings-philidor-defense-ideas",
+  "course": "openings",
+  "title": "Philidor Defense: the ideas",
+  "line": "A pawn guards the center pawn: solid, with less room for the pieces.",
+  "side": "b",
+  "steps": [
+    {
+      "type": "show",
+      "text": "White starts by pushing the pawn in front of its king two squares, into the center.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {
+        "arrows": [
+          [
+            "e2",
+            "e4"
+          ]
+        ]
+      },
+      "play": [
+        "e2e4"
+      ]
+    },
+    {
+      "type": "move",
+      "text": "Push your king pawn two squares too. It takes your share of the center.",
+      "marks": {
+        "arrows": [
+          [
+            "e7",
+            "e5"
+          ]
+        ]
+      },
+      "accept": [
+        "e7e5"
+      ],
+      "also": {
+        "c7c5": "That is the Sicilian Defense, also sound. This lesson pushes the king pawn.",
+        "e7e6": "That is the French Defense, also sound. This lesson pushes the king pawn.",
+        "c7c6": "That is the Caro-Kann Defense, also sound. This lesson pushes the king pawn."
+      },
+      "after": "White's knight attacks your pawn.",
+      "reply": "g1f3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Guard the pawn with a pawn: move the pawn in front of your queen one square.",
+      "marks": {
+        "squares": [
+          "e5",
+          "f8"
+        ],
+        "arrows": [
+          [
+            "d7",
+            "d6"
+          ]
+        ]
+      },
+      "accept": [
+        "d7d6"
+      ],
+      "also": {
+        "b8c6": "Guarding with the knight is also sound and leads to other openings. This lesson guards with the pawn.",
+        "g8f6": "That is Petrov's Defense, also sound. This lesson guards the pawn."
+      },
+      "after": "This is the Philidor Defense: solid, but it shuts in your bishop on f8, and masters seldom choose it. White attacks the pawn again.",
+      "reply": "d2d4",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Take the pawn on d4. You give up the center, but your pieces get free squares.",
+      "marks": {
+        "squares": [
+          "d4"
+        ],
+        "arrows": [
+          [
+            "e5",
+            "d4"
+          ]
+        ]
+      },
+      "accept": [
+        "e5d4"
+      ],
+      "also": {
+        "g8f6": "That is also played. This lesson takes the pawn.",
+        "b8d7": "Keeping the pawn on e5 is the Hanham Variation, a lesson of its own. This lesson takes."
+      },
+      "reply": "f3d4",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the knight out to attack White's pawn on e4.",
+      "marks": {
+        "squares": [
+          "e4"
+        ],
+        "arrows": [
+          [
+            "g8",
+            "f6"
+          ]
+        ]
+      },
+      "accept": [
+        "g8f6"
+      ],
+      "reply": "b1c3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the bishop out to e7, the square the pawn left free. It clears the way to castle.",
+      "marks": {
+        "squares": [
+          "e7"
+        ],
+        "arrows": [
+          [
+            "f8",
+            "e7"
+          ]
+        ]
+      },
+      "accept": [
+        "f8e7"
+      ],
+      "reply": "c1f4",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Castle. Your king leaves the center, where White has more room.",
+      "marks": {
+        "squares": [
+          "g8"
+        ],
+        "arrows": [
+          [
+            "e8",
+            "g8"
+          ]
+        ]
+      },
+      "accept": [
+        "e8g8"
+      ],
+      "also": {
+        "b8c6": "That is also played. This lesson castles first."
+      },
+      "reply": "d1d2",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Move the pawn on c7 one square. Next your queen pawn can go to d5 and strike at the center.",
+      "marks": {
+        "squares": [
+          "d5"
+        ],
+        "arrows": [
+          [
+            "c7",
+            "c6"
+          ]
+        ]
+      },
+      "accept": [
+        "c7c6"
+      ],
+      "also": {
+        "a7a6": "That is also played. This lesson gets the push in the center ready.",
+        "f8e8": "That is also played. This lesson gets the push in the center ready."
+      },
+      "after": "White has more room. Black stays solid, and the pawn push to d5 is its way to fight back.",
+      "reply": "e1c1",
+      "taught": true
+    }
+  ],
+  "summary": "A pawn guards the center pawn. Black gives up the center, brings its pieces out, and waits for its pawn break.",
+  "practice": {
+    "fen": "rnbqkbnr/ppp2ppp/3p4/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 3",
+    "side": "b"
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "id": "basics-reading-moves",
+  "course": "basics",
+  "title": "Reading moves",
+  "line": "How a move is written: e4, Nf3, Bxc6, O-O, and what + and # mean.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "text": "A move is written as the piece's letter, then the square it goes to. K is the king, Q the queen, R a rook, B a bishop and N a knight.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
+    },
+    {
+      "type": "move",
+      "text": "A pawn move has no letter: e4 means a pawn goes to e4. Play e4.",
+      "accept": ["e2e4"],
+      "after": "Black answered e5.",
+      "reply": "e7e5"
+    },
+    {
+      "type": "move",
+      "text": "Play Nf3: a knight to f3.",
+      "accept": ["g1f3"],
+      "after": "Black answered Nc6.",
+      "reply": "b8c6"
+    },
+    {
+      "type": "move",
+      "text": "Play Bb5: a bishop to b5.",
+      "accept": ["f1b5"],
+      "after": "Black answered a6, attacking the bishop.",
+      "reply": "a7a6"
+    },
+    {
+      "type": "move",
+      "text": "An x means a capture: a piece moves onto an enemy piece and takes it off the board. Play Bxc6.",
+      "accept": ["b5c6"],
+      "after": "Black answered dxc6. A pawn capture is written with the file the pawn came from.",
+      "reply": "d7c6"
+    },
+    {
+      "type": "move",
+      "text": "O-O is castling, a move of the king and a rook together, shown in a later lesson. Play O-O.",
+      "accept": ["e1g1"],
+      "hint": "Move the king two squares to the right, to g1.",
+      "after": "The king went to g1 and the rook to f1. On the other side it is written O-O-O."
+    },
+    {
+      "type": "show",
+      "text": "A + means check, an attack on the king. A # means checkmate, which ends the game. Black's last move here was Qh4#.",
+      "fen": "rnb1kbnr/pppp1ppp/8/4p3/6Pq/5P2/PPPPP2P/RNBQKBNR w KQkq - 1 3",
+      "marks": {"squares":["e1"],"arrows":[["h4","e1"]]}
+    }
+  ],
+  "summary": "A move is the piece's letter and its square. An x is a capture, O-O is castling, + is check and # is checkmate."
+}

@@ -1,0 +1,75 @@
+{
+  "id": "checkmates-back-rank",
+  "course": "checkmates",
+  "title": "Back-rank mate",
+  "line": "A rook or queen on the last rank, the king boxed in by its own pawns.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "text": "The king on g8 is boxed in by its own pawns. A rook on the back rank, the king's first row, gives mate.",
+      "fen": "3R2k1/5ppp/8/8/8/8/5PPP/6K1 b - - 0 1",
+      "marks": {
+        "squares": ["g8","f7","g7","h7"],
+        "arrows": [["d8","g8"]]
+      }
+    },
+    {
+      "type": "move",
+      "text": "Black's queen is far away. Mate on the back rank.",
+      "fen": "6k1/5ppp/8/8/8/1q6/5PPP/2R3K1 w - - 0 1",
+      "accept": ["c1c8"],
+      "hint": "The rook moves straight up to the back rank.",
+      "after": "Checkmate. The pawns on f7, g7 and h7 take every square from their own king.",
+      "mate": true,
+      "marks": {
+        "squares": ["f7","g7","h7"]
+      }
+    },
+    {
+      "type": "show",
+      "text": "Here Black's two rooks guard the back rank. Against two white rooks on the same file, the first one takes and the second one mates.",
+      "fen": "r3r1k1/5ppp/8/8/8/8/4RPPP/4R1K1 w - - 0 1",
+      "marks": {"squares":["e8"],"arrows":[["e2","e8"]]}
+    },
+    {
+      "type": "move",
+      "text": "Take the rook on e8, with check.",
+      "fen": "r3r1k1/5ppp/8/8/8/8/4RPPP/4R1K1 w - - 0 1",
+      "marks": {"squares":["e8","a8"]},
+      "accept": ["e2e8"],
+      "after": "The rook on a8 had to take back, and now it stands alone on e8.",
+      "reply": "a8e8"
+    },
+    {
+      "type": "move",
+      "text": "Now mate with the other rook.",
+      "accept": ["e1e8"],
+      "after": "Checkmate on the back rank.",
+      "mate": true
+    },
+    {
+      "type": "move",
+      "text": "Now you are Black, and the back rank is weak. Give your king a square first: move one of the pawns in front of it.",
+      "fen": "2r3k1/5ppp/8/8/8/8/P4PPP/3R2K1 b - - 0 1",
+      "side": "b",
+      "accept": ["h7h6","h7h5","g7g6","f7f6","g7g5"],
+      "wrong": {
+        "c8d8": "Then the rook takes on d8, and it is checkmate.",
+        "c8c7": "Then the rook goes to d8, and it is checkmate.",
+        "c8c6": "Then the rook goes to d8, and it is checkmate.",
+        "c8c5": "Then the rook goes to d8, and it is checkmate.",
+        "c8c4": "Then the rook goes to d8, and it is checkmate.",
+        "c8c3": "Then the rook goes to d8, and it is checkmate.",
+        "c8c2": "Then the rook goes to d8, and it is checkmate.",
+        "f7f5": "That gives the king a square, but the pawn on f5 has no pawn beside it to guard it."
+      },
+      "hint": "A pawn that steps forward leaves an empty square for the king.",
+      "after": "The king has a square. A check on the back rank is no longer mate.",
+      "marks": {"squares":["d8","f5"]}
+    }
+  ],
+  "summary": "A king behind three unmoved pawns can be mated on its back rank. Give it a square in time.",
+  "practice": {"fen":"2r3k1/5pp1/7p/8/8/8/P4PPP/3R2K1 w - - 0 2","side":"b"},
+  "puzzles": "backrank"
+}

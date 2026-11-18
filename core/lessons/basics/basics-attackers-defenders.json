@@ -1,0 +1,53 @@
+{
+  "id": "basics-attackers-defenders",
+  "course": "basics",
+  "title": "Attackers and defenders",
+  "line": "Count them before you capture.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "text": "Count before you capture. The pawn on e5 is attacked twice, by the knight and the bishop, and defended once, by the knight on c6.",
+      "fen": "r1bqkb1r/pppp1ppp/2n2n2/4p3/8/1P3N2/PBPPPPPP/RN1QKB1R w KQkq - 4 4",
+      "marks": {
+        "squares": ["e5"],
+        "arrows": [["f3","e5"],["b2","e5"],["c6","e5"]]
+      }
+    },
+    {
+      "type": "move",
+      "text": "Two attackers against one defender: capture the pawn with your knight.",
+      "accept": ["f3e5"],
+      "after": "Black's knight captured back. Now your bishop is the second attacker.",
+      "reply": "c6e5",
+      "wins": 1
+    },
+    {
+      "type": "move",
+      "text": "Capture back with the bishop.",
+      "accept": ["b2e5"],
+      "after": "Knights traded, and you have an extra pawn."
+    },
+    {
+      "type": "pick",
+      "text": "Count again. Tap every white piece that attacks the pawn on d5.",
+      "fen": "rnbqkbnr/ppp2ppp/4p3/3p4/2PP4/2N5/PP2PPPP/R1BQKBNR b KQkq - 1 3",
+      "side": "w",
+      "marks": {"squares":["d5"]},
+      "accept": ["c4","c3"],
+      "all": true,
+      "after": "Two attackers: a pawn and a knight."
+    },
+    {
+      "type": "pick",
+      "text": "Now tap every black piece that defends d5.",
+      "fen": "rnbqkbnr/ppp2ppp/4p3/3p4/2PP4/2N5/PP2PPPP/R1BQKBNR b KQkq - 1 3",
+      "side": "w",
+      "marks": {"squares":["d5"]},
+      "accept": ["e6","d8"],
+      "all": true,
+      "after": "Two defenders, a pawn and the queen. Capturing twice on d5 would lose a knight for a pawn."
+    }
+  ],
+  "summary": "Count attackers and defenders. Capture when you have more attackers, and capture first with the piece worth less."
+}

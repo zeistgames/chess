@@ -1,0 +1,69 @@
+{
+  "id": "endgames-queen-pawn",
+  "course": "endgames",
+  "title": "Queen against pawn",
+  "line": "Usually the queen wins. With a bishop or rook pawn on the seventh, it may not.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "fen": "8/8/6K1/8/8/8/3p2Q1/3k4 w - - 0 1",
+      "text": "The queen has driven the black king in front of its own pawn. While it stands there, the pawn cannot move.",
+      "marks": {"squares":["d1","d2"]}
+    },
+    {
+      "type": "move",
+      "fen": "8/8/6K1/8/8/8/3p2Q1/3k4 w - - 0 1",
+      "text": "That gives you a free move. Bring your king one step closer.",
+      "accept": ["g6f5"],
+      "also": {
+        "g6g5": "That is a step closer too. This lesson takes the other one.",
+        "g6f6": "That works too, though it is not a step closer. This lesson steps toward the pawn."
+      },
+      "hint": "Step the king toward the pawn.",
+      "after": "Each time the king blocks its pawn, your king gets a step nearer.",
+      "reply": "d1c2"
+    },
+    {
+      "type": "move",
+      "text": "The king stepped aside, and the pawn is pinned. Keep the pin, and also guard the square in front of the pawn.",
+      "marks": {"squares":["c2","d2","d1"]},
+      "accept": ["g2e2"],
+      "also": {
+        "g2f2": "That keeps the pin too, and it works. This lesson also guards the square in front of the pawn.",
+        "g2h2": "That keeps the pin too, and it works. This lesson also guards the square in front of the pawn."
+      },
+      "hint": "Stay on the pawn's row, right next to it.",
+      "after": "The pawn is still pinned, and the square in front of it is yours. Now your king can walk up."
+    },
+    {
+      "type": "show",
+      "fen": "8/8/6K1/8/8/3Q4/2p5/k7 w - - 0 1",
+      "text": "A bishop pawn, on the c-file or the f-file, can draw when the white king is far. Here, if the queen takes the pawn, it is stalemate.",
+      "marks": {"squares":["a1","c2"]}
+    },
+    {
+      "type": "show",
+      "fen": "8/8/6K1/8/8/1Q6/p7/k7 b - - 0 1",
+      "side": "b",
+      "text": "A rook pawn can draw the same way. Here the queen has taken the last free squares, and Black, to move, is stalemated.",
+      "marks": {"squares":["a1","a2"]}
+    },
+    {
+      "type": "move",
+      "fen": "8/8/6K1/1Q6/8/8/1kp5/8 b - - 0 1",
+      "side": "b",
+      "text": "You have Black, with a bishop pawn, and you are in check. Leave the pawn and step toward the corner.",
+      "marks": {"squares":["a1","c2"]},
+      "accept": ["b2a1","b2a2"],
+      "also": {
+        "b2a3": "That holds too here, because the white king is so far away. This lesson heads for the corner.",
+        "b2c1": "That holds too here, because the white king is so far away. This lesson heads for the corner.",
+        "b2c3": "That holds too here, because the white king is so far away. This lesson heads for the corner."
+      },
+      "hint": "The edge file, toward the corner.",
+      "after": "Once your king is in the corner, taking the pawn leaves it no move, and the white king is too far to help."
+    }
+  ],
+  "summary": "The queen forces the king in front of its pawn and her king comes closer. Bishop and rook pawns may hold."
+}

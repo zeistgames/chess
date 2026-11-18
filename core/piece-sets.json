@@ -1,0 +1,28 @@
+{
+  "about": "Chess piece sets for Zeist Chess, as data, so the iOS app, the web and the main Zeist app offer the same sets. Sets differ in shape only: every set is drawn in Zeist's ivory and ebony (tokens: piece), lit the same way. The iOS app renders them with ios/scripts/pieces.py from ios/art/pieces-<id>/, whose README quotes each license. license is an SPDX identifier.",
+  "format": 1,
+  "default": "zeist",
+  "sets": [
+    {
+      "id": "zeist",
+      "name": "Zeist",
+      "author": "Amrith",
+      "license": "AGPL-3.0-or-later",
+      "source": "https://zeist.gg"
+    },
+    {
+      "id": "cburnett",
+      "name": "Classic",
+      "author": "Colin M.L. Burnett",
+      "license": "GPL-2.0-or-later",
+      "source": "https://github.com/lichess-org/lila/tree/master/public/piece/cburnett"
+    },
+    {
+      "id": "pirouetti",
+      "name": "Slender",
+      "author": "pirouetti",
+      "license": "AGPL-3.0-or-later",
+      "source": "https://github.com/lichess-org/lila/tree/master/public/piece/pirouetti"
+    }
+  ]
+}

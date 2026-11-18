@@ -1,0 +1,67 @@
+{
+  "id": "endgames-triangulation",
+  "course": "endgames",
+  "title": "Triangulation",
+  "line": "Lose a move with the king and hand the turn to the other side.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "fen": "1k6/3p4/1K1P4/8/8/8/8/8 w - - 0 1",
+      "text": "With Black to move here, the black king gives way and the pawn on d7 falls. With White to move, it is a draw.",
+      "marks": {"squares":["b6","b8","d7"]}
+    },
+    {
+      "type": "show",
+      "fen": "2k5/3p4/3P4/1K6/8/8/8/8 w - - 0 1",
+      "text": "White cannot pass a turn. Your king walks a triangle of three squares. Black's king, hemmed in by the pawn and the edge, cannot copy it.",
+      "marks": {"squares":["b5","a6","b6","b8","c8"]}
+    },
+    {
+      "type": "move",
+      "fen": "2k5/3p4/3P4/1K6/8/8/8/8 w - - 0 1",
+      "text": "Start the triangle: step to its corner on the edge.",
+      "marks": {"squares":["b5","a6","b6"]},
+      "accept": ["b5a6"],
+      "wrong": {
+        "b5b6": "Black's king faces yours, and you are the one who has to move. The game is drawn.",
+        "b5c5": "That gives up the triangle, and the black king holds its pawn. The game is drawn.",
+        "b5c4": "That gives up the triangle, and the black king holds its pawn. The game is drawn."
+      },
+      "hint": "Go to the ringed square on the edge of the board.",
+      "after": "Black cannot copy the triangle: its king is hemmed in.",
+      "reply": "c8b8"
+    },
+    {
+      "type": "move",
+      "text": "Now close the triangle.",
+      "marks": {"squares":["b5","a6","b6"]},
+      "accept": ["a6b6"],
+      "wrong": {
+        "a6b5": "That walks back, and the black king slips out along the edge. The game is drawn.",
+        "a6a5": "That walks away, and the black king holds its pawn. The game is drawn."
+      },
+      "hint": "The last ringed square.",
+      "after": "The same position as before, but now Black has to move.",
+      "reply": "b8c8"
+    },
+    {
+      "type": "move",
+      "text": "Black had to give way. Go in along the edge toward the pawn.",
+      "marks": {"squares":["d7"],"arrows":[["b6","a7"]]},
+      "accept": ["b6a7"],
+      "also": {
+        "b6a6": "That walks the triangle once more, and it works again. This lesson goes in at once."
+      },
+      "wrong": {
+        "b6c5": "That walks away, and the black king holds its pawn. The game is drawn.",
+        "b6b5": "That walks away, and the black king holds its pawn. The game is drawn."
+      },
+      "hint": "Follow the arrow.",
+      "after": "Next your king goes around the black king, and the pawn on d7 falls.",
+      "reply": "c8d8"
+    }
+  ],
+  "summary": "When the same position with the other side to move would be lost for them, walk a triangle to hand over the turn.",
+  "practice": {"fen":"3k4/K2p4/3P4/8/8/8/8/8 w - - 6 4","side":"w"}
+}

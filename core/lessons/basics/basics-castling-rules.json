@@ -1,0 +1,54 @@
+{
+  "id": "basics-castling-rules",
+  "course": "basics",
+  "title": "When you cannot castle",
+  "line": "After the king or that rook has moved, out of check, through check or into check.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "text": "If the king has moved, even once and back, it can never castle in that game. A rook that has moved cannot castle either.",
+      "fen": "rnbqk2r/pppp1ppp/5n2/2b1p3/2B1P3/5N2/PPPP1PPP/RNBQK2R w - - 8 6",
+      "marks": {"squares":["e1","e8"]}
+    },
+    {
+      "type": "show",
+      "text": "A king attacked by an enemy piece is in check. A king in check may not castle: here the bishop on b4 gives check.",
+      "fen": "r1bqk2r/pppp1ppp/2n2n2/4p3/1bB1P3/3P1N2/PPP2PPP/RNBQK2R w KQkq - 1 5",
+      "marks": {"squares":["e1"],"arrows":[["b4","e1"]]}
+    },
+    {
+      "type": "pick",
+      "text": "The king may not cross a square an enemy piece attacks. Tap the square the king would cross to castle short.",
+      "fen": "6k1/5ppp/8/8/2b5/8/5PPP/4K2R w K - 0 1",
+      "accept": ["f1"],
+      "all": false,
+      "wrong": {"g1":"The king would land there, but first it crosses the square next to it."},
+      "after": "The bishop attacks the square next to the king, so White cannot castle short."
+    },
+    {
+      "type": "pick",
+      "text": "Nor may the king land on an attacked square. Tap the square where it would land.",
+      "fen": "6rk/5p1p/8/8/8/8/5P1P/4K2R w K - 0 1",
+      "accept": ["g1"],
+      "all": false,
+      "after": "The rook attacks that square, so castling short is not allowed."
+    },
+    {
+      "type": "move",
+      "text": "Here the short side is closed by the bishop on c4. Castle on the long side.",
+      "fen": "r5k1/5ppp/8/8/2b5/P7/1PP2PPP/R3K2R w KQ - 0 1",
+      "marks": {"squares":["c4"]},
+      "accept": ["e1c1"],
+      "also": {
+        "b2b3": "That is a sound move too, but this step asks you to castle.",
+        "a3a4": "That is a sound move too, but this step asks you to castle.",
+        "a1d1": "That is a sound move too, but this step asks you to castle.",
+        "f2f3": "That is a sound move too, but this step asks you to castle.",
+        "h2h4": "That is a sound move too, but this step asks you to castle."
+      },
+      "after": "The king crossed one square and landed on the next, and neither is attacked."
+    }
+  ],
+  "summary": "No castling once the king or that rook has moved, while in check, or across or onto an attacked square."
+}

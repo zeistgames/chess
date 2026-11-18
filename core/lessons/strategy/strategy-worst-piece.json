@@ -1,0 +1,52 @@
+{
+  "id": "strategy-worst-piece",
+  "course": "strategy",
+  "title": "Your worst piece",
+  "line": "Find the piece doing the least, and give it a better square.",
+  "side": "b",
+  "steps": [
+    {
+      "type": "show",
+      "fen": "r1b2rk1/2q1bppp/p2p1n2/np2p3/3PP3/5N1P/PPBN1PP1/R1BQR1K1 b - - 0 13",
+      "text": "Before a quiet move, ask which of your pieces does the least. Here it is Black's knight on a5, out on the edge.",
+      "marks": {"squares":["a5"]}
+    },
+    {
+      "type": "pick",
+      "text": "Tap every square the knight on a5 can move to.",
+      "marks": {"squares":["a5"]},
+      "accept": ["b7","c6","c4","b3"],
+      "all": true,
+      "hint": "A knight jumps two squares one way and one square to the side.",
+      "after": "Only four squares, and from the edge it guards nothing in the center."
+    },
+    {
+      "type": "move",
+      "text": "Bring the knight back toward the middle, where it hits White's center pawn.",
+      "marks": {"squares":["d4","b4"],"arrows":[["a5","c6"]]},
+      "accept": ["a5c6"],
+      "also": {
+        "c8d7": "That is as good. This lesson first moves the knight, the worst piece."
+      },
+      "after": "White pushes a pawn to keep your knight out of b4.",
+      "reply": "a2a3"
+    },
+    {
+      "type": "pick",
+      "text": "Count again. Tap every square the knight can move to now.",
+      "marks": {"squares":["c6"]},
+      "accept": ["a7","b8","d8","d4","b4","a5"],
+      "all": true,
+      "after": "More squares, and it presses on the center."
+    },
+    {
+      "type": "move",
+      "text": "Now the piece doing the least is the bishop still at home. Bring it out one square.",
+      "marks": {"squares":["c8"],"arrows":[["c8","d7"]]},
+      "accept": ["c8d7"],
+      "after": "The bishop joins the game, and the rook behind it can come out later."
+    }
+  ],
+  "summary": "Find your piece doing the least and give it a better square. A knight on the edge is often the one.",
+  "practice": {"fen":"r4rk1/2qbbppp/p1np1n2/1p2p3/3PP3/P4N1P/1PBN1PP1/R1BQR1K1 w - - 1 15","side":"b"}
+}

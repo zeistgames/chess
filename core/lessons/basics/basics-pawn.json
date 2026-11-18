@@ -1,0 +1,50 @@
+{
+  "id": "basics-pawn",
+  "course": "basics",
+  "title": "The pawn",
+  "line": "Forward one, two on its first move, and it captures diagonally.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "pick",
+      "text": "A pawn moves one square straight ahead, or two from its starting square. Tap every square the pawn on c2 can reach.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {"squares":["c2"]},
+      "accept": ["c3","c4"],
+      "all": true
+    },
+    {
+      "type": "pick",
+      "text": "A pawn cannot capture straight ahead, so a piece in front of it stops it. Tap the white pawn that cannot move.",
+      "fen": "rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2",
+      "accept": ["e4"],
+      "all": false,
+      "after": "The black pawn in front of it blocks it."
+    },
+    {
+      "type": "move",
+      "text": "A pawn captures one square diagonally forward. Capture the pawn on d5.",
+      "fen": "rnbqkbnr/ppp1pppp/8/3p4/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2",
+      "marks": {"squares":["d5"]},
+      "accept": ["e4d5"],
+      "wrong": {"e4e5":"That moves straight ahead. A pawn captures diagonally."},
+      "after": "The pawn moved diagonally to capture."
+    },
+    {
+      "type": "pick",
+      "text": "Tap every square this pawn can reach.",
+      "fen": "4k3/8/8/2npn3/3P4/8/8/4K3 w - - 0 1",
+      "marks": {"squares":["d4"]},
+      "accept": ["c5","e5"],
+      "all": true,
+      "after": "It is blocked straight ahead, but it can capture either knight."
+    },
+    {
+      "type": "show",
+      "text": "A pawn never moves backward. One that reaches the far row becomes another piece, as the lesson on promotion shows.",
+      "fen": "8/4P3/8/6k1/8/8/5K2/8 w - - 0 1",
+      "marks": {"arrows":[["e7","e8"]]}
+    }
+  ],
+  "summary": "A pawn moves straight ahead, one square or two from the start, and captures one square diagonally forward."
+}

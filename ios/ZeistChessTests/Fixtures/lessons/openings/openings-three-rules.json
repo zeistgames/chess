@@ -1,0 +1,53 @@
+{
+  "id": "openings-three-rules",
+  "course": "openings",
+  "title": "Three rules for the opening",
+  "line": "Take the center, bring out the knights and bishops, castle.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "text": "The four squares in the middle are the center. A piece there reaches the most squares.",
+      "marks": { "squares": ["d4", "e4", "d5", "e5"] }
+    },
+    {
+      "type": "move",
+      "text": "Take the center with a pawn.",
+      "marks": { "squares": ["d4", "e4"] },
+      "accept": ["e2e4", "d2d4"],
+      "wrong": { "a2a3": "That pawn does nothing for the center." },
+      "hint": "Move a pawn in front of the king or the queen.",
+      "after": "A pawn in the center, and lines open for the pieces behind it.",
+      "reply": { "e2e4": "e7e5", "d2d4": "d7d5" },
+      "taught": true
+    },
+    {
+      "type": "pick",
+      "text": "Knights come out first. Tap both of them.",
+      "accept": ["b1", "g1"],
+      "all": true,
+      "wrong": { "c1": "That is a bishop. The knights stand next to the rooks." },
+      "after": "Each knight has a square toward the center."
+    },
+    {
+      "type": "move",
+      "text": "Bring a knight out toward the center.",
+      "accept": ["g1f3", "b1c3"],
+      "wrong": {
+        "g1h3": "On the edge the knight reaches fewer squares.",
+        "b1a3": "On the edge the knight reaches fewer squares."
+      },
+      "hint": "Toward the center means f3 or c3.",
+      "after": "The knight reaches the center from there.",
+      "reply": "b8c6",
+      "taught": true
+    },
+    {
+      "type": "show",
+      "text": "Then the bishops come out, and the king castles to a safe corner.",
+      "marks": { "arrows": [["e1", "g1"]] }
+    }
+  ],
+  "summary": "Take the center, bring out the knights and bishops, then castle."
+}

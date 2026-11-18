@@ -1,0 +1,193 @@
+{
+  "id": "openings-queens-gambit-ragozin-defense",
+  "course": "openings",
+  "title": "Queen's Gambit Declined: Ragozin Defense",
+  "line": "Black pins the knight on c3 with a bishop, and White breaks the pin.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "text": "Black's bishop pins your knight on c3 to the king. The knight cannot move, so it could not take back on e4.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {
+        "squares": [
+          "c3",
+          "e1",
+          "e4"
+        ],
+        "arrows": [
+          [
+            "b4",
+            "e1"
+          ]
+        ]
+      },
+      "play": [
+        "d2d4",
+        "d7d5",
+        "c2c4",
+        "e7e6",
+        "b1c3",
+        "g8f6",
+        "g1f3",
+        "f8b4"
+      ]
+    },
+    {
+      "type": "move",
+      "text": "Trade pawns on d5 first.",
+      "marks": {
+        "squares": [
+          "d5",
+          "c3"
+        ],
+        "arrows": [
+          [
+            "c4",
+            "d5"
+          ]
+        ]
+      },
+      "accept": [
+        "c4d5"
+      ],
+      "wrong": {
+        "e2e4": "Black takes the pawn, and the pinned knight on c3 cannot take back."
+      },
+      "also": {
+        "c1g5": "That pins Black's knight at once, another main line. This lesson trades on d5 first.",
+        "d1a4": "That check attacks the bishop too, another main line. This lesson trades on d5 first."
+      },
+      "reply": "e6d5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the bishop out and pin Black's knight in turn. The knight guards the pawn on d5.",
+      "marks": {
+        "squares": [
+          "f6",
+          "d5"
+        ],
+        "arrows": [
+          [
+            "c1",
+            "g5"
+          ]
+        ]
+      },
+      "accept": [
+        "c1g5"
+      ],
+      "reply": "h7h6",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Trade the bishop for the knight. After the queen takes back, nothing guards the pawn on d5, but your pinned knight cannot take it yet.",
+      "marks": {
+        "squares": [
+          "f6",
+          "d5"
+        ],
+        "arrows": [
+          [
+            "g5",
+            "f6"
+          ]
+        ]
+      },
+      "accept": [
+        "g5f6"
+      ],
+      "also": {
+        "g5h4": "Keeping the pin is sound too. This lesson trades on f6."
+      },
+      "reply": "d8f6",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the queen out with check. It also attacks the bishop on b4.",
+      "marks": {
+        "squares": [
+          "e8",
+          "b4"
+        ],
+        "arrows": [
+          [
+            "d1",
+            "a4"
+          ]
+        ]
+      },
+      "accept": [
+        "d1a4"
+      ],
+      "after": "Black blocks with the knight, which also guards the bishop.",
+      "reply": "b8c6",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Move the pawn in front of your king one square to free your other bishop.",
+      "marks": {
+        "arrows": [
+          [
+            "e2",
+            "e3"
+          ]
+        ]
+      },
+      "accept": [
+        "e2e3"
+      ],
+      "reply": "e8g8",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the bishop out so that you can castle.",
+      "marks": {
+        "arrows": [
+          [
+            "f1",
+            "e2"
+          ]
+        ]
+      },
+      "accept": [
+        "f1e2"
+      ],
+      "reply": "c8e6",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Castle. Your king leaves the line of the bishop on b4, and the knight on c3 is free to move.",
+      "marks": {
+        "squares": [
+          "b4",
+          "c3",
+          "d5"
+        ],
+        "arrows": [
+          [
+            "e1",
+            "g1"
+          ]
+        ]
+      },
+      "accept": [
+        "e1g1"
+      ],
+      "after": "The pin is gone, and White can turn its pieces on the pawn on d5.",
+      "taught": true
+    }
+  ],
+  "summary": "Black pins the knight to the king. White trades on the center first, then castles out of the pin.",
+  "practice": {
+    "fen": "r4rk1/ppp2pp1/2n1bq1p/3p4/Qb1P4/2N1PN2/PP2BPPP/R4RK1 b - - 4 11",
+    "side": "w"
+  }
+}

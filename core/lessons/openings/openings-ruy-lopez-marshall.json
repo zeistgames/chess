@@ -1,0 +1,213 @@
+{
+  "id": "openings-ruy-lopez-marshall",
+  "course": "openings",
+  "title": "Ruy Lopez: Marshall Attack",
+  "line": "Black gives a pawn to send its pieces at the white king.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "text": "The main line of the Ruy Lopez.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {
+        "squares": [
+          "a4",
+          "c6"
+        ]
+      },
+      "play": [
+        "e2e4",
+        "e7e5",
+        "g1f3",
+        "b8c6",
+        "f1b5",
+        "a7a6",
+        "b5a4",
+        "g8f6"
+      ]
+    },
+    {
+      "type": "show",
+      "text": "Both sides castle, and Black chases the bishop back.",
+      "marks": {
+        "squares": [
+          "g1",
+          "g8"
+        ]
+      },
+      "play": [
+        "e1g1",
+        "f8e7",
+        "f1e1",
+        "b7b5",
+        "a4b3",
+        "e8g8"
+      ]
+    },
+    {
+      "type": "move",
+      "text": "Move the pawn on c2 one square, to give the bishop a way back.",
+      "marks": {
+        "squares": [
+          "c2",
+          "d5"
+        ],
+        "arrows": [
+          [
+            "c2",
+            "c3"
+          ]
+        ]
+      },
+      "accept": [
+        "c2c3"
+      ],
+      "also": {
+        "h2h3": "That move avoids what comes next. This lesson lets Black play it.",
+        "a2a4": "That move avoids what comes next. This lesson lets Black play it."
+      },
+      "after": "This is the Marshall Attack: Black offers the pawn on d5.",
+      "reply": "d7d5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Take the pawn Black offers. The main line accepts it.",
+      "marks": {
+        "squares": [
+          "d5"
+        ],
+        "arrows": [
+          [
+            "e4",
+            "d5"
+          ]
+        ]
+      },
+      "accept": [
+        "e4d5"
+      ],
+      "reply": "f6d5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Take the pawn on e5 with the knight. If the knights trade, your rook takes back.",
+      "marks": {
+        "squares": [
+          "e5"
+        ],
+        "arrows": [
+          [
+            "f3",
+            "e5"
+          ]
+        ]
+      },
+      "accept": [
+        "f3e5"
+      ],
+      "reply": "c6e5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Take back with the rook. You are a pawn up, and the rook is active.",
+      "marks": {
+        "squares": [
+          "e5"
+        ],
+        "arrows": [
+          [
+            "e1",
+            "e5"
+          ]
+        ]
+      },
+      "accept": [
+        "e1e5"
+      ],
+      "after": "Black does not take the pawn back. Its pieces get ready to go after your king, while yours on the queen side are still at home.",
+      "reply": "c7c6",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn in front of your queen two squares. It frees your bishop on c1.",
+      "marks": {
+        "squares": [
+          "c1"
+        ],
+        "arrows": [
+          [
+            "d2",
+            "d4"
+          ]
+        ]
+      },
+      "accept": [
+        "d2d4"
+      ],
+      "also": {
+        "e5e1": "Moving the rook back at once is also played. This lesson pushes the pawn first."
+      },
+      "reply": "e7d6",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "The bishop attacks your rook. Step it back home.",
+      "marks": {
+        "squares": [
+          "e5"
+        ],
+        "arrows": [
+          [
+            "d6",
+            "e5"
+          ],
+          [
+            "e5",
+            "e1"
+          ]
+        ]
+      },
+      "accept": [
+        "e5e1"
+      ],
+      "reply": "d8h4",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "The queen and the bishop both aim at h2. Push the pawn on g2 one square to block the bishop and chase the queen.",
+      "marks": {
+        "squares": [
+          "h2",
+          "h4",
+          "d6",
+          "h3"
+        ],
+        "arrows": [
+          [
+            "g2",
+            "g3"
+          ]
+        ]
+      },
+      "accept": [
+        "g2g3"
+      ],
+      "wrong": {
+        "h2h3": "The bishop takes on h3. If the pawn takes back, the queen takes it too and comes at your king."
+      },
+      "after": "You are a pawn up, but Black's queen sits near your king. That is the fight of the Marshall.",
+      "reply": "h4h3"
+    }
+  ],
+  "summary": "Black gives a pawn for an attack. White takes it, defends with care, and gets the queen side pieces out.",
+  "practice": {
+    "fen": "r1b2rk1/5ppp/p1pb4/1p1n4/3P4/1BP3Pq/PP3P1P/RNBQR1K1 w - - 1 15",
+    "side": "w"
+  }
+}

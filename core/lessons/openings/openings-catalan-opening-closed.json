@@ -1,0 +1,68 @@
+{
+  "id": "openings-catalan-opening-closed",
+  "course": "openings",
+  "title": "Catalan Opening: Closed",
+  "line": "Black keeps its center pawn, and White gets the king's pawn ready to push and take more space.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "text": "The Catalan, and this time Black keeps its pawn on d5.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {"squares":["d5"]},
+      "play": ["d2d4","g8f6","c2c4","e7e6","g2g3","d7d5","f1g2","f8e7"]
+    },
+    {
+      "type": "move",
+      "text": "Bring the knight out, ready to castle.",
+      "accept": ["g1f3"],
+      "marks": {"arrows":[["g1","f3"]]},
+      "reply": "e8g8",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Castle, to get your king to safety.",
+      "accept": ["e1g1"],
+      "marks": {"arrows":[["e1","g1"]],"squares":["c8"]},
+      "after": "Black's bishop on c8 is shut in behind its own pawns.",
+      "reply": "b8d7",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the queen out. It guards the pawn on c4 and backs up a pawn push to e4.",
+      "marks": {"squares":["c4","e4"],"arrows":[["d1","c2"]]},
+      "accept": ["d1c2"],
+      "reply": "c7c6",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the other knight out. It guards e4 too.",
+      "marks": {"squares":["e4"],"arrows":[["b1","d2"]]},
+      "accept": ["b1d2"],
+      "reply": "b7b6",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn in front of your king two squares. White takes more of the center.",
+      "accept": ["e2e4"],
+      "marks": {"arrows":[["e2","e4"]]},
+      "reply": "c8b7",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Push it on. It takes space and drives the knight back.",
+      "accept": ["e4e5"],
+      "marks": {"arrows":[["e4","e5"]]},
+      "after": "Black's pieces have little room, and White can turn to the king's side.",
+      "reply": "f6e8",
+      "taught": true
+    }
+  ],
+  "summary": "When Black keeps its center pawn, White brings the queen and a knight behind the king's pawn and pushes it.",
+  "practice": {"fen":"r2qnrk1/pb1nbppp/1pp1p3/3pP3/2PP4/5NP1/PPQN1PBP/R1B2RK1 w - - 1 11","side":"w"}
+}

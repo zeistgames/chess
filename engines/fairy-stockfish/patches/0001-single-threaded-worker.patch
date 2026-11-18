@@ -1,0 +1,150 @@
+diff --git a/src/main.cpp b/src/main.cpp
+index afad7f1..0348222 100644
+--- a/src/main.cpp
++++ b/src/main.cpp
+@@ -54,6 +54,10 @@ int main(int argc, char* argv[]) {
+   Eval::NNUE::init();
+ 
+   UCI::loop(argc, argv);
++#ifdef __EMSCRIPTEN__
++  // Zeist: the worker keeps the engine alive and sends lines to zeist_uci().
++  return 0;
++#endif
+ 
+   Threads.set(0);
+   variants.clear_all();
+diff --git a/src/thread.cpp b/src/thread.cpp
+index 32aaf58..c9775ee 100644
+--- a/src/thread.cpp
++++ b/src/thread.cpp
+@@ -36,10 +36,18 @@ ThreadPool Threads; // Global object
+ /// Thread constructor launches the thread and waits until it goes to sleep
+ /// in idle_loop(). Note that 'searching' and 'exit' should be already set.
+ 
++#ifdef __EMSCRIPTEN__
++// Zeist: single-threaded WASM. No thread is started; start_searching() runs
++// the search inline on the calling thread.
++Thread::Thread(size_t n) : idx(n) {
++  searching = false;
++}
++#else
+ Thread::Thread(size_t n) : idx(n), stdThread(&Thread::idle_loop, this) {
+ 
+   wait_for_search_finished();
+ }
++#endif
+ 
+ 
+ /// Thread destructor wakes up the thread in idle_loop() and waits
+@@ -50,8 +58,10 @@ Thread::~Thread() {
+   assert(!searching);
+ 
+   exit = true;
++#ifndef __EMSCRIPTEN__
+   start_searching();
+   stdThread.join();
++#endif
+ }
+ 
+ 
+@@ -80,9 +90,17 @@ void Thread::clear() {
+ 
+ void Thread::start_searching() {
+ 
++#ifdef __EMSCRIPTEN__
++  if (exit)
++      return;
++  searching = true;
++  search();
++  searching = false;
++#else
+   std::lock_guard<std::mutex> lk(mutex);
+   searching = true;
+   cv.notify_one(); // Wake up the thread in idle_loop()
++#endif
+ }
+ 
+ 
+diff --git a/src/uci.cpp b/src/uci.cpp
+index 584977a..17faac9 100644
+--- a/src/uci.cpp
++++ b/src/uci.cpp
+@@ -293,11 +293,30 @@ namespace {
+ /// run 'bench', once the command is executed the function returns immediately.
+ /// In addition to the UCI ones, also some additional debug commands are supported.
+ 
++#ifdef __EMSCRIPTEN__
++// Zeist: the WASM worker calls zeist_handle_line() once per UCI line. The loop
++// state lives here, and loop() returns after setup instead of reading stdin.
++static const char* zeist_line = nullptr;
++#endif
++
+ void UCI::loop(int argc, char* argv[]) {
+ 
++#ifdef __EMSCRIPTEN__
++  static Position pos;
++  static string token, cmd;
++  static StateListPtr states(new std::deque<StateInfo>(1));
++  static std::vector<Move> banmoves = {};
++  if (zeist_line)
++  {
++      cmd = zeist_line;
++      argc = 1;
++      goto zeist_dispatch;
++  }
++#else
+   Position pos;
+   string token, cmd;
+   StateListPtr states(new std::deque<StateInfo>(1));
++#endif
+ 
+   assert(variants.find(Options["UCI_Variant"])->second != nullptr);
+   pos.set(variants.find(Options["UCI_Variant"])->second, variants.find(Options["UCI_Variant"])->second->startFen, false, &states->back(), Threads.main());
+@@ -308,7 +327,11 @@ void UCI::loop(int argc, char* argv[]) {
+   // XBoard state machine
+   XBoard::stateMachine = new XBoard::StateMachine(pos, states);
+   // UCCI banmoves state
++#ifndef __EMSCRIPTEN__
+   std::vector<Move> banmoves = {};
++#else
++  return;
++#endif
+ 
+   if (argc > 1 && (std::strcmp(argv[1], "noautoload") == 0))
+   {
+@@ -326,7 +349,10 @@ void UCI::loop(int argc, char* argv[]) {
+   do {
+       if (argc == 1 && !getline(cin, cmd)) // Block here waiting for input or EOF
+           cmd = "quit";
+-
++#ifdef __EMSCRIPTEN__
++      zeist_dispatch:
++#endif
++      {
+       istringstream is(cmd);
+ 
+       token.clear(); // Avoid a stale if getline() returns empty or blank line
+@@ -415,10 +441,23 @@ void UCI::loop(int argc, char* argv[]) {
+       }
+       else if (!token.empty() && token[0] != '#')
+           sync_cout << "Unknown command: " << cmd << sync_endl;
++      }
++#ifdef __EMSCRIPTEN__
++      if (zeist_line)
++          return;
++#endif
+ 
+   } while (token != "quit" && argc == 1); // Command line args are one-shot
+ }
+ 
++#ifdef __EMSCRIPTEN__
++extern "C" void zeist_handle_line(const char* line) {
++  zeist_line = line;
++  UCI::loop(1, nullptr);
++  zeist_line = nullptr;
++}
++#endif
++
+ 
+ /// UCI::value() converts a Value to a string suitable for use with the UCI
+ /// protocol specification:

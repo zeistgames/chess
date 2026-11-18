@@ -1,0 +1,168 @@
+{
+  "id": "openings-semi-slav-defense-meran-variation",
+  "course": "openings",
+  "title": "Semi-Slav Defense: Meran Variation",
+  "line": "Black takes on c4 and pushes the queenside pawns forward, chasing the bishop.",
+  "side": "b",
+  "steps": [
+    {
+      "type": "show",
+      "text": "The Queen's Gambit, and Black guards the center pawn with the pawn on c6.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {
+        "squares": [
+          "c6",
+          "d5"
+        ]
+      },
+      "play": [
+        "d2d4",
+        "d7d5",
+        "c2c4",
+        "c7c6"
+      ]
+    },
+    {
+      "type": "show",
+      "text": "Black adds the king pawn: the Semi-Slav. White moves its king pawn one square.",
+      "marks": {
+        "squares": [
+          "e6",
+          "e3"
+        ]
+      },
+      "play": [
+        "g1f3",
+        "g8f6",
+        "b1c3",
+        "e7e6",
+        "e2e3"
+      ]
+    },
+    {
+      "type": "move",
+      "text": "Bring the other knight out behind the pawns. It backs up later pawn pushes.",
+      "marks": {
+        "arrows": [
+          [
+            "b8",
+            "d7"
+          ]
+        ]
+      },
+      "accept": [
+        "b8d7"
+      ],
+      "reply": "f1d3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Take the pawn on c4 now that White's bishop has moved. The bishop spends a second move to take back.",
+      "marks": {
+        "squares": [
+          "c4"
+        ],
+        "arrows": [
+          [
+            "d5",
+            "c4"
+          ]
+        ]
+      },
+      "accept": [
+        "d5c4"
+      ],
+      "reply": "d3c4",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn on b7 two squares. It chases the bishop and takes space.",
+      "marks": {
+        "squares": [
+          "c4"
+        ],
+        "arrows": [
+          [
+            "b7",
+            "b5"
+          ]
+        ]
+      },
+      "accept": [
+        "b7b5"
+      ],
+      "after": "This is the Meran Variation.",
+      "reply": "c4d3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the bishop out to the long diagonal. It waits behind the pawn on c6 until that pawn moves.",
+      "marks": {
+        "arrows": [
+          [
+            "c8",
+            "b7"
+          ]
+        ],
+        "squares": [
+          "c6"
+        ]
+      },
+      "accept": [
+        "c8b7"
+      ],
+      "reply": "e1g1",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Move the pawn on a7 one square. It backs up the pawn on b5 and gets ready for the next push.",
+      "marks": {
+        "squares": [
+          "b5"
+        ],
+        "arrows": [
+          [
+            "a7",
+            "a6"
+          ]
+        ]
+      },
+      "accept": [
+        "a7a6"
+      ],
+      "after": "White takes the center with its king pawn.",
+      "reply": "e3e4",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn on c6 one square. It strikes at White's center from the side and opens the diagonal of your bishop.",
+      "marks": {
+        "squares": [
+          "d4",
+          "b7"
+        ],
+        "arrows": [
+          [
+            "c6",
+            "c5"
+          ]
+        ]
+      },
+      "accept": [
+        "c6c5"
+      ],
+      "after": "Black has space on the queenside and pressure on the center.",
+      "taught": true
+    }
+  ],
+  "summary": "Black takes the side pawn, chases the bishop with the queenside pawns, then strikes at the center from the side.",
+  "practice": {
+    "fen": "r2qkb1r/1b1n1ppp/p3pn2/1pp5/3PP3/2NB1N2/PP3PPP/R1BQ1RK1 w kq - 0 11",
+    "side": "b"
+  }
+}

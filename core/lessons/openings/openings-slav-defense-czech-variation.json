@@ -1,0 +1,160 @@
+{
+  "id": "openings-slav-defense-czech-variation",
+  "course": "openings",
+  "title": "Slav Defense: Czech Variation",
+  "line": "Black takes on c4, brings the bishop out, and pins the knight on c3.",
+  "side": "b",
+  "steps": [
+    {
+      "type": "show",
+      "text": "The Slav Defense. White brings both knights out.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {
+        "squares": [
+          "c6",
+          "d5"
+        ]
+      },
+      "play": [
+        "d2d4",
+        "d7d5",
+        "c2c4",
+        "c7c6",
+        "g1f3",
+        "g8f6",
+        "b1c3"
+      ]
+    },
+    {
+      "type": "move",
+      "text": "Take the pawn on c4. White will have to spend moves to get it back.",
+      "marks": {
+        "squares": [
+          "c4",
+          "b7",
+          "b5",
+          "a4"
+        ],
+        "arrows": [
+          [
+            "d5",
+            "c4"
+          ]
+        ]
+      },
+      "accept": [
+        "d5c4"
+      ],
+      "also": {
+        "e7e6": "That is the Semi-Slav, also sound. This lesson takes the pawn.",
+        "a7a6": "That is sound too. This lesson takes the pawn."
+      },
+      "after": "If your pawn on b7 comes to b5 to hold the extra pawn, the pawn on a4 takes it.",
+      "reply": "a2a4",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the bishop out before you move the king pawn.",
+      "marks": {
+        "arrows": [
+          [
+            "c8",
+            "f5"
+          ]
+        ]
+      },
+      "accept": [
+        "c8f5"
+      ],
+      "after": "This is the Czech Variation.",
+      "reply": "e2e3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Move the pawn in front of your king one square to free your other bishop.",
+      "marks": {
+        "arrows": [
+          [
+            "e7",
+            "e6"
+          ]
+        ]
+      },
+      "accept": [
+        "e7e6"
+      ],
+      "after": "White takes the pawn back.",
+      "reply": "f1c4",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the bishop out and pin the knight on c3 to the king.",
+      "marks": {
+        "squares": [
+          "c3",
+          "e1",
+          "e4"
+        ],
+        "arrows": [
+          [
+            "f8",
+            "b4"
+          ]
+        ]
+      },
+      "accept": [
+        "f8b4"
+      ],
+      "after": "The knight cannot move while your bishop pins it, so it could not take back on e4.",
+      "taught": true
+    },
+    {
+      "type": "show",
+      "text": "If White pushes the king pawn two squares now, while the knight on c3 is pinned, it loses a pawn.",
+      "fen": "rn1qk2r/pp3ppp/2p1pn2/5b2/PbBPP3/2N2N2/1P3PPP/R1BQK2R b KQkq - 0 8",
+      "marks": {
+        "squares": [
+          "e4",
+          "c3"
+        ],
+        "arrows": [
+          [
+            "b4",
+            "e1"
+          ]
+        ]
+      }
+    },
+    {
+      "type": "move",
+      "text": "Take the pawn on e4 with the bishop.",
+      "marks": {
+        "squares": [
+          "e4"
+        ],
+        "arrows": [
+          [
+            "f5",
+            "e4"
+          ]
+        ]
+      },
+      "accept": [
+        "f5e4"
+      ],
+      "also": {
+        "f6e4": "That takes the pawn too. This lesson takes with the bishop."
+      },
+      "after": "The pinned knight cannot take back. Black is a pawn up.",
+      "wins": 1
+    }
+  ],
+  "summary": "Black takes the pawn, develops the bishop, then pins the knight so that White cannot push the king pawn.",
+  "practice": {
+    "fen": "rn1qk2r/pp3ppp/2p1pn2/8/PbBPb3/2N2N2/1P3PPP/R1BQK2R w KQkq - 0 9",
+    "side": "b"
+  }
+}

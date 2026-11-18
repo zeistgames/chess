@@ -1,0 +1,56 @@
+{
+  "id": "checkmates-greco-morphy",
+  "course": "checkmates",
+  "title": "Greco's and Morphy's mates",
+  "line": "A bishop and a rook against the king in the corner, each taking its turn to check.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "text": "Greco's mate: the bishop guards g8 from far away, the king's own pawn blocks g7, and a rook or queen checks along the edge.",
+      "fen": "r4r1k/pp4p1/2p5/8/2B5/3R4/PP3PPP/6K1 w - - 0 1",
+      "marks": {"squares":["g8","g7"],"arrows":[["c4","g8"]]}
+    },
+    {
+      "type": "move",
+      "text": "Mate with the rook.",
+      "accept": ["d3h3"],
+      "hint": "The rook slides along its row to the open edge.",
+      "after": "Checkmate. The rook checks, the bishop takes g8, and the pawn on g7 blocks its own king.",
+      "mate": true,
+      "marks": {"squares":["g8","g7"]}
+    },
+    {
+      "type": "show",
+      "text": "Morphy's mate turns it around: the rook holds the open file beside the king, and the bishop gives the check on the long diagonal.",
+      "fen": "r4r1k/pp3p1p/2p2n2/8/8/8/PB3P1P/6RK w - - 0 1",
+      "marks": {"squares":["h7"],"arrows":[["g1","g8"],["b2","h8"]]}
+    },
+    {
+      "type": "move",
+      "text": "The knight blocks the diagonal. Capture it, with mate.",
+      "accept": ["b2f6"],
+      "hint": "The bishop takes on the long diagonal.",
+      "after": "Checkmate. The bishop checks, the rook takes the file beside the king, and the pawn on h7 blocks its own king.",
+      "mate": true,
+      "marks": {"squares":["h7"]}
+    },
+    {
+      "type": "move",
+      "text": "Now you are Black, and the rook threatens Greco's mate on h3. Give your king a square.",
+      "fen": "r4r1k/pp4p1/2p5/8/2B5/3R4/PP3PPP/6K1 b - - 0 1",
+      "side": "b",
+      "accept": ["g7g6","g7g5"],
+      "wrong": {
+        "a8d8": "Then the rook slides to h3, and it is mate.",
+        "a8e8": "Then the rook slides to h3, and it is mate.",
+        "a8c8": "Then the rook slides to h3, and it is mate.",
+        "a8b8": "Then the rook slides to h3, and it is mate."
+      },
+      "hint": "A pawn beside the king can step forward and leave a square behind it.",
+      "after": "The king can now step to g7, so a check on the edge is no longer mate.",
+      "marks": {"squares":["g7"],"arrows":[["d3","h3"]]}
+    }
+  ],
+  "summary": "With the king in the corner, a bishop on one line and a rook on the next one mate. A pawn step gives the king air."
+}

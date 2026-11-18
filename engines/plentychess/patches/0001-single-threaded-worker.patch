@@ -1,0 +1,142 @@
+diff --git a/src/nnue.cpp b/src/nnue.cpp
+index ecf36ce..4da9396 100644
+--- a/src/nnue.cpp
++++ b/src/nnue.cpp
+@@ -23,7 +23,14 @@
+ // const unsigned char        gNETWORKData[];
+ // const unsigned char *const gNETWORKEnd;
+ // const unsigned int         gNETWORKSize;
++#ifdef __EMSCRIPTEN__
++// Zeist: the worker writes the processed network into the in-memory file system.
++#include <cstdio>
++#include "utils.h"
++static unsigned char* gNETWORKData = nullptr;
++#else
+ INCBIN(NETWORK, EVALFILE);
++#endif
+ 
+ #ifdef SP_MSVC
+ #pragma pop_macro("_MSC_VER")
+@@ -48,6 +55,15 @@ void initNetworkData() {
+         }
+     }
+ 
++#ifdef __EMSCRIPTEN__
++    if (!gNETWORKData) {
++        gNETWORKData = static_cast<unsigned char*>(alignedAlloc(64, sizeof(NetworkData)));
++        FILE* f = std::fopen("/" EVALFILE, "rb");
++        if (!f || std::fread(gNETWORKData, 1, sizeof(NetworkData), f) != sizeof(NetworkData))
++            std::cout << "info string could not read network " EVALFILE << std::endl;
++        if (f) std::fclose(f);
++    }
++#endif
+     globalNetworkData = (NetworkData*)gNETWORKData;
+ }
+ 
+diff --git a/src/thread.h b/src/thread.h
+index 677de08..ba33e7b 100644
+--- a/src/thread.h
++++ b/src/thread.h
+@@ -366,6 +366,15 @@ public:
+ 
+         startedThreads = 0;
+ 
++#ifdef __EMSCRIPTEN__
++        // Zeist: single-threaded WASM. Workers are created here and searched
++        // inline by startSearching(); the std::thread slots stay empty.
++        for (int i = 0; i < numThreads; i++) {
++            threads.push_back(std::make_unique<std::thread>());
++            workers[i] = std::make_unique<Worker>(this, networkWeights[0], sharedHistories[0], i, i);
++            startedThreads++;
++        }
++#else
+         for (int i = 0; i < numThreads; i++) {
+             threads.push_back(std::make_unique<std::thread>([this, numThreads, i]() {
+                 configureThreadBinding(i, numThreads);
+@@ -375,6 +384,7 @@ public:
+                 workers[i]->idle();
+             }));
+         }
++#endif
+ 
+         while (startedThreads < (size_t) numThreads) {}
+     }
+@@ -394,9 +404,16 @@ public:
+             worker.get()->searching = true;
+         }
+ 
++#ifdef __EMSCRIPTEN__
++        for (auto& worker : workers) {
++            worker.get()->startSearching();
++            worker.get()->searching = false;
++        }
++#else
+         for (auto& worker : workers) {
+             worker.get()->cv.notify_all();
+         }
++#endif
+     }
+ 
+     void stopSearching() {
+diff --git a/src/uci.cpp b/src/uci.cpp
+index ee335cd..640ba82 100644
+--- a/src/uci.cpp
++++ b/src/uci.cpp
+@@ -451,10 +451,24 @@ struct printOptions
+     }
+ };
+ 
++#ifdef __EMSCRIPTEN__
++static Board* zeistBoard = nullptr;
++static std::vector<Hash>* zeistBoardHistory = nullptr;
++void zeistUciLine(const std::string& line);
++extern "C" void zeist_handle_line(const char* line) {
++    if (zeistBoard) zeistUciLine(line);
++}
++#endif
++
+ void uciLoop(int argc, char* argv[]) {
+     threads.resize(1);
++#ifdef __EMSCRIPTEN__
++    static std::vector<Hash> boardHistory;
++    static Board board;
++#else
+     std::vector<Hash> boardHistory;
+     Board board;
++#endif
+     board.startpos();
+     boardHistory.push_back(board.hashes.hash);
+ 
+@@ -483,7 +497,19 @@ void uciLoop(int argc, char* argv[]) {
+         speedtest(board, boardHistory);
+         return;
+     }
++#ifdef __EMSCRIPTEN__
++    // Zeist: setup only; the worker sends each line to zeistUciLine().
++    zeistBoard = &board;
++    zeistBoardHistory = &boardHistory;
++}
++
++void zeistUciLine(const std::string& line) {
++    Board& board = *zeistBoard;
++    std::vector<Hash>& boardHistory = *zeistBoardHistory;
++    do {
++#else
+     for (std::string line = {};std::getline(std::cin, line);) {
++#endif
+ 
+         if (matchesToken(line, "quit")) {
+             threads.stopSearching();
+@@ -538,7 +564,12 @@ void uciLoop(int argc, char* argv[]) {
+             std::cout << UCI::nnue.evaluate(&board) << std::endl;
+         }
+         else std::cout << "Unknown command" << std::endl;
++#ifdef __EMSCRIPTEN__
++    } while (false);
++    return;
++#else
+     }
++#endif
+ 
+     std::cout << "UCI thread stopping" << std::endl;
+ }

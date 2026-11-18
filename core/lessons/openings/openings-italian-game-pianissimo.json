@@ -1,0 +1,221 @@
+{
+  "id": "openings-italian-game-pianissimo",
+  "course": "openings",
+  "title": "Italian Game: Giuoco Pianissimo",
+  "line": "White keeps the center closed and builds up slowly, the way most strong players do today.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "text": "The Italian Game. Here White chooses the slow way: guard the center first and open it later.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {
+        "squares": [
+          "e4",
+          "e5"
+        ]
+      },
+      "play": [
+        "e2e4",
+        "e7e5",
+        "g1f3",
+        "b8c6",
+        "f1c4",
+        "f8c5"
+      ]
+    },
+    {
+      "type": "move",
+      "text": "Move the pawn in front of your queen one square. It guards your pawn on e4.",
+      "marks": {
+        "squares": [
+          "e4"
+        ],
+        "arrows": [
+          [
+            "d2",
+            "d3"
+          ]
+        ]
+      },
+      "accept": [
+        "d2d3"
+      ],
+      "also": {
+        "c2c3": "That is the other main line, which pushes to the center soon. This lesson guards the pawn first."
+      },
+      "after": "Black's knight comes out and attacks the pawn, which is now guarded.",
+      "reply": "g8f6",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Move the pawn on c2 one square. Later a pawn on d4 will be guarded, and your bishop gets a way back.",
+      "marks": {
+        "squares": [
+          "c2",
+          "d4"
+        ],
+        "arrows": [
+          [
+            "c2",
+            "c3"
+          ]
+        ]
+      },
+      "accept": [
+        "c2c3"
+      ],
+      "reply": "d7d6",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Castle. Your king gets away from the center, and the rook comes toward it.",
+      "marks": {
+        "squares": [
+          "g1"
+        ],
+        "arrows": [
+          [
+            "e1",
+            "g1"
+          ]
+        ]
+      },
+      "accept": [
+        "e1g1"
+      ],
+      "reply": "e8g8",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Put your rook on the file of your king pawn. It guards the pawn and backs a later push in the center.",
+      "marks": {
+        "squares": [
+          "e4"
+        ],
+        "arrows": [
+          [
+            "f1",
+            "e1"
+          ]
+        ]
+      },
+      "accept": [
+        "f1e1"
+      ],
+      "after": "Black's edge pawn gets ready to chase your bishop.",
+      "reply": "a7a6",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Step the bishop back before a pawn can chase it. It still aims at the pawn beside the king.",
+      "marks": {
+        "squares": [
+          "f7"
+        ],
+        "arrows": [
+          [
+            "c4",
+            "b3"
+          ],
+          [
+            "b3",
+            "f7"
+          ]
+        ]
+      },
+      "accept": [
+        "c4b3"
+      ],
+      "after": "Black steps its bishop back for the same reason.",
+      "reply": "c5a7",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn on h2 one square. Now no black piece can jump to g4 to hit your knight or the pawn on f2.",
+      "marks": {
+        "squares": [
+          "g4",
+          "f2"
+        ],
+        "arrows": [
+          [
+            "h2",
+            "h3"
+          ]
+        ]
+      },
+      "accept": [
+        "h2h3"
+      ],
+      "hint": "The ringed square is where Black would like to put a bishop or a knight.",
+      "reply": "h7h6",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Your knight on b1 has a long trip ahead, by d2 and f1 to g3, near Black's king. Take the first step.",
+      "marks": {
+        "squares": [
+          "g3"
+        ],
+        "arrows": [
+          [
+            "b1",
+            "d2"
+          ],
+          [
+            "d2",
+            "f1"
+          ],
+          [
+            "f1",
+            "g3"
+          ]
+        ]
+      },
+      "accept": [
+        "b1d2"
+      ],
+      "after": "Once the knight leaves d2, your other bishop is free to come out.",
+      "reply": "f8e8",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Go on with the knight toward g3. On f1 it also guards your king side.",
+      "marks": {
+        "squares": [
+          "g3",
+          "f5"
+        ],
+        "arrows": [
+          [
+            "d2",
+            "f1"
+          ],
+          [
+            "f1",
+            "g3"
+          ]
+        ]
+      },
+      "accept": [
+        "d2f1"
+      ],
+      "after": "From g3 the knight eyes f5. Both sides build up; the game is decided later, in the middlegame.",
+      "reply": "c8e6",
+      "taught": true
+    }
+  ],
+  "summary": "Guard the center with pawns, castle, stop the pins, and bring the knight around. The center opens later.",
+  "practice": {
+    "fen": "r2qr1k1/bpp2pp1/p1npbn1p/4p3/4P3/1BPP1N1P/PP3PP1/R1BQRNK1 w - - 4 12",
+    "side": "w"
+  }
+}

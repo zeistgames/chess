@@ -1,0 +1,173 @@
+{
+  "id": "openings-english-opening-kings-english",
+  "course": "openings",
+  "title": "English Opening: King's English Variation",
+  "line": "A Sicilian Defense with the colors reversed, and White has an extra move.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "text": "Black answers with the king pawn. It is the Sicilian Defense with the colors reversed, and White has a move more.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {
+        "squares": [
+          "e5",
+          "c4"
+        ]
+      },
+      "play": [
+        "c2c4",
+        "e7e5"
+      ]
+    },
+    {
+      "type": "move",
+      "text": "Bring the knight out. It watches the center square d5.",
+      "marks": {
+        "squares": [
+          "d5"
+        ],
+        "arrows": [
+          [
+            "b1",
+            "c3"
+          ]
+        ]
+      },
+      "accept": [
+        "b1c3"
+      ],
+      "reply": "g8f6",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Move the pawn on g2 one square to open the long diagonal.",
+      "marks": {
+        "arrows": [
+          [
+            "g2",
+            "g3"
+          ]
+        ]
+      },
+      "accept": [
+        "g2g3"
+      ],
+      "after": "Black pushes into the center at once.",
+      "reply": "d7d5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Take on d5. A side pawn for a center pawn, as Black does in a Sicilian.",
+      "marks": {
+        "squares": [
+          "d5"
+        ],
+        "arrows": [
+          [
+            "c4",
+            "d5"
+          ]
+        ]
+      },
+      "accept": [
+        "c4d5"
+      ],
+      "reply": "f6d5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Put the bishop on the long diagonal. It attacks the knight on d5.",
+      "marks": {
+        "squares": [
+          "d5",
+          "b7"
+        ],
+        "arrows": [
+          [
+            "f1",
+            "g2"
+          ]
+        ]
+      },
+      "accept": [
+        "f1g2"
+      ],
+      "after": "The knight steps back. The long diagonal is open to the pawn on b7.",
+      "reply": "d5b6",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the other knight out. It attacks the pawn on e5.",
+      "marks": {
+        "squares": [
+          "e5"
+        ],
+        "arrows": [
+          [
+            "g1",
+            "f3"
+          ]
+        ]
+      },
+      "accept": [
+        "g1f3"
+      ],
+      "reply": "b8c6",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Castle. Your king is safe behind the bishop on g2.",
+      "marks": {
+        "arrows": [
+          [
+            "e1",
+            "g1"
+          ]
+        ],
+        "squares": [
+          "g2"
+        ]
+      },
+      "accept": [
+        "e1g1"
+      ],
+      "reply": "f8e7",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Move the pawn on a2 one square. It gets ready to push the pawn on b2 forward, toward the knight on c6.",
+      "marks": {
+        "squares": [
+          "b2",
+          "c6"
+        ],
+        "arrows": [
+          [
+            "a2",
+            "a3"
+          ]
+        ]
+      },
+      "accept": [
+        "a2a3"
+      ],
+      "also": {
+        "d2d3": "That is sound too. This lesson starts on the queenside at once."
+      },
+      "after": "White plays on the queenside and on the long diagonal, as Black does in a Sicilian.",
+      "taught": true
+    }
+  ],
+  "summary": "Against the king pawn, White plays a Sicilian with an extra move: a side pawn for a center pawn, then queenside play.",
+  "practice": {
+    "fen": "r1bqk2r/ppp1bppp/1nn5/4p3/8/P1N2NP1/1P1PPPBP/R1BQ1RK1 b kq - 0 8",
+    "side": "w"
+  }
+}

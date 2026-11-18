@@ -1,0 +1,128 @@
+{
+  "id": "checkmates-mate-in-two-checks",
+  "course": "checkmates",
+  "title": "Mate in two: checks first",
+  "line": "A check that leaves one reply, then mate.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "text": "No check mates at once here. So look for a check that leaves the king a single reply, then a mate after that reply.",
+      "fen": "7k/pp1r2p1/2p3qp/4r3/2Q5/P1P3P1/1P5P/R4RK1 w - - 0 33",
+      "marks": {
+        "squares": [
+          "h8"
+        ],
+        "arrows": [
+          [
+            "f1",
+            "f8"
+          ],
+          [
+            "c4",
+            "g8"
+          ]
+        ]
+      }
+    },
+    {
+      "type": "move",
+      "text": "Check with the rook on the back rank. The king has one square to go to.",
+      "accept": [
+        "f1f8"
+      ],
+      "wrong": {
+        "c4g8": "The king takes the queen. Nothing guards g8 yet."
+      },
+      "hint": "The rook goes up the open file.",
+      "after": "Forced: the king had only one square.",
+      "reply": "h8h7",
+      "marks": {
+        "squares": [
+          "g8"
+        ]
+      }
+    },
+    {
+      "type": "move",
+      "text": "Now the rook guards g8. Mate with the queen.",
+      "accept": [
+        "c4g8"
+      ],
+      "hint": "The queen goes along the diagonal to the square beside the king.",
+      "after": "Checkmate. The rook guards the queen, and the king's own pieces take its last squares.",
+      "mate": true,
+      "marks": {
+        "squares": [
+          "g8"
+        ]
+      }
+    },
+    {
+      "type": "move",
+      "text": "Find both moves yourself. First, the check that leaves one reply.",
+      "fen": "r2q3r/pp3p1k/5p1p/2b1p3/3p2P1/2NP4/P1P2PP1/R1Q1K2R w KQ - 1 19",
+      "accept": [
+        "c1h6"
+      ],
+      "wrong": {
+        "h1h6": "The king steps away to g7 or g8, and there is no mate."
+      },
+      "hint": "Your rook on the open edge file guards a pawn capture next to the king.",
+      "after": "The king cannot take the queen, because the rook guards her. Its only square is g8.",
+      "reply": "h7g8",
+      "marks": {
+        "squares": [
+          "g8",
+          "g7"
+        ]
+      }
+    },
+    {
+      "type": "move",
+      "text": "Now mate.",
+      "accept": [
+        "h6h8"
+      ],
+      "hint": "The queen takes on the edge, still guarded by the rook.",
+      "after": "Checkmate.",
+      "mate": true
+    },
+    {
+      "type": "move",
+      "text": "One more. Check first, then mate.",
+      "fen": "rn2r1k1/3bq1p1/p2p2p1/2pP2N1/2p2P2/P1P1P3/1B3K2/R6Q w - - 2 28",
+      "accept": [
+        "h1h7"
+      ],
+      "wrong": {
+        "h1h8": "The king takes the queen. Nothing guards that corner."
+      },
+      "hint": "The knight guards one square beside the king.",
+      "after": "The king's only square was f8.",
+      "reply": "g8f8",
+      "marks": {
+        "squares": [
+          "f8"
+        ]
+      }
+    },
+    {
+      "type": "move",
+      "text": "Finish it.",
+      "accept": [
+        "h7h8"
+      ],
+      "hint": "The queen moves one square along the edge to the corner.",
+      "after": "Checkmate. The king is too far away to take the queen, the knight covers f7, and Black's own pieces block the rest.",
+      "mate": true,
+      "marks": {
+        "squares": [
+          "f7"
+        ]
+      }
+    }
+  ],
+  "summary": "When no check mates at once, find a check that leaves one reply, and look for the mate after it.",
+  "puzzles": "mate2"
+}

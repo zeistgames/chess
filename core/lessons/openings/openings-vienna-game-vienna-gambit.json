@@ -1,0 +1,197 @@
+{
+  "id": "openings-vienna-game-vienna-gambit",
+  "course": "openings",
+  "title": "Vienna Game: Vienna Gambit",
+  "line": "The King's Gambit idea with a knight already out. Black strikes back in the center.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "text": "The Vienna Game: Black brings its knight out to attack your pawn on e4.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {
+        "squares": [
+          "e4"
+        ],
+        "arrows": [
+          [
+            "f6",
+            "e4"
+          ]
+        ]
+      },
+      "play": [
+        "e2e4",
+        "e7e5",
+        "b1c3",
+        "g8f6"
+      ]
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn on f2 two squares. It attacks the pawn on e5.",
+      "marks": {
+        "squares": [
+          "e5"
+        ],
+        "arrows": [
+          [
+            "f2",
+            "f4"
+          ]
+        ]
+      },
+      "accept": [
+        "f2f4"
+      ],
+      "also": {
+        "f1c4": "That is also played. This lesson pushes the pawn.",
+        "g1f3": "That is also played. This lesson pushes the pawn."
+      },
+      "after": "This is the Vienna Gambit, rated about level by engines and played often by masters. Black strikes back in the center.",
+      "reply": "d7d5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Take the pawn on e5. Your pawn then attacks the knight.",
+      "marks": {
+        "squares": [
+          "e5",
+          "f6"
+        ],
+        "arrows": [
+          [
+            "f4",
+            "e5"
+          ]
+        ]
+      },
+      "accept": [
+        "f4e5"
+      ],
+      "after": "The knight jumps into the center and takes your pawn.",
+      "reply": "f6e4",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring your other knight out. It guards the pawn on e5.",
+      "marks": {
+        "squares": [
+          "e5"
+        ],
+        "arrows": [
+          [
+            "g1",
+            "f3"
+          ]
+        ]
+      },
+      "accept": [
+        "g1f3"
+      ],
+      "also": {
+        "d1f3": "That is also played. This lesson brings the knight out."
+      },
+      "reply": "f8e7",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn in front of your queen two squares. Two pawns stand side by side.",
+      "marks": {
+        "squares": [
+          "d4",
+          "e5"
+        ],
+        "arrows": [
+          [
+            "d2",
+            "d4"
+          ]
+        ]
+      },
+      "accept": [
+        "d2d4"
+      ],
+      "also": {
+        "d1e2": "That is also played. This lesson builds the center."
+      },
+      "reply": "e8g8",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the bishop out to attack the knight on e4.",
+      "marks": {
+        "squares": [
+          "e4",
+          "e5"
+        ],
+        "arrows": [
+          [
+            "f1",
+            "d3"
+          ]
+        ]
+      },
+      "accept": [
+        "f1d3"
+      ],
+      "after": "Black guards the knight with a pawn that has moved two squares, landing beside your pawn on e5.",
+      "reply": "f7f5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Take that pawn en passant: your pawn on e5 takes it as if it had moved one square.",
+      "marks": {
+        "squares": [
+          "f5",
+          "f6",
+          "e4"
+        ],
+        "arrows": [
+          [
+            "e5",
+            "f6"
+          ]
+        ]
+      },
+      "accept": [
+        "e5f6"
+      ],
+      "after": "Material is level, and the center is open.",
+      "reply": "e7f6",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Castle. Your king leaves the open center, and the rook comes to a file with no white pawn on it.",
+      "marks": {
+        "squares": [
+          "g1",
+          "d4"
+        ],
+        "arrows": [
+          [
+            "e1",
+            "g1"
+          ]
+        ]
+      },
+      "accept": [
+        "e1g1"
+      ],
+      "after": "An open game with chances for both sides. Your pawn on d4 holds the center.",
+      "reply": "b8c6",
+      "taught": true
+    }
+  ],
+  "summary": "White pushes the side pawn with the knight already out. Black hits back in the center and the game opens up.",
+  "practice": {
+    "fen": "r1bq1rk1/ppp3pp/2n2b2/3p4/3Pn3/2NB1N2/PPP3PP/R1BQ1RK1 w - - 2 10",
+    "side": "w"
+  }
+}

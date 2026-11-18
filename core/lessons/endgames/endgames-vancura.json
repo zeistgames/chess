@@ -1,0 +1,84 @@
+{
+  "id": "endgames-vancura",
+  "course": "endgames",
+  "title": "The Vancura position",
+  "line": "Against a rook pawn, attack it from the side.",
+  "side": "b",
+  "steps": [
+    {
+      "type": "show",
+      "fen": "R7/6k1/P4r2/8/8/1K6/8/8 b - - 0 1",
+      "text": "White has a rook pawn, and the white rook stands in front of it. Your rook attacks the pawn from the side. This is the Vancura position.",
+      "marks": {"squares":["a6"],"arrows":[["f6","a6"]]}
+    },
+    {
+      "type": "show",
+      "fen": "R7/6k1/P4r2/8/8/1K6/8/8 b - - 0 1",
+      "text": "The white rook is tied to the pawn. Your king waits on g7, and the game is a draw.",
+      "marks": {"squares":["a8","g7"]}
+    },
+    {
+      "type": "move",
+      "fen": "R7/6k1/P7/8/8/1K6/5r2/8 b - - 0 1",
+      "text": "Set it up: put your rook on the pawn's row, attacking it from the side.",
+      "marks": {"squares":["a6"]},
+      "accept": ["f2f6"],
+      "also": {
+        "f2f3": "That check holds too. This lesson goes straight to the pawn's row."
+      },
+      "wrong": {
+        "f2a2": "The white king takes the rook.",
+        "f2f8": "The white rook takes it.",
+        "f2f1": "That loses: from there the rook does not attack the pawn.",
+        "f2f4": "That loses: from there the rook does not attack the pawn.",
+        "f2f5": "That loses: from there the rook does not attack the pawn.",
+        "f2f7": "That loses: from there the rook does not attack the pawn.",
+        "g7h7": "That loses: the rook must reach the pawn's row first."
+      },
+      "hint": "Go up the file to the row the pawn stands on.",
+      "after": "The rook attacks the pawn from the side, and the white rook must stay to guard it."
+    },
+    {
+      "type": "move",
+      "fen": "R7/6k1/P2r4/8/1K6/8/8/8 b - - 0 1",
+      "text": "The white king comes toward your rook. Slide the rook away from it, along the same row.",
+      "marks": {"squares":["b4","a6","g7"]},
+      "accept": ["d6e6","d6f6"],
+      "wrong": {
+        "d6c6": "That loses: the rook is too close to the white king, which walks up to its pawn and frees its rook.",
+        "d6b6": "That loses: the rook is too close to the white king, which walks up to its pawn and frees its rook.",
+        "d6d4": "That loses: the rook is too close to the white king, which walks up to its pawn and frees its rook.",
+        "d6g6": "That loses: your own king on g7 is in the way of the rook's checks along the row.",
+        "d6h6": "That loses: your own king on g7 is in the way of the rook's checks along the row.",
+        "d6d7": "That loses: from there the rook does not attack the pawn.",
+        "g7h7": "That loses: here your king must stay on g7.",
+        "g7f7": "That loses: here your king must stay on g7.",
+        "g7g6": "That loses: here your king must stay on g7."
+      },
+      "hint": "Stay on the pawn's row, out of the king's reach.",
+      "after": "Far from the king, the rook keeps attacking the pawn."
+    },
+    {
+      "type": "move",
+      "fen": "R7/P5k1/3r4/8/8/1K6/8/8 b - - 0 1",
+      "text": "The pawn is one step from promoting. Now go behind it.",
+      "marks": {"squares":["a7","g7","g8"]},
+      "accept": ["d6a6"],
+      "also": {
+        "d6b6": "That check holds too. This lesson goes behind the pawn."
+      },
+      "wrong": {
+        "d6d7": "That loses: the white rook gives itself up with check on g8, and the pawn promotes.",
+        "d6e6": "That loses: from there the rook does not attack the pawn.",
+        "d6f6": "That loses: from there the rook does not attack the pawn.",
+        "d6c6": "That loses: the white rook gives itself up with check on g8, and the pawn promotes.",
+        "g7h7": "That loses: here your king must stay on g7.",
+        "g7f7": "That loses: here your king must stay on g7."
+      },
+      "hint": "The pawn's file, below the pawn.",
+      "after": "If the white rook leaves the corner, your rook takes the pawn. The game is a draw."
+    }
+  ],
+  "summary": "Against a rook pawn with the enemy rook in front, attack the pawn from the side, and go behind it when it steps up.",
+  "practice": {"fen":"R7/6k1/P4r2/8/8/1K6/8/8 b - - 0 1","side":"b"}
+}

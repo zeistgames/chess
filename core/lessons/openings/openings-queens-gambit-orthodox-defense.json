@@ -1,0 +1,180 @@
+{
+  "id": "openings-queens-gambit-orthodox-defense",
+  "course": "openings",
+  "title": "Queen's Gambit Declined: Orthodox Defense",
+  "line": "Black holds the center with pawns, and White aims a rook down the c-file.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "text": "Black holds the center pawn with another pawn and brings out its pieces. Its bishop on c8 is shut in behind the pawn on e6.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {
+        "squares": [
+          "c8",
+          "e6"
+        ]
+      },
+      "play": [
+        "d2d4",
+        "d7d5",
+        "c2c4",
+        "e7e6",
+        "b1c3",
+        "g8f6",
+        "c1g5",
+        "f8e7"
+      ]
+    },
+    {
+      "type": "move",
+      "text": "Move the pawn in front of your king one square. It guards your center pawn and frees your other bishop.",
+      "marks": {
+        "squares": [
+          "d4"
+        ],
+        "arrows": [
+          [
+            "e2",
+            "e3"
+          ]
+        ]
+      },
+      "accept": [
+        "e2e3"
+      ],
+      "reply": "e8g8",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring out your other knight. It guards your center pawn too.",
+      "marks": {
+        "arrows": [
+          [
+            "g1",
+            "f3"
+          ]
+        ]
+      },
+      "accept": [
+        "g1f3"
+      ],
+      "after": "This is the Orthodox Defense, the oldest main line of the Queen's Gambit.",
+      "reply": "b8d7",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Put a rook behind the pawn on c4. When the pawns there trade, the file opens for your rook.",
+      "marks": {
+        "squares": [
+          "c4"
+        ],
+        "arrows": [
+          [
+            "a1",
+            "c1"
+          ]
+        ]
+      },
+      "accept": [
+        "a1c1"
+      ],
+      "also": {
+        "d1c2": "That is another main line. This lesson puts the rook on the file first."
+      },
+      "after": "Black adds a pawn to guard the center and waits.",
+      "reply": "c7c6",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring out the last bishop toward Black's king.",
+      "marks": {
+        "squares": [
+          "c4"
+        ],
+        "arrows": [
+          [
+            "f1",
+            "d3"
+          ]
+        ]
+      },
+      "accept": [
+        "f1d3"
+      ],
+      "after": "Black waited to take on c4 until your bishop had moved. Now the bishop spends a second move to take back.",
+      "reply": "d5c4",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Take the pawn back with the bishop. Material is level again.",
+      "marks": {
+        "squares": [
+          "c4"
+        ],
+        "arrows": [
+          [
+            "d3",
+            "c4"
+          ]
+        ]
+      },
+      "accept": [
+        "d3c4"
+      ],
+      "after": "Black's knight jumps to the center to trade pieces and free its game.",
+      "reply": "f6d5"
+    },
+    {
+      "type": "move",
+      "text": "The knight has left f6, so the bishops face each other. Trade on e7.",
+      "marks": {
+        "squares": [
+          "e7",
+          "d5",
+          "f6"
+        ],
+        "arrows": [
+          [
+            "g5",
+            "e7"
+          ]
+        ]
+      },
+      "accept": [
+        "g5e7"
+      ],
+      "reply": "d8e7"
+    },
+    {
+      "type": "move",
+      "text": "Castle. Your rook already stands on the c-file, where White has no pawn.",
+      "marks": {
+        "squares": [
+          "c1",
+          "c8"
+        ],
+        "arrows": [
+          [
+            "e1",
+            "g1"
+          ]
+        ]
+      },
+      "accept": [
+        "e1g1"
+      ],
+      "after": "White's minor pieces are out and the king is safe. Black still has to free the bishop on c8.",
+      "taught": true
+    }
+  ],
+  "summary": "Black holds the center with pawns and a shut in bishop. White develops everything and puts a rook on the c-file.",
+  "practice": {
+    "fen": "r1b2rk1/pp1nqppp/2p1p3/3n4/2BP4/2N1PN2/PP3PPP/2RQ1RK1 b - - 1 11",
+    "side": "w"
+  }
+}

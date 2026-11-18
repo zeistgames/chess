@@ -1,0 +1,162 @@
+{
+  "id": "openings-four-knights-game-ideas",
+  "course": "openings",
+  "title": "Four Knights Game: the ideas",
+  "line": "Both sides bring out both knights first: a calm, sound start.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "text": "In the Four Knights Game both sides bring out both knights before anything else. Knights guard the center.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {
+        "squares": [
+          "d4",
+          "e4",
+          "d5",
+          "e5"
+        ]
+      }
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn in front of your king two squares. It takes space in the center and frees your queen and a bishop.",
+      "marks": {
+        "arrows": [
+          [
+            "e2",
+            "e4"
+          ]
+        ]
+      },
+      "accept": [
+        "e2e4"
+      ],
+      "also": {
+        "d2d4": "Pushing the queen's pawn is also sound and leads to other openings. This lesson pushes the king's pawn."
+      },
+      "reply": "e7e5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the knight out to attack Black's pawn on e5.",
+      "marks": {
+        "squares": [
+          "e5"
+        ],
+        "arrows": [
+          [
+            "g1",
+            "f3"
+          ]
+        ]
+      },
+      "accept": [
+        "g1f3"
+      ],
+      "also": {
+        "b1c3": "That is the Vienna Game, also sound. This lesson brings this knight out first.",
+        "f1c4": "That is the Bishop's Opening, also sound. This lesson brings the knight out."
+      },
+      "reply": "b8c6",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the other knight out. It guards your pawn on e4.",
+      "marks": {
+        "squares": [
+          "e4"
+        ],
+        "arrows": [
+          [
+            "b1",
+            "c3"
+          ]
+        ]
+      },
+      "accept": [
+        "b1c3"
+      ],
+      "also": {
+        "f1c4": "That is the Italian Game, also sound. This lesson brings the knight out.",
+        "f1b5": "That is the Ruy Lopez, also sound. This lesson brings the knight out.",
+        "d2d4": "That is the Scotch Game, also sound. This lesson brings the knight out."
+      },
+      "after": "This is the Four Knights Game. The position is the same on both sides.",
+      "reply": "g8f6",
+      "taught": true
+    },
+    {
+      "type": "show",
+      "text": "Here both sides go on copying: bishops out, castling, a pawn to guard the center.",
+      "marks": {
+        "squares": [
+          "b5",
+          "b4"
+        ]
+      },
+      "play": [
+        "f1b5",
+        "f8b4",
+        "e1g1",
+        "e8g8",
+        "d2d3",
+        "d7d6"
+      ]
+    },
+    {
+      "type": "move",
+      "text": "Bring your other bishop out to pin the knight on f6 to the queen.",
+      "marks": {
+        "squares": [
+          "f6",
+          "d8",
+          "c3"
+        ],
+        "arrows": [
+          [
+            "c1",
+            "g5"
+          ]
+        ]
+      },
+      "accept": [
+        "c1g5"
+      ],
+      "after": "Black copies again, a slip often made at club level; masters take your knight on c3. You are a move ahead, so you strike first.",
+      "reply": "c8g4",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Take the knight that guards Black's king, before Black can do the same to you.",
+      "marks": {
+        "squares": [
+          "f6",
+          "d5"
+        ],
+        "arrows": [
+          [
+            "g5",
+            "f6"
+          ]
+        ]
+      },
+      "accept": [
+        "g5f6"
+      ],
+      "also": {
+        "c3d5": "That is also sound. This lesson takes the knight."
+      },
+      "after": "If the queen took back, your knight would jump to d5 and attack it. So a pawn takes, and the king loses its pawn cover.",
+      "reply": "g7f6"
+    }
+  ],
+  "summary": "Four knights out guard the center. When the position is the same on both sides, the side to move strikes first.",
+  "practice": {
+    "fen": "r1bqkb1r/pppp1ppp/2n2n2/4p3/4P3/2N2N2/PPPP1PPP/R1BQKB1R w KQkq - 4 4",
+    "side": "w"
+  }
+}

@@ -1,0 +1,194 @@
+{
+  "id": "openings-kings-indian-attack-ideas",
+  "course": "openings",
+  "title": "King's Indian Attack: the ideas",
+  "line": "A calm setup behind the bishop on the long diagonal, then a pawn push toward the king.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "move",
+      "text": "Bring the knight out first. It watches the center squares d4 and e5.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {
+        "squares": [
+          "d4",
+          "e5"
+        ],
+        "arrows": [
+          [
+            "g1",
+            "f3"
+          ]
+        ]
+      },
+      "accept": [
+        "g1f3"
+      ],
+      "also": {
+        "e2e4": "That is the most played first move, the king pawn opening. This lesson starts with the knight.",
+        "d2d4": "That is the queen pawn opening, also sound. This lesson starts with the knight.",
+        "c2c4": "That is the English Opening, also sound. This lesson starts with the knight."
+      },
+      "after": "Black takes the center with its queen pawn.",
+      "reply": "d7d5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Move the pawn on g2 one square to open the long diagonal.",
+      "marks": {
+        "arrows": [
+          [
+            "g2",
+            "g3"
+          ]
+        ]
+      },
+      "accept": [
+        "g2g3"
+      ],
+      "also": {
+        "c2c4": "That is the Réti Opening, also sound. This lesson builds the King's Indian Attack.",
+        "d2d4": "That is a queen pawn game, also sound. This lesson builds the King's Indian Attack."
+      },
+      "after": "This is the King's Indian Attack.",
+      "reply": "g8f6",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Put the bishop on the long diagonal. Your king will castle behind it.",
+      "marks": {
+        "arrows": [
+          [
+            "f1",
+            "g2"
+          ]
+        ]
+      },
+      "accept": [
+        "f1g2"
+      ],
+      "also": {
+        "c2c4": "That turns it into a Réti Opening, also sound. This lesson keeps building the setup."
+      },
+      "reply": "e7e6",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Castle early. The king is safe behind the bishop.",
+      "marks": {
+        "arrows": [
+          [
+            "e1",
+            "g1"
+          ]
+        ]
+      },
+      "accept": [
+        "e1g1"
+      ],
+      "reply": "f8e7",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Move the pawn in front of your queen one square. It gets the king pawn push ready.",
+      "marks": {
+        "arrows": [
+          [
+            "d2",
+            "d3"
+          ]
+        ]
+      },
+      "accept": [
+        "d2d3"
+      ],
+      "reply": "e8g8",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the other knight out behind the pawns. It backs up the king pawn too.",
+      "marks": {
+        "squares": [
+          "e4"
+        ],
+        "arrows": [
+          [
+            "b1",
+            "d2"
+          ]
+        ]
+      },
+      "accept": [
+        "b1d2"
+      ],
+      "reply": "c7c5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Push the king pawn two squares. Now White has its share of the center.",
+      "marks": {
+        "arrows": [
+          [
+            "e2",
+            "e4"
+          ]
+        ]
+      },
+      "accept": [
+        "e2e4"
+      ],
+      "reply": "b8c6",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Put a rook behind the king pawn. It backs up the next push.",
+      "marks": {
+        "arrows": [
+          [
+            "f1",
+            "e1"
+          ]
+        ]
+      },
+      "accept": [
+        "f1e1"
+      ],
+      "after": "Black plays on the queenside, far from your attack.",
+      "reply": "b7b5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Push the king pawn on. It chases the knight on f6 away from Black's king.",
+      "marks": {
+        "squares": [
+          "f6"
+        ],
+        "arrows": [
+          [
+            "e4",
+            "e5"
+          ]
+        ]
+      },
+      "accept": [
+        "e4e5"
+      ],
+      "after": "The pawn on e5 cramps Black's kingside. White's knights and queen head toward the king next.",
+      "reply": "f6d7",
+      "taught": true
+    }
+  ],
+  "summary": "White sets up calmly behind the bishop on the long diagonal, then pushes the king pawn to attack the king.",
+  "practice": {
+    "fen": "r1bq1rk1/p2nbppp/2n1p3/1pppP3/8/3P1NP1/PPPN1PBP/R1BQR1K1 w - - 1 10",
+    "side": "w"
+  }
+}

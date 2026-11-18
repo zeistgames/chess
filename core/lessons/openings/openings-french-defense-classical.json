@@ -1,0 +1,80 @@
+{
+  "id": "openings-french-defense-classical",
+  "course": "openings",
+  "title": "French Defense: Classical Variation",
+  "line": "A knight hits the center, the bishop breaks the pin, and a pawn strikes the chain.",
+  "side": "b",
+  "steps": [
+    {
+      "type": "show",
+      "text": "In the French, White's knight came out to guard the pawn on e4.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {"squares":["e4","c3"]},
+      "play": ["e2e4","e7e6","d2d4","d7d5","b1c3"]
+    },
+    {
+      "type": "move",
+      "text": "Bring the knight out. Now the pawn on e4 is attacked twice.",
+      "marks": {"squares":["e4"],"arrows":[["g8","f6"]]},
+      "accept": ["g8f6"],
+      "also": {
+        "f8b4": "That is the Winawer Variation, another main line. This lesson goes on with the knight.",
+        "d5e4": "That is the Rubinstein Variation, another main line. This lesson goes on with the knight."
+      },
+      "after": "White's bishop pins your knight to your queen.",
+      "reply": "c1g5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the bishop to e7 to break the pin.",
+      "marks": {"arrows":[["f8","e7"]]},
+      "accept": ["f8e7"],
+      "also": {
+        "d5e4": "That is also played. This lesson goes on with the bishop."
+      },
+      "reply": "e4e5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "White's pawn kicks your knight. Step back to d7.",
+      "marks": {"arrows":[["f6","d7"]]},
+      "accept": ["f6d7"],
+      "reply": "g5e7",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Take back with the queen.",
+      "marks": {"arrows":[["d8","e7"]]},
+      "accept": ["d8e7"],
+      "reply": "f2f4",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Castle. Your king goes to safety, and a rook comes toward the center.",
+      "marks": {"arrows":[["e8","g8"]]},
+      "accept": ["e8g8"],
+      "also": {
+        "a7a6": "That is also played. This lesson castles first."
+      },
+      "reply": "g1f3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn on c7 two squares to hit the base of White's chain.",
+      "marks": {"squares":["d4"],"arrows":[["c7","c5"]]},
+      "accept": ["c7c5"],
+      "after": "Your pawn hits d4, the base of White's chain, and it can open the file for your rook later.",
+      "taught": true
+    }
+  ],
+  "summary": "In the Classical, the knight hits the center, the bishop breaks the pin, and a pawn strikes the base of the chain.",
+  "practice": {
+    "fen": "rnb2rk1/pp1nqppp/4p3/2ppP3/3P1P2/2N2N2/PPP3PP/R2QKB1R w KQ - 0 9",
+    "side": "b"
+  }
+}

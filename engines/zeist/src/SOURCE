@@ -1,0 +1,4 @@
+The Zeist chess engine's modules, copied from Zeist's repository by engines/zeist/sync.sh.
+Revision of the last change to them there: e52fbc239561e9c19c5758c1c1f35d6e5e073c18
+Files: pst.js board.js eval.js search.js computer.js
+Author: Amrith. License here: AGPL-3.0-or-later (see LICENSE at the root of this repository).

@@ -1,0 +1,57 @@
+{
+  "id": "strategy-doubled-pawns",
+  "course": "strategy",
+  "title": "Doubled pawns",
+  "line": "Two pawns on one file: when they hurt and when they do not.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "move",
+      "fen": "r1bqkbnr/1ppp1ppp/p1n5/1B2p3/4P3/5N2/PPPP1PPP/RNBQK2R w KQkq - 0 4",
+      "text": "Take the knight with your bishop. Black takes back with a pawn.",
+      "marks": {"squares":["c6","d7"],"arrows":[["b5","c6"]]},
+      "accept": ["b5c6"],
+      "taught": true,
+      "after": "Black takes back with the pawn from d7. That opens lines for its queen and bishop.",
+      "reply": "d7c6"
+    },
+    {
+      "type": "pick",
+      "text": "Two pawns of one side on the same file are doubled pawns. Tap Black's doubled pawns.",
+      "accept": ["c6","c7"],
+      "all": true,
+      "hint": "Look along the files on the side where the knight was taken.",
+      "after": "The back one is stuck behind the front one and cannot move past it."
+    },
+    {
+      "type": "show",
+      "text": "With queens and pieces on, they cost Black little: Black has both bishops and its pieces come out fast.",
+      "marks": {"squares":["c6","c7","c8","f8"]}
+    },
+    {
+      "type": "show",
+      "fen": "8/1pp1kppp/p1p5/8/4P3/4K3/PPP2PPP/8 w - - 0 30",
+      "text": "With every piece traded, they hurt. White has four pawns against three on the right. Black's extra pawn on the left is the doubled one.",
+      "marks": {"squares":["c6","c7","e4"]}
+    },
+    {
+      "type": "move",
+      "text": "Push your extra pawn. Four pawns against three can make a pawn no black pawn can stop. Black's extra pawn is stuck behind another.",
+      "marks": {"squares":["c6","c7"],"arrows":[["e4","e5"]]},
+      "accept": ["e4e5"],
+      "hint": "It is the pawn in front of your king.",
+      "after": "Black's king comes to stop it.",
+      "reply": "e7e6"
+    },
+    {
+      "type": "move",
+      "text": "Bring your king up behind your pawns.",
+      "marks": {"arrows":[["e3","e4"]]},
+      "accept": ["e3e4"],
+      "after": "Black pushes on the left, but its back pawn there still has a pawn of its own in front of it.",
+      "reply": "c6c5"
+    }
+  ],
+  "summary": "Doubled pawns are often fine while pieces are on. In an ending they make it hard to get a pawn through.",
+  "practice": {"fen":"8/1pp2ppp/p3k3/2p1P3/4K3/8/PPP2PPP/8 w - - 0 32","side":"w"}
+}

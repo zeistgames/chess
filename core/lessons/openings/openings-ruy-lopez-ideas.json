@@ -1,0 +1,235 @@
+{
+  "id": "openings-ruy-lopez-ideas",
+  "course": "openings",
+  "title": "Ruy Lopez: the ideas",
+  "line": "The bishop presses on the knight that guards Black's center pawn.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "move",
+      "text": "Push the pawn in front of your king two squares. It takes space in the center and frees your queen and a bishop.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {
+        "arrows": [
+          [
+            "e2",
+            "e4"
+          ]
+        ]
+      },
+      "accept": [
+        "e2e4"
+      ],
+      "also": {
+        "d2d4": "Pushing the queen's pawn is also sound and leads to other openings. This lesson pushes the king's pawn."
+      },
+      "reply": "e7e5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the knight out to attack Black's pawn on e5.",
+      "marks": {
+        "squares": [
+          "e5"
+        ],
+        "arrows": [
+          [
+            "g1",
+            "f3"
+          ]
+        ]
+      },
+      "accept": [
+        "g1f3"
+      ],
+      "also": {
+        "b1c3": "That is the Vienna Game, also sound. This lesson brings this knight out.",
+        "f1c4": "That is the Bishop's Opening, also sound. This lesson brings the knight out first."
+      },
+      "after": "Black's knight guards the pawn.",
+      "reply": "b8c6",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the bishop out to attack the knight that guards the pawn.",
+      "marks": {
+        "squares": [
+          "c6",
+          "e5"
+        ],
+        "arrows": [
+          [
+            "f1",
+            "b5"
+          ]
+        ]
+      },
+      "accept": [
+        "f1b5"
+      ],
+      "also": {
+        "f1c4": "That is the Italian Game, also sound. This lesson goes to b5.",
+        "d2d4": "That is the Scotch Game, also sound. This lesson brings the bishop out.",
+        "b1c3": "That leads to the Four Knights Game, also sound. This lesson brings the bishop out."
+      },
+      "after": "This is the Ruy Lopez. Black asks the bishop what it will do.",
+      "reply": "a7a6",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Step the bishop back. It keeps its eye on the knight.",
+      "marks": {
+        "squares": [
+          "c6",
+          "e4"
+        ],
+        "arrows": [
+          [
+            "b5",
+            "a4"
+          ]
+        ]
+      },
+      "accept": [
+        "b5a4"
+      ],
+      "also": {
+        "b5c6": "Taking the knight is the Exchange Variation, a lesson of its own. This lesson keeps the bishop."
+      },
+      "after": "The knight attacks your pawn on e4.",
+      "reply": "g8f6",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Castle and let the pawn on e4 hang. If the knight takes it, you get it back, as the Open Ruy Lopez lesson shows.",
+      "marks": {
+        "squares": [
+          "e4",
+          "e1"
+        ],
+        "arrows": [
+          [
+            "e1",
+            "g1"
+          ]
+        ]
+      },
+      "accept": [
+        "e1g1"
+      ],
+      "after": "Black gets ready to castle. The pressure on the knight lasts a long time.",
+      "reply": "f8e7",
+      "taught": true
+    },
+    {
+      "type": "show",
+      "text": "Why the pressure matters: in this line Black guarded the pawn with a pawn and castled too soon, a slip club players often make.",
+      "fen": "r2q1rk1/pppbbppp/2np1n2/1B2p3/3PP3/2N2N2/PPP2PPP/R1BQR1K1 w - - 7 8",
+      "marks": {
+        "squares": [
+          "c6",
+          "e5"
+        ],
+        "arrows": [
+          [
+            "b5",
+            "c6"
+          ],
+          [
+            "d4",
+            "e5"
+          ]
+        ]
+      }
+    },
+    {
+      "type": "move",
+      "text": "Take the knight that guards the pawn on e5. A bishop takes back.",
+      "marks": {
+        "squares": [
+          "c6",
+          "e5"
+        ],
+        "arrows": [
+          [
+            "b5",
+            "c6"
+          ]
+        ]
+      },
+      "accept": [
+        "b5c6"
+      ],
+      "reply": "d7c6"
+    },
+    {
+      "type": "move",
+      "text": "Take the pawn on e5. A pawn takes back, and the file between the two queens opens.",
+      "marks": {
+        "squares": [
+          "e5",
+          "d8"
+        ],
+        "arrows": [
+          [
+            "d4",
+            "e5"
+          ]
+        ]
+      },
+      "accept": [
+        "d4e5"
+      ],
+      "reply": "d6e5"
+    },
+    {
+      "type": "move",
+      "text": "Trade queens first. If you take the pawn at once, Black trades queens itself and gets a pawn back.",
+      "marks": {
+        "squares": [
+          "d8"
+        ],
+        "arrows": [
+          [
+            "d1",
+            "d8"
+          ]
+        ]
+      },
+      "accept": [
+        "d1d8"
+      ],
+      "hint": "Your queen and Black's queen face each other on the same file.",
+      "reply": "a8d8"
+    },
+    {
+      "type": "move",
+      "text": "Take the pawn on e5 with your knight. Nothing guards it now.",
+      "marks": {
+        "squares": [
+          "e5"
+        ],
+        "arrows": [
+          [
+            "f3",
+            "e5"
+          ]
+        ]
+      },
+      "accept": [
+        "f3e5"
+      ],
+      "after": "A pawn up. Take away the knight that guards the pawn and the pawn falls.",
+      "wins": 1
+    }
+  ],
+  "summary": "The bishop presses on the knight that guards the center pawn. If that knight goes, the pawn often goes with it.",
+  "practice": {
+    "fen": "r1bqkbnr/pppp1ppp/2n5/1B2p3/4P3/5N2/PPPP1PPP/RNBQK2R b KQkq - 3 3",
+    "side": "w"
+  }
+}

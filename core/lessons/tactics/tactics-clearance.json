@@ -1,0 +1,54 @@
+{
+  "id": "tactics-clearance",
+  "course": "tactics",
+  "title": "Clearance",
+  "line": "Move a piece out of the way of another.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "text": "Your knight stands on the square your rook wants, and the pawn on h7 shuts the file. One knight check fixes both.",
+      "fen": "r2q1r1k/ppp1b1pp/5p2/2P1p3/1PQnR2N/P7/5PPP/R4BK1 w - - 5 19",
+      "marks": {
+        "squares": ["h4","h8","h7"],
+        "arrows": [["e4","h4"]]
+      }
+    },
+    {
+      "type": "move",
+      "text": "Clear the square: move the knight away with check, even where a pawn can take it.",
+      "fen": "r2q1r1k/ppp1b1pp/5p2/2P1p3/1PQnR2N/P7/5PPP/R4BK1 w - - 5 19",
+      "accept": ["h4g6"],
+      "hint": "The knight can check the king in the corner.",
+      "after": "The pawn took the knight, and the square is free.",
+      "reply": "h7g6",
+      "sacrifice": true
+    },
+    {
+      "type": "move",
+      "text": "Now mate with the rook.",
+      "accept": ["e4h4"],
+      "after": "Checkmate along the open file.",
+      "mate": true
+    },
+    {
+      "type": "show",
+      "text": "The same idea for Black: your knight stands on the square your queen wants, and the pawn on h2 shuts the file.",
+      "fen": "r3k2r/ppp2ppp/1b1p4/4P2n/4P1q1/1BP5/P1Q3PP/RNB2R1K b kq - 0 15",
+      "side": "b",
+      "marks": {"squares":["h5","h2"],"arrows":[["g4","h5"]]}
+    },
+    {
+      "type": "move",
+      "text": "Clear the square with a knight check.",
+      "fen": "r3k2r/ppp2ppp/1b1p4/4P2n/4P1q1/1BP5/P1Q3PP/RNB2R1K b kq - 0 15",
+      "side": "b",
+      "accept": ["h5g3"],
+      "reply": "h2g3",
+      "sacrifice": true
+    },
+    {"type":"move","text":"Mate with the queen.","side":"b","accept":["g4h5"],"mate":true}
+  ],
+  "summary": "Sometimes your own piece stands on the square another one needs. Move it away with a threat, and the square is free.",
+  "practice": {"fen":"r2q1r1k/ppp1b1pp/5p2/2P1p3/1PQnR2N/P7/5PPP/R4BK1 w - - 5 19","side":"w"}
+}

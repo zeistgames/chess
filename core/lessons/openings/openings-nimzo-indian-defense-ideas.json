@@ -1,0 +1,68 @@
+{
+  "id": "openings-nimzo-indian-defense-ideas",
+  "course": "openings",
+  "title": "Nimzo-Indian Defense: the ideas",
+  "line": "The bishop pins White's knight, so White's king's pawn cannot safely come to the center.",
+  "side": "b",
+  "steps": [
+    {
+      "type": "show",
+      "text": "White starts by pushing the pawn in front of its queen two squares, into the center.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {"arrows":[["d2","d4"]]},
+      "play": ["d2d4"]
+    },
+    {
+      "type": "move",
+      "text": "Bring the knight out. For now it stops White's other center pawn from coming to e4.",
+      "marks": {"squares":["e4"],"arrows":[["g8","f6"]]},
+      "accept": ["g8f6"],
+      "also": {"d7d5":"That leads to the Queen's Gambit, also sound. This lesson goes on with the knight."},
+      "reply": "c2c4",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Move the pawn in front of your king one square. It opens a path for your bishop.",
+      "accept": ["e7e6"],
+      "marks": {"arrows":[["e7","e6"]],"squares":["e4"]},
+      "also": {
+        "g7g6": "That leads to the King's Indian or the Grünfeld, also sound. This lesson goes on with the other pawn.",
+        "c7c5": "That leads to the Benoni, also playable. This lesson goes on with the other pawn."
+      },
+      "after": "White's knight comes out to guard e4, so that White's pawn can go there.",
+      "reply": "b1c3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Pin the knight. It cannot move without leaving White's king in check, so it cannot take on e4.",
+      "marks": {"squares":["c3","e1"],"arrows":[["f8","b4"],["c3","e4"]]},
+      "accept": ["f8b4"],
+      "also": {"d7d5":"That is the Queen's Gambit Declined, also sound. This lesson goes on with the bishop."},
+      "after": "This is the Nimzo-Indian Defense.",
+      "taught": true
+    },
+    {
+      "type": "show",
+      "text": "The bishop can also take the knight at any moment. White's pawn takes back, and two White pawns stand on one file.",
+      "marks": {"squares":["c3","c4"],"arrows":[["b4","c3"]]}
+    },
+    {
+      "type": "show",
+      "text": "A mistake, not a usual move: White pushes the king's pawn to e4 anyway.",
+      "marks": {"squares":["c3","e4"]},
+      "play": ["e2e4"]
+    },
+    {
+      "type": "move",
+      "text": "Take it with the knight. The pinned knight on c3 cannot take back.",
+      "marks": {"squares":["c3"],"arrows":[["f6","e4"]]},
+      "accept": ["f6e4"],
+      "after": "Black is a pawn up, and the knight sits in the center.",
+      "wins": 1
+    }
+  ],
+  "summary": "The bishop pins the knight that guards the center. While the pin holds, White's king's pawn cannot safely come forward.",
+  "practice": {"fen":"rnbqk2r/pppp1ppp/4pn2/8/1bPP4/2N5/PP2PPPP/R1BQKBNR w KQkq - 2 4","side":"b"}
+}

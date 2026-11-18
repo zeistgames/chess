@@ -1,0 +1,72 @@
+{
+  "id": "openings-catalan-opening-open-defense",
+  "course": "openings",
+  "title": "Catalan Opening: Open Defense",
+  "line": "Black takes White's side pawn, and White wins it back while the bishop watches the long diagonal.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "text": "The Catalan, and Black's bishop comes out first. Black's pawn can still take on c4 later.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {"squares":["c4"]},
+      "play": ["d2d4","g8f6","c2c4","e7e6","g2g3","d7d5","f1g2","f8e7"]
+    },
+    {
+      "type": "move",
+      "text": "Bring the knight out, ready to castle.",
+      "accept": ["g1f3"],
+      "marks": {"arrows":[["g1","f3"]]},
+      "reply": "e8g8",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Castle, to get your king to safety.",
+      "accept": ["e1g1"],
+      "marks": {"arrows":[["e1","g1"]],"squares":["c4"]},
+      "after": "Black takes the pawn on c4: the Open Defense. White does not hurry to take it back.",
+      "reply": "d5c4",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the queen out, ready to take back on c4.",
+      "marks": {"squares":["c4","a7"],"arrows":[["d1","c2"]]},
+      "accept": ["d1c2"],
+      "after": "Black holds on to the pawn. The usual move is the pawn on a7 first; this lesson shows where holding on leads.",
+      "reply": "b7b5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Strike at the pawn that guards c4 with the pawn on a2.",
+      "marks": {
+        "squares": ["b5","c4","a2","c7"],
+        "arrows": [["a2","a4"]]
+      },
+      "accept": ["a2a4"],
+      "after": "Black guards it again, from c7. That is the mistake, and club players often make it.",
+      "reply": "c7c6",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Black slipped with the pawn on c6. Take the pawn on b5.",
+      "marks": {"squares":["c6","b5"],"arrows":[["a4","b5"]]},
+      "accept": ["a4b5"],
+      "after": "Black takes back. Now look down the long diagonal.",
+      "reply": "c6b5"
+    },
+    {
+      "type": "move",
+      "text": "Jump the knight out of the bishop's way. Now the bishop attacks the rook on a8.",
+      "marks": {"arrows":[["f3","g5"],["g2","a8"]]},
+      "accept": ["f3g5"],
+      "after": "Black cannot keep the rook, and White comes out ahead.",
+      "wins": 2
+    }
+  ],
+  "summary": "When Black takes the side pawn, White castles and takes it back later. Holding on to it opens the long diagonal.",
+  "practice": {"fen":"rnbq1rk1/p3bppp/4pn2/1p4N1/2pP4/6P1/1PQ1PPBP/RNB2RK1 b - - 1 10","side":"w"}
+}

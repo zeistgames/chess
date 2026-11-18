@@ -1,0 +1,215 @@
+{
+  "id": "openings-italian-game-evans-gambit",
+  "course": "openings",
+  "title": "Italian Game: Evans Gambit",
+  "line": "White gives a pawn to win time and build the center.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "text": "The Italian Game, with both bishops out.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {
+        "squares": [
+          "c4",
+          "c5"
+        ]
+      },
+      "play": [
+        "e2e4",
+        "e7e5",
+        "g1f3",
+        "b8c6",
+        "f1c4",
+        "f8c5"
+      ]
+    },
+    {
+      "type": "move",
+      "text": "Offer the pawn on b2. If the bishop takes it, you gain time to build the center.",
+      "marks": {
+        "squares": [
+          "c5"
+        ],
+        "arrows": [
+          [
+            "b2",
+            "b4"
+          ]
+        ]
+      },
+      "accept": [
+        "b2b4"
+      ],
+      "after": "Engines rate this pawn offer about even, and masters choose it now and then. Black takes the pawn.",
+      "reply": "c5b4",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Attack the bishop with a pawn. It has to move again, and your next pawn move to d4 will be guarded.",
+      "marks": {
+        "squares": [
+          "b4",
+          "d4"
+        ],
+        "arrows": [
+          [
+            "c2",
+            "c3"
+          ]
+        ]
+      },
+      "accept": [
+        "c2c3"
+      ],
+      "reply": "b4a5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn in front of your queen two squares, into the center.",
+      "marks": {
+        "squares": [
+          "e5"
+        ],
+        "arrows": [
+          [
+            "d2",
+            "d4"
+          ]
+        ]
+      },
+      "accept": [
+        "d2d4"
+      ],
+      "also": {
+        "e1g1": "Castling first is also played. This lesson pushes the pawn now."
+      },
+      "reply": "e5d4",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Castle instead of taking back. Your king is safe, and the pawn on d4 can wait.",
+      "marks": {
+        "squares": [
+          "g1",
+          "d4"
+        ],
+        "arrows": [
+          [
+            "e1",
+            "g1"
+          ]
+        ]
+      },
+      "accept": [
+        "e1g1"
+      ],
+      "also": {
+        "d1b3": "The queen move is also played here. This lesson castles."
+      },
+      "after": "Black is a pawn up, but its king is still in the middle and only two of its pieces are out.",
+      "reply": "g8e7",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Jump the knight forward. Now two of your pieces aim at f7.",
+      "marks": {
+        "squares": [
+          "f7"
+        ],
+        "arrows": [
+          [
+            "f3",
+            "g5"
+          ],
+          [
+            "c4",
+            "f7"
+          ]
+        ]
+      },
+      "accept": [
+        "f3g5"
+      ],
+      "also": {
+        "c3d4": "Taking back is also played. This lesson goes for the pawn on f7."
+      },
+      "after": "Black blocks your bishop with a pawn.",
+      "reply": "d7d5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Take the pawn that blocks your bishop, to open its line to f7 again.",
+      "marks": {
+        "squares": [
+          "d5",
+          "f7"
+        ],
+        "arrows": [
+          [
+            "e4",
+            "d5"
+          ]
+        ]
+      },
+      "accept": [
+        "e4d5"
+      ],
+      "after": "Black takes back with the knight, a slip often made at club level. Masters move the knight forward to attack your bishop.",
+      "reply": "e7d5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "That slip leaves f7 guarded by the king alone. Take on f7 with the knight: a sacrifice, since your queen and rook join with checks.",
+      "marks": {
+        "squares": [
+          "f7"
+        ],
+        "arrows": [
+          [
+            "g5",
+            "f7"
+          ]
+        ]
+      },
+      "accept": [
+        "g5f7"
+      ],
+      "after": "The king takes and is out in the open.",
+      "reply": "e8f7",
+      "sacrifice": true
+    },
+    {
+      "type": "move",
+      "text": "Check with the queen. It attacks the king and the knight on d5 at once.",
+      "marks": {
+        "squares": [
+          "d5",
+          "f7"
+        ],
+        "arrows": [
+          [
+            "d1",
+            "f3"
+          ]
+        ]
+      },
+      "accept": [
+        "d1f3"
+      ],
+      "after": "Black guards with the queen, but the pinned knight is lost and the king has no shelter.",
+      "reply": "d8f6"
+    }
+  ],
+  "summary": "A pawn for time: White builds the center and castles while Black is busy taking, then hits the weak pawn by the king.",
+  "practice": {
+    "fen": "r1bqk2r/ppppnppp/2n5/b7/2BpP3/2P2N2/P4PPP/RNBQ1RK1 w kq - 2 8",
+    "side": "w"
+  }
+}

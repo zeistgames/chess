@@ -1,0 +1,13 @@
+{
+  "name": "Koivisto",
+  "version": "9.0",
+  "author": "Kim Kahre and Finn Eggers",
+  "license": "GPL-3.0-or-later",
+  "net_license": "MIT",
+  "source": "https://github.com/Luecx/Koivisto/tree/v9.0",
+  "line": "A strong engine that always plays at its full strength.",
+  "entry": "koivisto.js",
+  "strength": { "type": "none" },
+  "multipv": false,
+  "threads": false
+}

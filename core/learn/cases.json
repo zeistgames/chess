@@ -1,0 +1,1253 @@
+{
+ "about": "Learn as you play: games and the cards they must give (core/learn/cards.js). Each case: the moves (UCI), from fen or the usual start, the side the player has, and every card with the move it is about (ply, 1 is the first move), the number of moves after which it may be shown (shows), its title and its line (null for openings, whose words come from the chapter). With fewer moves played, exactly the cards whose shows is reached appear. Read by core/test/learn.test.js and the app's tests.",
+ "cases": [
+  {
+   "name": "a fork by the player: shown once the rook is taken and the answer played",
+   "player": "w",
+   "moves": [
+    "d5c7",
+    "e8d7",
+    "c7a8",
+    "d7c8"
+   ],
+   "fen": "r3k3/7p/8/3N4/8/8/4P3/4K3 w - - 0 1",
+   "cards": [
+    {
+     "kind": "fork",
+     "side": "player",
+     "ply": 1,
+     "shows": 4,
+     "title": "A fork",
+     "line": "Your knight on c7 attacked Black's king and rook at once, and took the rook."
+    }
+   ]
+  },
+  {
+   "name": "the same fork by the opponent: not shown while the player answers it, shown after the reply to the capture",
+   "player": "b",
+   "moves": [
+    "d5c7",
+    "e8d7",
+    "c7a8",
+    "d7c8"
+   ],
+   "fen": "r3k3/7p/8/3N4/8/8/4P3/4K3 w - - 0 1",
+   "cards": [
+    {
+     "kind": "fork",
+     "side": "opponent",
+     "ply": 1,
+     "shows": 4,
+     "title": "A fork",
+     "line": "White's knight on c7 attacked your king and rook at once, and took the rook."
+    }
+   ]
+  },
+  {
+   "name": "a fork that loses the knight (taken at once, as it gave check): no card",
+   "player": "w",
+   "moves": [
+    "d5c7",
+    "d8c7",
+    "e1d2",
+    "c7c2"
+   ],
+   "fen": "r2qk3/8/8/3N4/8/8/8/4K3 w - - 0 1",
+   "cards": []
+  },
+  {
+   "name": "not started from Learn: nothing",
+   "player": "w",
+   "moves": [
+    "d5c7",
+    "e8d7",
+    "c7a8",
+    "d7c8"
+   ],
+   "fen": "r3k3/7p/8/3N4/8/8/4P3/4K3 w - - 0 1",
+   "learn": false,
+   "cards": []
+  },
+  {
+   "name": "an opening by its name, as soon as it is reached",
+   "player": "w",
+   "moves": [
+    "e2e4",
+    "c7c5"
+   ],
+   "cards": [
+    {
+     "kind": "opening",
+     "side": "player",
+     "ply": 1,
+     "shows": 1,
+     "title": "King's Pawn Game",
+     "line": null,
+     "name": "King's Pawn Game"
+    }
+   ]
+  },
+  {
+   "name": "the Italian Game, and castling once a game (the opponent castles later: no second card)",
+   "player": "w",
+   "moves": [
+    "e2e4",
+    "e7e5",
+    "g1f3",
+    "b8c6",
+    "f1c4",
+    "f8c5",
+    "e1g1",
+    "g8f6",
+    "d2d3",
+    "e8g8",
+    "h2h3"
+   ],
+   "cards": [
+    {
+     "kind": "opening",
+     "side": "player",
+     "ply": 1,
+     "shows": 1,
+     "title": "King's Pawn Game",
+     "line": null,
+     "name": "King's Pawn Game"
+    },
+    {
+     "kind": "opening",
+     "side": "player",
+     "ply": 3,
+     "shows": 3,
+     "title": "King's Knight Opening",
+     "line": null,
+     "name": "King's Knight Opening"
+    },
+    {
+     "kind": "opening",
+     "side": "opponent",
+     "ply": 4,
+     "shows": 5,
+     "title": "King's Knight Opening",
+     "line": null,
+     "name": "King's Knight Opening: Normal Variation"
+    },
+    {
+     "kind": "opening",
+     "side": "player",
+     "ply": 5,
+     "shows": 5,
+     "title": "Italian Game",
+     "line": null,
+     "name": "Italian Game"
+    },
+    {
+     "kind": "opening",
+     "side": "opponent",
+     "ply": 6,
+     "shows": 7,
+     "title": "Italian Game",
+     "line": null,
+     "name": "Italian Game: Giuoco Piano"
+    },
+    {
+     "kind": "castling",
+     "side": "player",
+     "ply": 7,
+     "shows": 7,
+     "title": "Castling",
+     "line": "You castled: the king and a rook moved in one move."
+    }
+   ]
+  },
+  {
+   "name": "en passant by the player",
+   "player": "w",
+   "moves": [
+    "e2e4",
+    "a7a6",
+    "e4e5",
+    "d7d5",
+    "e5d6"
+   ],
+   "cards": [
+    {
+     "kind": "opening",
+     "side": "player",
+     "ply": 1,
+     "shows": 1,
+     "title": "King's Pawn Game",
+     "line": null,
+     "name": "King's Pawn Game"
+    },
+    {
+     "kind": "opening",
+     "side": "opponent",
+     "ply": 2,
+     "shows": 3,
+     "title": "St. George Defense",
+     "line": null,
+     "name": "St. George Defense"
+    },
+    {
+     "kind": "en-passant",
+     "side": "player",
+     "ply": 5,
+     "shows": 5,
+     "title": "En passant",
+     "line": "Your pawn took a pawn that had just moved two squares past it."
+    }
+   ]
+  },
+  {
+   "name": "a piece taken for nothing, shown once the opponent has answered",
+   "player": "w",
+   "moves": [
+    "d1d5",
+    "e8f8",
+    "d5d6",
+    "f8g8",
+    "d6d7",
+    "g8h8"
+   ],
+   "fen": "4k3/8/8/3n4/8/8/8/3QK3 w - - 0 1",
+   "cards": [
+    {
+     "kind": "hanging",
+     "side": "player",
+     "ply": 1,
+     "shows": 5,
+     "title": "A piece taken for nothing",
+     "line": "Your queen took Black's knight on d5, which nothing defended."
+    }
+   ]
+  },
+  {
+   "name": "back-rank mate",
+   "player": "w",
+   "moves": [
+    "a1a8"
+   ],
+   "fen": "6k1/5ppp/8/8/8/8/8/R5K1 w - - 0 1",
+   "cards": [
+    {
+     "kind": "back-rank-mate",
+     "side": "player",
+     "ply": 1,
+     "shows": 1,
+     "title": "Back-rank mate",
+     "line": "Your rook gave mate on the back rank, the king boxed in by its own pawns."
+    }
+   ]
+  },
+  {
+   "name": "smothered mate",
+   "player": "w",
+   "moves": [
+    "e2e4",
+    "c7c6",
+    "d2d4",
+    "d7d5",
+    "b1c3",
+    "d5e4",
+    "c3e4",
+    "b8d7",
+    "d1e2",
+    "g8f6",
+    "e4d6"
+   ],
+   "cards": [
+    {
+     "kind": "opening",
+     "side": "player",
+     "ply": 1,
+     "shows": 1,
+     "title": "King's Pawn Game",
+     "line": null,
+     "name": "King's Pawn Game"
+    },
+    {
+     "kind": "opening",
+     "side": "opponent",
+     "ply": 2,
+     "shows": 3,
+     "title": "Caro-Kann Defense",
+     "line": null,
+     "name": "Caro-Kann Defense"
+    },
+    {
+     "kind": "opening",
+     "side": "player",
+     "ply": 7,
+     "shows": 7,
+     "title": "Caro-Kann Defense",
+     "line": null,
+     "name": "Caro-Kann Defense: Main Line"
+    },
+    {
+     "kind": "opening",
+     "side": "opponent",
+     "ply": 8,
+     "shows": 9,
+     "title": "Caro-Kann Defense",
+     "line": null,
+     "name": "Caro-Kann Defense: Karpov Variation"
+    },
+    {
+     "kind": "smothered-mate",
+     "side": "player",
+     "ply": 11,
+     "shows": 11,
+     "title": "Smothered mate",
+     "line": "Your knight gave mate to a king hemmed in by its own pieces."
+    }
+   ]
+  },
+  {
+   "name": "a discovered check that wins the queen",
+   "player": "w",
+   "moves": [
+    "e2e4",
+    "e7e5",
+    "g1f3",
+    "g8f6",
+    "f3e5",
+    "f6e4",
+    "d1e2",
+    "e4f6",
+    "e5c6",
+    "f8e7",
+    "c6d8",
+    "e8d8"
+   ],
+   "cards": [
+    {
+     "kind": "opening",
+     "side": "player",
+     "ply": 1,
+     "shows": 1,
+     "title": "King's Pawn Game",
+     "line": null,
+     "name": "King's Pawn Game"
+    },
+    {
+     "kind": "opening",
+     "side": "player",
+     "ply": 3,
+     "shows": 3,
+     "title": "King's Knight Opening",
+     "line": null,
+     "name": "King's Knight Opening"
+    },
+    {
+     "kind": "opening",
+     "side": "opponent",
+     "ply": 4,
+     "shows": 5,
+     "title": "Petrov's Defense",
+     "line": null,
+     "name": "Petrov's Defense"
+    },
+    {
+     "kind": "opening",
+     "side": "opponent",
+     "ply": 6,
+     "shows": 7,
+     "title": "Petrov's Defense",
+     "line": null,
+     "name": "Petrov's Defense: Damiano Variation"
+    },
+    {
+     "kind": "discovered-check",
+     "side": "player",
+     "ply": 9,
+     "shows": 12,
+     "title": "A discovered check",
+     "line": "Moving your knight gave check with your queen, and won the queen."
+    }
+   ]
+  },
+  {
+   "name": "a double check, and mate after it",
+   "player": "w",
+   "moves": [
+    "e2e4",
+    "c7c6",
+    "d2d4",
+    "d7d5",
+    "b1c3",
+    "d5e4",
+    "c3e4",
+    "g8f6",
+    "d1d3",
+    "e7e5",
+    "d4e5",
+    "d8a5",
+    "c1d2",
+    "a5e5",
+    "e1c1",
+    "f6e4",
+    "d3d8",
+    "e8d8",
+    "d2g5",
+    "d8c7",
+    "g5d8"
+   ],
+   "cards": [
+    {
+     "kind": "opening",
+     "side": "player",
+     "ply": 1,
+     "shows": 1,
+     "title": "King's Pawn Game",
+     "line": null,
+     "name": "King's Pawn Game"
+    },
+    {
+     "kind": "opening",
+     "side": "opponent",
+     "ply": 2,
+     "shows": 3,
+     "title": "Caro-Kann Defense",
+     "line": null,
+     "name": "Caro-Kann Defense"
+    },
+    {
+     "kind": "opening",
+     "side": "player",
+     "ply": 7,
+     "shows": 7,
+     "title": "Caro-Kann Defense",
+     "line": null,
+     "name": "Caro-Kann Defense: Main Line"
+    },
+    {
+     "kind": "castling",
+     "side": "player",
+     "ply": 15,
+     "shows": 15,
+     "title": "Castling",
+     "line": "You castled: the king and a rook moved in one move."
+    },
+    {
+     "kind": "pin",
+     "side": "opponent",
+     "ply": 14,
+     "shows": 17,
+     "title": "A pin",
+     "line": "Black's queen pinned your knight to your king, and won the knight."
+    },
+    {
+     "kind": "double-check",
+     "side": "player",
+     "ply": 19,
+     "shows": 21,
+     "title": "A double check",
+     "line": "Your bishop and your rook gave check at once, and mate followed."
+    }
+   ]
+  },
+  {
+   "name": "stalemate",
+   "player": "w",
+   "moves": [
+    "f1f7"
+   ],
+   "fen": "7k/8/6K1/8/8/8/8/5Q2 w - - 0 1",
+   "cards": [
+    {
+     "kind": "stalemate",
+     "side": "player",
+     "ply": 1,
+     "shows": 1,
+     "title": "Stalemate",
+     "line": "Black had no legal move and was not in check, so the game is drawn."
+    }
+   ]
+  },
+  {
+   "name": "promotion",
+   "player": "w",
+   "moves": [
+    "e7e8q",
+    "a3b3"
+   ],
+   "fen": "8/4P3/8/8/8/k7/8/4K3 w - - 0 1",
+   "cards": [
+    {
+     "kind": "promotion",
+     "side": "player",
+     "ply": 1,
+     "shows": 1,
+     "title": "Promotion",
+     "line": "Your pawn reached the last rank and became a queen."
+    }
+   ]
+  },
+  {
+   "name": "underpromotion",
+   "player": "w",
+   "moves": [
+    "e7e8n",
+    "a3b3"
+   ],
+   "fen": "8/4P3/8/8/8/k7/8/4K3 w - - 0 1",
+   "cards": [
+    {
+     "kind": "underpromotion",
+     "side": "player",
+     "ply": 1,
+     "shows": 1,
+     "title": "Underpromotion",
+     "line": "Your pawn reached the last rank and became a knight, not a queen."
+    }
+   ]
+  },
+  {
+   "name": "a pin: a check answered by a block, the blocker pinned and taken (with mate)",
+   "player": "b",
+   "moves": [
+    "d3g3",
+    "g4d1",
+    "e4e1",
+    "d1e1"
+   ],
+   "fen": "5k2/1p3p2/p5p1/2p5/P1P1QPq1/1P1R3b/5P1P/6K1 w - - 1 29",
+   "cards": [
+    {
+     "kind": "pin",
+     "side": "player",
+     "ply": 2,
+     "shows": 4,
+     "title": "A pin",
+     "line": "Your queen gave check and pinned White's queen that blocked it to White's king, and took it with mate."
+    }
+   ]
+  },
+  {
+   "name": "a pin where the pinned queen takes the pinner and is taken back",
+   "player": "w",
+   "moves": [
+    "d7e6",
+    "g2d5",
+    "e6d5",
+    "c4d5"
+   ],
+   "fen": "1r4k1/3q2bp/1p1pP1p1/2p2p2/2Pp1P2/P2P2P1/3Q2BP/5RK1 b - - 0 27",
+   "over": true,
+   "cards": [
+    {
+     "kind": "pin",
+     "side": "player",
+     "ply": 2,
+     "shows": 4,
+     "title": "A pin",
+     "line": "Your bishop pinned Black's queen to Black's king, and won the queen."
+    }
+   ]
+  },
+  {
+   "name": "a skewer: the king steps aside and the rook behind it is taken",
+   "player": "w",
+   "moves": [
+    "d5d4",
+    "e5e4",
+    "d4d5",
+    "e4c4"
+   ],
+   "fen": "8/8/1p5p/p2kR3/P1rP1pP1/5P1P/8/5K2 b - - 3 40",
+   "over": true,
+   "cards": [
+    {
+     "kind": "skewer",
+     "side": "player",
+     "ply": 2,
+     "shows": 4,
+     "title": "A skewer",
+     "line": "Your rook attacked Black's king and took the rook behind it."
+    }
+   ]
+  },
+  {
+   "name": "a discovered attack: the knight moves with check and the rook behind it takes",
+   "player": "b",
+   "moves": [
+    "e3d5",
+    "e5f3",
+    "f4f3",
+    "e8e1"
+   ],
+   "fen": "4r1k1/b1q2pp1/p6p/1p2nP2/2p2Q2/P3N1PP/1PP2P2/1B2R1K1 w - - 5 26",
+   "over": true,
+   "cards": [
+    {
+     "kind": "discovered-attack",
+     "side": "player",
+     "ply": 2,
+     "shows": 4,
+     "title": "A discovered attack",
+     "line": "Moving your knight uncovered an attack by your rook on White's rook, and won the rook."
+    }
+   ]
+  },
+  {
+   "name": "a fork that wins back a piece just lost",
+   "player": "b",
+   "moves": [
+    "e4f5",
+    "d8d4",
+    "f2e1",
+    "d4c3"
+   ],
+   "fen": "r2q1r2/5kb1/2P2n2/p1p1pbp1/P1P1PpP1/1PN2P2/4QKB1/1R3R2 w - - 0 27",
+   "over": true,
+   "cards": [
+    {
+     "kind": "fork",
+     "side": "player",
+     "ply": 2,
+     "shows": 4,
+     "title": "A fork",
+     "line": "Your queen on d4 attacked White's king and knight at once, and took the knight."
+    }
+   ]
+  },
+  {
+   "name": "a trade is not a piece taken for nothing (the exchange on c6)",
+   "player": "b",
+   "moves": [
+    "e2e4",
+    "e7e5",
+    "g1f3",
+    "b8c6",
+    "f1b5",
+    "a7a6",
+    "b5c6",
+    "d7c6",
+    "e1g1",
+    "f7f6"
+   ],
+   "cards": [
+    {
+     "kind": "opening",
+     "side": "opponent",
+     "ply": 1,
+     "shows": 2,
+     "title": "King's Pawn Game",
+     "line": null,
+     "name": "King's Pawn Game"
+    },
+    {
+     "kind": "opening",
+     "side": "opponent",
+     "ply": 3,
+     "shows": 4,
+     "title": "King's Knight Opening",
+     "line": null,
+     "name": "King's Knight Opening"
+    },
+    {
+     "kind": "opening",
+     "side": "player",
+     "ply": 4,
+     "shows": 4,
+     "title": "King's Knight Opening",
+     "line": null,
+     "name": "King's Knight Opening: Normal Variation"
+    },
+    {
+     "kind": "opening",
+     "side": "opponent",
+     "ply": 5,
+     "shows": 6,
+     "title": "Ruy Lopez",
+     "line": null,
+     "name": "Ruy Lopez"
+    },
+    {
+     "kind": "opening",
+     "side": "player",
+     "ply": 6,
+     "shows": 6,
+     "title": "Ruy Lopez",
+     "line": null,
+     "name": "Ruy Lopez: Morphy Defense"
+    },
+    {
+     "kind": "opening",
+     "side": "opponent",
+     "ply": 7,
+     "shows": 8,
+     "title": "Ruy Lopez",
+     "line": null,
+     "name": "Ruy Lopez: Exchange Variation"
+    },
+    {
+     "kind": "opening",
+     "side": "opponent",
+     "ply": 9,
+     "shows": 10,
+     "title": "Ruy Lopez",
+     "line": null,
+     "name": "Ruy Lopez: Exchange Variation, Normal Variation"
+    },
+    {
+     "kind": "castling",
+     "side": "opponent",
+     "ply": 9,
+     "shows": 10,
+     "title": "Castling",
+     "line": "White castled: the king and a rook moved in one move."
+    },
+    {
+     "kind": "opening",
+     "side": "player",
+     "ply": 10,
+     "shows": 10,
+     "title": "Ruy Lopez",
+     "line": null,
+     "name": "Ruy Lopez: Exchange Variation, Gligoric Variation"
+    }
+   ]
+  },
+  {
+   "name": "a queen trade is not a piece taken for nothing",
+   "player": "w",
+   "moves": [
+    "e2e4",
+    "e7e5",
+    "d2d4",
+    "e5d4",
+    "d1d4",
+    "d8f6",
+    "d4f6",
+    "g8f6",
+    "b1c3",
+    "f8b4"
+   ],
+   "cards": [
+    {
+     "kind": "opening",
+     "side": "player",
+     "ply": 1,
+     "shows": 1,
+     "title": "King's Pawn Game",
+     "line": null,
+     "name": "King's Pawn Game"
+    },
+    {
+     "kind": "opening",
+     "side": "player",
+     "ply": 3,
+     "shows": 3,
+     "title": "Center Game",
+     "line": null,
+     "name": "Center Game"
+    },
+    {
+     "kind": "opening",
+     "side": "opponent",
+     "ply": 4,
+     "shows": 5,
+     "title": "Center Game Accepted",
+     "line": null,
+     "name": "Center Game Accepted"
+    }
+   ]
+  },
+  {
+   "name": "a sacrifice that won: taking the rook was not a free piece, mate followed",
+   "player": "b",
+   "moves": [
+    "e1c1",
+    "d8d1",
+    "c1d1",
+    "g4d1"
+   ],
+   "fen": "3rr1k1/5pp1/7p/1Q6/6q1/4B3/PP3PPP/2n1RK2 w - - 0 23",
+   "over": true,
+   "cards": []
+  },
+  {
+   "name": "a sacrifice that won, from the side that took it",
+   "player": "w",
+   "moves": [
+    "e1c1",
+    "d8d1",
+    "c1d1",
+    "g4d1"
+   ],
+   "fen": "3rr1k1/5pp1/7p/1Q6/6q1/4B3/PP3PPP/2n1RK2 w - - 0 23",
+   "over": true,
+   "cards": []
+  },
+  {
+   "name": "a move that mates is not a fork",
+   "player": "b",
+   "moves": [
+    "f3e5",
+    "h5h2"
+   ],
+   "fen": "r3k2r/1b1p1ppp/p2Pp3/4n2q/6n1/1B3N2/PPP2PPP/R1BQ1RK1 w kq - 1 15",
+   "over": true,
+   "cards": []
+  },
+  {
+   "name": "an opening reached by the opponent waits for the player's reply",
+   "player": "w",
+   "moves": [
+    "e2e4",
+    "c7c5",
+    "g1f3"
+   ],
+   "cards": [
+    {
+     "kind": "opening",
+     "side": "player",
+     "ply": 1,
+     "shows": 1,
+     "title": "King's Pawn Game",
+     "line": null,
+     "name": "King's Pawn Game"
+    },
+    {
+     "kind": "opening",
+     "side": "opponent",
+     "ply": 2,
+     "shows": 3,
+     "title": "Sicilian Defense",
+     "line": null,
+     "name": "Sicilian Defense"
+    }
+   ]
+  },
+  {
+   "name": "a discovered check that took back in a trade did not win material (self-play)",
+   "player": "w",
+   "moves": [
+    "e2e3",
+    "g8f6",
+    "d2d4",
+    "d7d5",
+    "c2c4",
+    "e7e6",
+    "a2a3",
+    "c7c5",
+    "g1f3",
+    "d5c4",
+    "f1c4",
+    "c5d4",
+    "e3d4",
+    "d8c7",
+    "d1e2",
+    "f8d6",
+    "c1g5",
+    "b8d7",
+    "e1g1",
+    "h7h6",
+    "g5e3",
+    "f6g4",
+    "h2h3",
+    "g4e3",
+    "f2e3",
+    "a7a6",
+    "c4a2",
+    "d7f6",
+    "b1c3",
+    "c8d7",
+    "a1c1",
+    "c7a5",
+    "e2f2",
+    "d7b5",
+    "f1d1",
+    "b5c6",
+    "f3d2",
+    "a5g5",
+    "e3e4",
+    "d6g3",
+    "f2f1",
+    "a8d8",
+    "e4e5",
+    "d8d4",
+    "d2f3",
+    "d4d1",
+    "c1d1",
+    "c6f3",
+    "f1f3",
+    "g3e5",
+    "a2b1",
+    "g5f4",
+    "c3e4",
+    "f4f3",
+    "g2f3",
+    "h8g8",
+    "e4f6",
+    "g7f6",
+    "g1f2",
+    "e8e7",
+    "d1d3",
+    "b7b6",
+    "d3b3",
+    "e5d4"
+   ],
+   "cards": [
+    {
+     "kind": "opening",
+     "side": "player",
+     "ply": 1,
+     "shows": 1,
+     "title": "Van't Kruijs Opening",
+     "line": null,
+     "name": "Van't Kruijs Opening"
+    },
+    {
+     "kind": "opening",
+     "side": "opponent",
+     "ply": 4,
+     "shows": 5,
+     "title": "Queen's Pawn Game",
+     "line": null,
+     "name": "Queen's Pawn Game"
+    },
+    {
+     "kind": "castling",
+     "side": "player",
+     "ply": 19,
+     "shows": 19,
+     "title": "Castling",
+     "line": "You castled: the king and a rook moved in one move."
+    }
+   ]
+  },
+  {
+   "name": "a discovered check that took back in a trade did not win material (self-play, second game)",
+   "player": "w",
+   "moves": [
+    "e2e4",
+    "c7c5",
+    "g1f3",
+    "b8c6",
+    "f1b5",
+    "g8f6",
+    "d1e2",
+    "g7g6",
+    "e1g1",
+    "f8g7",
+    "b5c6",
+    "b7c6",
+    "e4e5",
+    "f6d5",
+    "d2d3",
+    "e8g8",
+    "f1e1",
+    "f8e8",
+    "h2h3",
+    "a7a5",
+    "c2c4",
+    "d5c7",
+    "b2b3",
+    "d7d6",
+    "b1c3",
+    "c7e6",
+    "c3a4",
+    "d6e5",
+    "f3g5",
+    "e6f4",
+    "e2f3",
+    "h7h6",
+    "g5e4",
+    "f4e6",
+    "a1b1",
+    "e6d4",
+    "f3g3",
+    "g6g5",
+    "b1b2",
+    "f7f5",
+    "e4c5",
+    "f5f4",
+    "g3h2",
+    "e8f8",
+    "b2d2",
+    "h6h5",
+    "c1b2",
+    "a8a7",
+    "b2d4",
+    "d8d4",
+    "c5e4",
+    "g7f6",
+    "a4c5",
+    "g8f7",
+    "g1h1",
+    "a7a8",
+    "g2g3",
+    "f8g8",
+    "f2f3",
+    "f4g3",
+    "h2g3",
+    "c8f5",
+    "h1h2",
+    "g8g6",
+    "g3f2",
+    "a8f8",
+    "f2g1",
+    "d4d8",
+    "g1e3",
+    "f8g8",
+    "d2g2",
+    "d8f8",
+    "e4g3",
+    "f8c8",
+    "g3f5",
+    "c8f5",
+    "g2g1",
+    "e5e4",
+    "d3e4",
+    "f6e5",
+    "h2g2",
+    "f5f4",
+    "e3f4",
+    "g5f4",
+    "g2h2",
+    "g6g1",
+    "e1g1",
+    "g8g1",
+    "h2g1",
+    "e5d4"
+   ],
+   "cards": [
+    {
+     "kind": "opening",
+     "side": "player",
+     "ply": 1,
+     "shows": 1,
+     "title": "King's Pawn Game",
+     "line": null,
+     "name": "King's Pawn Game"
+    },
+    {
+     "kind": "opening",
+     "side": "opponent",
+     "ply": 2,
+     "shows": 3,
+     "title": "Sicilian Defense",
+     "line": null,
+     "name": "Sicilian Defense"
+    },
+    {
+     "kind": "opening",
+     "side": "opponent",
+     "ply": 4,
+     "shows": 5,
+     "title": "Sicilian Defense",
+     "line": null,
+     "name": "Sicilian Defense: Old Sicilian"
+    },
+    {
+     "kind": "opening",
+     "side": "player",
+     "ply": 5,
+     "shows": 5,
+     "title": "Sicilian Defense",
+     "line": null,
+     "name": "Sicilian Defense: Nyezhmetdinov-Rossolimo Attack"
+    },
+    {
+     "kind": "castling",
+     "side": "player",
+     "ply": 9,
+     "shows": 9,
+     "title": "Castling",
+     "line": "You castled: the king and a rook moved in one move."
+    }
+   ]
+  },
+  {
+   "name": "a queen sacrifice before mate is not a fork (self-play)",
+   "player": "w",
+   "moves": [
+    "e2e3",
+    "g8f6",
+    "d2d4",
+    "d7d5",
+    "c2c4",
+    "c7c6",
+    "b1d2",
+    "g7g6",
+    "g1f3",
+    "f8g7",
+    "f1e2",
+    "a7a5",
+    "b2b3",
+    "e8g8",
+    "e1g1",
+    "b8a6",
+    "c1b2",
+    "f6e4",
+    "c4d5",
+    "c6d5",
+    "d2e4",
+    "d5e4",
+    "f3e5",
+    "g7e5",
+    "e2a6",
+    "e5h2",
+    "g1h2",
+    "b7a6",
+    "d4d5",
+    "d8d6",
+    "g2g3",
+    "f7f6",
+    "a2a3",
+    "a8b8",
+    "a1c1",
+    "b8b5",
+    "c1c6",
+    "d6d7",
+    "d1d4",
+    "b5d5",
+    "d4c4",
+    "g8h8",
+    "h2g1",
+    "d5h5",
+    "f1a1",
+    "d7h3",
+    "c4e4",
+    "c8b7",
+    "c6f6",
+    "h3h1",
+    "e4h1",
+    "h5h1"
+   ],
+   "cards": [
+    {
+     "kind": "opening",
+     "side": "player",
+     "ply": 1,
+     "shows": 1,
+     "title": "Van't Kruijs Opening",
+     "line": null,
+     "name": "Van't Kruijs Opening"
+    },
+    {
+     "kind": "opening",
+     "side": "opponent",
+     "ply": 4,
+     "shows": 5,
+     "title": "Queen's Pawn Game",
+     "line": null,
+     "name": "Queen's Pawn Game"
+    },
+    {
+     "kind": "castling",
+     "side": "opponent",
+     "ply": 14,
+     "shows": 15,
+     "title": "Castling",
+     "line": "Black castled: the king and a rook moved in one move."
+    }
+   ]
+  },
+  {
+   "name": "a fork proved only by the moves after it: taken back to before the proof, no card (audit F21)",
+   "player": "w",
+   "moves": [
+    "e2e4",
+    "e7e5",
+    "g1f3",
+    "b8c6",
+    "f1c4",
+    "g8f6",
+    "f3g5",
+    "h7h6",
+    "g5f7",
+    "d8e7",
+    "f7h8",
+    "d7d6"
+   ],
+   "cards": [
+    {
+     "kind": "opening",
+     "side": "player",
+     "ply": 1,
+     "shows": 1,
+     "title": "King's Pawn Game",
+     "line": null,
+     "name": "King's Pawn Game"
+    },
+    {
+     "kind": "opening",
+     "side": "player",
+     "ply": 3,
+     "shows": 3,
+     "title": "King's Knight Opening",
+     "line": null,
+     "name": "King's Knight Opening"
+    },
+    {
+     "kind": "opening",
+     "side": "opponent",
+     "ply": 4,
+     "shows": 5,
+     "title": "King's Knight Opening",
+     "line": null,
+     "name": "King's Knight Opening: Normal Variation"
+    },
+    {
+     "kind": "opening",
+     "side": "player",
+     "ply": 5,
+     "shows": 5,
+     "title": "Italian Game",
+     "line": null,
+     "name": "Italian Game"
+    },
+    {
+     "kind": "opening",
+     "side": "opponent",
+     "ply": 6,
+     "shows": 7,
+     "title": "Italian Game",
+     "line": null,
+     "name": "Italian Game: Two Knights Defense"
+    },
+    {
+     "kind": "opening",
+     "side": "player",
+     "ply": 7,
+     "shows": 7,
+     "title": "Italian Game",
+     "line": null,
+     "name": "Italian Game: Two Knights Defense, Knight Attack"
+    },
+    {
+     "kind": "fork",
+     "side": "player",
+     "ply": 9,
+     "shows": 12,
+     "title": "A fork",
+     "line": "Your knight on f7 attacked Black's rook and queen at once, and took the rook."
+    }
+   ]
+  },
+  {
+   "name": "a game that ends early: what waited is shown at the end",
+   "player": "b",
+   "moves": [
+    "d5c7",
+    "e8d7",
+    "c7a8"
+   ],
+   "fen": "r3k3/7p/8/3N4/8/8/4P3/4K3 w - - 0 1",
+   "over": true,
+   "cards": [
+    {
+     "kind": "fork",
+     "side": "opponent",
+     "ply": 1,
+     "shows": 3,
+     "title": "A fork",
+     "line": "White's knight on c7 attacked your king and rook at once, and took the rook."
+    }
+   ]
+  }
+ ]
+}

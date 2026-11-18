@@ -1,0 +1,48 @@
+{
+  "id": "endgames-same-bishops",
+  "course": "endgames",
+  "title": "Bishops of the same color",
+  "line": "Put your pawns on the other color from your bishop.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "fen": "8/8/3k1p2/p2b2p1/P2K2P1/5P2/8/5B2 w - - 0 1",
+      "text": "Both bishops run on light squares. A pawn on a light square can be attacked by the enemy bishop. One on a dark square cannot.",
+      "marks": {"squares":["f1","d5"]}
+    },
+    {
+      "type": "pick",
+      "fen": "8/8/3k1p2/p2b2p1/P2K2P1/5P2/8/5B2 w - - 0 1",
+      "text": "Tap every white pawn on a light square.",
+      "accept": ["a4","f3","g4"],
+      "all": true,
+      "hint": "The same color as the square your bishop stands on.",
+      "after": "All three can be attacked by Black's bishop. Black's pawns all stand on dark squares."
+    },
+    {
+      "type": "move",
+      "fen": "8/8/3k1p2/p2b2p1/P2K2P1/5P2/8/5B2 b - - 0 1",
+      "side": "b",
+      "text": "You have Black. Your bishop attacks a white pawn that nothing guards. Take it.",
+      "marks": {"squares":["f3"]},
+      "accept": ["d5f3"],
+      "hint": "The pawn stands two squares from your bishop, on one of its diagonals.",
+      "after": "The pawn on the light square fell. Black's pawns on dark squares are out of reach.",
+      "wins": 1
+    },
+    {
+      "type": "move",
+      "fen": "8/8/3k1p2/p2b2p1/P2K2P1/5P2/8/5B2 w - - 0 1",
+      "text": "Now you have White, in the same position. Guard the pawn the bishop attacks.",
+      "marks": {"squares":["f3","a4"],"arrows":[["d5","f3"]]},
+      "accept": ["f1e2"],
+      "wrong": {
+        "f1g2": "That guards it too, but Black's bishop turns to the pawn on a4, and it falls."
+      },
+      "hint": "Move the bishop one square along its diagonal toward the middle.",
+      "after": "The pawn is guarded, but it stays a target. Pawns belong on the other color from your bishop."
+    }
+  ],
+  "summary": "When the bishops run on the same color, put your pawns on the other color, and attack the enemy pawns on yours."
+}

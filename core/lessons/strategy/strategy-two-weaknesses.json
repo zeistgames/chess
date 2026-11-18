@@ -1,0 +1,64 @@
+{
+  "id": "strategy-two-weaknesses",
+  "course": "strategy",
+  "title": "Two weaknesses",
+  "line": "One weakness can be defended. Two usually cannot.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "fen": "8/8/pp1k1ppp/2pP4/2P1K3/PP4PP/8/8 w - - 0 30",
+      "text": "Your passed pawn on d5 is guarded by a pawn. Black's king stands in front of it. That one weakness Black can hold.",
+      "marks": {"squares":["d5","d6"]}
+    },
+    {
+      "type": "move",
+      "text": "Make a second weakness on the other side. Push the pawn on g3 one square, ready to break up Black's pawns there.",
+      "marks": {"arrows":[["g3","g4"]]},
+      "accept": ["g3g4"],
+      "wrong": {
+        "a3a4": "That plays on the side where Black's king already stands guard."
+      },
+      "after": "Black's king heads over to that side.",
+      "reply": "d6e7"
+    },
+    {
+      "type": "move",
+      "text": "Bring your next pawn up beside it.",
+      "marks": {"arrows":[["h3","h4"]]},
+      "accept": ["h3h4"],
+      "after": "Black's king comes closer to help.",
+      "reply": "e7f7"
+    },
+    {
+      "type": "move",
+      "text": "Push again, into Black's pawns.",
+      "marks": {"arrows":[["h4","h5"]]},
+      "accept": ["h4h5"],
+      "after": "Black gives a pawn, with check, to break up your pawns.",
+      "reply": "f6f5"
+    },
+    {
+      "type": "move",
+      "text": "Take the pawn.",
+      "marks": {"arrows":[["g4","f5"]]},
+      "accept": ["g4f5"],
+      "after": "Black takes your other pawn. You now have two passed pawns.",
+      "reply": "g6h5"
+    },
+    {
+      "type": "move",
+      "text": "Push the passed pawn on d5. Black's king has to watch two passed pawns at once.",
+      "marks": {"squares":["f5","f7"],"arrows":[["d5","d6"]]},
+      "accept": ["d5d6"],
+      "also": {
+        "e4f3": "That is as strong. This lesson pushes the pawn the king has left.",
+        "e4f4": "That is as strong. This lesson pushes the pawn the king has left."
+      },
+      "after": "Black's king stands between your two pawns and cannot be next to both.",
+      "reply": "h5h4"
+    }
+  ],
+  "summary": "A defender can hold one weakness. Make a second one far from the first, and the defense gives way.",
+  "practice": {"fen":"8/5k2/pp1P3p/2p2P2/2P1K2p/PP6/8/8 w - - 0 35","side":"w"}
+}

@@ -1,0 +1,107 @@
+{
+  "id": "openings-modern-defense-ideas",
+  "course": "openings",
+  "title": "Modern Defense: the ideas",
+  "line": "The bishop goes to the long diagonal at once, and Black keeps the knights home to stay flexible.",
+  "side": "b",
+  "steps": [
+    {
+      "type": "show",
+      "text": "White starts by pushing the pawn in front of its king two squares, into the center.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {"arrows":[["e2","e4"]]},
+      "play": ["e2e4"]
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn on g7 one square, to make room for your bishop.",
+      "marks": {"arrows":[["g7","g6"]]},
+      "accept": ["g7g6"],
+      "also": {
+        "e7e5": "That is the open game, another main answer. This lesson goes on with the Modern.",
+        "c7c5": "That is the Sicilian Defense, another main answer. This lesson goes on with the Modern.",
+        "e7e6": "That is the French Defense, another main answer. This lesson goes on with the Modern.",
+        "c7c6": "That is the Caro-Kann Defense, another main answer. This lesson goes on with the Modern.",
+        "d7d6": "That is the Pirc Defense, another main answer. This lesson goes on with the Modern.",
+        "d7d5": "That is the Scandinavian Defense, another main answer. This lesson goes on with the Modern.",
+        "g8f6": "That is the Alekhine Defense, another main answer. This lesson goes on with the Modern."
+      },
+      "reply": "d2d4",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Put the bishop on g7. It aims at the pawn on d4.",
+      "marks": {"squares":["d4"],"arrows":[["f8","g7"]]},
+      "accept": ["f8g7"],
+      "also": {
+        "d7d6": "That also works, and can turn into the Pirc. This lesson brings the bishop out first.",
+        "c7c6": "That also works. This lesson brings the bishop out first."
+      },
+      "after": "Black lets White build a full center for now, to attack it later. White gets space; Black gets targets.",
+      "reply": "b1c3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn on d7 one square. It keeps White's pawn out of e5.",
+      "marks": {"squares":["e5"],"arrows":[["d7","d6"]]},
+      "accept": ["d7d6"],
+      "also": {
+        "d7d5": "That is also played. This lesson pushes the pawn one square.",
+        "c7c6": "That also works. This lesson pushes the pawn in front of the queen."
+      },
+      "reply": "c1e3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn on a7 one square. It gets ready to push the pawn on b7.",
+      "marks": {"squares":["b7"],"arrows":[["a7","a6"]]},
+      "accept": ["a7a6"],
+      "also": {
+        "c7c6": "That also works. This lesson goes on with the other side pawn.",
+        "g8f6": "That turns into the Pirc. This lesson goes on with the side pawn."
+      },
+      "reply": "d1d2",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn on b7 two squares. It takes space on the queen's side.",
+      "marks": {"arrows":[["b7","b5"]]},
+      "accept": ["b7b5"],
+      "reply": "f2f3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the knight to d7. It backs up a push in the center.",
+      "marks": {"arrows":[["b8","d7"]]},
+      "accept": ["b8d7"],
+      "reply": "g1h3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the other bishop out. It aims at the pawn on e4.",
+      "marks": {"squares":["e4"],"arrows":[["c8","b7"]]},
+      "accept": ["c8b7"],
+      "reply": "h3f2",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Now strike at the center: push the pawn on c7 two squares.",
+      "marks": {"squares":["d4"],"arrows":[["c7","c5"]]},
+      "accept": ["c7c5"],
+      "after": "Your pawn hits d4, and your bishops aim at the center from both sides.",
+      "taught": true
+    }
+  ],
+  "summary": "The Modern puts a bishop on the long diagonal at once, takes space on the queen's side and strikes at the center later.",
+  "practice": {
+    "fen": "rnbqk1nr/ppp1ppbp/3p2p1/8/3PP3/2N5/PPP2PPP/R1BQKBNR w KQkq - 0 4",
+    "side": "b"
+  }
+}

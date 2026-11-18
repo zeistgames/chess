@@ -1,0 +1,84 @@
+{
+  "id": "openings-nimzo-indian-defense-rubinstein-system",
+  "course": "openings",
+  "title": "Nimzo-Indian Defense: Rubinstein System",
+  "line": "White develops quietly, and Black takes a full share of the center with pawns.",
+  "side": "b",
+  "steps": [
+    {
+      "type": "show",
+      "text": "The Nimzo-Indian, and White moves the pawn in front of its king one square. It frees a bishop and guards the center.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {"arrows":[["e2","e3"]]},
+      "play": ["d2d4","g8f6","c2c4","e7e6","b1c3","f8b4","e2e3"]
+    },
+    {
+      "type": "move",
+      "text": "Castle. Black keeps the choice of when to take the knight.",
+      "accept": ["e8g8"],
+      "marks": {"arrows":[["e8","g8"]]},
+      "reply": "f1d3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn in front of your queen two squares, into the center.",
+      "accept": ["d7d5"],
+      "marks": {"arrows":[["d7","d5"]]},
+      "reply": "g1f3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Now push the pawn on c7 two squares. It attacks White's pawn on d4 from the side.",
+      "marks": {"squares":["c7","d4"],"arrows":[["c7","c5"]]},
+      "accept": ["c7c5"],
+      "reply": "e1g1",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the other knight out. It attacks the pawn on d4 too.",
+      "marks": {"squares":["d4"],"arrows":[["b8","c6"]]},
+      "accept": ["b8c6"],
+      "also": {"d5c4":"Taking first is a main line too. This lesson goes on with the knight."},
+      "after": "White pushes a pawn at the bishop.",
+      "reply": "a2a3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Take the knight. White's pawns end up two on one file.",
+      "accept": ["b4c3"],
+      "marks": {"arrows":[["b4","c3"]]},
+      "reply": "b2c3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Take the pawn on c4. White's bishop takes back, having moved twice.",
+      "marks": {"squares":["c4"],"arrows":[["d5","c4"]]},
+      "accept": ["d5c4"],
+      "reply": "d3c4",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the queen out. It backs up a pawn push in the center.",
+      "marks": {"squares":["e5"],"arrows":[["d8","c7"]]},
+      "accept": ["d8c7"],
+      "reply": "c4d3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Now push the pawn in front of your king two squares.",
+      "accept": ["e6e5"],
+      "marks": {"arrows":[["e6","e5"]],"squares":["c8"]},
+      "after": "Black has its share of the center, and the bishop on c8 can come out.",
+      "taught": true
+    }
+  ],
+  "summary": "Against quiet development, Black castles, puts pawns in the center and opens it once its pieces are out.",
+  "practice": {"fen":"r1b2rk1/ppq2ppp/2n2n2/2p1p3/3P4/P1PBPN2/5PPP/R1BQ1RK1 w - - 0 12","side":"b"}
+}

@@ -1,0 +1,78 @@
+{
+  "id": "checkmates-epaulette",
+  "course": "checkmates",
+  "title": "Epaulette mate",
+  "line": "The king's own rooks on either side block it in.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "text": "Epaulette mate: the king's own pieces sit on both sides of it, like the epaulettes on a uniform. A queen check from the front is enough.",
+      "fen": "2rkr3/pp3ppp/2n5/8/8/Q5P1/PP3P1P/6K1 w - - 0 1",
+      "marks": {
+        "squares": [
+          "d8"
+        ]
+      }
+    },
+    {
+      "type": "pick",
+      "text": "Tap the two black pieces that block their own king's way to the sides.",
+      "accept": [
+        "c8",
+        "e8"
+      ],
+      "all": true,
+      "hint": "Look along the back rank, right beside the king.",
+      "after": "Both rooks. The king can only flee forward, and the queen will take those squares."
+    },
+    {
+      "type": "move",
+      "text": "Mate with the queen, two squares in front of the king.",
+      "accept": [
+        "a3d6"
+      ],
+      "hint": "The queen goes along the diagonal to the king's file.",
+      "after": "Epaulette mate. The queen takes the three squares in front of the king, and the rooks block the two beside it.",
+      "mate": true,
+      "marks": {
+        "squares": [
+          "d8"
+        ]
+      }
+    },
+    {
+      "type": "move",
+      "text": "Now you are Black in the same position, and the queen threatens mate on d6. Unbox your king first.",
+      "fen": "2rkr3/pp3ppp/2n5/8/8/Q5P1/PP3P1P/6K1 b - - 0 1",
+      "side": "b",
+      "accept": [
+        "d8c7",
+        "c8c7",
+        "e8e7"
+      ],
+      "wrong": {
+        "a7a6": "Then the queen comes to d6, and it is mate.",
+        "h7h6": "Then the queen comes to d6, and it is mate.",
+        "g7g6": "Then the queen comes to d6, and it is mate.",
+        "b7b6": "Then the queen comes to d6, and it is mate.",
+        "d8d7": "That gets the king out, but it stands in the open, and the queen checks it again from d3 at once."
+      },
+      "hint": "Move the king off the back rank, or move a rook so the king has a square beside it.",
+      "after": "The box is open. A check on d6 is no longer mate.",
+      "marks": {
+        "squares": [
+          "d6",
+          "d3"
+        ],
+        "arrows": [
+          [
+            "a3",
+            "d6"
+          ]
+        ]
+      }
+    }
+  ],
+  "summary": "A king squeezed between its own pieces can be mated by a single check from the front. Leave it a square."
+}

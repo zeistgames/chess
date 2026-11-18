@@ -1,0 +1,196 @@
+{
+  "id": "openings-petrovs-defense-modern-attack",
+  "course": "openings",
+  "title": "Petrov's Defense: Modern Attack",
+  "line": "White pushes into the center at once. Black takes the pawn on e4 and trades off the strong white knight.",
+  "side": "b",
+  "steps": [
+    {
+      "type": "show",
+      "text": "Petrov's Defense, and White pushes a second pawn into the center, leaving the pawn on e4.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {
+        "squares": [
+          "e4",
+          "d4"
+        ],
+        "arrows": [
+          [
+            "d2",
+            "d4"
+          ]
+        ]
+      },
+      "play": [
+        "e2e4",
+        "e7e5",
+        "g1f3",
+        "g8f6",
+        "d2d4"
+      ]
+    },
+    {
+      "type": "move",
+      "text": "Take the pawn on e4. Nothing guards it.",
+      "marks": {
+        "squares": [
+          "e4"
+        ],
+        "arrows": [
+          [
+            "f6",
+            "e4"
+          ]
+        ]
+      },
+      "accept": [
+        "f6e4"
+      ],
+      "also": {
+        "e5d4": "Taking the other pawn is also played. This lesson takes on e4."
+      },
+      "after": "White's bishop attacks your knight.",
+      "reply": "f1d3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Guard the knight with a pawn: push the pawn in front of your queen two squares.",
+      "marks": {
+        "squares": [
+          "e4",
+          "e5"
+        ],
+        "arrows": [
+          [
+            "d7",
+            "d5"
+          ]
+        ]
+      },
+      "accept": [
+        "d7d5"
+      ],
+      "after": "White takes your pawn on e5. Its knight stands strong in the center.",
+      "reply": "f3e5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring your other knight out to offer a trade with that strong knight.",
+      "marks": {
+        "squares": [
+          "e5"
+        ],
+        "arrows": [
+          [
+            "b8",
+            "d7"
+          ]
+        ]
+      },
+      "accept": [
+        "b8d7"
+      ],
+      "also": {
+        "f8d6": "That is also played. This lesson offers the knight trade."
+      },
+      "reply": "e5d7",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Take back with the bishop. It comes out at the same time.",
+      "marks": {
+        "squares": [
+          "d7"
+        ],
+        "arrows": [
+          [
+            "c8",
+            "d7"
+          ]
+        ]
+      },
+      "accept": [
+        "c8d7"
+      ],
+      "reply": "e1g1",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the other bishop out, aimed at the king side.",
+      "marks": {
+        "squares": [
+          "h2"
+        ],
+        "arrows": [
+          [
+            "f8",
+            "d6"
+          ]
+        ]
+      },
+      "accept": [
+        "f8d6"
+      ],
+      "also": {
+        "f8e7": "That is also played. This lesson puts the bishop on d6."
+      },
+      "reply": "c2c4",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Castle. Your king leaves the center, where the files may open.",
+      "marks": {
+        "squares": [
+          "g8",
+          "d6"
+        ],
+        "arrows": [
+          [
+            "e8",
+            "g8"
+          ]
+        ]
+      },
+      "accept": [
+        "e8g8"
+      ],
+      "also": {
+        "c7c6": "Guarding your center pawn is also played. This lesson castles first."
+      },
+      "after": "The white pawn attacks your bishop on d6.",
+      "reply": "c4c5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Step the bishop back to e7. It stays near your king and keeps the game level.",
+      "marks": {
+        "squares": [
+          "d6",
+          "e4"
+        ],
+        "arrows": [
+          [
+            "d6",
+            "e7"
+          ]
+        ]
+      },
+      "accept": [
+        "d6e7"
+      ],
+      "after": "Your knight on e4 stands well, and White's knight is gone. The game is level.",
+      "reply": "b1c3"
+    }
+  ],
+  "summary": "Black takes the pawn, guards the knight with a pawn, and trades off the white knight that jumps into the center.",
+  "practice": {
+    "fen": "r2q1rk1/pppbbppp/8/2Pp4/3Pn3/2NB4/PP3PPP/R1BQ1RK1 b - - 2 10",
+    "side": "b"
+  }
+}

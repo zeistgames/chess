@@ -1,0 +1,50 @@
+{
+  "id": "strategy-prophylaxis",
+  "course": "strategy",
+  "title": "Prophylaxis",
+  "line": "Ask what your opponent wants, and stop it first.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "fen": "r1bq1rk1/2p1bppp/p1np1n2/1p2p3/4P3/1BP2N2/PP1P1PPP/RNBQR1K1 w - - 1 9",
+      "text": "Before each move, ask what your opponent wants. Here Black would like to bring the bishop out to pin your knight to your queen.",
+      "marks": {"squares":["f3","d1"],"arrows":[["c8","g4"]]}
+    },
+    {
+      "type": "move",
+      "text": "Stop it before it happens: push the pawn on h2 one square, so the bishop cannot go to g4 without being taken.",
+      "marks": {"squares":["g4"],"arrows":[["h2","h3"]]},
+      "accept": ["h2h3"],
+      "after": "Stopping a plan before it starts is prophylaxis. Black's knight attacks your bishop instead.",
+      "reply": "c6a5"
+    },
+    {
+      "type": "show",
+      "fen": "rnbqkb1r/pp2pppp/3p1n2/8/3NP3/2N5/PPP2PPP/R1BQKB1R b KQkq - 2 5",
+      "side": "b",
+      "text": "Now you are Black. White's knight on d4 would like to jump to b5 and hit d6 and c7. The bishop on f1 eyes that square too.",
+      "marks": {"squares":["b5","d6","c7"],"arrows":[["d4","b5"],["f1","b5"]]}
+    },
+    {
+      "type": "move",
+      "side": "b",
+      "text": "Take that square away from them with a pawn: push the pawn on a7 one square.",
+      "marks": {"squares":["b5"],"arrows":[["a7","a6"]]},
+      "accept": ["a7a6"],
+      "after": "Now neither piece can use b5. This is the Najdorf Sicilian, built on that one quiet move.",
+      "reply": "f1e2"
+    },
+    {
+      "type": "move",
+      "side": "b",
+      "text": "With that square covered, Black can take space in the center: push the pawn in front of your king two squares.",
+      "marks": {"arrows":[["e7","e5"]]},
+      "accept": ["e7e5"],
+      "after": "The pawn chases the knight from the center.",
+      "reply": "d4b3"
+    }
+  ],
+  "summary": "Before your move, ask what your opponent wants to do. Often the best move stops it before it starts.",
+  "practice": {"fen":"rnbqkb1r/1p3ppp/p2p1n2/4p3/4P3/1NN5/PPP1BPPP/R1BQK2R b KQkq - 1 7","side":"b"}
+}

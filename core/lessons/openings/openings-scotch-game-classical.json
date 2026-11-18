@@ -1,0 +1,148 @@
+{
+  "id": "openings-scotch-game-classical",
+  "course": "openings",
+  "title": "Scotch Game: Classical Variation",
+  "line": "Black's bishop hits the knight in the center and aims at the pawn beside White's king.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "text": "The Scotch Game. Black brings the bishop out: it attacks your knight on d4 and aims at f2.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {
+        "squares": [
+          "d4",
+          "f2"
+        ],
+        "arrows": [
+          [
+            "c5",
+            "d4"
+          ]
+        ]
+      },
+      "play": [
+        "e2e4",
+        "e7e5",
+        "g1f3",
+        "b8c6",
+        "d2d4",
+        "e5d4",
+        "f3d4",
+        "f8c5"
+      ]
+    },
+    {
+      "type": "move",
+      "text": "Take the knight on c6, before Black can pile up on your knight.",
+      "marks": {
+        "squares": [
+          "c6"
+        ],
+        "arrows": [
+          [
+            "d4",
+            "c6"
+          ]
+        ]
+      },
+      "accept": [
+        "d4c6"
+      ],
+      "also": {
+        "c1e3": "Guarding the knight with the bishop is also played. This lesson trades.",
+        "d4b3": "Stepping back is also played. This lesson trades."
+      },
+      "reply": "d8f6",
+      "taught": true
+    },
+    {
+      "type": "show",
+      "text": "Black does not take back yet. Its queen and bishop both aim at f2: the queen threatens to take it with checkmate.",
+      "marks": {
+        "squares": [
+          "f2"
+        ],
+        "arrows": [
+          [
+            "f6",
+            "f2"
+          ],
+          [
+            "c5",
+            "f2"
+          ]
+        ]
+      }
+    },
+    {
+      "type": "move",
+      "text": "Guard f2 with your queen, so the checkmate is no longer there.",
+      "marks": {
+        "squares": [
+          "f2"
+        ]
+      },
+      "accept": [
+        "d1d2"
+      ],
+      "wrong": {
+        "c1e3": "Black trades bishops, and then the queen takes a pawn on your queen side and attacks your rook."
+      },
+      "also": {
+        "d1e2": "That guards it too. This lesson puts the queen on another square.",
+        "d1f3": "That guards it too. This lesson puts the queen on another square."
+      },
+      "hint": "Your queen can reach a square next to f2 or on a line through it.",
+      "after": "Now Black takes back the knight.",
+      "reply": "d7c6",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the other knight out. It heads for a square where it can attack the bishop.",
+      "marks": {
+        "arrows": [
+          [
+            "b1",
+            "c3"
+          ]
+        ]
+      },
+      "accept": [
+        "b1c3"
+      ],
+      "also": {
+        "f1d3": "That is also played. This lesson brings the knight out first."
+      },
+      "reply": "c8e6",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Jump the knight to the edge to attack the bishop, Black's best piece.",
+      "marks": {
+        "squares": [
+          "c5"
+        ],
+        "arrows": [
+          [
+            "c3",
+            "a4"
+          ]
+        ]
+      },
+      "accept": [
+        "c3a4"
+      ],
+      "after": "Black keeps its two bishops. You have the healthier pawns: Black has two on the same file.",
+      "reply": "c5d6",
+      "taught": true
+    }
+  ],
+  "summary": "The bishop and queen aim at the pawn beside the king. White trades knights, guards that pawn, and chases the bishop.",
+  "practice": {
+    "fen": "r3k1nr/ppp2ppp/2pbbq2/8/N3P3/8/PPPQ1PPP/R1B1KB1R w KQkq - 4 9",
+    "side": "w"
+  }
+}

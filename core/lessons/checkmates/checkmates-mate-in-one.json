@@ -1,0 +1,67 @@
+{
+  "id": "checkmates-mate-in-one",
+  "course": "checkmates",
+  "title": "Mate in one",
+  "line": "Every check, and which one ends it.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "text": "To find a mate in one, first list every check you can give. Here your queen has four.",
+      "fen": "5k2/4rp2/pq2pQp1/1n1pP3/8/8/PP3PPP/3R2K1 w - - 0 30",
+      "marks": {"arrows":[["f6","h8"],["f6","g7"],["f6","f7"],["f6","e7"]]}
+    },
+    {
+      "type": "move",
+      "text": "Now test each one. Which check leaves the king no square, no block and no capture? Play it.",
+      "accept": ["f6h8"],
+      "wrong": {
+        "f6e7": "The king takes the queen.",
+        "f6f7": "The rook or the king takes the queen.",
+        "f6g7": "The king takes the queen."
+      },
+      "hint": "Look for the check where nothing can take the queen and the king has no square.",
+      "after": "Checkmate. The queen checks from the corner, and the king's own rook and pawn block it in.",
+      "mate": true,
+      "marks": {"arrows":[["f6","h8"],["f6","g7"],["f6","f7"],["f6","e7"]]}
+    },
+    {
+      "type": "move",
+      "text": "Another one. List the checks your queen can give, then play the one that mates.",
+      "fen": "r4r1k/ppp1qp1p/3p3P/2nPp2p/2B1P3/2N3Q1/PPP2PP1/2K1R3 w - - 2 17",
+      "accept": ["g3g7"],
+      "wrong": {
+        "g3e5": "Black takes the queen, with the queen or a pawn.",
+        "g3g8": "The rook or the king takes the queen."
+      },
+      "hint": "Your pawn near the black king guards one square next to it.",
+      "after": "Checkmate. The pawn guards the queen, so the king cannot take her.",
+      "mate": true
+    },
+    {
+      "type": "move",
+      "text": "Sometimes there is only one check. Find it.",
+      "fen": "r1q3rk/1p4pp/pb5N/5p2/8/4P3/PP3PPP/R2R2K1 w - - 0 24",
+      "accept": ["h6f7"],
+      "hint": "Only one of your pieces can reach the black king.",
+      "after": "Checkmate. The king's own pieces wall it in, and the knight jumps over them.",
+      "mate": true
+    },
+    {
+      "type": "move",
+      "text": "Now you are Black. List the checks and play the one that mates.",
+      "fen": "r4rk1/ppp2ppp/2nq4/8/4P1n1/2NP4/PPP1N1PP/R3QRK1 b - - 6 13",
+      "side": "b",
+      "accept": ["d6h2"],
+      "wrong": {
+        "d6d4": "The knight takes your queen.",
+        "d6c5": "White blocks the check with a pawn or a piece, or the king steps aside."
+      },
+      "hint": "Your knight guards one of the squares next to the white king.",
+      "after": "Checkmate. The knight guards the queen, and the king has no square to go to.",
+      "mate": true
+    }
+  ],
+  "summary": "List every check before you move. Mate is the check with no square, no block and no capture left.",
+  "puzzles": "mate1"
+}

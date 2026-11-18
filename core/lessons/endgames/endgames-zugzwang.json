@@ -1,0 +1,48 @@
+{
+  "id": "endgames-zugzwang",
+  "course": "endgames",
+  "title": "Zugzwang",
+  "line": "When every move makes it worse, the side to move loses.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "fen": "8/8/8/2Kp4/3Pk3/8/8/8 w - - 0 1",
+      "text": "Each king attacks the other's pawn and guards its own. Whoever has to move must step away from its pawn, and loses it.",
+      "marks": {"squares":["d4","d5"]}
+    },
+    {
+      "type": "show",
+      "fen": "8/8/8/2Kp4/3Pk3/8/8/8 w - - 0 1",
+      "text": "Having to move when every move makes things worse is zugzwang. A spare pawn move can hand the turn over.",
+      "marks": {"squares":["c5","e4"]}
+    },
+    {
+      "type": "move",
+      "fen": "8/8/8/2Kp3p/3Pk3/8/7P/8 w - - 0 1",
+      "text": "Use your spare pawn so that Black runs out of moves first. Mind how far it goes.",
+      "marks": {"squares":["h2","h5"]},
+      "accept": ["h2h4"],
+      "wrong": {
+        "h2h3": "Black's pawn steps forward to meet yours, and then you are the one who has to move.",
+        "c5b5": "Your king has to leave its pawn, and the black king takes it.",
+        "c5b6": "Your king has to leave its pawn, and the black king takes it.",
+        "c5c6": "Your king has to leave its pawn, and the black king takes it.",
+        "c5b4": "Your king has to leave its pawn, and the black king takes it.",
+        "c5d6": "Your king has to leave its pawn, and the black king takes it."
+      },
+      "hint": "A pawn on its first move may go two squares.",
+      "after": "Both pawns are stuck. Black has only king moves, and each one gives up the pawn.",
+      "reply": "e4f4"
+    },
+    {
+      "type": "move",
+      "text": "Take the pawn.",
+      "marks": {"squares":["d5"]},
+      "accept": ["c5d5"],
+      "after": "Black's pawn is gone, and your pawn is free to walk up."
+    }
+  ],
+  "summary": "In zugzwang, every move makes things worse. Spare pawn moves decide who runs out first.",
+  "practice": {"fen":"8/8/8/3K3p/3P1k1P/8/8/8 b - - 0 2","side":"w"}
+}

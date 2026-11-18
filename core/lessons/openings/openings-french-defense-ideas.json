@@ -1,0 +1,81 @@
+{
+  "id": "openings-french-defense-ideas",
+  "course": "openings",
+  "title": "French Defense: the ideas",
+  "line": "Black builds a solid pawn chain, then strikes at the base of White's center.",
+  "side": "b",
+  "steps": [
+    {
+      "type": "show",
+      "text": "White starts by pushing the pawn in front of its king two squares, into the center.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {"arrows":[["e2","e4"]]},
+      "play": ["e2e4"]
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn in front of your king one square. It gets ready to back up a pawn on d5.",
+      "marks": {"squares":["d5"],"arrows":[["e7","e6"]]},
+      "accept": ["e7e6"],
+      "also": {
+        "e7e5": "That is the open game, another main answer. This lesson goes on with the French.",
+        "c7c5": "That is the Sicilian Defense, another main answer. This lesson goes on with the French.",
+        "c7c6": "That is the Caro-Kann Defense, another main answer. This lesson goes on with the French.",
+        "d7d6": "That is the Pirc Defense, another main answer. This lesson goes on with the French.",
+        "d7d5": "That is the Scandinavian Defense, another main answer. This lesson goes on with the French.",
+        "g7g6": "That is the Modern Defense, another main answer. This lesson goes on with the French.",
+        "g8f6": "That is the Alekhine Defense, another main answer. This lesson goes on with the French."
+      },
+      "reply": "d2d4",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Now push the pawn in front of your queen two squares. It hits the pawn on e4, and your pawn on e6 guards it.",
+      "marks": {"squares":["e4","e6"],"arrows":[["d7","d5"]]},
+      "accept": ["d7d5"],
+      "after": "White guards the pawn with a knight.",
+      "reply": "b1c3",
+      "taught": true
+    },
+    {
+      "type": "pick",
+      "text": "The French has one drawback. Tap your bishop that the pawn on e6 shuts in.",
+      "marks": {"squares":["e6"]},
+      "accept": ["c8"],
+      "after": "That bishop has few squares for now. Black frees it later, or trades it."
+    },
+    {
+      "type": "show",
+      "text": "Often White's pawn pushes past. The pawns lock into chains, and Black attacks White's chain at its base, the pawn on d4.",
+      "fen": "rnbqkbnr/ppp2ppp/4p3/3pP3/3P4/8/PPP2PPP/RNBQKBNR b KQkq - 0 3",
+      "marks": {"squares":["d4","e5"]}
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn on c7 two squares to hit the base of the chain.",
+      "marks": {"squares":["d4"],"arrows":[["c7","c5"]]},
+      "accept": ["c7c5"],
+      "also": {
+        "c8d7": "That also works, and the bishop often goes there. This lesson hits the chain first.",
+        "g8e7": "That also works. This lesson hits the chain first."
+      },
+      "after": "White guards the base with another pawn.",
+      "reply": "c2c3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the knight out. It is a second attacker on d4.",
+      "marks": {"squares":["d4"],"arrows":[["b8","c6"]]},
+      "accept": ["b8c6"],
+      "reply": "g1f3",
+      "taught": true
+    }
+  ],
+  "summary": "Black's pawns build a solid chain. One bishop is shut in, and Black hits White's chain at its base.",
+  "practice": {
+    "fen": "rnbqkbnr/ppp2ppp/4p3/3p4/3PP3/2N5/PPP2PPP/R1BQKBNR b KQkq - 1 3",
+    "side": "b"
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "id": "tactics-decoy",
+  "course": "tactics",
+  "title": "Decoy",
+  "line": "Give something up to lure a piece onto a square where it can be hit.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "text": "If the black king stood in the corner, your knight could fork it and the queen from f7.",
+      "fen": "r2q2k1/pp4p1/8/6N1/8/8/PPP2PP1/4R1KR w - - 0 1",
+      "marks": {
+        "squares": ["h8","f7","d8"]
+      }
+    },
+    {
+      "type": "move",
+      "text": "Lure the king into the corner: give up your rook there, with check.",
+      "fen": "r2q2k1/pp4p1/8/6N1/8/8/PPP2PP1/4R1KR w - - 0 1",
+      "marks": {"arrows":[["h1","h8"]]},
+      "accept": ["h1h8"],
+      "hint": "The rook goes all the way up its file.",
+      "after": "The king had to take the rook.",
+      "reply": "g8h8",
+      "wins": 1
+    },
+    {
+      "type": "move",
+      "text": "Now the fork: check the king and attack the queen.",
+      "accept": ["g5f7"],
+      "after": "The king steps away, and the queen is left.",
+      "reply": "h8h7"
+    },
+    {
+      "type": "move",
+      "text": "Take the queen.",
+      "accept": ["f7d8"],
+      "after": "A rook and a knight for the queen: White is ahead.",
+      "reply": "a8d8"
+    }
+  ],
+  "summary": "Give something up to drag a piece onto a bad square, then hit it there, often with a fork.",
+  "puzzles": "sacrifices",
+  "practice": {"fen":"3r4/pp4pk/8/8/8/8/PPP2PP1/4R1K1 w - - 0 4","side":"w"}
+}

@@ -1,0 +1,206 @@
+{
+  "id": "openings-ruy-lopez-open",
+  "course": "openings",
+  "title": "Ruy Lopez: Open",
+  "line": "Black takes the center pawn and plays actively; White opens lines and wins the pawn back.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "text": "The Ruy Lopez: Black asks the bishop what it will do.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {
+        "squares": [
+          "b5"
+        ],
+        "arrows": [
+          [
+            "a6",
+            "b5"
+          ]
+        ]
+      },
+      "play": [
+        "e2e4",
+        "e7e5",
+        "g1f3",
+        "b8c6",
+        "f1b5",
+        "a7a6"
+      ]
+    },
+    {
+      "type": "show",
+      "text": "The bishop steps back and White castles. Black takes the pawn on e4: this is the Open Ruy Lopez.",
+      "marks": {
+        "squares": [
+          "e4"
+        ]
+      },
+      "play": [
+        "b5a4",
+        "g8f6",
+        "e1g1",
+        "f6e4"
+      ]
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn in front of your queen two squares. It attacks the pawn on e5 and opens the center while Black's king is still there.",
+      "marks": {
+        "squares": [
+          "e5",
+          "e8"
+        ],
+        "arrows": [
+          [
+            "d2",
+            "d4"
+          ]
+        ]
+      },
+      "accept": [
+        "d2d4"
+      ],
+      "also": {
+        "f1e1": "Attacking the knight with the rook is also played. This lesson pushes the pawn."
+      },
+      "reply": "b7b5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "The pawn chases your bishop. Step it back, still aimed at the pawn on f7.",
+      "marks": {
+        "squares": [
+          "f7"
+        ],
+        "arrows": [
+          [
+            "a4",
+            "b3"
+          ],
+          [
+            "b3",
+            "f7"
+          ]
+        ]
+      },
+      "accept": [
+        "a4b3"
+      ],
+      "after": "Black guards the knight with a pawn and blocks your bishop.",
+      "reply": "d7d5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Take the pawn on e5. The material is level again.",
+      "marks": {
+        "squares": [
+          "e5"
+        ],
+        "arrows": [
+          [
+            "d4",
+            "e5"
+          ]
+        ]
+      },
+      "accept": [
+        "d4e5"
+      ],
+      "after": "Black's pieces stand well, but your pawn on e5 gives you space.",
+      "reply": "c8e6",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Move the pawn on c2 one square. Your bishop gets a way back to c2, aimed at the king side.",
+      "marks": {
+        "squares": [
+          "c2"
+        ],
+        "arrows": [
+          [
+            "c2",
+            "c3"
+          ]
+        ]
+      },
+      "accept": [
+        "c2c3"
+      ],
+      "also": {
+        "b1d2": "Attacking the knight first is also played. This lesson moves the pawn first.",
+        "c1e3": "That is also played. This lesson moves the pawn first."
+      },
+      "reply": "f8c5",
+      "taught": true
+    },
+    {
+      "type": "show",
+      "text": "A slip common at club level: here Black took the pawn on d4 instead of chasing the bishop. The knight on e4 now stands in front of its king.",
+      "fen": "r1bqkb1r/1ppp1ppp/p1n5/8/B2pn3/5N2/PPP2PPP/RNBQ1RK1 w kq - 0 7",
+      "marks": {
+        "squares": [
+          "e4",
+          "e8"
+        ],
+        "arrows": [
+          [
+            "e5",
+            "d4"
+          ]
+        ]
+      }
+    },
+    {
+      "type": "move",
+      "text": "Bring the rook to the file of the knight and the king. The knight cannot move without exposing the king.",
+      "marks": {
+        "squares": [
+          "e4",
+          "e8"
+        ],
+        "arrows": [
+          [
+            "f1",
+            "e1"
+          ]
+        ]
+      },
+      "accept": [
+        "f1e1"
+      ],
+      "after": "Black guards the knight with a pawn.",
+      "reply": "d7d5"
+    },
+    {
+      "type": "move",
+      "text": "Take back the pawn on d4. The knight on e4 is still pinned, and Black's king is stuck in the middle.",
+      "marks": {
+        "squares": [
+          "d4",
+          "e4"
+        ],
+        "arrows": [
+          [
+            "f3",
+            "d4"
+          ]
+        ]
+      },
+      "accept": [
+        "f3d4"
+      ],
+      "after": "White has the pawn back and a strong attack on the file.",
+      "reply": "f8d6"
+    }
+  ],
+  "summary": "Black takes the pawn, White opens the center at once and wins it back. Taking a second pawn opens the file to the king.",
+  "practice": {
+    "fen": "r2qk2r/2p2ppp/p1n1b3/1pbpP3/4n3/1BP2N2/PP3PPP/RNBQ1RK1 w kq - 1 10",
+    "side": "w"
+  }
+}

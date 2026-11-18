@@ -1,0 +1,57 @@
+{
+  "id": "endgames-short-side",
+  "course": "endgames",
+  "title": "Short side defense",
+  "line": "King to the short side of the pawn, rook checking from the long side.",
+  "side": "b",
+  "steps": [
+    {
+      "type": "show",
+      "fen": "4k3/7R/3K4/4P3/8/8/r7/8 b - - 0 1",
+      "text": "The pawn splits the board in two. The side with fewer files, toward h8, is the short side. The other is the long side.",
+      "marks": {"squares":["e5","f8","g8","h8","a8","b8","c8","d8"]}
+    },
+    {
+      "type": "show",
+      "fen": "4k3/7R/3K4/4P3/8/8/r7/8 b - - 0 1",
+      "text": "Your king belongs on the short side. Your rook belongs on the long side, far from the pawn, where its checks have room.",
+      "marks": {"squares":["f8","a2"]}
+    },
+    {
+      "type": "move",
+      "fen": "4k3/7R/3K4/4P3/8/8/r7/8 b - - 0 1",
+      "text": "The white rook threatens your back row. Step your king to the short side.",
+      "marks": {"squares":["f8","d8"]},
+      "accept": ["e8f8"],
+      "also": {
+        "a2e2": "That holds for now, from behind. This lesson moves the king to the short side.",
+        "a2a6": "That check holds for now. This lesson moves the king to the short side."
+      },
+      "wrong": {
+        "e8d8": "That walks into mate: the white rook checks on your back row."
+      },
+      "hint": "Toward the ringed square on the short side.",
+      "after": "Your king is on the short side, and your rook has the whole long side."
+    },
+    {
+      "type": "move",
+      "fen": "5k2/7R/3KP3/8/8/8/8/r7 b - - 0 1",
+      "text": "The white king has stepped up. Check it from the side, from as far away as you can.",
+      "marks": {"arrows":[["a1","a6"]]},
+      "accept": ["a1a6"],
+      "also": {
+        "a1d1": "That check from behind holds too. This lesson checks from the side."
+      },
+      "wrong": {
+        "f8g8": "That loses: here the rook must check at once, before the white king and pawn step up.",
+        "a1e1": "That loses: here the rook must check at once, before the white king and pawn step up.",
+        "a1f1": "That loses: here the rook must check at once, before the white king and pawn step up.",
+        "a1g1": "That loses: here the rook must check at once, before the white king and pawn step up."
+      },
+      "hint": "Follow the arrow.",
+      "after": "From far away the rook checks again and again, and the white king finds no shelter."
+    }
+  ],
+  "summary": "Defending a rook ending, keep your king on the short side of the pawn and your rook far away on the long side.",
+  "practice": {"fen":"5k2/7R/3KP3/8/8/8/8/r7 b - - 0 1","side":"b"}
+}

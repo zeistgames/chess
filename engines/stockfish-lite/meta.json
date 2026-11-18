@@ -1,0 +1,20 @@
+{
+  "name": "Stockfish Lite",
+  "version": "19.0.1",
+  "author": "The Stockfish developers; WASM port by Nathan Rugg",
+  "license": "GPL-3.0-or-later",
+  "net_license": "CC0-1.0",
+  "source": "https://github.com/nmrugg/stockfish.js/tree/v19.0.1",
+  "line": "The strongest engine there is, in its smallest form.",
+  "entry": "stockfish-19-lite-single.js",
+  "strength": {
+    "type": "uci_elo",
+    "min": 1320,
+    "max": 3190,
+    "skill_option": "Skill Level",
+    "skill_min": 0,
+    "skill_max": 20
+  },
+  "multipv": true,
+  "threads": false
+}

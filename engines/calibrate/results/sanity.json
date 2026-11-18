@@ -1,0 +1,86 @@
+{
+  "determinism_stockfish-lite_L3": {
+    "engine": "stockfish-lite",
+    "level": 3,
+    "rating": 1500,
+    "opening": 0,
+    "seed": 267658913,
+    "plies": 88,
+    "result": "0-1",
+    "same_workers_same_game": false,
+    "fresh_workers_same_game": false,
+    "note": "Expected from the engine, not the harness: with UCI_LimitStrength on, Stockfish weakens its play through a random generator seeded from the clock (Skill::pick_best, as in the Fairy-Stockfish source, which shares it), so its limited levels do not repeat. Level 10 (no limit) should repeat; not checked."
+  },
+  "determinism_ethereal_L3": {
+    "engine": "ethereal",
+    "level": 3,
+    "rating": 1500,
+    "opening": 0,
+    "seed": 267658913,
+    "plies": 94,
+    "result": "0-1",
+    "same_workers_same_game": false,
+    "fresh_workers_same_game": true,
+    "note": "Fresh workers repeat the game; a worker reused after another game does not, so Ethereal keeps some search state across ucinewgame. The app also keeps a worker across games."
+  },
+  "determinism_zeist_L3": {
+    "engine": "zeist",
+    "level": 3,
+    "rating": 1500,
+    "opening": 0,
+    "seed": 267658913,
+    "plies": 168,
+    "result": "0-1",
+    "same_workers_same_game": true,
+    "fresh_workers_same_game": true,
+    "note": "The harness itself is repeatable: same workers, fresh workers, same game."
+  },
+  "maia_1300_1700": {
+    "low": 1300,
+    "high": 1700,
+    "games": 48,
+    "score": 37.5,
+    "share": 0.78125,
+    "predicted": 0.9090909090909091,
+    "fitted_high": 1521,
+    "interval": [
+      1409,
+      1649
+    ],
+    "draws": 9,
+    "longest": 123,
+    "minutes_per_game": 0.156
+  },
+  "maia_800_1200": {
+    "low": 800,
+    "high": 1200,
+    "games": 48,
+    "score": 34,
+    "share": 0.7083333333333334,
+    "predicted": 0.9090909090909091,
+    "fitted_high": 954,
+    "interval": [
+      850,
+      1068
+    ],
+    "draws": 10,
+    "longest": 135,
+    "minutes_per_game": 0.12
+  },
+  "maia_2000_2400": {
+    "low": 2000,
+    "high": 2400,
+    "games": 48,
+    "score": 33,
+    "share": 0.6875,
+    "predicted": 0.9090909090909091,
+    "fitted_high": 2137,
+    "interval": [
+      2034,
+      2248
+    ],
+    "draws": 16,
+    "longest": 151,
+    "minutes_per_game": 0.137
+  }
+}

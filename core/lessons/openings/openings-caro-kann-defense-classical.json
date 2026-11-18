@@ -1,0 +1,82 @@
+{
+  "id": "openings-caro-kann-defense-classical",
+  "course": "openings",
+  "title": "Caro-Kann Defense: Classical Variation",
+  "line": "The bishop comes out with a hit on the knight, and Black keeps it safe from White's h-pawn.",
+  "side": "b",
+  "steps": [
+    {
+      "type": "show",
+      "text": "The Caro-Kann: Black's center pawn hits e4, and White guards it with a knight.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {"squares":["e4"]},
+      "play": ["e2e4","c7c6","d2d4","d7d5","b1c3"]
+    },
+    {
+      "type": "show",
+      "text": "Black takes, the bishop comes out to hit the knight, and the knight hits it back.",
+      "marks": {"squares":["f5"],"arrows":[["g3","f5"]]},
+      "play": ["d5e4","c3e4","c8f5","e4g3"]
+    },
+    {
+      "type": "move",
+      "text": "Step back to g6. The bishop stays outside your pawns.",
+      "marks": {"arrows":[["f5","g6"]]},
+      "accept": ["f5g6"],
+      "after": "White's pawn on the edge runs up to chase the bishop.",
+      "reply": "h2h4",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn on h7 one square. If White's pawn comes to h5, your bishop can step back to h7.",
+      "marks": {"squares":["h5","h7"],"arrows":[["h7","h6"]]},
+      "accept": ["h7h6"],
+      "wrong": {
+        "g8f6": "Then White's pawn comes to h5, and your bishop is short of squares."
+      },
+      "reply": "g1f3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the knight to d7. It keeps White's knight out of e5.",
+      "marks": {"squares":["e5"],"arrows":[["b8","d7"]]},
+      "accept": ["b8d7"],
+      "reply": "h4h5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Step back to h7.",
+      "marks": {"squares":["g3"],"arrows":[["g6","h7"]]},
+      "accept": ["g6h7"],
+      "wrong": {
+        "g6f5": "The knight on g3 takes it."
+      },
+      "reply": "f1d3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Trade bishops. White usually takes back with the queen, which comes out early.",
+      "marks": {"arrows":[["h7","d3"]]},
+      "accept": ["h7d3"],
+      "reply": "d1d3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn on e7 one square. Now your other bishop can come out.",
+      "marks": {"arrows":[["e7","e6"]]},
+      "accept": ["e7e6"],
+      "after": "Your bishop got out and was traded, and your pawns make a solid wall on the light squares.",
+      "taught": true
+    }
+  ],
+  "summary": "In the Classical, the bishop comes out early, steps back when chased and is traded before the pawns close it in.",
+  "practice": {
+    "fen": "r2qkbnr/pp1n1pp1/2p1p2p/7P/3P4/3Q1NN1/PPP2PP1/R1B1K2R w KQkq - 0 11",
+    "side": "b"
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "id": "openings-scandinavian-defense-gubinsky-melts",
+  "course": "openings",
+  "title": "Scandinavian Defense: Gubinsky-Melts Defense",
+  "line": "The queen steps back to the center, and a side pawn keeps White's knight away from her.",
+  "side": "b",
+  "steps": [
+    {
+      "type": "show",
+      "text": "In the Scandinavian, Black took back with the queen and White's knight hit her.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {"arrows":[["c3","d5"]]},
+      "play": ["e2e4","d7d5","e4d5","d8d5","b1c3"]
+    },
+    {
+      "type": "move",
+      "text": "Step the queen back to d6. She stays in the center and watches the dark squares.",
+      "marks": {"arrows":[["d5","d6"]]},
+      "accept": ["d5d6"],
+      "also": {
+        "d5a5": "That is the main line, and just as sound. This lesson goes on with the queen on d6.",
+        "d5d8": "That is also played. This lesson goes on with the queen on d6."
+      },
+      "reply": "d2d4",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the knight out.",
+      "marks": {"arrows":[["g8","f6"]]},
+      "accept": ["g8f6"],
+      "reply": "g1f3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn on a7 one square. It keeps White's knight off b5, where it would hit your queen.",
+      "marks": {"squares":["b5"],"arrows":[["a7","a6"]]},
+      "accept": ["a7a6"],
+      "also": {
+        "g7g6": "That also works. This lesson keeps the knight off b5 first.",
+        "c7c6": "That also keeps the knight off b5. This lesson goes on with the other pawn."
+      },
+      "reply": "g2g3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the bishop out to pin the knight to White's queen.",
+      "marks": {"arrows":[["c8","g4"]]},
+      "accept": ["c8g4"],
+      "reply": "f1g2",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the other knight out. With your queen it hits the pawn on d4.",
+      "marks": {"squares":["d4","f3"],"arrows":[["b8","c6"]]},
+      "accept": ["b8c6"],
+      "after": "The pawn on d4 is attacked twice, and the knight on f3 that guards it is pinned.",
+      "taught": true
+    }
+  ],
+  "summary": "In the Gubinsky-Melts the queen stays in the center, a side pawn keeps the knight away, and the pieces hit the center.",
+  "practice": {
+    "fen": "r3kb1r/1pp1pppp/p1nq1n2/8/3P2b1/2N2NP1/PPP2PBP/R1BQK2R w KQkq - 3 8",
+    "side": "b"
+  }
+}

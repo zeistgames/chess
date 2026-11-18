@@ -1,0 +1,184 @@
+{
+  "id": "openings-before-any-opening-transpositions",
+  "course": "openings",
+  "title": "Transpositions",
+  "line": "The same position can come from different move orders.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "text": "The Italian Game: king pawns, then knights, then the bishop to c4. Remember this position.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {
+        "squares": [
+          "f3",
+          "c4",
+          "c6"
+        ]
+      },
+      "play": [
+        "e2e4",
+        "e7e5",
+        "g1f3",
+        "b8c6",
+        "f1c4"
+      ]
+    },
+    {
+      "type": "show",
+      "text": "Now reach the same position by another road: the bishop comes out before the knight.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {
+        "squares": [
+          "c4"
+        ],
+        "arrows": [
+          [
+            "f1",
+            "c4"
+          ]
+        ]
+      }
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn in front of your king two squares, into the center.",
+      "marks": {
+        "arrows": [
+          [
+            "e2",
+            "e4"
+          ]
+        ]
+      },
+      "accept": [
+        "e2e4"
+      ],
+      "reply": "e7e5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the bishop out to c4 first. It aims at f7.",
+      "marks": {
+        "squares": [
+          "c4",
+          "f7"
+        ],
+        "arrows": [
+          [
+            "f1",
+            "c4"
+          ]
+        ]
+      },
+      "accept": [
+        "f1c4"
+      ],
+      "after": "This is the Bishop's Opening.",
+      "reply": "b8c6",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Now bring the knight out. It attacks the pawn on e5.",
+      "marks": {
+        "squares": [
+          "f3",
+          "e5"
+        ],
+        "arrows": [
+          [
+            "g1",
+            "f3"
+          ]
+        ]
+      },
+      "accept": [
+        "g1f3"
+      ],
+      "after": "The same position as the Italian Game, from a different order. Openings often join this way."
+    },
+    {
+      "type": "show",
+      "text": "One more: start with the queen side knight, as in the Vienna Game.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {
+        "squares": [
+          "c3"
+        ],
+        "arrows": [
+          [
+            "b1",
+            "c3"
+          ]
+        ]
+      }
+    },
+    {
+      "type": "move",
+      "text": "Push the king pawn two squares, into the center.",
+      "marks": {
+        "arrows": [
+          [
+            "e2",
+            "e4"
+          ]
+        ]
+      },
+      "accept": [
+        "e2e4"
+      ],
+      "reply": "e7e5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the knight out to c3. It guards your pawn on e4.",
+      "marks": {
+        "squares": [
+          "c3",
+          "e4"
+        ],
+        "arrows": [
+          [
+            "b1",
+            "c3"
+          ]
+        ]
+      },
+      "accept": [
+        "b1c3"
+      ],
+      "reply": "g8f6",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Now the other knight. It attacks the pawn on e5.",
+      "marks": {
+        "squares": [
+          "f3",
+          "e5"
+        ],
+        "arrows": [
+          [
+            "g1",
+            "f3"
+          ]
+        ]
+      },
+      "accept": [
+        "g1f3"
+      ],
+      "after": "This is the Four Knights Game, reached from the Vienna Game. Knowing the ideas, not just the order, lets you find your way.",
+      "reply": "b8c6",
+      "taught": true
+    }
+  ],
+  "summary": "Different move orders can reach the same position. An order can also be chosen to steer around a line.",
+  "practice": {
+    "fen": "r1bqkb1r/pppp1ppp/2n2n2/4p3/4P3/2N2N2/PPPP1PPP/R1BQKB1R w KQkq - 4 4",
+    "side": "w"
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "id": "strategy-bishop-pair",
+  "course": "strategy",
+  "title": "The bishop pair",
+  "line": "Two bishops on an open board. Keep them, and open lines for them.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "fen": "8/pp1bkpp1/1n5p/8/2B2B2/8/PP2KPPP/8 w - - 0 30",
+      "text": "Two bishops together reach squares of both colors. On an open board, with few pawns in the way, this bishop pair is strong.",
+      "marks": {"arrows":[["c4","f7"],["f4","b8"]]}
+    },
+    {
+      "type": "pick",
+      "text": "Tap a black pawn on a dark square. Of your bishops, only the one on f4 can attack it. Your other bishop takes care of the light squares.",
+      "marks": {"squares":["f4"]},
+      "accept": ["a7","g7","h6"],
+      "hint": "The bishop on f4 stands on a dark square. Find black pawns on squares of the same color.",
+      "after": "With both bishops, no pawn is out of reach. A single bishop only ever sees half the board."
+    },
+    {
+      "type": "show",
+      "fen": "r1bqkbnr/pp3ppp/2n1p3/3pP3/2pP4/2P2N2/PP3PPP/RNBQKB1R w KQkq - 0 6",
+      "text": "Here the pawns are locked, and the bishops' roads are shut by pawns. A knight jumps over pawns, so they do not stop it.",
+      "marks": {"squares":["c4","d5","e6","d4","e5"]}
+    },
+    {
+      "type": "move",
+      "fen": "r1bq1rk1/2p1bppp/p2p1n2/np2p3/4P3/1BP2N1P/PP1P1PP1/RNBQR1K1 w - - 1 10",
+      "text": "Black's knight attacks your bishop, to trade itself for it. Keep your pair: step the bishop back.",
+      "marks": {"squares":["b3","a5"]},
+      "accept": ["b3c2"],
+      "wrong": {
+        "d2d4": "Then the knight takes your bishop, and Black has the two bishops instead."
+      },
+      "hint": "The bishop has one safe square back along its diagonal, next to your queen.",
+      "after": "The bishop is safe. Black takes space on the left.",
+      "reply": "c7c5"
+    },
+    {
+      "type": "move",
+      "text": "Now open the center for your bishops. Push the pawn in front of your queen two squares.",
+      "marks": {"arrows":[["d2","d4"]]},
+      "accept": ["d2d4"],
+      "after": "Pawns start to come off, and lines open for the bishops.",
+      "reply": "e5d4"
+    }
+  ],
+  "summary": "Two bishops cover both colors and grow strong on an open board. Keep them, and open the position for them.",
+  "practice": {"fen":"r1bq1rk1/4bppp/p2p1n2/npp5/3pP3/2P2N1P/PPB2PP1/RNBQR1K1 w - - 0 12","side":"w"}
+}

@@ -1,0 +1,95 @@
+name: ZeistChess
+options:
+  bundleIdPrefix: st.zei
+  deploymentTarget:
+    iOS: "18.0"
+  createIntermediateGroups: true
+configFiles:
+  Debug: Config.xcconfig
+  Release: Config.xcconfig
+settings:
+  base:
+    SWIFT_VERSION: "6.0"
+    MARKETING_VERSION: "1.0"
+    CURRENT_PROJECT_VERSION: "1"
+    TARGETED_DEVICE_FAMILY: "1,2"
+    ENABLE_USER_SCRIPT_SANDBOXING: NO
+packages:
+  Firebase:
+    url: https://github.com/firebase/firebase-ios-sdk
+    from: 13.2.0
+targets:
+  ZeistChess:
+    type: application
+    platform: iOS
+    sources:
+      - path: ZeistChess
+    dependencies:
+      # Analytics without the advertising identifier.
+      - package: Firebase
+        product: FirebaseAnalyticsCore
+    postBuildScripts:
+      - name: Bundle core and the engines
+        script: bash "$SRCROOT/scripts/bundle-core.sh"
+        basedOnDependencyAnalysis: false
+    info:
+      path: ZeistChess/Info.plist
+      properties:
+        CFBundleDisplayName: Zeist Chess
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        UILaunchScreen:
+          UIColorName: Ground
+        UIAppFonts: [Prata-Regular.ttf, Jost-Regular.ttf, Jost-Medium.ttf]
+        UISupportedInterfaceOrientations: [UIInterfaceOrientationPortrait]
+        UISupportedInterfaceOrientations~ipad: [UIInterfaceOrientationPortrait, UIInterfaceOrientationPortraitUpsideDown, UIInterfaceOrientationLandscapeLeft, UIInterfaceOrientationLandscapeRight]
+        UIUserInterfaceStyle: Dark
+        ITSAppUsesNonExemptEncryption: false
+        CFBundleURLTypes:
+          - CFBundleURLName: st.zei.Chess
+            CFBundleURLSchemes: [zeistchess]
+        ZCPacksURL: $(PACKS_URL_PUBLIC)
+        ZCPacksURLLocal: $(PACKS_URL_LOCAL)
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: st.zei.Chess
+        PRODUCT_NAME: ZeistChess
+        DEVELOPMENT_TEAM: VRNNS4H6XH
+        CODE_SIGN_STYLE: Automatic
+        CODE_SIGN_ENTITLEMENTS: ZeistChess/ZeistChess.entitlements
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        INFOPLIST_KEY_UIStatusBarStyle: UIStatusBarStyleLightContent
+  ZeistChessTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      # Fixtures (lessons for Learn) are read from the source folder by path, not built into the bundle.
+      - path: ZeistChessTests
+        excludes: ["Fixtures/**"]
+    dependencies:
+      - target: ZeistChess
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: YES
+        DEVELOPMENT_TEAM: VRNNS4H6XH
+  ZeistChessUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources:
+      - path: ZeistChessUITests
+    dependencies:
+      - target: ZeistChess
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: YES
+        TEST_TARGET_NAME: ZeistChess
+        DEVELOPMENT_TEAM: VRNNS4H6XH
+schemes:
+  ZeistChess:
+    build:
+      targets:
+        ZeistChess: all
+        ZeistChessTests: [test]
+        ZeistChessUITests: [test]
+    test:
+      targets: [ZeistChessTests, ZeistChessUITests]

@@ -1,0 +1,38 @@
+{
+  "id": "tactics-desperado",
+  "course": "tactics",
+  "title": "Desperado",
+  "line": "A piece that is lost anyway takes something with it.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "text": "Black's pawn has forked your knight and your bishop. One of them is lost, unless one takes something first.",
+      "fen": "r1bqkb1r/pp3ppp/2np1n2/4p3/3NPB2/2N5/PPP2PPP/R2QKB1R w KQkq - 0 7",
+      "marks": {"squares":["d4","f4"],"arrows":[["e5","d4"],["e5","f4"]]}
+    },
+    {
+      "type": "move",
+      "text": "The knight is lost anyway, so let it take Black's knight first.",
+      "fen": "r1bqkb1r/pp3ppp/2np1n2/4p3/3NPB2/2N5/PPP2PPP/R2QKB1R w KQkq - 0 7",
+      "accept": ["d4c6"],
+      "wrong": {
+        "f4g5": "That saves the bishop, but the pawn takes your knight for nothing.",
+        "f4e3": "That saves the bishop, but the pawn takes your knight for nothing.",
+        "f4g3": "That saves the bishop, but the pawn takes your knight for nothing."
+      },
+      "hint": "Your knight can capture before it is captured.",
+      "after": "Knight for knight: nothing lost.",
+      "reply": "b7c6"
+    },
+    {
+      "type": "move",
+      "text": "Now save the bishop, to a square where it pins the knight to the queen.",
+      "marks": {"arrows":[["g5","d8"]]},
+      "accept": ["f4g5"],
+      "after": "Both of your pieces got out of the fork."
+    }
+  ],
+  "summary": "When a piece is lost anyway, let it take something first. Here a forked knight trades itself before it falls.",
+  "practice": {"fen":"r1bqkb1r/p4ppp/2pp1n2/4p1B1/4P3/2N5/PPP2PPP/R2QKB1R b KQkq - 1 8","side":"w"}
+}

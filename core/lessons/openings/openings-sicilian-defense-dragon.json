@@ -1,0 +1,92 @@
+{
+  "id": "openings-sicilian-defense-dragon",
+  "course": "openings",
+  "title": "Sicilian Defense: Dragon Variation",
+  "line": "The bishop goes to the long diagonal and aims at the side where White's king often castles.",
+  "side": "b",
+  "steps": [
+    {
+      "type": "show",
+      "text": "The usual Sicilian start: White pushes the king's pawn, Black answers from the side, and White pushes a second center pawn.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {"squares":["e4","d4"]},
+      "play": ["e2e4","c7c5","g1f3","d7d6","d2d4"]
+    },
+    {
+      "type": "show",
+      "text": "Black trades its side pawn for that center pawn, and both sides bring a knight out.",
+      "marks": {"squares":["d4"]},
+      "play": ["c5d4","f3d4","g8f6","b1c3"]
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn on g7 one square, to make room for your bishop.",
+      "marks": {"arrows":[["g7","g6"]]},
+      "accept": ["g7g6"],
+      "also": {
+        "a7a6": "That is the Najdorf, another main line. This lesson goes on with the Dragon.",
+        "b8c6": "That is the Classical Variation, another main line. This lesson goes on with the Dragon."
+      },
+      "reply": "c1e3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Put the bishop on g7. Once your knight on f6 moves, it looks along the long diagonal toward White's queen's side.",
+      "marks": {"squares":["f6"],"arrows":[["f8","g7"]]},
+      "accept": ["f8g7"],
+      "also": {
+        "b8c6": "That works too. This lesson puts the bishop out first."
+      },
+      "reply": "f2f3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Castle. The bishop on g7 now guards your king as well.",
+      "marks": {"squares":["g7"],"arrows":[["e8","g8"]]},
+      "accept": ["e8g8"],
+      "reply": "d1d2",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the other knight out. It hits the knight on d4.",
+      "marks": {"squares":["d4"],"arrows":[["b8","c6"]]},
+      "accept": ["b8c6"],
+      "after": "White castles on the queen's side and will push pawns at your king.",
+      "reply": "e1c1",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Strike in the center: push the pawn on d6 one square. When your knight takes back, the long diagonal opens for your bishop.",
+      "marks": {"arrows":[["d6","d5"]]},
+      "accept": ["d6d5"],
+      "reply": "e4d5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Take back with the knight. Now the bishop on g7 looks down the long diagonal.",
+      "marks": {"squares":["g7","c6"],"arrows":[["f6","d5"]]},
+      "accept": ["f6d5"],
+      "after": "White trades knights on c6.",
+      "reply": "d4c6",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Take back with the pawn on b7, toward the center.",
+      "marks": {"arrows":[["b7","c6"]]},
+      "accept": ["b7c6"],
+      "after": "The pawn left the b-file, so your rooks can use that file against the side where White's king castled.",
+      "taught": true
+    }
+  ],
+  "summary": "The Dragon bishop works along the long diagonal, a center pawn push opens it, and a file opens toward White's king.",
+  "practice": {
+    "fen": "r1bq1rk1/pp2ppbp/2np1np1/8/3NP3/2N1BP2/PPPQ2PP/2KR1B1R b - - 4 9",
+    "side": "b"
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "id": "tactics-quiet-moves",
+  "course": "tactics",
+  "title": "Quiet moves",
+  "line": "A combination where the key move is not a check or a capture.",
+  "side": "b",
+  "steps": [
+    {
+      "type": "show",
+      "text": "Levitsky against Marshall, 1912: Black has a quiet move that leaves White lost whatever White does.",
+      "fen": "5rk1/pp4pp/4p3/2R3Q1/3n4/2q4r/P1P2PPP/5RK1 b - - 1 23",
+      "marks": {"squares":["g1"]}
+    },
+    {
+      "type": "move",
+      "text": "Put your queen on g3, where both white pawns and the white queen can capture her. No capture saves White.",
+      "fen": "5rk1/pp4pp/4p3/2R3Q1/3n4/2q4r/P1P2PPP/5RK1 b - - 1 23",
+      "marks": {
+        "squares": ["g1","g3","h2"]
+      },
+      "accept": ["c3g3"],
+      "hint": "The queen goes where two pawns and the white queen can all take her.",
+      "after": "Suppose the pawn on h2 takes the queen.",
+      "reply": "h2g3",
+      "sacrifice": true
+    },
+    {
+      "type": "move",
+      "text": "Now mate with the knight.",
+      "accept": ["d4e2"],
+      "after": "Checkmate: the rook on h3 and the knight leave the king no square.",
+      "mate": true,
+      "marks": {"squares":["h3"]}
+    },
+    {
+      "type": "move",
+      "text": "Now suppose the pawn on f2 takes instead. Check with the knight first.",
+      "fen": "5rk1/pp4pp/4p3/2R3Q1/3n4/6Pr/P1P3PP/5RK1 b - - 0 24",
+      "marks": {"squares":["f2"]},
+      "accept": ["d4e2"],
+      "after": "The king had to go to the corner.",
+      "reply": "g1h1"
+    },
+    {"type":"move","text":"Mate with the rook.","accept":["f8f1"],"after":"Checkmate.","mate":true},
+    {
+      "type": "move",
+      "text": "Last, suppose White's queen takes yours. Check with the knight.",
+      "fen": "5rk1/pp4pp/4p3/2R5/3n4/6Qr/P1P2PPP/5RK1 b - - 0 24",
+      "accept": ["d4e2"],
+      "reply": "g1h1"
+    },
+    {
+      "type": "move",
+      "text": "Take the queen back, with check.",
+      "accept": ["e2g3"],
+      "after": "Black has the queen back and is as far ahead as before. Levitsky saw all this and gave up the game.",
+      "reply": "h1g1"
+    }
+  ],
+  "summary": "The strongest move is not always a check or a capture. A quiet move can leave every answer losing."
+}

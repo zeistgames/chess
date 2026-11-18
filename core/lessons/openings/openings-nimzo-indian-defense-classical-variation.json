@@ -1,0 +1,69 @@
+{
+  "id": "openings-nimzo-indian-defense-classical-variation",
+  "course": "openings",
+  "title": "Nimzo-Indian Defense: Classical Variation",
+  "line": "White's queen is ready to take back if the bishop takes the knight, so White's pawns stay whole.",
+  "side": "b",
+  "steps": [
+    {
+      "type": "show",
+      "text": "The Nimzo-Indian, and White brings the queen out. If the bishop takes the knight, the queen takes back.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {"arrows":[["c2","c3"]]},
+      "play": ["d2d4","g8f6","c2c4","e7e6","b1c3","f8b4","d1c2"]
+    },
+    {
+      "type": "move",
+      "text": "Castle first.",
+      "accept": ["e8g8"],
+      "marks": {"arrows":[["e8","g8"]]},
+      "after": "White pushes a pawn at the bishop.",
+      "reply": "a2a3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Take the knight with check before the bishop is chased away.",
+      "accept": ["b4c3"],
+      "marks": {"arrows":[["b4","c3"]]},
+      "after": "The queen takes back. White has the two bishops and whole pawns, but it has spent time.",
+      "reply": "c2c3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Move the pawn on b7 one square, to make room for your bishop.",
+      "marks": {"squares":["b7"],"arrows":[["b7","b6"]]},
+      "accept": ["b7b6"],
+      "reply": "c1g5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Put the bishop on the long diagonal. With the knight, it aims at e4.",
+      "marks": {"squares":["e4"],"arrows":[["c8","b7"]]},
+      "accept": ["c8b7"],
+      "after": "White spends a pawn move to guard e4.",
+      "reply": "f2f3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Ask the bishop on g5 what it wants. It is pinning your knight.",
+      "marks": {"squares":["g5"],"arrows":[["h7","h6"]]},
+      "accept": ["h7h6"],
+      "reply": "g5h4",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Now push the pawn in front of your queen two squares, into the center.",
+      "accept": ["d7d5"],
+      "marks": {"arrows":[["d7","d5"]]},
+      "after": "Black has its share of the center.",
+      "taught": true
+    }
+  ],
+  "summary": "The queen takes back, so White's pawns stay whole. Black fights for the center square with its pieces.",
+  "practice": {"fen":"rn1q1rk1/pbp2pp1/1p2pn1p/3p4/2PP3B/P1Q2P2/1P2P1PP/R3KBNR w KQ - 0 10","side":"b"}
+}

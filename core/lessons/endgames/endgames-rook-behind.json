@@ -1,0 +1,47 @@
+{
+  "id": "endgames-rook-behind",
+  "course": "endgames",
+  "title": "Rooks behind passed pawns",
+  "line": "Behind your own passed pawn, and behind the enemy's.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "fen": "8/6kp/6p1/Pr6/8/6P1/3R3P/6K1 w - - 0 1",
+      "text": "A rook usually belongs behind a passed pawn. From there it guards the pawn, and it gains room each time the pawn steps up.",
+      "marks": {"squares":["a5"],"arrows":[["a2","a5"]]}
+    },
+    {
+      "type": "move",
+      "fen": "8/6kp/6p1/Pr6/8/6P1/3R3P/6K1 w - - 0 1",
+      "text": "Black's rook attacks your passed pawn. Guard it from behind.",
+      "marks": {"squares":["a5","b5"]},
+      "accept": ["d2a2"],
+      "wrong": {
+        "d2d3": "Black's rook takes the pawn.",
+        "g3g4": "Black's rook takes the pawn."
+      },
+      "hint": "Bring the rook to the pawn's file, below it.",
+      "after": "Guarded from behind, the pawn is safe, and the rook pushes it on when the time comes.",
+      "reply": "b5b7"
+    },
+    {
+      "type": "show",
+      "fen": "R7/P5k1/8/8/8/8/r7/6K1 w - - 0 1",
+      "text": "In front of its pawn, a rook is stuck: if it leaves the pawn's file, Black's rook takes the pawn. The black king just waits on g7 and h7.",
+      "marks": {"squares":["a8","a7","g7","h7"]}
+    },
+    {
+      "type": "move",
+      "fen": "8/6kp/6p1/P7/8/6P1/1R4KP/4r3 b - - 0 1",
+      "side": "b",
+      "text": "Now you have Black. Put your rook behind White's passed pawn.",
+      "marks": {"squares":["a5"]},
+      "accept": ["e1a1"],
+      "hint": "The pawn's file, below the pawn.",
+      "after": "From behind, the rook holds the pawn back, and it gets stronger as the pawn moves up."
+    }
+  ],
+  "summary": "Put rooks behind passed pawns: behind your own to push it, behind the enemy's to hold it back.",
+  "practice": {"fen":"8/6kp/6p1/P7/8/6P1/1R4KP/4r3 b - - 0 1","side":"b"}
+}

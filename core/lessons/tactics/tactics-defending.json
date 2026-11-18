@@ -1,0 +1,41 @@
+{
+  "id": "tactics-defending",
+  "course": "tactics",
+  "title": "Defending an attack",
+  "line": "Trade attackers and counterattack in the center.",
+  "side": "b",
+  "steps": [
+    {
+      "type": "show",
+      "text": "White has castled on the other wing and can throw pawns at your king. Strike back in the center before the attack arrives.",
+      "fen": "r1bq1rk1/pp2ppbp/2np1np1/8/3NP3/2N1BP2/PPPQ2PP/2KR1B1R b - - 4 9",
+      "marks": {"squares":["g8","c1"]}
+    },
+    {
+      "type": "move",
+      "text": "Strike in the center instead: push the pawn in front of your queen one square further, offering it.",
+      "fen": "r1bq1rk1/pp2ppbp/2np1np1/8/3NP3/2N1BP2/PPPQ2PP/2KR1B1R b - - 4 9",
+      "accept": ["d6d5"],
+      "marks": {"arrows":[["d6","d5"]]},
+      "after": "White took the pawn, and the center is opening.",
+      "reply": "e4d5"
+    },
+    {"type":"move","text":"Take back with the knight.","accept":["f6d5"],"reply":"d4c6"},
+    {
+      "type": "move",
+      "text": "Take back the knight with the pawn.",
+      "accept": ["b7c6"],
+      "after": "White wants to trade off your strongest defender, the bishop.",
+      "reply": "e3d4"
+    },
+    {
+      "type": "move",
+      "text": "Trade the bishops. Each trade takes an attacker off the board.",
+      "accept": ["g7d4"],
+      "after": "White's attacking bishop is gone, and the center is open for your pieces too.",
+      "reply": "d2d4"
+    }
+  ],
+  "summary": "Against an attack on your king, strike back in the center and trade off the attacking pieces.",
+  "practice": {"fen":"r1bq1rk1/p3pp1p/2p3p1/3n4/3Q4/2N2P2/PPP3PP/2KR1B1R b - - 0 13","side":"b"}
+}

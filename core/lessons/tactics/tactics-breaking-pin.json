@@ -1,0 +1,62 @@
+{
+  "id": "tactics-breaking-pin",
+  "course": "tactics",
+  "title": "Breaking a pin",
+  "line": "Block, move the piece behind, or attack the pinning piece.",
+  "side": "b",
+  "steps": [
+    {
+      "type": "show",
+      "text": "Your knight is pinned: it may not move, because the bishop would then give check. Until the pin is broken, it is stuck.",
+      "fen": "r1bqkbnr/ppp2ppp/2np4/1B2p3/4P3/5N2/PPPP1PPP/RNBQ1RK1 b kq - 1 4",
+      "marks": {"squares":["c6"],"arrows":[["b5","e8"]]}
+    },
+    {
+      "type": "move",
+      "text": "The first way: attack the pinning piece. Push a pawn at the bishop.",
+      "fen": "r1bqkbnr/ppp2ppp/2np4/1B2p3/4P3/5N2/PPPP1PPP/RNBQ1RK1 b kq - 1 4",
+      "accept": ["a7a6"],
+      "also": {"c8d7":"That breaks the pin too, by blocking. This step attacks the bishop."},
+      "hint": "One of your pawns can attack the bishop in one step.",
+      "after": "The bishop stepped back, but it still pins the knight.",
+      "reply": "b5a4"
+    },
+    {
+      "type": "move",
+      "text": "Attack it again with the next pawn. If it keeps running, it must leave the line.",
+      "accept": ["b7b5"],
+      "after": "The bishop has left the line to your king: the pin is gone.",
+      "reply": "a4b3"
+    },
+    {
+      "type": "show",
+      "text": "The second way: block. Here the bishop pins your knight to the queen behind it.",
+      "fen": "rnbqkb1r/ppp2ppp/4pn2/3p2B1/2PP4/2N5/PP2PPPP/R2QKBNR b KQkq - 3 4",
+      "marks": {"squares":["f6","d8"],"arrows":[["g5","d8"]]}
+    },
+    {
+      "type": "move",
+      "text": "Put your other bishop between the knight and the queen.",
+      "fen": "rnbqkb1r/ppp2ppp/4pn2/3p2B1/2PP4/2N5/PP2PPPP/R2QKBNR b KQkq - 3 4",
+      "marks": {"arrows":[["f8","e7"]]},
+      "accept": ["f8e7"],
+      "after": "Now the knight can move: only the bishop behind it would be attacked, and the bishop is guarded.",
+      "reply": "e2e3"
+    },
+    {
+      "type": "show",
+      "text": "The third way: move the piece behind. Here your knight is pinned to your king again.",
+      "fen": "r1bqk2r/ppp1bppp/2np1n2/1B2p3/4P3/2P2N2/PP1P1PPP/RNBQR1K1 b kq - 0 6",
+      "marks": {"squares":["c6","e8"],"arrows":[["b5","e8"]]}
+    },
+    {
+      "type": "move",
+      "text": "Castle. Your king leaves the bishop's line, and the knight is free to move.",
+      "marks": {"arrows":[["e8","g8"]]},
+      "accept": ["e8g8"],
+      "after": "No king behind the knight, no pin."
+    }
+  ],
+  "summary": "Three ways out of a pin: chase the pinning piece, put another piece in its line, or move the piece behind.",
+  "practice": {"fen":"rnbqk2r/ppp1bppp/4pn2/3p2B1/2PP4/2N1P3/PP3PPP/R2QKBNR b KQkq - 0 5","side":"b"}
+}

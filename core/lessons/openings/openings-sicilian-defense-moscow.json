@@ -1,0 +1,93 @@
+{
+  "id": "openings-sicilian-defense-moscow",
+  "course": "openings",
+  "title": "Sicilian Defense: Moscow Variation",
+  "line": "White checks with a bishop to trade it off; Black blocks with its own bishop and builds a center.",
+  "side": "b",
+  "steps": [
+    {
+      "type": "show",
+      "text": "Here White's bishop gives check, to trade itself off and stay out of the main lines.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {"arrows":[["b5","e8"]]},
+      "play": ["e2e4","c7c5","g1f3","d7d6","f1b5"]
+    },
+    {
+      "type": "move",
+      "text": "Block the check with your bishop.",
+      "marks": {"arrows":[["c8","d7"]]},
+      "accept": ["c8d7"],
+      "also": {
+        "b8d7": "That also blocks the check. This lesson goes on with the bishop.",
+        "b8c6": "That also blocks the check. This lesson goes on with the bishop."
+      },
+      "reply": "b5d7",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Take back with the queen. Your knight can still come out to c6.",
+      "marks": {"squares":["c6"],"arrows":[["d8","d7"]]},
+      "accept": ["d8d7"],
+      "also": {
+        "b8d7": "That takes back too. This lesson takes with the queen."
+      },
+      "reply": "e1g1",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the knight out.",
+      "marks": {"arrows":[["b8","c6"]]},
+      "accept": ["b8c6"],
+      "reply": "c2c3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the other knight out.",
+      "marks": {"arrows":[["g8","f6"]]},
+      "accept": ["g8f6"],
+      "reply": "f1e1",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn on e7 one square, so your bishop can come out.",
+      "marks": {"arrows":[["e7","e6"]]},
+      "accept": ["e7e6"],
+      "reply": "d2d4",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Take the pawn.",
+      "marks": {"arrows":[["c5","d4"]]},
+      "accept": ["c5d4"],
+      "reply": "c3d4",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn on d6 one square. Now you have a share of the center.",
+      "marks": {"arrows":[["d6","d5"]]},
+      "accept": ["d6d5"],
+      "after": "White's pawn kicks your knight.",
+      "reply": "e4e5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Jump to e4 with the knight. Your pawn on d5 guards it.",
+      "marks": {"squares":["d5","e4"],"arrows":[["f6","e4"]]},
+      "accept": ["f6e4"],
+      "after": "The knight sits in the center, guarded by your pawn, and Black has a share of the center.",
+      "taught": true
+    }
+  ],
+  "summary": "Black blocks the check, trades the bishops, and builds a share of the center with pawns and a knight.",
+  "practice": {
+    "fen": "r3kb1r/pp1q1ppp/2n1p3/3pP3/3Pn3/5N2/PP3PPP/RNBQR1K1 w kq - 1 11",
+    "side": "b"
+  }
+}

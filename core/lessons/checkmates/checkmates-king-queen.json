@@ -1,0 +1,78 @@
+{
+  "id": "checkmates-king-queen",
+  "course": "checkmates",
+  "title": "King and queen against king",
+  "line": "Push the king to the edge with the queen, then bring your king. Mind stalemate.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "text": "King and queen against a lone king always wins. The queen pens the king in a box, your king comes to help, and together they mate.",
+      "fen": "8/8/8/4k3/8/8/8/3QK3 w - - 0 1"
+    },
+    {
+      "type": "move",
+      "text": "Pen the king in: put the queen a knight's jump away from it. From there she takes many squares, and the king cannot attack her.",
+      "fen": "8/8/8/4k3/8/8/8/3QK3 w - - 0 1",
+      "marks": {"squares":["e5"]},
+      "accept": ["d1d3","d1f3","d1g4","d1d7"],
+      "hint": "Picture a knight on the king's square and the squares it could jump to. Your queen can reach some of them.",
+      "after": "The king is in a box. Each time it moves, make the box smaller.",
+      "taught": true
+    },
+    {
+      "type": "show",
+      "text": "Keep making the box smaller until the king stands on the edge. Then the queen only has to hold it there, as on h7.",
+      "fen": "4k3/7Q/8/8/8/8/8/4K3 w - - 0 1",
+      "marks": {"arrows":[["h7","a7"]]}
+    },
+    {
+      "type": "move",
+      "text": "Now stop moving the queen. Bring your king up the board toward the black king.",
+      "fen": "4k3/7Q/8/8/8/8/8/4K3 w - - 0 1",
+      "accept": ["e1e2","e1d2","e1f2"],
+      "hint": "One step forward with the king.",
+      "after": "The queen holds the edge. The king walks up, one step at a time.",
+      "taught": true
+    },
+    {
+      "type": "show",
+      "text": "In the corner the king has two squares, a7 and b7. Take both without check, with queen or king, and it is stalemate.",
+      "fen": "k7/8/3Q4/8/3K4/8/8/8 w - - 0 1",
+      "marks": {"squares":["a7","b7"]}
+    },
+    {
+      "type": "move",
+      "text": "Bring your king one step closer and leave the queen where she is.",
+      "fen": "k7/8/3Q4/8/3K4/8/8/8 w - - 0 1",
+      "accept": ["d4c5","d4d5"],
+      "wrong": {
+        "d6c7": "That is stalemate: Black is not in check and has no legal move. The game is a draw.",
+        "d6b6": "That is stalemate: Black is not in check and has no legal move. The game is a draw."
+      },
+      "hint": "Step toward the corner with the king.",
+      "after": "Black still has a move, and your king is nearly there.",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Your king now guards a7 and b7. Mate in one, but careful: a queen move that takes b8 without check is stalemate.",
+      "fen": "k7/8/1K6/2Q5/8/8/8/8 w - - 0 1",
+      "marks": {
+        "squares": ["a7","b7","b8"]
+      },
+      "accept": ["c5c8","c5f8"],
+      "wrong": {
+        "c5c7": "That is stalemate: Black is not in check and has no legal move. The game is a draw.",
+        "c5d6": "That is stalemate: Black is not in check and has no legal move. The game is a draw.",
+        "c5e5": "That is stalemate: Black is not in check and has no legal move. The game is a draw.",
+        "b6c7": "That is stalemate: Black is not in check and has no legal move. The game is a draw."
+      },
+      "hint": "Check the king along the back rank.",
+      "after": "Checkmate. The queen checks along the back rank, and your king guards a7 and b7.",
+      "mate": true
+    }
+  ],
+  "summary": "Shrink the box to the edge, then stop moving the queen, bring your king and mate. Always leave Black a move.",
+  "practice": {"fen":"k7/8/3Q4/8/3K4/8/8/8 w - - 0 1","side":"w"}
+}

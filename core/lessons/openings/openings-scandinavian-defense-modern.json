@@ -1,0 +1,92 @@
+{
+  "id": "openings-scandinavian-defense-modern",
+  "course": "openings",
+  "title": "Scandinavian Defense: Modern Variation",
+  "line": "Black takes the pawn back later with a knight, and the knight settles in front of White's pawns.",
+  "side": "b",
+  "steps": [
+    {
+      "type": "show",
+      "text": "Here White's pawn took yours.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {"arrows":[["e4","d5"]]},
+      "play": ["e2e4","d7d5","e4d5"]
+    },
+    {
+      "type": "move",
+      "text": "Bring the knight out. It will take back on d5.",
+      "marks": {"squares":["d5"],"arrows":[["g8","f6"]]},
+      "accept": ["g8f6"],
+      "also": {
+        "d8d5": "That is the main line, and just as sound. This lesson takes back later with the knight."
+      },
+      "reply": "d2d4",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Take the pawn back with the knight.",
+      "marks": {"arrows":[["f6","d5"]]},
+      "accept": ["f6d5"],
+      "reply": "c2c4",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "White's pawn hits your knight. Step back to b6.",
+      "marks": {"arrows":[["d5","b6"]]},
+      "accept": ["d5b6"],
+      "also": {
+        "d5f6": "That also works. This lesson steps back to b6."
+      },
+      "reply": "g1f3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn on g7 one square, to make room for your bishop.",
+      "marks": {"arrows":[["g7","g6"]]},
+      "accept": ["g7g6"],
+      "reply": "b1c3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Put the bishop on g7. It aims at the pawn on d4.",
+      "marks": {"squares":["d4"],"arrows":[["f8","g7"]]},
+      "accept": ["f8g7"],
+      "after": "White's pawn kicks your knight again.",
+      "reply": "c4c5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Jump back to d5. White's pawns have moved past it, so no pawn can kick it from there.",
+      "marks": {"squares":["d5"],"arrows":[["b6","d5"]]},
+      "accept": ["b6d5"],
+      "reply": "f1c4",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn on c7 one square. It guards the knight on d5.",
+      "marks": {"squares":["d5"],"arrows":[["c7","c6"]]},
+      "accept": ["c7c6"],
+      "reply": "e1g1",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Castle. Your king goes to safety, and a rook comes toward the center.",
+      "marks": {"squares":["d5","g7","d4"],"arrows":[["e8","g8"]]},
+      "accept": ["e8g8"],
+      "after": "Your knight sits on d5, guarded by a pawn, in front of White's pawns, and the bishop on g7 aims at d4.",
+      "taught": true
+    }
+  ],
+  "summary": "In the Modern Variation the knight takes back later, White's pawns chase it, and it settles in front of them.",
+  "practice": {
+    "fen": "rnbq1rk1/pp2ppbp/2p3p1/2Pn4/2BP4/2N2N2/PP3PPP/R1BQ1RK1 w - - 2 10",
+    "side": "b"
+  }
+}

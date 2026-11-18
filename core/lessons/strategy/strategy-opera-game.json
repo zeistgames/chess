@@ -1,0 +1,90 @@
+{
+  "id": "strategy-opera-game",
+  "course": "strategy",
+  "title": "The Opera Game",
+  "line": "Morphy against the Duke of Brunswick and Count Isouard, Paris 1858: development wins.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "fen": "rn2kb1r/pp2qppp/2p2n2/4p3/2B1P3/1QN5/PPP2PPP/R1B1K2R w KQkq - 0 9",
+      "text": "Paris, 1858. Morphy has three pieces out and aims at two pawns. Black has moved pawns and its queen, and its king is in the middle.",
+      "marks": {"squares":["b3","c4","c3","f7","b7"]}
+    },
+    {
+      "type": "move",
+      "text": "Bring out your last minor piece: the bishop pins the knight to the queen.",
+      "marks": {"squares":["f6","e7","c4"],"arrows":[["c1","g5"]]},
+      "accept": ["c1g5"],
+      "after": "Black pushes a pawn to chase your bishop on c4.",
+      "reply": "b7b5"
+    },
+    {
+      "type": "move",
+      "text": "Give the knight for that pawn. It opens lines at Black's king while Black's pieces still sit at home.",
+      "marks": {"squares":["b5"],"arrows":[["c3","b5"]]},
+      "accept": ["c3b5"],
+      "sacrifice": true,
+      "after": "Black takes.",
+      "reply": "c6b5"
+    },
+    {
+      "type": "move",
+      "text": "Take back with the bishop, with check.",
+      "marks": {"arrows":[["c4","b5"]]},
+      "accept": ["c4b5"],
+      "after": "A knight blocks the check, and it is pinned.",
+      "reply": "b8d7"
+    },
+    {
+      "type": "move",
+      "text": "Castle on the long side. Your king gets safe and your rook lands on the open file in one move.",
+      "marks": {"squares":["d7"],"arrows":[["e1","c1"]]},
+      "accept": ["e1c1"],
+      "after": "Black adds a rook to guard the knight.",
+      "reply": "a8d8"
+    },
+    {
+      "type": "move",
+      "text": "Take the pinned knight with the rook.",
+      "marks": {"squares":["d7"],"arrows":[["d1","d7"]]},
+      "accept": ["d1d7"],
+      "after": "The rook takes back.",
+      "reply": "d8d7"
+    },
+    {
+      "type": "move",
+      "text": "Bring your other rook to the open file. It attacks the pinned rook again.",
+      "marks": {"squares":["d7"],"arrows":[["h1","d1"]]},
+      "accept": ["h1d1"],
+      "after": "Black's queen steps out of the pin on its knight and offers a trade.",
+      "reply": "e7e6"
+    },
+    {
+      "type": "move",
+      "text": "Take the rook with your bishop, with check.",
+      "marks": {"squares":["d7","b8"],"arrows":[["b5","d7"]]},
+      "accept": ["b5d7"],
+      "after": "The knight takes back. Now it alone guards b8.",
+      "reply": "f6d7"
+    },
+    {
+      "type": "move",
+      "text": "Give your queen with check. The knight must take her.",
+      "marks": {"squares":["b8","d7"],"arrows":[["b3","b8"]]},
+      "accept": ["b3b8"],
+      "sacrifice": true,
+      "after": "The knight had to leave d7, and the file is open for your rook.",
+      "reply": "d7b8"
+    },
+    {
+      "type": "move",
+      "text": "Mate with the rook.",
+      "marks": {"squares":["h8","f8"],"arrows":[["d1","d8"]]},
+      "accept": ["d1d8"],
+      "mate": true,
+      "after": "Checkmate. The bishop guards the rook. Black's rook on h8 and bishop on f8 never moved."
+    }
+  ],
+  "summary": "Every move brought a white piece into play while Black's pieces stayed home. Develop first."
+}

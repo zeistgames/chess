@@ -1,0 +1,155 @@
+{
+  "id": "openings-english-opening-anglo-indian-defense",
+  "course": "openings",
+  "title": "English Opening: Anglo-Indian Defense",
+  "line": "Black brings the knight out first, and White takes the whole center with pawns.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "text": "Black brings the knight out first and keeps its choices open.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {
+        "squares": [
+          "f6"
+        ]
+      },
+      "play": [
+        "c2c4",
+        "g8f6"
+      ]
+    },
+    {
+      "type": "move",
+      "text": "Bring your knight out. It watches the center squares d5 and e4.",
+      "marks": {
+        "squares": [
+          "d5",
+          "e4"
+        ],
+        "arrows": [
+          [
+            "b1",
+            "c3"
+          ]
+        ]
+      },
+      "accept": [
+        "b1c3"
+      ],
+      "reply": "e7e6",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Push the king pawn two squares. With the pawn on c4 and the knight on c3, White takes the center.",
+      "marks": {
+        "squares": [
+          "c4",
+          "c3"
+        ],
+        "arrows": [
+          [
+            "e2",
+            "e4"
+          ]
+        ]
+      },
+      "accept": [
+        "e2e4"
+      ],
+      "also": {
+        "g1f3": "That is sound too, and calmer. This lesson takes the center.",
+        "d2d4": "That leads to the Queen's Gambit or an Indian defense. This lesson takes the center another way."
+      },
+      "reply": "d7d5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn on and chase the knight on f6.",
+      "marks": {
+        "squares": [
+          "f6"
+        ],
+        "arrows": [
+          [
+            "e4",
+            "e5"
+          ]
+        ]
+      },
+      "accept": [
+        "e4e5"
+      ],
+      "after": "Black strikes back at your knight.",
+      "reply": "d5d4",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Take the knight. Black takes one of yours too.",
+      "marks": {
+        "squares": [
+          "f6"
+        ],
+        "arrows": [
+          [
+            "e5",
+            "f6"
+          ]
+        ]
+      },
+      "accept": [
+        "e5f6"
+      ],
+      "reply": "d4c3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Take back with the pawn on b2. It moves toward the center.",
+      "marks": {
+        "squares": [
+          "c3"
+        ],
+        "arrows": [
+          [
+            "b2",
+            "c3"
+          ]
+        ]
+      },
+      "accept": [
+        "b2c3"
+      ],
+      "reply": "d8f6"
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn in front of your queen two squares. Pawns on c3, c4 and d4 give White more of the center.",
+      "marks": {
+        "squares": [
+          "c3",
+          "c4"
+        ],
+        "arrows": [
+          [
+            "d2",
+            "d4"
+          ]
+        ]
+      },
+      "accept": [
+        "d2d4"
+      ],
+      "after": "Material is level. White has more of the center, Black has quick development.",
+      "taught": true
+    }
+  ],
+  "summary": "When Black waits with a knight, White can take the center with pawns and chase the knight.",
+  "practice": {
+    "fen": "rnb1kb1r/ppp2ppp/4pq2/8/2PP4/2P5/P4PPP/R1BQKBNR b KQkq - 0 7",
+    "side": "w"
+  }
+}

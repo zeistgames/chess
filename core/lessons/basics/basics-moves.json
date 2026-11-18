@@ -1,0 +1,79 @@
+{
+  "id": "basics-moves",
+  "course": "basics",
+  "title": "How the pieces move: an overview",
+  "line": "All six pieces, one board each. The lessons after it take each piece up close.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "text": "A piece moves to an empty square, or captures an enemy piece by moving onto its square. The captured piece leaves the board.",
+      "fen": "6k1/8/3P4/8/3R1n2/8/8/1K6 w - - 0 1",
+      "play": ["d4f4"]
+    },
+    {
+      "type": "pick",
+      "text": "The rook moves in straight lines, as far as the way is clear. Tap every square this rook can reach.",
+      "fen": "6k1/8/3P4/8/3R1n2/8/8/1K6 w - - 0 1",
+      "marks": {"squares":["d4"]},
+      "accept": ["d5","e4","f4","d3","d2","d1","c4","b4","a4"],
+      "all": true,
+      "after": "It stops before its own pawn, and it can capture the knight."
+    },
+    {
+      "type": "pick",
+      "text": "The bishop moves along diagonals, as far as the way is clear. Tap every square this bishop can reach.",
+      "fen": "4k3/8/5p2/8/3B4/8/1P6/7K w - - 0 1",
+      "marks": {"squares":["d4"]},
+      "accept": ["c5","b6","a7","e5","f6","e3","f2","g1","c3"],
+      "all": true,
+      "after": "A bishop stays on squares of one color all game."
+    },
+    {
+      "type": "pick",
+      "text": "The queen moves like a rook and a bishop together. Tap every square this queen can reach.",
+      "fen": "rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2",
+      "marks": {"squares":["d1"]},
+      "accept": ["e2","f3","g4","h5"],
+      "all": true,
+      "after": "Her own pieces block every other line for now."
+    },
+    {
+      "type": "pick",
+      "text": "The knight jumps two squares one way and one square to the side. Tap every square this knight can reach.",
+      "fen": "6k1/8/8/3N4/8/8/8/6K1 w - - 0 1",
+      "marks": {"squares":["d5"]},
+      "accept": ["b6","c7","e7","f6","f4","e3","c3","b4"],
+      "all": true,
+      "after": "The knight is the only piece that can jump over others."
+    },
+    {
+      "type": "pick",
+      "text": "The king moves one square in any direction. Tap every square this king can reach.",
+      "fen": "7k/8/8/8/3K4/8/8/8 w - - 0 1",
+      "marks": {"squares":["d4"]},
+      "accept": ["c5","d5","e5","e4","e3","d3","c3","c4"],
+      "all": true,
+      "after": "The king may never move onto a square where it could be captured."
+    },
+    {
+      "type": "pick",
+      "text": "A pawn moves straight ahead, one square, or two on its first move. Tap every square the pawn on e2 can reach.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {"squares":["e2"]},
+      "accept": ["e3","e4"],
+      "all": true,
+      "after": "A pawn never moves backward."
+    },
+    {
+      "type": "pick",
+      "text": "A pawn captures one square diagonally forward. Tap every square the pawn on e4 can reach.",
+      "fen": "rnbqkbnr/ppp1pppp/8/3p4/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2",
+      "marks": {"squares":["e4"]},
+      "accept": ["e5","d5"],
+      "all": true,
+      "after": "It can step one square forward, or capture the pawn diagonally."
+    }
+  ],
+  "summary": "Rooks go straight, bishops go diagonally, the queen does both. Knights jump, kings step, pawns push."
+}

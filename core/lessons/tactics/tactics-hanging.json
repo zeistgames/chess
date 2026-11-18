@@ -1,0 +1,58 @@
+{
+  "id": "tactics-hanging",
+  "course": "tactics",
+  "title": "Pieces left hanging",
+  "line": "Before every move: checks, captures, threats, and is anything of yours or theirs undefended.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "text": "A piece is hanging when it can be captured and nothing guards it. Black has just attacked your queen with the knight.",
+      "fen": "rnbqkb1r/pppp1ppp/5n2/4p2Q/4P3/8/PPPP1PPP/RNB1KBNR w KQkq - 2 3",
+      "marks": {"squares":["h5"],"arrows":[["f6","h5"]]}
+    },
+    {
+      "type": "move",
+      "text": "Before you save the queen, look at what Black left behind. Capture the hanging pawn, with check.",
+      "accept": ["h5e5"],
+      "wrong": {"h5f7":"That is check, but nothing guards the queen on f7: the king takes her."},
+      "hint": "Look for the black pawn that nothing guards.",
+      "after": "The queen is safe, the pawn is yours, and Black must answer the check.",
+      "marks": {"squares":["f7"]}
+    },
+    {
+      "type": "show",
+      "text": "Now look at your own pieces. Black's knight has just come to a5.",
+      "fen": "r1bqkb1r/ppp2ppp/5n2/n2Pp1N1/2B5/8/PPPP1PPP/RNBQK2R w KQkq - 1 6",
+      "marks": {"squares":["a5"]}
+    },
+    {
+      "type": "pick",
+      "text": "Tap the white piece that is attacked and has no guard.",
+      "accept": ["c4"],
+      "all": false,
+      "wrong": {
+        "d5": "The pawn on d5 is attacked, but your bishop guards it.",
+        "g5": "Nothing attacks the knight on g5 right now."
+      },
+      "after": "The knight on a5 attacks the bishop, and no white piece guards it.",
+      "marks": {
+        "squares": ["a5","d5","g5"]
+      }
+    },
+    {
+      "type": "move",
+      "text": "Save the bishop, with check.",
+      "accept": ["c4b5"],
+      "hint": "A bishop move that attacks the king.",
+      "after": "The bishop is safe, and Black must answer the check first."
+    },
+    {
+      "type": "show",
+      "text": "So before every move, ask three things: what the last move attacks, what you can capture, and what has no guard."
+    }
+  ],
+  "summary": "Before every move, look for checks, captures and threats, and for any piece of yours or theirs left unguarded.",
+  "practice": {"fen":"r1bqkb1r/ppp2ppp/5n2/nB1Pp1N1/8/8/PPPP1PPP/RNBQK2R b KQkq - 2 6","side":"w"},
+  "puzzles": "hanging"
+}

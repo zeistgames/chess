@@ -1,0 +1,11 @@
+{
+  "name": "Zeist Chess",
+  "short_name": "Zeist Chess",
+  "description": "Play chess engines in your browser, offline once downloaded.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#12110e",
+  "theme_color": "#12110e",
+  "icons": [{ "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }]
+}

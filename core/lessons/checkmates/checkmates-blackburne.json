@@ -1,0 +1,49 @@
+{
+  "id": "checkmates-blackburne",
+  "course": "checkmates",
+  "title": "Blackburne's mate",
+  "line": "Two bishops and a knight around the castled king.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "text": "Blackburne's mate: one bishop on the long diagonal takes g7 and h8. A knight guards h7, and the other bishop mates there.",
+      "fen": "r2q1rk1/pp3p1p/2n1p3/6N1/8/1P1B4/PB3PPP/R2Q2K1 w - - 0 1",
+      "marks": {"squares":["g7","h8","h7"],"arrows":[["b2","h8"]]}
+    },
+    {
+      "type": "pick",
+      "text": "Tap the white piece that will guard your bishop when it lands next to the king.",
+      "accept": ["g5"],
+      "hint": "A piece that guards h7.",
+      "after": "The knight guards h7, so the king cannot take the bishop there.",
+      "marks": {"squares":["h7"]}
+    },
+    {
+      "type": "move",
+      "text": "Mate with the bishop.",
+      "accept": ["d3h7"],
+      "hint": "The bishop takes the pawn in front of the king.",
+      "after": "Checkmate. The far bishop takes g7 and h8, and Black's own rook and pawn block the rest.",
+      "mate": true,
+      "marks": {"squares":["g7","h8"]}
+    },
+    {
+      "type": "move",
+      "text": "Now you are Black, and White has just brought the knight to g5 for this mate. Take away one of its pieces.",
+      "fen": "r2q1rk1/pp3p1p/2n1p3/6N1/8/1P1B4/PB3PPP/R2Q2K1 b - - 0 1",
+      "side": "b",
+      "accept": ["d8g5"],
+      "wrong": {
+        "a7a6": "Then the bishop takes on h7, and it is mate.",
+        "b7b6": "Then the bishop takes on h7, and it is mate.",
+        "a8b8": "Then the bishop takes on h7, and it is mate.",
+        "a8c8": "Then the bishop takes on h7, and it is mate."
+      },
+      "hint": "Without the knight, the bishop on h7 could be taken.",
+      "after": "The knight is gone, and nothing guards h7 any more.",
+      "marks": {"squares":["g5","h7"]}
+    }
+  ],
+  "summary": "A bishop on the long diagonal and a knight beside the king let the other bishop mate. Remove one, and it fails."
+}

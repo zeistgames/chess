@@ -1,0 +1,138 @@
+{
+  "id": "openings-before-any-opening-learning-a-line",
+  "course": "openings",
+  "title": "Learning a line",
+  "line": "Know why each move is played. Moves learned by heart fall apart when the other side plays something else.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "text": "A line you may know: in the Italian Game, the pawn moves to c3 to get ready for a pawn on d4.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {
+        "squares": [
+          "c3",
+          "d4"
+        ],
+        "arrows": [
+          [
+            "c2",
+            "c3"
+          ]
+        ]
+      },
+      "play": [
+        "e2e4",
+        "e7e5",
+        "g1f3",
+        "b8c6",
+        "f1c4",
+        "f8c5",
+        "c2c3"
+      ]
+    },
+    {
+      "type": "show",
+      "text": "Here Black brought out the knight instead of the bishop. The knight attacks your pawn on e4.",
+      "fen": "r1bqkb1r/pppp1ppp/2n2n2/4p3/2B1P3/5N2/PPPP1PPP/RNBQK2R w KQkq - 4 4",
+      "marks": {
+        "squares": [
+          "e4"
+        ],
+        "arrows": [
+          [
+            "f6",
+            "e4"
+          ]
+        ]
+      }
+    },
+    {
+      "type": "move",
+      "text": "Before playing the move you learned, ask what Black's last move does, and answer it.",
+      "marks": {
+        "squares": [
+          "e4",
+          "f6"
+        ]
+      },
+      "accept": [
+        "d2d3",
+        "b1c3",
+        "f3g5"
+      ],
+      "wrong": {
+        "c2c3": "That is the move from the line you learned. Here it leaves the pawn on e4, and the knight takes it."
+      },
+      "hint": "Guard the pawn the knight attacks, or make a stronger threat of your own.",
+      "after": "The pawn is safe, or you have a threat of your own."
+    },
+    {
+      "type": "show",
+      "text": "Another one, from the Vienna Game: when Black's knight is on f6 and takes the pawn on f4, the pawn push chases that knight.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {
+        "squares": [
+          "f6",
+          "f4"
+        ],
+        "arrows": [
+          [
+            "e5",
+            "f6"
+          ]
+        ]
+      },
+      "play": [
+        "e2e4",
+        "e7e5",
+        "b1c3",
+        "g8f6",
+        "f2f4",
+        "e5f4",
+        "e4e5"
+      ]
+    },
+    {
+      "type": "show",
+      "text": "Here Black brought out the other knight first, and then took the pawn on f4.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {
+        "squares": [
+          "c6",
+          "f6",
+          "f4"
+        ]
+      },
+      "play": [
+        "e2e4",
+        "e7e5",
+        "b1c3",
+        "b8c6",
+        "f2f4",
+        "e5f4"
+      ]
+    },
+    {
+      "type": "move",
+      "text": "Ask what is different before you push the pawn from memory, and play a move that fits this position.",
+      "marks": {
+        "squares": [
+          "c6",
+          "f6",
+          "e5"
+        ]
+      },
+      "accept": [
+        "g1f3",
+        "d2d4"
+      ],
+      "wrong": {
+        "e4e5": "That is the move you learned, but no knight stands on f6 to chase, and the knight on c6 takes your pawn."
+      },
+      "hint": "Your other knight stops a check from the black queen.",
+      "after": "The move you learned fits one position, not every one. Know why each move is played."
+    }
+  ],
+  "summary": "Learn the reason behind each move. When the other side plays something else, the reason tells you what to do."
+}

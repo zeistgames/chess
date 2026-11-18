@@ -1,0 +1,85 @@
+{
+  "id": "openings-grunfeld-defense-russian-variation",
+  "course": "openings",
+  "title": "Grünfeld Defense: Russian Variation",
+  "line": "White's queen comes out early and White builds the center, and Black chases the queen with pawns.",
+  "side": "b",
+  "steps": [
+    {
+      "type": "show",
+      "text": "The Grünfeld, and White brings the other knight out.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {"arrows":[["g1","f3"]]},
+      "play": ["d2d4","g8f6","c2c4","g7g6","b1c3","d7d5","g1f3"]
+    },
+    {
+      "type": "move",
+      "text": "Put the bishop on the long diagonal. Once your knight moves, it aims at White's pawn on d4.",
+      "marks": {"squares":["d4","d5"],"arrows":[["f8","g7"]]},
+      "accept": ["f8g7"],
+      "after": "White's queen comes out to attack the pawn on d5.",
+      "reply": "d1b3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Take the pawn on c4. White's queen takes back, out in the open.",
+      "marks": {"squares":["c4"],"arrows":[["d5","c4"]]},
+      "accept": ["d5c4"],
+      "reply": "b3c4",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Castle, to get your king to safety.",
+      "accept": ["e8g8"],
+      "marks": {"arrows":[["e8","g8"]]},
+      "after": "White takes the whole center with pawns.",
+      "reply": "e2e4",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Move the pawn on a7 one square. It gets the pawn on b7 ready to chase the queen.",
+      "marks": {"squares":["b7","a7"],"arrows":[["a7","a6"]]},
+      "accept": ["a7a6"],
+      "reply": "f1e2",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Now chase the queen with that pawn.",
+      "accept": ["b7b5"],
+      "marks": {"arrows":[["b7","b5"]]},
+      "reply": "c4b3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Strike at the center with the pawn on c7.",
+      "marks": {"squares":["c7","d4"],"arrows":[["c7","c5"]]},
+      "accept": ["c7c5"],
+      "after": "White takes, and its pawn on d4 is gone from your bishop's line.",
+      "reply": "d4c5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Put the other bishop on a long diagonal too. It attacks the pawn on e4.",
+      "marks": {"squares":["e4"],"arrows":[["c8","b7"]]},
+      "accept": ["c8b7"],
+      "after": "White pushes the pawn on, at your knight.",
+      "reply": "e4e5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Step the knight back. It attacks the pawns on e5 and c5, and it opens your bishop's line.",
+      "marks": {"squares":["e5","c5"],"arrows":[["f6","d7"]]},
+      "accept": ["f6d7"],
+      "taught": true
+    }
+  ],
+  "summary": "When White's queen comes out early, Black chases it with pawns, strikes from the side and aims both bishops.",
+  "practice": {"fen":"rn1q1rk1/1b1nppbp/p5p1/1pP1P3/8/1QN2N2/PP2BPPP/R1B1K2R w KQ - 1 12","side":"b"}
+}

@@ -1,0 +1,81 @@
+{
+  "id": "openings-sicilian-defense-scheveningen",
+  "course": "openings",
+  "title": "Sicilian Defense: Scheveningen Variation",
+  "line": "Two pawns make a small, solid center, and a strike in the middle answers White's attack on the wing.",
+  "side": "b",
+  "steps": [
+    {
+      "type": "show",
+      "text": "The usual Sicilian start: White pushes the king's pawn, Black answers from the side, and White pushes a second center pawn.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {"squares":["e4","d4"]},
+      "play": ["e2e4","c7c5","g1f3","d7d6","d2d4"]
+    },
+    {
+      "type": "show",
+      "text": "Black trades its side pawn for that center pawn, and both sides bring a knight out.",
+      "marks": {"squares":["d4"]},
+      "play": ["c5d4","f3d4","g8f6","b1c3"]
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn on e7 one square. With the pawn on d6 it makes a small center that guards d5 and e5.",
+      "marks": {"squares":["d6","d5","e5"],"arrows":[["e7","e6"]]},
+      "accept": ["e7e6"],
+      "also": {
+        "a7a6": "That is the Najdorf, another main line. This lesson goes on with the Scheveningen.",
+        "b8c6": "That is the Classical Variation, another main line. This lesson goes on with the Scheveningen.",
+        "g7g6": "That is the Dragon, another main line. This lesson goes on with the Scheveningen."
+      },
+      "after": "White's pawn rushes up the board to chase your knight.",
+      "reply": "g2g4",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn on h7 one square. Now White's pawn cannot come to g5 without being taken.",
+      "marks": {"squares":["g5"],"arrows":[["h7","h6"]]},
+      "accept": ["h7h6"],
+      "reply": "h2h4",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the other knight out. It hits the knight on d4.",
+      "marks": {"squares":["d4"],"arrows":[["b8","c6"]]},
+      "accept": ["b8c6"],
+      "reply": "h1g1",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "White is busy on the wing. Strike in the center: push the pawn on d6 one square.",
+      "marks": {"arrows":[["d6","d5"]]},
+      "accept": ["d6d5"],
+      "after": "White's bishop pins your knight to your king.",
+      "reply": "f1b5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the bishop out between them to break the pin.",
+      "marks": {"arrows":[["c8","d7"]]},
+      "accept": ["c8d7"],
+      "reply": "e4d5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Take back with the knight. It stands in the center, and the lines toward White's king are open.",
+      "marks": {"arrows":[["f6","d5"]]},
+      "accept": ["f6d5"],
+      "after": "White's pawns went far up the king's side, so that side is no longer a sheltered home for White's king."
+    }
+  ],
+  "summary": "The Scheveningen keeps a small center, and answers White's attack on the wing with a strike in the middle.",
+  "practice": {
+    "fen": "r2qkb1r/pp1b1pp1/2n1p2p/1B1n4/3N2PP/2N5/PPP2P2/R1BQK1R1 w Qkq - 0 11",
+    "side": "b"
+  }
+}

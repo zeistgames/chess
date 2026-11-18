@@ -1,0 +1,56 @@
+{
+  "id": "tactics-pin",
+  "course": "tactics",
+  "title": "The pin",
+  "line": "A piece cannot move without exposing a bigger one behind it.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "text": "The bishop on g5 pins the knight on f6. If the knight moves, the queen behind it on d8 can be taken.",
+      "fen": "rnbqkb1r/ppp2ppp/4pn2/3p2B1/2PP4/2N5/PP2PPPP/R2QKBNR b KQkq - 3 4",
+      "marks": {"squares":["f6"],"arrows":[["g5","d8"]]}
+    },
+    {
+      "type": "show",
+      "text": "When the piece behind is the king, the pinned piece may not move at all: that would leave the king in check.",
+      "fen": "r1bqkbnr/ppp2ppp/2np4/1B2p3/3PP3/5N2/PPP2PPP/RNBQK2R b KQkq - 2 4",
+      "marks": {"squares":["c6"],"arrows":[["b5","e8"]]}
+    },
+    {
+      "type": "move",
+      "text": "Pin the black queen to her king: move your rook onto the line they stand on.",
+      "fen": "4k3/4qppp/8/8/8/2N5/5PPP/3R1K2 w - - 0 1",
+      "marks": {"squares":["e7","e8"]},
+      "accept": ["d1e1"],
+      "hint": "The queen and the king stand on the same line.",
+      "after": "The queen cannot step off that line. She can take the rook, and then the king takes her.",
+      "wins": 4
+    },
+    {
+      "type": "pick",
+      "text": "Tap the black piece that cannot move because of a pin.",
+      "fen": "4k3/1p3ppp/2n5/1B6/3P4/8/PP3PPP/6K1 w - - 0 1",
+      "accept": ["c6"],
+      "all": false,
+      "after": "The knight shields its king from the bishop."
+    },
+    {
+      "type": "move",
+      "text": "A pinned piece cannot run, so attack it with a pawn.",
+      "accept": ["d4d5"],
+      "hint": "Your center pawn can attack the knight in one move.",
+      "after": "The knight cannot move, and the pawn takes it next.",
+      "wins": 2
+    },
+    {
+      "type": "show",
+      "text": "Only pieces that move along lines can pin: the bishop, the rook and the queen.",
+      "fen": "rnbqkb1r/ppp2ppp/4pn2/3p2B1/2PP4/2N5/PP2PPPP/R2QKBNR b KQkq - 3 4",
+      "marks": {"arrows":[["g5","d8"]]}
+    }
+  ],
+  "summary": "A pinned piece cannot move without exposing what stands behind it. Attack it, and it cannot run.",
+  "practice": {"fen":"4k3/1p3ppp/2n5/1B1P4/8/8/PP3PPP/6K1 b - - 0 1","side":"w"},
+  "puzzles": "pins"
+}

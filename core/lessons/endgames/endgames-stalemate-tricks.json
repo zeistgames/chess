@@ -1,0 +1,58 @@
+{
+  "id": "endgames-stalemate-tricks",
+  "course": "endgames",
+  "title": "Stalemate tricks",
+  "line": "The last resource when losing, and how not to fall for it.",
+  "side": "b",
+  "steps": [
+    {
+      "type": "show",
+      "fen": "7k/5K1p/7P/8/8/1Q6/6r1/8 b - - 0 1",
+      "text": "White is a queen up and threatens mate. But look at your king: it has no move. If the rook were gone, it would be stalemate.",
+      "marks": {"squares":["h8","g8","g7"]}
+    },
+    {
+      "type": "move",
+      "fen": "7k/5K1p/7P/8/8/1Q6/6r1/8 b - - 0 1",
+      "text": "You have Black. Check the white king with your rook, and keep checking.",
+      "accept": ["g2f2"],
+      "wrong": {
+        "g2g3": "That does not check, and White soon mates.",
+        "g2g4": "That does not check, and White soon mates."
+      },
+      "hint": "The rook checks along the king's file.",
+      "after": "If the rook is taken, it is stalemate. If not, it checks again.",
+      "reply": "f7e7"
+    },
+    {
+      "type": "move",
+      "text": "Check again, right beside the king. If it takes, you have no move.",
+      "marks": {"squares":["f7"]},
+      "accept": ["f2f7"],
+      "wrong": {
+        "f2e2": "After that check, White escapes and has a forced mate."
+      },
+      "hint": "Put the rook next to the white king, with check.",
+      "after": "Taking the rook is stalemate. Running from it means more checks. The game is drawn."
+    },
+    {
+      "type": "move",
+      "fen": "7k/5K1p/7P/8/8/1Q6/6r1/8 w - - 0 1",
+      "side": "w",
+      "text": "Now you have White, in the first position. Mate before the rook starts checking.",
+      "marks": {"squares":["h8"]},
+      "accept": ["b3b8","b3c3"],
+      "wrong": {
+        "f7f8": "That lets the rook start its checks. Taking it means stalemate, so the game is drawn.",
+        "f7f6": "That lets the rook start its checks. Taking it means stalemate, so the game is drawn.",
+        "b3a2": "The rook takes your queen.",
+        "b3c2": "The rook takes your queen.",
+        "b3b2": "The rook takes your queen.",
+        "b3g3": "The rook takes your queen."
+      },
+      "hint": "Check the king with the queen. If the rook blocks, take it.",
+      "after": "The rook can only block, and the next move is mate."
+    }
+  ],
+  "summary": "When your king has no move, a piece that checks forever, or gets taken into stalemate, can save a lost game."
+}

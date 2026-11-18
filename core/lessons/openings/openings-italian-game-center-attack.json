@@ -1,0 +1,242 @@
+{
+  "id": "openings-italian-game-center-attack",
+  "course": "openings",
+  "title": "Italian Game: Center Attack",
+  "line": "White opens the center at once with two pawns side by side.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "text": "The Italian Game: both bishops aim at the pawns beside the kings.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {
+        "squares": [
+          "f7",
+          "f2"
+        ],
+        "arrows": [
+          [
+            "c4",
+            "f7"
+          ],
+          [
+            "c5",
+            "f2"
+          ]
+        ]
+      },
+      "play": [
+        "e2e4",
+        "e7e5",
+        "g1f3",
+        "b8c6",
+        "f1c4",
+        "f8c5"
+      ]
+    },
+    {
+      "type": "show",
+      "text": "White prepares and pushes the queen pawn. Black takes it.",
+      "marks": {
+        "squares": [
+          "d4"
+        ],
+        "arrows": [
+          [
+            "c3",
+            "d4"
+          ]
+        ]
+      },
+      "play": [
+        "c2c3",
+        "g8f6",
+        "d2d4",
+        "e5d4"
+      ]
+    },
+    {
+      "type": "move",
+      "text": "Take back with the pawn. Now two of your pawns stand side by side in the center.",
+      "marks": {
+        "squares": [
+          "d4",
+          "e4"
+        ],
+        "arrows": [
+          [
+            "c3",
+            "d4"
+          ]
+        ]
+      },
+      "accept": [
+        "c3d4"
+      ],
+      "also": {
+        "e4e5": "Pushing past is the other main line. This lesson takes back with the pawn."
+      },
+      "after": "The bishop gives check.",
+      "reply": "c5b4",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Block the check with your bishop. It offers a trade of bishops.",
+      "marks": {
+        "squares": [
+          "e1"
+        ],
+        "arrows": [
+          [
+            "c1",
+            "d2"
+          ],
+          [
+            "b4",
+            "e1"
+          ]
+        ]
+      },
+      "accept": [
+        "c1d2"
+      ],
+      "also": {
+        "b1d2": "The knight can block too. This lesson blocks with the bishop.",
+        "b1c3": "That is the sharp Moller Attack, also sound. This lesson blocks with the bishop."
+      },
+      "reply": "b4d2",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Take back with the knight. It comes out to a square where it guards the center.",
+      "marks": {
+        "squares": [
+          "d2"
+        ],
+        "arrows": [
+          [
+            "b1",
+            "d2"
+          ]
+        ]
+      },
+      "accept": [
+        "b1d2"
+      ],
+      "also": {
+        "d1d2": "The queen can take back too. This lesson brings the knight out."
+      },
+      "after": "Black strikes at your center pawn with its own.",
+      "reply": "d7d5",
+      "taught": true
+    },
+    {
+      "type": "show",
+      "text": "This is Black's usual answer. Left alone, your two pawns could push on and chase the knights away.",
+      "marks": {
+        "squares": [
+          "d5",
+          "e4",
+          "d4",
+          "f6",
+          "c6"
+        ]
+      }
+    },
+    {
+      "type": "move",
+      "text": "Take the pawn that attacks your pawn on e4, so your center does not break up.",
+      "marks": {
+        "squares": [
+          "d5",
+          "f7"
+        ],
+        "arrows": [
+          [
+            "e4",
+            "d5"
+          ]
+        ]
+      },
+      "accept": [
+        "e4d5"
+      ],
+      "after": "The knight takes back and sits in the center.",
+      "reply": "f6d5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Castle. Your king is safe and a rook comes toward the middle.",
+      "marks": {
+        "squares": [
+          "g1",
+          "d4"
+        ],
+        "arrows": [
+          [
+            "e1",
+            "g1"
+          ]
+        ]
+      },
+      "accept": [
+        "e1g1"
+      ],
+      "also": {
+        "d1b3": "The queen move is also played here. This lesson castles first."
+      },
+      "after": "Your pawn on d4 stands alone, with no pawn beside it. It gives your pieces room, and Black will aim at it.",
+      "reply": "e8g8",
+      "taught": true
+    },
+    {
+      "type": "show",
+      "text": "A slip seen often below master level: here Black moved the bishop back instead of giving check. Your pawns are free to move.",
+      "fen": "r1bqk2r/pppp1ppp/1bn2n2/8/2BPP3/5N2/PP3PPP/RNBQK2R w KQkq - 1 7",
+      "marks": {
+        "squares": [
+          "d4",
+          "e4",
+          "c6",
+          "f6"
+        ],
+        "arrows": [
+          [
+            "c5",
+            "b6"
+          ]
+        ]
+      }
+    },
+    {
+      "type": "move",
+      "text": "Push a center pawn to chase one of the knights.",
+      "marks": {
+        "squares": [
+          "d4",
+          "e4",
+          "c6",
+          "f6"
+        ]
+      },
+      "accept": [
+        "d4d5",
+        "e4e5"
+      ],
+      "hint": "A pawn that moves one square forward attacks two squares.",
+      "after": "A knight is pushed back and your other pawn can chase the next one. Engines rate that slip at about two pawns for White.",
+      "reply": {
+        "d4d5": "c6e7",
+        "e4e5": "f6e4"
+      }
+    }
+  ],
+  "summary": "Two pawns side by side in the center push the knights away. Black must hit back with its own center pawn.",
+  "practice": {
+    "fen": "r1bq1rk1/ppp2ppp/2n5/3n4/2BP4/5N2/PP1N1PPP/R2Q1RK1 w - - 2 11",
+    "side": "w"
+  }
+}

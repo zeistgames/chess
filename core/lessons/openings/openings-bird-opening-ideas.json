@@ -1,0 +1,182 @@
+{
+  "id": "openings-bird-opening-ideas",
+  "course": "openings",
+  "title": "Bird Opening: the ideas",
+  "line": "The f-pawn and a bishop on the long diagonal take hold of a center square for a knight.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "move",
+      "text": "Push the pawn on f2 two squares. It takes hold of the center square e5.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {
+        "squares": [
+          "e5"
+        ],
+        "arrows": [
+          [
+            "f2",
+            "f4"
+          ]
+        ]
+      },
+      "accept": [
+        "f2f4"
+      ],
+      "also": {
+        "e2e4": "That is the most played first move, the king pawn opening. This lesson starts with the f-pawn.",
+        "d2d4": "That is the queen pawn opening, also sound. This lesson starts with the f-pawn.",
+        "c2c4": "That is the English Opening, also sound. This lesson starts with the f-pawn.",
+        "g1f3": "That is the knight first, often a Réti Opening. This lesson starts with the f-pawn."
+      },
+      "after": "This is the Bird Opening. It gives up a little against the main first moves, for play of its own.",
+      "reply": "d7d5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the knight out. It watches e5 too.",
+      "marks": {
+        "squares": [
+          "e5"
+        ],
+        "arrows": [
+          [
+            "g1",
+            "f3"
+          ]
+        ]
+      },
+      "accept": [
+        "g1f3"
+      ],
+      "also": {
+        "e2e3": "That frees the bishop first, also sound. This lesson brings the knight out first."
+      },
+      "reply": "g8f6",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Move the pawn in front of your king one square to free your bishop.",
+      "marks": {
+        "arrows": [
+          [
+            "e2",
+            "e3"
+          ]
+        ]
+      },
+      "accept": [
+        "e2e3"
+      ],
+      "also": {
+        "b2b3": "That brings the other bishop first, also sound. This lesson moves the king pawn first.",
+        "g2g3": "That puts the bishop on the other long diagonal, also sound. This lesson moves the king pawn."
+      },
+      "reply": "g7g6",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Move the pawn on b2 one square. It opens the long diagonal for the other bishop.",
+      "marks": {
+        "arrows": [
+          [
+            "b2",
+            "b3"
+          ]
+        ]
+      },
+      "accept": [
+        "b2b3"
+      ],
+      "reply": "f8g7",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Put the bishop on the long diagonal. It aims at e5 and on toward the corner.",
+      "marks": {
+        "squares": [
+          "e5"
+        ],
+        "arrows": [
+          [
+            "c1",
+            "b2"
+          ],
+          [
+            "b2",
+            "h8"
+          ]
+        ]
+      },
+      "accept": [
+        "c1b2"
+      ],
+      "reply": "e8g8",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the other bishop out so that you can castle.",
+      "marks": {
+        "arrows": [
+          [
+            "f1",
+            "e2"
+          ]
+        ]
+      },
+      "accept": [
+        "f1e2"
+      ],
+      "reply": "c7c5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Castle. Your king is safe, and the rook can join the game.",
+      "marks": {
+        "arrows": [
+          [
+            "e1",
+            "g1"
+          ]
+        ]
+      },
+      "accept": [
+        "e1g1"
+      ],
+      "reply": "b8c6",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Jump the knight to e5. The pawn on f4 and the bishop on b2 hold that square for it.",
+      "marks": {
+        "squares": [
+          "f4",
+          "b2"
+        ],
+        "arrows": [
+          [
+            "f3",
+            "e5"
+          ]
+        ]
+      },
+      "accept": [
+        "f3e5"
+      ],
+      "after": "The knight sits in the center, backed by the pawn and the bishop.",
+      "taught": true
+    }
+  ],
+  "summary": "The f-pawn and a bishop on the long diagonal hold a center square on Black's half, and a knight lands there.",
+  "practice": {
+    "fen": "r1bq1rk1/pp2ppbp/2n2np1/2ppN3/5P2/1P2P3/PBPPB1PP/RN1Q1RK1 b - - 3 8",
+    "side": "w"
+  }
+}

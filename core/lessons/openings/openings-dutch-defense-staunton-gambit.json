@@ -1,0 +1,82 @@
+{
+  "id": "openings-dutch-defense-staunton-gambit",
+  "course": "openings",
+  "title": "Dutch Defense: Staunton Gambit",
+  "line": "White gives a pawn at once to open lines against Black's king.",
+  "side": "b",
+  "steps": [
+    {
+      "type": "show",
+      "text": "White offers a pawn at once: the Staunton Gambit. White gives a pawn for quick development and open lines.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {"arrows":[["e2","e4"]]},
+      "play": ["d2d4","f7f5","e2e4"]
+    },
+    {
+      "type": "move",
+      "text": "Take it.",
+      "accept": ["f5e4"],
+      "marks": {"arrows":[["f5","e4"]]},
+      "after": "White's knight attacks the pawn.",
+      "reply": "b1c3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the knight out. It guards the pawn on e4.",
+      "marks": {
+        "squares": ["e4","h5","d5"],
+        "arrows": [["g8","f6"]]
+      },
+      "accept": ["g8f6"],
+      "wrong": {"d7d5":"Then White's queen checks on h5 and takes the pawn on d5."},
+      "after": "White's bishop attacks your knight.",
+      "reply": "c1g5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the other knight out, to attack White's pawn on d4.",
+      "marks": {"squares":["d4"],"arrows":[["b8","c6"]]},
+      "accept": ["b8c6"],
+      "also": {"g7g6":"That is a main line too. This lesson goes on with the knight."},
+      "reply": "d4d5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "The knight is attacked. Jump it to the center.",
+      "accept": ["c6e5"],
+      "marks": {"arrows":[["c6","e5"]]},
+      "reply": "d1d4",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Step it back to safety, near your king.",
+      "accept": ["e5f7"],
+      "marks": {"arrows":[["e5","f7"]]},
+      "reply": "g5f6",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Take back with the pawn.",
+      "accept": ["e7f6"],
+      "marks": {"arrows":[["e7","f6"]]},
+      "after": "White gets the pawn back.",
+      "reply": "c3e4",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Chase the knight with the pawn.",
+      "accept": ["f6f5"],
+      "marks": {"arrows":[["f6","f5"]]},
+      "after": "The pawns are even, and Black has the two bishops.",
+      "taught": true
+    }
+  ],
+  "summary": "Take the pawn, guard it with the knight, and keep the diagonal to your king closed. Black gets the two bishops.",
+  "practice": {"fen":"r1bqkb1r/pppp1npp/8/3P1p2/3QN3/8/PPP2PPP/R3KBNR w KQkq - 0 9","side":"b"}
+}

@@ -1,0 +1,189 @@
+{
+  "id": "openings-queens-gambit-traps",
+  "course": "openings",
+  "title": "Queen's Gambit: traps",
+  "line": "Two traps: Black holding on to the pawn, and a pawn on d5 that is not free.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "text": "Black takes the offered pawn and pushes another pawn to hold on to it.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {
+        "squares": [
+          "c4",
+          "b5"
+        ]
+      },
+      "play": [
+        "d2d4",
+        "d7d5",
+        "c2c4",
+        "d5c4",
+        "e2e3",
+        "b7b5"
+      ]
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn on a2 two squares. It attacks the pawn on b5.",
+      "marks": {
+        "squares": [
+          "b5"
+        ],
+        "arrows": [
+          [
+            "a2",
+            "a4"
+          ]
+        ]
+      },
+      "accept": [
+        "a2a4"
+      ],
+      "after": "Black guards it with one more pawn.",
+      "reply": "c7c6"
+    },
+    {
+      "type": "move",
+      "text": "Take on b5 to break up Black's chain of pawns.",
+      "marks": {
+        "squares": [
+          "b5",
+          "a8",
+          "f3"
+        ],
+        "arrows": [
+          [
+            "a4",
+            "b5"
+          ]
+        ]
+      },
+      "accept": [
+        "a4b5"
+      ],
+      "after": "Black takes back. Now no piece stands between f3 and the rook on a8.",
+      "reply": "c6b5"
+    },
+    {
+      "type": "move",
+      "text": "Bring the queen out on the long diagonal. It attacks the rook on a8.",
+      "marks": {
+        "squares": [
+          "a8"
+        ],
+        "arrows": [
+          [
+            "d1",
+            "f3"
+          ],
+          [
+            "f3",
+            "a8"
+          ]
+        ]
+      },
+      "accept": [
+        "d1f3"
+      ],
+      "hint": "Your queen can reach the long diagonal that ends at the rook on a8.",
+      "after": "Any piece that blocks is taken, and if nothing blocks, the rook goes. Holding the pawn cost Black a piece.",
+      "wins": 3
+    },
+    {
+      "type": "show",
+      "text": "A trap for White. Black put its other knight on d7. Your bishop pins the knight on f6 to the queen, so it seems unable to move.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {
+        "squares": [
+          "f6",
+          "d8",
+          "d7"
+        ],
+        "arrows": [
+          [
+            "g5",
+            "d8"
+          ]
+        ]
+      },
+      "play": [
+        "d2d4",
+        "d7d5",
+        "c2c4",
+        "e7e6",
+        "b1c3",
+        "g8f6",
+        "c1g5",
+        "b8d7"
+      ]
+    },
+    {
+      "type": "move",
+      "text": "Trade pawns on d5. Now only the pinned knight guards the pawn on d5.",
+      "marks": {
+        "squares": [
+          "d5",
+          "f6"
+        ],
+        "arrows": [
+          [
+            "c4",
+            "d5"
+          ]
+        ]
+      },
+      "accept": [
+        "c4d5"
+      ],
+      "reply": "e6d5",
+      "taught": true
+    },
+    {
+      "type": "show",
+      "text": "Here the knight took the pawn. Black let the queen go, then a bishop check took it back: Black has a piece for a pawn.",
+      "fen": "r1bqkb1r/pppn1ppp/5n2/3N2B1/3P4/8/PP2PPPP/R2QKBNR b KQkq - 0 6",
+      "marks": {
+        "squares": [
+          "d5",
+          "b4"
+        ]
+      },
+      "play": [
+        "f6d5",
+        "g5d8",
+        "f8b4",
+        "d1d2",
+        "b4d2",
+        "e1d2",
+        "e8d8"
+      ]
+    },
+    {
+      "type": "move",
+      "text": "Back to the trap. Leave the pawn on d5 alone and move the pawn in front of your king one square.",
+      "fen": "r1bqkb1r/pppn1ppp/5n2/3p2B1/3P4/2N5/PP2PPPP/R2QKBNR w KQkq - 0 6",
+      "marks": {
+        "squares": [
+          "d5"
+        ],
+        "arrows": [
+          [
+            "e2",
+            "e3"
+          ]
+        ]
+      },
+      "accept": [
+        "e2e3"
+      ],
+      "wrong": {
+        "c3d5": "That is the trap: the knight takes back, and the bishop check wins your queen."
+      },
+      "after": "White keeps its queen and brings out its pieces.",
+      "taught": true
+    }
+  ],
+  "summary": "Holding the gambit pawn with more pawns opens the long diagonal. A knight that looks pinned may still move."
+}

@@ -1,0 +1,89 @@
+{
+  "id": "endgames-square",
+  "course": "endgames",
+  "title": "The square of the pawn",
+  "line": "Can the king catch the pawn? Draw the square and see.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "fen": "8/8/8/5k2/P7/8/7K/8 b - - 0 1",
+      "side": "b",
+      "text": "Draw a square from the pawn to the last row, here a4 to a8, then across to e8 and down to e4.",
+      "marks": {"squares":["a4","a8","e8","e4"],"arrows":[["a4","a8"],["a8","e8"]]}
+    },
+    {
+      "type": "show",
+      "fen": "8/8/8/5k2/P7/8/7K/8 b - - 0 1",
+      "side": "b",
+      "text": "Here the white king is far away. A king that can step inside the square catches the pawn. One that cannot is too slow.",
+      "marks": {"squares":["a4","a8","e8","e4","f5"]}
+    },
+    {
+      "type": "move",
+      "fen": "8/8/8/5k2/P7/8/7K/8 b - - 0 1",
+      "side": "b",
+      "text": "You have Black, and it is your move. Step into the square.",
+      "marks": {"squares":["a4","a8","e8","e4"]},
+      "accept": ["f5e5","f5e4","f5e6"],
+      "wrong": {
+        "f5f6": "The white king is too far, but your king is now outside the pawn's square. The pawn promotes.",
+        "f5g5": "The white king is too far, but your king is now outside the pawn's square. The pawn promotes.",
+        "f5g6": "The white king is too far, but your king is now outside the pawn's square. The pawn promotes.",
+        "f5f4": "The white king is too far, but your king is now outside the pawn's square. The pawn promotes.",
+        "f5g4": "The white king is too far, but your king is now outside the pawn's square. The pawn promotes."
+      },
+      "hint": "The far side of the square runs from e8 down to e4. Step onto it.",
+      "after": "Inside the square. Each time the pawn steps up, the square shrinks, and your king steps in again."
+    },
+    {
+      "type": "move",
+      "fen": "8/8/8/7k/2P5/8/8/7K w - - 0 1",
+      "text": "Now you have White. Black's king is outside the square of this pawn. Push the pawn.",
+      "marks": {"squares":["c4","c8","g8","g4","h5"]},
+      "accept": ["c4c5"],
+      "wrong": {
+        "h1g2": "The pawn waited, and Black's king steps into its square. It catches the pawn, and the game is a draw.",
+        "h1h2": "The pawn waited, and Black's king steps into its square. It catches the pawn, and the game is a draw.",
+        "h1g1": "The pawn waited, and Black's king steps into its square. It catches the pawn, and the game is a draw."
+      },
+      "hint": "Your king is far away. The pawn runs on its own.",
+      "after": "The square shrinks with the pawn, and the black king cannot get inside it.",
+      "reply": "h5g6"
+    },
+    {
+      "type": "move",
+      "text": "Keep going.",
+      "accept": ["c5c6"],
+      "reply": "g6f7",
+      "after": "One step more, and the king is still outside."
+    },
+    {
+      "type": "show",
+      "fen": "7K/8/8/8/6k1/8/P7/8 b - - 0 1",
+      "side": "b",
+      "text": "A pawn that has not moved can jump two squares. Draw its square as if it stood one row up, from a3.",
+      "marks": {"squares":["a2","a3","a8","f8","f3"],"arrows":[["a2","a3"]]}
+    },
+    {
+      "type": "move",
+      "fen": "7K/8/8/8/6k1/8/P7/8 b - - 0 1",
+      "side": "b",
+      "text": "Black to move. Step into the square of this pawn, counted from a3.",
+      "marks": {"squares":["a3","a8","f8","f3"]},
+      "accept": ["g4f4","g4f5","g4f3"],
+      "wrong": {
+        "g4g5": "The white king is too far, but your king is now outside the pawn's square. The pawn promotes.",
+        "g4g3": "The white king is too far, but your king is now outside the pawn's square. The pawn promotes.",
+        "g4h5": "The white king is too far, but your king is now outside the pawn's square. The pawn promotes.",
+        "g4h4": "The white king is too far, but your king is now outside the pawn's square. The pawn promotes.",
+        "g4h3": "The white king is too far, but your king is now outside the pawn's square. The pawn promotes."
+      },
+      "hint": "The far side of the square runs from f8 down to f3.",
+      "after": "Inside. If the pawn jumps two, your king steps in again, and it catches the pawn."
+    }
+  ],
+  "summary": "Draw a square from the pawn to the last row. With no help for the pawn, a king that can step inside it catches it.",
+  "practice": {"fen":"7K/8/8/8/6k1/8/P7/8 b - - 0 1","side":"b"},
+  "puzzles": "passed"
+}

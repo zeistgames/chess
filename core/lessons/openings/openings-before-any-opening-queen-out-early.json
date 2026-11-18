@@ -1,0 +1,201 @@
+{
+  "id": "openings-before-any-opening-queen-out-early",
+  "course": "openings",
+  "title": "The queen out early",
+  "line": "An early queen can make threats, but every attack on her brings out one of your pieces.",
+  "side": "b",
+  "steps": [
+    {
+      "type": "show",
+      "text": "White starts with the king pawn.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {
+        "arrows": [
+          [
+            "e2",
+            "e4"
+          ]
+        ]
+      },
+      "play": [
+        "e2e4"
+      ]
+    },
+    {
+      "type": "move",
+      "text": "Push your king pawn two squares too. It takes your share of the center.",
+      "marks": {
+        "squares": [
+          "f7"
+        ],
+        "arrows": [
+          [
+            "e7",
+            "e5"
+          ]
+        ]
+      },
+      "accept": [
+        "e7e5"
+      ],
+      "after": "White brings the queen out at once, as some players do. She attacks the pawn on e5 and looks at f7.",
+      "reply": "d1h5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Guard the pawn on e5 and bring a piece out at the same time.",
+      "marks": {
+        "squares": [
+          "e5"
+        ],
+        "arrows": [
+          [
+            "b8",
+            "c6"
+          ]
+        ]
+      },
+      "accept": [
+        "b8c6"
+      ],
+      "also": {
+        "d7d6": "That guards the pawn too. This lesson brings a knight out."
+      },
+      "reply": "f1c4",
+      "taught": true
+    },
+    {
+      "type": "show",
+      "text": "Now the queen and bishop both aim at f7. White threatens to take it with checkmate.",
+      "marks": {
+        "squares": [
+          "f7"
+        ],
+        "arrows": [
+          [
+            "h5",
+            "f7"
+          ],
+          [
+            "c4",
+            "f7"
+          ]
+        ]
+      }
+    },
+    {
+      "type": "move",
+      "text": "Block the queen's line with the pawn on g7. It attacks the queen as well.",
+      "marks": {
+        "squares": [
+          "f7",
+          "h5"
+        ],
+        "arrows": [
+          [
+            "g7",
+            "g6"
+          ]
+        ]
+      },
+      "accept": [
+        "g7g6"
+      ],
+      "wrong": {
+        "g8f6": "That attacks the queen, but it leaves f7. The queen takes it with checkmate."
+      },
+      "also": {
+        "d8e7": "That guards f7 too. This lesson blocks with the pawn."
+      },
+      "after": "The queen steps back but still aims at f7.",
+      "reply": "h5f3"
+    },
+    {
+      "type": "move",
+      "text": "Block her again, this time with a knight that comes out.",
+      "marks": {
+        "squares": [
+          "f7"
+        ],
+        "arrows": [
+          [
+            "g8",
+            "f6"
+          ]
+        ]
+      },
+      "accept": [
+        "g8f6"
+      ],
+      "reply": "g1e2"
+    },
+    {
+      "type": "move",
+      "text": "Bring the bishop out to g7, where the pawn move made room.",
+      "marks": {
+        "squares": [
+          "g7"
+        ],
+        "arrows": [
+          [
+            "f8",
+            "g7"
+          ]
+        ]
+      },
+      "accept": [
+        "f8g7"
+      ],
+      "reply": "b1c3"
+    },
+    {
+      "type": "move",
+      "text": "Move the pawn in front of your queen one square. It opens the way for your other bishop.",
+      "marks": {
+        "squares": [
+          "c8"
+        ],
+        "arrows": [
+          [
+            "d7",
+            "d6"
+          ]
+        ]
+      },
+      "accept": [
+        "d7d6"
+      ],
+      "also": {
+        "e8g8": "Castling is also sound here. This lesson opens the bishop first."
+      },
+      "reply": "d2d3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the bishop out with an attack on the queen.",
+      "marks": {
+        "squares": [
+          "f3"
+        ],
+        "arrows": [
+          [
+            "c8",
+            "g4"
+          ]
+        ]
+      },
+      "accept": [
+        "c8g4"
+      ],
+      "after": "The queen moves a third time. Your pieces came out while she was chased.",
+      "reply": "f3g3"
+    }
+  ],
+  "summary": "An early queen makes threats. Block them with pieces you need to bring out anyway, and chase her when you can.",
+  "practice": {
+    "fen": "r2qk2r/ppp2pbp/2np1np1/4p3/2B1P1b1/2NP2Q1/PPP1NPPP/R1B1K2R b KQkq - 2 8",
+    "side": "b"
+  }
+}

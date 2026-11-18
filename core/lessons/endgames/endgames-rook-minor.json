@@ -1,0 +1,65 @@
+{
+  "id": "endgames-rook-minor",
+  "course": "endgames",
+  "title": "Rook against bishop, rook against knight",
+  "line": "Usually a draw, if the defender knows where to stand.",
+  "side": "b",
+  "steps": [
+    {
+      "type": "show",
+      "fen": "7k/R7/5K2/8/8/8/8/5b2 w - - 0 1",
+      "text": "A rook against a bishop is usually a draw. Hide your king in the corner the bishop does not run on: here a dark one.",
+      "marks": {"squares":["h8"]}
+    },
+    {
+      "type": "show",
+      "fen": "7k/R7/5K2/8/8/8/8/5b2 w - - 0 1",
+      "text": "In that corner, a check on the back row can be blocked by the bishop on the light square beside the king.",
+      "marks": {"squares":["g8","h8"],"arrows":[["f1","c4"]]}
+    },
+    {
+      "type": "move",
+      "fen": "6k1/R7/5K2/8/8/8/8/5b2 b - - 0 1",
+      "text": "You have Black. Step into the corner your bishop does not cover.",
+      "marks": {"squares":["h8","f8"]},
+      "accept": ["g8h8"],
+      "also": {
+        "f1e2": "That bishop move holds too, for now. This lesson takes the king to the safe corner.",
+        "f1b5": "That bishop move holds too, for now. This lesson takes the king to the safe corner.",
+        "f1d3": "That bishop move holds too, for now. This lesson takes the king to the safe corner.",
+        "f1c4": "That bishop move holds too, for now. This lesson takes the king to the safe corner."
+      },
+      "wrong": {
+        "g8f8": "That walks into mate: the rook checks on your back row.",
+        "f1h3": "That loses: White now has a forced mate.",
+        "f1g2": "That loses: White now has a forced mate.",
+        "f1a6": "That loses: White now has a forced mate."
+      },
+      "hint": "The ringed corner.",
+      "after": "Your king is safe there, and the bishop can block on the light square beside it."
+    },
+    {
+      "type": "show",
+      "fen": "4k3/7R/8/3K4/7n/8/8/8 b - - 0 1",
+      "text": "A knight against a rook should stay near its king. Far from it, the rook can cut it off and hunt it down.",
+      "marks": {"squares":["h4","e8"]}
+    },
+    {
+      "type": "move",
+      "fen": "4k3/7R/8/3K4/7n/8/8/8 b - - 0 1",
+      "text": "Bring your knight back toward your king.",
+      "marks": {"squares":["h4","e8"]},
+      "accept": ["h4g6","h4f5"],
+      "wrong": {
+        "h4f3": "The knight stays far from its king, and the rook wins it.",
+        "h4g2": "The knight stays far from its king, and the rook wins it.",
+        "e8f8": "That leaves the knight alone, and the rook wins it.",
+        "e8d8": "That lets the rook take the knight."
+      },
+      "hint": "Jump toward the king, not away.",
+      "after": "Back near its king, the knight is safe, and the game is a draw."
+    }
+  ],
+  "summary": "Against a rook, hide your king in the corner your bishop does not cover, and keep a knight near its king.",
+  "practice": {"fen":"6k1/R7/5K2/8/8/8/8/5b2 b - - 0 1","side":"b"}
+}

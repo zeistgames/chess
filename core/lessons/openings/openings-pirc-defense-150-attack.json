@@ -1,0 +1,72 @@
+{
+  "id": "openings-pirc-defense-150-attack",
+  "course": "openings",
+  "title": "Pirc Defense: 150 Attack",
+  "line": "White brings the bishop and the queen out together to attack; Black takes space on the queen's side and hits the center.",
+  "side": "b",
+  "steps": [
+    {
+      "type": "show",
+      "text": "Here White brings the bishop to e3, ready to bring the queen out behind it.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {"squares":["e3"]},
+      "play": ["e2e4","d7d6","d2d4","g8f6","b1c3","g7g6","c1e3"]
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn on c7 one square. It gets ready to push the pawn on b7.",
+      "marks": {"squares":["b7"],"arrows":[["c7","c6"]]},
+      "accept": ["c7c6"],
+      "also": {
+        "f8g7": "That also works. This lesson pushes the side pawn first.",
+        "a7a6": "That also works. This lesson goes on with the other side pawn."
+      },
+      "reply": "d1d2",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn on b7 two squares. It takes space on the queen's side.",
+      "marks": {"arrows":[["b7","b5"]]},
+      "accept": ["b7b5"],
+      "reply": "f1d3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the knight to d7. It backs up a pawn push to e5.",
+      "marks": {"squares":["e5"],"arrows":[["b8","d7"]]},
+      "accept": ["b8d7"],
+      "also": {
+        "f8g7": "That also works. This lesson brings the knight out first."
+      },
+      "reply": "g1f3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Strike at the center: push the pawn on e7 two squares.",
+      "marks": {"squares":["d4"],"arrows":[["e7","e5"]]},
+      "accept": ["e7e5"],
+      "also": {
+        "d8c7": "That also works. This lesson strikes at the center now.",
+        "f8g7": "That also works. This lesson strikes at the center now."
+      },
+      "reply": "e1g1",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the other bishop out.",
+      "marks": {"arrows":[["c8","b7"]]},
+      "accept": ["c8b7"],
+      "after": "Your pawns hold space on the queen's side and hit the center, and your king can still choose where to go.",
+      "taught": true
+    }
+  ],
+  "summary": "Against the 150 Attack, Black takes space on the queen's side and then strikes at the center.",
+  "practice": {
+    "fen": "r2qkb1r/pb1n1p1p/2pp1np1/1p2p3/3PP3/2NBBN2/PPPQ1PPP/R4RK1 w kq - 2 9",
+    "side": "b"
+  }
+}

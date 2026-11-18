@@ -1,0 +1,13 @@
+{
+  "name": "Halogen",
+  "version": "16",
+  "author": "Kieren Pearson",
+  "license": "GPL-3.0-only",
+  "net_license": "GPL-3.0-only",
+  "source": "https://github.com/KierenP/Halogen/tree/v16",
+  "line": "A strong engine that always plays at full strength.",
+  "entry": "halogen.js",
+  "strength": { "type": "none" },
+  "multipv": true,
+  "threads": false
+}

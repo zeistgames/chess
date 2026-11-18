@@ -1,0 +1,71 @@
+{
+  "id": "openings-benko-gambit-main-line",
+  "course": "openings",
+  "title": "Benko Gambit: the main line",
+  "line": "For the pawn, Black's queen, rooks and bishop all bear down on White's queen's side.",
+  "side": "b",
+  "steps": [
+    {
+      "type": "show",
+      "text": "The Benko Gambit, as in the ideas lesson.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {"arrows":[["a6","b5"]]},
+      "play": ["d2d4","g8f6","c2c4","c7c5","d4d5","b7b5","c4b5","a7a6"]
+    },
+    {
+      "type": "show",
+      "text": "Black takes back with the bishop, and White builds the center.",
+      "marks": {"arrows":[["c8","a6"]]},
+      "play": ["b5a6","c8a6","b1c3","d7d6","e2e4"]
+    },
+    {
+      "type": "show",
+      "text": "Black trades bishops, so White's king has to take back and cannot castle.",
+      "marks": {"squares":["f1"]},
+      "play": ["a6f1","e1f1","g7g6","g2g3"]
+    },
+    {
+      "type": "move",
+      "text": "Put the bishop on the long diagonal. Once your knight moves, it aims at White's queen's side.",
+      "accept": ["f8g7"],
+      "marks": {"arrows":[["f8","g7"]]},
+      "after": "White tucks its king away by hand.",
+      "reply": "f1g2",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Castle, to get your king to safety.",
+      "accept": ["e8g8"],
+      "marks": {"arrows":[["e8","g8"]]},
+      "reply": "g1f3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the other knight out. It clears the back rank for your rooks.",
+      "accept": ["b8d7"],
+      "marks": {"arrows":[["b8","d7"]]},
+      "reply": "h1e1",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the queen out on the open file. It presses on the knight on c3.",
+      "marks": {"squares":["c3"],"arrows":[["d8","a5"]]},
+      "accept": ["d8a5"],
+      "reply": "h2h3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Now put the other rook on the second open file.",
+      "accept": ["f8b8"],
+      "marks": {"arrows":[["f8","b8"]]},
+      "after": "Queen, rooks and bishop all bear down on White's queen's side.",
+      "taught": true
+    }
+  ],
+  "summary": "For the pawn, Black's queen, rooks and long bishop press on the queen's side, where White's pawns are hard to guard.",
+  "practice": {"fen":"rr4k1/3nppbp/3p1np1/q1pP4/4P3/2N2NPP/PP3PK1/R1BQR3 w - - 1 14","side":"b"}
+}

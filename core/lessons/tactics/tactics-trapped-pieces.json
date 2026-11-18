@@ -1,0 +1,45 @@
+{
+  "id": "tactics-trapped-pieces",
+  "course": "tactics",
+  "title": "Trapped pieces",
+  "line": "A piece with no safe square, usually a bishop or a knight on the edge.",
+  "side": "b",
+  "steps": [
+    {
+      "type": "show",
+      "text": "White's bishop has taken a pawn in the corner. It looks safe, but its only ways out are b8 and b6.",
+      "fen": "2kr4/Bpp2ppp/5n2/8/8/7P/1PP2PP1/3R2K1 b - - 0 1",
+      "marks": {
+        "squares": ["a7","b8","b6"]
+      }
+    },
+    {
+      "type": "move",
+      "text": "First trade rooks, so White's rook cannot come to the bishop's help.",
+      "fen": "2kr4/Bpp2ppp/5n2/8/8/7P/1PP2PP1/3R2K1 b - - 0 1",
+      "marks": {"arrows":[["d8","d1"]]},
+      "accept": ["d8d1"],
+      "reply": "g1h2"
+    },
+    {
+      "type": "move",
+      "text": "Now shut the bishop in: push a pawn one square, so the bishop has no safe square left.",
+      "marks": {"squares":["a7","b8"]},
+      "accept": ["b7b6"],
+      "after": "Your king guards b8, and the bishop cannot get out.",
+      "reply": "h2g3",
+      "wins": 1
+    },
+    {
+      "type": "move",
+      "text": "Walk your king toward the bishop.",
+      "accept": ["c8b7"],
+      "after": "Next, the king captures the bishop.",
+      "reply": "f2f3"
+    },
+    {"type":"move","text":"Capture the trapped bishop.","accept":["b7a7"]}
+  ],
+  "summary": "A piece that grabs a pawn on the edge can find every way out shut. Close the last door and collect it.",
+  "puzzles": "trapped",
+  "practice": {"fen":"8/k1p2ppp/1p3n2/8/8/5PKP/1PP3P1/3r4 w - - 0 5","side":"b"}
+}

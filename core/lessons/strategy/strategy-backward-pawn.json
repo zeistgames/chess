@@ -1,0 +1,44 @@
+{
+  "id": "strategy-backward-pawn",
+  "course": "strategy",
+  "title": "The backward pawn",
+  "line": "A pawn its neighbors cannot defend.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "fen": "r1bqkb1r/5ppp/p1np1n2/1p2p1B1/4P3/N1N5/PPP2PPP/R2QKB1R w KQkq - 0 9",
+      "text": "Black's pawn on d6 is backward. One pawn beside it is gone and the other has moved past it, so no black pawn can guard it now.",
+      "marks": {"squares":["d6","e5"]}
+    },
+    {
+      "type": "pick",
+      "text": "It cannot step forward safely either: White guards the square in front of it. Tap that square.",
+      "accept": ["d5"],
+      "hint": "Black's pawns move down the board.",
+      "after": "No black pawn can attack that square now."
+    },
+    {
+      "type": "move",
+      "text": "Black's knight on f6 guards that square. Take it with your bishop.",
+      "marks": {"squares":["d5","f6"],"arrows":[["g5","f6"]]},
+      "accept": ["g5f6"],
+      "also": {
+        "c3d5": "That goes to the square at once, and it works too. This lesson first takes the knight that guards it."
+      },
+      "after": "A pawn takes back, and one guard of the square is gone.",
+      "reply": "g7f6"
+    },
+    {
+      "type": "move",
+      "text": "Now put your knight on the square in front of the backward pawn.",
+      "marks": {"squares":["d5","d6"],"arrows":[["c3","d5"]]},
+      "accept": ["c3d5"],
+      "hint": "It is the knight nearer the middle of the board.",
+      "after": "The knight blocks the pawn, and no black pawn can attack it now. To remove it, Black would have to trade a piece for it.",
+      "reply": "f6f5"
+    }
+  ],
+  "summary": "A backward pawn cannot be guarded by a pawn or step forward safely. Put a piece on the square in front of it.",
+  "practice": {"fen":"r1bqkb1r/5p1p/p1np4/1p1Npp2/4P3/N7/PPP2PPP/R2QKB1R w KQkq - 0 11","side":"w"}
+}

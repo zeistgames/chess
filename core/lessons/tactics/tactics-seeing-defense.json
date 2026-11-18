@@ -1,0 +1,47 @@
+{
+  "id": "tactics-seeing-defense",
+  "course": "tactics",
+  "title": "Seeing the defense",
+  "line": "Look for your opponent's best reply, not the one you hope for.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "text": "Black's knight has left the pawn on e5 without a guard. It looks free. Before you take it, look for Black's best reply.",
+      "fen": "r1bqkbnr/pppp1ppp/8/4p3/2BnP3/5N2/PPPP1PPP/RNBQK2R w KQkq - 4 4",
+      "marks": {"squares":["e5","d4"]}
+    },
+    {
+      "type": "move",
+      "text": "Do not take the pawn. Take the knight in the center instead.",
+      "fen": "r1bqkbnr/pppp1ppp/8/4p3/2BnP3/5N2/PPPP1PPP/RNBQK2R w KQkq - 4 4",
+      "accept": ["f3d4"],
+      "wrong": {"f3e5":"Then the queen comes out to g5 and attacks your knight and the pawn on g2 at once."},
+      "also": {"e1g1":"That is safe too. This lesson takes the knight."},
+      "hint": "Trade off the knight that came forward.",
+      "after": "Black has a doubled pawn, and no trick is left.",
+      "reply": "e5d4",
+      "marks": {"squares":["g5","g2"]}
+    },
+    {
+      "type": "show",
+      "text": "Here is what the grab would have allowed: the queen forks, and if White keeps grabbing, Black mates.",
+      "fen": "r1bqkbnr/pppp1ppp/8/4p3/2BnP3/5N2/PPPP1PPP/RNBQK2R w KQkq - 4 4",
+      "marks": {"squares":["g5"]},
+      "play": ["f3e5","d8g5","e5f7","g5g2","h1f1","g2e4","c4e2","d4f3"]
+    },
+    {
+      "type": "move",
+      "text": "Now defend for Black. After the bishop and knight checks, find the only king move that holds.",
+      "fen": "r1b2r2/ppqn1ppk/2n1p3/2bpP1N1/8/2P5/PP1N1PPP/R1BQ1RK1 b - - 1 12",
+      "side": "b",
+      "accept": ["h7g6"],
+      "wrong": {"h7g8":"Then the queen comes to the edge next to the knight and threatens mate on h7."},
+      "hint": "The king steps forward, where the queen cannot reach it with check.",
+      "after": "The king stands exposed, but there is no mate.",
+      "marks": {"squares":["h7"]}
+    }
+  ],
+  "summary": "Before a tempting move, find the best answer to it. The other side will not always play the reply you hope for.",
+  "practice": {"fen":"r1b2r2/ppqn1pp1/2n1p1k1/2bpP1N1/8/2P5/PP1N1PPP/R1BQ1RK1 w - - 2 13","side":"b"}
+}

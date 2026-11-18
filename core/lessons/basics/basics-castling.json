@@ -1,0 +1,112 @@
+{
+  "id": "basics-castling",
+  "course": "basics",
+  "title": "Castling",
+  "line": "King and rook in one move, on either side.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "text": "Castling moves the king and a rook in one move. It tucks the king away and brings the rook toward the middle.",
+      "fen": "r1bqk1nr/pppp1ppp/2n5/2b1p3/2B1P3/5N2/PPPP1PPP/RNBQK2R w KQkq - 4 4",
+      "marks": {"arrows":[["e1","g1"],["h1","f1"]]}
+    },
+    {
+      "type": "move",
+      "text": "Castle on the short side: move the king two squares toward the rook on h1.",
+      "marks": {"squares":["h1"]},
+      "accept": ["e1g1"],
+      "wrong": {
+        "e1f1": "That moves the king only one square, and the rook stays in its corner.",
+        "h1f1": "That moves only the rook. To castle, move the king two squares.",
+        "h1g1": "That moves only the rook. To castle, move the king two squares."
+      },
+      "also": {
+        "h2h3": "That is a sound move too, but this step asks you to castle.",
+        "d2d3": "That is a sound move too, but this step asks you to castle.",
+        "c2c3": "That is a sound move too, but this step asks you to castle.",
+        "a2a4": "That is a sound move too, but this step asks you to castle.",
+        "b1c3": "That is a sound move too, but this step asks you to castle.",
+        "c4b3": "That is a sound move too, but this step asks you to castle.",
+        "a2a3": "That is a sound move too, but this step asks you to castle.",
+        "b2b4": "That is a sound move too, but this step asks you to castle.",
+        "d1e2": "That is a sound move too, but this step asks you to castle.",
+        "c4b5": "That is a sound move too, but this step asks you to castle.",
+        "d2d4": "That is a sound move too, but this step asks you to castle.",
+        "c4d5": "That is a sound move too, but this step asks you to castle.",
+        "b2b3": "That is a sound move too, but this step asks you to castle.",
+        "c4e2": "That is a sound move too, but this step asks you to castle."
+      },
+      "hint": "Move the king two squares toward the rook.",
+      "after": "The king moved two squares, and the rook jumped over it.",
+      "reply": "g8f6"
+    },
+    {
+      "type": "show",
+      "text": "You may castle only if neither the king nor that rook has moved, and every square between them is empty.",
+      "fen": "r1bqk1nr/pppp1ppp/2n5/2b1p3/2B1P3/5N2/PPPP1PPP/RNBQK2R w KQkq - 4 4",
+      "marks": {
+        "squares": ["b1","c1","d1"]
+      }
+    },
+    {
+      "type": "pick",
+      "text": "White cannot castle on the long side yet. Tap every piece between the king and the rook on a1.",
+      "marks": {"squares":["a1"]},
+      "accept": ["b1","c1","d1"],
+      "all": true,
+      "after": "The knight, the bishop and the queen must move out first."
+    },
+    {
+      "type": "move",
+      "text": "Here the way is clear. Castle on the long side: the king moves two squares toward the rook on a1.",
+      "fen": "rnbqk2r/ppp1bppp/4pn2/3p4/3P1B2/2N5/PPPQPPPP/R3KBNR w KQkq - 2 5",
+      "marks": {"squares":["a1"]},
+      "accept": ["e1c1"],
+      "also": {
+        "g1f3": "That is a sound move too, but this step asks you to castle.",
+        "e2e3": "That is a sound move too, but this step asks you to castle.",
+        "c3b5": "That is a sound move too, but this step asks you to castle.",
+        "a2a3": "That is a sound move too, but this step asks you to castle.",
+        "h2h4": "That is a sound move too, but this step asks you to castle.",
+        "h2h3": "That is a sound move too, but this step asks you to castle.",
+        "g2g4": "That is a sound move too, but this step asks you to castle.",
+        "g2g3": "That is a sound move too, but this step asks you to castle.",
+        "f2f3": "That is a sound move too, but this step asks you to castle.",
+        "a1b1": "That is a sound move too, but this step asks you to castle.",
+        "a1d1": "That is a sound move too, but this step asks you to castle.",
+        "f4g5": "That is a sound move too, but this step asks you to castle.",
+        "f4g3": "That is a sound move too, but this step asks you to castle.",
+        "d2d1": "That is a sound move too, but this step asks you to castle.",
+        "d2d3": "That is a sound move too, but this step asks you to castle.",
+        "d2c1": "That is a sound move too, but this step asks you to castle.",
+        "a1c1": "That is a sound move too, but this step asks you to castle.",
+        "f4e5": "That is a sound move too, but this step asks you to castle.",
+        "g1h3": "That is a sound move too, but this step asks you to castle."
+      },
+      "hint": "Move the king two squares toward the rook.",
+      "after": "The king moved two squares, and the rook jumped over it."
+    },
+    {
+      "type": "move",
+      "text": "Now castle with Black, on the short side.",
+      "fen": "r1bqk2r/pppp1ppp/2n2n2/2b1p3/2B1P3/3P1N2/PPP2PPP/RNBQ1RK1 b kq - 0 5",
+      "side": "b",
+      "accept": ["e8g8"],
+      "also": {
+        "a7a6": "That is a sound move too, but this step asks you to castle.",
+        "d7d6": "That is a sound move too, but this step asks you to castle.",
+        "a7a5": "That is a sound move too, but this step asks you to castle.",
+        "c5b6": "That is a sound move too, but this step asks you to castle.",
+        "h7h6": "That is a sound move too, but this step asks you to castle.",
+        "d7d5": "That is a sound move too, but this step asks you to castle.",
+        "c5e7": "That is a sound move too, but this step asks you to castle.",
+        "d8e7": "That is a sound move too, but this step asks you to castle.",
+        "a8b8": "That is a sound move too, but this step asks you to castle."
+      },
+      "hint": "Move the black king two squares toward the rook in the nearer corner.",
+      "after": "Both kings are tucked away behind their pawns."
+    }
+  ],
+  "summary": "To castle, the king moves two squares toward a rook, and the rook jumps over to the square beside it."
+}

@@ -1,0 +1,197 @@
+diff --git a/src/chessboard/board_state.cpp b/src/chessboard/board_state.cpp
+index 2c3f322..c4f6dcd 100644
+--- a/src/chessboard/board_state.cpp
++++ b/src/chessboard/board_state.cpp
+@@ -110,15 +110,15 @@ bool BoardState::init_from_fen(const std::array<std::string_view, 6>& fen)
+         en_passant = static_cast<Square>((fen[3][0] - 'a') + (fen[3][1] - '1') * 8);
+     };
+ 
+-    auto [ptr1, ec1] = std::from_chars(fen[4].begin(), fen[4].end(), fifty_move_count);
+-    if (ptr1 != fen[4].end())
++    auto [ptr1, ec1] = std::from_chars(fen[4].data(), fen[4].data() + fen[4].size(), fifty_move_count);
++    if (ptr1 != fen[4].data() + fen[4].size())
+     {
+         return false;
+     }
+ 
+     int full_move_count = 0;
+-    auto [ptr2, ec2] = std::from_chars(fen[5].begin(), fen[5].end(), full_move_count);
+-    if (ptr2 != fen[5].end())
++    auto [ptr2, ec2] = std::from_chars(fen[5].data(), fen[5].data() + fen[5].size(), full_move_count);
++    if (ptr2 != fen[5].data() + fen[5].size())
+     {
+         return false;
+     }
+diff --git a/src/main.cpp b/src/main.cpp
+index 8f58b0f..c2a1815 100644
+--- a/src/main.cpp
++++ b/src/main.cpp
+@@ -10,6 +10,15 @@
+ 
+ constexpr std::string_view version = "16.0.0";
+ 
++#ifdef __EMSCRIPTEN__
++static UCI::Uci* zeist_uci = nullptr;
++extern "C" void zeist_handle_line(const char* line)
++{
++    if (zeist_uci)
++        zeist_uci->process_input(line);
++}
++#endif
++
+ int main(int argc, char* argv[])
+ {
+     std::ios::sync_with_stdio(false);
+@@ -22,9 +31,17 @@ int main(int argc, char* argv[])
+ 
+     std::cout << fmt_version_platform_arch(version) << std::endl;
+ 
++#ifdef __EMSCRIPTEN__
++    static UCI::UciOutput output;
++    static SearchThreadPool pool { output, 1 };
++    static UCI::Uci uci { version, pool, output };
++    zeist_uci = &uci;
++    return 0;
++#else
+     UCI::UciOutput output;
+     SearchThreadPool pool { output, 1 };
+     UCI::Uci uci { version, pool, output };
++#endif
+ 
+     // read any command line input as a regular UCI instruction
+     for (int i = 1; i < argc; i++)
+diff --git a/src/network/network.cpp b/src/network/network.cpp
+index c543414..e20abea 100644
+--- a/src/network/network.cpp
++++ b/src/network/network.cpp
+@@ -1,3 +1,6 @@
++#include <cstdio>
++#include <cstdlib>
++#include <iostream>
+ #include "network.h"
+ 
+ #include "bitboard/define.h"
+@@ -26,7 +29,24 @@ namespace NN
+ 
+ #undef INCBIN_ALIGNMENT
+ #define INCBIN_ALIGNMENT 64
++#ifdef __EMSCRIPTEN__
++// Zeist: the worker writes the network into the in-memory file system before
++// static initialization, so it is read here instead of embedded with incbin.
++static const unsigned char* zeist_read_net()
++{
++    void* buf = std::aligned_alloc(64, (sizeof(network) + 63) / 64 * 64);
++    FILE* f = std::fopen("/" EVALFILE, "rb");
++    if (!f || std::fread(buf, 1, sizeof(network), f) != sizeof(network))
++        std::cout << "info string could not read network " EVALFILE << std::endl;
++    if (f)
++        std::fclose(f);
++    return static_cast<const unsigned char*>(buf);
++}
++static const unsigned char* gNetData = zeist_read_net();
++static const unsigned int gNetSize = sizeof(network);
++#else
+ INCBIN(Net, EVALFILE);
++#endif
+ 
+ const network& net = reinterpret_cast<const network&>(*gNetData);
+ 
+diff --git a/src/search/thread.cpp b/src/search/thread.cpp
+index 2411833..da088a2 100644
+--- a/src/search/thread.cpp
++++ b/src/search/thread.cpp
+@@ -47,6 +47,11 @@ void SearchThread::thread_loop()
+ 
+ void SearchThread::enqueue_task(std::function<void()> func)
+ {
++#ifdef __EMSCRIPTEN__
++    // Zeist: single-threaded WASM, run the task now on the calling thread.
++    func();
++    return;
++#endif
+     {
+         std::lock_guard lock(mutex);
+         tasks.push(std::move(func));
+@@ -233,6 +238,10 @@ const SearchSharedState& SearchThreadPool::get_shared_state()
+ 
+ void SearchThreadPool::create_thread()
+ {
++#ifdef __EMSCRIPTEN__
++    search_threads.push_back(new SearchThread(search_threads.size(), shared_state));
++    return;
++#endif
+     std::promise<SearchThread*> promise;
+     auto future = promise.get_future();
+ 
+diff --git a/src/third-party/Pyrrhic/stdendian.h b/src/third-party/Pyrrhic/stdendian.h
+index b8d20db..2cc36a2 100644
+--- a/src/third-party/Pyrrhic/stdendian.h
++++ b/src/third-party/Pyrrhic/stdendian.h
+@@ -8,7 +8,7 @@
+ #endif
+ 
+ /* Linux / GLIBC */
+-#if defined(__linux__) || defined(__GLIBC__) || defined(__CYGWIN__)
++#if defined(__linux__) || defined(__GLIBC__) || defined(__CYGWIN__) || defined(__EMSCRIPTEN__)
+ #include <endian.h>
+ #include <byteswap.h>
+ #define __ENDIAN_DEFINED        1
+diff --git a/src/uci/parse.h b/src/uci/parse.h
+index ec831d8..f82ac4e 100644
+--- a/src/uci/parse.h
++++ b/src/uci/parse.h
+@@ -53,9 +53,9 @@ struct ToInt
+     bool operator()(std::string_view& token, Ctx&&... ctx)
+     {
+         int result {};
+-        auto [ptr, _] = std::from_chars(token.data(), token.end(), result);
++        auto [ptr, _] = std::from_chars(token.data(), token.data() + token.size(), result);
+ 
+-        if (ptr != token.end())
++        if (ptr != token.data() + token.size())
+         {
+             return false;
+         }
+diff --git a/src/utility/static_vector.h b/src/utility/static_vector.h
+index dde8591..c40f812 100644
+--- a/src/utility/static_vector.h
++++ b/src/utility/static_vector.h
+@@ -75,32 +75,32 @@ public:
+ 
+     constexpr iterator begin()
+     {
+-        return &elems_[0];
++        return elems_.begin();
+     };
+ 
+     constexpr const_iterator begin() const
+     {
+-        return &elems_[0];
++        return elems_.begin();
+     };
+ 
+     constexpr const_iterator cbegin() const
+     {
+-        return &elems_[0];
++        return elems_.begin();
+     };
+ 
+     constexpr iterator end()
+     {
+-        return &elems_[size_];
++        return elems_.begin() + size_;
+     }
+ 
+     constexpr const_iterator end() const
+     {
+-        return &elems_[size_];
++        return elems_.begin() + size_;
+     }
+ 
+     constexpr const_iterator cend() const
+     {
+-        return &elems_[size_];
++        return elems_.begin() + size_;
+     }
+ 
+     constexpr reverse_iterator rbegin()

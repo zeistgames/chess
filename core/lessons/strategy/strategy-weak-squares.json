@@ -1,0 +1,44 @@
+{
+  "id": "strategy-weak-squares",
+  "course": "strategy",
+  "title": "Weak squares",
+  "line": "Squares no enemy pawn can attack, and the knight that settles in one.",
+  "side": "w",
+  "steps": [
+    {
+      "type": "show",
+      "fen": "rnbqk2r/pp4pp/2pbpn2/3p1p2/2PP4/5NP1/PP2PPBP/RNBQ1RK1 w kq - 0 7",
+      "text": "Pawns never move back. Black's pawns on d5 and f5 have moved too far forward to guard the square between them.",
+      "marks": {"squares":["d5","f5"]}
+    },
+    {
+      "type": "pick",
+      "text": "A square no enemy pawn can attack is a weak square, or hole. Tap the hole in the center.",
+      "accept": ["e5"],
+      "hint": "It is in Black's half, between two black pawns on the same row.",
+      "after": "No black pawn can attack it now."
+    },
+    {
+      "type": "move",
+      "text": "Put your knight in the hole. A piece there sits on an outpost: no black pawn can attack it there now.",
+      "marks": {"squares":["e5"],"arrows":[["f3","e5"]]},
+      "accept": ["f3e5"],
+      "after": "Black brings a knight to trade itself for yours.",
+      "reply": "b8d7"
+    },
+    {
+      "type": "show",
+      "text": "To be rid of your knight, Black would have to trade a piece for it. Its bishop on d6 guards the hole too.",
+      "marks": {"squares":["e5","d7","d6"]}
+    },
+    {
+      "type": "move",
+      "text": "Bring your bishop out to guard the knight. It also offers to trade Black's bishop, a guard of the hole.",
+      "marks": {"squares":["e5","d6"],"arrows":[["c1","f4"]]},
+      "accept": ["c1f4"],
+      "after": "The knight is guarded, and the hole stays yours."
+    }
+  ],
+  "summary": "Pawns never move back, so the squares they pass can be holes. Put a knight in one, where no enemy pawn can attack it.",
+  "practice": {"fen":"r1bqk2r/pp1n2pp/2pbpn2/3pNp2/2PP1B2/6P1/PP2PPBP/RN1Q1RK1 b kq - 3 8","side":"w"}
+}

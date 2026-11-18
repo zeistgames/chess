@@ -1,0 +1,158 @@
+{
+  "id": "openings-petrovs-defense-three-knights",
+  "course": "openings",
+  "title": "Petrov's Defense: Three Knights Game",
+  "line": "White guards the center pawn with a knight. Black pins that knight and wins the pawn back.",
+  "side": "b",
+  "steps": [
+    {
+      "type": "show",
+      "text": "Petrov's Defense, and White guards its pawn on e4 with a knight. Your pawn on e5 is still attacked.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {
+        "squares": [
+          "e4",
+          "e5"
+        ],
+        "arrows": [
+          [
+            "c3",
+            "e4"
+          ],
+          [
+            "f3",
+            "e5"
+          ]
+        ]
+      },
+      "play": [
+        "e2e4",
+        "e7e5",
+        "g1f3",
+        "g8f6",
+        "b1c3"
+      ]
+    },
+    {
+      "type": "move",
+      "text": "Pin the knight that guards e4: bring your bishop out to b4.",
+      "marks": {
+        "squares": [
+          "c3",
+          "e4"
+        ],
+        "arrows": [
+          [
+            "f8",
+            "b4"
+          ]
+        ]
+      },
+      "accept": [
+        "f8b4"
+      ],
+      "also": {
+        "b8c6": "Guarding your pawn leads to the Four Knights Game. This lesson pins the knight."
+      },
+      "after": "White takes your pawn. Now go after its pawn.",
+      "reply": "f3e5",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Castle. Your rook gets ready to come to the file of the pawn on e4.",
+      "marks": {
+        "squares": [
+          "g8",
+          "e4"
+        ],
+        "arrows": [
+          [
+            "e8",
+            "g8"
+          ]
+        ]
+      },
+      "accept": [
+        "e8g8"
+      ],
+      "reply": "f1e2",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the rook to e8. It aims down the file at the knight and the pawn behind it.",
+      "marks": {
+        "squares": [
+          "e5",
+          "e4"
+        ],
+        "arrows": [
+          [
+            "f8",
+            "e8"
+          ]
+        ]
+      },
+      "accept": [
+        "f8e8"
+      ],
+      "also": {
+        "b4c3": "Taking the knight at once is also played. This lesson brings the rook first."
+      },
+      "after": "The knight steps back and attacks your bishop.",
+      "reply": "e5d3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Take the knight on c3, the guard of the pawn on e4.",
+      "marks": {
+        "squares": [
+          "c3",
+          "e4"
+        ],
+        "arrows": [
+          [
+            "b4",
+            "c3"
+          ]
+        ]
+      },
+      "accept": [
+        "b4c3"
+      ],
+      "reply": "d2c3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Now take the pawn on e4. Its guard is gone, and material is level.",
+      "marks": {
+        "squares": [
+          "e4"
+        ],
+        "arrows": [
+          [
+            "f6",
+            "e4"
+          ]
+        ]
+      },
+      "accept": [
+        "f6e4"
+      ],
+      "also": {
+        "e8e4": "The rook can take it too. This lesson takes with the knight."
+      },
+      "after": "Your knight stands in the center. White has the two bishops, and you have a sound, active game.",
+      "reply": "e1g1",
+      "taught": true
+    }
+  ],
+  "summary": "When a knight guards the attacked pawn, pin it or take it. Then the pawn falls.",
+  "practice": {
+    "fen": "rnbqr1k1/pppp1ppp/8/8/4n3/2PN4/PPP1BPPP/R1BQ1RK1 b - - 1 8",
+    "side": "b"
+  }
+}

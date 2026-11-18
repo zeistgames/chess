@@ -1,0 +1,10 @@
+engines/dist/
+*.local.*
+build/
+DerivedData/
+.DS_Store
+node_modules/
+ios/ZeistChess.xcodeproj/
+ios/screenshots/*.tmp
+ios/ZeistChess/GoogleService-Info.plist
+ios/screenshots/

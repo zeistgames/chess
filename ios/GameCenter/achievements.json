@@ -1,0 +1,475 @@
+{
+ "about": "Zeist Chess's Game Center achievements: ids, words, points and what each image shows. They mark feats against the engines and in puzzles; none rewards a streak, a daily visit or speed, and none names a level number. The app reports them (ios/ZeistChess/Account/GameCenter.swift); ios/scripts/achievements.mjs draws the images. The Zeist engine has no achievements of its own here: beating it is rewarded in Zeist's Game Center, where those games are rated. It still counts toward the two that cover every engine.",
+ "points": 825,
+ "achievements": [
+  {
+   "id": "zeistchess.first.stockfish_lite",
+   "title": "Stockfish Lite",
+   "before": "Win a game against Stockfish Lite at any level.",
+   "earned": "You won a game against Stockfish Lite.",
+   "points": 10,
+   "image": {
+    "face": "stockfish-lite"
+   }
+  },
+  {
+   "id": "zeistchess.first.stockfish",
+   "title": "Stockfish",
+   "before": "Win a game against Stockfish at any level.",
+   "earned": "You won a game against Stockfish.",
+   "points": 10,
+   "image": {
+    "face": "stockfish"
+   }
+  },
+  {
+   "id": "zeistchess.first.fairy_stockfish",
+   "title": "Fairy-Stockfish",
+   "before": "Win a game against Fairy-Stockfish at any level.",
+   "earned": "You won a game against Fairy-Stockfish.",
+   "points": 10,
+   "image": {
+    "face": "fairy-stockfish"
+   }
+  },
+  {
+   "id": "zeistchess.first.maia",
+   "title": "Maia",
+   "before": "Win a game against Maia at any level.",
+   "earned": "You won a game against Maia.",
+   "points": 10,
+   "image": {
+    "face": "maia"
+   }
+  },
+  {
+   "id": "zeistchess.first.arasan",
+   "title": "Arasan",
+   "before": "Win a game against Arasan at any level.",
+   "earned": "You won a game against Arasan.",
+   "points": 10,
+   "image": {
+    "face": "arasan"
+   }
+  },
+  {
+   "id": "zeistchess.first.clover",
+   "title": "Clover",
+   "before": "Win a game against Clover at any level.",
+   "earned": "You won a game against Clover.",
+   "points": 10,
+   "image": {
+    "face": "clover"
+   }
+  },
+  {
+   "id": "zeistchess.first.caissa",
+   "title": "Caissa",
+   "before": "Win a game against Caissa at any level.",
+   "earned": "You won a game against Caissa.",
+   "points": 10,
+   "image": {
+    "face": "caissa"
+   }
+  },
+  {
+   "id": "zeistchess.first.plentychess",
+   "title": "PlentyChess",
+   "before": "Win a game against PlentyChess at any level.",
+   "earned": "You won a game against PlentyChess.",
+   "points": 10,
+   "image": {
+    "face": "plentychess"
+   }
+  },
+  {
+   "id": "zeistchess.first.halogen",
+   "title": "Halogen",
+   "before": "Win a game against Halogen at any level.",
+   "earned": "You won a game against Halogen.",
+   "points": 10,
+   "image": {
+    "face": "halogen"
+   }
+  },
+  {
+   "id": "zeistchess.first.koivisto",
+   "title": "Koivisto",
+   "before": "Win a game against Koivisto at any level.",
+   "earned": "You won a game against Koivisto.",
+   "points": 10,
+   "image": {
+    "face": "koivisto"
+   }
+  },
+  {
+   "id": "zeistchess.first.ethereal",
+   "title": "Ethereal",
+   "before": "Win a game against Ethereal at any level.",
+   "earned": "You won a game against Ethereal.",
+   "points": 10,
+   "image": {
+    "face": "ethereal"
+   }
+  },
+  {
+   "id": "zeistchess.best.stockfish_lite",
+   "title": "Stockfish Lite, at its best",
+   "before": "Win against Stockfish Lite at its strongest setting.",
+   "earned": "You beat Stockfish Lite at its strongest setting.",
+   "points": 25,
+   "image": {
+    "face": "stockfish-lite",
+    "best": true
+   }
+  },
+  {
+   "id": "zeistchess.best.stockfish",
+   "title": "Stockfish, at its best",
+   "before": "Win against Stockfish at its strongest setting.",
+   "earned": "You beat Stockfish at its strongest setting.",
+   "points": 25,
+   "image": {
+    "face": "stockfish",
+    "best": true
+   }
+  },
+  {
+   "id": "zeistchess.best.fairy_stockfish",
+   "title": "Fairy-Stockfish, at its best",
+   "before": "Win against Fairy-Stockfish at its strongest setting.",
+   "earned": "You beat Fairy-Stockfish at its strongest setting.",
+   "points": 25,
+   "image": {
+    "face": "fairy-stockfish",
+    "best": true
+   }
+  },
+  {
+   "id": "zeistchess.best.maia",
+   "title": "Maia, at its best",
+   "before": "Win against Maia at its strongest setting.",
+   "earned": "You beat Maia at its strongest setting.",
+   "points": 25,
+   "image": {
+    "face": "maia",
+    "best": true
+   }
+  },
+  {
+   "id": "zeistchess.best.arasan",
+   "title": "Arasan, at its best",
+   "before": "Win against Arasan at its strongest setting.",
+   "earned": "You beat Arasan at its strongest setting.",
+   "points": 25,
+   "image": {
+    "face": "arasan",
+    "best": true
+   }
+  },
+  {
+   "id": "zeistchess.best.clover",
+   "title": "Clover, at its best",
+   "before": "Win against Clover at its strongest setting.",
+   "earned": "You beat Clover at its strongest setting.",
+   "points": 25,
+   "image": {
+    "face": "clover",
+    "best": true
+   }
+  },
+  {
+   "id": "zeistchess.best.caissa",
+   "title": "Caissa, at its best",
+   "before": "Win against Caissa at its strongest setting.",
+   "earned": "You beat Caissa at its strongest setting.",
+   "points": 25,
+   "image": {
+    "face": "caissa",
+    "best": true
+   }
+  },
+  {
+   "id": "zeistchess.best.plentychess",
+   "title": "PlentyChess, at its best",
+   "before": "Win against PlentyChess at its strongest setting.",
+   "earned": "You beat PlentyChess at its strongest setting.",
+   "points": 25,
+   "image": {
+    "face": "plentychess",
+    "best": true
+   }
+  },
+  {
+   "id": "zeistchess.best.halogen",
+   "title": "Halogen, at its best",
+   "before": "Win against Halogen at its strongest setting.",
+   "earned": "You beat Halogen at its strongest setting.",
+   "points": 25,
+   "image": {
+    "face": "halogen",
+    "best": true
+   }
+  },
+  {
+   "id": "zeistchess.best.koivisto",
+   "title": "Koivisto, at its best",
+   "before": "Win against Koivisto at its strongest setting.",
+   "earned": "You beat Koivisto at its strongest setting.",
+   "points": 25,
+   "image": {
+    "face": "koivisto",
+    "best": true
+   }
+  },
+  {
+   "id": "zeistchess.best.ethereal",
+   "title": "Ethereal, at its best",
+   "before": "Win against Ethereal at its strongest setting.",
+   "earned": "You beat Ethereal at its strongest setting.",
+   "points": 25,
+   "image": {
+    "face": "ethereal",
+    "best": true
+   }
+  },
+  {
+   "id": "zeistchess.maia.800",
+   "title": "Maia 800",
+   "before": "Win against Maia set to 800.",
+   "earned": "You beat Maia set to 800.",
+   "points": 10,
+   "image": {
+    "face": "maia",
+    "label": "800"
+   }
+  },
+  {
+   "id": "zeistchess.maia.1000",
+   "title": "Maia 1000",
+   "before": "Win against Maia set to 1000.",
+   "earned": "You beat Maia set to 1000.",
+   "points": 10,
+   "image": {
+    "face": "maia",
+    "label": "1000"
+   }
+  },
+  {
+   "id": "zeistchess.maia.1200",
+   "title": "Maia 1200",
+   "before": "Win against Maia set to 1200.",
+   "earned": "You beat Maia set to 1200.",
+   "points": 15,
+   "image": {
+    "face": "maia",
+    "label": "1200"
+   }
+  },
+  {
+   "id": "zeistchess.maia.1500",
+   "title": "Maia 1500",
+   "before": "Win against Maia set to 1500.",
+   "earned": "You beat Maia set to 1500.",
+   "points": 20,
+   "image": {
+    "face": "maia",
+    "label": "1500"
+   }
+  },
+  {
+   "id": "zeistchess.maia.1800",
+   "title": "Maia 1800",
+   "before": "Win against Maia set to 1800.",
+   "earned": "You beat Maia set to 1800.",
+   "points": 25,
+   "image": {
+    "face": "maia",
+    "label": "1800"
+   }
+  },
+  {
+   "id": "zeistchess.maia.2000",
+   "title": "Maia 2000",
+   "before": "Win against Maia set to 2000.",
+   "earned": "You beat Maia set to 2000.",
+   "points": 30,
+   "image": {
+    "face": "maia",
+    "label": "2000"
+   }
+  },
+  {
+   "id": "zeistchess.maia.2200",
+   "title": "Maia 2200",
+   "before": "Win against Maia set to 2200.",
+   "earned": "You beat Maia set to 2200.",
+   "points": 40,
+   "image": {
+    "face": "maia",
+    "label": "2200"
+   }
+  },
+  {
+   "id": "zeistchess.feat.black",
+   "title": "With Black",
+   "before": "Win a game playing Black.",
+   "earned": "You won a game playing Black.",
+   "points": 10,
+   "image": {
+    "piece": "bK"
+   }
+  },
+  {
+   "id": "zeistchess.feat.bullet",
+   "title": "Bullet",
+   "before": "Win a bullet game.",
+   "earned": "You won a bullet game.",
+   "points": 10,
+   "image": {
+    "piece": "wP"
+   }
+  },
+  {
+   "id": "zeistchess.feat.blitz",
+   "title": "Blitz",
+   "before": "Win a blitz game.",
+   "earned": "You won a blitz game.",
+   "points": 10,
+   "image": {
+    "piece": "wN"
+   }
+  },
+  {
+   "id": "zeistchess.feat.rapid",
+   "title": "Rapid",
+   "before": "Win a rapid game.",
+   "earned": "You won a rapid game.",
+   "points": 10,
+   "image": {
+    "piece": "wR"
+   }
+  },
+  {
+   "id": "zeistchess.feat.queen",
+   "title": "A second queen",
+   "before": "Win a game in which you promoted a pawn.",
+   "earned": "You promoted a pawn and won.",
+   "points": 10,
+   "image": {
+    "piece": "wQ"
+   }
+  },
+  {
+   "id": "zeistchess.feat.lesser",
+   "title": "The lesser piece",
+   "before": "Win a game in which you promoted to a knight, bishop or rook.",
+   "earned": "You promoted to a lesser piece and won.",
+   "points": 20,
+   "image": {
+    "piece": "bN"
+   }
+  },
+  {
+   "id": "zeistchess.feat.ending",
+   "title": "From an ending",
+   "before": "Win one of the practice endings.",
+   "earned": "You won a practice ending.",
+   "points": 10,
+   "image": {
+    "piece": "wK"
+   }
+  },
+  {
+   "id": "zeistchess.feat.nohelp",
+   "title": "No help",
+   "before": "Win against an engine at its strongest with no hints and no undo.",
+   "earned": "You beat an engine at its strongest with no hints and no undo.",
+   "points": 30,
+   "image": {
+    "piece": "bP"
+   }
+  },
+  {
+   "id": "zeistchess.puzzles.10",
+   "title": "10 puzzles",
+   "before": "Solve 10 puzzles.",
+   "earned": "You solved 10 puzzles.",
+   "points": 5,
+   "image": {
+    "label": "10"
+   }
+  },
+  {
+   "id": "zeistchess.puzzles.50",
+   "title": "50 puzzles",
+   "before": "Solve 50 puzzles.",
+   "earned": "You solved 50 puzzles.",
+   "points": 10,
+   "image": {
+    "label": "50"
+   }
+  },
+  {
+   "id": "zeistchess.puzzles.100",
+   "title": "100 puzzles",
+   "before": "Solve 100 puzzles.",
+   "earned": "You solved 100 puzzles.",
+   "points": 15,
+   "image": {
+    "label": "100"
+   }
+  },
+  {
+   "id": "zeistchess.puzzles.500",
+   "title": "500 puzzles",
+   "before": "Solve 500 puzzles.",
+   "earned": "You solved 500 puzzles.",
+   "points": 25,
+   "image": {
+    "label": "500"
+   }
+  },
+  {
+   "id": "zeistchess.puzzles.1000",
+   "title": "1000 puzzles",
+   "before": "Solve 1000 puzzles.",
+   "earned": "You solved 1000 puzzles.",
+   "points": 40,
+   "image": {
+    "label": "1000"
+   }
+  },
+  {
+   "id": "zeistchess.puzzles.hard",
+   "title": "The hard shelf",
+   "before": "Solve a puzzle from the hardest band on the first try.",
+   "earned": "You solved one of the hardest puzzles on the first try.",
+   "points": 15,
+   "image": {
+    "piece": "wB"
+   }
+  },
+  {
+   "id": "zeistchess.shelf.met",
+   "title": "Every engine met",
+   "before": "Play a game against every engine.",
+   "earned": "You played a game against every engine.",
+   "points": 20,
+   "image": {
+    "face": "zeist"
+   }
+  },
+  {
+   "id": "zeistchess.shelf.beaten",
+   "title": "Every engine beaten",
+   "before": "Win a game against every engine.",
+   "earned": "You won a game against every engine.",
+   "points": 50,
+   "image": {
+    "face": "zeist",
+    "best": true
+   }
+  }
+ ]
+}

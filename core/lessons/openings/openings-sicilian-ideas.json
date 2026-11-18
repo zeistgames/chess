@@ -1,0 +1,62 @@
+{
+  "id": "openings-sicilian-ideas",
+  "course": "openings",
+  "title": "Sicilian Defense: the ideas",
+  "line": "Black fights for the center from the side, for an unbalanced game.",
+  "side": "b",
+  "steps": [
+    {
+      "type": "show",
+      "text": "White starts by pushing the pawn in front of its king two squares, into the center.",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": {"arrows":[["e2","e4"]]},
+      "play": ["e2e4"]
+    },
+    {
+      "type": "move",
+      "text": "Push the pawn on c7 two squares. From the side it fights for the center square d4.",
+      "marks": {"squares":["c7","d4"],"arrows":[["c7","c5"]]},
+      "accept": ["c7c5"],
+      "after": "This is the Sicilian Defense.",
+      "reply": "g1f3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Move the pawn in front of your queen one square. It keeps White's knight out of e5 and opens a path for your bishop.",
+      "marks": {"squares":["e5"],"arrows":[["d7","d6"]]},
+      "accept": ["d7d6"],
+      "reply": "d2d4",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "White has pushed a second pawn into the center. Take it with your side pawn: a side pawn for a center pawn.",
+      "accept": ["c5d4"],
+      "marks": {"arrows":[["c5","d4"]]},
+      "after": "Black has two center pawns against White's one, and a half-open file for a rook.",
+      "reply": "f3d4",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Bring the knight out to attack the pawn on e4.",
+      "marks": {"squares":["e4"],"arrows":[["g8","f6"]]},
+      "accept": ["g8f6"],
+      "after": "White guards the pawn with a knight.",
+      "reply": "b1c3",
+      "taught": true
+    },
+    {
+      "type": "move",
+      "text": "Move the pawn on a7 one square. It keeps White's pieces off b5, and later your own pawn can go there.",
+      "marks": {"squares":["a7","b5"],"arrows":[["a7","a6"]]},
+      "accept": ["a7a6"],
+      "after": "This is the Najdorf, the most played Sicilian: an unbalanced game.",
+      "reply": "c1e3",
+      "taught": true
+    }
+  ],
+  "summary": "Black answers from the side, trades a side pawn for White's center pawn, and keeps an extra center pawn.",
+  "practice": {"fen":"rnbqkb1r/1p2pppp/p2p1n2/8/3NP3/2N1B3/PPP2PPP/R2QKB1R b KQkq - 1 6","side":"b"}
+}
