@@ -109,6 +109,22 @@ struct FeatLedger {
         return award(Feats.puzzles(solved: n, hardFirstTry: firstTry && band == 8), owner)
     }
 
+    /// The puzzles solved in a Zeist account, wherever they were solved (Zeist on the web, the Zeist app, here):
+    /// this player's count rises to it, never falls, and earns what it now adds up to. An account's count goes
+    /// only to the first Game Center player it was signed in beside on this iPhone, so two people sharing an
+    /// iPad and an account are not both given it. Answers what it newly earned.
+    func accountSolved(_ n: Int, account: String, owner: String) -> Set<String> {
+        guard owner != Self.device else { return [] }
+        let pair = "feats.account.\(account)"
+        if defaults.string(forKey: pair) == nil { defaults.set(owner, forKey: pair) }
+        guard defaults.string(forKey: pair) == owner, n > puzzles(owner) else { return [] }
+        putPuzzles(owner, n)
+        return award(Feats.puzzles(solved: n, hardFirstTry: false), owner)
+    }
+
+    /// A hardest-band puzzle solved on the first try. Answers it if newly earned.
+    func hardFirstTry(owner: String) -> Set<String> { award(["zeistchess.puzzles.hard"], owner) }
+
     private func award(_ ids: Set<String>, _ owner: String) -> Set<String> {
         let had = set("earned", owner)
         let fresh = ids.subtracting(had)
@@ -124,6 +140,11 @@ final class GameCenter {
     /// The Game Center player signed in now (Apple's id for them in this game), or nil.
     private var player: String?
     var signedIn: Bool { player != nil }
+    /// The Zeist account signed in and the puzzles solved in its record, or nil with nobody signed in to Zeist.
+    var account: @MainActor () -> (owner: String, solved: Int)? = {
+        guard let o = Account.shared.owner else { return nil }
+        return (o, PuzzleProgress.load(.standard, owner: o).done.values.filter { $0 == 1 }.count)
+    }
 
     /// Listens for the player's Game Center sign-in. If they are not signed in, nothing is shown and nothing asked.
     /// Apple calls this again when the player signs out or another signs in.
@@ -136,7 +157,10 @@ final class GameCenter {
                 guard let self else { return }
                 let local = GKLocalPlayer.local
                 self.player = local.isAuthenticated ? local.gamePlayerID : nil
-                if let p = self.player { self.report(self.ledger.signedIn(p), for: p, banner: false) }
+                if let p = self.player {
+                    self.report(self.ledger.signedIn(p), for: p, banner: false)
+                    self.recount(banner: false)
+                }
             }
         }
     }
@@ -147,10 +171,24 @@ final class GameCenter {
     }
 
     /// solved: the puzzle was solved by the player (with or without a miss first), not shown.
+    /// Signed in to Zeist and to Game Center, the count is the account's (recount), so a puzzle solved in Zeist
+    /// counts here and none counts twice. Otherwise it is counted on this iPhone.
     func puzzleDone(solved: Bool, firstTry: Bool, band: Int) {
         guard solved else { return }
-        let fresh = ledger.puzzleSolved(firstTry: firstTry, band: band, owner: player ?? FeatLedger.device)
-        if let p = player { report(fresh, for: p, banner: true) }
+        guard let p = player, account() != nil else {
+            let fresh = ledger.puzzleSolved(firstTry: firstTry, band: band, owner: player ?? FeatLedger.device)
+            if let p = player { report(fresh, for: p, banner: true) }
+            return
+        }
+        if firstTry, band == 8 { report(ledger.hardFirstTry(owner: p), for: p, banner: true) }
+        recount()
+    }
+
+    /// The account's puzzle record changed or came into reach (a solve, an answer from Zeist, a sign-in): the
+    /// Game Center player's count rises to it.
+    func recount(banner: Bool = true) {
+        guard let p = player, let a = account() else { return }
+        report(ledger.accountSolved(a.solved, account: a.owner, owner: p), for: p, banner: banner)
     }
 
     /// Sends achievements to Game Center for the player who earned them, and only while that player is still the

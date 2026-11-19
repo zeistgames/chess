@@ -63,6 +63,28 @@ final class ReviewFixesTests: XCTestCase {
         XCTAssertEqual(l.signedIn("A"), ["zeistchess.puzzles.10"])
     }
 
+    func testTheAccountsPuzzlesCountForItsGameCenterPlayer() {
+        let l = FeatLedger(defaults)
+        XCTAssertEqual(l.signedIn("A"), [])
+        for _ in 0..<4 { _ = l.puzzleSolved(firstTry: false, band: 2, owner: "A") }
+        // Signed in to Zeist: 60 solved there, some of them the four from here. The count is 60, not 64.
+        XCTAssertEqual(l.accountSolved(60, account: "z1", owner: "A"), ["zeistchess.puzzles.10", "zeistchess.puzzles.50"])
+        XCTAssertEqual(l.puzzles("A"), 60)
+        // The same count again earns nothing, and a smaller one never takes anything back.
+        XCTAssertEqual(l.accountSolved(60, account: "z1", owner: "A"), [])
+        XCTAssertEqual(l.accountSolved(12, account: "z1", owner: "A"), [])
+        XCTAssertEqual(l.puzzles("A"), 60)
+        XCTAssertEqual(l.accountSolved(100, account: "z1", owner: "A"), ["zeistchess.puzzles.100"])
+        // Another Game Center player beside the same Zeist account is not given its count; nor is the device.
+        XCTAssertEqual(l.accountSolved(100, account: "z1", owner: "B"), [])
+        XCTAssertEqual(l.puzzles("B"), 0)
+        XCTAssertEqual(l.accountSolved(100, account: "z1", owner: FeatLedger.device), [])
+        // B's own Zeist account counts for B.
+        XCTAssertEqual(l.accountSolved(10, account: "z2", owner: "B"), ["zeistchess.puzzles.10"])
+        XCTAssertEqual(l.hardFirstTry(owner: "B"), ["zeistchess.puzzles.hard"])
+        XCTAssertEqual(l.hardFirstTry(owner: "B"), [])
+    }
+
     func testTheDeviceKeepsTheNamesItHadBeforePlayersWereKeptApart() {
         defaults.set(["zeistchess.first.clover"], forKey: "feats.earned")
         defaults.set(4, forKey: "feats.puzzles")

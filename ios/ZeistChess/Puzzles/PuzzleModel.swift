@@ -480,6 +480,7 @@ final class PuzzleModel: BoardModel {
         if counted, r != .shown, progress.done[p.id] != 1 {
             progress.replayFinish(p.id, r, moves: moves, round: false)
             progress.save(defaults)
+            GameCenter.shared.recount()
         }
         // One finish counts once, everywhere: a puzzle already solved or seen (before, or on another screen; a round
         // of playing the set again, a theme, a day's puzzle) moves no step and is counted nowhere again, and it is no
@@ -491,6 +492,7 @@ final class PuzzleModel: BoardModel {
             progress.replayFinish(p.id, r, moves: moves, round: round)
             if inHand?.id == p.id { inHand = nil }
             progress.save(defaults)
+            GameCenter.shared.recount()
         }
         if !counted {
             progress.finish(p.id, r, moves: moves)

@@ -112,6 +112,7 @@ final class Account: NSObject, ASWebAuthenticationPresentationContextProviding {
             GameLog.shared.stamp(owner: owner, handle: u.handle)
             // Whoever signs in takes over the guest's puzzle progress on this device; then the account's is fetched.
             PuzzleProgress.join(owner: owner)
+            GameCenter.shared.recount()
             Task { await PuzzleSync.shared.sync() }
         }
     }

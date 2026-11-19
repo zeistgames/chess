@@ -116,6 +116,7 @@ final class PuzzleSync {
             if q != before {
                 q.save(defaults, owner: me.owner)
                 changes += 1
+                if self === Self.shared { GameCenter.shared.recount() }
             }
             var settled = 0, later = false
             // A refused solve is queued as seen and goes in the next request (settle), so it counts as settled.
