@@ -266,7 +266,7 @@ final class PuzzleModel: BoardModel {
     func next() async {
         guard !isDaily else { return }
         fresh()
-        if let p = puzzle, result == nil { progress.skip(p.id); inHand = nil; PuzzleSync.shared.soon() }
+        if let p = puzzle, result == nil { progress.skip(p.id); inHand = nil; PuzzleSync.shared.soon() } // the clock moved
         if case .theme(let t) = source {
             progress.save(defaults)
             if let p = nextInTheme(t) { await begin(p) } else { allDone(t) }

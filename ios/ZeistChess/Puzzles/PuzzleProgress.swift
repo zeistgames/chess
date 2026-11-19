@@ -29,6 +29,10 @@ struct PuzzleProgress: Codable, Equatable {
     var clock: Int?
     /// The cursor from the account's last answer.
     var since: Int?
+    /// Puzzles solved here whose moves were never kept (a build before solves carried their proof): solved on this
+    /// device, only seen on the account. Solving one again queues the solve with its moves; the account's "solved"
+    /// takes it off this list.
+    var unproven: [String: Int]?
 
     struct Out: Codable, Equatable {
         var daily: [String: DailyRecord] = [:]
@@ -108,14 +112,10 @@ struct PuzzleProgress: Codable, Equatable {
         return nil
     }
 
-    /// A puzzle left before it was finished (Next): seen, and the step stays.
+    /// A puzzle left before it was finished (Next): seen on this device, and the step stays.
     mutating func skip(_ id: String) {
-        if done[id] == nil {
-            done[id] = 0
-            var o = out ?? Out()
-            o.seen = (o.seen ?? [:]).merging([id: 1]) { a, _ in a }
-            out = o
-        }
+        // Not queued for the account: leaving a puzzle is not seeing its answer (the main Zeist app sends none either).
+        if done[id] == nil { done[id] = 0 }
         if current?.id == id { current = nil; touch() }
     }
 
@@ -170,13 +170,15 @@ struct PuzzleProgress: Codable, Equatable {
     mutating func replayFinish(_ id: String, _ r: Result, moves: String, round: Bool = true) -> Bool {
         if round { again = (again ?? [:]).merging([id: 1]) { a, _ in a } }
         if current?.id == id { current = nil; touch() }
-        guard r != .shown, done[id] != 1 else { return false }
+        // One solved here by an earlier build, with no moves kept, is only seen on the account: this solve is its proof.
+        guard r != .shown, done[id] != 1 || unproven?[id] != nil else { return false }
+        let changed = done[id] != 1
         done[id] = 1
         var o = out ?? Out()
         o.solved = (o.solved ?? [:]).merging([id: moves]) { _, b in b }
         o.seen?[id] = nil
         out = o
-        return true
+        return changed
     }
 
     // MARK: Shared through the account (Zeist's docs/PUZZLE-PROGRESS.md)
@@ -208,17 +210,30 @@ struct PuzzleProgress: Codable, Equatable {
         return o
     }
 
-    /// The account's answers to what was sent. A solve or a seen puzzle it answered (counted, recorded, refused or
-    /// unknown) leaves `out`; one put off ("later") stays. A daily row it kept leaves `out` and the account's row
-    /// for the day takes this device's place; one whose puzzle is not finished on the account yet ("unsolved") stays;
-    /// one refused ("wrong") leaves, and with it this device's own row for that day, so a day played on a clock set
-    /// ahead is not shown as done.
-    mutating func settle(_ a: PuzzleAnswer) {
+    /// The account's answers to what was sent, settled against that request (`sent`), so nothing queued while it was
+    /// out is lost: a solve leaves `out` only if it went with the moves still queued, a seen puzzle only if it went.
+    /// A solve the account counted is proven; one it refused ("wrong") stays solved here and is queued as seen, so
+    /// the account has the puzzle finished and a day's row for it can settle (as a miss). One put off ("later") stays.
+    /// A daily row the account kept leaves `out` and the account's row for the day takes this device's place; one
+    /// whose puzzle is not finished on the account yet ("unsolved") stays; one refused ("wrong") leaves, and with it
+    /// this device's own row for that day, so a day played on a clock set ahead is not shown as done.
+    mutating func settle(_ a: PuzzleAnswer, sent: Outgoing) {
+        let solves = Dictionary(sent.solved.map { ($0.id, $0.moves.joined(separator: " ")) }) { a, _ in a }
+        let seens = Set(sent.seen), days = Set(sent.daily.map(\.day))
         for r in a.results where r.status != "later" {
-            out?.solved?[r.id] = nil
-            out?.seen?[r.id] = nil
+            if let m = solves[r.id] {
+                if out?.solved?[r.id] == m { out?.solved?[r.id] = nil }
+                if r.status == "solved" { unproven?[r.id] = nil }
+                if r.status == "wrong", out?.solved?[r.id] == nil {
+                    var o = out ?? Out()
+                    o.seen = (o.seen ?? [:]).merging([r.id: 1]) { a, _ in a }
+                    out = o
+                }
+            } else if seens.contains(r.id) {
+                out?.seen?[r.id] = nil
+            }
         }
-        for r in a.dailyResults where r.status != "unsolved" {
+        for r in a.dailyResults where r.status != "unsolved" && days.contains(r.day) {
             let key = String(r.day)
             if r.status == "wrong", let q = out?.daily[key], let mine = daily?[key], mine.id == q.id, mine.on == q.on { daily?[key] = nil }
             out?.daily[key] = nil
@@ -250,28 +265,32 @@ struct PuzzleProgress: Codable, Equatable {
         var o = out ?? Out()
         o.solved = (o.solved ?? [:]).merging(g.out?.solved ?? [:]) { _, b in b }
         o.seen = (o.seen ?? [:]).merging(g.out?.seen ?? [:]) { a, _ in a }
+        for id in (o.solved ?? [:]).keys { o.seen?[id] = nil }   // a queued solve is never also sent as seen
+        for (id, v) in g.unproven ?? [:] where o.solved?[id] == nil { unproven = (unproven ?? [:]).merging([id: v]) { a, _ in a } }
         for (d, row) in g.daily ?? [:] {
             // A day the account already has from Zeist is the day's for good: the guest's row can't take its place.
             if daily?[d] != nil, o.daily[d] == nil { continue }
             guard (daily?[d].map { DailyRecord.merge($0, row) } ?? row) == row else { continue }
             daily = (daily ?? [:]).merging([d: row]) { _, b in b }
-            o.daily[d] = g.out?.daily[d] != nil ? row : nil
+            // Queued only if the guest had it queued; the account's own queued row for the day is left as it is.
+            if g.out?.daily[d] != nil { o.daily[d] = row }
         }
         for (d, v) in g.dailyMissed ?? [:] { dailyMissed = (dailyMissed ?? [:]).merging([d: v]) { a, _ in a } }
         out = o
     }
 
-    /// A copy from before solves carried their proof (builds that kept one progress for the whole device and sent
-    /// nothing). The account counts a solve only with its moves, so a puzzle solved here with no moves kept stays
-    /// solved on this device and goes to the account as seen; it is never offered here as fresh, and solving it again
-    /// in a later round sends it with its proof. A daily row whose puzzle has no proof is not sent: the day stays on
-    /// this device's calendar and is left out of the shared record.
+    /// A copy that never had an answer from the account (a guest's; or one from a build that kept one progress for
+    /// the whole device, sent nothing and kept no moves). The account counts a solve only with its moves, so a puzzle
+    /// solved here with no moves kept stays solved on this device, goes to the account as seen, and is remembered as
+    /// unproven: solving it again sends the solve with its proof. A daily row goes only with its puzzle finished
+    /// (a day whose puzzle went as seen is kept by the account as a miss).
     mutating func queueWhatWasNeverSent() {
         var o = out ?? Out()
-        for d in o.daily.keys { if let id = o.daily[d]?.id, o.solved?[id] == nil, o.seen?[id] == nil { o.daily[d] = nil } }
         for (id, v) in done where o.solved?[id] == nil && o.seen?[id] == nil {
-            if v == 1 || v == 0 { o.seen = (o.seen ?? [:]).merging([id: 1]) { a, _ in a } }
+            o.seen = (o.seen ?? [:]).merging([id: 1]) { a, _ in a }
+            if v == 1 { unproven = (unproven ?? [:]).merging([id: 1]) { a, _ in a } }
         }
+        for d in o.daily.keys { if let id = o.daily[d]?.id, o.solved?[id] == nil, o.seen?[id] == nil { o.daily[d] = nil } }
         out = o
     }
 

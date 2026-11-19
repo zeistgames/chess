@@ -18,6 +18,8 @@ final class FakeZeist {
     var later: Set<String> = []
     var wrong: Set<String> = []
     var newestDay = 1000
+    /// The day's puzzle, where a test names one: a row for that day with another id is "wrong".
+    var dayPuzzle: [Int: String] = [:]
     var owner = "o1"
     var status = 200
     /// Runs while a request is out, before the answer is made.
@@ -48,13 +50,15 @@ final class FakeZeist {
         let sentSolves = Set((b["solved"] as? [[String: Any]] ?? []).map { $0["id"] as! String })
         for r in b["daily"] as? [[String: Any]] ?? [] {
             let day = r["day"] as! Int, id = r["id"] as! String, on = r["on"] as! Int, missed = r["missed"] as! Int
-            guard day >= 0, on >= day, on <= newestDay else { dailyResults.append(["day": day, "status": "wrong"]); continue }
+            // As src/chessPuzzles.ts: out of range or not the day's puzzle is "wrong"; then the puzzle must be finished
+            // on the account ("unsolved"), and only then is a day already kept answered with the row kept.
+            guard day >= 0, on >= day, on <= newestDay, dayPuzzle[day] == nil || dayPuzzle[day] == id else { dailyResults.append(["day": day, "status": "wrong"]); continue }
+            let finished = (solved[id] != nil || seen[id] != nil) && !(sentSolves.contains(id) && !counted.contains(id))
+            guard finished else { dailyResults.append(["day": day, "status": "unsolved"]); continue }
             if let kept = daily[day] {
                 dailyResults.append(["day": day, "status": "kept", "row": ["id": kept.row.id, "missed": kept.row.missed, "on": kept.row.on]])
                 continue
             }
-            let finished = (solved[id] != nil || seen[id] != nil) && !(sentSolves.contains(id) && !counted.contains(id))
-            guard finished else { dailyResults.append(["day": day, "status": "unsolved"]); continue }
             let row = DailyRecord(id: id, missed: solved[id] == nil ? 1 : missed, on: on)
             daily[day] = (row, cursor)
             dailyResults.append(["day": day, "status": "kept", "row": ["id": row.id, "missed": row.missed, "on": row.on]])
@@ -111,13 +115,16 @@ final class PuzzleSyncTests: XCTestCase {
         p.finish("bbbbb", .shown)
         XCTAssertEqual(p.out?.seen, ["bbbbb": 1], "Show the move is seen, with no proof")
         p.take(.init(id: "ccccc", band: 1))
+        let before = p.clock
         p.skip("ccccc")
-        XCTAssertEqual(p.out?.seen, ["bbbbb": 1, "ccccc": 1])
+        XCTAssertEqual(p.out?.seen, ["bbbbb": 1], "Next on an unfinished puzzle sends nothing: leaving is not seeing the answer")
+        XCTAssertEqual(p.done["ccccc"], 0, "it is seen on this device")
         XCTAssertNil(p.current)
+        XCTAssertEqual(p.clock, (before ?? 0) + 1)
         let o = p.outgoing()
         XCTAssertEqual(o.solved.map(\.id), ["aaaaa"])
         XCTAssertEqual(o.solved.first?.moves, ["e2e4", "d2d4"])
-        XCTAssertEqual(o.seen, ["bbbbb", "ccccc"])
+        XCTAssertEqual(o.seen, ["bbbbb"])
     }
 
     func testOneRequestCarriesAtMostAHundredAndSkipsWhatWasPutOff() {
@@ -183,7 +190,10 @@ final class PuzzleSyncTests: XCTestCase {
         let p = PuzzleProgress.load(d, owner: "o1")
         XCTAssertEqual(p.out?.solved, ["aaaaa": "e2e4"], "put off: kept for a later day; refused: gone from the queue")
         XCTAssertEqual(p.done["ccccc"], 1, "a refused solve stays solved on the device")
-        XCTAssertEqual(zeist.requests.count, 1, "the one put off is not sent again in the same sync")
+        XCTAssertEqual(zeist.seen.keys.sorted(), ["ccccc"], "and goes to the account as seen, so the puzzle is finished there")
+        XCTAssertNil(p.out?.seen?["ccccc"])
+        XCTAssertEqual(zeist.requests.count, 2, "the one put off is not sent again in the same sync")
+        XCTAssertEqual((zeist.requests[1]["solved"] as? [Any])?.count, 0)
     }
 
     func testNothingIsSentSignedOutAndAFailedRequestKeepsEverything() async {
@@ -364,25 +374,130 @@ final class PuzzleSyncTests: XCTestCase {
     }
 
     /// A build before this one kept one copy for the whole device, with no proof of its solves and nothing queued.
-    func testSolvesKeptWithoutProofGoToTheAccountAsSeen() async {
+    func testSolvesKeptWithoutProofGoAsSeenUntilTheyAreSolvedAgain() async {
         let (d, sync) = device()
         let old = #"{"step":6,"done":{"s0001":1,"s0002":1,"n0001":0},"current":null,"daily":{"0":{"id":"s0001","missed":0,"on":0}},"out":{"daily":{"0":{"id":"s0001","missed":0,"on":0}}}}"#
         d.set(Data(old.utf8), forKey: PuzzleProgress.key)
         XCTAssertTrue(PuzzleProgress.join(owner: "o1", d))
         var p = PuzzleProgress.load(d, owner: "o1")
         XCTAssertEqual(p.done, ["s0001": 1, "s0002": 1, "n0001": 0], "they stay solved on this device")
+        XCTAssertEqual(p.unproven, ["s0001": 1, "s0002": 1])
         XCTAssertEqual(p.step, 6)
-        XCTAssertEqual(p.daily?["0"]?.id, "s0001", "the day stays on this device's calendar")
         _ = await sync.sync()
         XCTAssertTrue(zeist.solved.isEmpty, "the account counts no solve without its moves")
         XCTAssertEqual(zeist.seen.keys.sorted(), ["n0001", "s0001", "s0002"])
-        XCTAssertTrue(zeist.daily.isEmpty, "and the day without proof is left out of the shared record")
+        XCTAssertEqual(zeist.daily[0]?.row, DailyRecord(id: "s0001", missed: 1, on: 0), "a day whose puzzle went as seen is kept as a miss")
         p = PuzzleProgress.load(d, owner: "o1")
         XCTAssertEqual(p.done["s0001"], 1)
+        XCTAssertEqual(p.daily?["0"], DailyRecord(id: "s0001", missed: 1, on: 0), "and the device shows the day as the account keeps it")
         XCTAssertTrue(p.outgoing().isEmpty)
         // Solved again in a later round, it goes with its proof and counts.
+        change(d) { p in XCTAssertFalse(p.replayFinish("s0002", .solved, moves: "e2e4"), "done does not change: it was solved here already") }
+        XCTAssertEqual(PuzzleProgress.load(d, owner: "o1").out?.solved, ["s0002": "e2e4"])
+        _ = await sync.sync()
+        XCTAssertEqual(zeist.solved.keys.sorted(), ["s0002"])
+        p = PuzzleProgress.load(d, owner: "o1")
+        XCTAssertEqual(p.unproven, ["s0001": 1], "proven now")
+        // A puzzle solved and proven is not queued again by a replay.
         change(d) { $0.replayFinish("s0002", .solved, moves: "e2e4") }
-        XCTAssertEqual(PuzzleProgress.load(d, owner: "o1").out?.solved, nil, "already solved here: a replay queues nothing")
+        XCTAssertNil(PuzzleProgress.load(d, owner: "o1").out?.solved?["s0002"])
+    }
+
+    /// A guest's valid day whose puzzle is in `done` with nothing queued for it (an older copy) still goes.
+    func testAGuestsDayGoesWithItsPuzzleSeen() {
+        var g = PuzzleProgress()
+        g.done = ["d0000": 0]
+        g.daily = ["0": DailyRecord(id: "d0000", missed: 1, on: 0)]
+        g.out = .init(daily: ["0": DailyRecord(id: "d0000", missed: 1, on: 0), "1": DailyRecord(id: "ghost", missed: 0, on: 1)], solved: nil, seen: nil)
+        g.queueWhatWasNeverSent()
+        XCTAssertEqual(g.out?.seen, ["d0000": 1])
+        XCTAssertNotNil(g.out?.daily["0"])
+        XCTAssertNil(g.out?.daily["1"], "a row whose puzzle was never finished here is not sent")
+    }
+
+    /// Show the move, the sync goes out, and the player solves it on Retry before the answer is back: the answer to
+    /// "seen" must not take the queued solve with it.
+    func testASolveMadeWhileItsSeenIsOutIsNotLost() async {
+        let (d, sync) = device()
+        change(d) { $0.finish("aaaaa", .shown) }
+        zeist.during = { [unowned self] in
+            self.zeist.during = nil
+            self.change(d) { $0.replayFinish("aaaaa", .solved, moves: "e2e4", round: false) }
+        }
+        _ = await sync.sync()
+        XCTAssertEqual(zeist.solved.keys.sorted(), ["aaaaa"], "the solve went in the next request")
+        let p = PuzzleProgress.load(d, owner: "o1")
+        XCTAssertTrue(p.outgoing().isEmpty)
+        XCTAssertEqual(p.done["aaaaa"], 1)
+    }
+
+    func testASolveSentWithOtherMovesStaysQueued() {
+        var p = PuzzleProgress()
+        p.finish("aaaaa", .solved, moves: "e2e4")
+        let sent = p.outgoing()
+        p.out?.solved?["aaaaa"] = "d2d4"
+        var a = PuzzleAnswer()
+        a.results = [.init(id: "aaaaa", status: "solved")]
+        p.settle(a, sent: sent)
+        XCTAssertEqual(p.out?.solved, ["aaaaa": "d2d4"])
+        a.results = [.init(id: "zzzzz", status: "seen")]
+        p.out?.seen = ["zzzzz": 1]
+        p.settle(a, sent: sent)
+        XCTAssertEqual(p.out?.seen, ["zzzzz": 1], "an answer for something this request did not carry settles nothing")
+    }
+
+    /// A day's solve the account refuses: the puzzle goes as seen, so the day settles (as a miss) and is not asked
+    /// about on every sync from then on.
+    func testADayWhoseSolveIsRefusedSettlesAsAMiss() async {
+        let (d, sync) = device()
+        zeist.wrong = ["d0004"]
+        change(d) { p in
+            p.solveDaily(day: 4, id: "d0004", missed: false, on: 4)
+            p.finish("d0004", .solved, moves: "e2e4")
+        }
+        _ = await sync.sync()
+        let p = PuzzleProgress.load(d, owner: "o1")
+        XCTAssertTrue(p.outgoing().isEmpty)
+        XCTAssertEqual(zeist.daily[4]?.row, DailyRecord(id: "d0004", missed: 1, on: 4))
+        XCTAssertEqual(p.daily?["4"], DailyRecord(id: "d0004", missed: 1, on: 4))
+        XCTAssertEqual(p.done["d0004"], 1, "still solved on this device")
+    }
+
+    func testARowThatIsNotTheDaysPuzzleIsRefused() async {
+        let (d, sync) = device()
+        zeist.dayPuzzle = [2: "right"]
+        change(d) { p in
+            p.solveDaily(day: 2, id: "other", missed: false, on: 2)
+            p.finish("other", .solved, moves: "e2e4")
+        }
+        _ = await sync.sync()
+        let p = PuzzleProgress.load(d, owner: "o1")
+        XCTAssertNil(p.daily?["2"])
+        XCTAssertTrue(p.outgoing().isEmpty)
+        XCTAssertEqual(p.done["other"], 1)
+    }
+
+    /// The guest's row wins the day but was never queued: the account's own queued row for that day is left alone.
+    func testAGuestRowNeverQueuedDoesNotRemoveTheAccountsQueuedRow() {
+        var mine = PuzzleProgress()
+        mine.daily = ["1": DailyRecord(id: "d0001", missed: 0, on: 3)]
+        mine.out = .init(daily: ["1": DailyRecord(id: "d0001", missed: 0, on: 3)], solved: nil, seen: nil)
+        var g = PuzzleProgress()
+        g.daily = ["1": DailyRecord(id: "d0001", missed: 1, on: 1)]
+        mine.fold(guest: g)
+        XCTAssertEqual(mine.daily?["1"], DailyRecord(id: "d0001", missed: 1, on: 1))
+        XCTAssertEqual(mine.out?.daily["1"], DailyRecord(id: "d0001", missed: 0, on: 3))
+    }
+
+    func testAQueuedSolveIsNeverAlsoSentAsSeenAfterAJoin() {
+        var mine = PuzzleProgress()
+        mine.finish("aaaaa", .shown)
+        var g = PuzzleProgress()
+        g.finish("aaaaa", .solved, moves: "e2e4")
+        mine.fold(guest: g)
+        XCTAssertEqual(mine.out?.solved, ["aaaaa": "e2e4"])
+        XCTAssertNil(mine.out?.seen?["aaaaa"])
+        XCTAssertEqual(mine.done["aaaaa"], 1)
     }
 
     func testEachOwnerHasACopyOfTheirOwn() {

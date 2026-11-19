@@ -31,6 +31,7 @@ import SwiftUI
 ///   -freeze             the engine never answers (it stays "thinking")
 ///   -premove <uci>      with -freeze: a premove already entered
 ///   -engine-name <s>    show the engine under this name (worst cases)
+///   -zeist-site <url>   Zeist is at this address for this run (a test server); with -zeist-token <token>, signed in there
 ///   -human              human mode on (a beaten engine may ask for a draw or resign)
 ///   -review-now         forget the rating request's record; the next good moment asks
 ///   -standard-captures  count captures from the usual start even in a game from a position
@@ -50,6 +51,8 @@ enum Debug {
             GameLog.shared.load()
             UserDefaults.standard.set(!args.contains("-onboarding"), forKey: "onboarded")
         }
+        // With -zeist-site (Hosts.swift): a session of that test server's, in place of signing in through its pages.
+        if args.contains("-zeist-site"), let t = value("-zeist-token") { Keychain.token = t }
         if args.contains("-human") { UserDefaults.standard.set(true, forKey: GameModel.humanKey) }
         if args.contains("-review-now") { ReviewRequest.shared.forceNext() }
         if let t = value("-theme") { UserDefaults.standard.set(t, forKey: Look.key) }

@@ -44,7 +44,9 @@ final class PuzzleSync {
     private var off: Bool {
         #if DEBUG
         // Unit tests drive their own PuzzleSync; UI tests and -reset runs never reach Zeist.
-        if self === Self.shared, NSClassFromString("XCTestCase") != nil || ProcessInfo.processInfo.arguments.contains("-reset") { return true }
+        // A run against a test server named with -zeist-site (Hosts.swift) does sync.
+        let args = ProcessInfo.processInfo.arguments
+        if self === Self.shared, NSClassFromString("XCTestCase") != nil || (args.contains("-reset") && !args.contains("-zeist-site")) { return true }
         #endif
         return false
     }
@@ -109,15 +111,20 @@ final class PuzzleSync {
             // Read again: a puzzle may have been finished while the request was out.
             var q = PuzzleProgress.load(defaults, owner: me.owner)
             let before = q
-            q.settle(a)
+            q.settle(a, sent: o)
             q.merge(a, sent: sent)
             if q != before {
                 q.save(defaults, owner: me.owner)
                 changes += 1
             }
             var settled = 0, later = false
+            // A refused solve is queued as seen and goes in the next request (settle), so it counts as settled.
             for r in a.results { if r.status == "later" { skip.insert(r.id); later = true } else { settled += 1 } }
             for r in a.dailyResults { if r.status == "unsolved" { skip.insert("day:\(r.day)") } else { settled += 1 } }
+            // A day put aside as unsolved goes again in this sync once its puzzle is finished on the account (its
+            // refused solve went as seen in a later request).
+            let finished = Set(a.results.filter { $0.status == "solved" || $0.status == "seen" }.map(\.id))
+            for (d, row) in q.out?.daily ?? [:] where finished.contains(row.id) && !a.dailyResults.contains(where: { String($0.day) == d }) { skip.remove("day:\(d)") }
             // Done when nothing is left to send. An answer that settles nothing of what was sent and puts nothing
             // off ends it too, so a broken answer can't loop; a request that carried nothing goes round again when
             // something was finished while it was out.
