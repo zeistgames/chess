@@ -32,6 +32,8 @@ struct PuzzleScreen: View {
         .task { await model.start() }
         .onAppear { Feel.shared.prepare(); shown() }
         .onChange(of: path) { _, p in if p.isEmpty { shown() } }
+        // The account's answer may bring a day or a puzzle finished on another device.
+        .onChange(of: PuzzleSync.shared.changes) { _, _ in shown() }
         // Today follows the date: midnight, a change of time zone, coming back to the app.
         .onReceive(NotificationCenter.default.publisher(for: .NSCalendarDayChanged)) { _ in today = PuzzleToday.read() }
         .onReceive(NotificationCenter.default.publisher(for: UIApplication.significantTimeChangeNotification)) { _ in today = PuzzleToday.read() }

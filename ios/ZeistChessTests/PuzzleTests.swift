@@ -2,6 +2,7 @@ import XCTest
 @testable import ZeistChess
 
 /// The loader: the one place that knows the file format.
+@MainActor
 final class PuzzleDataTests: XCTestCase {
     func testIndex() {
         let d = Data(#"{"source":"x","bands":[{"band":2,"rating":[900,1099],"count":1,"files":["2-b.json"]},{"band":1,"files":["1-a.json","../up.json"]},{"band":"x"}]}"#.utf8)
@@ -66,6 +67,7 @@ final class PuzzleDataTests: XCTestCase {
 }
 
 /// Difficulty and what comes next.
+@MainActor
 final class PuzzleProgressTests: XCTestCase {
     func testSteps() {
         XCTAssertEqual(PuzzleProgress.bandOf(step: 0), 1)

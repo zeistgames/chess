@@ -159,17 +159,15 @@ enum DailyCalendar {
 }
 
 /// The daily record for one day: the puzzle, whether it took a miss or Show the move first, and the day number it
-/// was solved on. Written only when the puzzle is solved.
+/// was finished on. Written at the first finish of the day's puzzle (Show the move counts, as a miss).
 struct DailyRecord: Codable, Equatable, Sendable {
     var id: String
     var missed: Int
     var on: Int
 
-    /// Two copies of one day (this device's and another's): the earlier solve wins, then the cleaner one.
-    static func merge(_ a: DailyRecord, _ b: DailyRecord) -> DailyRecord {
-        if a.on != b.on { return a.on < b.on ? a : b }
-        return a.missed <= b.missed ? a : b
-    }
+    /// Two copies of one day on a device (a guest's joining an account's): the earlier finish wins, and on the
+    /// same day the one already there (a). Never the one with fewer misses.
+    static func merge(_ a: DailyRecord, _ b: DailyRecord) -> DailyRecord { b.on < a.on ? b : a }
 }
 
 /// Days in a row, the one rule shared with Zeist (its public/s/chess/daily.js; the cases both check against are

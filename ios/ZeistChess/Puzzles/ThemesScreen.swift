@@ -34,6 +34,7 @@ struct ThemesScreen: View {
         .foregroundStyle(Z.ink)
         .toolbar(.hidden, for: .navigationBar)
         .onAppear { count() }
+        .onChange(of: PuzzleSync.shared.changes) { _, _ in count() }
     }
 
     /// Puzzles of each theme solved by this player.

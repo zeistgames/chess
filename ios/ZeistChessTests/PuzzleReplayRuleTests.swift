@@ -3,6 +3,7 @@ import XCTest
 
 /// Zeist's rule for the record and playing the set again (Zeist's docs/PUZZLE-PROGRESS.md, "The record and playing
 /// the set again", and nextInSet and replayFinish in its public/s/chess/puzzle.js), case by case. Audit F17.
+@MainActor
 final class PuzzleReplayRuleTests: XCTestCase {
     private func band(_ n: Int, _ k: Int = 3) -> [Puzzle] {
         (0..<k).map { Puzzle(id: "\(n)-\($0)", fen: "8/8/8/8/8/8/8/K6k w - - 0 1", moves: ["a1a2", "h1h2"], mate: 0, band: n) }

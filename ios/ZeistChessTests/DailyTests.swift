@@ -3,6 +3,7 @@ import XCTest
 
 /// Days in a row: the one rule shared with Zeist, checked against the cases both apps read, puzzles/streak-cases.json
 /// (copied from Zeist with the rest of the set, bundled in the app). Every case must pass.
+@MainActor
 final class DailyStreakTests: XCTestCase {
     struct Cases: Decodable {
         struct Case: Decodable { let name: String; let today: Int; let daily: [String: On]; let streak: Int }
@@ -36,7 +37,7 @@ final class DailyStreakTests: XCTestCase {
         let a = DailyRecord(id: "x", missed: 1, on: 4), b = DailyRecord(id: "x", missed: 0, on: 5), c = DailyRecord(id: "x", missed: 0, on: 4)
         XCTAssertEqual(DailyRecord.merge(a, b), a, "the earlier solve wins")
         XCTAssertEqual(DailyRecord.merge(b, a), a)
-        XCTAssertEqual(DailyRecord.merge(a, c), c, "then the cleaner one")
+        XCTAssertEqual(DailyRecord.merge(a, c), a, "on the same day the one already there, never the cleaner one")
     }
 
     func testSolveDailyKeepsTheBestAndQueuesIt() {
@@ -225,7 +226,9 @@ final class PuzzleSourceTests: XCTestCase {
         XCTAssertNil(r.current)
     }
 
-    func testShowTheMoveLeavesTheDayOpenUntilItIsPlayed() async throws {
+    /// The first finish is the day's for good (Zeist's rule since 2026-11-18): Show the move counts the day, as a miss,
+    /// and a clean solve afterwards is for fun and changes nothing of the day's record.
+    func testShowTheMoveCountsTheDayAsAMiss() async throws {
         let p = try XCTUnwrap(PuzzleSet.shared.daily?.puzzle(1))
         let m = PuzzleModel(source: .daily(day: 1, puzzle: p, start: start), defaults: defaults, pace: 0)
         m.clock = { self.local(2026, 11, 17, 12) }
@@ -235,13 +238,18 @@ final class PuzzleSourceTests: XCTestCase {
         await m.showMove()
         XCTAssertEqual(m.phase, .done)
         var r = PuzzleProgress.load(defaults)
-        XCTAssertNil(r.daily?["1"], "Show the move records nothing for the day")
+        XCTAssertEqual(r.daily?["1"], DailyRecord(id: p.id, missed: 1, on: 1), "Show the move is the day's first finish")
+        XCTAssertEqual(r.out?.daily["1"], DailyRecord(id: p.id, missed: 1, on: 1))
         XCTAssertEqual(r.done[p.id], 0, "the puzzle is seen")
+        XCTAssertEqual(r.out?.seen?[p.id], 1, "and queued as seen")
         XCTAssertTrue(m.canRetry)
+        m.clock = { self.local(2026, 11, 19, 12) }
         await m.retry()
         await solve(m)
         r = PuzzleProgress.load(defaults)
-        XCTAssertEqual(r.daily?["1"]?.missed, 1, "played after the look, the day counts with missed: 1")
+        XCTAssertEqual(r.daily?["1"], DailyRecord(id: p.id, missed: 1, on: 1), "played again, the day's record stays")
+        XCTAssertEqual(r.done[p.id], 1, "the puzzle itself is solved now")
+        XCTAssertNotNil(r.out?.solved?[p.id], "with its moves to send")
         // Opened again later, from the calendar: the miss is still remembered.
         let again = PuzzleModel(source: .daily(day: 1, puzzle: p, start: start), defaults: defaults, pace: 0)
         await again.start()

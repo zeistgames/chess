@@ -69,6 +69,8 @@ struct TodayScreen: View {
             await m.start()
         }
         .onChange(of: model?.phase) { _, _ in progress = PuzzleProgress.load() }
+        // The account's answer may bring days finished on another device.
+        .onChange(of: PuzzleSync.shared.changes) { _, _ in progress = PuzzleProgress.load() }
     }
 
     /// The date may have moved on: read today again, and the record with it.

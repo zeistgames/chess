@@ -1,9 +1,12 @@
 import Foundation
 
-/// Where the player is with puzzles, kept on this device: the step of difficulty, which puzzles have been seen,
-/// and the one in hand. The same rules as Zeist's puzzles (public/s/chess/puzzle.js there): unrated, sixteen quiet
-/// steps, two to each band; up one after a solve with no miss, down one after a solve that took more than one try,
-/// down two after Show the move. Nothing about it is shown.
+/// Where the player is with puzzles: the step of difficulty, which puzzles have been solved or seen, the one in
+/// hand, and the daily puzzle's days. The same rules as Zeist's puzzles (public/s/chess/puzzle.js there): unrated,
+/// sixteen quiet steps, two to each band; up one after a solve with no miss, down one after a solve that took more
+/// than one try, down two after Show the move.
+/// This is the device's working copy, one for each owner (each Zeist account that has signed in here, and the
+/// guest). Signed in, it is shared with Zeist through the account (PuzzleSync; Zeist's docs/PUZZLE-PROGRESS.md is
+/// the contract): `out` is what the account has not yet taken.
 struct PuzzleProgress: Codable, Equatable {
     enum Result: String, Codable { case solved, missed, shown }
 
@@ -15,12 +18,17 @@ struct PuzzleProgress: Codable, Equatable {
     var done: [String: Int] = [:]
     /// The puzzle in hand, so it comes back when Puzzles is opened again.
     var current: Current?
-    /// The daily puzzle, by day number: written when a day's puzzle is solved.
+    /// The daily puzzle, by day number: written at the first finish of a day's puzzle, and then the day's for good.
     var daily: [String: DailyRecord]?
-    /// Days whose puzzle took a miss or Show the move, so a later solve of that day records missed: 1.
+    /// Days whose puzzle took a miss before it was finished, so the finish records missed: 1.
     var dailyMissed: [String: Int]?
-    /// Not yet sent to the account (sending comes later; the shape is Zeist's PUZZLE-PROGRESS.md).
+    /// Not yet taken by the account: solves with the solver's moves as played (the proof), puzzles seen, daily rows.
     var out: Out?
+    /// The logical clock of `step` and `current`: up by one on every change of either. The account keeps the copy
+    /// with the higher clock, so no device's wall clock is trusted.
+    var clock: Int?
+    /// The cursor from the account's last answer.
+    var since: Int?
 
     struct Out: Codable, Equatable {
         var daily: [String: DailyRecord] = [:]
@@ -56,22 +64,34 @@ struct PuzzleProgress: Codable, Equatable {
         return out
     }
 
-    /// A puzzle finished: it is marked, and the step moves. A puzzle solved before stays solved.
-    mutating func finish(_ id: String, _ result: Result) {
+    /// A puzzle finished: it is marked, queued for the account (a solve with its moves, the proof; Show the move as
+    /// seen), and the step moves. A puzzle solved before stays solved.
+    /// moves: the solver's moves as played, separated by spaces.
+    mutating func finish(_ id: String, _ result: Result, moves: String = "") {
         done[id] = result == .shown ? (done[id] ?? 0) : 1
+        var o = out ?? Out()
+        if result == .shown {
+            if o.solved?[id] == nil { o.seen = (o.seen ?? [:]).merging([id: 1]) { a, _ in a } }
+        } else {
+            o.solved = (o.solved ?? [:]).merging([id: moves]) { _, b in b }
+            o.seen?[id] = nil
+        }
+        out = o
         step = Self.nextStep(step, result)
         if current?.id == id { current = nil }
+        touch()
     }
 
-    /// A day's puzzle solved: recorded once, the earlier and cleaner solve kept, and queued to send.
+    /// The first finish of a day's puzzle: solved with or without a miss, or Show the move, which counts as a miss.
+    /// Recorded once and queued to send. Once a day has its record it is the day's for good: playing it again
+    /// records nothing, so a later clean solve never takes a missed day's place.
     mutating func solveDaily(day: Int, id: String, missed: Bool, on: Int) {
         let key = String(day)
+        guard daily?[key] == nil else { return }
         let r = DailyRecord(id: id, missed: missed || dailyMissed?[key] != nil ? 1 : 0, on: on)
-        var d = daily ?? [:]
-        d[key] = d[key].map { DailyRecord.merge($0, r) } ?? r
-        daily = d
+        daily = (daily ?? [:]).merging([key: r]) { a, _ in a }
         var o = out ?? Out()
-        o.daily[key] = o.daily[key].map { DailyRecord.merge($0, r) } ?? d[key]
+        o.daily[key] = o.daily[key].map { DailyRecord.merge($0, r) } ?? r
         out = o
     }
 
@@ -90,8 +110,20 @@ struct PuzzleProgress: Codable, Equatable {
 
     /// A puzzle left before it was finished (Next): seen, and the step stays.
     mutating func skip(_ id: String) {
-        if done[id] == nil { done[id] = 0 }
-        if current?.id == id { current = nil }
+        if done[id] == nil {
+            done[id] = 0
+            var o = out ?? Out()
+            o.seen = (o.seen ?? [:]).merging([id: 1]) { a, _ in a }
+            out = o
+        }
+        if current?.id == id { current = nil; touch() }
+    }
+
+    /// The puzzle in hand changed (one taken up, or its first miss): the clock goes up.
+    mutating func take(_ c: Current?) {
+        guard current != c else { return }
+        current = c
+        touch()
     }
 
     /// The puzzles finished in the current round of playing the set again, as id to 1: this device's own. It is never
@@ -103,10 +135,7 @@ struct PuzzleProgress: Codable, Equatable {
     /// What an earlier build of this app called `again` (a set of ids). Read once by load(), then gone.
     private var replayed: Set<String>?
 
-    // The logical clock of `step` and `current` (PUZZLE-PROGRESS.md, `clock`) is not kept by this app yet. Where the
-    // doc says "clock goes up by 1" (taking up a puzzle, its first miss, finishing it, and in replayFinish below), the
-    // sync client adds `var clock: Int` and does it in touch().
-    private mutating func touch() {}
+    private mutating func touch() { clock = (clock ?? 0) + 1 }
 
     /// The next puzzle (Zeist's nextInSet). The first neither solved nor seen, by the step's band and then the nearest.
     /// band(n) gives a band's puzzles, or nil when a file of it can't be read now: such a band is not known, never used
@@ -150,12 +179,118 @@ struct PuzzleProgress: Codable, Equatable {
         return true
     }
 
+    // MARK: Shared through the account (Zeist's docs/PUZZLE-PROGRESS.md)
+
+    /// What one request carries of `out`: at most `max` items, solves first. skip: ids (and "day:<n>" for daily rows)
+    /// the account put off in this sync, left out so the items after them still go.
+    struct Outgoing: Equatable {
+        var solved: [(id: String, moves: [String])] = []
+        var seen: [String] = []
+        var daily: [(day: Int, row: DailyRecord)] = []
+        var isEmpty: Bool { solved.isEmpty && seen.isEmpty && daily.isEmpty }
+        static func == (a: Outgoing, b: Outgoing) -> Bool {
+            a.solved.map(\.id) == b.solved.map(\.id) && a.solved.map(\.moves) == b.solved.map(\.moves) && a.seen == b.seen
+                && a.daily.map(\.day) == b.daily.map(\.day) && a.daily.map(\.row) == b.daily.map(\.row)
+        }
+    }
+
+    func outgoing(max: Int = 100, skip: Set<String> = []) -> Outgoing {
+        var o = Outgoing()
+        // In a fixed order, so a queue longer than one request goes out the same way each time.
+        for (id, m) in (out?.solved ?? [:]).sorted(by: { $0.key < $1.key }) where !skip.contains(id) && o.solved.count < max {
+            o.solved.append((id, m.split(separator: " ").map(String.init)))
+        }
+        for id in (out?.seen ?? [:]).keys.sorted() where !skip.contains(id) && o.solved.count + o.seen.count < max { o.seen.append(id) }
+        for (d, r) in (out?.daily ?? [:]).sorted(by: { (Int($0.key) ?? 0) < (Int($1.key) ?? 0) }) {
+            guard let day = Int(d), !skip.contains("day:\(d)"), o.solved.count + o.seen.count + o.daily.count < max else { continue }
+            o.daily.append((day, r))
+        }
+        return o
+    }
+
+    /// The account's answers to what was sent. A solve or a seen puzzle it answered (counted, recorded, refused or
+    /// unknown) leaves `out`; one put off ("later") stays. A daily row it kept leaves `out` and the account's row
+    /// for the day takes this device's place; one whose puzzle is not finished on the account yet ("unsolved") stays;
+    /// one refused ("wrong") leaves, and with it this device's own row for that day, so a day played on a clock set
+    /// ahead is not shown as done.
+    mutating func settle(_ a: PuzzleAnswer) {
+        for r in a.results where r.status != "later" {
+            out?.solved?[r.id] = nil
+            out?.seen?[r.id] = nil
+        }
+        for r in a.dailyResults where r.status != "unsolved" {
+            let key = String(r.day)
+            if r.status == "wrong", let q = out?.daily[key], let mine = daily?[key], mine.id == q.id, mine.on == q.on { daily?[key] = nil }
+            out?.daily[key] = nil
+            if r.status == "kept", let row = r.row { daily = (daily ?? [:]).merging([key: row]) { _, b in b } }
+        }
+    }
+
+    /// The account's progress folded in. Solved is a union and wins over seen; the account's daily rows take this
+    /// device's; the cursor moves on. Step and the puzzle in hand become the account's only if nothing changed here
+    /// while the request was out (`sent` is the clock it carried): otherwise the device's stay, and the next sync
+    /// settles it.
+    mutating func merge(_ a: PuzzleAnswer, sent: Int) {
+        for id in a.solved { done[id] = 1 }
+        for (d, r) in a.daily { daily = (daily ?? [:]).merging([d: r]) { _, b in b } }
+        for id in a.seen where done[id] != 1 { done[id] = 0 }
+        if let c = a.cursor { since = c }
+        guard (clock ?? 0) == sent, let theirs = a.clock, let st = a.step else { return }
+        step = Self.clamp(st)
+        // One already finished here is not taken up again.
+        current = a.current.flatMap { c in done[c.id] == nil ? Current(id: c.id, band: c.band ?? current?.band ?? 1, missed: c.missed) : nil }
+        clock = theirs
+    }
+
+    /// Someone signs in on a device that has played signed out: the guest's progress joins the account's copy here.
+    /// `done` is a union with solved winning, and `out` a union. A guest's day joins only where the account has no
+    /// row for it here or its own row is still unsent. The account keeps its own step, clock and `again`.
+    mutating func fold(guest g: PuzzleProgress) {
+        for (id, v) in g.done where v == 1 || done[id] == nil { done[id] = v == 1 ? 1 : 0 }
+        var o = out ?? Out()
+        o.solved = (o.solved ?? [:]).merging(g.out?.solved ?? [:]) { _, b in b }
+        o.seen = (o.seen ?? [:]).merging(g.out?.seen ?? [:]) { a, _ in a }
+        for (d, row) in g.daily ?? [:] {
+            // A day the account already has from Zeist is the day's for good: the guest's row can't take its place.
+            if daily?[d] != nil, o.daily[d] == nil { continue }
+            guard (daily?[d].map { DailyRecord.merge($0, row) } ?? row) == row else { continue }
+            daily = (daily ?? [:]).merging([d: row]) { _, b in b }
+            o.daily[d] = g.out?.daily[d] != nil ? row : nil
+        }
+        for (d, v) in g.dailyMissed ?? [:] { dailyMissed = (dailyMissed ?? [:]).merging([d: v]) { a, _ in a } }
+        out = o
+    }
+
+    /// A copy from before solves carried their proof (builds that kept one progress for the whole device and sent
+    /// nothing). The account counts a solve only with its moves, so a puzzle solved here with no moves kept stays
+    /// solved on this device and goes to the account as seen; it is never offered here as fresh, and solving it again
+    /// in a later round sends it with its proof. A daily row whose puzzle has no proof is not sent: the day stays on
+    /// this device's calendar and is left out of the shared record.
+    mutating func queueWhatWasNeverSent() {
+        var o = out ?? Out()
+        for d in o.daily.keys { if let id = o.daily[d]?.id, o.solved?[id] == nil, o.seen?[id] == nil { o.daily[d] = nil } }
+        for (id, v) in done where o.solved?[id] == nil && o.seen?[id] == nil {
+            if v == 1 || v == 0 { o.seen = (o.seen ?? [:]).merging([id: 1]) { a, _ in a } }
+        }
+        out = o
+    }
+
     // MARK: Kept on this device
 
     static let key = "puzzles.progress"
+    /// One copy for each owner: the guest's under the plain key, an account's under its owner tag.
+    static func key(owner: String?) -> String { owner.map { "\(key).\($0)" } ?? key }
 
-    static func load(_ defaults: UserDefaults = .standard) -> PuzzleProgress {
-        guard let d = defaults.data(forKey: key), let p = try? JSONDecoder().decode(PuzzleProgress.self, from: d) else { return PuzzleProgress() }
+    /// The copy of whoever is signed in now, or the guest's.
+    @MainActor static func load(_ defaults: UserDefaults = .standard) -> PuzzleProgress { load(defaults, owner: Account.shared.owner) }
+    @MainActor func save(_ defaults: UserDefaults = .standard) { save(defaults, owner: Account.shared.owner) }
+
+    static func stored(_ defaults: UserDefaults, owner: String?) -> PuzzleProgress? {
+        defaults.data(forKey: key(owner: owner)).flatMap { try? JSONDecoder().decode(PuzzleProgress.self, from: $0) }
+    }
+
+    static func load(_ defaults: UserDefaults, owner: String?) -> PuzzleProgress {
+        guard let p = stored(defaults, owner: owner) else { return PuzzleProgress() }
         var out = p
         out.step = clamp(p.step)
         if let r = p.replayed {
@@ -167,8 +302,79 @@ struct PuzzleProgress: Codable, Equatable {
         return out
     }
 
-    func save(_ defaults: UserDefaults = .standard) {
-        if let d = try? JSONEncoder().encode(self) { defaults.set(d, forKey: Self.key) }
+    func save(_ defaults: UserDefaults, owner: String?) {
+        if let d = try? JSONEncoder().encode(self) { defaults.set(d, forKey: Self.key(owner: owner)) }
+    }
+
+    /// Signing in on a device that has played signed out: the guest's copy joins the account's and is cleared. If the
+    /// account has nothing on this device yet, the guest's copy, step and `again` included, becomes the account's.
+    /// Nothing happens when there is no guest copy, so this is safe to call at every sign-in and launch.
+    /// Answers whether anything joined.
+    @discardableResult
+    static func join(owner: String, _ defaults: UserDefaults = .standard) -> Bool {
+        guard stored(defaults, owner: nil) != nil else { return false }
+        var g = load(defaults, owner: nil)
+        // A guest's copy never has an answer from the account: whatever it holds with nothing queued was never sent.
+        g.queueWhatWasNeverSent()
+        var mine: PuzzleProgress
+        if stored(defaults, owner: owner) != nil {
+            mine = load(defaults, owner: owner)
+            mine.fold(guest: g)
+        } else {
+            mine = g
+            mine.since = nil
+        }
+        mine.save(defaults, owner: owner)
+        defaults.removeObject(forKey: key(owner: nil))
+        return true
+    }
+}
+
+/// The account's answer to a sync (GET or POST /api/chess/puzzles/progress), read leniently: a field that is missing
+/// or of the wrong kind is left out, never fatal.
+struct PuzzleAnswer: Equatable {
+    struct Current: Equatable { var id: String; var band: Int?; var missed: Bool }
+    struct Result: Equatable { var id: String; var status: String }
+    struct DailyResult: Equatable { var day: Int; var status: String; var row: DailyRecord? }
+
+    var step: Int?
+    var current: Current?
+    var clock: Int?
+    var solved: [String] = []
+    var seen: [String] = []
+    var daily: [String: DailyRecord] = [:]
+    var cursor: Int?
+    var results: [Result] = []
+    var dailyResults: [DailyResult] = []
+
+    init() {}
+
+    init?(_ data: Data) {
+        guard let o = try? JSONSerialization.jsonObject(with: data) as? [String: Any], o["ok"] as? Bool == true else { return nil }
+        func int(_ v: Any?) -> Int? {
+            guard let n = v as? NSNumber, CFGetTypeID(n) != CFBooleanGetTypeID(), n.doubleValue == n.doubleValue.rounded() else { return nil }
+            return n.intValue
+        }
+        func flag(_ v: Any?) -> Bool { (v as? NSNumber)?.boolValue ?? false }
+        func row(_ v: Any?) -> DailyRecord? {
+            guard let r = v as? [String: Any], let id = r["id"] as? String, let on = int(r["on"]) else { return nil }
+            return DailyRecord(id: id, missed: flag(r["missed"]) ? 1 : 0, on: on)
+        }
+        step = int(o["step"])
+        clock = int(o["clock"])
+        cursor = int(o["cursor"])
+        if let c = o["current"] as? [String: Any], let id = c["id"] as? String { current = Current(id: id, band: int(c["band"]), missed: flag(c["missed"])) }
+        solved = (o["solved"] as? [Any] ?? []).compactMap { $0 as? String }
+        seen = (o["seen"] as? [Any] ?? []).compactMap { $0 as? String }
+        for (d, v) in o["daily"] as? [String: Any] ?? [:] { if let n = Int(d), n >= 0, let r = row(v) { daily[String(n)] = r } }
+        results = (o["results"] as? [Any] ?? []).compactMap {
+            guard let r = $0 as? [String: Any], let id = r["id"] as? String, let s = r["status"] as? String else { return nil }
+            return Result(id: id, status: s)
+        }
+        dailyResults = (o["daily_results"] as? [Any] ?? []).compactMap {
+            guard let r = $0 as? [String: Any], let day = int(r["day"]), day >= 0, let s = r["status"] as? String else { return nil }
+            return DailyResult(day: day, status: s, row: row(r["row"]))
+        }
     }
 }
 

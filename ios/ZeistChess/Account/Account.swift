@@ -6,7 +6,8 @@ import UIKit
 
 /// Signing in to Zeist. The sign-in runs on Zeist's site (Hosts.primary) in the system's secure sign-in window, which hands back a
 /// one-time code through the zeist:// scheme; the code is swapped for a session token, kept in the Keychain.
-/// Nothing is uploaded in this version: signed in, games in the log carry the account's owner tag.
+/// Signed in, games in the log carry the account's owner tag, and puzzle progress and the daily puzzle are shared
+/// with Zeist through the account (PuzzleSync).
 @MainActor @Observable
 final class Account: NSObject, ASWebAuthenticationPresentationContextProviding {
     static let shared = Account()
@@ -56,6 +57,8 @@ final class Account: NSObject, ASWebAuthenticationPresentationContextProviding {
         if Keychain.token != nil, let data = UserDefaults.standard.data(forKey: "account.me") {
             me = try? JSONDecoder().decode(Me.self, from: data)
         }
+        // Puzzles played signed out (or by a build that kept one copy for the device) join the account's copy.
+        if let owner = me?.owner { PuzzleProgress.join(owner: owner) }
     }
 
     /// Checks the token with Zeist. A token it no longer knows signs you out; offline keeps what was known.
@@ -105,7 +108,12 @@ final class Account: NSObject, ASWebAuthenticationPresentationContextProviding {
     private func keep(_ u: Me) {
         me = u
         UserDefaults.standard.set(try? JSONEncoder().encode(u), forKey: "account.me")
-        if let owner = u.owner { GameLog.shared.stamp(owner: owner, handle: u.handle) }
+        if let owner = u.owner {
+            GameLog.shared.stamp(owner: owner, handle: u.handle)
+            // Whoever signs in takes over the guest's puzzle progress on this device; then the account's is fetched.
+            PuzzleProgress.join(owner: owner)
+            Task { await PuzzleSync.shared.sync() }
+        }
     }
 
     private func forget() {

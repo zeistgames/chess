@@ -107,7 +107,7 @@ final class PuzzleModel: BoardModel {
     var canRetry: Bool { puzzle != nil && (played.count > 1 || phase == .done) && phase != .reply && phase != .wrong && phase != .intro }
     var canNext: Bool { phase != .loading && phase != .intro && !isDaily }
     var isDaily: Bool { if case .daily = source { true } else { false } }
-    /// Daily: the day's puzzle is solved (on this device).
+    /// Daily: the day has its record (its puzzle was finished, here or on another device).
     var daySolved: Bool {
         guard case .daily(let day, _, _) = source else { return false }
         return progress.daily?[String(day)] != nil
@@ -130,7 +130,7 @@ final class PuzzleModel: BoardModel {
         }
         set {
             switch source {
-            case .all: progress.current = newValue
+            case .all: progress.take(newValue)
             case .theme(let t): ThemeInHand.save(newValue.map { ThemeInHand(group: t.id, id: $0.id, band: $0.band, missed: $0.missed) }, defaults)
             case .daily: break
             }
@@ -228,6 +228,8 @@ final class PuzzleModel: BoardModel {
             await begin(p); return
         }
         #endif
+        // Another device may have moved on: the account's answer is waited for briefly before a puzzle is chosen.
+        await PuzzleSync.shared.settleBriefly()
         fresh()
         switch source {
         case .daily(_, let p, _):
@@ -264,7 +266,7 @@ final class PuzzleModel: BoardModel {
     func next() async {
         guard !isDaily else { return }
         fresh()
-        if let p = puzzle, result == nil { progress.skip(p.id); inHand = nil }
+        if let p = puzzle, result == nil { progress.skip(p.id); inHand = nil; PuzzleSync.shared.soon() }
         if case .theme(let t) = source {
             progress.save(defaults)
             if let p = nextInTheme(t) { await begin(p) } else { allDone(t) }
@@ -296,7 +298,7 @@ final class PuzzleModel: BoardModel {
     func retry() async {
         guard let p = puzzle, canRetry else { return }
         Feel.shared.select()
-        // A day's puzzle seen through Show the move stays open: played again, it can still be solved for the day.
+        // A day's puzzle can be played again for fun; its record stays as the first finish left it.
         if isDaily { usedShow = false }
         await begin(p, missed: missed, again: true)
     }
@@ -463,10 +465,11 @@ final class PuzzleModel: BoardModel {
         let r: PuzzleProgress.Result = usedShow ? .shown : missed ? .missed : .solved
         result = r
         fresh()
-        // A day's puzzle is recorded for its day only when it is solved (after a miss or a look at the move, missed: 1).
-        if case .daily(let day, _, let start) = source, r != .shown {
+        // A day's puzzle is recorded for its day at its first finish: solved, with or without a miss, or Show the
+        // move, which counts as a miss. A day that has its record keeps it (solveDaily changes nothing then).
+        if case .daily(let day, _, let start) = source {
             let on = DailyCalendar.day(at: clock(), start: start) ?? day
-            progress.solveDaily(day: day, id: p.id, missed: missed, on: on)
+            progress.solveDaily(day: day, id: p.id, missed: missed || r == .shown, on: on)
             progress.save(defaults)
         }
         // The solver's moves as played: every other move after the opponent's first.
@@ -488,7 +491,7 @@ final class PuzzleModel: BoardModel {
             progress.save(defaults)
         }
         if !counted {
-            progress.finish(p.id, r)
+            progress.finish(p.id, r, moves: moves)
             inHand = nil
             progress.save(defaults)
             counted = true
@@ -496,7 +499,8 @@ final class PuzzleModel: BoardModel {
         }
         phase = .done
         selected = nil
-        line = r == .shown ? (isDaily ? "That was the line. Retry to solve it for this day." : "That was the line.") : "Solved."
+        line = r == .shown ? "That was the line." : "Solved."
+        PuzzleSync.shared.soon()
         if r != .shown { Feel.shared.won() }
     }
 
