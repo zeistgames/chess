@@ -63,6 +63,38 @@ struct Root: View {
     @State private var session = Session.shared
     @AppStorage("onboarded") private var onboarded = false
     @Environment(\.scenePhase) private var phase
+    /// The consent line is up (Measure.swift).
+    @State private var asking = false
+
+    /// Asked once, where the law needs permission before usage may be measured; the same line as the main Zeist app's.
+    private var consent: some View {
+        HStack(spacing: 12) {
+            Text("May we count your visits?").font(Z.text(14)).foregroundStyle(Z.ink.opacity(0.8))
+            Spacer(minLength: 4)
+            // The pills are drawn 34 tall; each touch is 44, reaching 5 points past the pill above and below.
+            Button { answer(false) } label: {
+                Text("No").font(Z.medium(13)).foregroundStyle(Z.ink).padding(.horizontal, 14).frame(minWidth: 44).frame(height: 34).overlay(Capsule().stroke(Z.hair))
+                    .padding(.vertical, 5).contentShape(Rectangle())
+            }
+            .buttonStyle(.plain).padding(.vertical, -5).accessibilityIdentifier("consent-no")
+            Button { answer(true) } label: {
+                Text("Yes").font(Z.medium(13)).foregroundStyle(Z.ground).padding(.horizontal, 14).frame(minWidth: 44).frame(height: 34).background(Capsule().fill(Z.ink))
+                    .padding(.vertical, 5).contentShape(Rectangle())
+            }
+            .buttonStyle(.plain).padding(.vertical, -5).accessibilityIdentifier("consent-yes")
+        }
+        .padding(.leading, 18).padding(.trailing, 8).padding(.vertical, 8)
+        .background(Capsule().fill(.ultraThinMaterial).overlay(Capsule().fill(Z.raised.opacity(0.8))))
+        .overlay(Capsule().strokeBorder(Z.hair, lineWidth: 1))
+        .frame(maxWidth: 460)
+        .padding(.horizontal, 16)
+        .accessibilityElement(children: .contain)
+    }
+
+    private func answer(_ yes: Bool) {
+        Measure.answer(yes)
+        withAnimation(.spring(duration: 0.35)) { asking = false }
+    }
 
     var body: some View {
         NavigationStack(path: $path) {
@@ -92,6 +124,16 @@ struct Root: View {
                 }
         }
         .background(Z.ground.ignoresSafeArea())
+        .overlay(alignment: .bottom) {
+            if asking && path.isEmpty && onboarded {
+                consent.padding(.bottom, 64).transition(.move(edge: .bottom).combined(with: .opacity))
+            }
+        }
+        .task(id: onboarded) {
+            guard onboarded, Measure.shouldAsk else { return }
+            try? await Task.sleep(for: .seconds(2.5))
+            if Measure.shouldAsk { withAnimation(.spring(duration: 0.4)) { asking = true } }
+        }
         .fullScreenCover(isPresented: Binding(get: { !onboarded }, set: { if !$0 { onboarded = true } })) {
             Onboarding { onboarded = true }
         }

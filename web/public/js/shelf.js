@@ -113,6 +113,19 @@ export async function offerWhenListed(id) {
 }
 export function download(id) { return downloads.get(id) || null; }
 
+/** Zeist Chess's source. */
+export const REPOSITORY = 'https://github.com/zeistgames/chess';
+/** Where a pack's source is: its folder in the repository, which names the upstream version, carries the changes made
+ *  to it and the steps that build it. The upstream address alone (the manifest's `source`) leaves those out. */
+export function packSource(id) { return `${REPOSITORY}/tree/main/engines/${id}`; }
+/** The licenses to show beside an engine: the program's, and the network's where it has one under other terms. */
+export function licensesOf(m) {
+  if (!m.license) return '';
+  const program = m.license.replace(/ AND /g, ', ');
+  const n = m.net_license;
+  return !n || n === 'none' || n === m.license ? program : `${program}. Network: ${n}`;
+}
+
 export function bytesOf(m) { return m.total_bytes || (m.files || []).reduce((a, f) => a + f.bytes, 0); }
 
 /** Bytes kept by downloaded packs (as their manifests count them). */

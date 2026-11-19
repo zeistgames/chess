@@ -26,6 +26,14 @@ check(material.canMate('w', board('kb6/8/2K5/8/8/8/8/B7 b - - 0 1')) === false, 
 check(material.canMate('w', board('k7/8/2K5/8/8/8/B7/B7 b - - 0 1')) === true, 'F19 two bishops on opposite colors');
 check(material.canMate('w', board('k1b5/8/2K5/8/8/8/8/B7 b - - 0 1')) === true, 'F19 bishops of opposite colors, one each');
 check(material.canMate('w', board('kn6/8/2K5/8/8/8/1B6/B7 b - - 0 1')) === true, 'F19 a knight to block with');
+// What Settings shows beside an engine (review of 2026-11-19, 18): both licenses, and its own folder as the source.
+try {
+  const shelf = await import(web + '/js/shelf.js');
+  check(shelf.licensesOf({ license: 'GPL-3.0-or-later', net_license: 'CC0-1.0' }) === 'GPL-3.0-or-later. Network: CC0-1.0', 'an engine names its network license when it differs');
+  check(shelf.licensesOf({ license: 'MIT', net_license: 'MIT' }) === 'MIT' && shelf.licensesOf({ license: 'GPL-3.0-or-later', net_license: 'none' }) === 'GPL-3.0-or-later', 'the same license, or no network, is named once');
+  check(shelf.licensesOf({ license: 'A AND B' }) === 'A, B', 'several program licenses read as a list');
+  check(shelf.packSource('fairy-stockfish') === 'https://github.com/zeistgames/chess/tree/main/engines/fairy-stockfish', 'Source is the pack folder, with its patch and build steps');
+} catch (e) { console.log('FAIL could not load shelf.js: ' + e.message); fails++; }
 try {
   const { Clock } = await import(web + '/js/play.js');
   const c = new Clock({ base: 60, increment: 2 }, [10, 60000], 'w');

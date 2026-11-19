@@ -22,6 +22,19 @@ struct Manifest: Codable, Hashable, Sendable, Identifiable {
 
     var bytes: Int { total_bytes ?? files.reduce(0) { $0 + $1.bytes } }
 
+    /// The licenses to show beside the engine: the program's, and the network's where it has one under other terms
+    /// ("GPL-3.0-or-later. Network: CC0-1.0").
+    var licenses: String? {
+        guard let l = license else { return nil }
+        let program = l.replacingOccurrences(of: " AND ", with: ", ")
+        guard let n = net_license, n != "none", n != l else { return program }
+        return "\(program). Network: \(n)"
+    }
+
+    /// Where this pack's source is: its folder in Zeist Chess's repository, which names the upstream version, carries
+    /// the changes made to it and the steps that build it. The upstream address alone (`source`) leaves those out.
+    var sourcePage: URL { Hosts.repository.appending(path: "tree/main/engines/\(id)") }
+
     /// The ratings this engine can be set to directly, on its own scale; nil when it has no such setting.
     var ratings: ClosedRange<Int>? {
         guard case .object(var o)? = strength else { return nil }

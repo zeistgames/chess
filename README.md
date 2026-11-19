@@ -85,7 +85,7 @@ Engines need Emscripten 6.0.9; see [`engines/README.md`](engines/README.md). The
 
 Engines, puzzles and lessons run on your device, and nothing needs an account. Two things leave the iPhone app unless you turn them off in Settings:
 
-- **Usage counts**, through Google Analytics, built without the advertising identifier: how often the app is opened, which engines and puzzles are played, how games end. Never your moves or your name.
+- **Usage counts**, through Google Analytics, built without the advertising identifier: how often the app is opened, which engines and puzzles are played, how games end. Never your moves or your name. Where the law asks for permission first (the EEA, the UK and Switzerland), the app asks once and counts nothing until you say yes.
 - **Finished games against the Zeist engine**, to make that engine better: the moves, the level, the result and the clock. They are sent with no account and nothing about you or your device. Signed in, the choice on your Zeist account also counts.
 
 What is sent is written out in [`ios/ZeistChess/App/Measure.swift`](ios/ZeistChess/App/Measure.swift) and [`ios/ZeistChess/Log/EngineGames.swift`](ios/ZeistChess/Log/EngineGames.swift). A build you make yourself has no analytics (the configuration file is not in this repository); game sharing works the same and has the same switch.

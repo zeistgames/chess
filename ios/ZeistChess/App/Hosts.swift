@@ -8,6 +8,8 @@ enum Hosts {
     static let short = "zei.st"
 
     static let site = URL(string: "https://\(primary)")!
+    /// Zeist Chess's source.
+    static let repository = URL(string: "https://github.com/zeistgames/chess")!
     /// A page or an API path on the site: Hosts.page("privacy") is https://<primary>/privacy.
     static func page(_ path: String) -> URL { site.appending(path: path) }
 }

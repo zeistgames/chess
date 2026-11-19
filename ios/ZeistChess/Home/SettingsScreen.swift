@@ -9,7 +9,7 @@ struct SettingsScreen: View {
     @AppStorage(GameModel.queenKey) private var autoQueen = false
     @AppStorage(GameModel.humanKey) private var humanMode = false
     @AppStorage(GameModel.paceKey) private var pace = true
-    @AppStorage(Measure.key) private var measure = true
+    @State private var measure = Measure.on
     #if DEBUG
     @State private var reviewForced = false
     #endif
@@ -109,7 +109,7 @@ struct SettingsScreen: View {
                 section("Privacy")
                 VStack(alignment: .leading, spacing: 0) {
                     toggle("Share usage with Zeist", $measure).accessibilityIdentifier("measure")
-                        .onChange(of: measure) { _, _ in Measure.apply() }
+                        .onChange(of: measure) { _, on in Measure.answer(on) }
                     Text("How often the app is opened, which engines and puzzles are played, and how games end, measured with Google Analytics so Zeist Chess can be made better. Never your moves, your name or an advertising identifier.")
                         .font(Z.text(13.5)).foregroundStyle(Z.dim).fixedSize(horizontal: false, vertical: true).padding(.top, 4)
                     rule.padding(.top, 12)
@@ -128,7 +128,7 @@ struct SettingsScreen: View {
                 VStack(alignment: .leading, spacing: 10) {
                     Text("Zeist Chess is open source under the GNU Affero General Public License, version 3 or later.")
                         .font(Z.text(14.5)).foregroundStyle(Z.soft).fixedSize(horizontal: false, vertical: true)
-                    Link(destination: URL(string: "https://github.com/zeistgames/chess")!) {
+                    Link(destination: Hosts.repository) {
                         Text("github.com/zeistgames/chess").font(Z.text(15)).underline()
                     }
                     Link("Rate Zeist Chess", destination: ReviewRequest.writeReview).buttonStyle(Pill(small: true))
@@ -336,15 +336,15 @@ struct EngineRow: View {
                 if let line = m.line { Text(line).font(Z.text(14)).foregroundStyle(Z.soft).lineLimit(2).truncationMode(.tail).fixedSize(horizontal: false, vertical: true) }
                 HStack(spacing: 5) {
                     Text(size).lineLimit(1)
-                    if let s = m.source, let url = URL(string: s) {
-                        Text("·")
-                        Link(destination: url) { Text("Source").underline() }
-                    }
+                    Text("·")
+                    Link(destination: m.sourcePage) { Text("Source").underline() }
                 }
                 .font(Z.text(12.5)).foregroundStyle(Z.dim)
-                if let l = m.license {
-                    Text(l.replacingOccurrences(of: " AND ", with: ", ")).font(Z.text(12.5)).foregroundStyle(Z.dim)
-                        .lineLimit(2).fixedSize(horizontal: false, vertical: true)
+                if let l = m.licenses {
+                    Text(l).font(Z.text(12.5)).foregroundStyle(Z.dim).lineLimit(3).fixedSize(horizontal: false, vertical: true)
+                }
+                if let a = m.author {
+                    Text(a).font(Z.text(12.5)).foregroundStyle(Z.dim).lineLimit(2).fixedSize(horizontal: false, vertical: true)
                 }
                 if case .failed(let why) = state {
                     Text("\(why) Try again.").font(Z.text(13)).foregroundStyle(Z.soft)

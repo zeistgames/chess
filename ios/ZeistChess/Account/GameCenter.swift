@@ -3,8 +3,8 @@ import SwiftUI
 
 /// Zeist Chess's Game Center achievements (ios/GameCenter/achievements.json): feats against the engines and in
 /// puzzles. None rewards a streak, a daily visit or speed, and none names a level number.
-/// What has been earned is kept on this iPhone and is the truth; Game Center mirrors it when the player is signed
-/// in there. The app never asks anyone to sign in to Game Center.
+/// What has been earned is kept on this iPhone and is the truth (FeatLedger, apart for each Game Center player);
+/// Game Center mirrors it when the player is signed in there. The app never asks anyone to sign in to Game Center.
 @MainActor
 enum Feats {
     static let engines = ["stockfish-lite", "stockfish", "fairy-stockfish", "maia", "arasan", "clover", "caissa", "plentychess",
@@ -54,19 +54,79 @@ enum Feats {
     }
 }
 
+/// What has been earned and counted, kept on this iPhone apart for each Game Center player, so one player's
+/// feats are never sent under another's name on a shared iPad. With nobody signed in to Game Center it is kept
+/// under the device itself. The first Game Center player this device sees takes the device's share, then and
+/// whenever they come back; any other player starts from nothing and is never given it.
+@MainActor
+struct FeatLedger {
+    static let device = "device"
+    let defaults: UserDefaults
+    init(_ defaults: UserDefaults = .standard) { self.defaults = defaults }
+
+    /// The device's own share keeps the names it had before players were kept apart.
+    private func key(_ name: String, _ owner: String) -> String { owner == Self.device ? "feats.\(name)" : "feats.\(name).\(owner)" }
+    func set(_ name: String, _ owner: String) -> Set<String> { Set(defaults.stringArray(forKey: key(name, owner)) ?? []) }
+    func put(_ name: String, _ owner: String, _ v: Set<String>) { defaults.set(v.sorted(), forKey: key(name, owner)) }
+    func puzzles(_ owner: String) -> Int { defaults.integer(forKey: key("puzzles", owner)) }
+    func putPuzzles(_ owner: String, _ n: Int) { defaults.set(n, forKey: key("puzzles", owner)) }
+
+    /// The Game Center player the device's share belongs to: the first one seen here.
+    var claimant: String? { defaults.string(forKey: "feats.claimant") }
+
+    /// A Game Center player is signed in. If the device's share is theirs it joins their own, with whatever the
+    /// joined counts now earn. Answers everything this player has earned, to mirror to Game Center.
+    func signedIn(_ player: String) -> Set<String> {
+        if claimant == nil { defaults.set(player, forKey: "feats.claimant") }
+        guard claimant == player else { return set("earned", player) }
+        let d = Self.device
+        var earned = set("earned", player).union(set("earned", d))
+        let met = set("met", player).union(set("met", d)), beaten = set("beaten", player).union(set("beaten", d))
+        let n = puzzles(player) + puzzles(d)
+        earned.formUnion(Feats.shelf(met: met, beaten: beaten))
+        earned.formUnion(Feats.puzzles(solved: n, hardFirstTry: false))
+        put("earned", player, earned); put("met", player, met); put("beaten", player, beaten); putPuzzles(player, n)
+        for name in ["earned", "met", "beaten", "puzzles"] { defaults.removeObject(forKey: key(name, d)) }
+        return earned
+    }
+
+    /// A finished game, for this owner. Answers what it newly earned.
+    func gameEnded(_ g: GameRecord, strongest: Bool, owner: String) -> Set<String> {
+        guard g.ending != "abandoned" else { return [] }
+        var met = set("met", owner), beaten = set("beaten", owner)
+        if !g.fromPosition {
+            met.insert(g.engineID)
+            if g.outcome == "win" { beaten.insert(g.engineID) }
+            put("met", owner, met); put("beaten", owner, beaten)
+        }
+        return award(Feats.earned(by: g, strongest: strongest).union(Feats.shelf(met: met, beaten: beaten)), owner)
+    }
+
+    /// A puzzle solved by this owner (with or without a miss first), not shown. Answers what it newly earned.
+    func puzzleSolved(firstTry: Bool, band: Int, owner: String) -> Set<String> {
+        let n = puzzles(owner) + 1
+        putPuzzles(owner, n)
+        return award(Feats.puzzles(solved: n, hardFirstTry: firstTry && band == 8), owner)
+    }
+
+    private func award(_ ids: Set<String>, _ owner: String) -> Set<String> {
+        let had = set("earned", owner)
+        let fresh = ids.subtracting(had)
+        if !fresh.isEmpty { put("earned", owner, had.union(fresh)) }
+        return fresh
+    }
+}
+
 @MainActor @Observable
 final class GameCenter {
     static let shared = GameCenter()
-    private let defaults = UserDefaults.standard
-    private(set) var signedIn = false
-
-    private var earned: Set<String> {
-        get { Set(defaults.stringArray(forKey: "feats.earned") ?? []) }
-        set { defaults.set(newValue.sorted(), forKey: "feats.earned") }
-    }
-    private func set(_ key: String) -> Set<String> { Set(defaults.stringArray(forKey: key) ?? []) }
+    private let ledger = FeatLedger()
+    /// The Game Center player signed in now (Apple's id for them in this game), or nil.
+    private var player: String?
+    var signedIn: Bool { player != nil }
 
     /// Listens for the player's Game Center sign-in. If they are not signed in, nothing is shown and nothing asked.
+    /// Apple calls this again when the player signs out or another signs in.
     func start() {
         #if DEBUG
         if NSClassFromString("XCTestCase") != nil || ProcessInfo.processInfo.arguments.contains("-reset") { return }
@@ -74,41 +134,30 @@ final class GameCenter {
         GKLocalPlayer.local.authenticateHandler = { [weak self] _, _ in
             Task { @MainActor in
                 guard let self else { return }
-                self.signedIn = GKLocalPlayer.local.isAuthenticated
-                if self.signedIn { self.report(self.earned, banner: false) }
+                let local = GKLocalPlayer.local
+                self.player = local.isAuthenticated ? local.gamePlayerID : nil
+                if let p = self.player { self.report(self.ledger.signedIn(p), for: p, banner: false) }
             }
         }
     }
 
     func gameEnded(_ g: GameRecord, strongest: Bool) {
-        guard g.ending != "abandoned" else { return }
-        var met = set("feats.met"), beaten = set("feats.beaten")
-        if !g.fromPosition {
-            met.insert(g.engineID)
-            if g.outcome == "win" { beaten.insert(g.engineID) }
-            defaults.set(met.sorted(), forKey: "feats.met")
-            defaults.set(beaten.sorted(), forKey: "feats.beaten")
-        }
-        award(Feats.earned(by: g, strongest: strongest).union(Feats.shelf(met: met, beaten: beaten)))
+        let fresh = ledger.gameEnded(g, strongest: strongest, owner: player ?? FeatLedger.device)
+        if let p = player { report(fresh, for: p, banner: true) }
     }
 
     /// solved: the puzzle was solved by the player (with or without a miss first), not shown.
     func puzzleDone(solved: Bool, firstTry: Bool, band: Int) {
         guard solved else { return }
-        let n = defaults.integer(forKey: "feats.puzzles") + 1
-        defaults.set(n, forKey: "feats.puzzles")
-        award(Feats.puzzles(solved: n, hardFirstTry: firstTry && band == 8))
+        let fresh = ledger.puzzleSolved(firstTry: firstTry, band: band, owner: player ?? FeatLedger.device)
+        if let p = player { report(fresh, for: p, banner: true) }
     }
 
-    private func award(_ ids: Set<String>) {
-        let fresh = ids.subtracting(earned)
-        guard !fresh.isEmpty else { return }
-        earned.formUnion(fresh)
-        report(fresh, banner: true)
-    }
-
-    private func report(_ ids: Set<String>, banner: Bool) {
-        guard signedIn, !ids.isEmpty else { return }
+    /// Sends achievements to Game Center for the player who earned them, and only while that player is still the
+    /// one signed in.
+    private func report(_ ids: Set<String>, for owner: String, banner: Bool) {
+        let local = GKLocalPlayer.local
+        guard !ids.isEmpty, local.isAuthenticated, local.gamePlayerID == owner else { return }
         let list = ids.map { id -> GKAchievement in
             let a = GKAchievement(identifier: id)
             a.percentComplete = 100

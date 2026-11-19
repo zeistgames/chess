@@ -674,7 +674,7 @@ async function settingsScreen(anchor) {
 
   <h2 class="label">About</h2>
   <p class="soft">Zeist Chess is open source under the GNU Affero General Public License, version 3 or later.</p>
-  <p><a class="link" href="https://github.com/zeistgames/chess" rel="noopener">github.com/zeistgames/chess</a></p>
+  <p><a class="link" href="${shelf.REPOSITORY}" rel="noopener">github.com/zeistgames/chess</a></p>
   <dl class="credits">
     <dt>Rules</dt><dd>chess.js by Jeff Hlywa. BSD-2-Clause.</dd>
     <dt>Pieces</dt><dd>${SETS.sets.map(s => `${esc(s.name)}, by ${esc(s.author)}. ${esc(s.license)}. <a class="link" href="${esc(s.source)}" rel="noopener">Source</a>`).join('<br>')}<br>Each set is lit in ivory and ebony.</dd>
@@ -753,8 +753,8 @@ function engineRow(e, confirming) {
   <div class="er-text">
     <div class="er-head"><span class="er-name">${esc(m.name)}</span>${m.version && m.version.length <= 9 ? `<span class="dim small">${esc(m.version)}</span>` : ''}</div>
     ${m.line ? `<p class="soft er-line">${esc(m.line)}</p>` : ''}
-    <p class="dim small">${esc(size)}${m.source ? ` · <a class="link" href="${esc(m.source)}" rel="noopener">Source</a>` : ''}</p>
-    ${m.license ? `<p class="dim small">${esc(m.license.replace(/ AND /g, ', '))}${m.author ? `. ${esc(m.author)}` : ''}</p>` : ''}
+    <p class="dim small">${esc(size)} · <a class="link" href="${esc(shelf.packSource(m.id))}" rel="noopener">Source</a></p>
+    ${m.license ? `<p class="dim small">${esc(shelf.licensesOf(m))}${m.author ? `. ${esc(m.author)}` : ''}</p>` : ''}
     ${d && d.error ? `<p class="soft small">${esc(d.error)} Try again.</p>` : ''}
     ${!e.installed && !d && shelf.wasDamaged(m.id) ? `<p class="soft small">Its files were changed in this browser, so it was removed. Download it again.</p>` : ''}
     ${confirming ? `<div class="confirm"><p class="soft small">Delete ${esc(m.name)}? It frees ${shelf.say(shelf.bytesOf(m))}. You can download it again.</p>
