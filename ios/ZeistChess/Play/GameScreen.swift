@@ -141,6 +141,15 @@ struct GameScreen: View {
                 }
             } else if model.trouble != nil {
                 Button("Try again") { model.retry() }.buttonStyle(Pill(solid: true))
+            } else if model.drawOffered {
+                // Human mode: the engine asked for a draw. The next move also declines.
+                HStack(spacing: 8) {
+                    Button("Accept") { model.acceptDraw() }.buttonStyle(Pill(solid: true)).accessibilityIdentifier("draw-accept")
+                        .accessibilityLabel("Accept the draw")
+                    Button("Decline") { model.declineDraw() }.buttonStyle(Pill()).accessibilityIdentifier("draw-decline")
+                        .accessibilityLabel("Decline the draw")
+                }
+                .transition(.opacity)
             }
             HStack(spacing: 0) {
                 menu

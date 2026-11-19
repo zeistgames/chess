@@ -1,4 +1,5 @@
 import AVFoundation
+import CoreHaptics
 import UIKit
 
 /// Haptics and sound for each moment of a game: firm, like a piece set on wood. One call per event.
@@ -15,25 +16,76 @@ final class Feel {
     private let note = UINotificationFeedbackGenerator()
     private let sound = Knock()
 
-    func prepare() { if hapticsOn { rigid.prepare(); medium.prepare() } }
+    /// How heavy a piece feels in the hand, 0 (light) to 1 (heavy). Settings, under Haptics.
+    static let weightKey = "haptics.weight"
+    static let weightDefault = 0.7
+    var weight: Double { min(1, max(0, UserDefaults.standard.object(forKey: Self.weightKey) as? Double ?? Self.weightDefault)) }
+
+    /// The phone's own haptic engine, for a strike with a body under it: the system's taps alone are too slight to
+    /// feel like a piece set on wood. Where there is none (an iPad), the system's taps are used.
+    private var engine: CHHapticEngine?
+    private var triedEngine = false
+
+    /// One strike: a tap of this strength and sharpness, with a short low rumble under it (body, 0 for none), and
+    /// a second, lighter tap after `echo` seconds (a capture: the taken piece, then yours).
+    static func strike(_ intensity: Double, sharpness: Double, body: Double, echo: Double? = nil) -> [CHHapticEvent] {
+        func p(_ id: CHHapticEvent.ParameterID, _ v: Double) -> CHHapticEventParameter { .init(parameterID: id, value: Float(min(1, max(0, v)))) }
+        var out = [CHHapticEvent(eventType: .hapticTransient, parameters: [p(.hapticIntensity, intensity), p(.hapticSharpness, sharpness)], relativeTime: 0)]
+        if body > 0 {
+            out.append(CHHapticEvent(eventType: .hapticContinuous, parameters: [p(.hapticIntensity, body), p(.hapticSharpness, 0.1)], relativeTime: 0, duration: 0.07))
+        }
+        if let echo {
+            out.append(CHHapticEvent(eventType: .hapticTransient, parameters: [p(.hapticIntensity, intensity * 0.7), p(.hapticSharpness, sharpness + 0.25)], relativeTime: echo))
+        }
+        return out
+    }
+
+    /// Plays the events; false if this device has no haptic engine to play them on.
+    private func play(_ events: [CHHapticEvent]) -> Bool {
+        if !triedEngine {
+            triedEngine = true
+            if CHHapticEngine.capabilitiesForHardware().supportsHaptics, let e = try? CHHapticEngine() {
+                e.playsHapticsOnly = true
+                e.isAutoShutdownEnabled = true
+                engine = e
+            }
+        }
+        guard let engine else { return false }
+        do {
+            try engine.start()
+            try engine.makePlayer(with: CHHapticPattern(events: events, parameters: [])).start(atTime: CHHapticTimeImmediate)
+            return true
+        } catch { return false }
+    }
+
+    func prepare() { if hapticsOn { rigid.prepare(); medium.prepare(); try? engine?.start() } }
 
     /// Picking up a piece, changing an option.
-    func select() { if hapticsOn { rigid.impactOccurred(intensity: 0.7) } }
+    func select() { if hapticsOn { rigid.impactOccurred(intensity: 0.6 + 0.4 * weight) } }
 
-    /// Your piece set down.
+    /// Your piece set down: a firm strike, deeper and longer the heavier the pieces are set.
     func move(capture: Bool) {
         if hapticsOn {
-            if capture {
-                heavy.impactOccurred(intensity: 1)
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.07) { [weak self] in self?.rigid.impactOccurred(intensity: 0.7) }
-            } else { rigid.impactOccurred(intensity: 1) }
+            let w = weight
+            let events = Self.strike(0.6 + 0.4 * w, sharpness: 0.55 - 0.3 * w, body: capture ? 0.35 + 0.65 * w : max(0, w - 0.2) * 0.9, echo: capture ? 0.08 : nil)
+            if !play(events) {
+                if capture {
+                    heavy.impactOccurred(intensity: 1)
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.07) { [weak self] in self?.rigid.impactOccurred(intensity: 0.7) }
+                } else { rigid.impactOccurred(intensity: 1) }
+            }
         }
         if soundOn { sound.play(capture ? .take : .set) }
     }
 
     /// The engine's piece set down: softer and farther away.
     func reply(capture: Bool) {
-        if hapticsOn { medium.impactOccurred(intensity: capture ? 1 : 0.8) }
+        if hapticsOn {
+            let w = weight
+            if !play(Self.strike(0.4 + 0.3 * w, sharpness: 0.4 - 0.2 * w, body: capture ? 0.2 + 0.4 * w : max(0, w - 0.4) * 0.6)) {
+                medium.impactOccurred(intensity: capture ? 1 : 0.8)
+            }
+        }
         if soundOn { sound.play(capture ? .takeFar : .setFar) }
     }
 

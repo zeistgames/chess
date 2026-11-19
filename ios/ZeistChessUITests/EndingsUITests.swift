@@ -57,6 +57,26 @@ final class EndingsUITests: XCTestCase {
         XCTAssertTrue(app.staticTexts.matching(NSPredicate(format: "label CONTAINS 'Stockfish Lite resigned.'")).firstMatch.exists)
     }
 
+    /// With human mode on, an engine well behind asks for a draw, and taking it ends the game drawn.
+    func testInHumanModeABeatenEngineAsksForADraw() {
+        let app = launch(["-reset", "-human", "-screen", "game", "-fen", "4k3/8/8/8/8/8/PPPPPPPP/RNBQKBNR w - - 0 1"])
+        let status = app.staticTexts["status"]
+        XCTAssertTrue(status.waitForExistence(timeout: 10))
+        let accept = app.buttons["draw-accept"]
+        for _ in 0..<6 {
+            if accept.exists { break }
+            guard wait(status, "Your move", 20) || accept.exists else { break }
+            if accept.exists { break }
+            XCTAssertTrue(move(app))
+            sleep(2)
+        }
+        XCTAssertTrue(accept.waitForExistence(timeout: 10))
+        XCTAssertTrue(wait(status, "offers a draw", 5))
+        accept.tap()
+        XCTAssertTrue(app.buttons["play-again"].waitForExistence(timeout: 20))
+        XCTAssertTrue(app.staticTexts["A draw."].exists)
+    }
+
     func testADrawOfferedEarlyIsDeclinedAndALevelOneIsAccepted() {
         var app = launch(["-reset", "-screen", "game"])
         var status = app.staticTexts["status"]

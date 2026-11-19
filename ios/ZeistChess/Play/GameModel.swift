@@ -276,7 +276,7 @@ final class GameModel {
         let clockBefore = clock
         // The clock is pressed the moment the move is made.
         let left = press(snap.turn)
-        if byEngine { viewPly = nil }
+        if byEngine { viewPly = nil } else { drawOffered = false }
         hint = nil
         notice = nil
         // Show the move at once; the rules confirm it a moment later.
@@ -515,6 +515,10 @@ final class GameModel {
                     guard id == request, !over else { return }
                     thinking = false
                     await play(move, byEngine: true)
+                    if !over, Self.asksForDraw(evals, humanMode: UserDefaults.standard.bool(forKey: Self.humanKey), asked: askedForDraw) {
+                        askedForDraw = true
+                        drawOffered = true
+                    }
                     await playPremove()
                     return
                 } catch CoreError.stale {
@@ -546,11 +550,34 @@ final class GameModel {
         return (best["cp"] as? NSNumber)?.intValue
     }
 
-    /// Human mode (Settings, off unless the player turns it on): an engine may resign, as a person would. Only when
-    /// it is truly beaten: its own evaluation has been about a queen down or worse for its last five searches.
-    /// Without human mode an engine plays every game to the end.
+    /// Human mode (Settings, off unless the player turns it on): a beaten engine behaves as a person might. Well
+    /// behind (about a rook down for three searches) it asks for a draw, once a game; truly beaten (about a queen
+    /// down or worse for five searches) it resigns. Without human mode an engine plays every game to the end.
     static let humanKey = "play.humanMode"
     static let resignAt = -900, resignAfter = 5
+    static let drawAt = -500, drawAfter = 3
+    static func asksForDraw(_ evals: [Int], humanMode: Bool, asked: Bool) -> Bool {
+        guard humanMode, !asked, evals.count >= drawAfter else { return false }
+        return evals.suffix(drawAfter).allSatisfy { $0 <= drawAt }
+    }
+    /// The engine has asked for a draw and waits on the player: Accept, Decline, or simply the next move.
+    private(set) var drawOffered = false
+    private var askedForDraw = false
+
+    func acceptDraw() {
+        guard drawOffered, !over else { return }
+        drawOffered = false
+        request += 1
+        premove = nil
+        finish(Snapshot.Outcome(result: "1/2-1/2", reason: "agreement", winner: nil))
+    }
+
+    func declineDraw() {
+        guard drawOffered else { return }
+        drawOffered = false
+        Feel.shared.select()
+    }
+
     static func gaveUp(_ evals: [Int], humanMode: Bool) -> Bool {
         guard humanMode, evals.count >= resignAfter else { return false }
         return evals.suffix(resignAfter).allSatisfy { $0 <= resignAt }
@@ -797,6 +824,7 @@ final class GameModel {
 
     var status: String {
         if let trouble { return trouble }
+        if drawOffered, !over { return "\(engineName) offers a draw." }
         if let notice, !over { return notice }
         if over, viewPly == nil { return ending.detail }
         if let p = viewPly {
@@ -811,7 +839,7 @@ final class GameModel {
 
     /// The status says only whose turn it is, which the rows beside the board already show.
     var statusIsPlain: Bool {
-        trouble == nil && (notice == nil || over) && !over && viewPly == nil && snap.check == nil && premove == nil
+        trouble == nil && !drawOffered && (notice == nil || over) && !over && viewPly == nil && snap.check == nil && premove == nil
             && !(record.moves.isEmpty && record.player == "w")
     }
 

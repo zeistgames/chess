@@ -5,6 +5,7 @@ struct SettingsScreen: View {
     @State private var shelf = Shelf.shared
     @AppStorage("sound") private var sound = true
     @AppStorage("haptics") private var haptics = true
+    @AppStorage(Feel.weightKey) private var weight = Feel.weightDefault
     @AppStorage(GameModel.queenKey) private var autoQueen = false
     @AppStorage(GameModel.humanKey) private var humanMode = false
     @AppStorage(GameModel.paceKey) private var pace = true
@@ -72,13 +73,22 @@ struct SettingsScreen: View {
                     toggle("Sound", $sound)
                     rule
                     toggle("Haptics", $haptics)
+                    if haptics {
+                        HStack(spacing: 12) {
+                            Text("Light").font(Z.text(13.5)).foregroundStyle(Z.soft)
+                            Slider(value: $weight, in: 0...1, step: 0.1) { editing in if !editing { Feel.shared.move(capture: false) } }
+                                .tint(Z.amber).accessibilityLabel("How heavy the pieces feel").accessibilityIdentifier("haptic-weight")
+                            Text("Heavy").font(Z.text(13.5)).foregroundStyle(Z.soft)
+                        }
+                        .padding(.bottom, 10)
+                    }
                     rule
                     toggle("Engines take their time", $pace).accessibilityIdentifier("engine-pace")
                     rule
                     toggle("Always promote to a queen", $autoQueen).accessibilityIdentifier("auto-queen")
                     rule
                     toggle("Human mode", $humanMode).accessibilityIdentifier("human-mode")
-                    Text("Engines give up when they are badly beaten, the way a person would.")
+                    Text("A badly beaten engine may ask for a draw, or resign, the way a person would.")
                         .font(Z.text(13.5)).foregroundStyle(Z.soft).frame(maxWidth: .infinity, alignment: .leading)
                         .fixedSize(horizontal: false, vertical: true).padding(.bottom, 8)
                 }

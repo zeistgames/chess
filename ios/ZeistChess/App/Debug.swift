@@ -31,7 +31,7 @@ import SwiftUI
 ///   -freeze             the engine never answers (it stays "thinking")
 ///   -premove <uci>      with -freeze: a premove already entered
 ///   -engine-name <s>    show the engine under this name (worst cases)
-///   -human              human mode on (engines may resign)
+///   -human              human mode on (a beaten engine may ask for a draw or resign)
 ///   -review-now         forget the rating request's record; the next good moment asks
 ///   -standard-captures  count captures from the usual start even in a game from a position
 @MainActor

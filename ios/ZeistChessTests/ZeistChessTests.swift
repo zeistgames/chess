@@ -256,5 +256,10 @@ final class PieceSetTests: XCTestCase {
         XCTAssertFalse(GameModel.gaveUp(Array(lost.dropFirst()), humanMode: true), "not yet five searches")
         XCTAssertFalse(GameModel.gaveUp([-950, -1200, -600, -900, -2000], humanMode: true), "merely behind once")
         XCTAssertTrue(GameModel.gaveUp([300, 0] + lost, humanMode: true))
+        // Before that, well behind, it asks for a draw: once a game, and never without human mode.
+        XCTAssertTrue(GameModel.asksForDraw([0, -520, -600, -700], humanMode: true, asked: false))
+        XCTAssertFalse(GameModel.asksForDraw([0, -520, -600, -700], humanMode: true, asked: true))
+        XCTAssertFalse(GameModel.asksForDraw([0, -520, -600, -700], humanMode: false, asked: false))
+        XCTAssertFalse(GameModel.asksForDraw([-520, -300, -700], humanMode: true, asked: false))
     }
 }
