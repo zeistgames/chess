@@ -515,8 +515,12 @@ final class GameModel {
                     guard id == request, !over else { return }
                     thinking = false
                     await play(move, byEngine: true)
-                    if !over, Self.asksForDraw(evals, humanMode: UserDefaults.standard.bool(forKey: Self.humanKey), asked: askedForDraw) {
-                        askedForDraw = true
+                    // Asked once a game (kept with the game, so a relaunch doesn't ask again), and not while a
+                    // premove waits: that would answer it unseen, so it asks after a later move instead.
+                    if !over, premove == nil,
+                       Self.asksForDraw(evals, humanMode: UserDefaults.standard.bool(forKey: Self.humanKey), asked: record.engineAskedDraw == true) {
+                        record.engineAskedDraw = true
+                        GameLog.shared.save(record)
                         drawOffered = true
                     }
                     await playPremove()
@@ -562,7 +566,6 @@ final class GameModel {
     }
     /// The engine has asked for a draw and waits on the player: Accept, Decline, or simply the next move.
     private(set) var drawOffered = false
-    private var askedForDraw = false
 
     func acceptDraw() {
         guard drawOffered, !over else { return }
@@ -669,6 +672,7 @@ final class GameModel {
 
     func undo() {
         guard canUndo else { return }
+        drawOffered = false
         request += 1
         if thinking { thinking = false; Task { _ = try? await Core.shared.call("stop") } }
         var moves = record.moves
@@ -721,6 +725,7 @@ final class GameModel {
     static let endCardIn: Duration = .seconds(1.3)
 
     private func finish(_ o: Snapshot.Outcome) {
+        drawOffered = false
         selected = nil
         premove = nil
         hint = nil

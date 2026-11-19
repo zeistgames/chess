@@ -40,16 +40,25 @@ final class Feel {
         return out
     }
 
-    /// Plays the events; false if this device has no haptic engine to play them on.
-    private func play(_ events: [CHHapticEvent]) -> Bool {
+    /// Makes the engine once, and wakes it without waiting (it stops itself when idle): called when a piece is
+    /// picked up, so it is running by the time the piece is set down and the strike lands with the sound.
+    private func warm() {
         if !triedEngine {
             triedEngine = true
             if CHHapticEngine.capabilitiesForHardware().supportsHaptics, let e = try? CHHapticEngine() {
                 e.playsHapticsOnly = true
                 e.isAutoShutdownEnabled = true
+                // After an interruption (a call, another app's audio) the system resets the engine: start it again.
+                e.resetHandler = { [weak e] in try? e?.start() }
                 engine = e
             }
         }
+        engine?.start(completionHandler: nil)
+    }
+
+    /// Plays the events; false if this device has no haptic engine to play them on.
+    private func play(_ events: [CHHapticEvent]) -> Bool {
+        if !triedEngine { warm() }
         guard let engine else { return false }
         do {
             try engine.start()
@@ -58,10 +67,10 @@ final class Feel {
         } catch { return false }
     }
 
-    func prepare() { if hapticsOn { rigid.prepare(); medium.prepare(); try? engine?.start() } }
+    func prepare() { if hapticsOn { rigid.prepare(); medium.prepare(); warm() } }
 
     /// Picking up a piece, changing an option.
-    func select() { if hapticsOn { rigid.impactOccurred(intensity: 0.6 + 0.4 * weight) } }
+    func select() { if hapticsOn { rigid.impactOccurred(intensity: 0.6 + 0.4 * weight); warm() } }
 
     /// Your piece set down: a firm strike, deeper and longer the heavier the pieces are set.
     func move(capture: Bool) {

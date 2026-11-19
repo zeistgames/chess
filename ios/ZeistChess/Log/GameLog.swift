@@ -59,6 +59,8 @@ struct GameRecord: Codable, Identifiable, Hashable, Sendable {
     /// Started from Learn ("Learn as you play"): only such a game shows cards. Kept with the game, so it stays one
     /// when picked up again and is marked so in Games.
     var learn: Bool?
+    /// Human mode: the engine has asked for a draw in this game (it asks once).
+    var engineAskedDraw: Bool?
 
     var finished: Bool { result != nil }
 
