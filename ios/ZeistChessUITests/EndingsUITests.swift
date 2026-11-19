@@ -43,13 +43,19 @@ final class EndingsUITests: XCTestCase {
 
     /// With human mode on, an engine that is badly beaten resigns.
     func testInHumanModeTheEngineResignsAHopelessGame() {
-        // No pawns: the test's moves would march one to the last rank and stop at the choice of a piece.
-        let app = launch(["-reset", "-human", "-screen", "game", "-fen", "4k3/8/8/8/8/8/8/RNBQKBNR w - - 0 1"])
+        // No white pawns: the test's moves would march one to the last rank and stop at the choice of a piece.
+        // Two black pawns: with a lone king the test's moves sometimes stalemated it before it could resign, and a
+        // king with one legal move is moved with no search, so nothing counted toward resigning.
+        let app = launch(["-reset", "-human", "-screen", "game", "-fen", "4k3/pp6/8/8/8/8/8/RNBQKBNR w - - 0 1"])
         let status = app.staticTexts["status"]
         XCTAssertTrue(status.waitForExistence(timeout: 10))
         var declined = false
-        for _ in 0..<10 {
+        var last = ""
+        // It resigns after five searches in a row that see it lost. A lone king often has one legal move, which is
+        // played with no search, so how many moves that takes varies from run to run.
+        for _ in 0..<30 {
             if app.buttons["play-again"].exists { break }
+            last = status.label
             // Well behind, it first asks for a draw. Declined, it plays on and then resigns.
             if !wait(status, "Your move", 15) {
                 let decline = app.buttons["draw-decline"]
@@ -61,9 +67,10 @@ final class EndingsUITests: XCTestCase {
             sleep(1)
         }
         XCTAssertTrue(declined, "the draw was asked for first")
-        XCTAssertTrue(app.buttons["play-again"].waitForExistence(timeout: 20))
-        XCTAssertTrue(app.staticTexts["You won."].exists)
-        XCTAssertTrue(app.staticTexts.matching(NSPredicate(format: "label CONTAINS 'Stockfish Lite resigned.'")).firstMatch.exists)
+        XCTAssertTrue(app.buttons["play-again"].waitForExistence(timeout: 20), "the status last read: \(last)")
+        let said = app.staticTexts.allElementsBoundByIndex.prefix(12).map { $0.label }.joined(separator: " | ")
+        XCTAssertTrue(app.staticTexts["You won."].exists, said)
+        XCTAssertTrue(app.staticTexts.matching(NSPredicate(format: "label CONTAINS 'Stockfish Lite resigned.'")).firstMatch.exists, said)
     }
 
     /// With human mode on, an engine well behind asks for a draw, and taking it ends the game drawn.
