@@ -5,7 +5,6 @@ struct SettingsScreen: View {
     @State private var shelf = Shelf.shared
     @AppStorage("sound") private var sound = true
     @AppStorage("haptics") private var haptics = true
-    @AppStorage(GameModel.resignKey) private var engineResigns = true
     @AppStorage(GameModel.queenKey) private var autoQueen = false
     @AppStorage(GameModel.paceKey) private var pace = true
     @AppStorage(Measure.key) private var measure = true
@@ -74,8 +73,6 @@ struct SettingsScreen: View {
                     toggle("Haptics", $haptics)
                     rule
                     toggle("Engines take their time", $pace).accessibilityIdentifier("engine-pace")
-                    rule
-                    toggle("Engines resign lost games", $engineResigns).accessibilityIdentifier("engine-resigns")
                     rule
                     toggle("Always promote to a queen", $autoQueen).accessibilityIdentifier("auto-queen")
                 }
@@ -358,7 +355,10 @@ struct EngineRow: View {
                     .confirmationDialog("Delete \(e.name)?", isPresented: $deleting, titleVisibility: .visible) {
                         Button("Delete", role: .destructive) { shelf.delete(e.id) }
                         Button("Keep", role: .cancel) {}
-                    } message: { Text("It frees \(Bytes.say(shelf.size(of: e.id))). You can download it again.") }
+                    } message: {
+                        Text("It frees \(Bytes.say(shelf.size(of: e.id))). You can download it again."
+                             + (GameLog.shared.current?.engineID == e.id ? " Your game against it ends here and stays in Games." : ""))
+                    }
             } else {
                 Button("Download") { Feel.shared.select(); shelf.download(e.id) }.buttonStyle(Pill(small: true))
                     .disabled(Places.packsURL == nil)

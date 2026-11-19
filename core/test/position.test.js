@@ -26,6 +26,12 @@ test('a PGN is read with every position along it', () => {
   assert.deepEqual(set.moves, ['e2e4', 'e8d7']);
 });
 
+test('a position where the side that just moved is in check is refused', () => {
+  assert.equal(parsePosition('k6R/8/8/8/8/8/8/K7 w - - 0 1').error, 'That FEN does not describe a legal position.');
+  // The same pieces with Black to move is an ordinary check.
+  assert.equal(parsePosition('k6R/8/8/8/8/8/8/K7 b - - 0 1').kind, 'fen');
+});
+
 test('what cannot be read gets one plain sentence', () => {
   for (const bad of ['', 'hello there', '8/8/8/8/8/8/8/8 w - - 0 1', 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR x', '1. e4 e5 2. Ke3 Qh4 3. Zz9']) {
     const r = parsePosition(bad);

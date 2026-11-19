@@ -193,6 +193,10 @@ export function parsePosition(text) {
     if (!v.ok) return { error: 'That FEN does not describe a legal position.' };
     let c;
     try { c = new Chess(fen); } catch { return { error: 'That FEN does not describe a legal position.' }; }
+    // The side that just moved cannot have left its own king in check: the king could be taken.
+    const them = c.turn() === 'w' ? 'b' : 'w';
+    const king = c.board().flat().find((p) => p && p.type === 'k' && p.color === them);
+    if (!king || c.isAttacked(king.square, c.turn())) return { error: 'That FEN does not describe a legal position.' };
     if (c.isGameOver()) return { error: 'The game is already over in that position.' };
     return { kind: 'fen', start: c.fen() };
   }

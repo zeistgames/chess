@@ -87,7 +87,7 @@ final class GameModel {
     var think: @MainActor ([String: Any]) async throws -> Any = { try await Core.shared.call("think", $0) }
 
     /// Settings keys for play.
-    static let resignKey = "play.engineResigns", queenKey = "play.autoQueen", paceKey = "play.pace"
+    static let queenKey = "play.autoQueen", paceKey = "play.pace"
 
     var player: String { record.player }
     var playerIsWhite: Bool { record.player == "w" }
@@ -499,12 +499,6 @@ final class GameModel {
                     let v = try await think(args)
                     guard id == request, let move = (v as? [String: Any])?["move"] as? String else { return }
                     if let e = Self.evaluation(v) { evals.append(e) }
-                    if shouldResign() {
-                        thinking = false
-                        let winner = record.player
-                        finish(Snapshot.Outcome(result: winner == "w" ? "1-0" : "0-1", reason: "engine-resigned", winner: winner))
-                        return
-                    }
                     // The engine takes its time like a person would (core's levels.pace), on its own clock in a timed
                     // game. With instant replies chosen: a beat with no clock, nothing with one.
                     let natural = UserDefaults.standard.object(forKey: Self.paceKey) == nil || UserDefaults.standard.bool(forKey: Self.paceKey)
@@ -551,13 +545,6 @@ final class GameModel {
         let f = record.startFEN.split(separator: " ")
         let full = f.count >= 6 ? Int(f[5]) ?? 1 : 1
         return (full - 1) * 2 + (f.count >= 2 && f[1] == "b" ? 1 : 0) + record.moves.count
-    }
-
-    /// The engine gives up when its own evaluation has been hopeless for its last four searches, if the setting allows.
-    private func shouldResign() -> Bool {
-        let on = UserDefaults.standard.object(forKey: Self.resignKey) as? Bool ?? true
-        guard on, evals.count >= 4 else { return false }
-        return evals.suffix(4).allSatisfy { $0 <= -600 }
     }
 
     /// The player offers a draw. The engine takes it when its own evaluation is about level or worse for it and the

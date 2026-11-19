@@ -76,7 +76,7 @@ struct GameScreen: View {
         .foregroundStyle(Z.ink)
         .overlay {
             if showEnd, model.over {
-                EndCard(model: model, found: cards?.found ?? [], open: { path.append($0) }, again: { Task { await playAgain() } }, swap: { Task { await playAgain(swap: true) } }, board: { withAnimation(.easeOut(duration: 0.2)) { showEnd = false } },
+                EndCard(model: model, found: cards?.found ?? [], open: { path.append($0) }, again: { Task { await playAgain() } }, swap: { Task { await playAgain(swap: true) } }, board: { ReviewRequest.shared.movedOn(); withAnimation(.easeOut(duration: 0.2)) { showEnd = false } },
                         review: { let id = model.record.id; dismiss(); DispatchQueue.main.asyncAfter(deadline: .now() + 0.35) { path.append(.replay(id)) } },
                         leave: { dismiss() })
                     .transition(.opacity)

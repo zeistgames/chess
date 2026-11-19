@@ -176,6 +176,8 @@ final class ReviewRequest {
         guard UIApplication.shared.applicationState == .active,
               let scene = UIApplication.shared.connectedScenes.compactMap({ $0 as? UIWindowScene })
                 .first(where: { $0.activationState == .foregroundActive }) else { return false }
+        // Something is over the screen the moment happened on (the share sheet, any other sheet): not now.
+        if scene.windows.contains(where: { $0.isKeyWindow && $0.rootViewController?.presentedViewController != nil }) { return false }
         Measure.reviewRequested(moment: moment.rawValue)
         AppStore.requestReview(in: scene)
         return true

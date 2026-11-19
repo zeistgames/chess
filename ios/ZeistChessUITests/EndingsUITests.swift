@@ -27,19 +27,18 @@ final class EndingsUITests: XCTestCase {
         return XCTWaiter().wait(for: [XCTNSPredicateExpectation(predicate: p, object: status)], timeout: timeout) == .completed
     }
 
-    func testTheEngineResignsAHopelessGame() {
+    /// An engine never resigns: a hopeless game is played to checkmate.
+    func testTheEngineNeverResigns() {
         let app = launch(["-reset", "-screen", "game", "-fen", "4k3/8/8/8/8/8/8/QR2K3 w - - 0 1"])
         let status = app.staticTexts["status"]
         XCTAssertTrue(status.waitForExistence(timeout: 10))
-        for _ in 0..<8 {
-            if app.buttons["play-again"].exists { break }
+        for _ in 0..<6 {
             guard wait(status, "Your move", 20) else { break }
             XCTAssertTrue(move(app))
             sleep(1)
+            XCTAssertFalse(app.staticTexts.matching(NSPredicate(format: "label CONTAINS 'resigned'")).firstMatch.exists)
+            if app.buttons["play-again"].exists { break }
         }
-        XCTAssertTrue(app.buttons["play-again"].waitForExistence(timeout: 20))
-        XCTAssertTrue(app.staticTexts["You won."].exists)
-        XCTAssertTrue(app.staticTexts.matching(NSPredicate(format: "label CONTAINS 'Stockfish Lite resigned.'")).firstMatch.exists)
     }
 
     func testADrawOfferedEarlyIsDeclinedAndALevelOneIsAccepted() {

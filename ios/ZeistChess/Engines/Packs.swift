@@ -284,6 +284,8 @@ final class Shelf {
     /// Removes an engine's downloaded data and frees its space. Engines that need no download stay.
     func delete(_ id: String) {
         guard let e = engine(id), !e.bundled else { return }
+        // A game still going against it can't go on: it is ended and kept in Games, not hidden.
+        if let g = GameLog.shared.current, g.engineID == id { GameLog.shared.abandon(g.id) }
         try? FileManager.default.removeItem(at: Places.engines.appending(path: id))
         rebuild()
     }
