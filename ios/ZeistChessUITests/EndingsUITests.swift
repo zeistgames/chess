@@ -41,6 +41,22 @@ final class EndingsUITests: XCTestCase {
         }
     }
 
+    /// With human mode on, an engine that is badly beaten resigns.
+    func testInHumanModeTheEngineResignsAHopelessGame() {
+        let app = launch(["-reset", "-human", "-screen", "game", "-fen", "4k3/8/8/8/8/8/PPPPPPPP/RNBQKBNR w - - 0 1"])
+        let status = app.staticTexts["status"]
+        XCTAssertTrue(status.waitForExistence(timeout: 10))
+        for _ in 0..<10 {
+            if app.buttons["play-again"].exists { break }
+            guard wait(status, "Your move", 20) else { break }
+            XCTAssertTrue(move(app))
+            sleep(1)
+        }
+        XCTAssertTrue(app.buttons["play-again"].waitForExistence(timeout: 20))
+        XCTAssertTrue(app.staticTexts["You won."].exists)
+        XCTAssertTrue(app.staticTexts.matching(NSPredicate(format: "label CONTAINS 'Stockfish Lite resigned.'")).firstMatch.exists)
+    }
+
     func testADrawOfferedEarlyIsDeclinedAndALevelOneIsAccepted() {
         var app = launch(["-reset", "-screen", "game"])
         var status = app.staticTexts["status"]

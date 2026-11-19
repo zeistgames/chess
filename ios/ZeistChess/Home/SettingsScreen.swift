@@ -6,6 +6,7 @@ struct SettingsScreen: View {
     @AppStorage("sound") private var sound = true
     @AppStorage("haptics") private var haptics = true
     @AppStorage(GameModel.queenKey) private var autoQueen = false
+    @AppStorage(GameModel.humanKey) private var humanMode = false
     @AppStorage(GameModel.paceKey) private var pace = true
     @AppStorage(Measure.key) private var measure = true
     #if DEBUG
@@ -75,6 +76,11 @@ struct SettingsScreen: View {
                     toggle("Engines take their time", $pace).accessibilityIdentifier("engine-pace")
                     rule
                     toggle("Always promote to a queen", $autoQueen).accessibilityIdentifier("auto-queen")
+                    rule
+                    toggle("Human mode", $humanMode).accessibilityIdentifier("human-mode")
+                    Text("Engines give up when they are badly beaten, the way a person would.")
+                        .font(Z.text(13.5)).foregroundStyle(Z.soft).frame(maxWidth: .infinity, alignment: .leading)
+                        .fixedSize(horizontal: false, vertical: true).padding(.bottom, 8)
                 }
 
                 section("Your games")

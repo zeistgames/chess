@@ -248,4 +248,13 @@ final class PieceSetTests: XCTestCase {
         XCTAssertEqual(PieceSets.named("nothing").id, PieceSets.file.default)
         XCTAssertEqual(PieceSets.image("wK", set: "nothing"), "\(PieceSets.file.default)/wK")
     }
+
+    @MainActor func testAnEngineResignsOnlyInHumanModeAndOnlyWhenBadlyBeaten() {
+        let lost = [-950, -1200, -10000, -900, -2000]
+        XCTAssertFalse(GameModel.gaveUp(lost, humanMode: false))
+        XCTAssertTrue(GameModel.gaveUp(lost, humanMode: true))
+        XCTAssertFalse(GameModel.gaveUp(Array(lost.dropFirst()), humanMode: true), "not yet five searches")
+        XCTAssertFalse(GameModel.gaveUp([-950, -1200, -600, -900, -2000], humanMode: true), "merely behind once")
+        XCTAssertTrue(GameModel.gaveUp([300, 0] + lost, humanMode: true))
+    }
 }

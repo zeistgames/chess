@@ -499,6 +499,12 @@ final class GameModel {
                     let v = try await think(args)
                     guard id == request, let move = (v as? [String: Any])?["move"] as? String else { return }
                     if let e = Self.evaluation(v) { evals.append(e) }
+                    if Self.gaveUp(evals, humanMode: UserDefaults.standard.bool(forKey: Self.humanKey)) {
+                        thinking = false
+                        let winner = record.player
+                        finish(Snapshot.Outcome(result: winner == "w" ? "1-0" : "0-1", reason: "engine-resigned", winner: winner))
+                        return
+                    }
                     // The engine takes its time like a person would (core's levels.pace), on its own clock in a timed
                     // game. With instant replies chosen: a beat with no clock, nothing with one.
                     let natural = UserDefaults.standard.object(forKey: Self.paceKey) == nil || UserDefaults.standard.bool(forKey: Self.paceKey)
@@ -538,6 +544,16 @@ final class GameModel {
         guard let lines = (v as? [String: Any])?["lines"] as? [[String: Any]], let best = lines.first else { return nil }
         if let m = (best["mate"] as? NSNumber)?.intValue { return m > 0 ? 10000 : -10000 }
         return (best["cp"] as? NSNumber)?.intValue
+    }
+
+    /// Human mode (Settings, off unless the player turns it on): an engine may resign, as a person would. Only when
+    /// it is truly beaten: its own evaluation has been about a queen down or worse for its last five searches.
+    /// Without human mode an engine plays every game to the end.
+    static let humanKey = "play.humanMode"
+    static let resignAt = -900, resignAfter = 5
+    static func gaveUp(_ evals: [Int], humanMode: Bool) -> Bool {
+        guard humanMode, evals.count >= resignAfter else { return false }
+        return evals.suffix(resignAfter).allSatisfy { $0 <= resignAt }
     }
 
     /// Half-moves since the very start of the game, counting those before a chosen start position (from its FEN).
