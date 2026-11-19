@@ -122,7 +122,7 @@ struct Captures: View {
 
     static func words(_ taken: [(kind: String, count: Int)], lead: Int) -> String {
         let names = ["P": "pawn", "N": "knight", "B": "bishop", "R": "rook", "Q": "queen"]
-        guard !taken.isEmpty else { return "Nothing taken" }
+        guard !taken.isEmpty else { return lead > 0 ? "Nothing taken. Ahead by \(lead)" : "Nothing taken" }
         let list = taken.map { "\($0.count) \(names[$0.kind]!)\($0.count == 1 ? "" : "s")" }.joined(separator: ", ")
         return "Taken: \(list)\(lead > 0 ? ". Ahead by \(lead)" : "")"
     }
@@ -241,7 +241,7 @@ struct DockLabel: View {
     var body: some View {
         VStack(spacing: 3) {
             Image(systemName: symbol).font(.system(size: 19, weight: .medium)).frame(height: 24)
-            Text(title).font(Z.text(11)).lineLimit(1).minimumScaleFactor(0.8)
+            Text(title).font(Z.text(11)).lineLimit(1).minimumScaleFactor(0.5)
         }
         .frame(maxWidth: .infinity).frame(height: 58)
         .contentShape(Rectangle())

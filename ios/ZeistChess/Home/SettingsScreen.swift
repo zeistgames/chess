@@ -20,15 +20,13 @@ struct SettingsScreen: View {
     @AppStorage(Look.coordinatesKey) private var coordinates = true
     @AppStorage(Look.edgeKey) private var edge = false
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.dynamicTypeSize) private var type
+    private var big: Bool { type.isAccessibilitySize }
 
     var body: some View {
+        ScrollViewReader { reader in
         ScrollView {
             VStack(alignment: .leading, spacing: 0) {
-                HStack {
-                    RoundIcon(symbol: "chevron.left", label: "Back") { dismiss() }
-                    Spacer()
-                }
-                .padding(.top, 6)
                 Text("Settings").font(Z.title(34)).padding(.top, 14)
 
                 section("Zeist account")
@@ -39,11 +37,11 @@ struct SettingsScreen: View {
                 themes
                 pieceSets.padding(.top, 18)
                 VStack(spacing: 0) {
-                    HStack(spacing: 12) {
+                    (big ? AnyLayout(VStackLayout(alignment: .leading, spacing: 8)) : AnyLayout(HStackLayout(spacing: 12))) {
                         Text("Size").font(Z.text(16))
-                        Spacer(minLength: 8)
+                        if !big { Spacer(minLength: 8) }
                         Choice(options: [(false, "Inset"), (true, "Edge to edge")], value: $edge, height: 34)
-                            .frame(maxWidth: 230)
+                            .frame(maxWidth: big ? .infinity : 230)
                             .accessibilityIdentifier("board-size")
                     }
                     .padding(.vertical, 10)
@@ -52,7 +50,7 @@ struct SettingsScreen: View {
                 }
                 .padding(.top, 18)
 
-                Text("Engines").zLabel().padding(.top, 34).padding(.bottom, 4)
+                Text("Engines").zLabel().padding(.top, 34).padding(.bottom, 4).id("engines")
                 VStack(spacing: 0) {
                     ForEach(shelf.engines) { e in
                         EngineRow(engine: e)
@@ -157,6 +155,24 @@ struct SettingsScreen: View {
             .frame(maxWidth: .infinity)
         }
         .scrollIndicators(.hidden)
+        // Back stays put while the page scrolls, on the ground's own color so nothing runs under the status bar.
+        .safeAreaInset(edge: .top, spacing: 0) {
+            HStack {
+                RoundIcon(symbol: "chevron.left", label: "Back") { dismiss() }
+                Spacer()
+            }
+            .frame(maxWidth: 620).padding(.horizontal, 20).padding(.top, 6).padding(.bottom, 6)
+            .frame(maxWidth: .infinity)
+            .background(Z.ground.ignoresSafeArea(edges: .top))
+        }
+        .task {
+            // "More engines" in the picker opens Settings at its engines.
+            guard Session.shared.settingsAt == "engines" else { return }
+            Session.shared.settingsAt = nil
+            try? await Task.sleep(for: .seconds(0.35))
+            withAnimation(.easeInOut(duration: 0.35)) { reader.scrollTo("engines", anchor: .top) }
+        }
+        }
         .background(Z.ground.ignoresSafeArea())
         .foregroundStyle(Z.ink)
         .toolbar(.hidden, for: .navigationBar)
@@ -304,12 +320,14 @@ struct EngineRow: View {
     let engine: Engine
     @State private var shelf = Shelf.shared
     @State private var deleting = false
+    @Environment(\.dynamicTypeSize) private var type
+    private var big: Bool { type.isAccessibilitySize }
 
     var body: some View {
         let e = engine, m = e.manifest
         let state = shelf.downloads[e.id]
-        HStack(alignment: .center, spacing: 14) {
-            EngineFace(id: e.id, name: m.name, size: 38)
+        (big ? AnyLayout(VStackLayout(alignment: .leading, spacing: 10)) : AnyLayout(HStackLayout(alignment: .center, spacing: 14))) {
+            if !big { EngineFace(id: e.id, name: m.name, size: 38) }
             VStack(alignment: .leading, spacing: 4) {
                 HStack(alignment: .firstTextBaseline, spacing: 8) {
                     Text(m.name).font(Z.title(19, relativeTo: .headline)).lineLimit(1).minimumScaleFactor(0.75)
@@ -332,9 +350,10 @@ struct EngineRow: View {
                     Text("\(why) Try again.").font(Z.text(13)).foregroundStyle(Z.soft)
                 }
             }
-            Spacer(minLength: 4)
+            if !big { Spacer(minLength: 4) }
             action(e, state)
         }
+        .frame(maxWidth: .infinity, alignment: .leading)
         .padding(.vertical, 14)
     }
 

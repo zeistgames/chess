@@ -267,6 +267,8 @@ struct EndCard: View {
     let board: () -> Void
     let review: () -> Void
     let leave: () -> Void
+    @Environment(\.dynamicTypeSize) private var type
+    private var big: Bool { type.isAccessibilitySize }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
@@ -274,18 +276,20 @@ struct EndCard: View {
             Text(model.ending.title).font(Z.title(44, relativeTo: .largeTitle)).foregroundStyle(Z.ink).lineLimit(2).minimumScaleFactor(0.6)
             Text(detail).font(Z.text(16.5)).foregroundStyle(Z.soft).padding(.bottom, found.isEmpty ? 20 : 8).fixedSize(horizontal: false, vertical: true)
             if !found.isEmpty { cameUp.padding(.bottom, 16) }
-            HStack(spacing: 10) {
+            // Side by side; one under the other at the large text sizes, where two no longer fit a row.
+            let row = big ? AnyLayout(VStackLayout(spacing: 10)) : AnyLayout(HStackLayout(spacing: 10))
+            row {
                 Button("Play again", action: again).buttonStyle(Pill(solid: true, wide: true)).accessibilityIdentifier("play-again")
                 Button(model.player == "w" ? "Play Black" : "Play White", action: swap).buttonStyle(Pill(wide: true))
                     .accessibilityLabel("Rematch, playing \(model.player == "w" ? "Black" : "White")")
                     .accessibilityIdentifier("rematch")
             }
-            HStack(spacing: 10) {
+            row {
                 Button("Home", action: leave).buttonStyle(Pill(wide: true)).accessibilityIdentifier("end-home")
                 ShareLink(item: model.pgn, preview: SharePreview("Zeist Chess game")) { Text("Share") }
                     .buttonStyle(Pill(wide: true)).accessibilityIdentifier("share")
             }
-            HStack(spacing: 22) {
+            (big ? AnyLayout(VStackLayout(spacing: 12)) : AnyLayout(HStackLayout(spacing: 22))) {
                 Button(action: board) { Text("See the board").underline() }
                 Button(action: review) { Text("Go through the game").underline() }.accessibilityIdentifier("review")
             }
@@ -296,7 +300,7 @@ struct EndCard: View {
         .padding(.bottom, 40)
         .frame(maxWidth: 560)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(LinearGradient(stops: [.init(color: Z.ground.opacity(0.55), location: 0), .init(color: Z.ground.opacity(0.8), location: 0.45), .init(color: Z.ground.opacity(0.97), location: 0.75)],
+        .background(LinearGradient(stops: [.init(color: Z.ground.opacity(big ? 0.94 : 0.55), location: 0), .init(color: Z.ground.opacity(big ? 0.97 : 0.8), location: 0.45), .init(color: Z.ground.opacity(0.97), location: 0.75)],
                                    startPoint: .top, endPoint: .bottom).ignoresSafeArea())
         .accessibilityElement(children: .contain)
         .accessibilityAddTraits(.isModal)

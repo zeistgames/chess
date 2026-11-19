@@ -58,7 +58,7 @@ struct PositionSheet: View {
                 .overlay(RoundedRectangle(cornerRadius: 16, style: .continuous).strokeBorder(Z.hair, lineWidth: 1))
                 .padding(.top, 18)
                 HStack(spacing: 10) {
-                    Button("Paste") { if let s = UIPasteboard.general.string { text = s; Task { await read() } } }
+                    Button("Paste") { if let s = UIPasteboard.general.string, !s.isEmpty { text = s; Task { await read() } } else { problem = "There is nothing to paste." } }
                         .buttonStyle(Pill(small: true)).accessibilityIdentifier("paste")
                     Button("Read it") { Task { await read() } }.buttonStyle(Pill(small: true)).disabled(text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
                         .accessibilityIdentifier("read")

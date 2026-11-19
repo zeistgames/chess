@@ -58,6 +58,7 @@ struct Pill: ButtonStyle {
         configuration.label
             .font(Z.medium(small ? 14 : 16))
             .lineLimit(1)
+            .minimumScaleFactor(0.55)
             .foregroundStyle(solid ? Z.ground : Z.ink)
             .padding(.horizontal, small ? 16 : 22)
             .frame(minHeight: small ? 36 : 50)
@@ -114,6 +115,7 @@ struct Choice<T: Hashable>: View {
                 } label: {
                     Text(option.1)
                         .font(Z.medium(14))
+                        .lineLimit(1).minimumScaleFactor(0.55)
                         .foregroundStyle(value == option.0 ? Z.ink : Z.soft)
                         .frame(maxWidth: .infinity, minHeight: height)
                         .background(Capsule().fill(value == option.0 ? Z.wash.opacity(1.6) : Color.clear))

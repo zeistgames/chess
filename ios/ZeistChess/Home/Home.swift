@@ -87,7 +87,7 @@ struct Home: View {
                         time: $time, customMinutes: $customMinutes, customIncrement: $customIncrement, start: $start, startName: $startName,
                         gameInProgress: log.current,
                         changed: { if log.current != nil { fresh = true } },
-                        more: { picking = false; session.openSettings = true })
+                        more: { picking = false; session.settingsAt = "engines"; session.openSettings = true })
         }
         .task {
             shelf.refresh()
@@ -174,7 +174,7 @@ struct Home: View {
                 Text(nextSide == "w" ? "Make the first move." : "Tap the board to begin.")
             }
         }
-        .font(Z.text(14)).foregroundStyle(Z.dim).lineLimit(1)
+        .font(Z.text(14)).foregroundStyle(Z.dim).lineLimit(1).minimumScaleFactor(0.6)
         .padding(.top, 22).padding(.horizontal, 24)
     }
 
@@ -192,7 +192,7 @@ struct Home: View {
                 EngineFace(id: g?.engineID ?? engine?.id ?? Shelf.bundledID, name: name, size: 40)
                 VStack(alignment: .leading, spacing: 2) {
                     Text(name).font(Z.title(20, relativeTo: .title3)).lineLimit(1).minimumScaleFactor(0.7)
-                    Text(detail).font(Z.text(13.5)).foregroundStyle(Z.soft).lineLimit(1)
+                    Text(detail).font(Z.text(13.5)).foregroundStyle(Z.soft).lineLimit(1).minimumScaleFactor(0.6)
                 }
                 Spacer(minLength: 8)
                 Image(systemName: "chevron.up.chevron.down").font(.system(size: 13, weight: .medium)).foregroundStyle(Z.dim)
@@ -249,9 +249,9 @@ struct GameRow: View {
     var body: some View {
         HStack(alignment: .firstTextBaseline, spacing: 12) {
             VStack(alignment: .leading, spacing: 3) {
-                Text(game.engineName).font(Z.medium(16)).lineLimit(1)
+                Text(game.engineName).font(Z.medium(16)).lineLimit(1).minimumScaleFactor(0.6)
                 Text("\(Fmt.short(game.startedAt)) · \(game.difficulty)\(game.timeControl.map { " · \($0.name)" } ?? "")\(game.learn == true ? " · Learn as you play" : "")")
-                    .font(Z.text(13)).foregroundStyle(Z.dim).lineLimit(1)
+                    .font(Z.text(13)).foregroundStyle(Z.dim).lineLimit(1).minimumScaleFactor(0.6)
             }
             Spacer(minLength: 8)
             Text(Self.word(game)).font(Z.text(15)).foregroundStyle(game.outcome == "win" ? Z.ink : Z.soft)

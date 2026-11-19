@@ -61,7 +61,8 @@ private struct LessonBody: View {
                     Text(model.step.text)
                         .font(Z.text(17)).lineSpacing(3)
                         .multilineTextAlignment(.center)
-                        .minimumScaleFactor(0.8)
+                        // Never cut short: where the words don't fit beside the board, they shrink.
+                        .minimumScaleFactor(0.45)
                         .frame(maxWidth: .infinity, minHeight: 76)
                         .padding(.horizontal, 24).padding(.bottom, 12)
                         .id(model.index)

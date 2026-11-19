@@ -27,6 +27,8 @@ final class Session {
     enum Place: Hashable { case play, puzzles, learn, games }
     /// Set by the profile button at the top right of each place: Root then opens Settings over the dock.
     var openSettings = false
+    /// Where Settings should open ("engines"), read once by Settings.
+    var settingsAt: String?
 }
 
 @main
@@ -47,6 +49,9 @@ struct ZeistChessApp: App {
     var body: some Scene {
         WindowGroup {
             Root()
+                // Text grows with the system's setting up to its third accessibility size. Past that a board and
+                // the words around it no longer fit on an iPhone together.
+                .dynamicTypeSize(...DynamicTypeSize.accessibility3)
                 .preferredColorScheme(.dark)
                 .tint(Z.ink)
         }

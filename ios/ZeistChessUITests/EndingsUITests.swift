@@ -43,15 +43,24 @@ final class EndingsUITests: XCTestCase {
 
     /// With human mode on, an engine that is badly beaten resigns.
     func testInHumanModeTheEngineResignsAHopelessGame() {
-        let app = launch(["-reset", "-human", "-screen", "game", "-fen", "4k3/8/8/8/8/8/PPPPPPPP/RNBQKBNR w - - 0 1"])
+        // No pawns: the test's moves would march one to the last rank and stop at the choice of a piece.
+        let app = launch(["-reset", "-human", "-screen", "game", "-fen", "4k3/8/8/8/8/8/8/RNBQKBNR w - - 0 1"])
         let status = app.staticTexts["status"]
         XCTAssertTrue(status.waitForExistence(timeout: 10))
+        var declined = false
         for _ in 0..<10 {
             if app.buttons["play-again"].exists { break }
-            guard wait(status, "Your move", 20) else { break }
+            // Well behind, it first asks for a draw. Declined, it plays on and then resigns.
+            if !wait(status, "Your move", 15) {
+                let decline = app.buttons["draw-decline"]
+                guard decline.exists else { break }
+                decline.tap()
+                declined = true
+            }
             XCTAssertTrue(move(app))
             sleep(1)
         }
+        XCTAssertTrue(declined, "the draw was asked for first")
         XCTAssertTrue(app.buttons["play-again"].waitForExistence(timeout: 20))
         XCTAssertTrue(app.staticTexts["You won."].exists)
         XCTAssertTrue(app.staticTexts.matching(NSPredicate(format: "label CONTAINS 'Stockfish Lite resigned.'")).firstMatch.exists)
@@ -59,11 +68,11 @@ final class EndingsUITests: XCTestCase {
 
     /// With human mode on, an engine well behind asks for a draw, and taking it ends the game drawn.
     func testInHumanModeABeatenEngineAsksForADraw() {
-        let app = launch(["-reset", "-human", "-screen", "game", "-fen", "4k3/8/8/8/8/8/PPPPPPPP/RNBQKBNR w - - 0 1"])
+        let app = launch(["-reset", "-human", "-screen", "game", "-fen", "4k3/8/8/8/8/8/8/RNBQKBNR w - - 0 1"])
         let status = app.staticTexts["status"]
         XCTAssertTrue(status.waitForExistence(timeout: 10))
         let accept = app.buttons["draw-accept"]
-        for _ in 0..<6 {
+        for _ in 0..<8 {
             if accept.exists { break }
             guard wait(status, "Your move", 20) || accept.exists else { break }
             if accept.exists { break }

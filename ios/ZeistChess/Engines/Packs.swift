@@ -306,7 +306,8 @@ final class Shelf {
         var n = 0
         for case let u as URL in it {
             let v = try? u.resourceValues(forKeys: [.totalFileAllocatedSizeKey, .fileSizeKey])
-            n += v?.totalFileAllocatedSize ?? v?.fileSize ?? 0
+            // The size of the files themselves, as the engine list states it before a download.
+            n += v?.fileSize ?? v?.totalFileAllocatedSize ?? 0
         }
         return n
     }
