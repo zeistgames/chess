@@ -43,47 +43,51 @@ final class EndingsUITests: XCTestCase {
 
     /// With human mode on, an engine that is badly beaten resigns.
     func testInHumanModeTheEngineResignsAHopelessGame() {
-        // No white pawns: the test's moves would march one to the last rank and stop at the choice of a piece.
-        // Two black pawns: with a lone king the test's moves sometimes stalemated it before it could resign, and a
-        // king with one legal move is moved with no search, so nothing counted toward resigning.
+        // No white pawns, so no move of the test's stops at the choice of a piece. Two black pawns, so the engine
+        // always has a choice of moves and searches each one (a king with one legal move is moved with no search,
+        // and nothing then counts toward resigning), and it can never be stalemated.
         let app = launch(["-reset", "-human", "-screen", "game", "-fen", "4k3/pp6/8/8/8/8/8/RNBQKBNR w - - 0 1"])
         let status = app.staticTexts["status"]
         XCTAssertTrue(status.waitForExistence(timeout: 10))
+        // Quiet moves, all different, so no position repeats and the game cannot be drawn that way. (A planned move
+        // that is not legal by then is simply not made.)
+        let moves = ["g1f3", "f1d3", "c1f4", "d1d2", "h1g1", "e1e2", "b1c3", "a1d1", "g1h1", "f3g5", "d1e1", "h1f1", "c3b1", "e1a1"]
         var declined = false
         var last = ""
-        // It resigns after five searches in a row that see it lost. A lone king often has one legal move, which is
-        // played with no search, so how many moves that takes varies from run to run.
-        for _ in 0..<30 {
+        for m in moves {
             if app.buttons["play-again"].exists { break }
-            last = status.label
             // Well behind, it first asks for a draw. Declined, it plays on and then resigns.
-            if !wait(status, "Your move", 15) {
+            if !wait(status, "Your move", 20) {
                 let decline = app.buttons["draw-decline"]
-                guard decline.exists else { break }
+                guard decline.waitForExistence(timeout: 5) else { break }
                 decline.tap()
                 declined = true
+                guard wait(status, "Your move", 10) else { break }
             }
-            XCTAssertTrue(move(app))
+            last = status.label
+            PuzzleSolver.play(app, m)
             sleep(1)
         }
         XCTAssertTrue(declined, "the draw was asked for first")
-        XCTAssertTrue(app.buttons["play-again"].waitForExistence(timeout: 20), "the status last read: \(last)")
-        let said = app.staticTexts.allElementsBoundByIndex.prefix(12).map { $0.label }.joined(separator: " | ")
-        XCTAssertTrue(app.staticTexts["You won."].exists, said)
-        XCTAssertTrue(app.staticTexts.matching(NSPredicate(format: "label CONTAINS 'Stockfish Lite resigned.'")).firstMatch.exists, said)
+        XCTAssertTrue(app.buttons["play-again"].waitForExistence(timeout: 30), "the status last read: \(last)")
+        let won = app.staticTexts["You won."]
+        let said = { app.staticTexts.allElementsBoundByIndex.prefix(12).map { $0.label }.joined(separator: " | ") }
+        XCTAssertTrue(won.waitForExistence(timeout: 5), said())
+        XCTAssertTrue(app.staticTexts.matching(NSPredicate(format: "label CONTAINS 'Stockfish Lite resigned.'")).firstMatch.exists, said())
     }
 
     /// With human mode on, an engine well behind asks for a draw, and taking it ends the game drawn.
     func testInHumanModeABeatenEngineAsksForADraw() {
-        let app = launch(["-reset", "-human", "-screen", "game", "-fen", "4k3/8/8/8/8/8/8/RNBQKBNR w - - 0 1"])
+        let app = launch(["-reset", "-human", "-screen", "game", "-fen", "4k3/pp6/8/8/8/8/8/RNBQKBNR w - - 0 1"])
         let status = app.staticTexts["status"]
         XCTAssertTrue(status.waitForExistence(timeout: 10))
         let accept = app.buttons["draw-accept"]
-        for _ in 0..<8 {
+        // The same position and planned moves as the test above, for the same reasons.
+        for m in ["g1f3", "f1d3", "c1f4", "d1d2", "h1g1", "e1e2", "b1c3", "a1d1", "g1h1", "f3g5"] {
             if accept.exists { break }
             guard wait(status, "Your move", 20) || accept.exists else { break }
             if accept.exists { break }
-            XCTAssertTrue(move(app))
+            PuzzleSolver.play(app, m)
             sleep(2)
         }
         XCTAssertTrue(accept.waitForExistence(timeout: 10))

@@ -261,5 +261,15 @@ final class PieceSetTests: XCTestCase {
         XCTAssertFalse(GameModel.asksForDraw([0, -520, -600, -700], humanMode: true, asked: true))
         XCTAssertFalse(GameModel.asksForDraw([0, -520, -600, -700], humanMode: false, asked: false))
         XCTAssertFalse(GameModel.asksForDraw([-520, -300, -700], humanMode: true, asked: false))
+        // What Stockfish Lite reported in a game it was losing by nearly everything (2026-11-19): now and then a
+        // short search called the position dead even. Those say nothing, and no longer stop it asking or resigning.
+        let seen = [-2785, 0, -3167, -3055, -10000, 0, 0, -10000]
+        XCTAssertFalse(GameModel.asksForDraw(Array(seen.prefix(3)), humanMode: true, asked: false))
+        XCTAssertTrue(GameModel.asksForDraw(Array(seen.prefix(4)), humanMode: true, asked: false))
+        XCTAssertFalse(GameModel.gaveUp(Array(seen.prefix(5)), humanMode: true), "four searches that saw it lost: one more")
+        XCTAssertFalse(GameModel.gaveUp(Array(seen.prefix(7)), humanMode: true), "never on a search that does not see it lost")
+        XCTAssertTrue(GameModel.gaveUp(seen, humanMode: true), "the fifth")
+        XCTAssertFalse(GameModel.gaveUp([-2785, -3167, -600, -700, -3055, -650, -10000, -10000], humanMode: true), "merely behind, not noise, still counts against")
+        XCTAssertFalse(GameModel.gaveUp([-950, 0, -950, 0, -950, 0, -950], humanMode: true))
     }
 }

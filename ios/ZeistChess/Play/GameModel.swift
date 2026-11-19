@@ -555,14 +555,25 @@ final class GameModel {
     }
 
     /// Human mode (Settings, off unless the player turns it on): a beaten engine behaves as a person might. Well
-    /// behind (about a rook down for three searches) it asks for a draw, once a game; truly beaten (about a queen
-    /// down or worse for five searches) it resigns. Without human mode an engine plays every game to the end.
+    /// behind (about a rook down in three of its last five searches) it asks for a draw, once a game; truly beaten
+    /// (about a queen down or worse in five of its last seven) it resigns. Without human mode an engine plays every game to the end.
     static let humanKey = "play.humanMode"
-    static let resignAt = -900, resignAfter = 5
-    static let drawAt = -500, drawAfter = 3
+    static let resignAt = -900, resignAfter = 5, resignWithin = 7
+    static let drawAt = -500, drawAfter = 3, drawWithin = 5
+    /// Whether the engine has seen itself this far behind often enough lately: its latest search says so, and so do
+    /// `after` of its last `within` searches that said anything.
+    /// A score of exactly zero says nothing: it is the engine's score for a draw, and a short search now and then
+    /// gives it to a position that is plainly lost (Stockfish Lite at a low level did so on three of eight moves
+    /// while down by nearly everything, 2026-11-19). A strict run of losing scores was broken by each of those, so
+    /// a beaten engine asked and resigned only some of the time. Such searches are left out of the count, and the
+    /// engine never acts on one: the latest search must itself see the game as lost.
+    static func beaten(_ evals: [Int], at: Int, after: Int, within: Int) -> Bool {
+        guard let last = evals.last, last <= at else { return false }
+        return evals.filter { $0 != 0 }.suffix(within).filter { $0 <= at }.count >= after
+    }
     static func asksForDraw(_ evals: [Int], humanMode: Bool, asked: Bool) -> Bool {
-        guard humanMode, !asked, evals.count >= drawAfter else { return false }
-        return evals.suffix(drawAfter).allSatisfy { $0 <= drawAt }
+        guard humanMode, !asked else { return false }
+        return beaten(evals, at: drawAt, after: drawAfter, within: drawWithin)
     }
     /// The engine has asked for a draw and waits on the player: Accept, Decline, or simply the next move.
     private(set) var drawOffered = false
@@ -582,8 +593,8 @@ final class GameModel {
     }
 
     static func gaveUp(_ evals: [Int], humanMode: Bool) -> Bool {
-        guard humanMode, evals.count >= resignAfter else { return false }
-        return evals.suffix(resignAfter).allSatisfy { $0 <= resignAt }
+        guard humanMode else { return false }
+        return beaten(evals, at: resignAt, after: resignAfter, within: resignWithin)
     }
 
     /// Half-moves since the very start of the game, counting those before a chosen start position (from its FEN).
