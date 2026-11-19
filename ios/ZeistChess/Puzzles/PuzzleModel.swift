@@ -76,6 +76,11 @@ final class PuzzleModel: BoardModel {
     var report: @MainActor (Puzzle, PuzzleProgress.Result) -> Void = { p, r in
         GameCenter.shared.puzzleDone(solved: r != .shown, firstTry: r == .solved, band: p.band)
         Measure.puzzleDone(band: p.band, result: r == .solved ? "solved" : r == .missed ? "solved_after_miss" : "shown")
+        // A rating may be asked for at a milestone of puzzles solved (ReviewRequest decides).
+        if r != .shown {
+            ReviewRequest.shared.record(.solvedPuzzle)
+            if ReviewRequest.shared.atPuzzleMilestone { ReviewRequest.shared.considerAsking(after: .puzzleMilestone) }
+        }
     }
 
     init(set: PuzzleSet = .shared, source: Source = .all, defaults: UserDefaults = .standard, rules: @escaping Rules = PuzzleModel.coreRules, pace: Double = 1) {
@@ -297,6 +302,7 @@ final class PuzzleModel: BoardModel {
     }
 
     func begin(_ p: Puzzle, missed: Bool = false, again: Bool = false) async {
+        ReviewRequest.shared.movedOn()
         token += 1
         let t = token
         puzzle = p
@@ -364,6 +370,7 @@ final class PuzzleModel: BoardModel {
             ids = beforeIDs
             phase = .solve
             line = "That move couldn't be checked. Try again."
+            ReviewRequest.shared.record(.trouble)
         }
     }
 
@@ -414,6 +421,7 @@ final class PuzzleModel: BoardModel {
             guard t == token else { return }
             phase = .solve
             line = "That move couldn't be played. Try again."
+            ReviewRequest.shared.record(.trouble)
         }
     }
 

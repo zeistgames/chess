@@ -141,6 +141,7 @@ final class Account: NSObject, ASWebAuthenticationPresentationContextProviding {
             return
         } catch {
             problem = "That sign-in didn't go through. Try again."
+            ReviewRequest.shared.record(.trouble)
         }
     }
 

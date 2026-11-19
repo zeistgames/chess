@@ -41,6 +41,10 @@ enum Measure {
 
     static func puzzleDone(band: Int, result: String) { send("puzzle_done", ["band": band, "result": result]) }
 
+    /// The app asked Apple to show its rating sheet after this moment. Apple decides whether the sheet appears, and
+    /// nothing tells the app whether it did or what the player chose: this counts requests, not ratings given.
+    static func reviewRequested(moment: String) { send("review_requested", ["moment": moment]) }
+
     static func engineInstalled(_ id: String) { send("engine_install", ["engine": id]) }
 
     private static func send(_ name: String, _ fields: [String: Any]) {

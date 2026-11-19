@@ -268,6 +268,7 @@ final class Shelf {
                 self?.downloads[id] = nil
             } catch {
                 self?.downloads[id] = .failed(Self.say(error))
+                ReviewRequest.shared.record(.trouble)
             }
             self?.tasks[id] = nil
             self?.rebuild()

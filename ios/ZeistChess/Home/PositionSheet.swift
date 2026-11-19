@@ -136,7 +136,7 @@ struct PositionSheet: View {
     private func read() async {
         problem = nil
         guard let v = try? await Core.shared.call("parse", ["text": text]) as? [String: Any] else {
-            problem = "That couldn't be read. Try again."; return
+            problem = "That couldn't be read. Try again."; ReviewRequest.shared.record(.trouble); return
         }
         if let e = v["error"] as? String { problem = e; fens = []; chosen = nil; Feel.shared.refuse(); return }
         chosenName = ""

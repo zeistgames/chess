@@ -237,6 +237,7 @@ struct Home: View {
             drawn = Bool.random() ? "w" : "b"
         } catch {
             problem = "The game couldn't start. Try again."
+            ReviewRequest.shared.record(.trouble)
         }
     }
 }

@@ -9,6 +9,9 @@ struct SettingsScreen: View {
     @AppStorage(GameModel.queenKey) private var autoQueen = false
     @AppStorage(GameModel.paceKey) private var pace = true
     @AppStorage(Measure.key) private var measure = true
+    #if DEBUG
+    @State private var reviewForced = false
+    #endif
     @AppStorage(EngineGames.key) private var shareGames = EngineGames.startsOn
     @State private var center = GameCenter.shared
     @AppStorage(Look.key) private var themeID = Themes.file.default
@@ -117,6 +120,15 @@ struct SettingsScreen: View {
                     Link(destination: URL(string: "https://github.com/zeistgames/chess")!) {
                         Text("github.com/zeistgames/chess").font(Z.text(15)).underline()
                     }
+                    Link("Rate Zeist Chess", destination: ReviewRequest.writeReview).buttonStyle(Pill(small: true))
+                        .accessibilityIdentifier("rate")
+                    #if DEBUG
+                    Button(ReviewRequest.shared.forced ? "The next win asks for a rating" : "Debug: ask for a rating at the next win") {
+                        ReviewRequest.shared.forceNext()
+                        reviewForced.toggle()
+                    }
+                    .buttonStyle(Pill(small: true)).id(reviewForced)
+                    #endif
                     VStack(alignment: .leading, spacing: 6) {
                         line("Rules", "chess.js by Jeff Hlywa. BSD-2-Clause.")
                         pieceCredits
@@ -401,6 +413,7 @@ struct AccountPanel: View {
                             let done = await account.delete()
                             deleting = false
                             deleteFailed = !done && account.signedIn
+                            if deleteFailed { ReviewRequest.shared.record(.trouble) }
                         }
                     }
                     Button("Keep it", role: .cancel) {}

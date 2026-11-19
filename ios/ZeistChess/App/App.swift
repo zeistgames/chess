@@ -92,6 +92,7 @@ struct Root: View {
         }
         .task {
             Core.shared.boot()
+            ReviewRequest.shared.record(.opened)
             await Account.shared.refresh()
             await EngineGames.flush()
             #if DEBUG
@@ -103,7 +104,14 @@ struct Root: View {
             session.openSettings = false
             if path.last != .settings { path.append(.settings) }
         }
-        .onChange(of: phase) { _, p in if p == .active { Task { await Account.shared.refresh() } } }
+        .onChange(of: phase) { _, p in
+            ReviewRequest.shared.movedOn()
+            guard p == .active else { return }
+            ReviewRequest.shared.record(.opened)
+            Task { await Account.shared.refresh() }
+        }
+        .onChange(of: path) { _, _ in ReviewRequest.shared.movedOn() }
+        .onChange(of: session.tab) { _, _ in ReviewRequest.shared.movedOn() }
         // zeistchess:// opens the app on Play; zeistchess://engine/<id> also picks that engine if it is on this iPhone
         // (otherwise it opens the picker, where it can be downloaded).
         .onOpenURL { url in

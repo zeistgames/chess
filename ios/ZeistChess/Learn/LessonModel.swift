@@ -375,6 +375,7 @@ final class LessonModel: BoardModel {
             marksShown = true
             phase = .ready
             line = "That move couldn't be played. Try again."
+            ReviewRequest.shared.record(.trouble)
         }
     }
 
@@ -389,7 +390,16 @@ final class LessonModel: BoardModel {
     }
 
     private func end() {
+        let first = !store.isFinished(lesson.id)
         store.finish(lesson.id)
+        // A rating may be asked for when this lesson finishes its chapter or its course for the first time.
+        if first, let course = LessonLibrary.shared.course(lesson.course) {
+            let done = { (entries: [LessonIndex.Entry]) in entries.allSatisfy { self.store.isFinished($0.id) } }
+            if done(course.entries) { ReviewRequest.shared.considerAsking(after: .lessonCourse) }
+            else if let chapter = course.chapters.first(where: { c in c.lessons.contains { $0.id == self.lesson.id } }), done(chapter.lessons) {
+                ReviewRequest.shared.considerAsking(after: .lessonChapter)
+            }
+        }
         phase = .ended
         line = ""
     }

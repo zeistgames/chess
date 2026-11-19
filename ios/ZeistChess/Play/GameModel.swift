@@ -50,7 +50,7 @@ final class GameModel {
     private(set) var ids: [Int?] = Array(repeating: nil, count: 64)
     private(set) var thinking = false
     /// The engine couldn't answer (after a retry). Shown under the board with a way to try again.
-    private(set) var trouble: String?
+    private(set) var trouble: String? { didSet { if trouble != nil { ReviewRequest.shared.record(.trouble) } } }
     var selected: Int?
     /// A pawn reached the last rank: which promotion to choose, from and to.
     var promoting: (from: Int, to: Int)?
@@ -125,6 +125,7 @@ final class GameModel {
     static func begin(engine: Engine, player: String, level: Int, adaptive: Bool, rating: Int? = nil, time: TimeControl? = nil,
                       start: String = GameModel.standardStart, learn: Bool = false) async throws -> GameModel {
         if let old = GameLog.shared.current { GameLog.shared.abandon(old.id) }
+        ReviewRequest.shared.movedOn()
         let seed = UInt32.random(in: 1...UInt32.max)
         let rating = adaptive ? nil : rating.flatMap { r in engine.manifest.ratings.map { min($0.upperBound, max($0.lowerBound, r)) } }
         var ask: [String: Any] = ["manifest": engine.coreArgs["manifest"]!, "level": level, "seed": seed]
@@ -600,6 +601,7 @@ final class GameModel {
                 Feel.shared.select()
             } catch {
                 notice = "No hint this time. Try again."
+                ReviewRequest.shared.record(.trouble)
             }
         }
     }
@@ -704,6 +706,14 @@ final class GameModel {
             GameCenter.shared.gameEnded(record, strongest: record.level >= 10 || (record.rating != nil && record.rating == engine.manifest.ratings?.upperBound))
             Measure.gameEnded(engine: record.engineID, outcome: outcome, ending: o.reason, plies: record.moves.count, level: record.level,
                               clock: record.timeControl?.name)
+        }
+        // A rating may be asked for after a win, once the result has been on the screen a moment (ReviewRequest decides).
+        ReviewRequest.shared.record(.finishedGame)
+        if outcome == "win" {
+            let before = GameLog.shared.finished.contains {
+                $0.id != record.id && $0.outcome == "win" && $0.engineID == record.engineID && $0.level == record.level && $0.rating == record.rating
+            }
+            ReviewRequest.shared.considerAsking(after: before ? .engineWin : .firstWinAtLevel)
         }
         // A game from a chosen position never counts toward adaptive play; a win with hints doesn't move it up.
         let helped = (record.hints ?? 0) > 0 && outcome == "win"

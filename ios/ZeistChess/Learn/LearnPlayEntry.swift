@@ -74,6 +74,7 @@ struct LearnPlayEntry: View {
             path.append(.game)
         } catch {
             problem = "The game couldn't start. Try again."
+            ReviewRequest.shared.record(.trouble)
         }
     }
 }

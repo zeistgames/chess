@@ -281,6 +281,7 @@ private struct LessonEnd: View {
             path = [.game]
         } catch {
             problem = "The game couldn't start. Try again."
+            ReviewRequest.shared.record(.trouble)
         }
     }
 }

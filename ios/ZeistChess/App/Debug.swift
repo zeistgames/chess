@@ -31,6 +31,7 @@ import SwiftUI
 ///   -freeze             the engine never answers (it stays "thinking")
 ///   -premove <uci>      with -freeze: a premove already entered
 ///   -engine-name <s>    show the engine under this name (worst cases)
+///   -review-now         forget the rating request's record; the next good moment asks
 ///   -standard-captures  count captures from the usual start even in a game from a position
 @MainActor
 enum Debug {
@@ -48,6 +49,7 @@ enum Debug {
             GameLog.shared.load()
             UserDefaults.standard.set(!args.contains("-onboarding"), forKey: "onboarded")
         }
+        if args.contains("-review-now") { ReviewRequest.shared.forceNext() }
         if let t = value("-theme") { UserDefaults.standard.set(t, forKey: Look.key) }
         if let p = value("-pieces") { UserDefaults.standard.set(p, forKey: Look.piecesKey) }
         if let p = value("-packs") { UserDefaults.standard.set(p, forKey: "packsURL") }
