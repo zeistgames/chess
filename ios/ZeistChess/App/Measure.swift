@@ -35,7 +35,9 @@ enum Measure {
     static func start() {
         guard Bundle.main.path(forResource: "GoogleService-Info", ofType: "plist") != nil else { return }
         #if DEBUG
-        if ProcessInfo.processInfo.arguments.contains("-reset") || NSClassFromString("XCTestCase") != nil { return }
+        // Test runs measure nothing: unit and UI tests, and a run against a test server (-zeist-site, Hosts.swift).
+        let args = ProcessInfo.processInfo.arguments
+        if args.contains("-reset") || args.contains("-zeist-site") || NSClassFromString("XCTestCase") != nil { return }
         #endif
         FirebaseApp.configure()
         ready = true

@@ -298,8 +298,10 @@ final class PuzzleModel: BoardModel {
     func retry() async {
         guard let p = puzzle, canRetry else { return }
         Feel.shared.select()
-        // A day's puzzle can be played again for fun; its record stays as the first finish left it.
-        if isDaily { usedShow = false }
+        // Played again after Show the move, the solve is the player's own: the puzzle, only seen until now, becomes
+        // solved (it still counts once: the step does not move again, and a day's record stays as its first finish
+        // left it).
+        usedShow = false
         await begin(p, missed: missed, again: true)
     }
 
