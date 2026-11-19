@@ -150,6 +150,19 @@ final class ReviewRequestTests: XCTestCase {
         XCTAssertNil(r.saved.lastRequestVersion)
     }
 
+    func testALearnerQualifiesByLessonsAlone() async {
+        // Five lessons over three days and no game or puzzle: the end of a chapter may ask.
+        let (r, asked, _) = make(ReviewRequest.Saved(firstOpen: start, daysOpened: 3, lastDayOpened: "2027-01-20"))
+        for _ in 0..<4 { r.record(.finishedLesson) }
+        r.considerAsking(after: .lessonChapter)
+        await settle()
+        XCTAssertEqual(asked(), [])
+        r.record(.finishedLesson)
+        r.considerAsking(after: .lessonChapter)
+        await settle()
+        XCTAssertEqual(asked(), [.lessonChapter])
+    }
+
     func testPuzzleMilestones() {
         var s = ready(); s.solvedPuzzles = 9
         let (r, _, _) = make(s)

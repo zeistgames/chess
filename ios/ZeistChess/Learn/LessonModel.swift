@@ -392,6 +392,7 @@ final class LessonModel: BoardModel {
     private func end() {
         let first = !store.isFinished(lesson.id)
         store.finish(lesson.id)
+        if first { ReviewRequest.shared.record(.finishedLesson) }
         // A rating may be asked for when this lesson finishes its chapter or its course for the first time.
         if first, let course = LessonLibrary.shared.course(lesson.course) {
             let done = { (entries: [LessonIndex.Entry]) in entries.allSatisfy { self.store.isFinished($0.id) } }

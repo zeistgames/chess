@@ -370,6 +370,7 @@ final class PuzzleModel: BoardModel {
             ids = beforeIDs
             phase = .solve
             line = "That move couldn't be checked. Try again."
+            // The rules could not be reached: the app's failure, not a wrong move (that is wrong(), above).
             ReviewRequest.shared.record(.trouble)
         }
     }

@@ -92,6 +92,7 @@ struct GameScreen: View {
         }
         .onChange(of: model.over) { _, over in
             guard over else { showEnd = false; return }
+            // GameModel.endCardIn is this pause and fade together.
             Task { try? await Task.sleep(for: .seconds(0.9)); withAnimation(.timingCurve(0.23, 1, 0.32, 1, duration: 0.4)) { showEnd = model.over } }
         }
         .onChange(of: phase) { _, p in

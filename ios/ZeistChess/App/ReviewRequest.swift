@@ -30,7 +30,10 @@ final class ReviewRequest {
         case finishedGame
         /// A puzzle was solved by the player, not shown.
         case solvedPuzzle
-        /// An error or an offline message was shown.
+        /// A lesson was finished for the first time.
+        case finishedLesson
+        /// The app failed at something and said so: an error or an offline message was shown. Never a slip of the
+        /// player's (a wrong move, a position that can't be read).
         case trouble
     }
 
@@ -51,12 +54,13 @@ final class ReviewRequest {
         var lastDayOpened: String?
         var finishedGames = 0
         var solvedPuzzles = 0
+        var finishedLessons = 0
         var lastRequestVersion: String?
         var lastRequestDate: Date?
         /// Debug builds: the next good moment asks, whatever the counts and dates say.
         var force = false
 
-        var finishes: Int { finishedGames + solvedPuzzles }
+        var finishes: Int { finishedGames + solvedPuzzles + finishedLessons }
     }
 
     /// What is true of this run of the app only.
@@ -91,6 +95,7 @@ final class ReviewRequest {
             if s.lastDayOpened != day { s.lastDayOpened = day; s.daysOpened += 1 }
         case .finishedGame: s.finishedGames += 1
         case .solvedPuzzle: s.solvedPuzzles += 1
+        case .finishedLesson: s.finishedLessons += 1
         case .trouble: break
         }
         return s
@@ -132,16 +137,17 @@ final class ReviewRequest {
     /// The puzzles solved so far are at a milestone (call after recording the solve).
     var atPuzzleMilestone: Bool { Self.puzzleMilestones.contains(saved.solvedPuzzles) }
 
-    /// Called from the good moments, once the result is on the screen. If the player is ready, waits for the screen
-    /// to settle and then asks, unless they have moved on, the app has left the front, or trouble has shown since.
-    func considerAsking(after moment: Moment) {
+    /// Called from the good moments. If the player is ready, waits for the screen to settle and then asks, unless
+    /// they have moved on, the app has left the front, or trouble has shown since.
+    /// shownIn: how long from now until the result is on the screen (a game's end card arrives after a pause).
+    func considerAsking(after moment: Moment, shownIn: Duration = .zero) {
         guard Self.eligible(saved, session: session, now: now(), version: version) else { return }
         pending += 1
         let mine = pending
         waiting?.cancel()
         waiting = Task { [weak self] in
             guard let wait = self?.wait else { return }
-            if wait > .zero { try? await Task.sleep(for: wait) }
+            if wait > .zero { try? await Task.sleep(for: wait + shownIn) }
             guard let self, !Task.isCancelled, self.pending == mine,
                   Self.eligible(self.saved, session: self.session, now: self.now(), version: self.version) else { return }
             // Nothing is spent if the request could not be made (the app had left the front).

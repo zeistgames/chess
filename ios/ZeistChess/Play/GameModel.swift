@@ -50,6 +50,7 @@ final class GameModel {
     private(set) var ids: [Int?] = Array(repeating: nil, count: 64)
     private(set) var thinking = false
     /// The engine couldn't answer (after a retry). Shown under the board with a way to try again.
+    /// Each of these is the app or the engine failing, never the player's slip, so it counts as trouble for ReviewRequest.
     private(set) var trouble: String? { didSet { if trouble != nil { ReviewRequest.shared.record(.trouble) } } }
     var selected: Int?
     /// A pawn reached the last rank: which promotion to choose, from and to.
@@ -601,7 +602,6 @@ final class GameModel {
                 Feel.shared.select()
             } catch {
                 notice = "No hint this time. Try again."
-                ReviewRequest.shared.record(.trouble)
             }
         }
     }
@@ -687,6 +687,9 @@ final class GameModel {
         return 1
     }
 
+    /// How long after a game ends its end card is up (GameScreen waits, then fades it in).
+    static let endCardIn: Duration = .seconds(1.3)
+
     private func finish(_ o: Snapshot.Outcome) {
         selected = nil
         premove = nil
@@ -708,12 +711,14 @@ final class GameModel {
                               clock: record.timeControl?.name)
         }
         // A rating may be asked for after a win, once the result has been on the screen a moment (ReviewRequest decides).
-        ReviewRequest.shared.record(.finishedGame)
-        if outcome == "win" {
+        // A resigned game is not one played to its end. A win from a chosen position is not a moment to ask at, and
+        // a win with hints is never named a first win at its level.
+        if o.reason != "resigned" { ReviewRequest.shared.record(.finishedGame) }
+        if outcome == "win", !record.fromPosition {
             let before = GameLog.shared.finished.contains {
                 $0.id != record.id && $0.outcome == "win" && $0.engineID == record.engineID && $0.level == record.level && $0.rating == record.rating
             }
-            ReviewRequest.shared.considerAsking(after: before ? .engineWin : .firstWinAtLevel)
+            ReviewRequest.shared.considerAsking(after: before || (record.hints ?? 0) > 0 ? .engineWin : .firstWinAtLevel, shownIn: Self.endCardIn)
         }
         // A game from a chosen position never counts toward adaptive play; a win with hints doesn't move it up.
         let helped = (record.hints ?? 0) > 0 && outcome == "win"
