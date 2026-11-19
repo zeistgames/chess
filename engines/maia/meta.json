@@ -3,7 +3,7 @@
   "version": "Maia-3 (platform export 8b91abf, 2026-11-13)",
   "author": "CSSLab, University of Toronto; UCI wrapper by Zeist Chess",
   "license": "AGPL-3.0-or-later AND GPL-3.0-only AND MIT AND BSD-2-Clause",
-  "net_license": "AGPL-3.0-only",
+  "net_license": "GPL-3.0-only",
   "source": "https://github.com/CSSLab/maia3",
   "line": "Plays like a person at a rating you choose.",
   "entry": "worker.js",
