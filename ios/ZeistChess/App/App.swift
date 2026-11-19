@@ -66,6 +66,14 @@ struct Root: View {
     /// The consent line is up (Measure.swift).
     @State private var asking = false
 
+    /// The consent line, at the foot of each place above the tab bar. The place makes room for it, so it never
+    /// covers the screen's main button (Play).
+    @ViewBuilder private var foot: some View {
+        if asking && onboarded {
+            consent.padding(.top, 4).padding(.bottom, 8).transition(.move(edge: .bottom).combined(with: .opacity))
+        }
+    }
+
     /// Asked once, where the law needs permission before usage may be measured; the same line as the main Zeist app's.
     private var consent: some View {
         HStack(spacing: 12) {
@@ -101,10 +109,10 @@ struct Root: View {
             // The places sit in the system's tab bar, Liquid Glass on iOS 26, as in the main Zeist app.
             // A game, a replay and anything else pushed covers the bar.
             TabView(selection: $session.tab) {
-                Tab("Play", systemImage: "checkerboard.rectangle", value: Session.Place.play) { Home(path: $path) }
-                Tab("Puzzles", systemImage: "puzzlepiece", value: Session.Place.puzzles) { PuzzleScreen(path: $path) }
-                Tab("Learn", systemImage: "book", value: Session.Place.learn) { LearnScreen(path: $path) }
-                Tab("Games", systemImage: "clock.arrow.circlepath", value: Session.Place.games) { GamesScreen(path: $path, tab: true) }
+                Tab("Play", systemImage: "checkerboard.rectangle", value: Session.Place.play) { Home(path: $path).safeAreaInset(edge: .bottom, spacing: 0) { foot } }
+                Tab("Puzzles", systemImage: "puzzlepiece", value: Session.Place.puzzles) { PuzzleScreen(path: $path).safeAreaInset(edge: .bottom, spacing: 0) { foot } }
+                Tab("Learn", systemImage: "book", value: Session.Place.learn) { LearnScreen(path: $path).safeAreaInset(edge: .bottom, spacing: 0) { foot } }
+                Tab("Games", systemImage: "clock.arrow.circlepath", value: Session.Place.games) { GamesScreen(path: $path, tab: true).safeAreaInset(edge: .bottom, spacing: 0) { foot } }
             }
                 .toolbar(.hidden, for: .navigationBar)
                 .navigationDestination(for: Route.self) { route in
@@ -124,11 +132,6 @@ struct Root: View {
                 }
         }
         .background(Z.ground.ignoresSafeArea())
-        .overlay(alignment: .bottom) {
-            if asking && path.isEmpty && onboarded {
-                consent.padding(.bottom, 64).transition(.move(edge: .bottom).combined(with: .opacity))
-            }
-        }
         .task(id: onboarded) {
             guard onboarded, Measure.shouldAsk else { return }
             try? await Task.sleep(for: .seconds(2.5))
