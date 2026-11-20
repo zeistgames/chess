@@ -1,18 +1,16 @@
 # Contributing
 
-Thank you for looking. A few things to know first.
-
 ## What is welcome
 
-- **Bugs**, with the device, the engine, the level and the moves played. The game log's PGN export has all of it.
-- **Engine ports.** Another engine needs a program and a network that both carry a clear license, a build script that fetches a pinned source, and a pack that passes `engines/check.mjs` and `engines/check-webkit.mjs`. Read [`engines/README.md`](engines/README.md) and copy the shape of an existing folder.
-- **Fixes to the apps and to `core/`**, small and with a test where there is logic.
+- Bugs, with the device, the engine, the level and the moves played. The game log's PGN export has all of it.
+- Engine ports. Another engine needs a program and a network that both carry a clear license, a build script that fetches a pinned source, and a pack that passes `engines/check.mjs` and `engines/check-webkit.mjs`. Read [`engines/README.md`](engines/README.md) and copy the shape of an existing folder.
+- Fixes to the apps and to `core/`, small and with a test where there is logic.
 
 ## What is not taken
 
-- **Changes to `engines/zeist/` and to the Zeist rules.** They are copied one way from Zeist's own repository so that Zeist can keep using them. Report problems as issues; they are fixed at the source.
-- **Chat, social features, ads, or anything that nags.** Zeist Chess is for practice, and you play engines, not people.
-- **Engines or data without a clear license**, however strong.
+- Changes to `engines/zeist/` and to the Zeist rules. They are copied one way from Zeist's own repository so that Zeist can keep using them. Report problems as issues; they are fixed at the source.
+- Chat, social features, ads, or anything that nags. Zeist Chess is for practice, and you play engines, not people.
+- Engines or data without a clear license, however strong the engine.
 
 ## How things are done here
 

@@ -110,12 +110,12 @@ struct SettingsScreen: View {
                 VStack(alignment: .leading, spacing: 0) {
                     toggle("Share usage with Zeist", $measure).accessibilityIdentifier("measure")
                         .onChange(of: measure) { _, on in Measure.answer(on) }
-                    Text("How often the app is opened, which engines and puzzles are played, and how games end, measured with Google Analytics so Zeist Chess can be made better. Never your moves, your name or an advertising identifier.")
+                    Text("How often the app is opened, which engines and puzzles are played, and how games end, measured with Google Analytics so Zeist Chess can be made better. It never includes your moves, your name or an advertising identifier.")
                         .font(Z.text(13.5)).foregroundStyle(Z.dim).fixedSize(horizontal: false, vertical: true).padding(.top, 4)
                     rule.padding(.top, 12)
                     toggle("Share my games against the Zeist engine", $shareGames).accessibilityIdentifier("share-games")
                         .onChange(of: shareGames) { _, _ in EngineGames.apply() }
-                    Text("To help the Zeist engine play better. Only the game is sent: its moves, the level, the result and the clock. Nothing about you, and no account. Turn it off here at any time.")
+                    Text("To help the Zeist engine play better. Only the game is sent: its moves, the level, the result and the clock. Nothing about you is sent, and it needs no account. Turn it off here at any time.")
                         .font(Z.text(13.5)).foregroundStyle(Z.dim).fixedSize(horizontal: false, vertical: true).padding(.top, 4)
                     if shareGames, EngineGames.say == .never {
                         Text("Your Zeist account has this turned off, so no games are sent.")

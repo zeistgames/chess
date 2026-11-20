@@ -229,7 +229,7 @@ struct Onboarding: View {
             // Said once, on the last page; its room is kept on every page so the buttons don't move, except on a
             // short screen, where the other pages need that room.
             if !tight || step == .account {
-            Text("Your games against Zeist help it play better.\nMoves only, never you.")
+            Text("Your games against Zeist help it play better.\nOnly the moves are sent, with nothing about you.")
                 .font(Z.text(12.5)).foregroundStyle(Z.dim).multilineTextAlignment(.center).fixedSize(horizontal: false, vertical: true)
                 .padding(.top, -4)
                 .opacity(step == .account && EngineGames.on ? 1 : 0)
