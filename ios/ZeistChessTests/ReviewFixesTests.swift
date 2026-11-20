@@ -79,8 +79,13 @@ final class ReviewFixesTests: XCTestCase {
         XCTAssertEqual(l.accountSolved(100, account: "z1", owner: "B"), [])
         XCTAssertEqual(l.puzzles("B"), 0)
         XCTAssertEqual(l.accountSolved(100, account: "z1", owner: FeatLedger.device), [])
+        // B's own solves beside A's account are counted one by one, as with no account.
+        XCTAssertFalse(l.counts(account: "z1", for: "B"))
+        XCTAssertTrue(l.counts(account: "z1", for: "A"))
+        for _ in 0..<9 { XCTAssertEqual(l.puzzleSolved(firstTry: false, band: 2, owner: "B"), []) }
+        XCTAssertEqual(l.puzzleSolved(firstTry: false, band: 2, owner: "B"), ["zeistchess.puzzles.10"])
         // B's own Zeist account counts for B.
-        XCTAssertEqual(l.accountSolved(10, account: "z2", owner: "B"), ["zeistchess.puzzles.10"])
+        XCTAssertEqual(l.accountSolved(50, account: "z2", owner: "B"), ["zeistchess.puzzles.50"])
         XCTAssertEqual(l.hardFirstTry(owner: "B"), ["zeistchess.puzzles.hard"])
         XCTAssertEqual(l.hardFirstTry(owner: "B"), [])
     }

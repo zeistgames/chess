@@ -115,11 +115,18 @@ struct FeatLedger {
     /// iPad and an account are not both given it. Answers what it newly earned.
     func accountSolved(_ n: Int, account: String, owner: String) -> Set<String> {
         guard owner != Self.device else { return [] }
-        let pair = "feats.account.\(account)"
-        if defaults.string(forKey: pair) == nil { defaults.set(owner, forKey: pair) }
-        guard defaults.string(forKey: pair) == owner, n > puzzles(owner) else { return [] }
+        if defaults.string(forKey: "feats.account.\(account)") == nil { defaults.set(owner, forKey: "feats.account.\(account)") }
+        guard counts(account: account, for: owner), n > puzzles(owner) else { return [] }
         putPuzzles(owner, n)
         return award(Feats.puzzles(solved: n, hardFirstTry: false), owner)
+    }
+
+    /// Whether this account's count is this player's: nobody has it yet, or they were the first beside it here.
+    /// Any other player's puzzles are counted one by one on this iPhone, as with no account.
+    func counts(account: String, for owner: String) -> Bool {
+        guard owner != Self.device else { return false }
+        let pair = defaults.string(forKey: "feats.account.\(account)")
+        return pair == nil || pair == owner
     }
 
     /// A hardest-band puzzle solved on the first try. Answers it if newly earned.
@@ -175,7 +182,7 @@ final class GameCenter {
     /// counts here and none counts twice. Otherwise it is counted on this iPhone.
     func puzzleDone(solved: Bool, firstTry: Bool, band: Int) {
         guard solved else { return }
-        guard let p = player, account() != nil else {
+        guard let p = player, let a = account(), ledger.counts(account: a.owner, for: p) else {
             let fresh = ledger.puzzleSolved(firstTry: firstTry, band: band, owner: player ?? FeatLedger.device)
             if let p = player { report(fresh, for: p, banner: true) }
             return
