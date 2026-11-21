@@ -38,7 +38,7 @@
    "description": "Play Chess against Koivisto 9 in your browser, by Kim Kåhre and Finn Eggers. Pick a level from 1 to 10 and play untimed or on a clock. Free, with no account."
   },
   "ethereal": {
-   "description": "Play Chess against Ethereal 14, Andrew Grant's engine, in its classical build. Pick a level from 1 to 10 and play untimed or on a clock. Free, with no account."
+   "description": "Play Chess against Ethereal 14, the classical build with a hand-tuned evaluation, in your browser. Levels 1 to 10, untimed or on a clock. Free, with no account."
   }
  }
 }
