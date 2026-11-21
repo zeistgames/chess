@@ -211,6 +211,9 @@ final class GameModel {
             resetIDs()
             await refreshPositions()
             if record.openingName == nil { nameOpening() }
+            #if DEBUG
+            defer { autoplayIfDue() }
+            #endif
             if s.outcome != nil, !over { finish(s.outcome!) }
             else if rated, !over, s.moves.count >= Self.moveLimit { finish(Snapshot.Outcome(result: "1/2-1/2", reason: "move-limit", winner: nil)) }
             resumeClock()
@@ -562,6 +565,9 @@ final class GameModel {
                     guard id == request, !over else { return }
                     thinking = false
                     await play(move, byEngine: true)
+                    #if DEBUG
+                    autoplayIfDue()
+                    #endif
                     // Asked once a game (kept with the game, so a relaunch doesn't ask again), and not while a
                     // premove waits: that would answer it unseen, so it asks after a later move instead.
                     if !over, premove == nil, !rated,
@@ -882,6 +888,29 @@ final class GameModel {
         }
         GameLog.shared.save(record)
         await refreshPositions()
+    }
+
+    /// -autoplay: on your turn, the strongest Stockfish Lite plays your move.
+    func autoplayIfDue() {
+        guard Debug.args.contains("-autoplay"), myTurn, let helper = Shelf.shared.engine(Shelf.bundledID) else { return }
+        let moves = record.moves, start = record.startFEN
+        // -autoplay-promote: promote a pawn before anything else; until one has, often push the most advanced pawn.
+        if Debug.args.contains("-autoplay-promote"), !moves.contains(where: { $0.count == 5 }) {
+            if let q = snap.legal.first(where: { $0.promotion == "q" }) { Task { await play(q.uci, byEngine: false) }; return }
+            let pushes = snap.legal.filter { !$0.capture && Square.index($0.from).map { snap.board[$0].hasSuffix("P") } == true }
+            let ahead = pushes.max { a, b in
+                let ra = Int(String(a.to.last!))!, rb = Int(String(b.to.last!))!
+                return (record.player == "w" ? ra : 9 - ra) < (record.player == "w" ? rb : 9 - rb)
+            }
+            if moves.count >= 8, let p = ahead, Int.random(in: 0..<10) < 9 { Task { await play(p.uci, byEngine: false) }; return }
+        }
+        Task {
+            guard var s = try? await Core.shared.call("settings", ["manifest": helper.coreArgs["manifest"]!, "level": 10, "seed": 1]) as? [String: Any] else { return }
+            s["nodes"] = 200_000
+            guard let v = try? await Core.shared.call("think", ["engine": helper.coreArgs, "fen": start, "moves": moves, "settings": s, "level": 10, "seed": 1]),
+                  record.moves == moves, myTurn, let m = (v as? [String: Any])?["move"] as? String else { return }
+            await play(m, byEngine: false)
+        }
     }
 
     /// For screenshots: a premove already entered.

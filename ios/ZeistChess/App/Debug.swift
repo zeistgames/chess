@@ -35,6 +35,9 @@ import SwiftUI
 ///   -human              human mode on (a beaten engine may ask for a draw or resign)
 ///   -review-now         forget the rating request's record; the next good moment asks
 ///   -standard-captures  count captures from the usual start even in a game from a position
+///   -autoplay           your moves are played for you by the strongest Stockfish Lite (live checks of whole games)
+///   -rated-lose <start,finish>  Zeist's answer to a rated start or finish is lost once each: the request reaches
+///                       Zeist, and the app hears nothing (live checks of the retries)
 ///   -rated-stub <games>,<rating>  signed in to a stand-in for Zeist that plays rated games here and never reaches
 ///                       it: the account has played <games> rated games, at <rating> once ranked (0: not ranked)
 @MainActor
@@ -56,6 +59,7 @@ enum Debug {
         // With -zeist-site (Hosts.swift): a session of that test server's, in place of signing in through its pages.
         if args.contains("-zeist-site"), let t = value("-zeist-token") { Keychain.token = t }
         if let v = value("-rated-stub") { RatedStub.install(v) }
+        if let v = value("-rated-lose") { RatedLose.install(Set(v.split(separator: ",").map(String.init))) }
         if args.contains("-human") { UserDefaults.standard.set(true, forKey: GameModel.humanKey) }
         if args.contains("-review-now") { ReviewRequest.shared.forceNext() }
         if let t = value("-theme") { UserDefaults.standard.set(t, forKey: Look.key) }
@@ -133,6 +137,23 @@ enum Debug {
         }
     }
 }
+/// Loses Zeist's answer to the first rated start and the first rated finish (by kind), after the request has gone.
+@MainActor
+enum RatedLose {
+    static func install(_ kinds: Set<String>) {
+        var left = kinds
+        let real = Rated.net
+        Rated.net = { req in
+            let path = req.url!.path
+            let kind = path == "/api/rated" && req.httpMethod == "POST" ? "start"
+                : path.hasPrefix("/api/rated/") && !path.hasSuffix("/ack") ? "finish" : ""
+            let answer = try await real(req)
+            if left.remove(kind) != nil { print("rated-lose: lost the answer to the \(kind)"); throw URLError(.networkConnectionLost) }
+            return answer
+        }
+    }
+}
+
 /// A stand-in for Zeist's account and rated games, for screenshots and trying the screens. Each finish is a win
 /// worth +14 (after ten games), and Matched picks level 3.
 @MainActor
