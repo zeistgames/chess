@@ -9,6 +9,7 @@ struct GameScreen: View {
     @State private var resigning = false
     @State private var showEnd = false
     @State private var again = false
+    @State private var againProblem: String?
     @AppStorage(Look.edgeKey) private var edge = false
     @Environment(\.dismiss) private var dismiss
     @Environment(\.horizontalSizeClass) private var size
@@ -76,7 +77,7 @@ struct GameScreen: View {
         .foregroundStyle(Z.ink)
         .overlay {
             if showEnd, model.over {
-                EndCard(model: model, found: cards?.found ?? [], open: { path.append($0) }, again: { Task { await playAgain() } }, swap: { Task { await playAgain(swap: true) } }, board: { ReviewRequest.shared.movedOn(); withAnimation(.easeOut(duration: 0.2)) { showEnd = false } },
+                EndCard(model: model, problem: againProblem, found: cards?.found ?? [], open: { path.append($0) }, again: { Task { await playAgain() } }, swap: { Task { await playAgain(swap: true) } }, board: { ReviewRequest.shared.movedOn(); withAnimation(.easeOut(duration: 0.2)) { showEnd = false } },
                         review: { let id = model.record.id; dismiss(); DispatchQueue.main.asyncAfter(deadline: .now() + 0.35) { path.append(.replay(id)) } },
                         leave: { dismiss() })
                     .transition(.opacity)
@@ -153,7 +154,7 @@ struct GameScreen: View {
             }
             HStack(spacing: 0) {
                 menu
-                if !model.timed, !model.over {
+                if !model.timed, !model.rated, !model.over {
                     DockButton(symbol: "arrow.uturn.backward", title: "Undo", label: "Undo", enabled: model.canUndo) { model.undo() }
                         .accessibilityIdentifier("undo")
                     DockButton(symbol: "lightbulb", title: model.hinting ? "Thinking" : "Hint", label: "Hint", enabled: model.canHint) { model.askHint() }
@@ -170,7 +171,7 @@ struct GameScreen: View {
         .confirmationDialog("Resign this game?", isPresented: $resigning, titleVisibility: .visible) {
             Button("Resign", role: .destructive) { model.resign() }
             Button("Keep playing", role: .cancel) {}
-        } message: { Text("\(model.engineName) wins.") }
+        } message: { Text(model.rated ? "\(model.engineName) wins, and it counts toward your rating." : "\(model.engineName) wins.") }
     }
 
     /// Everything rarer, in a menu that opens from its own place in the bar: a draw, resigning, turning the board,
@@ -178,9 +179,11 @@ struct GameScreen: View {
     private var menu: some View {
         Menu {
             if !model.over {
-                Button { model.offerDraw() } label: { Label("Offer a draw", systemImage: "equal") }
-                    .disabled(!model.canOfferDraw)
-                    .accessibilityIdentifier("offer-draw")
+                if !model.rated {
+                    Button { model.offerDraw() } label: { Label("Offer a draw", systemImage: "equal") }
+                        .disabled(!model.canOfferDraw)
+                        .accessibilityIdentifier("offer-draw")
+                }
                 Button(role: .destructive) { resigning = true } label: { Label("Resign", systemImage: "flag") }
                     .accessibilityIdentifier("menu-resign")
             }
@@ -217,6 +220,20 @@ struct GameScreen: View {
         let side = UserDefaults.standard.string(forKey: Pick.sideKey).flatMap(Pick.Side.init(rawValue:)) ?? .either
         var player = side == .either ? (Bool.random() ? "w" : "b") : r.player
         if swap { player = r.player == "w" ? "b" : "w" }
+        if r.isRated {
+            // Another rated game: Matched again, or the same level, on the side chosen.
+            do {
+                let m = try await GameModel.beginRated(engine: model.engine, level: r.matched == true ? nil : r.level, seat: player == "w" ? 0 : 1)
+                Session.shared.game = m
+                model = m
+                showEnd = false
+                Feel.shared.select()
+                await m.resume()
+            } catch {
+                againProblem = "The rated game couldn't start. Check your connection and try again."
+            }
+            return
+        }
         if let m = try? await GameModel.begin(engine: model.engine, player: player, level: level, adaptive: r.adaptive, rating: r.rating, time: r.timeControl,
                                               start: r.startFEN, learn: r.learn == true) {
             Session.shared.game = m
@@ -235,6 +252,9 @@ struct GameScreen: View {
             VStack(spacing: 3) {
                 if model.record.learn == true {
                     Text("Learn as you play").zLabel().lineLimit(1).accessibilityIdentifier("learn-game")
+                }
+                if model.rated {
+                    Text("Rated").zLabel().lineLimit(1).accessibilityIdentifier("rated-game")
                 }
                 if let tc = model.record.timeControl {
                     Text("\(tc.kind.name)  \(tc.name)").zLabel().lineLimit(1)
@@ -259,6 +279,7 @@ struct GameScreen: View {
 /// The end of a game: plain words, the board dimmed behind, what comes next. Kind whatever the result.
 struct EndCard: View {
     let model: GameModel
+    var problem: String? = nil
     /// In a game from Learn: what came up, each with its lesson.
     var found: [ShownCard] = []
     var open: (Route) -> Void = { _ in }
@@ -275,6 +296,7 @@ struct EndCard: View {
             Spacer()
             Text(model.ending.title).font(Z.title(44, relativeTo: .largeTitle)).foregroundStyle(Z.ink).lineLimit(2).minimumScaleFactor(0.6)
             Text(detail).font(Z.text(16.5)).foregroundStyle(Z.soft).padding(.bottom, found.isEmpty ? 20 : 8).fixedSize(horizontal: false, vertical: true)
+            if model.rated { RatedResult(model: model).padding(.bottom, 20) }
             if !found.isEmpty { cameUp.padding(.bottom, 16) }
             // Side by side; one under the other at the large text sizes, where two no longer fit a row.
             let row = big ? AnyLayout(VStackLayout(spacing: 10)) : AnyLayout(HStackLayout(spacing: 10))
@@ -295,6 +317,7 @@ struct EndCard: View {
             }
             .font(Z.text(14)).foregroundStyle(Z.soft).buttonStyle(.plain)
             .frame(maxWidth: .infinity).padding(.top, 10)
+            if let problem { Text(problem).font(Z.text(14)).foregroundStyle(Z.soft).frame(maxWidth: .infinity).multilineTextAlignment(.center) }
         }
         .padding(.horizontal, 24)
         .padding(.bottom, 40)
@@ -340,7 +363,7 @@ struct EndCard: View {
             default: parts.append("Your next game is at level \(n).")
             }
         }
-        parts.append("The game is kept in Recent.")
+        if !r.isRated { parts.append("The game is kept in Recent.") }
         return parts.compactMap { $0 }.joined(separator: " ")
     }
 }

@@ -3,6 +3,7 @@ import SwiftUI
 /// What Play starts: the engine, the side, and the difficulty. Remembered between games.
 enum Pick {
     static let engineKey = "pick.engine", sideKey = "pick.side", manualKey = "pick.manual", levelKey = "pick.level", ratedKey = "pick.rated", ratingKey = "pick.rating"
+    static let ratedGameKey = "pick.ratedGame", ratedLevelKey = "pick.ratedLevel"
     static let timeKey = "pick.time", minutesKey = "pick.minutes", incrementKey = "pick.increment"
     /// A position to start from (FEN), empty for the usual start, and its name if it has one.
     static let startKey = "pick.start", startNameKey = "pick.startName"
@@ -32,6 +33,11 @@ struct Home: View {
     @AppStorage(Pick.ratedKey) private var rated = false
     @AppStorage(Pick.ratingKey) private var rating = 1500
     @AppStorage(Pick.timeKey) private var time = ""
+    @AppStorage(Pick.ratedGameKey) private var ratedGame = false
+    @AppStorage(Pick.ratedLevelKey) private var ratedLevel = 0
+    @State private var book = RatingBook.shared
+    /// The next game is rated: the Zeist engine chosen, an account, Rated on.
+    private var ratedNext: Bool { ratedGame && engine?.id == Rated.engineID && account.signedIn }
     @AppStorage(Pick.minutesKey) private var customMinutes = 10
     @AppStorage(Pick.incrementKey) private var customIncrement = 5
     @AppStorage(Pick.startKey) private var start = ""
@@ -85,6 +91,7 @@ struct Home: View {
         .sheet(isPresented: $picking, onDismiss: { Task { await refreshLevel() } }) {
             PickerSheet(engineID: $engineID, side: $side, manual: $manual, level: $level, rated: $rated, rating: $rating,
                         time: $time, customMinutes: $customMinutes, customIncrement: $customIncrement, start: $start, startName: $startName,
+                        ratedGame: $ratedGame, ratedLevel: $ratedLevel,
                         gameInProgress: log.current,
                         changed: { if log.current != nil { fresh = true } },
                         more: { picking = false; session.settingsAt = "engines"; session.openSettings = true })
@@ -93,6 +100,7 @@ struct Home: View {
             shelf.refresh()
             await refreshLevel()
         }
+        .task(id: ratedNext) { if ratedNext { await book.refresh() } }
         .onAppear {
             fresh = false
             settle()
@@ -136,7 +144,7 @@ struct Home: View {
     }
 
     private var board: some View {
-        let fen = current?.fen ?? (start.isEmpty ? GameModel.standardStart : start)
+        let fen = current?.fen ?? (start.isEmpty || ratedNext ? GameModel.standardStart : start)
         let flipped = current.map { $0.player == "b" } ?? (nextSide == "b")
         return BoardStill(fen: fen, flipped: flipped, last: current?.moves.last, setUp: setUp && !Home.setUpDone && current == nil)
             .id(fen + (flipped ? "b" : "w") + (onboarded ? "o" : ""))
@@ -168,7 +176,7 @@ struct Home: View {
             } else if fresh, let g = log.current {
                 Button { fresh = false; Feel.shared.select() } label: { Text("Back to your game against \(g.engineName)").underline() }
                     .buttonStyle(.plain)
-            } else if !start.isEmpty {
+            } else if !start.isEmpty, !ratedNext {
                 Text("From \(startName.isEmpty ? "your position" : startName.prefix(1).lowercased() + startName.dropFirst()).")
             } else {
                 Text(nextSide == "w" ? "Make the first move." : "Tap the board to begin.")
@@ -182,6 +190,11 @@ struct Home: View {
         let g = current
         let name = g?.engineName ?? engine?.name ?? "Stockfish Lite"
         let detail: String = {
+            if let g, g.isRated { return "\(g.player == "w" ? "White" : "Black"). Rated, level \(g.level)." }
+            if g == nil, ratedNext {
+                if ratedLevel != 0 { return "\(side.name). Rated, level \(ratedLevel)." }
+                return book.current?.rating.map { "\(side.name). Rated, \($0)." } ?? "\(side.name). Rated."
+            }
             if let g { return "\(g.player == "w" ? "White" : "Black"). \(g.adaptive ? "Adaptive, level \(g.level)" : g.difficulty).\(g.timeControl.map { " \($0.name)." } ?? "")" }
             let clock = timeControl.map { " \($0.name)." } ?? ""
             if manual, rated, let r = engine?.manifest.ratings { return "\(side.name). Rating \(min(r.upperBound, max(r.lowerBound, rating))).\(clock)" }
@@ -225,6 +238,21 @@ struct Home: View {
         starting = true
         defer { starting = false }
         let color = nextSide
+        if ratedNext {
+            do {
+                let m = try await GameModel.beginRated(engine: e, level: ratedLevel == 0 ? nil : ratedLevel, seat: color == "w" ? 0 : 1)
+                Feel.shared.select()
+                Session.shared.game = m
+                fresh = false
+                path.append(.game)
+                if let select, m.canLift(select) { m.selected = select }
+                drawn = Bool.random() ? "w" : "b"
+            } catch {
+                problem = "The rated game couldn't start. Check your connection and try again."
+                ReviewRequest.shared.record(.trouble)
+            }
+            return
+        }
         let lvl = manual ? level : await GameModel.startingLevel(e.id)
         do {
             let m = try await GameModel.begin(engine: e, player: color, level: lvl, adaptive: !manual, rating: manual && rated ? rating : nil, time: timeControl,

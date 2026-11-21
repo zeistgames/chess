@@ -114,6 +114,7 @@ final class Account: NSObject, ASWebAuthenticationPresentationContextProviding {
             PuzzleProgress.join(owner: owner)
             GameCenter.shared.recount()
             Task { await PuzzleSync.shared.sync() }
+            Task { await RatedFinishes.flush() }
         }
     }
 

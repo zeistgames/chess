@@ -410,6 +410,15 @@ struct AccountPanel: View {
     @State private var confirmDelete = false
     @State private var deleting = false
     @State private var deleteFailed = false
+    @State private var showRating = false
+    @State private var book = RatingBook.shared
+
+    /// The rating, or how many of the first ten rated games are played.
+    private var ratingLine: String {
+        guard let s = book.current else { return "" }
+        if let r = s.rating { return String(r) }
+        return "\(min(s.games, Rated.untilRanked)) of \(Rated.untilRanked) games"
+    }
 
     var body: some View {
         if account.signedIn {
@@ -430,7 +439,22 @@ struct AccountPanel: View {
                             Button("Stay signed in", role: .cancel) {}
                         } message: { Text("Your games stay on this iPhone.") }
                 }
-                Text("Your games are kept on this iPhone under your account. Ratings and records come in a later version.")
+                Button { Feel.shared.select(); showRating = true } label: {
+                    HStack {
+                        Text("Your rating").font(Z.text(15.5)).foregroundStyle(Z.soft)
+                        Spacer()
+                        Text(ratingLine).font(Z.medium(15.5)).monospacedDigit()
+                        Image(systemName: "chevron.right").font(.system(size: 12, weight: .semibold)).foregroundStyle(Z.dim)
+                    }
+                    .padding(.vertical, 12).contentShape(Rectangle())
+                }
+                .buttonStyle(Press())
+                .overlay(alignment: .top) { Rectangle().fill(Z.hair).frame(height: 1) }
+                .overlay(alignment: .bottom) { Rectangle().fill(Z.hair).frame(height: 1) }
+                .accessibilityIdentifier("your-rating")
+                .sheet(isPresented: $showRating) { RatingScreen() }
+                .task { await book.refresh() }
+                Text("Your games are kept on this iPhone under your account. Rated games count toward one rating, here and in Zeist.")
                     .font(Z.text(13.5)).foregroundStyle(Z.dim).fixedSize(horizontal: false, vertical: true)
                 Button {
                     confirmDelete = true

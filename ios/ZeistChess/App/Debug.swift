@@ -35,6 +35,8 @@ import SwiftUI
 ///   -human              human mode on (a beaten engine may ask for a draw or resign)
 ///   -review-now         forget the rating request's record; the next good moment asks
 ///   -standard-captures  count captures from the usual start even in a game from a position
+///   -rated-stub <games>,<rating>  signed in to a stand-in for Zeist that plays rated games here and never reaches
+///                       it: the account has played <games> rated games, at <rating> once ranked (0: not ranked)
 @MainActor
 enum Debug {
     static var args: [String] { ProcessInfo.processInfo.arguments }
@@ -53,6 +55,7 @@ enum Debug {
         }
         // With -zeist-site (Hosts.swift): a session of that test server's, in place of signing in through its pages.
         if args.contains("-zeist-site"), let t = value("-zeist-token") { Keychain.token = t }
+        if let v = value("-rated-stub") { RatedStub.install(v) }
         if args.contains("-human") { UserDefaults.standard.set(true, forKey: GameModel.humanKey) }
         if args.contains("-review-now") { ReviewRequest.shared.forceNext() }
         if let t = value("-theme") { UserDefaults.standard.set(t, forKey: Look.key) }
@@ -71,6 +74,7 @@ enum Debug {
     }
 
     static func run(path: Binding<[Route]>) {
+        if value("-screen") == "rating" { path.wrappedValue = [.settings]; return }
         if let id = value("-lesson") {
             Session.shared.tab = .learn
             path.wrappedValue = [.lesson(id)]
@@ -127,6 +131,45 @@ enum Debug {
             default: break
             }
         }
+    }
+}
+/// A stand-in for Zeist's account and rated games, for screenshots and trying the screens. Each finish is a win
+/// worth +14 (after ten games), and Matched picks level 3.
+@MainActor
+enum RatedStub {
+    static var games = 0, rating = 0
+
+    static func install(_ v: String) {
+        let p = v.split(separator: ",").compactMap { Int($0) }
+        games = p.first ?? 0
+        rating = p.count > 1 ? p[1] : 0
+        Keychain.token = "stub"
+        Account.shared.fetch = { req in
+            (Data(#"{"user":{"handle":"tester","display_name":"Tester","owner":"stub-owner","chess_archive":false}}"#.utf8),
+             HTTPURLResponse(url: req.url!, statusCode: 200, httpVersion: nil, headerFields: nil)!)
+        }
+        Rated.net = { req in
+            let path = req.url!.path
+            let body = req.httpBody.flatMap { try? JSONSerialization.jsonObject(with: $0) as? [String: Any] } ?? [:]
+            if req.httpMethod == "GET" { return (standing(), 200) }
+            if path == "/api/rated" {
+                let level = body["level"] as? Int ?? 3
+                let seat = body["seat"] as? Int ?? 0
+                return (Data(#"{"ok":true,"id":"stub\#(Int.random(in: 100000...999999))0000000000","level":{"level":\#(level)},"seed":\#(UInt32.random(in: 1...UInt32.max)),"seat":\#(seat)}"#.utf8), 200)
+            }
+            if path.hasPrefix("/api/rated/") {
+                games += 1
+                if games >= Rated.untilRanked { rating = rating == 0 ? 1482 : rating + 14 }
+                return (Data(#"{"ok":true,"outcome":"win"}"#.utf8), 200)
+            }
+            return (Data(), 404)
+        }
+    }
+
+    static func standing() -> Data {
+        let ranked = games >= Rated.untilRanked && rating > 0
+        let r = ranked ? #""rating":\#(rating),"record":{"won":\#(games / 2),"drawn":\#(games / 10),"lost":\#(games - games / 2 - games / 10)},"# : ""
+        return Data(#"{"ok":true,\#(r)"games":\#(games),"rank_level":\#(ranked ? 3 : 0),"rank_name":"\#(ranked ? "Amateur" : "New")","until_ranked":\#(max(0, Rated.untilRanked - games)),"level":\#(ranked ? 3 : 2)}"#.utf8)
     }
 }
 #endif

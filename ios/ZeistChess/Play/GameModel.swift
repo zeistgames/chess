@@ -95,14 +95,17 @@ final class GameModel {
     var myTurn: Bool { !over && snap.turn == record.player && !thinking && viewPly == nil }
     var timed: Bool { record.timeControl != nil }
     /// Undo takes back your last move (and the engine's answer). Timed games have no Undo.
-    var canUndo: Bool { !timed && !over && record.moves.count >= (record.player == "w" ? 1 : 2) && !busy }
+    var canUndo: Bool { !timed && !rated && !over && record.moves.count >= (record.player == "w" ? 1 : 2) && !busy }
+    /// A rated game: no undo, hints or draw offers, and the engine never resigns or asks for a draw. It plays to its
+    /// end on the board or a resignation, which is what Zeist checks.
+    var rated: Bool { record.isRated }
     /// While the engine thinks in a timed game, the player may enter one move ahead.
     var canPremove: Bool { timed && !over && snap.turn != record.player && viewPly == nil }
     /// The board drawn from White's side unless the player is Black, turned when the player flips it.
     var whiteAtBottom: Bool { playerIsWhite != flipped }
     /// Hints are for games without a clock, on your turn.
-    var canHint: Bool { !timed && myTurn && !hinting }
-    var canOfferDraw: Bool { !over && declinedAt.map { record.moves.count >= $0 + 10 } ?? true }
+    var canHint: Bool { !timed && !rated && myTurn && !hinting }
+    var canOfferDraw: Bool { !over && !rated && declinedAt.map { record.moves.count >= $0 + 10 } ?? true }
 
     /// The time for a steady clock: seconds since the phone started, unaffected by changes to the time of day.
     static func now() -> Double { ProcessInfo.processInfo.systemUptime }
@@ -125,7 +128,7 @@ final class GameModel {
     /// Starts a game: picks the seed, asks core for the engine's settings at the level, and saves it.
     static func begin(engine: Engine, player: String, level: Int, adaptive: Bool, rating: Int? = nil, time: TimeControl? = nil,
                       start: String = GameModel.standardStart, learn: Bool = false) async throws -> GameModel {
-        if let old = GameLog.shared.current { GameLog.shared.abandon(old.id) }
+        if let old = GameLog.shared.current { Self.leaveForGood(old) }
         ReviewRequest.shared.movedOn()
         let seed = UInt32.random(in: 1...UInt32.max)
         let rating = adaptive ? nil : rating.flatMap { r in engine.manifest.ratings.map { min($0.upperBound, max($0.lowerBound, r)) } }
@@ -148,6 +151,44 @@ final class GameModel {
         Measure.gameStarted(engine: engine.id, adaptive: adaptive, rating: rating != nil, level: level, clock: time?.name, side: player)
         _ = try? await Core.shared.call("newGame", ["engine": engine.coreArgs])
         return m
+    }
+
+    /// A rated game against the Zeist engine: Zeist starts it and gives the level (level nil: Matched), the seed and
+    /// the side (seat nil: Zeist picks). Always from the usual start, without a clock.
+    static func beginRated(engine: Engine, level: Int?, seat: Int?) async throws -> GameModel {
+        guard engine.id == Rated.engineID, let who = Rated.who() else { throw Rated.Failure(status: 401, error: "signin") }
+        let before = RatingBook.shared.current?.rating
+        let g = try await Rated.start(level: level, seat: seat)
+        if let old = GameLog.shared.current { leaveForGood(old) }
+        ReviewRequest.shared.movedOn()
+        let settings = try await Core.shared.call("settings", ["manifest": engine.coreArgs["manifest"]!, "level": g.level, "seed": g.seed])
+        var rec = GameRecord(startFEN: standardStart, fen: standardStart, player: g.seat == 0 ? "w" : "b", engineID: engine.id, engineName: engine.name,
+                             engineVersion: engine.manifest.version, packSHA: engine.packSHA, level: g.level, adaptive: false, rating: nil,
+                             engineSettings: json(settings), seed: g.seed, appVersion: GameRecord.appVersion)
+        rec.ratedID = g.id
+        rec.ratedBy = who.owner
+        rec.matched = level == nil
+        rec.ratingBefore = before
+        GameLog.shared.save(rec)
+        let m = GameModel(record: rec, engine: engine)
+        Measure.gameStarted(engine: engine.id, adaptive: false, rating: false, level: g.level, clock: nil, side: rec.player)
+        _ = try? await Core.shared.call("newGame", ["engine": engine.coreArgs])
+        return m
+    }
+
+    /// The game in progress, left for another: an unrated one is kept as unfinished; a rated one is resigned, since
+    /// Zeist would count it as a loss a day later anyway.
+    static func leaveForGood(_ old: GameRecord) {
+        guard old.isRated, let id = old.ratedID, let by = old.ratedBy else { GameLog.shared.abandon(old.id); return }
+        var r = old
+        r.result = r.player == "w" ? "0-1" : "1-0"
+        r.ending = "resigned"
+        r.endedAt = Date()
+        GameLog.shared.save(r)
+        Task {
+            r.ratedSent = await RatedFinishes.send(id, moves: r.moves, resign: true, owner: by)
+            GameLog.shared.save(r)
+        }
     }
 
     static let standardStart = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
@@ -499,7 +540,7 @@ final class GameModel {
                     let v = try await think(args)
                     guard id == request, let move = (v as? [String: Any])?["move"] as? String else { return }
                     if let e = Self.evaluation(v) { evals.append(e) }
-                    if Self.gaveUp(evals, humanMode: UserDefaults.standard.bool(forKey: Self.humanKey)) {
+                    if !rated, Self.gaveUp(evals, humanMode: UserDefaults.standard.bool(forKey: Self.humanKey)) {
                         thinking = false
                         let winner = record.player
                         finish(Snapshot.Outcome(result: winner == "w" ? "1-0" : "0-1", reason: "engine-resigned", winner: winner))
@@ -517,7 +558,7 @@ final class GameModel {
                     await play(move, byEngine: true)
                     // Asked once a game (kept with the game, so a relaunch doesn't ask again), and not while a
                     // premove waits: that would answer it unseen, so it asks after a later move instead.
-                    if !over, premove == nil,
+                    if !over, premove == nil, !rated,
                        Self.asksForDraw(evals, humanMode: UserDefaults.standard.bool(forKey: Self.humanKey), asked: record.engineAskedDraw == true) {
                         record.engineAskedDraw = true
                         GameLog.shared.save(record)
@@ -759,6 +800,7 @@ final class GameModel {
         // A rating may be asked for after a win, once the result has been on the screen a moment (ReviewRequest decides).
         // A resigned game is not one played to its end. A win from a chosen position is not a moment to ask at, and
         // a win with hints is never named a first win at its level.
+        if rated { settleRated(resign: o.reason == "resigned") }
         if o.reason != "resigned" { ReviewRequest.shared.record(.finishedGame) }
         if outcome == "win", !record.fromPosition {
             let before = GameLog.shared.finished.contains {
@@ -784,6 +826,29 @@ final class GameModel {
 
     /// After an adaptive game: the level of the next one.
     private(set) var nextLevel: Int?
+
+    /// Sending a rated game's result to Zeist is under way.
+    private(set) var ratedSending = false
+
+    /// Sends a finished rated game to Zeist, then reads the rating it left. Kept with the game, so the end card and
+    /// Recent can say what came of it.
+    private func settleRated(resign: Bool) {
+        guard let id = record.ratedID, let by = record.ratedBy else { return }
+        ratedSending = true
+        let moves = record.moves
+        Task {
+            defer { ratedSending = false }
+            let sent = await RatedFinishes.send(id, moves: moves, resign: resign, owner: by)
+            guard record.ratedID == id else { return }
+            record.ratedSent = sent
+            if sent == .counted, Rated.who()?.owner == by, let s = await RatingBook.shared.refresh() {
+                record.ratingAfter = s.rating
+                record.ratedGames = s.games
+                record.nextRatedLevel = s.level
+            }
+            GameLog.shared.save(record)
+        }
+    }
 
     #if DEBUG
     /// For screenshots and tests: a game with these moves already played.
@@ -883,7 +948,7 @@ final class GameModel {
     }
 
     var levelLine: String {
-        record.difficulty
+        rated ? "Level \(record.level)" : record.difficulty
     }
 
     /// "12." for White's twelfth move, "12..." for Black's, after `ply` moves from the start position.

@@ -28,7 +28,10 @@ struct GameRecord: Codable, Identifiable, Hashable, Sendable {
     /// Set when the player chose the engine's rating by hand; the number is on the engine's own scale.
     var rating: Int?
     /// "Rating 1500", "Level 4" or "Level 4, adaptive".
-    var difficulty: String { rating.map { "Rating \($0)" } ?? "Level \(level)\(adaptive ? ", adaptive" : "")" }
+    var difficulty: String {
+        if ratedID != nil { return "Rated, level \(level)" }
+        return rating.map { "Rating \($0)" } ?? "Level \(level)\(adaptive ? ", adaptive" : "")"
+    }
     /// Exactly what was sent to the engine (core/levels.js settings): options, node budget, MultiPV, the seed.
     var engineSettings: JSONValue?
     var seed: UInt32
@@ -61,6 +64,20 @@ struct GameRecord: Codable, Identifiable, Hashable, Sendable {
     var learn: Bool?
     /// Human mode: the engine has asked for a draw in this game (it asks once).
     var engineAskedDraw: Bool?
+
+    /// A rated game (Rated): Zeist's id for it, and the owner tag of the account that played it.
+    var ratedID: String?
+    var ratedBy: String?
+    /// Zeist picked the level (Matched) rather than the player.
+    var matched: Bool?
+    /// What came of sending it (RatedFinishes.Sent), and the account's rating before and after, once it has one.
+    var ratedSent: RatedFinishes.Sent?
+    var ratingBefore: Int?
+    var ratingAfter: Int?
+    /// The account's rated games once this one counted, and the level Zeist would pick next.
+    var ratedGames: Int?
+    var nextRatedLevel: Int?
+    var isRated: Bool { ratedID != nil }
 
     var finished: Bool { result != nil }
 

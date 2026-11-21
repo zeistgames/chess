@@ -13,12 +13,19 @@ struct PickerSheet: View {
     @Binding var customIncrement: Int
     @Binding var start: String
     @Binding var startName: String
+    /// A rated game against the Zeist engine (Rated), and its level: 0 for Matched.
+    @Binding var ratedGame: Bool
+    @Binding var ratedLevel: Int
     let gameInProgress: GameRecord?
     let changed: () -> Void
     let more: () -> Void
     @State private var shelf = Shelf.shared
     @State private var adaptiveAt = 1
     @State private var positioning = false
+    @State private var account = Account.shared
+    @State private var book = RatingBook.shared
+    /// The next game is rated: the Zeist engine, an account, and Rated on.
+    private var ratedNext: Bool { ratedGame && engineID == Rated.engineID && account.signedIn }
     @Environment(\.dismiss) private var dismiss
 
     private var installed: [Engine] { shelf.engines.filter(\.installed) }
@@ -63,6 +70,7 @@ struct PickerSheet: View {
                 Choice(options: Pick.Side.allCases.map { ($0, $0.name) }, value: Binding(get: { side }, set: { side = $0; changed() }))
 
                 Text("Difficulty").zLabel().padding(.top, 26).padding(.bottom, 10)
+                if ratedNext { ratedDifficulty } else {
                 Choice(options: [(Mode.adaptive, "Adaptive"), (Mode.level, "Level")] + (ratings == nil ? [] : [(Mode.rating, "Rating")]),
                        value: Binding(get: { mode }, set: { set($0) }))
                 Group {
@@ -78,7 +86,10 @@ struct PickerSheet: View {
                 }
                 .padding(.top, 14)
                 .transition(.opacity)
+                }
+                RatedRow(on: $ratedGame, zeist: engineID == Rated.engineID, changed: changed).padding(.top, 22)
 
+                if !ratedNext {
                 Text("Time").zLabel().padding(.top, 26).padding(.bottom, 10)
                 TimeChoice(time: Binding(get: { time }, set: { time = $0; changed() }),
                            minutes: Binding(get: { customMinutes }, set: { customMinutes = $0; changed() }),
@@ -105,8 +116,9 @@ struct PickerSheet: View {
                     PositionSheet(start: Binding(get: { start }, set: { start = $0; changed() }), startName: $startName,
                                   side: Binding(get: { side }, set: { side = $0; changed() }))
                 }
+                }
                 if let g = gameInProgress {
-                    Text("Your game against \(g.engineName) stays until you start another.")
+                    Text(g.isRated ? "Starting another game resigns your rated game against \(g.engineName)." : "Your game against \(g.engineName) stays until you start another.")
                         .font(Z.text(13.5)).foregroundStyle(Z.dim).padding(.top, 20)
                         .fixedSize(horizontal: false, vertical: true)
                 }
@@ -122,6 +134,30 @@ struct PickerSheet: View {
         .presentationCornerRadius(30)
         .presentationDragIndicator(.visible)
         .task(id: engineID) { adaptiveAt = await GameModel.startingLevel(engineID) }
+        .task(id: ratedNext) { if ratedNext { await book.refresh() } }
+        .animation(.easeOut(duration: 0.2), value: ratedNext)
+    }
+
+    /// Rated: Matched (Zeist picks the level nearest the rating) or one of Zeist's eight levels, with its rating.
+    private var ratedDifficulty: some View {
+        VStack(alignment: .leading, spacing: 14) {
+            Choice(options: [(0, "Matched"), (1, "Level")], value: Binding(get: { ratedLevel == 0 ? 0 : 1 }, set: { v in
+                ratedLevel = v == 0 ? 0 : min(8, max(1, book.current?.level ?? 3)); changed()
+            }))
+            if ratedLevel != 0 {
+                LevelRow(level: Binding(get: { ratedLevel }, set: { ratedLevel = $0; changed() }), top: 8)
+            }
+            Text(ratedNote).font(Z.text(13.5)).foregroundStyle(Z.soft).fixedSize(horizontal: false, vertical: true)
+                .accessibilityIdentifier("rated-note")
+        }
+    }
+
+    private var ratedNote: String {
+        let s = book.current
+        if ratedLevel != 0 { return "Level \(ratedLevel), rated \(Rated.rating(ofLevel: ratedLevel) ?? 0)." }
+        guard let l = s?.level, let lr = Rated.rating(ofLevel: l) else { return "Zeist picks the level nearest your rating, so you win about half your games." }
+        if let r = s?.rating { return "Level \(l), rated \(lr), the nearest to your rating of \(r)." }
+        return "Level \(l), rated \(lr), for your first rated games."
     }
 
     private func row(_ e: Engine) -> some View {
@@ -143,10 +179,11 @@ struct PickerSheet: View {
 /// Levels 1 to 10, one tap each.
 struct LevelRow: View {
     @Binding var level: Int
+    var top = 10
 
     var body: some View {
         HStack(spacing: 0) {
-            ForEach(1...10, id: \.self) { n in
+            ForEach(1...top, id: \.self) { n in
                 Button {
                     if level != n { level = n; Feel.shared.select() }
                 } label: {

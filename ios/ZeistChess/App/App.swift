@@ -145,6 +145,7 @@ struct Root: View {
             ReviewRequest.shared.record(.opened)
             await Account.shared.refresh()
             await EngineGames.flush()
+            await RatedFinishes.flush()
             #if DEBUG
             Debug.run(path: $path)
             #endif
@@ -158,7 +159,7 @@ struct Root: View {
             ReviewRequest.shared.movedOn()
             guard p == .active else { return }
             ReviewRequest.shared.record(.opened)
-            Task { await Account.shared.refresh() }
+            Task { await Account.shared.refresh(); await RatedFinishes.flush() }
         }
         .onChange(of: path) { _, _ in ReviewRequest.shared.movedOn() }
         .onChange(of: session.tab) { _, _ in ReviewRequest.shared.movedOn() }
