@@ -36,10 +36,10 @@ There are no ads, no subscription and no chat, and nothing nags you.
 | [Maia 3](https://github.com/CSSLab/maia3) | Maia-3 | CSSLab, University of Toronto | AGPL-3.0 and others | GPL-3.0-only | 57.7 MB |
 | [Arasan](https://github.com/jdart1/arasan-chess/tree/v26.1) | 26.1 | Jon Dart | MIT | MIT | 25.9 MB |
 | [Clover](https://github.com/lucametehau/CloverEngine/tree/v9.1) | 9.1 | Luca Metehau | GPL-3.0-or-later | GPL-3.0-or-later | 14.2 MB |
-| [Caissa](https://github.com/Witek902/Caissa/tree/2.0) | 2.0 | Michal Witanowski | MIT | MIT | 76.2 MB |
+| [Caissa](https://github.com/Witek902/Caissa/tree/2.0) | 2.0 | Michał Witanowski | MIT | MIT | 76.2 MB |
 | [PlentyChess](https://github.com/Yoshie2000/PlentyChess/tree/b-v8.0.0) | 8.0.0 | Yoshie2000 | GPL-3.0-only | GPL-3.0-only | 53.6 MB |
 | [Halogen](https://github.com/KierenP/Halogen/tree/v16) | 16 | Kieren Pearson | GPL-3.0-only | GPL-3.0-only | 19.6 MB |
-| [Koivisto](https://github.com/Luecx/Koivisto/tree/v9.0) | 9.0 | Kim Kahre and Finn Eggers | GPL-3.0-or-later | MIT | 13.0 MB |
+| [Koivisto](https://github.com/Luecx/Koivisto/tree/v9.0) | 9.0 | Kim Kåhre and Finn Eggers | GPL-3.0-or-later | MIT | 13.0 MB |
 | [Ethereal](https://github.com/AndyGrant/Ethereal/tree/v14.00) | 14.00, classical | Andrew Grant, Alayan and Laldon | GPL-3.0-or-later | GPL-3.0-or-later | 0.5 MB |
 | [Zeist](engines/zeist) | 1.1 | Amrith | AGPL-3.0-or-later | none | 0.1 MB |
 
