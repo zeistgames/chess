@@ -157,19 +157,24 @@ final class GameModel {
     /// the side (seat nil: Zeist picks). Always from the usual start, without a clock.
     static func beginRated(engine: Engine, level: Int?, seat: Int?) async throws -> GameModel {
         guard engine.id == Rated.engineID, let who = Rated.who() else { throw Rated.Failure(status: 401, error: "signin") }
-        let before = RatingBook.shared.current?.rating
+        let before = await RatingBook.shared.refresh()?.rating ?? RatingBook.shared.current?.rating
         let g = try await Rated.start(level: level, seat: seat)
+        // Kept at once, before anything else can fail: the game exists on Zeist from here. Without saved settings the
+        // engine's settings come from the level and the seed (core's think), which are the same.
         if let old = GameLog.shared.current { leaveForGood(old) }
-        ReviewRequest.shared.movedOn()
-        let settings = try await Core.shared.call("settings", ["manifest": engine.coreArgs["manifest"]!, "level": g.level, "seed": g.seed])
         var rec = GameRecord(startFEN: standardStart, fen: standardStart, player: g.seat == 0 ? "w" : "b", engineID: engine.id, engineName: engine.name,
                              engineVersion: engine.manifest.version, packSHA: engine.packSHA, level: g.level, adaptive: false, rating: nil,
-                             engineSettings: json(settings), seed: g.seed, appVersion: GameRecord.appVersion)
+                             engineSettings: nil, seed: g.seed, appVersion: GameRecord.appVersion)
         rec.ratedID = g.id
         rec.ratedBy = who.owner
         rec.matched = level == nil
         rec.ratingBefore = before
         GameLog.shared.save(rec)
+        ReviewRequest.shared.movedOn()
+        if let settings = try? await Core.shared.call("settings", ["manifest": engine.coreArgs["manifest"]!, "level": g.level, "seed": g.seed]) {
+            rec.engineSettings = json(settings)
+            GameLog.shared.save(rec)
+        }
         let m = GameModel(record: rec, engine: engine)
         Measure.gameStarted(engine: engine.id, adaptive: false, rating: false, level: g.level, clock: nil, side: rec.player)
         _ = try? await Core.shared.call("newGame", ["engine": engine.coreArgs])
@@ -185,10 +190,8 @@ final class GameModel {
         r.ending = "resigned"
         r.endedAt = Date()
         GameLog.shared.save(r)
-        Task {
-            r.ratedSent = await RatedFinishes.send(id, moves: r.moves, resign: true, owner: by)
-            GameLog.shared.save(r)
-        }
+        // What comes of it is written to the log by RatedFinishes once Zeist answers.
+        Task { _ = await RatedFinishes.send(id, moves: r.moves, resign: true, owner: by) }
     }
 
     static let standardStart = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
@@ -209,6 +212,7 @@ final class GameModel {
             await refreshPositions()
             if record.openingName == nil { nameOpening() }
             if s.outcome != nil, !over { finish(s.outcome!) }
+            else if rated, !over, s.moves.count >= Self.moveLimit { finish(Snapshot.Outcome(result: "1/2-1/2", reason: "move-limit", winner: nil)) }
             resumeClock()
             engineIfDue()
         } catch {
@@ -329,7 +333,9 @@ final class GameModel {
             commit(s, from: before)
             if byEngine { engineMoves += 1; Feel.shared.reply(capture: capture) } else { Feel.shared.move(capture: capture) }
             if s.check != nil, s.outcome == nil { Feel.shared.check() }
-            if let o = s.outcome { finish(o) } else if !byEngine { engineIfDue() }
+            if let o = s.outcome { finish(o) }
+            else if rated, s.moves.count >= Self.moveLimit { finish(Snapshot.Outcome(result: "1/2-1/2", reason: "move-limit", winner: nil)) }
+            else if !byEngine { engineIfDue() }
         } catch {
             guard !over else { return }
             snap = before
@@ -839,16 +845,21 @@ final class GameModel {
         Task {
             defer { ratedSending = false }
             let sent = await RatedFinishes.send(id, moves: moves, resign: resign, owner: by)
-            guard record.ratedID == id else { return }
-            record.ratedSent = sent
-            if sent == .counted, Rated.who()?.owner == by, let s = await RatingBook.shared.refresh() {
-                record.ratingAfter = s.rating
-                record.ratedGames = s.games
-                record.nextRatedLevel = s.level
-            }
-            GameLog.shared.save(record)
+            if record.ratedID == id, record.ratedSent == nil { record.ratedSent = sent } // waiting: no answer yet
         }
     }
+
+    /// Zeist answered for this game (RatedFinishes): what the log now holds for it.
+    func settled(_ g: GameRecord) {
+        guard g.id == record.id else { return }
+        record.ratedSent = g.ratedSent
+        record.ratingAfter = g.ratingAfter
+        record.ratedGames = g.ratedGames
+        record.nextRatedLevel = g.nextRatedLevel
+    }
+
+    /// Zeist's limit: a game that reaches 600 single moves is a draw, and no rated game is longer.
+    static let moveLimit = 600
 
     #if DEBUG
     /// For screenshots and tests: a game with these moves already played.
@@ -934,6 +945,7 @@ final class GameModel {
         case "resigned": "You resigned."
         case "agreement": "Draw agreed."
         case "engine-resigned": "\(engineName) resigned."
+        case "move-limit": "Drawn at 300 moves, the longest a rated game can be."
         case "timeout": record.outcome == "win" ? "\(engine.name) ran out of time." : "Your time ran out."
         case "timeout-insufficient": record.outcome == "draw" && snap.turn == record.player
             ? "Your time ran out, but \(engine.name) had too little to checkmate."

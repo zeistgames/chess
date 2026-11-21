@@ -71,13 +71,38 @@ final class RatedTests: XCTestCase {
         XCTAssertEqual(sent.last?.body["owner"] as? String, "owner-A")
     }
 
-    func testARefusedFinishGoesAndAPendingOneIsSaidSo() async {
-        answer([(#"{"error":"over"}"#, 409), (#"{"ok":true,"pending":true}"#, 200)])
-        let refused = await RatedFinishes.send("g2", moves: [], resign: true, owner: "owner-A")
-        XCTAssertEqual(refused, .refused)
-        let pending = await RatedFinishes.send("g3", moves: [], resign: true, owner: "owner-A")
+    func testZeistsAnswersAreReadAsItsDocsSay() async {
+        answer([(#"{"error":"over"}"#, 409), (#"{"error":"computer"}"#, 400), (#"{"error":"not_found"}"#, 404),
+                (#"{"ok":true,"pending":true}"#, 200), (#"{}"#, 408)])
+        let over = await RatedFinishes.send("g2", moves: [], resign: true, owner: "owner-A")
+        XCTAssertEqual(over, .counted, "409 over: settled already (a lost answer) or forfeited, so it counted")
+        let failed = await RatedFinishes.send("g3", moves: [], resign: true, owner: "owner-A")
+        XCTAssertEqual(failed, .counted, "a failed check is a loss Zeist records")
+        let missing = await RatedFinishes.send("g4", moves: [], resign: true, owner: "owner-A")
+        XCTAssertEqual(missing, .refused)
+        let pending = await RatedFinishes.send("g5", moves: [], resign: true, owner: "owner-A")
         XCTAssertEqual(pending, .pending)
         XCTAssertTrue(RatedFinishes.queued.isEmpty)
+        let other = await RatedFinishes.send("g6", moves: [], resign: true, owner: "owner-A")
+        XCTAssertEqual(other, .waiting, "any other status is tried again")
+        XCTAssertEqual(RatedFinishes.queued.map(\.id), ["g6"])
+    }
+
+    func testAnAckForAGameThatEndedStartsOnceMoreFresh() async throws {
+        answer([(#"{"ok":true,"id":"aaaaaaaaaaaaaaaaaaaa","level":{"level":3},"seat":0}"#, 200), (#"{"error":"over"}"#, 409),
+                (#"{"ok":true,"id":"bbbbbbbbbbbbbbbbbbbb","level":{"level":3},"seat":0}"#, 200),
+                (#"{"ok":true,"id":"bbbbbbbbbbbbbbbbbbbb","level":{"level":3},"seed":9,"seat":0}"#, 200)])
+        let g = try await Rated.start(level: 3, seat: 0)
+        XCTAssertEqual(g.id, "bbbbbbbbbbbbbbbbbbbb")
+        XCTAssertNotEqual(sent[0].body["start"] as? String, sent[2].body["start"] as? String, "a fresh start id the second time")
+    }
+
+    func testALostAckIsAskedForAgain() async throws {
+        answer([(#"{"ok":true,"id":"aaaaaaaaaaaaaaaaaaaa","level":{"level":3},"seat":0}"#, 200), (nil, 0), (#"{}"#, 503),
+                (#"{"ok":true,"id":"aaaaaaaaaaaaaaaaaaaa","level":{"level":3},"seed":5,"seat":0}"#, 200)])
+        let g = try await Rated.start(level: 3, seat: 0)
+        XCTAssertEqual(g.seed, 5)
+        XCTAssertEqual(sent.filter { $0.path.hasSuffix("/ack") }.count, 3)
     }
 
     func testAnotherAccountsFinishWaitsForIt() async {

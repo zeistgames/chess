@@ -91,6 +91,13 @@ enum Rated {
     /// was lost is sent again with the same start id and comes back as the same game, never a second one.
     @MainActor static func start(level: Int?, seat: Int?) async throws -> Issued {
         let key = "\(game)/\(level.map(String.init) ?? "matched")/\(seat.map(String.init) ?? "any")"
+        do { return try await startOnce(key: key, level: level, seat: seat) } catch let f as Failure where f.error == "acked" {
+            // The game the start id named had ended or wasn't this account's: once more, as a fresh start.
+            return try await startOnce(key: key, level: level, seat: seat)
+        }
+    }
+
+    @MainActor private static func startOnce(key: String, level: Int?, seat: Int?) async throws -> Issued {
         let sid = StartIDs.id(key)
         var body: [String: Any] = ["game": game, "start": sid]
         if let level { body["level"] = level }
@@ -109,8 +116,20 @@ enum Rated {
         if seed == nil {
             // The seed comes from /ack, which tells Zeist this iPhone has the game. Until it answers, the start id is
             // kept, so a retry returns the same game to acknowledge.
-            let b = try JSONDecoder().decode(Answer.self, from: try await request("POST", "/api/rated/\(a.id)/ack", body: [:]))
-            seed = b.seed
+            var tries = 0
+            while seed == nil {
+                tries += 1
+                do {
+                    let b = try JSONDecoder().decode(Answer.self, from: try await request("POST", "/api/rated/\(a.id)/ack", body: [:]))
+                    seed = b.seed
+                    if seed == nil { throw Failure(status: 200, error: "format") }
+                } catch let f as Failure where f.status == 404 || f.status == 409 {
+                    StartIDs.drop(key)
+                    throw Failure(status: f.status, error: "acked")
+                } catch {
+                    if tries >= 3 { throw error } // kept: a later try of this start acknowledges the same game
+                }
+            }
         }
         StartIDs.drop(key)
         guard let seed, let lv = a.level.level, levels.contains(lv), a.seat == 0 || a.seat == 1 else { throw Failure(status: 200, error: "format") }
@@ -180,15 +199,35 @@ enum RatedFinishes {
             let data = try await Rated.request("POST", "/api/rated/\(p.id)", body: body)
             drop(id)
             let pending = (try? JSONSerialization.jsonObject(with: data) as? [String: Any])?["pending"] as? Bool == true
-            return pending ? .pending : .counted
+            return await settled(id, pending ? .pending : .counted)
         } catch let f as Rated.Failure {
-            // No answer, the session ended, too many requests, Zeist's trouble, or another account's: kept.
-            if f.status == 0 || f.status == 401 || f.status == 429 || f.status >= 500 || f.status == 403 { return .waiting }
-            drop(id) // Zeist answered; nothing more to send
-            return .refused
+            // Zeist's answer, as docs/RESULTS.md in Zeist reads it. 409: already settled (an earlier send whose answer
+            // was lost) or forfeited after a day, so it counted. 400: moves Zeist won't take, which it records as a
+            // loss. 404: this account has no such game. Anything else (no answer, the session ended, another account's,
+            // too many requests, Zeist's trouble, any other status): kept, and sent again later.
+            switch f.status {
+            case 409, 400: drop(id); return await settled(id, .counted)
+            case 404: drop(id); return await settled(id, .refused)
+            default: return .waiting
+            }
         } catch {
             return .waiting
         }
+    }
+
+    /// Zeist has answered for a game: the game in the log says so, the standing is read again, and a game on the
+    /// screen shows it, whether the answer came at the end of the game or later, from a resend.
+    @MainActor private static func settled(_ id: String, _ sent: Sent) async -> Sent {
+        guard var g = GameLog.shared.all.first(where: { $0.ratedID == id }) else { return sent }
+        g.ratedSent = sent
+        if sent == .counted, let by = g.ratedBy, Rated.who()?.owner == by, let s = await RatingBook.shared.refresh() {
+            g.ratingAfter = s.rating
+            g.ratedGames = s.games
+            g.nextRatedLevel = s.level
+        }
+        GameLog.shared.save(g)
+        Session.shared.game?.settled(g)
+        return sent
     }
 
     @MainActor private static func drop(_ id: String) { save(load().filter { $0.id != id }) }

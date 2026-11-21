@@ -23,20 +23,23 @@ struct RatedResult: View {
                     .accessibilityIdentifier("rated-change")
                 } else if let n = r.ratedGames {
                     FirstTen(games: n)
+                } else {
+                    line("This game counts. Your rating shows once Zeist answers.")
                 }
                 if r.matched == true, let next = r.nextRatedLevel {
                     line("Your next rated game is against level \(next).")
                 }
             } else {
-                line(Self.waitingLine(r.ratedSent, sending: model.ratedSending))
+                line(Self.waitingLine(r.ratedSent, sending: model.ratedSending, elsewhere: r.ratedBy != nil && Rated.who()?.owner != r.ratedBy))
             }
         }
     }
 
-    static func waitingLine(_ sent: RatedFinishes.Sent?, sending: Bool) -> String {
-        switch sent {
+    static func waitingLine(_ sent: RatedFinishes.Sent?, sending: Bool, elsewhere: Bool = false) -> String {
+        if elsewhere, sent != .refused { return "The result goes to Zeist when the account that played it is signed in." }
+        return switch sent {
         case .pending: "Zeist is checking this result. It counts once it's checked."
-        case .refused: "Zeist couldn't count this game."
+        case .refused: "Zeist has no record of this game, so it doesn't count."
         case .waiting: "The result goes to Zeist once you're back online."
         default: "Sending the result to Zeist."
         }
@@ -122,7 +125,7 @@ struct RatingScreen: View {
                 } else {
                     FirstTen(games: s?.games ?? 0).padding(.top, 18)
                 }
-                Text("From rated games against the Zeist engine, here and in Zeist. It's close to an online rating on Lichess.")
+                Text("From rated games against the Zeist engine, here and in Zeist. It's measured against the engine's eight levels.")
                     .font(Z.text(14.5)).foregroundStyle(Z.soft).fixedSize(horizontal: false, vertical: true).padding(.top, 8)
                 if s?.ranked == true, book.readings.count >= 2 {
                     RatingChart(points: book.readings.suffix(RatingBook.chartLength).map(\.rating)).padding(.top, 22)
