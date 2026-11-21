@@ -5,7 +5,7 @@
   "license": "GPL-3.0-or-later",
   "net_license": "GPL-3.0-or-later",
   "source": "https://github.com/lucametehau/CloverEngine/tree/v9.1",
-  "line": "A small, fast engine that always plays its best.",
+  "line": "Version 9.1, written by Luca Metehau.",
   "entry": "clover.js",
   "strength": {
     "type": "none"

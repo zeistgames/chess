@@ -5,7 +5,7 @@
   "license": "GPL-3.0-or-later",
   "net_license": "GPL-3.0-or-later",
   "source": "https://github.com/AndyGrant/Ethereal/tree/v14.00",
-  "line": "A strong engine with a hand-tuned, classical style.",
+  "line": "Andrew Grant's engine in its classical build, with a hand-tuned evaluation. Under 1 MB.",
   "entry": "ethereal.js",
   "strength": { "type": "none" },
   "multipv": true,

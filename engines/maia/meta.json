@@ -5,7 +5,7 @@
   "license": "AGPL-3.0-or-later AND GPL-3.0-only AND MIT AND BSD-2-Clause",
   "net_license": "GPL-3.0-only",
   "source": "https://github.com/CSSLab/maia3",
-  "line": "Plays like a person at a rating you choose.",
+  "line": "Trained on Lichess games to play like a person at the rating you pick.",
   "entry": "worker.js",
   "strength": {
     "type": "uci_elo",

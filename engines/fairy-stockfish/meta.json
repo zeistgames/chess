@@ -5,7 +5,7 @@
   "license": "GPL-3.0-or-later",
   "net_license": "none",
   "source": "https://github.com/fairy-stockfish/Fairy-Stockfish/tree/e48b7537eb64e2bf47889f8acbd82f7d1eba7837",
-  "line": "A Stockfish cousin with a hand-tuned, classic style.",
+  "line": "Built on Stockfish, playing with a hand-written evaluation.",
   "entry": "fairy-stockfish.js",
   "strength": {
     "type": "uci_elo",

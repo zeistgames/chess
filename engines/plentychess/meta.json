@@ -5,7 +5,7 @@
   "license": "GPL-3.0-only",
   "net_license": "GPL-3.0-only",
   "source": "https://github.com/Yoshie2000/PlentyChess/tree/b-v8.0.0",
-  "line": "One of the strongest engines, always at full strength.",
+  "line": "Version 8, by the developer Yoshie2000.",
   "entry": "plentychess.js",
   "strength": {
     "type": "none"

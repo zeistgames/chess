@@ -5,7 +5,7 @@
   "license": "MIT",
   "net_license": "MIT",
   "source": "https://github.com/jdart1/arasan-chess/tree/v26.1",
-  "line": "A long-lived engine with a steady, classical style.",
+  "line": "Jon Dart's engine. You can set it to a rating from 1000 up.",
   "entry": "arasan.js",
   "strength": {
     "type": "uci_elo",

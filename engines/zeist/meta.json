@@ -5,7 +5,7 @@
   "license": "AGPL-3.0-or-later",
   "net_license": "none",
   "source": "https://github.com/zeistgames/chess/tree/main/engines/zeist",
-  "line": "Zeist's own engine. Plays the same game every time.",
+  "line": "Zeist's own engine, with the same eight levels as in Zeist.",
   "entry": "zeist.js",
   "strength": { "type": "skill", "option": "Level", "min": 1, "max": 10, "nodes": [20000, 20000, 20000, 20000, 60000, 20000, 100000, 100000, 250000, 1500000] },
   "multipv": false,

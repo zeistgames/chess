@@ -5,7 +5,7 @@
   "license": "GPL-3.0-or-later",
   "net_license": "CC0-1.0",
   "source": "https://github.com/nmrugg/stockfish.js/tree/v19.0.1",
-  "line": "The strongest engine there is, in its smallest form.",
+  "line": "Stockfish 19 with a smaller network. A 2 MB download.",
   "entry": "stockfish-19-lite-single.js",
   "strength": {
     "type": "uci_elo",
