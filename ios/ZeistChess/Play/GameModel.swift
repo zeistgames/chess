@@ -845,7 +845,7 @@ final class GameModel {
         Task {
             defer { ratedSending = false }
             let sent = await RatedFinishes.send(id, moves: moves, resign: resign, owner: by)
-            if record.ratedID == id, record.ratedSent == nil { record.ratedSent = sent } // waiting: no answer yet
+            if record.ratedID == id, record.ratedSent == nil { record.ratedSent = sent; GameLog.shared.save(record) } // waiting: no answer yet
         }
     }
 

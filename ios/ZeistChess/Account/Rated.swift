@@ -107,6 +107,7 @@ enum Rated {
             a = try JSONDecoder().decode(Answer.self, from: try await request("POST", "/api/rated", body: body))
         } catch let f as Failure {
             if f.status >= 400 && f.status < 500 && f.status != 429 { StartIDs.drop(key) }
+            if f.status == 409 && f.error == "over" { throw Failure(status: 409, error: "acked") } // that game ended: start afresh
             throw f
         } catch {
             StartIDs.drop(key) // a 2xx that can't be read: the next try is a fresh start
@@ -128,6 +129,7 @@ enum Rated {
                     throw Failure(status: f.status, error: "acked")
                 } catch {
                     if tries >= 3 { throw error } // kept: a later try of this start acknowledges the same game
+                    try? await Task.sleep(for: .seconds(0.5 * Double(tries)))
                 }
             }
         }
@@ -171,8 +173,9 @@ enum RatedFinishes {
 
     /// What came of a send. counted: Zeist has settled it. pending: Zeist has it and is still checking it.
     /// refused: Zeist won't count it (it ended already, a day passed, or the moves were refused). waiting: no answer
-    /// yet, or another account is signed in; kept and sent again later.
-    enum Sent: String, Codable, Sendable { case counted, pending, refused, waiting }
+    /// yet, or another account is signed in; kept and sent again later. settled: Zeist answered that the game was
+    /// already settled or refused its moves (409, 400); what it counted for this game, if anything, isn't known here.
+    enum Sent: String, Codable, Sendable { case counted, pending, refused, waiting, settled }
 
     @MainActor static func send(_ id: String, moves: [String], resign: Bool, owner: String) async -> Sent {
         if !load().contains(where: { $0.id == id }) {
@@ -201,12 +204,13 @@ enum RatedFinishes {
             let pending = (try? JSONSerialization.jsonObject(with: data) as? [String: Any])?["pending"] as? Bool == true
             return await settled(id, pending ? .pending : .counted)
         } catch let f as Rated.Failure {
-            // Zeist's answer, as docs/RESULTS.md in Zeist reads it. 409: already settled (an earlier send whose answer
-            // was lost) or forfeited after a day, so it counted. 400: moves Zeist won't take, which it records as a
-            // loss. 404: this account has no such game. Anything else (no answer, the session ended, another account's,
+            // Zeist's answer, as docs/RESULTS.md in Zeist reads it. 409 and 400: Zeist won't take this finish. The game
+            // may have counted already (an earlier send whose answer was lost), be a loss (forfeited after a day, a
+            // failed check), or close later; this app can't tell which, so it says only that Zeist has settled it.
+            // 404: this account has no such game. Anything else (no answer, the session ended, another account's,
             // too many requests, Zeist's trouble, any other status): kept, and sent again later.
             switch f.status {
-            case 409, 400: drop(id); return await settled(id, .counted)
+            case 409, 400: drop(id); return await settled(id, .settled)
             case 404: drop(id); return await settled(id, .refused)
             default: return .waiting
             }
@@ -220,6 +224,7 @@ enum RatedFinishes {
     @MainActor private static func settled(_ id: String, _ sent: Sent) async -> Sent {
         guard var g = GameLog.shared.all.first(where: { $0.ratedID == id }) else { return sent }
         g.ratedSent = sent
+        if sent == .settled, let by = g.ratedBy, Rated.who()?.owner == by { await RatingBook.shared.refresh() }
         if sent == .counted, let by = g.ratedBy, Rated.who()?.owner == by, let s = await RatingBook.shared.refresh() {
             g.ratingAfter = s.rating
             g.ratedGames = s.games

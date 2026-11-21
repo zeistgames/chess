@@ -75,9 +75,9 @@ final class RatedTests: XCTestCase {
         answer([(#"{"error":"over"}"#, 409), (#"{"error":"computer"}"#, 400), (#"{"error":"not_found"}"#, 404),
                 (#"{"ok":true,"pending":true}"#, 200), (#"{}"#, 408)])
         let over = await RatedFinishes.send("g2", moves: [], resign: true, owner: "owner-A")
-        XCTAssertEqual(over, .counted, "409 over: settled already (a lost answer) or forfeited, so it counted")
+        XCTAssertEqual(over, .settled, "409 over: settled already (a lost answer) or forfeited; which isn't known here")
         let failed = await RatedFinishes.send("g3", moves: [], resign: true, owner: "owner-A")
-        XCTAssertEqual(failed, .counted, "a failed check is a loss Zeist records")
+        XCTAssertEqual(failed, .settled, "a 400: refused moves; Zeist records a loss now or after a day")
         let missing = await RatedFinishes.send("g4", moves: [], resign: true, owner: "owner-A")
         XCTAssertEqual(missing, .refused)
         let pending = await RatedFinishes.send("g5", moves: [], resign: true, owner: "owner-A")
@@ -95,6 +95,13 @@ final class RatedTests: XCTestCase {
         let g = try await Rated.start(level: 3, seat: 0)
         XCTAssertEqual(g.id, "bbbbbbbbbbbbbbbbbbbb")
         XCTAssertNotEqual(sent[0].body["start"] as? String, sent[2].body["start"] as? String, "a fresh start id the second time")
+    }
+
+    func testAStartWhoseGameEndedStartsOnceMoreFresh() async throws {
+        answer([(#"{"error":"over"}"#, 409), (#"{"ok":true,"id":"cccccccccccccccccccc","level":{"level":2},"seed":3,"seat":1}"#, 200)])
+        let g = try await Rated.start(level: nil, seat: 1)
+        XCTAssertEqual(g.id, "cccccccccccccccccccc")
+        XCTAssertNotEqual(sent[0].body["start"] as? String, sent[1].body["start"] as? String)
     }
 
     func testALostAckIsAskedForAgain() async throws {

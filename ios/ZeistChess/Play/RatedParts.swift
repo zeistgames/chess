@@ -40,6 +40,7 @@ struct RatedResult: View {
         return switch sent {
         case .pending: "Zeist is checking this result. It counts once it's checked."
         case .refused: "Zeist has no record of this game, so it doesn't count."
+        case .settled: "Zeist had already settled this game. Your rating is in Settings."
         case .waiting: "The result goes to Zeist once you're back online."
         default: "Sending the result to Zeist."
         }
