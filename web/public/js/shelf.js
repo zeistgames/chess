@@ -10,7 +10,7 @@
 // site with CORS headers, so the download never runs this site's Worker; else, or if that fails, through the Worker at
 // <base>engines/, which reads the same bucket. Either way every file is checked here before it is kept.
 
-import { ENGINES, get as pref, set as setPref } from './store.js';
+import { ENGINES, get as pref, set as setPref, ownWorker, untilOwnWorker } from './store.js';
 import { PACKS as ORIGIN } from './config.js';
 
 export const PACKS = 'zc-packs';
@@ -170,7 +170,7 @@ if (typeof navigator !== 'undefined' && navigator.serviceWorker) {
  *  this page (it enforces the pins itself when it serves the pack). One that answers for the page but doesn't reply
  *  in time counts as false: a reload sets it right. */
 async function pinnedHere(id, sha) {
-  const sw = navigator.serviceWorker && navigator.serviceWorker.controller;
+  const sw = ownWorker();
   if (!sw) return null;
   return new Promise(resolve => {
     const ch = new MessageChannel();
@@ -182,7 +182,7 @@ async function pinnedHere(id, sha) {
 
 /** Gives the service worker this page's key, again before every request: it forgets keys when it stops. */
 async function arm() {
-  const sw = navigator.serviceWorker && navigator.serviceWorker.controller;
+  const sw = ownWorker(); // never another worker (Zeist's, at /chess): the key stays with this app's
   if (!sw) return; // no service worker answers for this page: its requests go to the network as they are
   await new Promise(resolve => {
     const ch = new MessageChannel();
@@ -215,6 +215,9 @@ export async function install(id) {
     const stage = await caches.open(STAGING);
     const written = [];
     try {
+      // This app's own worker, which checks the pins, should answer for the page before anything is kept: on a first
+      // visit from Zeist's /chess it takes over a moment after the page loads.
+      await untilOwnWorker(15000);
       const mr = await fetchPack(id + '/manifest.json', { signal: controller.signal, keyed: true });
       if (!mr.ok) throw new PackError(mr.status === 404 ? "This engine isn't on the server." : 'The download failed.');
       const raw = await mr.arrayBuffer();

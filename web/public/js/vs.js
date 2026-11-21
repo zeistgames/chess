@@ -51,9 +51,11 @@ function choose(changes) {
 
 function drawChoices() {
   const c = choices();
-  document.querySelectorAll('#lvls [data-level]').forEach(b => b.setAttribute('aria-checked', String(+b.dataset.level === c.level)));
-  document.querySelectorAll('#sides [data-side]').forEach(b => b.setAttribute('aria-checked', String(b.dataset.side === c.side)));
-  document.querySelectorAll('#clocks [data-clock]').forEach(b => b.setAttribute('aria-checked', String(b.dataset.clock === c.clock)));
+  // Each group is one stop for Tab, on its chosen button; the arrow keys move within it (radios()).
+  const mark = (sel, on) => document.querySelectorAll(sel).forEach(b => { const v = on(b); b.setAttribute('aria-checked', String(v)); b.tabIndex = v ? 0 : -1; });
+  mark('#lvls [data-level]', b => +b.dataset.level === c.level);
+  mark('#sides [data-side]', b => b.dataset.side === c.side);
+  mark('#clocks [data-clock]', b => b.dataset.clock === c.clock);
   const r = $('rating');
   if (r) { r.value = String(c.rating); $('rating-value').textContent = String(c.rating); }
   if (still) still.render({ board: boardFromFEN(START), flipped: c.side === 'b', last: null, legal: [], mine: null });
@@ -81,13 +83,13 @@ function radios(box, fn) {
   box.addEventListener('click', e => { const b = e.target.closest('button'); if (b) { fn(b); drawChoices(); } });
   // Arrow keys move along a row of choices, as in any radio group.
   box.addEventListener('keydown', e => {
-    if (!['ArrowLeft', 'ArrowRight'].includes(e.key)) return;
+    if (!['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'].includes(e.key)) return;
     const list = [...box.querySelectorAll('button')];
     const i = list.indexOf(document.activeElement);
     if (i < 0) return;
     e.preventDefault();
     e.stopPropagation();
-    const next = list[(i + (e.key === 'ArrowRight' ? 1 : list.length - 1)) % list.length];
+    const next = list[(i + (e.key === 'ArrowRight' || e.key === 'ArrowDown' ? 1 : list.length - 1)) % list.length];
     next.focus();
     next.click();
   });

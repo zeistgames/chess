@@ -9,7 +9,8 @@
 //                      bucket lacks the file and env.ENGINES_ORIGIN is set (local development), fetched from it. Used
 //                      only while the packs' own server (engines.zei.st) doesn't answer this site with CORS headers;
 //                      after that the browser downloads packs from it directly (js/shelf.js, js/config.js).
-//   anything else      a redirect to Zeist's Chess (env.HOME, "/chess"): an unknown engine, the base itself, an old link.
+//   the base           a permanent redirect (301) to Zeist's Chess (env.HOME, "/chess"), with or without its slash.
+//   anything else      a temporary redirect (302) there: an unknown engine, an old link.
 //
 // The engines themselves never run here: they run in the player's browser.
 
@@ -37,8 +38,16 @@ export async function handle(request, env) {
   const url = new URL(request.url);
   const base = normalizeBase(env.BASE);
   if (request.method !== 'GET' && request.method !== 'HEAD') return text('Method not allowed', 405, { allow: 'GET, HEAD' });
-  if (url.pathname.startsWith(base + 'engines/')) return engines(decodeURIComponent(url.pathname.slice(base.length + 'engines/'.length)), request, env);
-  return new Response(null, { status: 302, headers: { location: env.HOME || '/chess', 'cache-control': 'no-store' } });
+  if (url.pathname.startsWith(base + 'engines/')) {
+    let key;
+    try { key = decodeURIComponent(url.pathname.slice(base.length + 'engines/'.length)); } catch { return text('Not found', 404); }
+    return engines(key, request, env);
+  }
+  const home = env.HOME || '/chess';
+  // The base itself, with or without its slash, is Chess for good (Amrith, 2026-11-21): a permanent redirect.
+  if (url.pathname === base || url.pathname === base.slice(0, -1)) return new Response(null, { status: 301, headers: { location: home } });
+  // Anything else unknown (an engine that isn't listed, an old link) may become a page later: a temporary one.
+  return new Response(null, { status: 302, headers: { location: home, 'cache-control': 'no-store' } });
 }
 
 async function engines(key, request, env) {

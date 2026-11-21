@@ -11,7 +11,9 @@
 // --base must be the base the site was built with (ZC_BASE). Engines come from engines.zei.st through the Worker's
 // handler by default; --engines serves a folder of packs from disk instead (such as engines/dist after a build).
 // --packs-origin stands in for a site built with ZC_PACKS: js/config.js names that origin and the pages' policy lets
-// them connect to it.
+// them connect to it. --zeist-stand-ins answers for Zeist's own addresses, as zeist.gg would around these pages: /chess
+// (a page that installs a service worker at /chess/sw.js whose scope holds /chess/vs/ too, as Zeist's Chess does, and
+// passes everything through to the network), /chess/sw.js, and /api/me (signed out).
 
 import http from 'node:http';
 import fs from 'node:fs';
@@ -28,6 +30,7 @@ const base = opt('--base', process.env.ZC_BASE || '/chess/vs/');
 const engineDir = opt('--engines', process.env.ZC_ENGINES_DIR || '');
 const engineOrigin = opt('--engines-origin', 'https://engines.zei.st/');
 const packsOrigin = opt('--packs-origin', '');
+const standIns = args.includes('--zeist-stand-ins');
 const root = path.join(web, 'site');
 
 /** Files from a folder, as an R2-like source. */
@@ -66,7 +69,8 @@ const env = {
 };
 
 function asset(pathname) {
-  const p = path.resolve(root, '.' + decodeURIComponent(pathname));
+  let p;
+  try { p = path.resolve(root, '.' + decodeURIComponent(pathname)); } catch { return null; } // a malformed address: no file
   if (!p.startsWith(root + path.sep) || path.basename(p) === '_headers') return null;
   if (pathname.endsWith('/')) { const f = path.join(p, 'index.html'); return fs.existsSync(f) ? { file: f } : null; }
   if (fs.existsSync(p) && fs.statSync(p).isFile()) return { file: p };
@@ -74,9 +78,21 @@ function asset(pathname) {
   return null;
 }
 
+const STAND_INS = {
+  '/chess': ['text/html; charset=utf-8', '<!doctype html><title>Chess</title><h1>Zeist Chess stand-in</h1><script>navigator.serviceWorker.register("/chess/sw.js", { scope: "/chess" })</script>'],
+  '/chess/sw.js': ['text/javascript', 'self.addEventListener("install", () => self.skipWaiting());\nself.addEventListener("activate", e => e.waitUntil(self.clients.claim()));\nself.addEventListener("fetch", e => e.respondWith(fetch(e.request)));\n'],
+  '/api/me': ['application/json', '{"user":null}'],
+};
+
 const server = http.createServer(async (req, res) => {
   try {
     const url = new URL(`http://${req.headers.host || 'localhost'}${req.url}`);
+    if (standIns && STAND_INS[url.pathname]) {
+      const [type, body] = STAND_INS[url.pathname];
+      res.writeHead(200, { 'content-type': type, 'cache-control': 'no-store', ...(url.pathname === '/chess/sw.js' ? { 'service-worker-allowed': '/chess' } : {}) });
+      res.end(body);
+      return;
+    }
     const a = (req.method === 'GET' || req.method === 'HEAD') ? asset(url.pathname) : null;
     if (a && a.redirect) { res.writeHead(307, { location: a.redirect + url.search }); res.end(); return; }
     if (a) {

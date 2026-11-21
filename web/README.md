@@ -13,6 +13,7 @@ offline from then on. Games are kept in the browser. Nothing runs on a server bu
 | Path | What |
 |---|---|
 | `pages/vs.html` | An engine's page: the start screen, the game, How to play. Written once per engine by `scripts/assets.mjs`. |
+| `seo.json` | Each engine page's title, meta description and heading: a pattern for all, overridden by engine id. |
 | `public/js/vs.js` | The page's screens: choices kept for next time, the download on first play, the game, the result. |
 | `public/js/board.js` | The board: theme, coordinates, pieces that glide, tap or drag, promotion. |
 | `public/js/play.js` | A game against an engine: turns, clocks, take-backs, resign, the end. |
@@ -68,7 +69,7 @@ to the Worker without CORS; a signed-in name; and that nothing asks for `/api/ra
 ```sh
 npm install
 ZC_BASE=/chess/vs/ node scripts/assets.mjs     # add ZC_PACKS=https://engines.zei.st/ once it sends CORS headers
-CLOUDFLARE_ACCOUNT_ID=<account> ZC_BASE=/chess/vs/ ZC_ROUTE='<domain>/chess/vs/*' ZC_ZONE=<domain> npx cf deploy --mode production
+CLOUDFLARE_ACCOUNT_ID=<account> ZC_BASE=/chess/vs/ ZC_ROUTE='<domain>/chess/vs*' ZC_ZONE=<domain> npx cf deploy --mode production
 ```
 
 What the deploy creates or needs:
@@ -80,9 +81,16 @@ What the deploy creates or needs:
   policy, `no-cache` on pages and the service worker, five minutes on `engines.json`, a month on fonts and pieces). The
   Worker runs only when no asset matches: `<base>engines/...` and unknown addresses.
 - **Bindings:** `ENGINES`, the R2 bucket `zeist-chess-engines`, read only; `BASE` and `HOME` as text.
-- **Route:** `ZC_ROUTE` on `ZC_ZONE`, such as `zeist.gg/chess/vs/*`, more specific than Zeist's own route.
+- **Route:** `ZC_ROUTE` on `ZC_ZONE`, such as `zeist.gg/chess/vs*`, more specific than Zeist's own route. Without the
+  slash it also takes the bare `/chess/vs`, so the Worker can send it on with a 301.
 - **Engine pages:** one per engine in the catalog, in `engines/order.json` order. Zeist and the names the app uses for
-  its own folders are never pages. `<base><id>` gets its slash; anything else under the base goes to `/chess` (302).
+  its own folders are never pages. `<base><id>` gets its slash; the base itself, with or without its slash, goes to
+  `/chess` for good (301), and anything else under it goes there for now (302).
+- **Search and share cards:** each page's title, description and heading come from `seo.json` (a default pattern,
+  overridden by engine id), with a canonical address on `ZC_ORIGIN` (default `https://zeist.gg`), `index,follow`, and the same Open
+  Graph and Twitter tags as Zeist's /chess, with its share image.
+- **Catalog:** the pages and `engines.json` are written from the published catalog at engines.zei.st; `ZC_CATALOG`
+  names a file instead.
 - **Packs.** With `ZC_PACKS` set, the browser downloads packs from that origin directly (it must answer the site with
   CORS headers, below); a failed request there falls back to `<base>engines/` for the rest of the visit. Without it,
   packs come through the Worker. Either way the files are kept under `<base>engines/<id>/` in this origin's Cache

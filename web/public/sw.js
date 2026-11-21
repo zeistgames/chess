@@ -43,6 +43,7 @@ async function fresh(request, cacheName, ms, fallback) {
     if (res.ok && res.type === 'basic') c.put(fallback || request, res.clone());
     return res;
   });
+  net.catch(() => {}); // when the kept copy answers first, a network that fails later is no one's error
   const timer = new Promise(resolve => setTimeout(resolve, ms, null));
   try {
     const first = await Promise.race([net, timer]);

@@ -1,0 +1,44 @@
+{
+ "about": "Each engine page's title, meta description and heading. Titles and headings follow the default for every engine (Amrith: no keyword stuffing); {name} is the catalog name unless an engine gives its own here, and {line} its catalog line. Descriptions come from the go-to-market session, humanizer run, Chess capitalized on purpose. The heading shows \"Chess\" on screen; the rest of it is read by screen readers.",
+ "default": {
+  "title": "Play Chess vs {name} Online | Zeist",
+  "description": "{line}",
+  "h1": "Chess vs {name}"
+ },
+ "engines": {
+  "stockfish": {
+   "description": "Play Chess against Stockfish 19 in your browser, with its full network (a 99 MB download). Levels 1 to 10, untimed or on a clock. Free, with no account."
+  },
+  "stockfish-lite": {
+   "description": "Play Chess against Stockfish 19 in your browser, with a smaller network (a 2 MB download). Levels 1 to 10, untimed or on a clock. Free, with no account."
+  },
+  "fairy-stockfish": {
+   "description": "Play Chess against Fairy-Stockfish, built on Stockfish with a hand-written evaluation. Levels 1 to 10, untimed or on a clock. Free, with no account."
+  },
+  "maia": {
+   "name": "Maia",
+   "description": "Play Chess against Maia 3, which learned from Lichess games to play like a person at the rating you pick. Untimed or on a clock. Free, with no account."
+  },
+  "arasan": {
+   "description": "Play Chess against Arasan in your browser, Jon Dart's engine at version 26.1. Pick a level from 1 to 10 and play untimed or on a clock. Free, with no account."
+  },
+  "clover": {
+   "description": "Play Chess against Clover 9.1 in your browser, the engine by Luca Metehau. Pick a level from 1 to 10 and play untimed or on a clock. Free, with no account."
+  },
+  "caissa": {
+   "description": "Play Chess against Caissa 2.0 in your browser, Michał Witanowski's engine. Pick a level from 1 to 10 and play untimed or on a clock. Free, with no account."
+  },
+  "plentychess": {
+   "description": "Play Chess against PlentyChess 8 in your browser, the engine by Yoshie2000. Pick a level from 1 to 10 and play untimed or on a clock. Free, with no account."
+  },
+  "halogen": {
+   "description": "Play Chess against Halogen 16 in your browser, Kieren Pearson's engine. Pick a level from 1 to 10 and play untimed or on a clock. Free, with no account."
+  },
+  "koivisto": {
+   "description": "Play Chess against Koivisto 9 in your browser, by Kim Kåhre and Finn Eggers. Pick a level from 1 to 10 and play untimed or on a clock. Free, with no account."
+  },
+  "ethereal": {
+   "description": "Play Chess against Ethereal 14, Andrew Grant's engine, in its classical build. Pick a level from 1 to 10 and play untimed or on a clock. Free, with no account."
+  }
+ }
+}

@@ -5,7 +5,7 @@
 //
 //   ZC_BASE   the path the pages are served under. Defaults to "/chess/vs/". Must match the one scripts/assets.mjs built.
 //   ZC_HOME   where unknown addresses are sent: Zeist's Chess, "/chess".
-//   ZC_ROUTE  the route to publish to, such as "zeist.gg/chess/vs/*". Without it, a deploy publishes no route.
+//   ZC_ROUTE  the route to publish to, such as "zeist.gg/chess/vs*" (no slash, so the bare /chess/vs reaches the Worker too). Without it, a deploy publishes no route.
 //   ZC_ZONE   the zone the route belongs to, such as "zeist.gg".
 import { bindings, defineConfig, triggers } from "cf/config";
 import * as entrypoint from "./src/worker.js" with { type: "cf-worker" };

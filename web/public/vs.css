@@ -66,3 +66,17 @@ a.oppline { color: inherit; text-decoration: none; }
 /* Links drawn as Zeist's buttons (Back, Chess on the result) */
 a.btn, a.icon { text-decoration: none; color: inherit; }
 a.btn { display: flex; align-items: center; justify-content: center; }
+
+/* Wide screens: the Zeist mark at the left of the game, where Zeist's own rail sits (the mockup's game screen) */
+.zrail { display: none; }
+@media (min-width: 900px) and (min-height: 560px) {
+  .zrail {
+    display: grid; place-items: center; position: absolute; left: 32px; top: 28%; z-index: 3;
+    width: 82px; height: 82px; border-radius: 18px; color: var(--paper);
+    background: #1c1a16; border: 1px solid var(--edge); text-decoration: none;
+  }
+  .zrail svg { width: 38px; height: 38px; overflow: visible; }
+}
+
+/* Read by screen readers, not drawn: the rest of the heading ("against Maia 3"), whose name is on screen just below */
+.vh { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; border: 0; }

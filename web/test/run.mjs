@@ -101,7 +101,7 @@ const plainPacks = await packServer(false);
 const workerLog = { A: [], B: [] };
 async function site(name, packs) {
   const port = await freePort();
-  const p = spawn(process.execPath, [path.join(web, 'scripts/serve.mjs'), '--port', String(port), '--base', BASE, '--packs-origin', packs,
+  const p = spawn(process.execPath, [path.join(web, 'scripts/serve.mjs'), '--port', String(port), '--base', BASE, '--packs-origin', packs, '--zeist-stand-ins',
     ...(engineDir ? ['--engines', engineDir] : [])], { stdio: ['ignore', 'pipe', 'inherit'], env: { ...process.env, ZC_LOG: '1' } });
   await new Promise(res => p.stdout.once('data', res));
   p.stdout.on('data', d => { for (const l of String(d).split('\n')) if (l.startsWith('worker ')) workerLog[name].push(l.slice(7)); });
@@ -190,7 +190,9 @@ async function run(name) {
   const page = await ctx.newPage();
   currentPage = page;
   const errors = [];
-  page.on('pageerror', e => e.message !== 'broken' && !/eval at evaluate/.test(e.stack || '') && errors.push('pageerror: ' + e.message));
+  // Network failures while the test has cut the network are expected (WebKit reports some as page errors).
+  let offline = false;
+  page.on('pageerror', e => !offline && e.message !== 'broken' && !/eval at evaluate/.test(e.stack || '') && errors.push('pageerror: ' + e.message));
   page.on('console', m => { if (m.type() === 'error' && !/404|Failed to load resource|CORS|Access-Control|access control|due to access/i.test(m.text())) console.log(`[${name} console] ${m.text()}`); });
   const S = n => shot(page, `${name}-phone-${n}`);
 
@@ -209,7 +211,13 @@ async function run(name) {
   });
 
   await step(name, 'an unknown engine, the base and Zeist go to /chess', async () => {
-    for (const p of ['no-such-engine/', '', 'zeist/', 'index.html', 'js/']) {
+    const bad = await page.request.get(A.url + 'engines/%E0', { maxRedirects: 0 });
+    assert(bad.status() === 404, 'a malformed pack address: ' + bad.status());
+    for (const u of [A.url, A.url.slice(0, -1)]) {
+      const r = await page.request.get(u, { maxRedirects: 0 });
+      assert(r.status() === 301 && r.headers().location === '/chess', `${u}: ${r.status()} ${r.headers().location}`);
+    }
+    for (const p of ['no-such-engine/', 'zeist/', 'index.html', 'js/']) {
       const r = await page.request.get(A.url + p, { maxRedirects: 0 });
       assert(r.status() === 302 && r.headers().location === '/chess', `${p}: ${r.status()} ${r.headers().location}`);
     }
@@ -218,12 +226,28 @@ async function run(name) {
   });
 
   await step(name, "Stockfish Lite's start screen: levels 1 to 10, side, three clocks", async () => {
+    // (Each choice row is one stop for Tab: checked below once the page is up.)
     const res = await page.goto(A.url + 'stockfish-lite/');
     assert(res.ok(), 'status ' + res.status());
     const csp = res.headers()['content-security-policy'] || '';
     assert(csp.includes("default-src 'self'") && csp.includes("'wasm-unsafe-eval'"), 'CSP: ' + csp);
     await page.waitForFunction(() => document.querySelectorAll('#still .zcp').length === 32);
     assert((await page.textContent('#opponent b')).trim() === 'Stockfish Lite', 'name');
+    // Search and share cards
+    const seo = JSON.parse(fs.readFileSync(path.join(web, 'seo.json'), 'utf8'));
+    const listed = (await (await page.request.get(A.url + 'engines.json')).json()).engines.find(e => e.id === 'stockfish-lite');
+    const want = { ...seo.default, ...(seo.engines['stockfish-lite'] || {}) };
+    const fill = t => t.replace(/\{name\}/g, want.name || listed.name).replace(/\{line\}/g, listed.line).trim();
+    assert(await page.title() === 'Play Chess vs Stockfish Lite Online | Zeist', 'the agreed title: ' + await page.title());
+    assert(await page.title() === fill(want.title), 'title: ' + await page.title());
+    assert((await page.textContent('h1')).trim() === fill(want.h1), 'h1');
+    const meta = sel => page.getAttribute(sel, 'content');
+    assert(await page.getAttribute('link[rel=canonical]', 'href') === 'https://zeist.gg/chess/vs/stockfish-lite/', 'canonical');
+    assert(/^index,follow/.test(await meta('meta[name=robots]')), 'robots');
+    const desc = await meta('meta[name=description]');
+    assert(desc === fill(want.description) && desc.length > 20, 'description: ' + desc);
+    assert(await meta('meta[property="og:title"]') === fill(want.title).replace(/ \| Zeist$/, '') && await meta('meta[property="og:url"]') === 'https://zeist.gg/chess/vs/stockfish-lite/', 'og');
+    assert(/^https:\/\/zeist\.gg\/g\/chess-og\.jpg/.test(await meta('meta[property="og:image"]')), 'og image');
     assert((await page.textContent('#opp-tag, #opponent em')).trim() === 'Not rated', 'not rated');
     const levels = await page.$$eval('#lvls button', b => b.map(x => x.textContent.trim()));
     assert(levels.join() === '1,2,3,4,5,6,7,8,9,10', 'levels: ' + levels);
@@ -234,6 +258,12 @@ async function run(name) {
     assert(sides.join() === 'White,Black,Either', 'sides: ' + sides);
     await page.click('#lvls [data-level="6"]');
     assert(await page.getAttribute('#lvls [data-level="6"]', 'aria-checked') === 'true', 'level 6 picked');
+    const stops = await page.$$eval('#lvls button, #sides button, #clocks button', b => b.filter(x => x.tabIndex === 0).length);
+    assert(stops === 3, 'one tab stop a row: ' + stops);
+    await page.focus('#lvls [data-level="6"]');
+    await page.keyboard.press('ArrowRight');
+    assert(await page.getAttribute('#lvls [data-level="7"]', 'aria-checked') === 'true', 'arrow keys move the level');
+    await page.click('#lvls [data-level="6"]');
     await page.click('#clocks [data-clock="15+10"]');
     await page.click('#sides [data-side="b"]');
     await page.reload();
@@ -252,6 +282,8 @@ async function run(name) {
     await page.waitForSelector('#rating');
     assert(!(await page.locator('#lvls').count()), 'no levels for Maia');
     assert((await page.textContent('#opponent b')).trim() === 'Maia 3', 'name');
+    assert(await page.title() === 'Play Chess vs Maia Online | Zeist', 'title: ' + await page.title());
+    assert((await page.textContent('h1')).trim() === 'Chess vs Maia', 'heading: ' + await page.textContent('h1'));
     const [min, max] = await page.$eval('#rating', r => [+r.min, +r.max]);
     assert(min < 1500 && max > 1500, `range ${min} to ${max}`);
     await page.$eval('#rating', r => { r.value = '1700'; r.dispatchEvent(new Event('input', { bubbles: true })); });
@@ -294,6 +326,7 @@ async function run(name) {
   await step(name, 'reloads with no network and the engine still answers', async () => {
     await page.waitForFunction(() => !!navigator.serviceWorker.controller, null, { timeout: 15000 });
     await ctx.setOffline(true);
+    offline = true;
     await page.reload();
     await page.waitForSelector('#resume:not([hidden])');
     await page.click('#resume');
@@ -302,6 +335,8 @@ async function run(name) {
     await playMoves(page, 1);
     assert((await currentGame(page)).moves.length >= before + 2, 'engine answered offline');
     await ctx.setOffline(false);
+    await page.waitForTimeout(500);
+    offline = false;
   });
 
   await step(name, 'a 10+5 game runs its clocks; resigning from the menu ends it', async () => {
@@ -377,6 +412,33 @@ async function run(name) {
 
   await step(name, 'no uncaught errors on the page', async () => { assert(!errors.length, errors.join('\n')); });
   await ctx.close();
+
+  // Arriving from Zeist's /chess, whose service worker answers for /chess/vs/ too until this app's own takes over: the
+  // first game must wait for this app's worker (which checks the pins and the files), never run under Zeist's.
+  await step(name, "from Zeist's /chess, under Zeist's service worker, the first game waits for this app's", async () => {
+    const z = await browser.newContext({ ...PHONE, serviceWorkers: 'allow' });
+    z.on('request', r => requests.push(r.url()));
+    const p = await z.newPage();
+    currentPage = p;
+    await p.goto(A.origin + '/chess');
+    await p.waitForFunction(() => navigator.serviceWorker.controller && navigator.serviceWorker.controller.scriptURL.endsWith('/chess/sw.js'), null, { timeout: 15000 });
+    await p.goto(A.url + SMALL + '/');
+    const first = await p.evaluate(() => navigator.serviceWorker.controller && navigator.serviceWorker.controller.scriptURL);
+    assert(first && first.endsWith('/chess/sw.js'), "the page starts under Zeist's worker: " + first);
+    const notes = [];
+    await p.exposeFunction('zcNote', t => notes.push(t));
+    await p.evaluate(() => new MutationObserver(() => window.zcNote(document.getElementById('home-note').textContent)).observe(document.getElementById('home-note'), { childList: true, characterData: true, subtree: true }));
+    await setUp(p, { level: 1, side: 'w', clock: 'none' });
+    await p.click('#go');
+    await p.waitForSelector('#play:not([hidden]) #board .zcp', { timeout: 90000 });
+    await playMoves(p, 1);
+    const now = await p.evaluate(() => navigator.serviceWorker.controller && navigator.serviceWorker.controller.scriptURL);
+    assert(now && now.endsWith('/chess/vs/sw.js'), "this app's worker answers now: " + now);
+    assert(!notes.some(t => /reload/i.test(t)), 'no reload message: ' + notes.join(' | '));
+    const kept = await p.evaluate(async id => (await (await caches.open('zc-packs')).keys()).filter(r => r.url.includes(`/engines/${id}/`)).length, SMALL);
+    assert(kept >= 3, 'pack kept: ' + kept);
+    await z.close();
+  });
 
   // Desktop, signed in: the start screen and a game, with the board on the left and a column beside it.
   await step(name, 'desktop, signed in: start and game screens', async () => {

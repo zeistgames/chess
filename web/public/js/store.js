@@ -21,4 +21,26 @@ export function set(key, value) {
 export const BASE = new URL('../', import.meta.url).href;
 export const ENGINES = new URL('engines/', BASE).href;
 
+/** This app's own service worker, the one that checks engine files (sw.js). A page under Zeist's /chess can be
+ *  controlled first by Zeist's own worker, whose scope holds this folder too; that one checks nothing here. */
+export const SW_URL = new URL('sw.js', BASE).href;
+export function ownWorker() {
+  const c = typeof navigator !== 'undefined' && navigator.serviceWorker && navigator.serviceWorker.controller;
+  return c && c.scriptURL === SW_URL ? c : null;
+}
+/** Waits up to ms for this app's own service worker to answer for the page (it claims the page once active).
+ *  Resolves it, or null. */
+export async function untilOwnWorker(ms) {
+  const sw = typeof navigator !== 'undefined' && navigator.serviceWorker;
+  if (!sw) return null;
+  const end = Date.now() + ms;
+  while (!ownWorker() && Date.now() < end) {
+    await Promise.race([
+      new Promise(resolve => sw.addEventListener('controllerchange', resolve, { once: true })),
+      new Promise(resolve => setTimeout(resolve, Math.min(500, Math.max(0, end - Date.now())))),
+    ]);
+  }
+  return ownWorker();
+}
+
 export const APP_VERSION = 'Web 0.1';

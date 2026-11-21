@@ -7,8 +7,8 @@
 //   2. The lit piece sets, from ios/art through web/scripts/pieces.py, to public/pieces/.
 //   3. public/ copied to site/<base>, with only the Zeist piece set, and js/config.js (where packs are downloaded from).
 //   4. One page per engine, site/<base><id>/index.html, from pages/vs.html, and site/<base>engines.json, the list
-//      Zeist's Chess reads for its picker. Both from the engine catalog: engines/dist/catalog.json when it is there
-//      (ZC_CATALOG names another), else the published one at engines.zei.st.
+//      Zeist's Chess reads for its picker. Both from the published catalog at engines.zei.st (ZC_CATALOG names a file
+//      instead).
 //   5. site/_headers: the pages' content security policy and the cache lifetimes.
 //   6. site/<base>shell.js: every file of the app shell and a version from their contents, read by sw.js, and the
 //      engine pins: the manifest_sha256 of every pack version this app may run (web/engine-pins.json, which keeps every
@@ -17,6 +17,7 @@
 //
 //   ZC_BASE   the path the pages are served under, default /chess/vs/
 //   ZC_HOME   where Back goes: Zeist's Chess, default /chess
+//   ZC_ORIGIN the site, for canonical addresses and share cards, default https://zeist.gg
 //   ZC_PACKS  where packs are downloaded from, such as https://engines.zei.st/ once it answers this site with CORS
 //             headers (web/README.md); unset, they come through the Worker at <base>engines/.
 //
@@ -35,6 +36,11 @@ const pub = path.join(web, 'public');
 const norm = b => { const s = String(b || '').trim().replace(/^\/*|\/*$/g, ''); return s ? `/${s}/` : '/'; };
 const BASE = norm(process.env.ZC_BASE || '/chess/vs/');
 const HOME = process.env.ZC_HOME || '/chess';
+// The site the pages belong to, for their canonical address and share cards; and Zeist's Chess share image, the one
+// its /chess page uses.
+const ORIGIN = String(process.env.ZC_ORIGIN || 'https://zeist.gg').replace(/\/*$/, '');
+const OG_IMAGE = process.env.ZC_OG_IMAGE || `${ORIGIN}/g/chess-og.jpg?v=3f782037`;
+const OG_ALT = 'Chess and its board. The king of classics. Find your next checkmate.';
 const PACKS = process.env.ZC_PACKS ? String(process.env.ZC_PACKS).replace(/\/*$/, '/') : null;
 if (PACKS && !/^https:\/\/[a-z0-9.-]+\/$/.test(PACKS) && !/^http:\/\/(localhost|127\.0\.0\.1)(:\d+)?\/$/.test(PACKS)) throw new Error('ZC_PACKS must be an origin, such as https://engines.zei.st/');
 const REPOSITORY = 'https://github.com/zeistgames/chess';
@@ -69,11 +75,12 @@ fs.writeFileSync(path.join(site, 'js', 'config.js'),
   `export const PACKS = ${JSON.stringify(PACKS)};\nexport const HOME = ${JSON.stringify(HOME)};\n`);
 
 // 4. the engines
+// The published catalog, which is what the packs' server holds: a pack built but not yet published (engines/dist)
+// would be listed and fail to download. ZC_CATALOG names a file instead (engines/dist/catalog.json to try local packs).
 async function readCatalog() {
-  const local = process.env.ZC_CATALOG || path.join(repo, 'engines', 'dist', 'catalog.json');
-  if (fs.existsSync(local)) return JSON.parse(fs.readFileSync(local, 'utf8'));
+  if (process.env.ZC_CATALOG) return JSON.parse(fs.readFileSync(process.env.ZC_CATALOG, 'utf8'));
   const r = await fetch('https://engines.zei.st/catalog.json');
-  if (!r.ok) throw new Error('no catalog: build the engines or set ZC_CATALOG');
+  if (!r.ok) throw new Error('the published catalog could not be read: set ZC_CATALOG to a catalog file');
   return r.json();
 }
 const catalog = await readCatalog();
@@ -103,6 +110,13 @@ function face(id) {
   return svg.trim().replace(/ xmlns="[^"]*"/, '').replace(/ (width|height)="\d+"/g, '').replace(/stroke="#000"/g, 'stroke="currentColor"');
 }
 const template = fs.readFileSync(path.join(web, 'pages', 'vs.html'), 'utf8');
+// Titles, descriptions and headings for search, from web/seo.json: the default for every engine, overridden by id.
+const SEO = JSON.parse(fs.readFileSync(path.join(web, 'seo.json'), 'utf8'));
+function seo(m) {
+  const o = { ...SEO.default, ...((SEO.engines || {})[m.id] || {}) };
+  const fill = t => String(t ?? '').replace(/\{name\}/g, o.name || m.name).replace(/\{line\}/g, m.line || '').trim();
+  return { title: fill(o.title), description: fill(o.description), h1: fill(o.h1) || 'Chess' };
+}
 const json = v => JSON.stringify(v).replace(/</g, '\\u003c');
 for (const m of engines) {
   const range = BY_RATING.has(m.id) ? ratingRange(m) : null;
@@ -118,17 +132,27 @@ for (const m of engines) {
   const about = `${m.name}${version}${m.author ? `, by ${m.author}` : ''}.${m.license ? ` License: ${licensesOf(m)}.` : ''}`;
   const data = { id: m.id, name: m.name, line: m.line || '', bytes, range };
   const page = template.replace(/<!-- SPDX[^>]*-->\n/, '').replace(/\{\{(\w+)\}\}/g, (_, k) => ({
-    TITLE: esc(`Chess against ${m.name} | Zeist`),
-    DESCRIPTION: esc(`Play chess against ${m.name} in your browser.${m.line ? ' ' + m.line : ''} It downloads once, then plays offline.`),
+    TITLE: esc(seo(m).title), SOCIAL_TITLE: esc(seo(m).title.replace(/ \| Zeist$/, '')),
+    // The screen has room for "Chess" only, as on Zeist's /chess; the rest of the heading is for screen readers.
+    H1: /^Chess /.test(seo(m).h1) ? `Chess<span class="vh">${esc(seo(m).h1.slice(5))}</span>` : esc(seo(m).h1),
+    DESCRIPTION: esc(seo(m).description),
+    CANONICAL: esc(`${ORIGIN}${BASE}${m.id}/`), OG_IMAGE: esc(OG_IMAGE), OG_ALT: esc(OG_ALT),
     DATA: json(data), NAME: esc(m.name), FACE: face(m.id), HOME: esc(HOME), STRENGTH: strength, NOTE: esc(note),
     ABOUT: esc(about), SOURCE: esc(`${REPOSITORY}/tree/main/engines/${m.id}`), REPOSITORY: esc(REPOSITORY),
   })[k] ?? '');
   fs.mkdirSync(path.join(site, m.id), { recursive: true });
   fs.writeFileSync(path.join(site, m.id, 'index.html'), page);
 }
+// Within what Zeist's picker reads (public/s/chess/engines.js there): at most 40 engines, names of 40 characters and
+// lines of 90. Anything longer is cut here, and said, rather than cut there.
+const LIMITS = { engines: 40, name: 40, line: 90 };
+const cut = (t, n, what) => { if (t.length > n) console.warn(`engines.json: ${what} cut to ${n} characters`); return t.slice(0, n); };
+if (engines.length > LIMITS.engines) console.warn(`engines.json: only the first ${LIMITS.engines} of ${engines.length} engines`);
 fs.writeFileSync(path.join(site, 'engines.json'), JSON.stringify({
   format: 1,
-  engines: engines.map(m => ({ id: m.id, name: m.name, line: m.line || '', bytes: bytesOf(m) })),
+  engines: engines.slice(0, LIMITS.engines).map(m => ({
+    id: m.id, name: cut(String(m.name).trim(), LIMITS.name, `${m.id}'s name`), line: cut(String(m.line || '').trim(), LIMITS.line, `${m.id}'s line`), bytes: bytesOf(m),
+  })),
 }) + '\n');
 
 // 5. headers: Cloudflare's static assets read site/_headers. Pages carry their own policy: engines run in workers from
