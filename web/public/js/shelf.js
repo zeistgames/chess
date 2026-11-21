@@ -5,12 +5,34 @@
 // against the size and sha256 that manifest gives, and kept in Cache Storage under the same address it is served
 // from (<base>engines/<id>/<file>). The service worker hands an engine only those kept files, never the network
 // (sw.js). A pack counts as installed once its manifest.json is stored, which happens last.
+//
+// Where the files come from: straight from the packs' own server (config.js PACKS, engines.zei.st) when it answers this
+// site with CORS headers, so the download never runs this site's Worker; else, or if that fails, through the Worker at
+// <base>engines/, which reads the same bucket. Either way every file is checked here before it is kept.
 
 import { ENGINES, get as pref, set as setPref } from './store.js';
+import { PACKS as ORIGIN } from './config.js';
 
 export const PACKS = 'zc-packs';
 const STAGING = 'zc-staging';
-export const BUILT_IN = 'stockfish-lite';
+
+// Straight from the packs' server until a request to it fails (no CORS answer, say); then the Worker, for this visit.
+let direct = !!ORIGIN;
+const TYPES = { js: 'text/javascript', mjs: 'text/javascript', wasm: 'application/wasm', json: 'application/json', txt: 'text/plain', nnue: 'application/octet-stream' };
+const typeOf = p => TYPES[p.split('.').pop().toLowerCase()] || 'application/octet-stream';
+
+/** A pack server file (rel, such as "maia/manifest.json" or "catalog.json"), from the packs' server or the Worker. */
+async function fetchPack(rel, { signal, keyed = false } = {}) {
+  if (direct) {
+    try {
+      const r = await fetch(ORIGIN + rel, { cache: 'no-store', mode: 'cors', credentials: 'omit', signal });
+      if (r.ok) return r;
+    } catch (e) { if (signal && signal.aborted) throw e; }
+    direct = false;
+  }
+  if (keyed) await arm();
+  return fetch(ENGINES + rel, { cache: 'no-store', signal, ...(keyed ? { headers: DOWNLOAD } : {}) });
+}
 
 let catalog = pref('catalog', null);
 let catalogProblem = null;
@@ -23,7 +45,7 @@ function changed() { for (const fn of listeners) { try { fn(); } catch (e) { con
 /** Reads catalog.json again. Offline, the last one read stays. */
 export async function refresh() {
   try {
-    const r = await fetch(ENGINES + 'catalog.json', { cache: 'no-store' });
+    const r = await fetchPack('catalog.json');
     if (!r.ok) throw new Error('status ' + r.status);
     const j = await r.json();
     const list = Array.isArray(j) ? j : j.engines || j.packs;
@@ -81,36 +103,17 @@ async function rebuild() {
   for (const [id, inst] of installedCache) {
     if (!seen.has(id)) out.push({ manifest: inst.manifest, installed: true, packSHA: inst.packSHA });
   }
-  for (const e of out) e.builtIn = e.manifest.id === BUILT_IN;
   engines = out;
   changed();
 }
 
 let reading = null; // the catalog read that load() started
 export async function load() { await rebuild(); reading = refresh(); }
+/** The catalog read load() started, once it is done. */
+export function listed() { return reading || Promise.resolve(catalogProblem); }
 
 export function list() { return engines; }
 export function engine(id) { return engines.find(e => e.manifest.id === id) || null; }
-/** Engines ready to play here, plus Stockfish Lite and an engine opened by its address, both fetched on first play. */
-export function playable() { return engines.filter(e => e.installed || e.builtIn || e.manifest.id === offered); }
-
-// An engine opened by its address (<base><id>): listed with the playable ones until another is downloaded or this
-// browser forgets it. Kept so a reload still shows it.
-let offered = pref('offered', null);
-/** Offers a listed engine in the picker before it is downloaded. False when the catalog doesn't list it. */
-export function offer(id) {
-  if (!engines.some(e => e.manifest.id === id)) return false;
-  offered = id;
-  setPref('offered', id);
-  changed();
-  return true;
-}
-/** Waits for the catalog when the engine is not known yet (a first visit), then offers it. */
-export async function offerWhenListed(id) {
-  if (offer(id)) return true;
-  await (reading || refresh());
-  return offer(id);
-}
 export function download(id) { return downloads.get(id) || null; }
 
 /** Zeist Chess's source. */
@@ -206,14 +209,13 @@ export async function install(id) {
   downloads.set(id, state);
   changed();
   state.promise = (async () => {
-    const base = ENGINES + id + '/';
+    const base = ENGINES + id + '/'; // where it is kept and served from, wherever it is downloaded from
     const c = await cache();
     // Files come down into a staging cache first: an update that fails leaves the installed version whole.
     const stage = await caches.open(STAGING);
     const written = [];
     try {
-      await arm();
-      const mr = await fetch(base + 'manifest.json', { cache: 'no-store', headers: DOWNLOAD, signal: controller.signal });
+      const mr = await fetchPack(id + '/manifest.json', { signal: controller.signal, keyed: true });
       if (!mr.ok) throw new PackError(mr.status === 404 ? "This engine isn't on the server." : 'The download failed.');
       const raw = await mr.arrayBuffer();
       let m;
@@ -240,8 +242,8 @@ export async function install(id) {
       for (const f of m.files) {
         if (f.path.includes('..') || f.path.startsWith('/') || /^[a-z]+:/i.test(f.path)) throw new PackError('This pack has a file outside its folder.');
         const url = new URL(f.path, base).href;
-        await arm();
-        const r = await fetch(url, { cache: 'no-store', headers: DOWNLOAD, signal: controller.signal });
+        if (!url.startsWith(base)) throw new PackError('This pack has a file outside its folder.');
+        const r = await fetchPack(url.slice(ENGINES.length), { signal: controller.signal, keyed: true });
         if (!r.ok) throw new PackError('The download failed.');
         const chunks = [];
         let got = 0;
@@ -258,7 +260,7 @@ export async function install(id) {
         if (blob.size !== f.bytes || (await sha256(await blob.arrayBuffer())) !== String(f.sha256).toLowerCase()) {
           throw new PackError("A file didn't match its checksum.");
         }
-        await stage.put(url, new Response(blob, { headers: { 'content-type': r.headers.get('content-type') || 'application/octet-stream', 'content-length': String(blob.size) } }));
+        await stage.put(url, new Response(blob, { headers: { 'content-type': typeOf(f.path), 'content-length': String(blob.size) } }));
         written.push(url);
         done += f.bytes;
         state.progress = done / total;

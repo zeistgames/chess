@@ -1,19 +1,17 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 //
-// The Worker that serves Zeist Chess on the web. Everything lives under one base path (env.BASE, "/" by default),
-// so the app can sit at a path on a domain it does not own: anything outside the base is not ours and gets 404.
+// The Worker behind Zeist Chess's engine pages, zeist.gg/chess/vs/<id>/. Everything it serves is under one base path
+// (env.BASE, "/chess/vs/"). The pages, engines.json and every file of the app are static assets (web/site/, written
+// by scripts/assets.mjs, headers from site/_headers): Cloudflare serves them without running this Worker. It runs only
+// for what no asset answers:
 //
-//   <base>             the app (static assets from public/)
-//   <base><id>         the app, opened with that engine picked on Home (ids as in catalog.json, such as "maia").
-//                      <base><id>/ redirects to <base><id>, so the page's relative addresses stay in the base.
-//   <base>engines/...  engine packs: catalog.json and <id>/<file>, read from the R2 bucket (env.ENGINES), or, when
-//                      the bucket lacks the file and env.ENGINES_ORIGIN is set (local development), fetched from it.
+//   <base>engines/...  engine packs: catalog.json and <id>/<file>, read from the R2 bucket (env.ENGINES), or, when the
+//                      bucket lacks the file and env.ENGINES_ORIGIN is set (local development), fetched from it. Used
+//                      only while the packs' own server (engines.zei.st) doesn't answer this site with CORS headers;
+//                      after that the browser downloads packs from it directly (js/shelf.js, js/config.js).
+//   anything else      a redirect to Zeist's Chess (env.HOME, "/chess"): an unknown engine, the base itself, an old link.
 //
-// An engine address is one segment with no dot. The app's own folders and "engines" are reserved (RESERVED), so no
-// engine id can stand for a file or a pack: files have a dot, packs sit under engines/, folders are reserved.
-//
-// Engine workers must be same-origin scripts and packs load their files relative to their own URL, which is why
-// packs come through this origin rather than straight from engines.zei.st.
+// The engines themselves never run here: they run in the player's browser.
 
 const TYPES = {
   html: 'text/html; charset=utf-8', js: 'text/javascript; charset=utf-8', mjs: 'text/javascript; charset=utf-8',
@@ -27,26 +25,11 @@ export function typeOf(name) {
   return TYPES[ext] || 'application/octet-stream';
 }
 
-/** "/", "/chess/engines/" from "", "chess/engines", "/chess/engines/" and the like. */
+/** "/", "/chess/vs/" from "", "chess/vs", "/chess/vs/" and the like. */
 export function normalizeBase(b) {
   const s = String(b || '/').trim().replace(/^\/*|\/*$/g, '');
   return s ? `/${s}/` : '/';
 }
-
-// The page's own policy. Engines run in workers from this origin; WebAssembly needs wasm-unsafe-eval.
-// /api/me is read on the same origin (Zeist's session), nothing else is contacted.
-const CSP = [
-  "default-src 'self'", "script-src 'self' 'wasm-unsafe-eval'", "worker-src 'self'", "connect-src 'self'",
-  "img-src 'self' data: blob:", "style-src 'self' 'unsafe-inline'", "font-src 'self'", "base-uri 'none'",
-  "object-src 'none'", "frame-ancestors 'none'", "form-action 'self'",
-].join('; ');
-
-// Names directly under the base that are the app's, never an engine's. Every folder in public/ is here.
-export const RESERVED = new Set(['engines', 'js', 'core', 'fonts', 'pieces', 'index', 'api', 'welcome']);
-const ENGINE_ID = /^[a-z0-9][a-z0-9-]*$/;
-
-/** True when <base><name> is an engine address. */
-export function isEngineAddress(name) { return ENGINE_ID.test(name) && !RESERVED.has(name); }
 
 const PACK_PATH = /^[a-z0-9][a-z0-9._-]*(\/[A-Za-z0-9][A-Za-z0-9._-]*)*$/;
 
@@ -54,36 +37,8 @@ export async function handle(request, env) {
   const url = new URL(request.url);
   const base = normalizeBase(env.BASE);
   if (request.method !== 'GET' && request.method !== 'HEAD') return text('Method not allowed', 405, { allow: 'GET, HEAD' });
-  if (base !== '/' && url.pathname === base.slice(0, -1)) {
-    return new Response(null, { status: 308, headers: { location: base + url.search } });
-  }
-  if (!url.pathname.startsWith(base)) return text('Not found', 404);
-  const rest = url.pathname.slice(base.length); // no leading slash
-  if (rest.startsWith('engines/')) return engines(decodeURIComponent(rest.slice('engines/'.length)), request, env);
-  if (isEngineAddress(rest)) return assets('', request, env);
-  if (rest.endsWith('/') && isEngineAddress(rest.slice(0, -1))) {
-    return new Response(null, { status: 308, headers: { location: base + rest.slice(0, -1) + url.search } });
-  }
-  return assets(rest, request, env);
-}
-
-async function assets(rest, request, env) {
-  const target = new URL('/' + rest, request.url);
-  const res = await env.ASSETS.fetch(new Request(target, { method: request.method, headers: request.headers }));
-  const headers = new Headers(res.headers);
-  headers.set('x-content-type-options', 'nosniff');
-  headers.set('referrer-policy', 'same-origin');
-  if (rest === '' || rest.endsWith('.html')) {
-    headers.set('content-security-policy', CSP);
-    headers.set('cache-control', 'no-cache');
-  } else if (rest === 'sw.js' || rest === 'shell.js') {
-    headers.set('cache-control', 'no-cache');
-  } else if (/^(fonts|pieces)\//.test(rest)) {
-    headers.set('cache-control', 'public, max-age=2592000');
-  } else {
-    headers.set('cache-control', 'public, max-age=0, must-revalidate');
-  }
-  return new Response(res.body, { status: res.status, statusText: res.statusText, headers });
+  if (url.pathname.startsWith(base + 'engines/')) return engines(decodeURIComponent(url.pathname.slice(base.length + 'engines/'.length)), request, env);
+  return new Response(null, { status: 302, headers: { location: env.HOME || '/chess', 'cache-control': 'no-store' } });
 }
 
 async function engines(key, request, env) {

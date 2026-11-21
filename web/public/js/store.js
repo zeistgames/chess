@@ -17,17 +17,8 @@ export function set(key, value) {
   } catch { /* private mode or full: the setting lasts this visit only */ }
 }
 
-/** The app's address: the folder the page is served from, wherever that is. */
-export const BASE = new URL('./', document.baseURI).href;
+/** The app's address: the folder above js/, wherever it is served (as /chess/vs/). Each engine's page is a folder in it. */
+export const BASE = new URL('../', import.meta.url).href;
 export const ENGINES = new URL('engines/', BASE).href;
-
-/** The engine named in the address, as in <base>maia, or null. The Worker serves the app there (src/worker.js). */
-export function addressedEngine() {
-  const rest = location.pathname.slice(new URL(BASE).pathname.length);
-  return /^[a-z0-9][a-z0-9-]*$/.test(rest) ? rest : null;
-}
-
-/** Zeist, when the app is served one folder under zeist.gg's /chess/ (as /chess/engines/): its address, else null. */
-export const ZEIST = /^\/chess\/[^/]+\/$/.test(new URL(BASE).pathname) ? '/chess' : null;
 
 export const APP_VERSION = 'Web 0.1';
