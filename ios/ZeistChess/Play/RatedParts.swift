@@ -36,7 +36,7 @@ struct RatedResult: View {
     }
 
     static func waitingLine(_ sent: RatedFinishes.Sent?, sending: Bool, elsewhere: Bool = false) -> String {
-        if elsewhere, sent != .refused { return "The result goes to Zeist when the account that played it is signed in." }
+        if elsewhere, sent != .refused, sent != .settled { return "The result goes to Zeist when the account that played it is signed in." }
         return switch sent {
         case .pending: "Zeist is checking this result. It counts once it's checked."
         case .refused: "Zeist has no record of this game, so it doesn't count."
