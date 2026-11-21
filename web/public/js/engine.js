@@ -7,7 +7,7 @@
 import { EngineHost, StaleError, OutOfTimeError } from '../core/host.js';
 import * as levels from '../core/levels.js';
 import { Game, START } from '../core/rules.js';
-import { ENGINES } from './store.js';
+import { ENGINES, BASE, ownWorker, untilOwnWorker } from './store.js';
 import { bytesOf } from './shelf.js';
 
 export { StaleError, OutOfTimeError, levels };
@@ -23,17 +23,16 @@ export class UnguardedError extends Error {}
 async function guarded() {
   const sw = navigator.serviceWorker;
   if (!sw) throw new UnguardedError("This browser can't check an engine's files, so it can't run one here.");
-  if (sw.controller) return;
-  const change = ms => Promise.race([
-    new Promise(resolve => sw.addEventListener('controllerchange', resolve, { once: true })),
-    new Promise(resolve => setTimeout(resolve, ms)),
-  ]);
-  // Already installed but not answering for this page: it was loaded past it, as a hard reload does. A moment's
-  // grace for one just taking over; otherwise say so at once. On a first visit, wait for it to take over.
-  const reg = await sw.getRegistration().catch(() => null);
-  await change(reg && reg.active ? 1000 : 15000);
-  if (sw.controller) return;
-  throw new UnguardedError(reg && reg.active
+  // Only this app's own worker counts: under zeist.gg the page may first be controlled by Zeist's (scope /chess),
+  // which lets engine files through from the network unchecked.
+  if (ownWorker()) return;
+  // Already installed and active but not answering for this page, with no other worker in its place: it was loaded
+  // past it, as a hard reload does. A moment's grace for one just taking over; otherwise say so at once. On a first
+  // visit, or under another worker, wait for this one to activate and claim the page.
+  const reg = await sw.getRegistration(BASE).catch(() => null);
+  const skipped = !!(reg && reg.active && reg.active.scriptURL && !sw.controller);
+  if (await untilOwnWorker(skipped ? 1000 : 15000)) return;
+  throw new UnguardedError(skipped
     ? 'This page was loaded in a way that skips the check on engine files, as a hard reload does. Reload the page normally to play.'
     : "The check on engine files isn't ready in this browser yet. Reload the page to play.");
 }

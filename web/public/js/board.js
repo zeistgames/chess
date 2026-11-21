@@ -6,6 +6,8 @@
 //
 // Squares are numbered as core/rules.js gives the board: 0 is a8, 63 is h1, row by row.
 
+import { BASE } from './store.js';
+
 const FILES = 'abcdefgh';
 export const squareName = i => FILES[i % 8] + (8 - Math.floor(i / 8));
 export const squareIndex = s => (8 - Number(s[1])) * 8 + FILES.indexOf(s[0]);
@@ -21,7 +23,8 @@ export function boardFromFEN(fen) {
   return out.length === 64 ? out : Array(64).fill('');
 }
 
-export function pieceURL(set, piece) { return `pieces/${set}/${piece}.svg`; }
+/** A piece's picture, from the app's folder whichever page asks. */
+export function pieceURL(set, piece) { return new URL(`pieces/${set}/${piece}.svg`, BASE).href; }
 
 /** A small repeatable random sequence (xorshift), for the grain. */
 function seeded(seed) {
@@ -125,7 +128,7 @@ export class Board {
     this.coords = coords;
     this.onMove = onMove;
     this.autoQueen = autoQueen;
-    root.classList.add('board');
+    root.classList.add('zcb');
     root.setAttribute('role', 'img');
     root.setAttribute('aria-label', label);
     root.innerHTML = '<canvas class="ground" aria-hidden="true"></canvas><canvas class="marks" aria-hidden="true"></canvas><div class="pieces" aria-hidden="true"></div>';
@@ -279,7 +282,7 @@ export class Board {
       const [c, r] = this.spot(i);
       if (!el) {
         el = document.createElement('img');
-        el.className = 'piece arriving';
+        el.className = 'zcp arriving';
         el.alt = '';
         el.draggable = false;
         this.piecesEl.append(el);

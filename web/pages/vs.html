@@ -1,0 +1,123 @@
+<!doctype html>
+<!-- SPDX-License-Identifier: AGPL-3.0-or-later. One engine's page, <base><id>/, written for each engine by scripts/assets.mjs. -->
+<html lang="en" data-game="chess">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>{{TITLE}}</title>
+<meta name="description" content="{{DESCRIPTION}}">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
+<link rel="canonical" href="{{CANONICAL}}">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Zeist">
+<meta property="og:locale" content="en_US">
+<meta property="og:title" content="{{SOCIAL_TITLE}}">
+<meta property="og:description" content="{{DESCRIPTION}}">
+<meta property="og:url" content="{{CANONICAL}}">
+<meta property="og:image" content="{{OG_IMAGE}}">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="{{OG_ALT}}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{SOCIAL_TITLE}}">
+<meta name="twitter:description" content="{{DESCRIPTION}}">
+<meta name="twitter:image" content="{{OG_IMAGE}}">
+<meta name="twitter:image:alt" content="{{OG_ALT}}">
+<meta name="theme-color" content="#12110e">
+<meta name="color-scheme" content="dark">
+<link rel="icon" href="../icon.svg" type="image/svg+xml">
+<link rel="preload" href="../fonts/Prata-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../fonts/Jost-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../z/style.css">
+<link rel="stylesheet" href="../z/chess.css">
+<link rel="stylesheet" href="../vs.css">
+<script type="application/json" id="engine-data">{{DATA}}</script>
+<script type="module" src="../js/vs.js"></script>
+</head>
+<body>
+<main class="home start chess-start" id="home">
+  <nav class="start-nav"><a class="zhome" href="/" aria-label="Zeist"><svg viewBox="10.5 10.5 79 79" style="width:100%;height:100%;display:block;overflow:visible" aria-hidden="true"><mask id="zh" maskUnits="userSpaceOnUse" x="0" y="0" width="100" height="100"><rect width="100" height="100" fill="#fff"/><circle cx="56" cy="44" r="18" fill="#000"/></mask><g stroke="currentColor" stroke-width="3" stroke-linecap="round" fill="none" mask="url(#zh)"><path d="M88 12H12"/><path d="M88 44H12"/><path d="M88 76H12"/><path d="M88 12V88"/><path d="M56 12V88"/><path d="M24 12V88"/></g><circle cx="56" cy="44" r="13" fill="currentColor"/></svg></a><button class="quiet" id="home-rules" type="button">How to play</button></nav>
+  <div class="start-body">
+    <div class="start-still"><div id="still"></div></div>
+    <div class="start-main">
+      <header class="chess-head"><h1>{{H1}}</h1></header>
+      <div class="choices">
+        <button class="btn solid" id="resume" type="button" hidden>Continue your game</button>
+        <div class="cpanel" id="computer-panel">
+          <a class="oppline" id="opponent" href="{{HOME}}" aria-label="{{NAME}}, not rated. Pick another opponent in Chess"><span class="zface" aria-hidden="true">{{FACE}}</span><b>{{NAME}}</b><em>Not rated</em><svg viewBox="0 0 14 22" aria-hidden="true"><path d="M3 8l4-4 4 4M3 14l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          {{STRENGTH}}
+          <div class="pick"><span>Side</span><div class="sides" id="sides" role="radiogroup" aria-label="Side"><button type="button" role="radio" aria-checked="false" data-side="w">White</button><button type="button" role="radio" aria-checked="false" data-side="b">Black</button><button type="button" role="radio" aria-checked="true" data-side="either">Either</button></div></div>
+          <div class="pick"><span>Clock</span><div class="sides" id="clocks" role="radiogroup" aria-label="Clock"><button type="button" role="radio" aria-checked="true" data-clock="none">None</button><button type="button" role="radio" aria-checked="false" data-clock="10+5" aria-label="10 minutes, plus 5 seconds a move">10+5</button><button type="button" role="radio" aria-checked="false" data-clock="15+10" aria-label="15 minutes, plus 10 seconds a move">15+10</button></div></div>
+          <button class="btn solid" id="go" type="button">Play</button>
+          <p class="note" id="home-note" role="status" aria-live="polite">{{NOTE}}</p>
+        </div>
+      </div>
+      <p class="tolink"><a href="{{HOME}}/puzzles">Puzzles<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M4.5 2l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a><a href="{{HOME}}/learn">Learn<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M4.5 2l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></p>
+    </div>
+  </div>
+</main>
+<main class="chess-play" id="play" hidden>
+  <a class="zrail" href="/" aria-label="Zeist"><svg viewBox="10.5 10.5 79 79" aria-hidden="true"><mask id="zr" maskUnits="userSpaceOnUse" x="0" y="0" width="100" height="100"><rect width="100" height="100" fill="#fff"/><circle cx="56" cy="44" r="18" fill="#000"/></mask><g stroke="currentColor" stroke-width="3" stroke-linecap="round" fill="none" mask="url(#zr)"><path d="M88 12H12M88 44H12M88 76H12M88 12V88M56 12V88M24 12V88"/></g><circle cx="56" cy="44" r="13" fill="currentColor"/></svg></a>
+  <div class="bar">
+    <a class="icon" id="back" href="{{HOME}}" aria-label="Back to Chess"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    <div class="title"><h2>Chess</h2><small id="title-sub"></small></div>
+    <span class="zends"><button class="icon" id="open-rules" type="button" aria-label="How to play">?</button></span>
+  </div>
+  <div class="cgame">
+    <div class="bcol">
+      <div class="line" id="line" role="group" aria-label="Moves"></div>
+      <div class="prow" id="top"></div>
+      <div id="board"></div>
+      <div class="prow" id="bottom"></div>
+    </div>
+    <div class="side">
+      <div class="dhead"><b id="side-head">{{NAME}}</b><i id="side-sub"></i></div>
+      <div class="list" id="list" role="group" aria-label="Moves"></div>
+      <div class="cfoot" id="foot">
+        <p class="say" id="say" role="status" aria-live="polite"></p>
+        <div class="controls"><button class="btn" id="retry" type="button" hidden>Try again</button></div>
+        <div class="cbar" id="cbar">
+          <button type="button" id="menu-btn" aria-haspopup="menu" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span>Menu</span></button>
+          <button type="button" id="step-back" aria-label="Back one move"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Back</span></button>
+          <button type="button" id="step-fwd" aria-label="Forward one move"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Forward</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="menu" id="menu" role="menu" hidden>
+    <div class="scrim" id="scrim"></div>
+    <div class="pop">
+      <button type="button" role="menuitem" id="flip"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4v16M3 8l4-4 4 4M17 20V4M13 16l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Flip board</button>
+      <button type="button" role="menuitem" id="undo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 14L4 9l5-5M4 9h10a6 6 0 0 1 0 12h-3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Take back a move</button>
+      <button type="button" role="menuitem" id="again-menu" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12a8 8 0 1 0 2.5-5.8M4 5v4h4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Play again</button>
+      <button type="button" role="menuitem" id="resign"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 21V4M5 4h11l-2 4 2 4H5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Resign</span></button>
+    </div>
+  </div>
+  <section class="cend" id="end" hidden aria-live="polite">
+    <h3 id="end-title"></h3>
+    <p id="end-line"></p>
+    <div class="btns"><button class="btn solid" id="end-again" type="button">Play again</button><a class="btn" id="end-home" href="{{HOME}}">Chess</a></div>
+    <p class="lk"><button class="quiet" id="end-see" type="button">See the board</button></p>
+  </section>
+</main>
+<dialog id="rules">
+  <h2>Chess</h2>
+  <ol class="rule-list">
+    <li>Checkmate wins: the king is attacked and has no way out.</li>
+    <li>White moves first. Castling, en passant and promotion follow the usual rules.</li>
+    <li>A draw comes by itself: no legal move while not in check, the same position three times, 50 moves each with no capture or pawn move, or too few pieces to checkmate.</li>
+    <li>With a clock, running out of time loses. If the other side can't checkmate, it's a draw.</li>
+    <li>Resigning loses the game.</li>
+    <li>Games against {{NAME}} aren't rated. They're kept in this browser.</li>
+  </ol>
+  <p class="others" style="margin-top:14px">Tap or click a piece, then where it goes, or drag it. On a keyboard, the left and right arrows step through the moves.</p>
+  <div class="about">
+    <p class="others">{{ABOUT}} <a href="{{SOURCE}}" rel="noopener">Source</a></p>
+    <p class="others" id="kept" hidden><span id="kept-line"></span> <button class="link" id="remove" type="button">Remove it</button></p>
+    <p class="others">Zeist Chess is open source. <a href="{{REPOSITORY}}" rel="noopener">Source</a></p>
+  </div>
+  <button class="btn" id="close-rules" type="button">Back</button>
+</dialog>
+</body>
+</html>

@@ -2,8 +2,8 @@
 //
 // Keeps Zeist Chess working with no network:
 //   the app shell (listed in shell.js): from the network when it answers, else from the copy kept here;
-//   engines/catalog.json: the same, so Settings can still list engines offline;
-//   engine pack files: only from the packs downloaded in Settings (Cache Storage "zc-packs", written by js/shelf.js),
+//   engines/catalog.json: the same, when packs come through this site's Worker;
+//   engine pack files: only from the packs downloaded by js/shelf.js (Cache Storage "zc-packs", written by js/shelf.js),
 //   only the files their manifest lists, and never from the network. Cache Storage belongs to the whole site, so
 //   nothing in it is trusted: every time a pack file is served, its kept manifest must hash to a value pinned in this
 //   service worker's own script (self.PINS, from shell.js, written at build time by scripts/assets.mjs), and the file
@@ -43,6 +43,7 @@ async function fresh(request, cacheName, ms, fallback) {
     if (res.ok && res.type === 'basic') c.put(fallback || request, res.clone());
     return res;
   });
+  net.catch(() => {}); // when the kept copy answers first, a network that fails later is no one's error
   const timer = new Promise(resolve => setTimeout(resolve, ms, null));
   try {
     const first = await Promise.race([net, timer]);
@@ -52,7 +53,7 @@ async function fresh(request, cacheName, ms, fallback) {
   } catch {
     const kept = await c.match(fallback || request, { ignoreSearch: true });
     if (kept) return kept;
-    throw new Error('offline');
+    return new Response('Offline, and not kept here.', { status: 503, headers: { 'content-type': 'text/plain' } });
   }
 }
 
@@ -135,6 +136,6 @@ self.addEventListener('fetch', event => {
     event.respondWith(packFile(rel.slice('engines/'.length)));
     return;
   }
-  if (req.mode === 'navigate') { event.respondWith(fresh(req, SHELL_CACHE, 4000, new URL('./', SCOPE).href)); return; }
+  // Each engine's page (<id>/) is in the shell, so it opens offline as any other file of it does.
   event.respondWith(fresh(req, SHELL_CACHE, 4000));
 });

@@ -31,8 +31,8 @@ So the app's engine versions change only with an app update. A data file publish
 
 Two things the web depends on (2026-11-14):
 
-- `catalog.json` stays at the bucket's root with `engines: [{id, name, ...}]`. The web app, served under zeist.gg/chess/engines/, reads it from its own origin, and so does Chess in Zeist for its list of opponents.
-- An engine id is also a web address (`/chess/engines/<id>`). These words are never used as an id: `js`, `core`, `fonts`, `pieces`, `engines`, `index`, `api`, `welcome`.
+- `catalog.json` stays at the bucket's root with `engines: [{id, name, ...}]`. The web pages, served under zeist.gg/chess/vs/, read it from engines.zei.st (or through their own Worker); Chess in Zeist reads the shorter list `/chess/vs/engines.json`, written from it when the web is built.
+- An engine id is also a web address (`/chess/vs/<id>/`). These words are never used as an id: `js`, `core`, `fonts`, `pieces`, `z`, `engines`, `index`, `api`, `welcome`, `zeist`.
 
 A pack passes when, in Node and in WebKit: `uci` answers `uciok`; `isready` answers `readyok`; `position startpos moves e2e4` then `go nodes 20000` answers a legal `bestmove`; the same search twice gives the same move.
 

@@ -1,0 +1,338 @@
+/* Zeist's own stylesheet (s/chess/chess.css on zeist.gg), by its author, so these pages look like Zeist's Chess. Only the
+   font addresses are changed, to this app's fonts/. To update it, copy it again. */
+/* Chess in Zeist: the parts of the approved mockup (staging 2026-11-14-chess-in-zeist) that no other game has, on top
+   of Zeist's shared shell (/s/style.css). The board is Bone: #b4ad9f and #4b4842; puzzles name Slate (below). */
+.chess-start{--paper:#f4f1ea;--dim:rgb(244 241 234 / .66);--faint:rgb(244 241 234 / .42);--edge:rgb(244 241 234 / .12);--rule:rgb(244 241 234 / .1);--card:#1c1a16}
+.chess-play{--paper:#f4f1ea;--dim:rgb(244 241 234 / .66);--faint:rgb(244 241 234 / .42);--edge:rgb(244 241 234 / .12);--rule:rgb(244 241 234 / .1);--card:#1c1a16}
+
+/* The board */
+.cboard{position:relative;width:100%;aspect-ratio:1;border-radius:12px;overflow:hidden;border:1px solid var(--edge,rgb(244 241 234 / .12));container-type:inline-size;touch-action:none;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+.cboard.still{touch-action:auto;pointer-events:none}
+.cboard.still s{display:none}
+.cboard .sqs{position:absolute;inset:0;display:grid;grid-template-columns:repeat(8,1fr);grid-template-rows:repeat(8,1fr)}
+.cboard .sq{position:relative;display:block;padding:0;margin:0;border:0;border-radius:0;background:#b4ad9f;font:inherit;color:#4b4842;cursor:default;touch-action:none}
+.cboard .sq.d{background:#4b4842;color:#b4ad9f}
+.cboard .sq:active{background:#b4ad9f}.cboard .sq.d:active{background:#4b4842}
+.cboard .sq::after{content:"";position:absolute;inset:0;pointer-events:none}
+/* The last move: a quiet warm tint, no outline. */
+.cboard .sq.lt::after{background:#f2e2b0;opacity:.3}
+.cboard .sq.d.lt::after{opacity:.44}
+.cboard .sq.sel::after{background:#f4f1ea;opacity:.24}
+/* Orange only for check. */
+.cboard .sq.ck{background-image:radial-gradient(circle at 50% 52%,#ff7442 0,rgb(255 116 66 / .85) 30%,rgb(255 116 66 / 0) 72%)}
+.cboard .sq.to::before{content:"";position:absolute;left:35.5%;top:35.5%;width:29%;height:29%;border-radius:50%;background:rgb(18 17 14 / .34);z-index:3;pointer-events:none}
+.cboard .sq.cap::before{content:"";position:absolute;inset:4%;border-radius:50%;border:max(2.5px,.95cqw) solid rgb(18 17 14 / .44);z-index:3;pointer-events:none}
+.cboard .sq:focus-visible{outline:2px solid #f4f1ea;outline-offset:-3px;z-index:4}
+/* A page that names its board (data-chess-board, design/tokens.json chess_boards through tokens.css): Chess puzzles, their
+   themes and the daily, on Slate (2026-11-18), so they read apart from games. The game, Learn and friend games name
+   none and keep Bone, above. Slate's own letters and last-move tint come with it; the dots and the check stay. */
+[data-chess-board] .cboard .sq{background:var(--cb-light);color:var(--cb-ink-light)}
+[data-chess-board] .cboard .sq.d{background:var(--cb-dark);color:var(--cb-ink-dark)}
+[data-chess-board] .cboard .sq:active{background:var(--cb-light)}[data-chess-board] .cboard .sq.d:active{background:var(--cb-dark)}
+[data-chess-board] .cboard .sq.lt::after{background:var(--cb-last,#f2e2b0);opacity:var(--cb-last-light,.3)}
+[data-chess-board] .cboard .sq.d.lt::after{opacity:var(--cb-last-dark,.44)}
+.cboard s{position:absolute;z-index:1;font:500 2.2cqw/1 Jost,system-ui,sans-serif;text-decoration:none;opacity:.75;pointer-events:none}
+.cboard s.r{left:5%;top:4%}
+.cboard s.f{right:6%;bottom:4%}
+.cboard .pcs{position:absolute;inset:0;pointer-events:none;z-index:2}
+.cboard .pc{position:absolute;left:0;top:0;width:12.5%;height:12.5%;padding:.5%;box-sizing:border-box;transition:transform 180ms cubic-bezier(.23,1,.32,1),opacity 160ms ease-out;will-change:transform}
+.cboard .pc.still{transition:none}
+.cboard .pc.gone{opacity:0}
+.cboard .pc.lifted{transition:none;z-index:6;filter:drop-shadow(0 6px 7px rgb(0 0 0 / .5))}
+.cboard .promo{position:absolute;inset:0;z-index:9;background:rgb(0 0 0 / .35)}
+.cboard .promo-col{position:absolute;width:12.5%;height:50%;display:flex;flex-direction:column;background:#f4f1ea;border-radius:10px;overflow:hidden;box-shadow:0 10px 30px rgb(0 0 0 / .45)}
+.cboard .promo-col button{flex:1;display:grid;place-items:center;padding:6%;border-radius:0}
+.cboard .promo-col button:hover,.cboard .promo-col button:focus-visible{background:rgb(18 17 14 / .1);outline:0}
+.cboard .promo-col img{width:100%;height:100%}
+@media (prefers-reduced-motion:reduce){.cboard .pc{transition:opacity 160ms}}
+
+/* Small piece figures, in the move line and the captured row */
+.fig{display:inline-block;width:.95em;height:.95em;background:currentColor;-webkit-mask:var(--m) center/contain no-repeat;mask:var(--m) center/contain no-repeat;margin-right:.08em;vertical-align:-.1em}
+
+/* The start screen */
+.chess-start .start-still #still{width:min(100%,40dvh)}
+/* Wide screens: Chess's 64 squares and detailed pieces get a bigger board than Zeist's shared start, using the height. */
+@media (min-width:900px){
+  .home.start.chess-start{max-width:1240px}
+  .chess-start .start-body{gap:64px}
+  .chess-start .start-still{flex:1.6}
+  .chess-start .start-still #still{width:min(100%,calc(100dvh - 200px),640px)}
+  .chess-start .start-main{flex:0 1 380px;min-width:320px}
+}
+.chess-start .start-body{gap:22px}
+.chess-start .start-main{gap:18px}
+.chess-head h1{font-size:clamp(40px,10vw,56px)}
+.chess-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px}
+.chess-head .lede{margin-top:10px}
+.standing{text-align:right;line-height:1.2;flex:none;padding-bottom:4px}
+.standing b{display:block;font-size:20px;font-weight:500;font-variant-numeric:tabular-nums}
+.standing span{font-size:13px;color:var(--faint)}
+.chess-start .choices{gap:14px}
+.cpanel{display:flex;flex-direction:column;gap:14px}
+.cpanel[hidden]{display:none}
+.oppline{display:flex;align-items:center;gap:10px;width:100%;padding:8px 16px 8px 8px;border:1px solid var(--edge);border-radius:999px;background:var(--card);text-align:left;transition:transform 120ms cubic-bezier(.23,1,.32,1)}
+.oppline:active{transform:scale(.98)}
+.oppline b{flex:1;font:400 18px Prata,Georgia,serif}
+.oppline em{font-size:13px;font-style:normal;color:var(--faint)}
+.oppline>svg{width:12px;height:20px;color:var(--faint)}
+.zface{flex:none;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:#2a2722;border:1px solid var(--edge);color:var(--paper)}
+.zface svg{width:56%;height:56%;overflow:visible}
+.cpanel .pick{display:flex;align-items:center;gap:10px}
+.cpanel .pick>span{width:48px;flex:none;font-size:13px;color:var(--faint)}
+.lvls{display:flex;flex:1;justify-content:space-between;gap:4px}
+.lvls button{flex:1 1 0;max-width:38px;aspect-ratio:1;min-width:0;border-radius:50%;display:grid;place-items:center;font-size:15px;font-weight:500;color:var(--dim);border:1px solid var(--rule);font-variant-numeric:tabular-nums;transition:background-color .2s,color .2s}
+.lvls button[aria-checked="true"]{background:var(--paper);color:#171512;border-color:transparent}
+.sides{display:flex;flex:1;gap:6px}
+.sides button{flex:1;min-height:38px;border-radius:999px;border:1px solid var(--rule);font-size:15px;color:var(--dim);transition:background-color .2s,color .2s}
+.sides button[aria-checked="true"]{background:rgb(244 241 234 / .16);color:var(--paper);border-color:transparent;font-weight:500}
+.chess-start .note{text-align:left;color:var(--faint);font-size:14px}
+.chess-start .note[hidden]{display:none}
+.chess-start .cpanel .btn{margin-top:2px}
+/* The quiet way to the puzzles, under the choices. */
+.tolink{display:flex;justify-content:center;margin:2px 0 0}
+.tolink a{display:inline-flex;align-items:center;gap:4px;padding:8px 12px;font-size:14px;color:var(--dim);text-decoration:none;border-radius:999px}
+.tolink a:hover{color:var(--paper)}
+.tolink svg{width:10px;height:10px}
+
+/* The opponent sheet */
+#opp-sheet .lbl{margin-top:4px}
+.eng{display:flex;align-items:center;gap:12px;width:100%;padding:11px 0;border-top:1px solid var(--rule,rgb(244 241 234 / .1));color:inherit;text-decoration:none;text-align:left}
+.eng>div{flex:1;min-width:0}
+.eng b{display:block;font:400 19px/1.25 Prata,Georgia,serif}
+.eng>div>span{display:block;font-size:14px;color:rgb(244 241 234 / .66)}
+.eng.pick{background:rgb(244 241 234 / .06);border-radius:14px;padding:11px 12px;border-top:0}
+.eng.pick>svg{width:18px;height:18px;flex:none}
+.eng.more>div>span{font-size:15px}
+.eng.more svg{width:14px;height:14px;color:rgb(244 241 234 / .42)}
+#opp-label+div .eng:first-child{border-top:0}
+
+/* The game screen */
+.chess-play{display:flex;flex-direction:column;align-items:center;gap:0;padding:max(8px,env(safe-area-inset-top)) 0 max(12px,env(safe-area-inset-bottom));height:100dvh;position:relative;overflow:hidden}
+.chess-play .bar{max-width:720px;min-width:0;width:100%;padding:0 12px;align-items:center}
+.chess-play .bar .icon{width:40px;height:40px;border-radius:50%;background:rgb(244 241 234 / .07);display:grid;place-items:center;color:var(--dim);font-size:17px}
+.chess-play .bar .icon svg{width:46%;height:46%}
+.chess-play .title{text-align:center;min-width:0;line-height:1.15}
+.chess-play .title h2,.chess-play .title h1{font-size:20px;line-height:1.2}
+.chess-play .title small{display:block;font-size:13px;color:var(--faint);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.line{width:100%;display:flex;align-items:center;gap:11px;padding:8px 16px;font-size:15px;font-weight:500;color:var(--dim);white-space:nowrap;overflow-x:auto;scrollbar-width:none;flex:none;min-height:38px}
+.line::-webkit-scrollbar{display:none}
+.line .n{color:var(--faint);font-weight:400}
+.line .mv{display:inline-flex;align-items:center;flex:none;cursor:pointer;border-radius:999px;padding:3px 0}
+.line .mv.cur{background:rgb(244 241 234 / .12);color:var(--paper);padding:3px 9px}
+/* On a phone the moves, both players and the board sit together as one group, two fifths of the free height above it
+   (at most 120px) and the rest below; the bottom bar stays at the foot. When the height runs short (a friend game's link, a small phone)
+   the group scrolls and the bar stays put. */
+.cgame{flex:1;min-height:0;width:100%;display:flex;flex-direction:column;align-items:center;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:none}
+.cgame::-webkit-scrollbar{display:none}
+.cgame::before{content:"";flex:2 1 0;max-height:120px}
+.bcol{width:min(100%,calc(100dvh - 340px - env(safe-area-inset-top) - env(safe-area-inset-bottom) + 28px));min-width:min(100%,280px);display:flex;flex-direction:column;flex:none}
+.bcol .line{padding:6px 0 4px}
+.bcol{padding:0 14px;box-sizing:border-box}
+.prow{display:flex;align-items:center;gap:10px;padding:8px 2px;min-height:56px}
+.prow .who{flex:1;min-width:0;line-height:1.25}
+.prow .who b{font-size:15.5px;font-weight:500;color:var(--dim)}
+.prow .who>span{font-size:13px;color:var(--faint);margin-left:6px}
+.prow .cap{display:flex;align-items:center;height:16px;margin-top:2px;color:var(--dim)}
+/* No captures yet: no empty line under the name, so the name sits on the avatar's center line. */
+.prow .cap:empty{display:none}
+.prow .cap .fig{width:14px;height:14px;margin-right:-3px}
+.prow .cap .fig.gap{margin-left:7px}
+.prow .cap em{font-size:12px;font-weight:500;font-style:normal;color:var(--faint);margin-left:10px}
+.prow .st{font-size:13px;color:var(--faint);white-space:nowrap}
+.prow.on .who b{color:var(--paper)}
+.prow.on .st{color:var(--paper);background:rgb(244 241 234 / .1);padding:5px 12px;border-radius:999px;font-weight:500}
+.pface{flex:none;width:34px;height:34px;display:block}
+.pface svg,.pface img{display:block;width:34px;height:34px;border-radius:50%}
+.pface.stone{border-radius:50%;width:26px;height:26px;margin:4px}
+.pface.s0{background:#eee7d6}
+.pface.s1{background:#1c1b18;border:1.5px solid rgb(244 241 234 / .5)}
+.side{width:100%;max-width:720px;display:flex;flex-direction:column;padding:0 16px;flex:3 1 auto}
+.side .dhead,.side .list{display:none}
+.cfoot{width:100%;display:flex;flex-direction:column;flex:1 1 auto}
+.say{min-height:1.4em;text-align:center;font-size:14px;color:var(--faint);padding:4px 4px 8px}
+.cfoot .controls{display:flex;justify-content:center;margin-bottom:8px}
+.cfoot .controls:empty,.cfoot .controls:not(:has(> :not([hidden]))){display:none}
+.cfoot .controls .btn{width:auto;min-height:40px;padding:6px 20px}
+.cfoot .friend{margin:0 0 10px}
+.cbar{margin-top:auto;position:sticky;bottom:0;flex:none;display:grid;grid-template-columns:repeat(3,1fr);align-items:center;height:62px;border-radius:999px;background:linear-gradient(180deg,rgb(244 241 234 / .13),rgb(244 241 234 / .05));border:1px solid rgb(244 241 234 / .16);box-shadow:inset 0 1px 0 rgb(255 255 255 / .16),inset 0 -1px 0 rgb(0 0 0 / .25),0 10px 30px rgb(0 0 0 / .35);-webkit-backdrop-filter:blur(18px) saturate(1.5);backdrop-filter:blur(18px) saturate(1.5);position:relative;z-index:4}
+.cbar button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;height:100%;font-size:11px;color:var(--dim);letter-spacing:.02em;border-radius:999px;transition:transform 120ms cubic-bezier(.23,1,.32,1),opacity .2s}
+.cbar button:active{transform:scale(.95)}
+.cbar svg{width:22px;height:22px;color:var(--paper)}
+.cbar button:disabled{opacity:.35;cursor:default}
+.cbar button[aria-expanded="true"]{color:var(--paper)}
+.menu{position:absolute;inset:0;z-index:5}
+.menu[hidden]{display:none}
+.menu .scrim{position:absolute;inset:0;background:rgb(10 9 7 / .55)}
+.menu .pop{position:absolute;left:max(16px,calc(50% - 344px));bottom:calc(92px + max(12px,env(safe-area-inset-bottom)));width:240px;border-radius:22px;padding:6px;background:rgb(44 41 35 / .92);border:1px solid rgb(244 241 234 / .16);box-shadow:inset 0 1px 0 rgb(255 255 255 / .14),0 20px 50px rgb(0 0 0 / .5);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);animation:pop .18s cubic-bezier(.23,1,.32,1)}
+.menu .pop button{display:flex;align-items:center;gap:12px;width:100%;padding:12px 14px;font-size:15px;color:var(--paper);text-align:left;border-radius:14px}
+.menu .pop button[hidden]{display:none}
+.menu .pop button+button{border-top:1px solid var(--rule)}
+.menu .pop button:active{background:rgb(244 241 234 / .06)}
+.menu .pop svg{width:18px;height:18px;color:var(--dim);flex:none}
+@keyframes pop{from{opacity:0;transform:translateY(6px) scale(.98)}}
+
+/* The end of a game: the result over the board, which stays in view. */
+.chess-play.ended .bcol,.chess-play.ended .line,.chess-play.ended .bar .title{opacity:.32;transition:opacity .3s}
+.chess-play.ended .cbar{visibility:hidden}
+.cend{position:absolute;left:0;right:0;bottom:0;z-index:4;padding:120px max(22px,calc(50% - 340px)) max(26px,env(safe-area-inset-bottom));background:linear-gradient(rgb(18 17 14 / 0),rgb(18 17 14 / .92) 42%);animation:rise .32s cubic-bezier(.23,1,.32,1)}
+.cend[hidden]{display:none}
+.cend h3{font:400 clamp(40px,12vw,54px)/1.05 Prata,Georgia,serif;margin:0}
+.cend p{font-size:16px;color:var(--dim);margin:10px 0 0;line-height:1.4}
+.cend .rc{display:flex;align-items:baseline;gap:10px;margin-top:18px;padding:14px 16px;border:1px solid var(--edge);border-radius:18px;background:rgb(28 26 22 / .8)}
+.cend .rc[hidden]{display:none}
+.cend .rc b{font-size:26px;font-weight:500;font-variant-numeric:tabular-nums}
+.cend .rc em{font-size:15px;font-weight:500;font-style:normal;color:var(--paper);background:rgb(244 241 234 / .12);padding:2px 9px;border-radius:999px;font-variant-numeric:tabular-nums}
+.cend .rc span{font-size:13px;color:var(--faint);margin-left:auto}
+.cend .rc .wait{margin:0;font-size:14px;color:var(--dim)}
+.cend .btns{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px}
+.cend .btns .btn[hidden]{display:none}
+.cend .btns:has(.btn[hidden]){grid-template-columns:1fr}
+.cend .lk{display:flex;justify-content:center;margin-top:8px}
+.cend .lk .quiet{text-decoration:underline;text-underline-offset:3px;color:var(--dim)}
+.cend .friend{margin-top:14px}
+@keyframes rise{from{opacity:0;transform:translateY(12px)}}
+
+/* Puzzles (screen 5): whose move it is and the goal above the board, then "Solved." and Next, or Show the move. */
+.chess-puzzles .bar .ghost{background:none}
+.chess-puzzles a.icon{text-decoration:none}
+.ask{padding:8px 2px 12px;line-height:1.25;min-height:62px;box-sizing:border-box}
+.ask b{display:block;font:400 24px/1.2 Prata,Georgia,serif;color:var(--paper)}
+.ask span{font-size:14px;color:var(--faint)}
+.pzdo{display:flex;flex-direction:column;align-items:center;min-height:52px;margin-bottom:10px}
+.pzdo .quiet{color:var(--dim);text-decoration:underline;text-underline-offset:3px;padding:8px 12px;font-size:14px}
+.pzdo .quiet[hidden],.solved[hidden]{display:none}
+.solved{display:flex;align-items:center;justify-content:space-between;gap:16px;width:100%;max-width:520px;animation:rise .24s cubic-bezier(.23,1,.32,1)}
+.solved b{font:400 26px/1.1 Prata,Georgia,serif}
+.solved b:empty{display:none}
+.solved:has(b:empty){justify-content:center}
+.solved .btn{width:auto;min-height:46px;padding:0 30px}
+.chess-puzzles .cbar{margin-top:auto}
+/* One puzzle by its address (staging 2026-11-16-find-the-move): Share, an outline pill, beside Next once the puzzle is
+   finished; "Link copied." under the buttons for a moment; one quiet line about signing in. */
+.solved .two{display:flex;gap:8px}
+.solved .two .btn{display:inline-flex;align-items:center;justify-content:center;gap:7px}
+.solved #share{padding:0 18px}
+.solved #share svg{width:17px;height:17px;margin-left:-3px}
+.pzdo .copied{margin:8px 0 0;font-size:13px;color:var(--dim);text-align:center}
+.pzdo .copied:empty{display:none}
+.keepline{margin:12px 0 0;max-width:30em;font-size:13px;line-height:1.4;color:var(--faint);text-align:center}
+.keepline[hidden]{display:none}
+.pzdo .keepline .quiet{display:inline;min-height:0;height:auto;padding:0;font:inherit;color:var(--dim);vertical-align:baseline}
+.pzdone small{display:block;margin-top:6px;font-size:14px;color:var(--faint)}
+@media (prefers-reduced-motion:reduce){.solved{animation:none}}
+
+/* Wide screens: the board on the left, a calm column beside it with the moves as a list and the bar as three pills. */
+@media (min-width:900px) and (min-height:560px){
+  .chess-play{padding:14px 0 18px}
+  .chess-play .bar{max-width:1180px;padding:0 24px}
+  .bcol .line{display:none}
+  .cgame{overflow:visible}
+  .cgame::before{display:none}
+  .side{flex:none}
+  .cbar{position:static;margin-top:0}
+  .cgame{flex-direction:row;align-items:center;justify-content:center;gap:48px;padding:12px 24px 0;max-width:1180px}
+  .bcol{width:min(680px,calc(100dvh - 250px),calc(100vw - 460px));min-width:360px;margin:0;padding:0}
+  .side{width:340px;max-width:none;padding:0;align-self:center}
+  .side .dhead{display:block;margin-bottom:14px}
+  .side .dhead b{display:block;font-size:12px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--dim)}
+  .side .dhead i{font-size:14px;font-style:normal;color:var(--faint)}
+  .side .list{display:block;border:1px solid var(--rule);border-radius:18px;padding:10px 16px;font-size:15px;font-weight:500;color:var(--dim);max-height:min(46dvh,420px);overflow-y:auto;scrollbar-width:thin}
+  .list .r{display:grid;grid-template-columns:34px 1fr 1fr;padding:5px 0}
+  .list .r+.r{border-top:1px solid rgb(244 241 234 / .05)}
+  .list .r.empty{color:var(--faint);font-weight:400;font-size:14px}
+  .list .n{color:var(--faint);font-weight:400}
+  .list .mv{cursor:pointer}
+  .list .mv.cur{color:var(--paper)}
+  .list .mv.cur>span{background:rgb(244 241 234 / .12);border-radius:999px;padding:2px 8px;margin-left:-8px}
+  .cfoot .say{text-align:left;padding:12px 0 8px}
+  .cbar{height:auto;grid-template-columns:repeat(3,1fr);gap:8px;background:none;border:0;box-shadow:none;-webkit-backdrop-filter:none;backdrop-filter:none;border-radius:0}
+  .cbar button{flex-direction:row;gap:8px;height:44px;border:1px solid var(--edge);font-size:14px;font-weight:500;color:var(--paper);letter-spacing:0}
+  .cbar svg{width:16px;height:16px}
+  .menu .pop{left:calc(50% + 140px);bottom:auto;top:calc(50% + 120px)}
+  .cend{left:auto;right:max(24px,calc(50% - 590px));width:380px;top:50%;bottom:auto;transform:translateY(-50%);padding:24px;border-radius:24px;background:rgb(28 26 22 / .96);border:1px solid var(--edge);animation:none}
+  .chess-play.ended .side{visibility:hidden}
+  .chess-puzzles .side .dhead{margin-bottom:6px}
+  .chess-puzzles .cfoot .say{padding:6px 0 10px}
+  .pzdo{align-items:flex-start;margin-bottom:18px}
+  .pzdo .quiet{padding-left:0}
+  .solved{max-width:none}
+  .solved:has(b:empty){justify-content:flex-start}
+  .solved:not(:has(b:empty)){justify-content:flex-start}
+  .pzdo .copied,.keepline{text-align:left}
+}
+
+/* Puzzle themes (staging 2026-11-15-chess-puzzles, direction A). One quiet entry under the title, in a row that can
+   take a second; the theme named at the top of the same puzzle screen; the list of themes, each with a small board,
+   the pieces involved ringed in the Puzzles mark. Nothing floats: the puzzle's one bar stays the only one. */
+.pzent{display:flex;justify-content:center;gap:8px;padding:6px 16px 0;flex:none;width:100%}
+.pzent a{display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 16px 0 12px;border-radius:999px;border:1px solid var(--edge);font-size:14.5px;font-weight:500;color:var(--paper);text-decoration:none;transition:background-color .2s,transform 120ms cubic-bezier(.23,1,.32,1)}
+.pzent a:active{transform:scale(.97)}
+.pzent svg{width:17px;height:17px;color:var(--dim)}
+@media (hover:hover) and (pointer:fine){.pzent a:hover{background:rgb(244 241 234 / .06)}}
+.pzent a[hidden]{display:none}
+.pzent a small{font-size:13px;font-weight:400;color:var(--faint)}
+/* The daily puzzle (staging 2026-11-15-chess-puzzles, section 3): "Today" with its date as the first entry, held until
+   launch; on its screen, under the puzzle, the days in a row and the month, solved days filled, the day shown ringed,
+   every day from the first one a link to play it. Nothing about a missed day. */
+.pzstreak{width:100%;max-width:520px;align-self:center;margin:0 0 12px;padding:14px 16px 12px;border-radius:22px;background:rgb(244 241 234 / .04);border:1px solid var(--edge)}
+.pzstreak[hidden]{display:none}
+.pzstreak b{display:block;font:400 22px/1.2 Prata,Georgia,serif}
+.pzstreak b:empty{display:none}
+.pzstreak i{display:block;font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;font-style:normal;color:var(--faint);margin-top:10px}
+.pzstreak b:empty+i{margin-top:0}
+.pzcal{display:grid;grid-template-columns:repeat(7,1fr);gap:3px 0;margin-top:6px;text-align:center}
+.pzcal em{font-size:10.5px;font-weight:500;font-style:normal;color:var(--faint);line-height:18px}
+.pzcal span,.pzcal a{justify-self:center;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-size:12.5px;color:var(--faint);text-decoration:none;font-variant-numeric:tabular-nums}
+.pzcal a{color:var(--dim)}
+.pzcal .y{background:var(--paper);color:#12110e;font-weight:500}
+.pzcal .on{box-shadow:0 0 0 1.5px var(--paper);color:var(--paper)}
+.pzcal .y.on{box-shadow:0 0 0 2px #12110e,0 0 0 3.5px var(--paper);color:#12110e}
+@media (hover:hover) and (pointer:fine){.pzcal a:not(.y):hover{background:rgb(244 241 234 / .08)}}
+/* On a phone the month runs below the fold: the bar stays at the foot of the screen over it while it scrolls. */
+.chess-puzzles:has(#pzstreak:not([hidden])) .cbar{position:sticky;bottom:0}
+@media (min-width:900px) and (min-height:560px){.pzstreak{max-width:none;align-self:stretch;margin:0 0 18px}}
+.chess-puzzles:has(.pzent:not([hidden])) .bcol{width:min(100%,calc(100dvh - 386px - env(safe-area-inset-top) - env(safe-area-inset-bottom) + 28px))}
+.pzdone{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;padding:0 24px 12vh;text-align:center}
+.pzdone p{font-size:17px;color:var(--dim);max-width:30em}
+.pzdone .btn{width:auto;min-height:46px;padding:12px 30px;text-decoration:none}
+h1[tabindex="-1"]:focus,h2[tabindex="-1"]:focus{outline:none}
+
+.pzthemes{--paper:#f4f1ea;--dim:rgb(244 241 234 / .66);--faint:rgb(244 241 234 / .42);--edge:rgb(244 241 234 / .12);--rule:rgb(244 241 234 / .1);max-width:720px;margin:0 auto;padding:max(8px,env(safe-area-inset-top)) 16px max(32px,env(safe-area-inset-bottom))}
+.pzthemes .bar{display:flex;justify-content:space-between;align-items:center;max-width:none;min-width:0}
+.pzthemes .bar .icon{width:40px;height:40px;border-radius:50%;background:rgb(244 241 234 / .07);display:grid;place-items:center;color:var(--dim);text-decoration:none}
+.pzthemes .bar .icon svg{width:46%;height:46%}
+.pzthemes .bar .ghost{background:none}
+.thead{margin:10px 0 18px}
+.thead h2{font-size:36px;line-height:1.1}
+.thead p{font-size:15px;color:var(--dim);margin-top:6px}
+.pzthemes .say{text-align:left;padding:8px 0}
+.tlist{list-style:none;padding:0;margin:0}
+.tlist li+li{border-top:1px solid var(--rule)}
+.th{display:grid;grid-template-columns:84px 1fr 12px;align-items:center;gap:16px;padding:12px 10px;margin:0 -10px;border-radius:16px;color:inherit;text-decoration:none;transition:background-color .2s}
+@media (hover:hover) and (pointer:fine){.th:hover{background:rgb(244 241 234 / .05)}}
+.tboard{width:84px}
+.tboard.cboard{border-radius:8px}
+.tw{min-width:0}
+.tw b{display:block;font:400 19px/1.2 Prata,Georgia,serif}
+.tw small{display:block;font-size:14px;color:var(--faint);margin-top:3px;font-variant-numeric:tabular-nums}
+.th .chev{width:12px;height:12px;color:var(--faint)}
+.tmarks{position:absolute;inset:0;width:100%;height:100%;z-index:3;pointer-events:none}
+.tmarks .rg circle{fill:none;stroke:var(--mark,#ffbb2e);stroke-width:.08}
+.tmarks .ar{opacity:.85}
+.tmarks .ar line{stroke:var(--mark,#ffbb2e);stroke-width:.13;stroke-linecap:round}
+.tmarks .ar polygon{fill:var(--mark,#ffbb2e)}
+@media (min-width:760px){
+  .pzthemes{max-width:1080px;padding:14px 24px 48px}
+  .thead{margin:8px 0 28px}
+  .thead h2{font-size:44px}
+  .tlist{display:grid;grid-template-columns:repeat(auto-fill,minmax(196px,1fr));gap:30px 22px}
+  .tlist li+li{border-top:0}
+  .th{grid-template-columns:1fr;gap:12px;padding:10px;margin:-10px}
+  .tboard{width:100%}
+  .tboard.cboard{border-radius:12px}
+  .th .chev{display:none}
+}
+@media (min-width:900px) and (min-height:560px){
+  .chess-puzzles .pzent{padding-top:2px}
+  .chess-puzzles:has(.pzent:not([hidden])) .bcol{width:min(680px,calc(100dvh - 300px),calc(100vw - 460px))}
+}

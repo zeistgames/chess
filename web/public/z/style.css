@@ -1,0 +1,419 @@
+/* Zeist's own stylesheet (s/style.css on zeist.gg), by its author, so these pages look like Zeist's Chess. Only the
+   font addresses are changed, to this app's fonts/. To update it, copy it again. */
+@font-face{font-family:Prata;src:url(../fonts/Prata-Regular.woff2) format("woff2");font-display:swap}
+@font-face{font-family:Jost;src:url(../fonts/Jost-Regular.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:Jost;src:url(../fonts/Jost-Medium.woff2) format("woff2");font-weight:500;font-display:swap}
+
+:root{
+  --ground:#12110e;
+  --fg:rgb(244 241 234);
+  --soft:rgb(244 241 234 / .62);
+  --hair:rgb(244 241 234 / .22);
+  --faint:rgb(244 241 234 / .07);
+  --wash:rgb(244 241 234 / .13);
+}
+*{box-sizing:border-box;margin:0}
+[hidden]{display:none!important}
+html,body{height:100%}
+body{
+  background:var(--ground);color:var(--fg);
+  font:400 17px/1.45 Jost,system-ui,sans-serif;
+  -webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent;
+  padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+  overscroll-behavior:none;
+}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+button:focus-visible,a:focus-visible{outline:2px solid var(--fg);outline-offset:2px}
+h1,h2{font-family:Prata,Georgia,serif;font-weight:400}
+
+/* Home */
+.home{min-height:100dvh;max-width:640px;margin:0 auto;padding:clamp(28px,7vh,72px) 24px 32px;display:flex;flex-direction:column;gap:32px}
+.home h1{font-size:clamp(52px,12vw,76px);line-height:1;letter-spacing:-.01em}
+.lede{font-size:21px;line-height:1.35;margin-top:14px;max-width:30em}
+.rule-list{list-style:none;padding:0;border-top:1px solid var(--hair)}
+.rule-list li{padding:11px 0;border-bottom:1px solid var(--hair)}
+.choices{display:flex;flex-direction:column;gap:10px}
+.btn{display:block;width:100%;min-height:50px;padding:11px 18px;border:1px solid var(--fg);font-weight:500;text-align:center}
+
+.btn.solid{background:var(--fg);color:var(--ground)}
+
+.levels{display:grid;grid-template-columns:auto 1fr 1fr 1fr;align-items:center;gap:8px}
+.levels span{color:var(--soft);padding-right:8px}
+.others{margin-top:auto;color:var(--soft);font-size:15px}
+.others a{color:inherit}
+
+/* Play */
+.play{height:100dvh;display:grid;grid-template-rows:auto auto 1fr;justify-items:center;padding:10px 16px 14px;gap:10px}
+.bar{width:100%;max-width:min(100%,calc(100dvh - 262px),720px);min-width:min(100%,320px);display:flex;justify-content:space-between;align-items:baseline}
+.bar h2{font-size:24px}
+.quiet{color:var(--soft);font-size:15px;min-height:44px;padding:0 4px}
+
+.quiet:disabled{opacity:.35;cursor:default}
+.stage{display:flex;align-items:flex-start;justify-content:center;width:100%;min-height:0}
+.board{
+  position:relative;width:min(100%,calc(100dvh - 262px),720px);aspect-ratio:1;
+  display:grid;grid-template-columns:repeat(8,1fr);grid-template-rows:repeat(8,1fr);
+  border:1px solid var(--fg);
+}
+.cell{position:relative;padding:0;border-right:1px solid var(--hair);border-bottom:1px solid var(--hair);overflow:visible;touch-action:manipulation}
+.cell:nth-child(8n){border-right:0}
+.cell:nth-child(n+57){border-bottom:0}
+.cell.last{background:var(--faint)}
+.cell.selected{background:rgb(244 241 234 / .24)}
+.cell.target::after{content:"";position:absolute;inset:39%;border-radius:50%;background:var(--fg)}
+.cell.capture::after{content:"";position:absolute;inset:7%;border-radius:50%;border:2px solid var(--fg)}
+
+/* Ground: the mark on each square is the rule */
+.board-ground .cell::before{
+  content:"";position:absolute;inset:32%;opacity:.3;
+  background:
+    linear-gradient(var(--fg),var(--fg)) center/100% 1.5px no-repeat,
+    linear-gradient(var(--fg),var(--fg)) center/1.5px 100% no-repeat;
+}
+.board-ground .cell.diagonal::before{transform:rotate(45deg)}
+.board-ground .cell.diagonal{background:rgb(244 241 234 / .045)}
+.board-ground .cell.diagonal.last{background:rgb(244 241 234 / .11)}
+.board-ground .cell.selected{background:rgb(244 241 234 / .24)}
+
+.piece{position:absolute;inset:14%;border-radius:50%;z-index:2;pointer-events:none}
+.piece.p1{background:var(--fg)}
+.piece.p2{background:var(--ground);border:2px solid var(--fg)}
+.piece.marked::after{content:"";position:absolute;inset:30%;border-radius:50%}
+.piece.p1.marked::after{background:var(--ground)}
+.piece.p2.marked::after{background:var(--fg)}
+.lines{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none}
+.lines line{stroke:var(--fg);stroke-width:.014;opacity:.45}
+
+.foot{width:min(100%,calc(100dvh - 262px),720px);min-width:min(100%,320px);display:flex;flex-direction:column;height:100%}
+.foot .controls{margin-top:auto}
+.status{min-height:2.9em;font-size:17px;line-height:1.35;margin-top:6px}
+.controls{display:flex;justify-content:space-between;align-items:center;gap:4px}
+
+dialog{margin:auto;width:min(92vw,520px);max-height:88dvh;padding:26px;background:var(--ground);color:var(--fg);border:1px solid var(--fg)}
+dialog::backdrop{background:rgb(244 241 234 / .35)}
+dialog h2{font-size:30px;margin-bottom:14px}
+dialog .btn{margin-top:18px}
+
+@media (min-width:900px) and (min-height:620px){
+  .play{padding-top:18px}
+}
+@media (max-height:520px) and (orientation:landscape){
+  .play{grid-template-columns:auto minmax(180px,1fr);grid-template-rows:auto 1fr;column-gap:20px;justify-items:stretch;padding-bottom:8px}
+  .bar{grid-column:2;grid-row:1;max-width:none;min-width:0}
+  .stage{grid-column:1;grid-row:1/3}
+  .board{width:calc(100dvh - 18px)}
+  .foot{grid-column:2;grid-row:2;width:auto;min-width:0}
+}
+
+/* zei.st: the dark ground, soft shapes and cards of the landing */
+html{background:var(--ground);color-scheme:dark}
+body{background:transparent}
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.06;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+a:focus-visible{border-radius:6px}
+dialog{background:rgb(28 26 22 / .97);border:1px solid rgb(244 241 234 / .08);border-radius:28px;box-shadow:0 40px 80px -30px rgb(0 0 0 / .8)}
+dialog::backdrop{background:rgb(8 7 6 / .55);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.btn,.primary{border-radius:999px;border:1px solid rgb(244 241 234 / .2);background:none;color:var(--fg);transition:background .3s}
+
+.btn.solid,dialog .btn,.primary,.play .btn{background:var(--fg);color:var(--ground);border-color:var(--fg)}
+
+select{border-radius:12px;background:#1c1a16;border-color:rgb(244 241 234 / .14)}
+
+.board{border-color:rgb(244 241 234 / .4);border-radius:12px;overflow:hidden}
+.piece.p1{background:#0b0a08;border:2px solid var(--fg)}
+.piece.p2{background:var(--fg);border:0}
+.piece.p1.marked::after{background:var(--fg)}
+.piece.p2.marked::after{background:var(--ground)}
+.piece{box-shadow:0 2px 5px rgb(0 0 0 / .5)}
+.btn{border-radius:999px}
+
+/* Boards (design/tokens.json): each game has its own board in a middle tone, so black and white pieces read equally well.
+   The board and pieces never change with the room; the game's ink (--mark) shows what just happened. */
+.board{border:0;border-radius:18px;overflow:hidden;background:linear-gradient(rgb(255 255 255 / .04),rgb(0 0 0 / .1)),var(--board);box-shadow:inset 0 0 0 1px rgb(255 255 255 / .08),0 14px 34px rgb(0 0 0 / .32);--hair:rgb(20 18 15 / .24);--faint:rgb(255 255 255 / .09);--wash:rgb(255 255 255 / .15)}
+.board .cell.last,.board-ground .cell.diagonal.last{background:transparent;box-shadow:inset 0 0 0 2px var(--mark)}
+.board .cell.selected,.board-ground .cell.selected{background:rgb(255 255 255 / .22)}
+.board .cell.target::after{background:rgb(238 231 214 / .75)}
+.board .piece{box-shadow:0 2px 4px rgb(0 0 0 / .35)}
+/* Player one is White and moves first, as in chess (2026-11-09). */
+.board .piece.p1{background:radial-gradient(circle at 38% 32%,var(--piece-white-hi),var(--piece-white) 62%,var(--piece-white-lo));border:0}
+.board .piece.p2{background:radial-gradient(circle at 38% 32%,var(--piece-black-hi),var(--piece-black) 62%,var(--piece-black-lo))}
+.board .piece.p1.marked::after{background:var(--piece-black)}
+.board .piece.p2.marked::after{background:var(--piece-white)}
+.foot .status{margin-top:14px}
+.board .lines line{stroke:var(--piece-white)}
+.board-ground .cell::before{--fg:#14120f;opacity:.32}
+.board-ground .cell.diagonal{background:rgb(0 0 0 / .07)}
+@media (hover:hover) and (pointer:fine){.btn:hover{background:var(--faint)}.btn.solid:hover{background:var(--soft)}.quiet:hover{color:var(--fg)}.btn:hover{background:rgb(244 241 234 / .06)}.btn.solid:hover,dialog .btn:hover,.primary:hover,.play .btn:hover{background:#fff}}
+
+/* On a phone (mobile-native, 2026-11-09): no tap flash, no pull-to-refresh, no long-press callout on controls,
+   and feedback the moment a finger lands, not when it lifts. Hover styles live behind (hover:hover) and (pointer:fine). */
+html{-webkit-tap-highlight-color:transparent;-webkit-text-size-adjust:100%;overscroll-behavior:none}
+button{touch-action:manipulation;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+.btn,.primary,.quiet{transition:transform 120ms cubic-bezier(.23,1,.32,1),background-color .3s,color .2s}
+.btn:active,.primary:active,.quiet:active{transform:scale(.97)}
+.cell:not(:disabled):active{background:rgb(255 255 255 / .08)}
+@media (prefers-reduced-motion:reduce){.btn:active,.primary:active,.quiet:active{transform:none}}
+.goal{font-size:18px;line-height:1.45;border-top:1px solid var(--hair);padding-top:16px}
+.goal .quiet{color:var(--fg);text-decoration:underline;text-underline-offset:3px;min-height:0;padding:0;font-size:inherit}
+
+/* The start screen (games/scripts/home.py; mock.zei.st/2026-11-10-game-start). The board leads, then the title and
+   two choices. On a phone it all fits the first screen; on a computer the board sits left of the rest. */
+.home.start{gap:0;padding:max(10px,env(safe-area-inset-top)) 24px 28px;max-width:560px}
+.start-nav{display:flex;align-items:center;justify-content:space-between;min-height:48px}
+.zhome{display:block;width:24px;height:24px;color:var(--fg)}
+.zhome svg{width:100%;height:100%;display:block;overflow:visible}
+.start-nav .quiet{font-size:15px}
+.start-body{display:flex;flex-direction:column;gap:26px;margin-top:10px}
+.start-still{display:flex;justify-content:center}
+.start-still .board{width:min(100%,44dvh);pointer-events:none}
+.start-still .board-four{aspect-ratio:7/6}
+.start .start-main{display:flex;flex-direction:column;gap:24px}
+.start h1{font-size:clamp(44px,11vw,64px);line-height:1}
+.start .lede{font-size:18px;line-height:1.4;margin-top:10px;color:var(--soft)}
+.start .goal{border:0;padding:0;margin-top:8px;font-size:18px;line-height:1.4;color:var(--soft)}
+.start .rank{margin-top:10px;font-size:15px;color:var(--soft)}
+.start .rank b{color:var(--fg);font-weight:500}
+.start .choices{gap:12px}
+.start .btn{min-height:54px;font-size:17px}
+.seg{display:flex;gap:4px;padding:4px;border-radius:999px;border:1px solid rgb(244 241 234 / .12);background:rgb(244 241 234 / .03)}
+.seg button{flex:1;min-height:40px;border-radius:999px;font-size:15px;color:var(--soft);transition:background-color .2s,color .2s}
+.seg button[aria-checked="true"]{background:rgb(244 241 234 / .12);color:var(--fg);font-weight:500}
+.start .note{font-size:15px;color:var(--soft);text-align:center}
+.start .others{margin-top:auto;padding-top:28px;font-size:14px}
+@media (min-width:900px){
+  .home.start{max-width:1040px;padding:16px 48px 36px}
+  .start-body{flex-direction:row;align-items:center;gap:72px;margin:auto 0}
+  .start-still{flex:1.1}
+  .start-still .board{width:min(100%,68dvh)}
+  .start .start-main{flex:1;max-width:380px}
+  .start h1{font-size:64px}
+}
+
+/* Sheets: rise from the bottom on a phone, sit in the middle on a computer. */
+dialog.sheet{width:min(100%,520px);max-width:none;margin:auto auto 0;padding:12px 22px calc(20px + env(safe-area-inset-bottom));border-radius:28px 28px 0 0;border-bottom:0;display:flex;flex-direction:column;gap:12px}
+dialog.sheet:not([open]){display:none}
+dialog.sheet[open]{animation:rise .32s cubic-bezier(.23,1,.32,1)}
+@keyframes rise{from{transform:translateY(100%)}}
+@media (min-width:640px){dialog.sheet{margin:auto;border-radius:28px;border-bottom:1px solid rgb(244 241 234 / .08);padding:24px 26px 26px}dialog.sheet[open]{animation:none}}
+@media (prefers-reduced-motion:reduce){dialog.sheet[open]{animation:none}}
+.sheet .grab{width:40px;height:5px;border-radius:3px;background:rgb(244 241 234 / .18);margin:0 auto 6px}
+@media (min-width:640px){.sheet .grab{display:none}}
+.sheet h2{font-size:26px;margin:0 0 4px}
+.opt{display:flex;flex-direction:column;align-items:flex-start;gap:3px;width:100%;text-align:left;padding:16px 18px;border-radius:20px;border:1px solid rgb(244 241 234 / .16);transition:transform 120ms cubic-bezier(.23,1,.32,1),background-color .3s}
+.opt:active{transform:scale(.98)}
+.opt.solid{background:var(--fg);color:var(--ground);border-color:var(--fg)}
+.opt b{font-weight:500;font-size:17px}
+.opt small{font-size:14px;line-height:1.4;opacity:.68}
+.opt:disabled{opacity:.6}
+.sheet .lbl{margin-top:8px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--soft)}
+.sheet .lv{display:flex;gap:8px}
+.sheet .lv button{flex:1;min-height:46px;border-radius:999px;border:1px solid rgb(244 241 234 / .16);font-weight:500}
+@media (hover:hover) and (pointer:fine){.opt:hover{background:rgb(244 241 234 / .06)}.opt.solid:hover{background:rgb(244 241 234 / .92)}.sheet .lv button:hover,.seg button:hover{background:rgb(244 241 234 / .08)}}
+
+/* A rated game: "Rated" in the bar, and one line when you go up a rank. */
+.tag{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--soft);border:1px solid rgb(244 241 234 / .18);border-radius:999px;padding:4px 10px;margin-left:auto;margin-right:12px}
+.up{margin-top:6px;font-size:15px;color:var(--soft)}
+
+/* Invites: your friends on Zeist in the Play a friend sheet, and the list of all of them. */
+.friends .lbl{margin-top:0}
+.faces{display:flex;justify-content:space-between;gap:6px;margin:8px 0 6px}
+.face{flex:0 1 60px;min-width:0;display:flex;flex-direction:column;align-items:center;gap:6px;font-size:12px;color:var(--soft)}
+.face svg{display:block;width:48px;height:48px}
+.face span{max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.face.all i{display:grid;place-items:center;width:48px;height:48px;border-radius:50%;border:1px solid rgb(244 241 234 / .18);font-style:normal;font-size:20px}
+.face:active{transform:scale(.95)}
+.face:disabled{opacity:.5}
+dialog.sheet.tall{height:min(82dvh,720px)}
+.search{height:46px;border-radius:999px;border:1px solid rgb(244 241 234 / .16);background:rgb(244 241 234 / .04);color:var(--fg);padding:0 18px;font:inherit;font-size:16px;flex:none}
+.search::placeholder{color:var(--soft)}
+.people{list-style:none;padding:0;margin:0;overflow-y:auto;overscroll-behavior:contain;flex:1;min-height:0}
+.people li{display:flex;align-items:center;gap:12px;padding:10px 0;border-top:1px solid rgb(244 241 234 / .08)}
+.people li:first-child{border-top:0}
+.people .mk svg{display:block}
+.people .who{flex:1;min-width:0}
+.people .who b{display:block;font-weight:500}
+.people .who small{display:block;color:var(--soft);font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.people .go{flex:none;min-height:36px;padding:0 14px;border-radius:999px;border:1px solid rgb(244 241 234 / .2);font-size:14px;font-weight:500}
+@media (hover:hover) and (pointer:fine){.face:hover svg{filter:brightness(1.12)}.people .go:hover{background:rgb(244 241 234 / .08)}}
+.search:focus-visible{outline:2px solid var(--fg);outline-offset:2px}
+#decline{margin-left:auto;margin-right:14px}
+
+/* Ground (mock.zei.st/2026-11-10-ground, option C): each piece wears the mark of the square it stands on, so you read
+   its move from the piece; the squares keep a faint two-tone. */
+.board-ground .cell::before{display:none}
+.board-ground .cell.straight{background:rgb(255 255 255 / .03)}
+.board-ground .cell.diagonal{background:rgb(0 0 0 / .09)}
+.board-ground .piece:not(.marked)::before{
+  content:"";position:absolute;inset:30%;
+  background:linear-gradient(var(--glyph),var(--glyph)) center/100% 2px no-repeat,linear-gradient(var(--glyph),var(--glyph)) center/2px 100% no-repeat;
+}
+.board-ground .cell.diagonal .piece::before{transform:rotate(45deg)}
+.board-ground .piece.p1{--glyph:rgb(28 27 24 / .55)}
+.board-ground .piece.p2{--glyph:rgb(238 231 214 / .6)}
+/* Danger: a line from the piece that could take your marked piece next move. */
+.board-ground .lines line.danger{stroke:var(--mark);stroke-width:.06;stroke-linecap:round;opacity:.9}
+.board-ground .lines circle.danger{fill:none;stroke:var(--mark);stroke-width:.06}
+
+/* In play, the same layout as the app (2026-11-10): back, the name and ? in the bar; each side's name above the
+   board, the one to move lit; the status under it; pill buttons at the bottom. */
+.play{grid-template-rows:auto auto auto 1fr;row-gap:14px}
+.play .bar{margin-bottom:10px}
+.play .foot{height:100%}
+.play .foot .controls{margin-top:auto;padding-bottom:8px}
+.play .bar{display:grid;grid-template-columns:44px 1fr 44px;align-items:center;max-width:min(100%,calc(100dvh - 262px),720px)}
+.play .bar h2{text-align:center;font-size:23px;line-height:1.2}
+.icon{width:40px;height:40px;border-radius:50%;background:rgb(244 241 234 / .06);display:grid;place-items:center;color:var(--soft);font-size:16px;font-weight:500}
+.icon svg{width:18px;height:18px}
+.players{width:min(100%,calc(100dvh - 262px),720px);display:flex;justify-content:space-between;align-items:center;min-height:28px;font-size:15px}
+.players .side{display:flex;align-items:center;gap:9px;color:var(--soft);transition:color .2s}
+.players .side.p2{flex-direction:row-reverse}
+.players .side.on{color:var(--fg)}
+.players b{font-weight:500;max-width:9em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.players small{font-size:15px;font-variant-numeric:tabular-nums}
+.players .stone{width:15px;height:15px;border-radius:50%;flex:none}
+.players .stone.p1{background:var(--piece-white,#eee7d6)}
+.players .stone.p2{background:var(--piece-black,#1c1b18);box-shadow:inset 0 0 0 1.5px rgb(244 241 234 / .7)}
+.players .mark{width:16px;height:16px;display:block}
+.players .mark svg{width:100%;height:100%;fill:none;stroke:currentColor;stroke-width:1.2;stroke-linecap:round}
+.play .foot .tag{margin:0 0 8px}
+.play .foot{align-items:center}
+.play .status{text-align:center;color:var(--soft);font-size:16px;min-height:2.7em}
+.play .controls{justify-content:center;gap:10px;flex-wrap:wrap}
+.play .controls .btn{width:auto;min-height:46px;padding:0 22px;background:none;color:var(--fg);border:1px solid rgb(244 241 234 / .2)}
+.play .controls .btn.solid{background:var(--fg);color:var(--ground);border-color:var(--fg)}
+.play .controls .btn:disabled{opacity:.4;cursor:default}
+@media (hover:hover) and (pointer:fine){.play .controls .btn:not(.solid):not(:disabled):hover{background:rgb(244 241 234 / .06)}.icon:hover{color:var(--fg)}}
+/* Landscape on a phone: the board on the left; the bar, the names and the buttons on the right. */
+@media (max-height:520px) and (orientation:landscape){
+  .play{grid-template-rows:auto auto 1fr}
+  .play .bar{grid-column:2;grid-row:1;max-width:none;width:auto}
+  .players{grid-column:2;grid-row:2;width:auto}
+  .stage{grid-column:1;grid-row:1/4}
+  .play .foot{grid-column:2;grid-row:3;width:auto}
+}
+/* The end of a friend game adds the rematch, the record and the sign-in line under the status. Where the board leaves
+   no room for them (1440 by 900), the page grows and scrolls instead of the board covering the status (2026-11-19).
+   While everything fits, the page is the window's height, as before; a game without the friend panel is unchanged. */
+@media (min-height:521px){.play:has(#friend-panel:not([hidden])){height:auto;min-height:100dvh}.play:has(#friend-panel:not([hidden])) .stage{min-height:auto}}
+/* Rematch and record under a finished friend game (platform hook, 2026-11-10). */
+.rematch{display:flex;flex-direction:column;gap:12px;margin-top:6px}
+.rematch .rec{display:flex;justify-content:center;align-items:baseline;gap:10px;margin:0;color:var(--dim, rgb(244 241 234 / .66));font-size:14px}
+.rematch .rec b{font-family:Prata,Georgia,serif;font-weight:400;font-size:22px;color:var(--fg)}
+.rematch .who{margin:0;text-align:center}
+.rematch .row{display:flex;gap:10px}.rematch .row .btn{flex:1}
+.zpic{display:block;border-radius:50%;object-fit:cover;background:#687686;flex:none;-webkit-touch-callout:none;-webkit-user-select:none;user-select:none;pointer-events:none}
+
+/* Ground A (2026-11-12): geometric marks share the piece's exact center, including the marked piece. */
+.board-ground .piece::before{
+  content:"";position:absolute;inset:30%;transform-origin:center;
+  background:linear-gradient(var(--glyph),var(--glyph)) center/100% 2px no-repeat,linear-gradient(var(--glyph),var(--glyph)) center/2px 100% no-repeat;
+}
+.board-ground .piece.marked::before{inset:34%}
+.board-ground .piece.marked::after{inset:14%;background:none!important;box-shadow:inset 0 0 0 1.5px var(--glyph);border-radius:50%}
+.board-ground .piece.p1{--glyph:var(--piece-black)}
+.board-ground .piece.p2{--glyph:var(--piece-white)}
+.board-ground .cell.target::after{
+  inset:28%;border-radius:50%;transform-origin:center;
+  background:linear-gradient(var(--piece-black),var(--piece-black)) center/50% 1.5px no-repeat,linear-gradient(var(--piece-black),var(--piece-black)) center/1.5px 50% no-repeat,var(--piece-white);
+}
+.board-ground .cell.diagonal.target::after{transform:rotate(45deg)}
+.ground-inspection{font-size:14px;line-height:1.4;color:var(--soft);min-height:3.9em;margin:0 0 10px}
+.board-ground .cell:focus-visible{outline:2px solid var(--fg);outline-offset:-3px}
+
+/* The status under the board, never under the board's edge (2026-11-19: in a rated Colony game "Your move" sat flush
+   against the board). The board, the names above it, the bar and the foot are as wide as the window's height allows
+   once the rest of the play screen has room: --reserve is that rest (the padding, the bar, the names, the gaps, the
+   status and the buttons: 255px, 263px with the taller padding of a large window, and a few to spare), --below what a
+   game adds under the status (Rated, 31px; Ground's line about the piece in focus, 65px). The budget used to be 262px
+   for every game, one pixel short on a large window and 31px short in a rated game; the stage could shrink under the
+   board, so the board covered the status. Should anything more come (a rank gained, the sign-in line after a game), the
+   page now grows and scrolls instead, as it already did for the end of a friend game. Not on a phone held sideways,
+   where the status sits beside the board. */
+.play{--reserve:262px;--below:0px}
+@media (min-width:900px) and (min-height:620px){.play{--reserve:270px}}
+.play:has(#rated-tag:not([hidden])){--below:32px}
+html[data-game="ground"] .play{--below:68px}
+html[data-game="ground"] .play:has(#rated-tag:not([hidden])){--below:100px}
+@media not all and (max-height:520px) and (orientation:landscape){
+  .play{height:auto;min-height:100dvh}
+  .play .stage{min-height:auto}
+  .play .board,.play .players,.play .bar,.play .foot{width:min(100%,calc(100dvh - var(--reserve) - var(--below)),720px);max-width:min(100%,calc(100dvh - var(--reserve) - var(--below)),720px)}
+}
+/* The speaker (/s/sound.js), beside How to play at the right of the bar (games/scripts/paths.py puts it there): both
+   ends of the bar are two icons wide, so the name stays centered. */
+.bar:has(>.zends){display:grid;grid-template-columns:88px 1fr 88px;align-items:center}
+.bar>.zends{display:flex;gap:8px;justify-content:flex-end}
+.zmute [hidden]{display:none}
+
+/* Boards of stepping stones (public/s/step-board.js; Colony, and Squeeze in trial, 2026-11-20): a tile under each square
+   that the game paints, a button over it, and the stones, the same elements all game, sliding from square to square.
+   Grid lines show only on open squares. A stone keeps a fine rim and a firm shadow so it reads on any square beside it. */
+.board-step{grid-template-columns:repeat(var(--n),1fr);grid-template-rows:repeat(var(--n),1fr);touch-action:none;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;--line:rgb(20 18 15 / .2)}
+.board-colony{--n:9}
+.board-squeeze{--n:7}
+.board-step .step-tiles,.board-step .step-stones{position:absolute;inset:0;display:grid;grid-template-columns:repeat(var(--n),1fr);grid-template-rows:repeat(var(--n),1fr);pointer-events:none}
+.board-step .step-stones{display:block;z-index:3}
+.board-step .step-row{display:contents}
+.board-step .tile{position:relative;box-shadow:inset -.5px -.5px 0 var(--line),inset .5px .5px 0 var(--line);transition:background-color .16s ease-out}
+.board-step .tile.target{background:rgb(255 255 255 / .2)}
+.board-step .cell{border:0;z-index:2;background:transparent;touch-action:none}
+.board-step .cell:not(:disabled):active{background:transparent}
+.board-step .cell:focus-visible{outline:2px solid var(--fg);outline-offset:-3px}
+.board-step .stone{position:absolute;left:0;top:0;width:calc(100% / var(--n));height:calc(100% / var(--n));
+  transform:translate(calc(var(--x) * 100% + var(--dx,0px)),calc(var(--y) * 100% + var(--dy,0px)))}
+.board-step .disc{position:absolute;inset:13%;border-radius:50%;transition:transform 120ms cubic-bezier(.23,1,.32,1),box-shadow 120ms cubic-bezier(.23,1,.32,1),opacity 120ms}
+.board-step .p1 .disc{background:radial-gradient(circle at 38% 32%,var(--piece-white-hi),var(--piece-white) 62%,var(--piece-white-lo));
+  box-shadow:0 0 0 1px rgb(12 11 9 / .34),0 2px 3px rgb(0 0 0 / .32),0 4px 10px rgb(0 0 0 / .28)}
+.board-step .p2 .disc{background:radial-gradient(circle at 38% 32%,var(--piece-black-hi),var(--piece-black) 62%,var(--piece-black-lo));
+  box-shadow:0 0 0 1px rgb(238 231 214 / .26),0 2px 3px rgb(0 0 0 / .4),0 4px 10px rgb(0 0 0 / .32)}
+.board-step .stone.lift .disc,.board-step .stone.on .disc{transform:scale(1.08) translateY(-4%)}
+.board-step .stone.lift.p1 .disc,.board-step .stone.on.p1 .disc{box-shadow:0 0 0 1px rgb(12 11 9 / .34),0 5px 8px rgb(0 0 0 / .3),0 9px 18px rgb(0 0 0 / .26)}
+.board-step .stone.lift.p2 .disc,.board-step .stone.on.p2 .disc{box-shadow:0 0 0 1px rgb(238 231 214 / .26),0 5px 8px rgb(0 0 0 / .38),0 9px 18px rgb(0 0 0 / .3)}
+/* The stone that moved last: a fine ring of the kind's mark around it, quieter than a square's frame. */
+.board-step .stone.last .disc::after{content:"";position:absolute;inset:-4px;border-radius:50%;box-shadow:0 0 0 1.5px var(--mark);opacity:.85}
+/* Squeeze's end: the side with no move, its stones settling a little smaller and flatter into the board (their shadow
+   drawn in), once the last step has landed. */
+.board-step .stone.stuck .disc{transform:scale(.88);transition:transform .34s ease-in-out .3s,box-shadow .34s ease-in-out .3s}
+.board-step .stone.stuck.p1 .disc{box-shadow:0 0 0 1px rgb(12 11 9 / .4),0 1px 1px rgb(0 0 0 / .3)}
+.board-step .stone.stuck.p2 .disc{box-shadow:0 0 0 1px rgb(238 231 214 / .3),0 1px 1px rgb(0 0 0 / .3)}
+.board-step.still .stone{transition:none}
+
+/* Colony (2026-11-20; the trial game Claim's look, approved): ground is the board itself, stained. A held square keeps
+   the board's surface and its grid lines, toned toward its owner: White's the slate lifted toward bone (the ivory piece
+   at 60% over it), Black's the slate taken darker (the ebony piece at 60% over it). Three tones of one material. Measured
+   (WCAG contrast, sRGB, on the flat board color #64797a): board to White's 2.36, board to Black's 2.29, White's to
+   Black's 5.40; an ivory stone on White's 1.58 and an ebony stone on Black's 1.63 by their faces, each with a rim that
+   reads 2.73 (ivory's dark rim at .45 on White's) and 2.75 (ebony's light rim at .40 on Black's) against the ground, and
+   their shadow besides; a stone on the other side's ground 8.6 to 8.8. Raised on 2026-11-20 after a review (they were
+   1.74, 1.84 and 3.21). A region's top edge carries a one-pixel light (White's, a hair proud) or shade (Black's, a hair
+   sunk); no outlines, no rounded corners. The last step frames both its squares in the game's ink, as Ground's does,
+   besides the ring on the stone. */
+/* Each stain is laid over the board, translucent, so the board's own light and grain still show through it. */
+.board-colony{--g1:color-mix(in srgb,var(--piece-white) 60%,transparent);--g2:color-mix(in srgb,var(--piece-black) 60%,transparent)}
+/* The grid is drawn by the squares' buttons, above the stain, so it stays at one weight on all three tones and never
+   fades while a stain soaks in. */
+.board-colony .tile{box-shadow:var(--edge,0 0 #0000)}
+.board-colony .cell{box-shadow:inset -.5px -.5px 0 var(--line),inset .5px .5px 0 var(--line)}
+.board-colony .cell[data-o="2"]{--line:rgb(0 0 0 / .3)}
+.board-colony .cell.last{box-shadow:inset 0 0 0 2px var(--mark)}
+.board-colony.still .tile{box-shadow:inset -.5px -.5px 0 var(--line),inset .5px .5px 0 var(--line)}
+.board-colony .tile.g1{background:var(--g1)}
+.board-colony .tile.g2{background:var(--g2)}
+.board-colony .tile.g1.et{--edge:inset 0 1px 0 rgb(255 255 255 / .16)}
+.board-colony .tile.g2.et{--edge:inset 0 1px 0 rgb(0 0 0 / .22)}
+.board-colony .stone.p1 .disc{box-shadow:0 0 0 1px rgb(12 11 9 / .45),0 2px 3px rgb(0 0 0 / .32),0 4px 10px rgb(0 0 0 / .28)}
+.board-colony .stone.p2 .disc{box-shadow:0 0 0 1px rgb(238 231 214 / .4),0 2px 3px rgb(0 0 0 / .4),0 4px 10px rgb(0 0 0 / .32)}
+.players .colony-count{font-variant-numeric:tabular-nums;color:var(--fg);min-width:1.4em}
+.players .side.p2 .colony-count{text-align:right}
+.players .colony-count .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+
+/* Squeeze: a closed square is taken out of the board, sunk and darkened, belonging to nobody. Closed neighbors join edge
+   to edge into one hole; only an edge facing open board carries the shadow of the drop (from the top and left) or a faint
+   lip of light (bottom and right). No marks, dots or lines. */
+.board-squeeze{--sunk:color-mix(in oklab,var(--board) 56%,#000)}
+.board-squeeze .tile.x{margin:-1px;z-index:1;background:var(--sunk);
+  box-shadow:var(--st,0 0 #0000),var(--sl,0 0 #0000),var(--sb,0 0 #0000),var(--sr,0 0 #0000)}
+.board-squeeze .tile.x.et{--st:inset 0 1px 0 rgb(0 0 0 / .45),inset 0 12px 10px -5px rgb(0 0 0 / .7)}
+.board-squeeze .tile.x.el{--sl:inset 1px 0 0 rgb(0 0 0 / .35),inset 8px 0 8px -5px rgb(0 0 0 / .45)}
+.board-squeeze .tile.x.eb{--sb:inset 0 -1.5px 0 rgb(255 255 255 / .12)}
+.board-squeeze .tile.x.er{--sr:inset -1.5px 0 0 rgb(255 255 255 / .08)}
+@media (prefers-reduced-motion:reduce){.board-step .disc,.board-step .tile{transition:none}.board-step .stone.lift .disc,.board-step .stone.on .disc{transform:scale(1.04)}.board-step .stone.stuck .disc{transition:none}}

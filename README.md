@@ -57,7 +57,7 @@ Every level of every engine has been measured against Maia 3, which plays like a
 | `engines/` | One folder per engine: a build script, patches and license notes. Built packs go to `engines/dist/`. |
 | `ios/` | The iPhone and iPad app in SwiftUI. A native board; a hidden web view runs `core/` and the engines. |
 | `puzzles/` | The puzzle set and its themes, from the Lichess puzzle database. |
-| `web/` | The web app: plain ES modules and CSS, served by a Cloudflare Worker, offline through a service worker. |
+| `web/` | Each engine's page on the web (zeist.gg/chess/vs/<id>/): plain ES modules and CSS, static files beside a small Cloudflare Worker, offline through a service worker. |
 | `docs/` | How the app is put together, the engine pack contract, and how Learn and its lessons are written. |
 
 An engine pack is a folder with a manifest, a worker script that speaks UCI one line per message, and the files it loads. The contract is in [`docs/PLAN.md`](docs/PLAN.md).
