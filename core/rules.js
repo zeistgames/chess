@@ -24,6 +24,19 @@ export class Game {
     this._c = new Chess(fen);
     this._start = this._c.fen();
     this._moves = [];
+    this._keys = [this._repKey()];
+  }
+
+  /**
+   * The position as the repetition rule counts it: the pieces, the side to move, castling rights, and the en
+   * passant square only when an en passant capture is legal now. chess.js writes the square whenever a pawn stands
+   * beside the one that moved two squares, even when it is pinned and can't take, so its own threefold check misses
+   * repetitions the rules count (and Zeist counts: its rules.js, repetitionKey, which checks rated games).
+   */
+  _repKey() {
+    const f = this._c.fen().split(' ');
+    const ep = f[3] !== '-' && this._c.moves({ verbose: true }).some(m => m.flags.includes('e')) ? f[3] : '-';
+    return `${f[0]} ${f[1]} ${f[2]} ${ep}`;
   }
 
   /** A game from a starting position and a list of UCI moves. Throws on the first illegal move. */
@@ -70,6 +83,7 @@ export class Game {
     if (!m) return null;
     const rec = { uci: uciOf(m), san: m.san };
     this._moves.push(rec);
+    this._keys.push(this._repKey());
     return rec;
   }
 
@@ -80,6 +94,7 @@ export class Game {
     if (!m) return null;
     const rec = { uci: uciOf(m), san: m.san };
     this._moves.push(rec);
+    this._keys.push(this._repKey());
     return rec;
   }
 
@@ -90,6 +105,7 @@ export class Game {
   undo() {
     const m = this._c.undo();
     if (!m) return null;
+    this._keys.pop();
     return this._moves.pop();
   }
 
@@ -124,7 +140,8 @@ export class Game {
     }
     if (c.isStalemate()) return draw('stalemate');
     if (c.isInsufficientMaterial()) return draw('insufficient');
-    if (c.isThreefoldRepetition()) return draw('repetition');
+    const now = this._keys[this._keys.length - 1];
+    if (this._keys.filter(k => k === now).length >= 3) return draw('repetition');
     if (c.isDrawByFiftyMoves()) return draw('fifty-move');
     return null;
   }

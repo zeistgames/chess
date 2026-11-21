@@ -74,6 +74,18 @@ test('stalemate', () => {
   assert.equal(g.outcome().result, '1/2-1/2');
 });
 
+test('an en passant square counts toward repetition only when the capture is legal', () => {
+  // After e2e4 the d4 pawn stands beside it but is pinned along the rank (king a4, rook h4): taking en passant would
+  // open the rank. The position after e4 is the same position the shuffles return to, so the third time is a draw.
+  const pinned = Game.fromMoves('e2e4 a4a5 g1f3 a5a4 f3g1 a4a5 g1f3 a5a4 f3g1'.split(' '), '8/8/8/8/k2p3R/8/4P3/4K1N1 w - - 0 1');
+  assert.equal(pinned.outcome()?.reason, 'repetition');
+  // With the capture legal, the first position differs, so the same moves reach it only twice.
+  const free = Game.fromMoves('e2e4 e8d8 g1f3 d8e8 f3g1 e8d8 g1f3 d8e8 f3g1'.split(' '), '4k3/8/8/8/3p4/8/4P3/4K1N1 w - - 0 1');
+  assert.equal(free.outcome(), null);
+  free.play('e8d8'); free.play('g1f3'); free.play('d8e8'); free.play('f3g1');
+  assert.equal(free.outcome()?.reason, 'repetition');
+});
+
 test('threefold repetition', () => {
   const g = Game.fromMoves(['g1f3', 'g8f6', 'f3g1', 'f6g8', 'g1f3', 'g8f6', 'f3g1']);
   assert.equal(g.outcome(), null);
