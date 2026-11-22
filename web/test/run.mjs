@@ -327,16 +327,19 @@ async function run(name) {
     await page.waitForFunction(() => !!navigator.serviceWorker.controller, null, { timeout: 15000 });
     await ctx.setOffline(true);
     offline = true;
-    await page.reload();
-    await page.waitForSelector('#resume:not([hidden])');
-    await page.click('#resume');
-    await page.waitForSelector('#play:not([hidden]) #board .zcp');
-    const before = (await currentGame(page)).moves.length;
-    await playMoves(page, 1);
-    assert((await currentGame(page)).moves.length >= before + 2, 'engine answered offline');
-    await ctx.setOffline(false);
-    await page.waitForTimeout(500);
-    offline = false;
+    try {
+      await page.reload();
+      await page.waitForSelector('#resume:not([hidden])');
+      await page.click('#resume');
+      await page.waitForSelector('#play:not([hidden]) #board .zcp');
+      const before = (await currentGame(page)).moves.length;
+      await playMoves(page, 1);
+      assert((await currentGame(page)).moves.length >= before + 2, 'engine answered offline');
+    } finally {
+      await ctx.setOffline(false);
+      await page.waitForTimeout(500);
+      offline = false;
+    }
   });
 
   await step(name, 'a 10+5 game runs its clocks; resigning from the menu ends it', async () => {

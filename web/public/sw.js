@@ -40,16 +40,16 @@ self.addEventListener('activate', event => {
 async function fresh(request, cacheName, ms, fallback) {
   const c = await caches.open(cacheName);
   const net = fetch(request).then(res => {
-    if (res.ok && res.type === 'basic') c.put(fallback || request, res.clone());
+    if (res.ok && res.type === 'basic') c.put(fallback || request, res.clone()).catch(() => {});
     return res;
   });
   net.catch(() => {}); // when the kept copy answers first, a network that fails later is no one's error
   const timer = new Promise(resolve => setTimeout(resolve, ms, null));
   try {
     const first = await Promise.race([net, timer]);
-    if (first) return first;
+    if (first?.ok) return first;
     const kept = await c.match(fallback || request, { ignoreSearch: true });
-    return kept || await net;
+    return kept || first || await net;
   } catch {
     const kept = await c.match(fallback || request, { ignoreSearch: true });
     if (kept) return kept;
