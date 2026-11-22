@@ -65,6 +65,34 @@ let installedCache = new Map(); // id -> { manifest, packSHA }
 
 async function cache() { return caches.open(PACKS); }
 
+const packLock = id => PACKS + ':' + id;
+
+async function reapAbandonedStages() {
+  const locks = navigator.locks;
+  if (!locks || !('caches' in self)) return;
+  const c = await cache();
+  const stages = new Map();
+  for (const req of await c.keys()) {
+    if (!req.url.startsWith(ENGINES)) continue;
+    const match = req.url.slice(ENGINES.length).match(/^([^/]+)\/\.pack-([^/]+)\//);
+    if (!match) continue;
+    const [, id, generation] = match;
+    if (!stages.has(id)) stages.set(id, []);
+    stages.get(id).push({ req, generation });
+  }
+  for (const [id, entries] of stages) {
+    // A live install holds the same lock. Skip that engine without holding up startup.
+    await locks.request(packLock(id), { ifAvailable: true }, async lock => {
+      if (!lock) return;
+      const manifest = await c.match(ENGINES + id + '/manifest.json');
+      const current = manifest?.headers.get('x-zc-generation');
+      for (const { req, generation } of entries) {
+        if (generation !== current) await c.delete(req).catch(() => {});
+      }
+    });
+  }
+}
+
 async function readInstalled() {
   const out = new Map();
   if (!('caches' in self)) return out;
@@ -104,7 +132,11 @@ async function rebuild() {
 }
 
 let reading = null; // the catalog read that load() started
-export async function load() { await rebuild(); reading = refresh(); }
+export async function load() {
+  await reapAbandonedStages().catch(() => {});
+  await rebuild();
+  reading = refresh();
+}
 /** The catalog read load() started, once it is done. */
 export function listed() { return reading || Promise.resolve(catalogProblem); }
 
@@ -206,14 +238,15 @@ export async function install(id) {
   changed();
   state.promise = (async () => {
     const base = ENGINES + id + '/'; // where it is kept and served from, wherever it is downloaded from
-    const c = await cache();
+    let c;
     // Stage under a unique address. Only the canonical manifest can make these files visible to the worker.
     const generation = crypto.randomUUID();
     const stage = base + '.pack-' + generation + '/';
     const manifestURL = base + 'manifest.json';
     const written = [];
     let published = false;
-    try {
+    const run = async () => {
+      c = await cache();
       // This app's own worker, which checks the pins, should answer for the page before anything is kept: on a first
       // visit from Zeist's /chess it takes over a moment after the page loads.
       await untilOwnWorker(15000);
@@ -289,6 +322,11 @@ export async function install(id) {
       downloads.delete(id);
       persist();
       await rebuild();
+    };
+    try {
+      const locks = navigator.locks;
+      if (locks) await locks.request(packLock(id), { signal: controller.signal }, run);
+      else await run();
     } catch (e) {
       if (!published) for (const u of written) await c.delete(u).catch(() => {});
       if (controller.signal.aborted) { downloads.delete(id); changed(); throw new PackError('stopped'); }

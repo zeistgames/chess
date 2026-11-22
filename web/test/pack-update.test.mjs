@@ -34,7 +34,11 @@ test('a quota failure at publication keeps the previous pack', async () => {
     ownWorker: () => null, untilOwnWorker: async () => null, self: { caches: true },
     caches: { open: async name => asCache(name === 'zc-packs' ? installed : stage) },
     fetch: async url => new Response(url.endsWith('/manifest.json') ? next : 'new'),
-    navigator: {}, crypto, TextDecoder, AbortController, Blob, URL, Response,
+    navigator: { locks: { request: async (name, options, callback) => {
+      assert.equal(name, 'zc-packs:sample');
+      assert.equal(options.signal.aborted, false);
+      return callback();
+    } } }, crypto, TextDecoder, AbortController, Blob, URL, Response,
   });
   await assert.rejects(shelf.install('sample'), /room/i);
   assert.equal(await installed.get(manifestURL).clone().text(), old);
@@ -44,4 +48,34 @@ test('a quota failure at publication keeps the previous pack', async () => {
   await shelf.install('sample');
   assert.equal((await shelf.readInstalled()).get('sample').manifest.version, '2');
   assert.equal(installed.size, 2, 'old files are gone once the replacement is published');
+});
+
+test('startup reclaims abandoned stages and preserves published and live generations', async () => {
+  const manifestURL = base + 'manifest.json';
+  const current = base + '.pack-current/worker.js';
+  const abandoned = base + '.pack-abandoned/worker.js';
+  const orphan = ENGINES + 'unused/.pack-orphan/network.nnue';
+  const busy = ENGINES + 'busy/.pack-live/worker.js';
+  const legacy = ENGINES + 'legacy/worker.js';
+  const foreign = 'https://other.invalid/engines/sample/.pack-foreign/worker.js';
+  const rows = new Map([
+    [manifestURL, new Response(JSON.stringify({ id: 'sample', version: '2' }), { headers: { 'x-zc-generation': 'current' } })],
+    ...[current, abandoned, orphan, busy, legacy, foreign].map(url => [url, new Response('file')]),
+  ]);
+  const shelf = runInNewContext(source + '\n({ load, listed });', {
+    ENGINES, ORIGIN: null, pref: () => null, setPref() {}, self: { caches: true },
+    caches: { open: async () => ({
+      keys: async () => [...rows.keys()].map(url => new Request(url)),
+      match: async key => rows.get(key.url || key)?.clone(),
+      delete: async key => rows.delete(key.url || key),
+    }) },
+    navigator: { locks: { request: async (name, options, callback) => {
+      assert.equal(options.ifAvailable, true);
+      return callback(name.endsWith(':busy') ? null : {});
+    } } },
+    fetch: async () => new Response('[]'), crypto, TextDecoder,
+  });
+  await shelf.load();
+  await shelf.listed();
+  assert.deepEqual([...rows.keys()], [manifestURL, current, busy, legacy, foreign]);
 });
