@@ -14,21 +14,17 @@ import { ENGINES, get as pref, set as setPref, ownWorker, untilOwnWorker } from 
 import { PACKS as ORIGIN } from './config.js';
 
 export const PACKS = 'zc-packs';
-const STAGING = 'zc-staging';
 
-// Straight from the packs' server until a request to it fails (no CORS answer, say); then the Worker, for this visit.
-let direct = !!ORIGIN;
 const TYPES = { js: 'text/javascript', mjs: 'text/javascript', wasm: 'application/wasm', json: 'application/json', txt: 'text/plain', nnue: 'application/octet-stream' };
 const typeOf = p => TYPES[p.split('.').pop().toLowerCase()] || 'application/octet-stream';
 
 /** A pack server file (rel, such as "maia/manifest.json" or "catalog.json"), from the packs' server or the Worker. */
 async function fetchPack(rel, { signal, keyed = false } = {}) {
-  if (direct) {
+  if (ORIGIN) {
     try {
       const r = await fetch(ORIGIN + rel, { cache: 'no-store', mode: 'cors', credentials: 'omit', signal });
       if (r.ok) return r;
     } catch (e) { if (signal && signal.aborted) throw e; }
-    direct = false;
   }
   if (keyed) await arm();
   return fetch(ENGINES + rel, { cache: 'no-store', signal, ...(keyed ? { headers: DOWNLOAD } : {}) });
@@ -69,6 +65,34 @@ let installedCache = new Map(); // id -> { manifest, packSHA }
 
 async function cache() { return caches.open(PACKS); }
 
+const packLock = id => PACKS + ':' + id;
+
+async function reapAbandonedStages() {
+  const locks = navigator.locks;
+  if (!locks || !('caches' in self)) return;
+  const c = await cache();
+  const stages = new Map();
+  for (const req of await c.keys()) {
+    if (!req.url.startsWith(ENGINES)) continue;
+    const match = req.url.slice(ENGINES.length).match(/^([^/]+)\/\.pack-([^/]+)\//);
+    if (!match) continue;
+    const [, id, generation] = match;
+    if (!stages.has(id)) stages.set(id, []);
+    stages.get(id).push({ req, generation });
+  }
+  for (const [id, entries] of stages) {
+    // A live install holds the same lock. Skip that engine without holding up startup.
+    await locks.request(packLock(id), { ifAvailable: true }, async lock => {
+      if (!lock) return;
+      const manifest = await c.match(ENGINES + id + '/manifest.json');
+      const current = manifest?.headers.get('x-zc-generation');
+      for (const { req, generation } of entries) {
+        if (generation !== current) await c.delete(req).catch(() => {});
+      }
+    });
+  }
+}
+
 async function readInstalled() {
   const out = new Map();
   if (!('caches' in self)) return out;
@@ -108,7 +132,11 @@ async function rebuild() {
 }
 
 let reading = null; // the catalog read that load() started
-export async function load() { await rebuild(); reading = refresh(); }
+export async function load() {
+  await reapAbandonedStages().catch(() => {});
+  await rebuild();
+  reading = refresh();
+}
 /** The catalog read load() started, once it is done. */
 export function listed() { return reading || Promise.resolve(catalogProblem); }
 
@@ -174,9 +202,9 @@ async function pinnedHere(id, sha) {
   if (!sw) return null;
   return new Promise(resolve => {
     const ch = new MessageChannel();
-    ch.port1.onmessage = e => resolve(e.data === true);
+    ch.port1.onmessage = e => resolve(e.data?.pinned === true && e.data.packLayout === 2);
     setTimeout(() => resolve(false), 10000);
-    sw.postMessage({ type: 'zc-pinned', id, sha }, [ch.port2]);
+    sw.postMessage({ type: 'zc-pinned', id, sha, packLayout: 2 }, [ch.port2]);
   });
 }
 
@@ -210,11 +238,15 @@ export async function install(id) {
   changed();
   state.promise = (async () => {
     const base = ENGINES + id + '/'; // where it is kept and served from, wherever it is downloaded from
-    const c = await cache();
-    // Files come down into a staging cache first: an update that fails leaves the installed version whole.
-    const stage = await caches.open(STAGING);
+    let c;
+    // Stage under a unique address. Only the canonical manifest can make these files visible to the worker.
+    const generation = crypto.randomUUID();
+    const stage = base + '.pack-' + generation + '/';
+    const manifestURL = base + 'manifest.json';
     const written = [];
-    try {
+    let published = false;
+    const run = async () => {
+      c = await cache();
       // This app's own worker, which checks the pins, should answer for the page before anything is kept: on a first
       // visit from Zeist's /chess it takes over a moment after the page loads.
       await untilOwnWorker(15000);
@@ -263,25 +295,40 @@ export async function install(id) {
         if (blob.size !== f.bytes || (await sha256(await blob.arrayBuffer())) !== String(f.sha256).toLowerCase()) {
           throw new PackError("A file didn't match its checksum.");
         }
-        await stage.put(url, new Response(blob, { headers: { 'content-type': typeOf(f.path), 'content-length': String(blob.size) } }));
-        written.push(url);
+        const staged = stage + url.slice(base.length);
+        await c.put(staged, new Response(blob, { headers: { 'content-type': typeOf(f.path), 'content-length': String(blob.size) } }));
+        written.push(staged);
         done += f.bytes;
         state.progress = done / total;
         changed();
       }
-      // Everything checked: swap it in. The old manifest goes first, so no half-swapped pack counts as installed.
-      await c.delete(base + 'manifest.json');
-      for (const u of written) await c.put(u, await stage.match(u));
-      const keep = new Set(written);
-      for (const k of await c.keys()) if (k.url.startsWith(base) && !keep.has(k.url)) await c.delete(k);
-      await c.put(base + 'manifest.json', new Response(raw, { headers: { 'content-type': 'application/json' } }));
-      for (const u of written) await stage.delete(u);
+      // Publish the manifest last. The one replacement put selects the whole version at once.
+      if (controller.signal.aborted) throw new PackError('stopped');
+      const previous = await c.match(manifestURL);
+      await c.put(manifestURL, new Response(raw, { headers: {
+        'content-type': 'application/json', 'x-zc-generation': generation,
+      } }));
+      published = true;
+      if (previous) {
+        const old = previous.headers.get('x-zc-generation');
+        const dir = old ? base + '.pack-' + old + '/' : base;
+        for (const k of await c.keys()) {
+          if (k.url !== manifestURL && k.url.startsWith(dir) && (old || !k.url.startsWith(base + '.pack-'))) {
+            await c.delete(k).catch(() => {});
+          }
+        }
+      }
       if (removed.delete(id)) keepRemoved();
       downloads.delete(id);
       persist();
       await rebuild();
+    };
+    try {
+      const locks = navigator.locks;
+      if (locks) await locks.request(packLock(id), { signal: controller.signal }, run);
+      else await run();
     } catch (e) {
-      for (const u of written) await stage.delete(u);
+      if (!published) for (const u of written) await c.delete(u).catch(() => {});
       if (controller.signal.aborted) { downloads.delete(id); changed(); throw new PackError('stopped'); }
       state.error = e instanceof PackError ? e.message
         : navigator.onLine === false ? "You're offline."

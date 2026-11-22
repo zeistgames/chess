@@ -242,8 +242,9 @@ function handle(line) {
         function () {
           out("readyok");
         },
-        function () {
-          out("readyok");
+        function (error) {
+          // An uncaught worker error reaches the host immediately, even during the UCI handshake.
+          setTimeout(function () { throw error; }, 0);
         }
       );
     case "setoption":

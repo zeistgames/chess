@@ -459,12 +459,12 @@ async function main() {
   await shelf.load();
   drawNote();
   drawResume();
-  account.refresh().then(async a => {
+  account.watch(async a => {
     log.setAccount(a.user);
     if (a.user && a.user.owner) await log.stamp(a.user.owner, a.user.handle);
     if (!play) drawResume();
     else render();
-  });
+  }).catch(e => console.warn('account:', e));
   if ('serviceWorker' in navigator) {
     // updateViaCache 'none': each update check fetches sw.js and shell.js (with the engine pins) from the network.
     navigator.serviceWorker.register(new URL('sw.js', BASE), { scope: BASE, updateViaCache: 'none' }).catch(e => console.warn('service worker:', e));

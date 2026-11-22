@@ -70,12 +70,18 @@ async function freePort() {
 // The packs' server, standing in for engines.zei.st: with CORS headers (as it will be once the bucket's rule is set)
 // or without (as today). Files from --engines, else from engines.zei.st.
 const packRequests = { cors: 0, plain: 0 };
+const directFiles = [];
+let failDirect = null;
 async function packServer(cors) {
   const port = await freePort();
   const s = http.createServer(async (req, res) => {
     packRequests[cors ? 'cors' : 'plain']++;
     const key = decodeURIComponent(new URL(req.url, 'http://x').pathname.slice(1));
     const headers = cors ? { 'access-control-allow-origin': '*' } : {};
+    if (cors) {
+      directFiles.push(key);
+      if (key === failDirect) { failDirect = null; res.writeHead(503, headers); res.end(); return; }
+    }
     try {
       let body = null;
       if (engineDir) {
@@ -177,7 +183,7 @@ async function setUp(page, { level, side = 'w', clock = 'none' } = {}) {
 /** Stands in for Zeist's own pages and API, which these local servers don't have. */
 async function zeist(ctx, { user = null } = {}) {
   await ctx.route(/\/chess(\/(puzzles|learn))?(\?.*)?$/, r => r.fulfill({ status: 200, contentType: 'text/html', body: '<!doctype html><title>Chess</title><h1>Zeist Chess stand-in</h1>' }));
-  await ctx.route('**/api/me', r => r.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ user }) }));
+  await ctx.route('**/api/me', r => r.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ user: typeof user === "function" ? user() : user }) }));
 }
 
 const requests = []; // every URL any page asked for, to check that /api/rated never is
@@ -327,16 +333,19 @@ async function run(name) {
     await page.waitForFunction(() => !!navigator.serviceWorker.controller, null, { timeout: 15000 });
     await ctx.setOffline(true);
     offline = true;
-    await page.reload();
-    await page.waitForSelector('#resume:not([hidden])');
-    await page.click('#resume');
-    await page.waitForSelector('#play:not([hidden]) #board .zcp');
-    const before = (await currentGame(page)).moves.length;
-    await playMoves(page, 1);
-    assert((await currentGame(page)).moves.length >= before + 2, 'engine answered offline');
-    await ctx.setOffline(false);
-    await page.waitForTimeout(500);
-    offline = false;
+    try {
+      await page.reload();
+      await page.waitForSelector('#resume:not([hidden])');
+      await page.click('#resume');
+      await page.waitForSelector('#play:not([hidden]) #board .zcp');
+      const before = (await currentGame(page)).moves.length;
+      await playMoves(page, 1);
+      assert((await currentGame(page)).moves.length >= before + 2, 'engine answered offline');
+    } finally {
+      await ctx.setOffline(false);
+      await page.waitForTimeout(500);
+      offline = false;
+    }
   });
 
   await step(name, 'a 10+5 game runs its clocks; resigning from the menu ends it', async () => {
@@ -367,12 +376,17 @@ async function run(name) {
     await S('06-game-end');
   });
 
-  await step(name, 'a broken engine ends in a calm message, the board stays usable', async () => {
+  await step(name, 'one file falls back and a broken engine leaves the board usable', async () => {
+    const directBefore = directFiles.length, workerBefore = workerLog.A.length;
+    const fallback = SMALL + '/manifest.json';
+    failDirect = fallback;
     await page.goto(A.url + SMALL + '/');
     await setUp(page, { level: 1, side: 'b', clock: 'none' });
     await page.click('#go');
     await page.waitForSelector('#play:not([hidden]) #board .zcp', { timeout: 90000 });
     await waitFor(async () => { const c = await currentGame(page); return c && c.engineID === SMALL && c.moves.length >= 1; }, 90000, 'its first move');
+    assert(workerLog.A.slice(workerBefore).some(line => line.endsWith('/' + fallback)), 'the failed direct read used the Worker');
+    assert(directFiles.slice(directBefore).some(key => key.startsWith(SMALL + '/') && key !== fallback), 'the next file used the direct server');
     await page.evaluate(async id => {
       const c = await caches.open('zc-packs');
       for (const r of await c.keys()) if (r.url.includes(`/engines/${id}/`) && /\.js$/.test(r.url)) await c.put(r, new Response('throw new Error("broken")', { headers: { 'content-type': 'text/javascript' } }));
@@ -443,7 +457,8 @@ async function run(name) {
   // Desktop, signed in: the start screen and a game, with the board on the left and a column beside it.
   await step(name, 'desktop, signed in: start and game screens', async () => {
     const d = await browser.newContext({ ...DESKTOP, serviceWorkers: 'allow' });
-    await zeist(d, { user: { handle: 'ada', owner: 'test-owner' } });
+    let user = { handle: 'ada', owner: 'test-owner' };
+    await zeist(d, { user: () => user });
     d.on('request', r => requests.push(r.url()));
     const p = await d.newPage();
     currentPage = p;
@@ -463,6 +478,13 @@ async function run(name) {
     if (name === 'chromium') {
       const names = await p.$$eval('.prow .who b', b => b.map(x => x.textContent.trim()));
       assert(names.includes('ada'), 'signed-in name: ' + names);
+      user = { handle: 'bea', owner: 'other-test-owner' };
+      await p.evaluate(() => document.dispatchEvent(new Event('visibilitychange')));
+      const readNames = () => p.$$eval('.prow .who b', b => b.map(x => x.textContent.trim()));
+      await waitFor(async () => (await readNames()).includes('bea'), 10000, 'the next account');
+      user = null;
+      await p.evaluate(() => dispatchEvent(new StorageEvent('storage', { key: 'zc.account.me' })));
+      await waitFor(async () => !(await readNames()).includes('bea'), 10000, 'sign-out in another tab');
     }
     await shot(p, `${name}-desktop-03-game`);
     await d.close();
