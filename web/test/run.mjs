@@ -183,7 +183,7 @@ async function setUp(page, { level, side = 'w', clock = 'none' } = {}) {
 /** Stands in for Zeist's own pages and API, which these local servers don't have. */
 async function zeist(ctx, { user = null } = {}) {
   await ctx.route(/\/chess(\/(puzzles|learn))?(\?.*)?$/, r => r.fulfill({ status: 200, contentType: 'text/html', body: '<!doctype html><title>Chess</title><h1>Zeist Chess stand-in</h1>' }));
-  await ctx.route('**/api/me', r => r.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ user }) }));
+  await ctx.route('**/api/me', r => r.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ user: typeof user === "function" ? user() : user }) }));
 }
 
 const requests = []; // every URL any page asked for, to check that /api/rated never is
@@ -457,7 +457,8 @@ async function run(name) {
   // Desktop, signed in: the start screen and a game, with the board on the left and a column beside it.
   await step(name, 'desktop, signed in: start and game screens', async () => {
     const d = await browser.newContext({ ...DESKTOP, serviceWorkers: 'allow' });
-    await zeist(d, { user: { handle: 'ada', owner: 'test-owner' } });
+    let user = { handle: 'ada', owner: 'test-owner' };
+    await zeist(d, { user: () => user });
     d.on('request', r => requests.push(r.url()));
     const p = await d.newPage();
     currentPage = p;
@@ -477,6 +478,13 @@ async function run(name) {
     if (name === 'chromium') {
       const names = await p.$$eval('.prow .who b', b => b.map(x => x.textContent.trim()));
       assert(names.includes('ada'), 'signed-in name: ' + names);
+      user = { handle: 'bea', owner: 'other-test-owner' };
+      await p.evaluate(() => document.dispatchEvent(new Event('visibilitychange')));
+      const readNames = () => p.$$eval('.prow .who b', b => b.map(x => x.textContent.trim()));
+      await waitFor(async () => (await readNames()).includes('bea'), 10000, 'the next account');
+      user = null;
+      await p.evaluate(() => dispatchEvent(new StorageEvent('storage', { key: 'zc.account.me' })));
+      await waitFor(async () => !(await readNames()).includes('bea'), 10000, 'sign-out in another tab');
     }
     await shot(p, `${name}-desktop-03-game`);
     await d.close();

@@ -27,6 +27,29 @@ export async function refresh() {
   return state;
 }
 
+/** Refresh the visible page after returning or another tab writes storage. A later event wins over an answer in flight. */
+export function watch(onAccount) {
+  let reading = false, again = false;
+  const update = async () => {
+    again = true;
+    if (reading) return;
+    reading = true;
+    try {
+      while (again) {
+        again = false;
+        const account = await refresh();
+        if (!again) await onAccount(account);
+      }
+    } finally {
+      reading = false;
+    }
+  };
+  const revisit = () => { if (!document.hidden) return update().catch(e => console.warn('account:', e)); };
+  document.addEventListener('visibilitychange', revisit);
+  addEventListener('storage', revisit);
+  return update();
+}
+
 /** Zeist's sign-in, coming back to this page afterward. Only meaningful when served under zeist.gg. */
 export function signInURL() {
   return '/welcome?return=' + encodeURIComponent(location.pathname + location.search);
