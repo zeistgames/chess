@@ -70,12 +70,18 @@ async function freePort() {
 // The packs' server, standing in for engines.zei.st: with CORS headers (as it will be once the bucket's rule is set)
 // or without (as today). Files from --engines, else from engines.zei.st.
 const packRequests = { cors: 0, plain: 0 };
+const directFiles = [];
+let failDirect = null;
 async function packServer(cors) {
   const port = await freePort();
   const s = http.createServer(async (req, res) => {
     packRequests[cors ? 'cors' : 'plain']++;
     const key = decodeURIComponent(new URL(req.url, 'http://x').pathname.slice(1));
     const headers = cors ? { 'access-control-allow-origin': '*' } : {};
+    if (cors) {
+      directFiles.push(key);
+      if (key === failDirect) { failDirect = null; res.writeHead(503, headers); res.end(); return; }
+    }
     try {
       let body = null;
       if (engineDir) {
@@ -370,12 +376,17 @@ async function run(name) {
     await S('06-game-end');
   });
 
-  await step(name, 'a broken engine ends in a calm message, the board stays usable', async () => {
+  await step(name, 'one file falls back and a broken engine leaves the board usable', async () => {
+    const directBefore = directFiles.length, workerBefore = workerLog.A.length;
+    const fallback = SMALL + '/manifest.json';
+    failDirect = fallback;
     await page.goto(A.url + SMALL + '/');
     await setUp(page, { level: 1, side: 'b', clock: 'none' });
     await page.click('#go');
     await page.waitForSelector('#play:not([hidden]) #board .zcp', { timeout: 90000 });
     await waitFor(async () => { const c = await currentGame(page); return c && c.engineID === SMALL && c.moves.length >= 1; }, 90000, 'its first move');
+    assert(workerLog.A.slice(workerBefore).some(line => line.endsWith('/' + fallback)), 'the failed direct read used the Worker');
+    assert(directFiles.slice(directBefore).some(key => key.startsWith(SMALL + '/') && key !== fallback), 'the next file used the direct server');
     await page.evaluate(async id => {
       const c = await caches.open('zc-packs');
       for (const r of await c.keys()) if (r.url.includes(`/engines/${id}/`) && /\.js$/.test(r.url)) await c.put(r, new Response('throw new Error("broken")', { headers: { 'content-type': 'text/javascript' } }));

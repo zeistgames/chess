@@ -59,7 +59,8 @@ async function engines(key, request, env) {
     'cache-control': /(^catalog|manifest)\.json$|\/manifest\.json$/.test(key) ? 'public, max-age=300' : 'public, max-age=86400',
   });
   if (env.ENGINES) {
-    const obj = await env.ENGINES.get(key);
+    let obj;
+    try { obj = await env.ENGINES.get(key); } catch { return text('Not found', 502); }
     if (obj) {
       headers.set('content-length', String(obj.size));
       if (obj.httpEtag) headers.set('etag', obj.httpEtag);
@@ -67,7 +68,9 @@ async function engines(key, request, env) {
     }
   }
   if (env.ENGINES_ORIGIN) {
-    const up = await fetch(new URL(key, normalizeOrigin(env.ENGINES_ORIGIN)), { method: request.method });
+    let up;
+    try { up = await fetch(new URL(key, normalizeOrigin(env.ENGINES_ORIGIN)), { method: request.method }); }
+    catch { return text('Not found', 502); }
     if (!up.ok) return text('Not found', up.status === 404 ? 404 : 502);
     const len = up.headers.get('content-length');
     if (len) headers.set('content-length', len);

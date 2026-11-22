@@ -15,19 +15,16 @@ import { PACKS as ORIGIN } from './config.js';
 
 export const PACKS = 'zc-packs';
 
-// Straight from the packs' server until a request to it fails (no CORS answer, say); then the Worker, for this visit.
-let direct = !!ORIGIN;
 const TYPES = { js: 'text/javascript', mjs: 'text/javascript', wasm: 'application/wasm', json: 'application/json', txt: 'text/plain', nnue: 'application/octet-stream' };
 const typeOf = p => TYPES[p.split('.').pop().toLowerCase()] || 'application/octet-stream';
 
 /** A pack server file (rel, such as "maia/manifest.json" or "catalog.json"), from the packs' server or the Worker. */
 async function fetchPack(rel, { signal, keyed = false } = {}) {
-  if (direct) {
+  if (ORIGIN) {
     try {
       const r = await fetch(ORIGIN + rel, { cache: 'no-store', mode: 'cors', credentials: 'omit', signal });
       if (r.ok) return r;
     } catch (e) { if (signal && signal.aborted) throw e; }
-    direct = false;
   }
   if (keyed) await arm();
   return fetch(ENGINES + rel, { cache: 'no-store', signal, ...(keyed ? { headers: DOWNLOAD } : {}) });
