@@ -70,8 +70,16 @@ const PINS = self.PINS || {};
 function pinned(id, sha) { return !!(PINS[id] && Object.hasOwn(PINS[id], sha)); }
 
 /** A pack whose own files fail its pinned manifest: removed, and the open page says so (js/shelf.js). */
-async function damaged(c, base, id) {
-  for (const k of await c.keys()) if (k.url.startsWith(base)) await c.delete(k);
+async function damaged(c, base, id, generation, digest) {
+  const manifestURL = base + 'manifest.json';
+  const current = await c.match(manifestURL);
+  if (!current || current.headers.get('x-zc-generation') !== generation ||
+      (await sha256(await current.arrayBuffer())) !== digest) return missing();
+  await c.delete(manifestURL);
+  const dir = generation ? base + '.pack-' + generation + '/' : base;
+  for (const k of await c.keys()) {
+    if (k.url.startsWith(dir) && (generation || !k.url.startsWith(base + '.pack-'))) await c.delete(k);
+  }
   for (const w of await self.clients.matchAll({ type: 'window' })) w.postMessage({ type: 'zc-pack-removed', id });
   return missing();
 }
@@ -88,16 +96,20 @@ async function packFile(rest) {
   const mr = await c.match(base + 'manifest.json');
   if (!mr) return missing();
   const raw = await mr.clone().arrayBuffer();
-  if (!pinned(id, await sha256(raw))) return missing(); // not a pack this app knows: never served, never removed
+  const digest = await sha256(raw);
+  if (!pinned(id, digest)) return missing(); // not a pack this app knows: never served, never removed
   if (file === 'manifest.json') return mr;
   let m;
   try { m = JSON.parse(new TextDecoder().decode(raw)); } catch { return missing(); }
   const f = (m.files || []).find(x => x.path === file);
   if (!f) return missing();
-  const kept = await c.match(base + file);
-  if (!kept) return damaged(c, base, id);
+  const generation = mr.headers.get('x-zc-generation');
+  if (generation !== null && !/^[a-f0-9-]{36}$/.test(generation)) return missing();
+  const dir = generation ? base + '.pack-' + generation + '/' : base;
+  const kept = await c.match(dir + file);
+  if (!kept) return damaged(c, base, id, generation, digest);
   const b = await kept.clone().arrayBuffer();
-  if (b.byteLength !== f.bytes || (await sha256(b)) !== String(f.sha256).toLowerCase()) return damaged(c, base, id);
+  if (b.byteLength !== f.bytes || (await sha256(b)) !== String(f.sha256).toLowerCase()) return damaged(c, base, id, generation, digest);
   return kept;
 }
 
@@ -108,7 +120,11 @@ const keys = new Set();
 self.addEventListener('message', event => {
   const d = event.data;
   // Whether a manifest is pinned, so the shelf can say a version needs the app reloaded before downloading it.
-  if (d && d.type === 'zc-pinned' && event.ports && event.ports[0]) { event.ports[0].postMessage(pinned(String(d.id), String(d.sha))); return; }
+  if (d && d.type === 'zc-pinned' && event.ports && event.ports[0]) {
+    const known = pinned(String(d.id), String(d.sha));
+    event.ports[0].postMessage(d.packLayout === 2 ? { pinned: known, packLayout: 2 } : known);
+    return;
+  }
   if (!d || d.type !== 'zc-download-key' || typeof d.key !== 'string' || d.key.length < 32) return;
   // Only a window of this app: never an engine's worker.
   const src = event.source;

@@ -14,7 +14,6 @@ import { ENGINES, get as pref, set as setPref, ownWorker, untilOwnWorker } from 
 import { PACKS as ORIGIN } from './config.js';
 
 export const PACKS = 'zc-packs';
-const STAGING = 'zc-staging';
 
 // Straight from the packs' server until a request to it fails (no CORS answer, say); then the Worker, for this visit.
 let direct = !!ORIGIN;
@@ -174,9 +173,9 @@ async function pinnedHere(id, sha) {
   if (!sw) return null;
   return new Promise(resolve => {
     const ch = new MessageChannel();
-    ch.port1.onmessage = e => resolve(e.data === true);
+    ch.port1.onmessage = e => resolve(e.data?.pinned === true && e.data.packLayout === 2);
     setTimeout(() => resolve(false), 10000);
-    sw.postMessage({ type: 'zc-pinned', id, sha }, [ch.port2]);
+    sw.postMessage({ type: 'zc-pinned', id, sha, packLayout: 2 }, [ch.port2]);
   });
 }
 
@@ -211,9 +210,12 @@ export async function install(id) {
   state.promise = (async () => {
     const base = ENGINES + id + '/'; // where it is kept and served from, wherever it is downloaded from
     const c = await cache();
-    // Files come down into a staging cache first: an update that fails leaves the installed version whole.
-    const stage = await caches.open(STAGING);
+    // Stage under a unique address. Only the canonical manifest can make these files visible to the worker.
+    const generation = crypto.randomUUID();
+    const stage = base + '.pack-' + generation + '/';
+    const manifestURL = base + 'manifest.json';
     const written = [];
+    let published = false;
     try {
       // This app's own worker, which checks the pins, should answer for the page before anything is kept: on a first
       // visit from Zeist's /chess it takes over a moment after the page loads.
@@ -263,25 +265,35 @@ export async function install(id) {
         if (blob.size !== f.bytes || (await sha256(await blob.arrayBuffer())) !== String(f.sha256).toLowerCase()) {
           throw new PackError("A file didn't match its checksum.");
         }
-        await stage.put(url, new Response(blob, { headers: { 'content-type': typeOf(f.path), 'content-length': String(blob.size) } }));
-        written.push(url);
+        const staged = stage + url.slice(base.length);
+        await c.put(staged, new Response(blob, { headers: { 'content-type': typeOf(f.path), 'content-length': String(blob.size) } }));
+        written.push(staged);
         done += f.bytes;
         state.progress = done / total;
         changed();
       }
-      // Everything checked: swap it in. The old manifest goes first, so no half-swapped pack counts as installed.
-      await c.delete(base + 'manifest.json');
-      for (const u of written) await c.put(u, await stage.match(u));
-      const keep = new Set(written);
-      for (const k of await c.keys()) if (k.url.startsWith(base) && !keep.has(k.url)) await c.delete(k);
-      await c.put(base + 'manifest.json', new Response(raw, { headers: { 'content-type': 'application/json' } }));
-      for (const u of written) await stage.delete(u);
+      // Publish the manifest last. The one replacement put selects the whole version at once.
+      if (controller.signal.aborted) throw new PackError('stopped');
+      const previous = await c.match(manifestURL);
+      await c.put(manifestURL, new Response(raw, { headers: {
+        'content-type': 'application/json', 'x-zc-generation': generation,
+      } }));
+      published = true;
+      if (previous) {
+        const old = previous.headers.get('x-zc-generation');
+        const dir = old ? base + '.pack-' + old + '/' : base;
+        for (const k of await c.keys()) {
+          if (k.url !== manifestURL && k.url.startsWith(dir) && (old || !k.url.startsWith(base + '.pack-'))) {
+            await c.delete(k).catch(() => {});
+          }
+        }
+      }
       if (removed.delete(id)) keepRemoved();
       downloads.delete(id);
       persist();
       await rebuild();
     } catch (e) {
-      for (const u of written) await stage.delete(u);
+      if (!published) for (const u of written) await c.delete(u).catch(() => {});
       if (controller.signal.aborted) { downloads.delete(id); changed(); throw new PackError('stopped'); }
       state.error = e instanceof PackError ? e.message
         : navigator.onLine === false ? "You're offline."
